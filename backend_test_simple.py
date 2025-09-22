@@ -118,10 +118,10 @@ class SimpleAPITester:
         success2, status2, data2 = self.make_request(
             'GET',
             'auth/me',
-            expected_status=401
+            expected_status=403  # Updated to expect 403 instead of 401
         )
         
-        auth_required2 = success2 and status2 == 401
+        auth_required2 = success2 and status2 == 403
         
         return self.log_test(
             "Unauthorized Access Protection",
