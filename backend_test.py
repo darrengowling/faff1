@@ -804,8 +804,8 @@ class UCLAuctionAPITester:
             return self.log_test("Chat Functionality", False, f"Exception: {str(e)}")
 
     def run_comprehensive_tests(self):
-        """Run comprehensive league management tests"""
-        print("🚀 Starting UCL Auction Comprehensive League Management Tests")
+        """Run comprehensive league management and auction engine tests"""
+        print("🚀 Starting UCL Auction Comprehensive Live Auction Engine Tests")
         print(f"📍 Testing against: {self.base_url}")
         print("=" * 80)
         
@@ -837,6 +837,24 @@ class UCLAuctionAPITester:
         print("\n👑 COMMISSIONER CONTROLS TESTS")
         self.test_commissioner_access_control()
         
+        # ==================== AUCTION ENGINE TESTS ====================
+        print("\n🎯 AUCTION ENGINE TESTS")
+        self.test_auction_creation_and_setup()
+        self.test_auction_state_retrieval()
+        
+        print("\n💰 ATOMIC BID PROCESSING TESTS")
+        self.test_atomic_bid_processing()
+        self.test_budget_constraint_validation()
+        self.test_concurrent_bid_handling()
+        
+        print("\n⏸️ AUCTION CONTROL TESTS")
+        self.test_auction_pause_resume()
+        
+        print("\n🔌 WEBSOCKET INTEGRATION TESTS")
+        self.test_websocket_connection()
+        self.test_websocket_bid_placement()
+        self.test_chat_functionality()
+        
         # Print detailed summary
         print("\n" + "=" * 80)
         print(f"📊 COMPREHENSIVE TEST SUMMARY")
@@ -849,11 +867,30 @@ class UCLAuctionAPITester:
             for i, failure in enumerate(self.failed_tests, 1):
                 print(f"   {i}. {failure}")
         
+        # Auction-specific summary
+        auction_tests = [test for test in self.failed_tests if any(keyword in test.lower() for keyword in ['auction', 'bid', 'websocket', 'chat'])]
+        if auction_tests:
+            print(f"\n🎯 AUCTION ENGINE ISSUES ({len(auction_tests)}):")
+            for i, failure in enumerate(auction_tests, 1):
+                print(f"   {i}. {failure}")
+        
         if self.tests_passed == self.tests_run:
             print("\n🎉 All comprehensive tests passed!")
+            print("✅ Atomic bid processing working correctly")
+            print("✅ Real-time WebSocket functionality operational")
+            print("✅ Auction state management functioning properly")
             return 0
         else:
             print(f"\n⚠️  {len(self.failed_tests)} tests failed - see details above")
+            
+            # Provide specific guidance for auction issues
+            if auction_tests:
+                print("\n🔧 AUCTION ENGINE RECOMMENDATIONS:")
+                print("   - Check MongoDB transaction support")
+                print("   - Verify WebSocket server configuration")
+                print("   - Ensure auction engine initialization")
+                print("   - Test with manual authentication tokens")
+            
             return 1
 
 def main():
