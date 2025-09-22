@@ -4,6 +4,9 @@ import axios from 'axios';
 import { Toaster, toast } from 'sonner';
 import './App.css';
 
+// Import components
+import AuctionRoom from './components/AuctionRoom';
+
 // Import Shadcn components
 import { Button } from './components/ui/button';
 import { Input } from './components/ui/input';
