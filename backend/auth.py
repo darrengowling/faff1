@@ -80,50 +80,10 @@ async def send_magic_link_email(email: str, token: str):
     magic_link = f"http://localhost:3000/auth/verify?token={token}"
     
     # For development, just log the magic link
-    if not SMTP_SERVER:
-        logger.info(f"Magic link for {email}: {magic_link}")
-        print(f"\n🔗 Magic Link for {email}:")
-        print(f"   {magic_link}\n")
-        return
-    
-    # Production email sending
-    try:
-        msg = MimeMultipart()
-        msg['From'] = FROM_EMAIL
-        msg['To'] = email
-        msg['Subject'] = "Your UCL Auction Login Link"
-        
-        body = f"""
-        Hello!
-        
-        Click the link below to log in to UCL Auction:
-        {magic_link}
-        
-        This link will expire in {MAGIC_LINK_EXPIRE_MINUTES} minutes.
-        
-        If you didn't request this, please ignore this email.
-        
-        Best regards,
-        UCL Auction Team
-        """
-        
-        msg.attach(MimeText(body, 'plain'))
-        
-        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
-        server.starttls()
-        server.login(SMTP_USERNAME, SMTP_PASSWORD)
-        text = msg.as_string()
-        server.sendmail(FROM_EMAIL, email, text)
-        server.quit()
-        
-        logger.info(f"Magic link email sent to {email}")
-        
-    except Exception as e:
-        logger.error(f"Failed to send email to {email}: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to send magic link email"
-        )
+    logger.info(f"Magic link for {email}: {magic_link}")
+    print(f"\n🔗 Magic Link for {email}:")
+    print(f"   {magic_link}\n")
+    return
 
 async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> UserResponse:
     """Get current authenticated user"""
