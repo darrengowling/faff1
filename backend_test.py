@@ -106,25 +106,45 @@ class UCLAuctionAPITester:
             f"Status: {status}, Clubs found: {clubs_count}"
         )
 
-    def simulate_user_auth(self, email):
-        """Simulate user authentication by creating user and getting token"""
-        # Request magic link
+    def authenticate_user(self, email):
+        """Authenticate user using magic link flow"""
+        # Step 1: Request magic link
         success, status, data = self.make_request(
             'POST', 
             'auth/magic-link', 
-            {"email": email}
+            {"email": email},
+            token=None  # No token needed for magic link request
         )
         
         if not success:
             return None, f"Failed to request magic link: {status}"
         
-        # In real scenario, we'd extract token from email
-        # For testing, we'll create a mock user and simulate auth
-        print(f"📧 Magic link requested for {email} (check console for link)")
+        print(f"📧 Magic link requested for {email}")
         
-        # Since we can't easily extract the token from logs in this environment,
-        # we'll use the direct join endpoint for testing
-        return None, "Magic link sent - manual verification needed"
+        # Step 2: In a real scenario, we'd extract token from email
+        # For testing, we'll check the backend logs for the token
+        # This is a simplified approach - in production you'd have proper test tokens
+        
+        # For now, let's try to use a test approach
+        # We'll simulate the verification step with a mock token approach
+        return None, "Authentication requires manual token extraction from logs"
+
+    def test_with_manual_token(self, token):
+        """Test with manually extracted token"""
+        # Verify the token works
+        success, status, data = self.make_request(
+            'POST',
+            'auth/verify',
+            {"token": token},
+            token=None
+        )
+        
+        if success and 'access_token' in data:
+            self.commissioner_token = data['access_token']
+            self.user_data = data['user']
+            return True, f"Authenticated as {data['user']['email']}"
+        
+        return False, f"Token verification failed: {status}"
 
     def test_enhanced_league_creation(self):
         """Test enhanced league creation with comprehensive settings"""
