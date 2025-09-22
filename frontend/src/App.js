@@ -1117,14 +1117,36 @@ const Dashboard = () => {
                       <span className="font-medium">{league.settings.club_slots_per_manager}</span>
                     </div>
                     <Separator />
-                    <Button 
-                      className="w-full" 
-                      variant="outline"
-                      onClick={() => handleViewLeague(league)}
-                    >
-                      <Eye className="w-4 h-4 mr-2" />
-                      Manage League
-                    </Button>
+                    <div className="flex space-x-2">
+                      <Button 
+                        className="flex-1" 
+                        variant="outline"
+                        onClick={() => handleViewLeague(league)}
+                      >
+                        <Eye className="w-4 h-4 mr-2" />
+                        Manage League
+                      </Button>
+                      {league.status === 'ready' && league.commissioner_id === user.id && (
+                        <Button
+                          size="sm"
+                          onClick={() => handleStartAuction(league.id)}
+                          className="bg-green-600 hover:bg-green-700"
+                        >
+                          <Play className="w-4 h-4 mr-1" />
+                          Start Auction
+                        </Button>
+                      )}
+                      {league.status === 'active' && (
+                        <Button
+                          size="sm"
+                          onClick={() => handleViewAuction(league.id)}
+                          className="bg-blue-600 hover:bg-blue-700"
+                        >
+                          <Gavel className="w-4 h-4 mr-1" />
+                          Join Auction
+                        </Button>
+                      )}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
