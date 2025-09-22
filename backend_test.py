@@ -37,6 +37,13 @@ class UCLAuctionAPITester:
         ]
         self.test_league_id = None
         self.test_invitations = []
+        self.test_auction_id = None
+        self.test_clubs = []
+        
+        # WebSocket testing
+        self.socket_clients = {}
+        self.websocket_events = []
+        self.bid_results = []
         
     def log_test(self, name, success, details=""):
         """Log test results"""
