@@ -98,7 +98,13 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
     if user is None:
         raise credentials_exception
     
-    return UserResponse(**user)
+    return UserResponse(
+        id=user["_id"],
+        email=user["email"],
+        display_name=user["display_name"],
+        verified=user["verified"],
+        created_at=user["created_at"]
+    )
 
 async def get_current_verified_user(current_user: UserResponse = Depends(get_current_user)) -> UserResponse:
     """Get current authenticated and verified user"""
