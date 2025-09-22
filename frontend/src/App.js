@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Toaster, toast } from 'sonner';
 import './App.css';
@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './components/ui/dialog';
 import { Label } from './components/ui/label';
 import { Separator } from './components/ui/separator';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './components/ui/alert-dialog';
 
 // Icons
 import { 
@@ -27,7 +28,17 @@ import {
   Timer,
   DollarSign,
   Gavel,
-  Target
+  Target,
+  Send,
+  UserPlus,
+  CheckCircle,
+  Clock,
+  XCircle,
+  RefreshCw,
+  Eye,
+  Shield,
+  Calendar,
+  MapPin
 } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -251,16 +262,655 @@ const MagicLinkVerify = () => {
   return null;
 };
 
+// Invitation Accept Component
+const InvitationAccept = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [league, setLeague] = useState(null);
+
+  useEffect(() => {
+    const acceptInvitation = async () => {
+      const urlParams = new URLSearchParams(location.search);
+      const token = urlParams.get('token');
+
+      if (!token) {
+        setError('No invitation token provided');
+        setLoading(false);
+        return;
+      }
+
+      if (!user) {
+        // Redirect to login with return URL
+        navigate(`/login?redirect=${encodeURIComponent(location.pathname + location.search)}`);
+        return;
+      }
+
+      try {
+        const response = await axios.post(`${API}/invitations/accept`, { token });
+        setLeague(response.data);
+        toast.success(`Successfully joined ${response.data.name}!`);
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 2000);
+      } catch (error) {
+        setError(error.response?.data?.detail || 'Failed to accept invitation');
+        toast.error('Failed to accept invitation');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    acceptInvitation();
+  }, [user, location, navigate]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardContent className="text-center p-8">
+            <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
+            <p>Processing invitation...</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardContent className="text-center p-8">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <XCircle className="w-8 h-8 text-red-600 mx-auto mb-2" />
+              <p className="text-red-800">{error}</p>
+            </div>
+            <Button
+              className="mt-4"
+              onClick={() => navigate('/dashboard')}
+            >
+              Go to Dashboard
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (league) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardContent className="text-center p-8">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-green-900 mb-2">Welcome to the League!</h3>
+              <p className="text-green-800">
+                You've successfully joined <strong>{league.name}</strong>
+              </p>
+              <p className="text-sm text-green-600 mt-2">
+                Redirecting to dashboard...
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  return null;
+};
+
+// Enhanced League Creation Dialog
+const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    season: '2025-26',
+    settings: {
+      budget_per_manager: 100,
+      min_increment: 1,
+      club_slots_per_manager: 3,
+      anti_snipe_seconds: 30,
+      bid_timer_seconds: 60,
+      max_managers: 8,
+      min_managers: 4,
+      scoring_rules: {
+        club_goal: 1,
+        club_win: 3,
+        club_draw: 1
+      }
+    }
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await axios.post(`${API}/leagues`, formData);
+      onLeagueCreated(response.data);
+      onOpenChange(false);
+      setFormData({
+        name: '',
+        season: '2025-26',
+        settings: {
+          budget_per_manager: 100,
+          min_increment: 1,
+          club_slots_per_manager: 3,
+          anti_snipe_seconds: 30,
+          bid_timer_seconds: 60,
+          max_managers: 8,
+          min_managers: 4,
+          scoring_rules: {
+            club_goal: 1,
+            club_win: 3,
+            club_draw: 1
+          }
+        }
+      });
+      toast.success('League created successfully!');
+    } catch (error) {
+      toast.error('Failed to create league');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateSettings = (key, value) => {
+    setFormData(prev => ({
+      ...prev,
+      settings: {
+        ...prev.settings,
+        [key]: parseInt(value) || value
+      }
+    }));
+  };
+
+  const updateScoringRules = (key, value) => {
+    setFormData(prev => ({
+      ...prev,
+      settings: {
+        ...prev.settings,
+        scoring_rules: {
+          ...prev.settings.scoring_rules,
+          [key]: parseInt(value) || 0
+        }
+      }
+    }));
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>Create New League</DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Basic Info */}
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">League Name</Label>
+              <Input
+                id="name"
+                placeholder="Champions League 2025-26"
+                value={formData.name}
+                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="season">Season</Label>
+              <Input
+                id="season"
+                placeholder="2025-26"
+                value={formData.season}
+                onChange={(e) => setFormData(prev => ({ ...prev, season: e.target.value }))}
+                required
+              />
+            </div>
+          </div>
+
+          <Separator />
+
+          {/* League Settings */}
+          <div className="space-y-4">
+            <h4 className="font-medium text-gray-900">League Settings</h4>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="budget">Budget per Manager</Label>
+                <Input
+                  id="budget"
+                  type="number"
+                  min="50"
+                  max="500"
+                  value={formData.settings.budget_per_manager}
+                  onChange={(e) => updateSettings('budget_per_manager', e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="slots">Club Slots per Manager</Label>
+                <Input
+                  id="slots"
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={formData.settings.club_slots_per_manager}
+                  onChange={(e) => updateSettings('club_slots_per_manager', e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="minIncrement">Min Bid Increment</Label>
+                <Input
+                  id="minIncrement"
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={formData.settings.min_increment}
+                  onChange={(e) => updateSettings('min_increment', e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="bidTimer">Bid Timer (seconds)</Label>
+                <Input
+                  id="bidTimer"
+                  type="number"
+                  min="30"
+                  max="300"
+                  value={formData.settings.bid_timer_seconds}
+                  onChange={(e) => updateSettings('bid_timer_seconds', e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="minManagers">Min Managers</Label>
+                <Input
+                  id="minManagers"
+                  type="number"
+                  min="4"
+                  max="8"
+                  value={formData.settings.min_managers}
+                  onChange={(e) => updateSettings('min_managers', e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="maxManagers">Max Managers</Label>
+                <Input
+                  id="maxManagers"
+                  type="number"
+                  min="4"
+                  max="8"
+                  value={formData.settings.max_managers}
+                  onChange={(e) => updateSettings('max_managers', e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+
+          <Separator />
+
+          {/* Scoring Rules */}
+          <div className="space-y-4">
+            <h4 className="font-medium text-gray-900">Scoring Rules</h4>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="goalPoints">Points per Goal</Label>
+                <Input
+                  id="goalPoints"
+                  type="number"
+                  min="0"
+                  max="10"
+                  value={formData.settings.scoring_rules.club_goal}
+                  onChange={(e) => updateScoringRules('club_goal', e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="winPoints">Points per Win</Label>
+                <Input
+                  id="winPoints"
+                  type="number"
+                  min="0"
+                  max="10"
+                  value={formData.settings.scoring_rules.club_win}
+                  onChange={(e) => updateScoringRules('club_win', e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="drawPoints">Points per Draw</Label>
+                <Input
+                  id="drawPoints"
+                  type="number"
+                  min="0"
+                  max="10"
+                  value={formData.settings.scoring_rules.club_draw}
+                  onChange={(e) => updateScoringRules('club_draw', e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex space-x-2 pt-4">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onOpenChange(false)}
+              className="flex-1"
+            >
+              Cancel
+            </Button>
+            <Button type="submit" className="flex-1" disabled={loading}>
+              {loading ? 'Creating...' : 'Create League'}
+            </Button>
+          </div>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+// League Management Component
+const LeagueManagement = ({ league, onBack }) => {
+  const { user } = useAuth();
+  const [members, setMembers] = useState([]);
+  const [invitations, setInvitations] = useState([]);
+  const [leagueStatus, setLeagueStatus] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [inviteEmail, setInviteEmail] = useState('');
+  const [inviteLoading, setInviteLoading] = useState(false);
+
+  const isCommissioner = league.commissioner_id === user.id;
+
+  useEffect(() => {
+    fetchLeagueData();
+  }, [league.id]);
+
+  const fetchLeagueData = async () => {
+    try {
+      const [membersRes, statusRes, invitationsRes] = await Promise.all([
+        axios.get(`${API}/leagues/${league.id}/members`),
+        axios.get(`${API}/leagues/${league.id}/status`),
+        isCommissioner ? axios.get(`${API}/leagues/${league.id}/invitations`) : Promise.resolve({ data: [] })
+      ]);
+
+      setMembers(membersRes.data);
+      setLeagueStatus(statusRes.data);
+      setInvitations(invitationsRes.data);
+    } catch (error) {
+      toast.error('Failed to load league data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleInvite = async (e) => {
+    e.preventDefault();
+    setInviteLoading(true);
+
+    try {
+      await axios.post(`${API}/leagues/${league.id}/invite`, { 
+        league_id: league.id, 
+        email: inviteEmail 
+      });
+      setInviteEmail('');
+      toast.success('Invitation sent successfully!');
+      fetchLeagueData(); // Refresh data
+    } catch (error) {
+      toast.error(error.response?.data?.detail || 'Failed to send invitation');
+    } finally {
+      setInviteLoading(false);
+    }
+  };
+
+  const handleResendInvitation = async (invitationId) => {
+    try {
+      await axios.post(`${API}/leagues/${league.id}/invitations/${invitationId}/resend`);
+      toast.success('Invitation resent successfully!');
+      fetchLeagueData();
+    } catch (error) {
+      toast.error('Failed to resend invitation');
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <Button variant="outline" onClick={onBack}>
+            ← Back
+          </Button>
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">{league.name}</h2>
+            <p className="text-gray-600">{league.season} • {league.competition}</p>
+          </div>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Badge variant={leagueStatus?.is_ready ? "default" : "secondary"}>
+            {leagueStatus?.status || 'setup'}
+          </Badge>
+          {isCommissioner && (
+            <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
+              <Crown className="w-3 h-3 mr-1" />
+              Commissioner
+            </Badge>
+          )}
+        </div>
+      </div>
+
+      {/* League Status */}
+      {leagueStatus && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Shield className="w-5 h-5" />
+              <span>League Status</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">{leagueStatus.member_count}</div>
+                <div className="text-sm text-gray-600">Members</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-600">{leagueStatus.min_members}</div>
+                <div className="text-sm text-gray-600">Min Required</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-orange-600">{leagueStatus.max_members}</div>
+                <div className="text-sm text-gray-600">Max Allowed</div>
+              </div>
+              <div className="text-center">
+                <div className={`text-2xl font-bold ${leagueStatus.is_ready ? 'text-green-600' : 'text-red-600'}`}>
+                  {leagueStatus.is_ready ? '✓' : '✗'}
+                </div>
+                <div className="text-sm text-gray-600">Ready</div>
+              </div>
+            </div>
+            {leagueStatus.is_ready && (
+              <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-green-800 text-sm font-medium">
+                  🎉 League is ready! You can now start the auction when all members are prepared.
+                </p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Members */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Users className="w-5 h-5" />
+              <span>Members ({members.length})</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {members.map((member) => (
+                <div key={member.user_id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <User className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-medium">{member.display_name}</div>
+                      <div className="text-sm text-gray-600">{member.email}</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Badge variant={member.role === 'commissioner' ? 'default' : 'secondary'}>
+                      {member.role === 'commissioner' && <Crown className="w-3 h-3 mr-1" />}
+                      {member.role}
+                    </Badge>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Invitations (Commissioner Only) */}
+        {isCommissioner && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2">
+                <Send className="w-5 h-5" />
+                <span>Invitations</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Send Invitation */}
+              <form onSubmit={handleInvite} className="flex space-x-2">
+                <Input
+                  type="email"
+                  placeholder="manager@example.com"
+                  value={inviteEmail}
+                  onChange={(e) => setInviteEmail(e.target.value)}
+                  required
+                  className="flex-1"
+                />
+                <Button type="submit" disabled={inviteLoading}>
+                  {inviteLoading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <UserPlus className="w-4 h-4" />}
+                </Button>
+              </form>
+
+              {/* Invitation List */}
+              <div className="space-y-2">
+                {invitations.length === 0 ? (
+                  <p className="text-gray-500 text-sm">No invitations sent yet</p>
+                ) : (
+                  invitations.map((invitation) => (
+                    <div key={invitation.id} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <div className="flex items-center space-x-2">
+                        <div className="text-sm font-medium">{invitation.email}</div>
+                        <Badge 
+                          variant={
+                            invitation.status === 'accepted' ? 'default' :
+                            invitation.status === 'expired' ? 'destructive' : 'secondary'
+                          }
+                        >
+                          {invitation.status === 'accepted' && <CheckCircle className="w-3 h-3 mr-1" />}
+                          {invitation.status === 'pending' && <Clock className="w-3 h-3 mr-1" />}
+                          {invitation.status === 'expired' && <XCircle className="w-3 h-3 mr-1" />}
+                          {invitation.status}
+                        </Badge>
+                      </div>
+                      {invitation.status === 'pending' && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleResendInvitation(invitation.id)}
+                        >
+                          <RefreshCw className="w-3 h-3" />
+                        </Button>
+                      )}
+                    </div>
+                  ))
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+
+      {/* League Settings */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <Settings className="w-5 h-5" />
+            <span>League Settings</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="text-center p-3 bg-blue-50 rounded-lg">
+              <DollarSign className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+              <div className="text-lg font-bold">{league.settings.budget_per_manager}</div>
+              <div className="text-sm text-gray-600">Budget</div>
+            </div>
+            <div className="text-center p-3 bg-green-50 rounded-lg">
+              <Target className="w-6 h-6 text-green-600 mx-auto mb-2" />
+              <div className="text-lg font-bold">{league.settings.club_slots_per_manager}</div>
+              <div className="text-sm text-gray-600">Club Slots</div>
+            </div>
+            <div className="text-center p-3 bg-orange-50 rounded-lg">
+              <Gavel className="w-6 h-6 text-orange-600 mx-auto mb-2" />
+              <div className="text-lg font-bold">{league.settings.min_increment}</div>
+              <div className="text-sm text-gray-600">Min Increment</div>
+            </div>
+            <div className="text-center p-3 bg-purple-50 rounded-lg">
+              <Timer className="w-6 h-6 text-purple-600 mx-auto mb-2" />
+              <div className="text-lg font-bold">{league.settings.bid_timer_seconds}s</div>
+              <div className="text-sm text-gray-600">Bid Timer</div>
+            </div>
+          </div>
+          
+          <Separator className="my-4" />
+          
+          <div>
+            <h4 className="font-medium mb-3">Scoring Rules</h4>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <div className="text-lg font-bold text-blue-600">+{league.settings.scoring_rules.club_goal}</div>
+                <div className="text-sm text-gray-600">Per Goal</div>
+              </div>
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <div className="text-lg font-bold text-green-600">+{league.settings.scoring_rules.club_win}</div>
+                <div className="text-sm text-gray-600">Per Win</div>
+              </div>
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <div className="text-lg font-bold text-orange-600">+{league.settings.scoring_rules.club_draw}</div>
+                <div className="text-sm text-gray-600">Per Draw</div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
 // Dashboard Component
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const [leagues, setLeagues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showCreateLeague, setShowCreateLeague] = useState(false);
-  const [createLeagueData, setCreateLeagueData] = useState({
-    name: '',
-    season: '2024-25'
-  });
+  const [selectedLeague, setSelectedLeague] = useState(null);
 
   useEffect(() => {
     fetchLeagues();
@@ -286,18 +936,48 @@ const Dashboard = () => {
     }
   };
 
-  const handleCreateLeague = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(`${API}/leagues`, createLeagueData);
-      setLeagues([...leagues, response.data]);
-      setShowCreateLeague(false);
-      setCreateLeagueData({ name: '', season: '2024-25' });
-      toast.success('League created successfully!');
-    } catch (error) {
-      toast.error('Failed to create league');
-    }
+  const handleLeagueCreated = (newLeague) => {
+    setLeagues([newLeague, ...leagues]);
   };
+
+  const handleViewLeague = (league) => {
+    setSelectedLeague(league);
+  };
+
+  if (selectedLeague) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <header className="bg-white shadow-sm border-b">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                  <Trophy className="w-5 h-5 text-white" />
+                </div>
+                <h1 className="text-xl font-bold text-gray-900">UCL Auction</h1>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <User className="w-4 h-4 text-gray-600" />
+                  <span className="text-sm text-gray-700">{user.display_name}</span>
+                </div>
+                <Button variant="outline" size="sm" onClick={logout}>
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+              </div>
+            </div>
+          </div>
+        </header>
+        <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <LeagueManagement 
+            league={selectedLeague} 
+            onBack={() => setSelectedLeague(null)} 
+          />
+        </main>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
@@ -324,11 +1004,7 @@ const Dashboard = () => {
                 <User className="w-4 h-4 text-gray-600" />
                 <span className="text-sm text-gray-700">{user.display_name}</span>
               </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={logout}
-              >
+              <Button variant="outline" size="sm" onClick={logout}>
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout
               </Button>
@@ -341,81 +1017,10 @@ const Dashboard = () => {
       <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900">My Leagues</h2>
-          <Dialog open={showCreateLeague} onOpenChange={setShowCreateLeague}>
-            <DialogTrigger asChild>
-              <Button>
-                <Plus className="w-4 h-4 mr-2" />
-                Create League
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Create New League</DialogTitle>
-              </DialogHeader>
-              <form onSubmit={handleCreateLeague} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name">League Name</Label>
-                  <Input
-                    id="name"
-                    placeholder="Champions League 2024-25"
-                    value={createLeagueData.name}
-                    onChange={(e) => setCreateLeagueData({
-                      ...createLeagueData,
-                      name: e.target.value
-                    })}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="season">Season</Label>
-                  <Input
-                    id="season"
-                    placeholder="2024-25"
-                    value={createLeagueData.season}
-                    onChange={(e) => setCreateLeagueData({
-                      ...createLeagueData,
-                      season: e.target.value
-                    })}
-                    required
-                  />
-                </div>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-medium text-blue-900 mb-2">Default Settings</h4>
-                  <div className="grid grid-cols-2 gap-2 text-sm text-blue-800">
-                    <div className="flex items-center space-x-2">
-                      <DollarSign className="w-4 h-4" />
-                      <span>Budget: 100 credits</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Target className="w-4 h-4" />
-                      <span>Club Slots: 3</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Gavel className="w-4 h-4" />
-                      <span>Min Increment: 1</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Timer className="w-4 h-4" />
-                      <span>Timer: 60s</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex space-x-2">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setShowCreateLeague(false)}
-                    className="flex-1"
-                  >
-                    Cancel
-                  </Button>
-                  <Button type="submit" className="flex-1">
-                    Create League
-                  </Button>
-                </div>
-              </form>
-            </DialogContent>
-          </Dialog>
+          <Button onClick={() => setShowCreateLeague(true)}>
+            <Plus className="w-4 h-4 mr-2" />
+            Create League
+          </Button>
         </div>
 
         {/* Leagues Grid */}
@@ -434,35 +1039,60 @@ const Dashboard = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {leagues.map((league) => (
-              <Card key={league.id} className="hover:shadow-lg transition-shadow cursor-pointer">
+              <Card key={league.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div>
                       <CardTitle className="text-lg">{league.name}</CardTitle>
-                      <p className="text-sm text-gray-600">{league.season}</p>
+                      <p className="text-sm text-gray-600 flex items-center mt-1">
+                        <Calendar className="w-3 h-3 mr-1" />
+                        {league.season}
+                      </p>
                     </div>
-                    {league.commissioner_id === user.id && (
-                      <Badge variant="secondary">
-                        <Crown className="w-3 h-3 mr-1" />
-                        Commissioner
+                    <div className="flex flex-col items-end space-y-1">
+                      {league.commissioner_id === user.id && (
+                        <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
+                          <Crown className="w-3 h-3 mr-1" />
+                          Commissioner
+                        </Badge>
+                      )}
+                      <Badge variant={league.status === 'ready' ? 'default' : 'secondary'}>
+                        {league.status}
                       </Badge>
-                    )}
+                    </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Budget</span>
+                      <span className="text-gray-600 flex items-center">
+                        <Users className="w-3 h-3 mr-1" />
+                        Members
+                      </span>
+                      <span className="font-medium">{league.member_count}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-600 flex items-center">
+                        <DollarSign className="w-3 h-3 mr-1" />
+                        Budget
+                      </span>
                       <span className="font-medium">{league.settings.budget_per_manager} credits</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Club Slots</span>
+                      <span className="text-gray-600 flex items-center">
+                        <Target className="w-3 h-3 mr-1" />
+                        Club Slots
+                      </span>
                       <span className="font-medium">{league.settings.club_slots_per_manager}</span>
                     </div>
                     <Separator />
-                    <Button className="w-full" variant="outline">
-                      <Users className="w-4 h-4 mr-2" />
-                      View League
+                    <Button 
+                      className="w-full" 
+                      variant="outline"
+                      onClick={() => handleViewLeague(league)}
+                    >
+                      <Eye className="w-4 h-4 mr-2" />
+                      Manage League
                     </Button>
                   </div>
                 </CardContent>
@@ -471,6 +1101,13 @@ const Dashboard = () => {
           </div>
         )}
       </main>
+
+      {/* Create League Dialog */}
+      <CreateLeagueDialog
+        open={showCreateLeague}
+        onOpenChange={setShowCreateLeague}
+        onLeagueCreated={handleLeagueCreated}
+      />
     </div>
   );
 };
@@ -519,6 +1156,11 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/auth/verify" element={<MagicLinkVerify />} />
+            <Route path="/invite" element={
+              <ProtectedRoute>
+                <InvitationAccept />
+              </ProtectedRoute>
+            } />
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
