@@ -110,9 +110,14 @@ async def verify_magic_link(request: MagicLinkVerify):
     # Create access token
     access_token = create_access_token(data={"sub": user["_id"]})
     
-    # Update user data with verified status
-    user["verified"] = True
-    user_response = UserResponse(**user)
+    # Create user response with proper field mapping
+    user_response = UserResponse(
+        id=user["_id"],
+        email=user["email"],
+        display_name=user["display_name"],
+        verified=True,
+        created_at=user["created_at"]
+    )
     
     return AuthResponse(
         access_token=access_token,
