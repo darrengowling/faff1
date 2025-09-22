@@ -183,40 +183,18 @@ async def update_profile(
         created_at=updated_user["created_at"]
     )
 
-# League Routes
+# Enhanced League Routes with Commissioner Controls
 @api_router.post("/leagues", response_model=LeagueResponse)
 async def create_league(
     league_data: LeagueCreate,
     current_user: UserResponse = Depends(get_current_verified_user)
 ):
-    """Create a new league"""
-    # Create league
-    league = League(
-        name=league_data.name,
-        season=league_data.season,
-        commissioner_id=current_user.id,
-        settings=league_data.settings or LeagueSettings()
-    )
-    league_dict = league.dict(by_alias=True)
-    await db.leagues.insert_one(league_dict)
-    
-    # Add commissioner membership
-    membership = Membership(
-        league_id=league.id,
-        user_id=current_user.id,
-        role=MembershipRole.COMMISSIONER
-    )
-    membership_dict = membership.dict(by_alias=True)
-    await db.memberships.insert_one(membership_dict)
-    
-    # Create scoring rules
-    scoring_rules = ScoringRules(league_id=league.id)
-    scoring_dict = scoring_rules.dict(by_alias=True)
-    await db.scoring_rules.insert_one(scoring_dict)
-    
-    logger.info(f"Created league {league.id} by user {current_user.id}")
-    
-    return convert_doc_to_response(league_dict, LeagueResponse)
+    """Create a new league with comprehensive setup"""
+    try:
+        return await LeagueService.create_league_with_setup(league_data, current_user.id)
+    except Exception as e:
+        logger.error(f"League creation failed: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
 
 @api_router.get("/leagues", response_model=List[LeagueResponse])
 async def get_my_leagues(current_user: UserResponse = Depends(get_current_verified_user)):
@@ -241,12 +219,64 @@ async def get_league(
     
     return convert_doc_to_response(league, LeagueResponse)
 
-@api_router.post("/leagues/{league_id}/join")
-async def join_league(
+@api_router.post("/leagues/{league_id}/invite")
+async def invite_manager(
+    league_id: str,
+    invitation_data: InvitationCreate,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Send invitation to join league as manager"""
+    await require_commissioner_access(current_user.id, league_id)
+    
+    try:
+        return await LeagueService.invite_manager(
+            league_id=league_id,
+            inviter_id=current_user.id,
+            email=invitation_data.email
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Invitation failed: {e}")
+        raise HTTPException(status_code=500, detail="Failed to send invitation")
+
+@api_router.get("/leagues/{league_id}/invitations", response_model=List[InvitationResponse])
+async def get_league_invitations(
     league_id: str,
     current_user: UserResponse = Depends(get_current_verified_user)
 ):
-    """Join a league as a manager"""
+    """Get all invitations for a league (commissioner only)"""
+    await require_commissioner_access(current_user.id, league_id)
+    
+    try:
+        return await LeagueService.get_league_invitations(league_id)
+    except Exception as e:
+        logger.error(f"Failed to get invitations: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get invitations")
+
+@api_router.post("/leagues/{league_id}/invitations/{invitation_id}/resend")
+async def resend_invitation(
+    league_id: str,
+    invitation_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Resend league invitation"""
+    await require_commissioner_access(current_user.id, league_id)
+    
+    try:
+        return await LeagueService.resend_invitation(invitation_id, current_user.id)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Failed to resend invitation: {e}")
+        raise HTTPException(status_code=500, detail="Failed to resend invitation")
+
+@api_router.post("/leagues/{league_id}/join")
+async def join_league_direct(
+    league_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Join a league directly (for testing/manual joins)"""
     # Check if league exists
     league = await db.leagues.find_one({"_id": league_id})
     if not league:
@@ -259,6 +289,10 @@ async def join_league(
     })
     if existing_membership:
         raise HTTPException(status_code=400, detail="Already a member of this league")
+    
+    # Check league capacity
+    if league["member_count"] >= league["settings"]["max_managers"]:
+        raise HTTPException(status_code=400, detail="League is full")
     
     # Add membership
     membership = Membership(
@@ -280,38 +314,72 @@ async def join_league(
     roster_dict = roster.dict(by_alias=True)
     await db.rosters.insert_one(roster_dict)
     
+    # Update league member count
+    await db.leagues.update_one(
+        {"_id": league_id},
+        {"$inc": {"member_count": 1}}
+    )
+    
+    # Check if league is now ready
+    await LeagueService.validate_league_ready(league_id)
+    
     logger.info(f"User {current_user.id} joined league {league_id}")
     
     return {"message": "Successfully joined league"}
 
-@api_router.get("/leagues/{league_id}/members", response_model=List[dict])
+@api_router.get("/leagues/{league_id}/members", response_model=List[LeagueMemberResponse])
 async def get_league_members(
     league_id: str,
     current_user: UserResponse = Depends(get_current_verified_user)
 ):
-    """Get league members with their roles"""
+    """Get league members with their details"""
     await require_league_access(current_user.id, league_id)
     
-    # Get memberships with user details
-    pipeline = [
-        {"$match": {"league_id": league_id}},
-        {"$lookup": {
-            "from": "users",
-            "localField": "user_id",
-            "foreignField": "_id",
-            "as": "user"
-        }},
-        {"$unwind": "$user"},
-        {"$project": {
-            "user_id": 1,
-            "role": 1,
-            "display_name": "$user.display_name",
-            "email": "$user.email"
-        }}
-    ]
+    try:
+        return await LeagueService.get_league_members(league_id)
+    except Exception as e:
+        logger.error(f"Failed to get league members: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get league members")
+
+@api_router.get("/leagues/{league_id}/status")
+async def get_league_status(
+    league_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get league readiness status"""
+    await require_league_access(current_user.id, league_id)
     
-    members = await db.memberships.aggregate(pipeline).to_list(length=None)
-    return members
+    try:
+        is_ready = await LeagueService.validate_league_ready(league_id)
+        league = await db.leagues.find_one({"_id": league_id})
+        
+        return {
+            "league_id": league_id,
+            "status": league["status"],
+            "member_count": league["member_count"],
+            "min_members": league["settings"]["min_managers"],
+            "max_members": league["settings"]["max_managers"],
+            "is_ready": is_ready,
+            "can_start_auction": is_ready and league["status"] == "ready"
+        }
+    except Exception as e:
+        logger.error(f"Failed to get league status: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get league status")
+
+# Invitation Acceptance Route
+@api_router.post("/invitations/accept", response_model=LeagueResponse)
+async def accept_invitation(
+    invitation_data: InvitationAccept,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Accept league invitation"""
+    try:
+        return await LeagueService.accept_invitation(invitation_data.token, current_user.id)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Failed to accept invitation: {e}")
+        raise HTTPException(status_code=500, detail="Failed to accept invitation")
 
 # Club Routes (seed data)
 @api_router.post("/clubs/seed")
