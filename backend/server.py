@@ -219,7 +219,7 @@ async def get_my_leagues(current_user: UserResponse = Depends(get_current_verifi
     league_ids = [m["league_id"] for m in memberships]
     
     leagues = await db.leagues.find({"_id": {"$in": league_ids}}).to_list(length=None)
-    return [LeagueResponse(**league) for league in leagues]
+    return [convert_doc_to_response(league, LeagueResponse) for league in leagues]
 
 @api_router.get("/leagues/{league_id}", response_model=LeagueResponse)
 async def get_league(
