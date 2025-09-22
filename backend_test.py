@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-UCL Auction Backend API Testing Suite
-Tests all authentication, user management, league, and club endpoints
+UCL Auction Backend API Testing Suite - Enhanced League Management
+Tests comprehensive league creation, invitation management, and commissioner controls
 """
 
 import requests
@@ -9,16 +9,30 @@ import sys
 import json
 from datetime import datetime
 import time
+import uuid
 
 class UCLAuctionAPITester:
     def __init__(self, base_url="https://champbid-1.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
-        self.token = None
-        self.user_data = None
+        self.commissioner_token = None
+        self.manager_tokens = {}
+        self.user_data = {}
         self.tests_run = 0
         self.tests_passed = 0
-        self.test_email = "test@example.com"
+        self.failed_tests = []
+        
+        # Test data
+        self.commissioner_email = "commissioner@example.com"
+        self.manager_emails = [
+            "manager1@example.com",
+            "manager2@example.com", 
+            "manager3@example.com",
+            "manager4@example.com",
+            "manager5@example.com"
+        ]
+        self.test_league_id = None
+        self.test_invitations = []
         
     def log_test(self, name, success, details=""):
         """Log test results"""
