@@ -41,7 +41,8 @@ import {
   Eye,
   Shield,
   Calendar,
-  MapPin
+  MapPin,
+  Play
 } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
