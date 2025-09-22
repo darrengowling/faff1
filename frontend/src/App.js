@@ -1200,6 +1200,14 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
+// Auction Room Wrapper to provide user context
+const AuctionRoomWrapper = () => {
+  const { user } = useAuth();
+  const token = localStorage.getItem('token');
+  
+  return <AuctionRoom user={user} token={token} />;
+};
+
 // Main App Component
 function App() {
   return (
@@ -1216,7 +1224,7 @@ function App() {
             } />
             <Route path="/auction/:auctionId" element={
               <ProtectedRoute>
-                <AuctionRoom user={user} token={localStorage.getItem('token')} />
+                <AuctionRoomWrapper />
               </ProtectedRoute>
             } />
             <Route path="/dashboard" element={
