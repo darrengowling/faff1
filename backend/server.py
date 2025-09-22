@@ -136,7 +136,13 @@ async def get_user(user_id: str, current_user: UserResponse = Depends(get_curren
     user = await db.users.find_one({"_id": user_id})
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
-    return UserResponse(**user)
+    return UserResponse(
+        id=user["_id"],
+        email=user["email"],
+        display_name=user["display_name"],
+        verified=user["verified"],
+        created_at=user["created_at"]
+    )
 
 @api_router.put("/users/me", response_model=UserResponse)
 async def update_profile(
