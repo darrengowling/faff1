@@ -233,7 +233,7 @@ async def get_league(
     if not league:
         raise HTTPException(status_code=404, detail="League not found")
     
-    return LeagueResponse(**league)
+    return convert_doc_to_response(league, LeagueResponse)
 
 @api_router.post("/leagues/{league_id}/join")
 async def join_league(
