@@ -944,8 +944,30 @@ const Dashboard = () => {
     setLeagues([newLeague, ...leagues]);
   };
 
-  const handleViewLeague = (league) => {
-    setSelectedLeague(league);
+  const handleStartAuction = async (leagueId) => {
+    try {
+      // Get the auction for this league
+      const auctionResponse = await axios.get(`${API}/leagues/${leagueId}`);
+      const league = auctionResponse.data;
+      
+      // Find the auction ID (simplified - in full app would be stored properly)
+      // For now, we'll create or find the auction
+      const startResponse = await axios.post(`${API}/auction/${leagueId}/start`);
+      
+      if (startResponse.data) {
+        toast.success('Auction started successfully!');
+        // Navigate to auction room
+        navigate(`/auction/${leagueId}`);
+      }
+    } catch (error) {
+      console.error('Start auction error:', error);
+      toast.error('Failed to start auction. Make sure league is ready.');
+    }
+  };
+
+  const handleViewAuction = (leagueId) => {
+    // Navigate to auction room
+    navigate(`/auction/${leagueId}`);
   };
 
   if (selectedLeague) {
