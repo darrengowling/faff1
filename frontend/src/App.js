@@ -911,6 +911,7 @@ const LeagueManagement = ({ league, onBack }) => {
 // Dashboard Component
 const Dashboard = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [leagues, setLeagues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showCreateLeague, setShowCreateLeague] = useState(false);
