@@ -159,10 +159,15 @@ async def get_user(user_id: str, current_user: UserResponse = Depends(get_curren
 
 @api_router.put("/users/me", response_model=UserResponse)
 async def update_profile(
-    display_name: str,
+    user_update: dict,
     current_user: UserResponse = Depends(get_current_verified_user)
 ):
     """Update current user's profile"""
+    # Extract display_name from the request
+    display_name = user_update.get('display_name')
+    if not display_name:
+        raise HTTPException(status_code=400, detail="display_name is required")
+    
     await db.users.update_one(
         {"_id": current_user.id},
         {"$set": {"display_name": display_name}}
