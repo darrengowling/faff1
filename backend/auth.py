@@ -1,0 +1,193 @@
+from fastapi import HTTPException, Depends, status
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from jose import JWTError, jwt
+from passlib.context import CryptContext
+from datetime import datetime, timedelta, timezone
+from typing import Optional
+import os
+import secrets
+import smtplib
+from email.mime.text import MimeText
+from email.mime.multipart import MimeMultipart
+import logging
+
+from models import User, UserResponse
+from database import db
+
+logger = logging.getLogger(__name__)
+
+# Configuration
+SECRET_KEY = os.environ.get('SECRET_KEY', secrets.token_urlsafe(32))
+ALGORITHM = "HS256"
+MAGIC_LINK_EXPIRE_MINUTES = 15
+ACCESS_TOKEN_EXPIRE_MINUTES = 24 * 60  # 24 hours
+
+# Email configuration (for development, we'll log the magic links)
+SMTP_SERVER = os.environ.get('SMTP_SERVER', '')
+SMTP_PORT = int(os.environ.get('SMTP_PORT', '587'))
+SMTP_USERNAME = os.environ.get('SMTP_USERNAME', '')
+SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '')
+FROM_EMAIL = os.environ.get('FROM_EMAIL', 'noreply@uclauction.com')
+
+# Security
+security = HTTPBearer()
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
+    """Create JWT access token"""
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.now(timezone.utc) + expires_delta
+    else:
+        expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+def create_magic_link_token(email: str) -> str:
+    """Create magic link token"""
+    expire = datetime.now(timezone.utc) + timedelta(minutes=MAGIC_LINK_EXPIRE_MINUTES)
+    to_encode = {
+        "email": email,
+        "exp": expire,
+        "type": "magic_link"
+    }
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+def verify_magic_link_token(token: str) -> Optional[str]:
+    """Verify magic link token and return email"""
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email: str = payload.get("email")
+        token_type: str = payload.get("type")
+        
+        if email is None or token_type != "magic_link":
+            return None
+        
+        return email
+    except JWTError:
+        return None
+
+async def send_magic_link_email(email: str, token: str):
+    """Send magic link email (for development, we'll just log it)"""
+    magic_link = f"http://localhost:3000/auth/verify?token={token}"
+    
+    # For development, just log the magic link
+    if not SMTP_SERVER:
+        logger.info(f"Magic link for {email}: {magic_link}")
+        print(f"\n🔗 Magic Link for {email}:")
+        print(f"   {magic_link}\n")
+        return
+    
+    # Production email sending
+    try:
+        msg = MimeMultipart()
+        msg['From'] = FROM_EMAIL
+        msg['To'] = email
+        msg['Subject'] = "Your UCL Auction Login Link"
+        
+        body = f"""
+        Hello!
+        
+        Click the link below to log in to UCL Auction:
+        {magic_link}
+        
+        This link will expire in {MAGIC_LINK_EXPIRE_MINUTES} minutes.
+        
+        If you didn't request this, please ignore this email.
+        
+        Best regards,
+        UCL Auction Team
+        """
+        
+        msg.attach(MimeText(body, 'plain'))
+        
+        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+        server.starttls()
+        server.login(SMTP_USERNAME, SMTP_PASSWORD)
+        text = msg.as_string()
+        server.sendmail(FROM_EMAIL, email, text)
+        server.quit()
+        
+        logger.info(f"Magic link email sent to {email}")
+        
+    except Exception as e:
+        logger.error(f"Failed to send email to {email}: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to send magic link email"
+        )
+
+async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> UserResponse:
+    """Get current authenticated user"""
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    
+    try:
+        payload = jwt.decode(credentials.credentials, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id: str = payload.get("sub")
+        if user_id is None:
+            raise credentials_exception
+    except JWTError:
+        raise credentials_exception
+    
+    user = await db.users.find_one({"_id": user_id})
+    if user is None:
+        raise credentials_exception
+    
+    return UserResponse(**user)
+
+async def get_current_verified_user(current_user: UserResponse = Depends(get_current_user)) -> UserResponse:
+    """Get current authenticated and verified user"""
+    if not current_user.verified:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Email not verified"
+        )
+    return current_user
+
+# Access control helpers
+async def check_league_access(user_id: str, league_id: str) -> Optional[str]:
+    """Check if user has access to league and return their role"""
+    membership = await db.memberships.find_one({
+        "league_id": league_id,
+        "user_id": user_id
+    })
+    return membership["role"] if membership else None
+
+async def require_league_access(user_id: str, league_id: str) -> str:
+    """Require league access and return role"""
+    role = await check_league_access(user_id, league_id)
+    if not role:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Access denied to this league"
+        )
+    return role
+
+async def require_commissioner_access(user_id: str, league_id: str):
+    """Require commissioner access to league"""
+    role = await require_league_access(user_id, league_id)
+    if role != "commissioner":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Commissioner access required"
+        )
+
+class AccessControl:
+    """Access control middleware for league-based operations"""
+    
+    @staticmethod
+    async def league_member(current_user: UserResponse = Depends(get_current_verified_user)):
+        """Dependency to ensure user is a league member (role check done per endpoint)"""
+        return current_user
+    
+    @staticmethod
+    async def commissioner_only(current_user: UserResponse = Depends(get_current_verified_user)):
+        """Dependency for commissioner-only endpoints (league check done per endpoint)"""
+        return current_user
