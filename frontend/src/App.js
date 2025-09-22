@@ -1214,6 +1214,11 @@ function App() {
                 <InvitationAccept />
               </ProtectedRoute>
             } />
+            <Route path="/auction/:auctionId" element={
+              <ProtectedRoute>
+                <AuctionRoom user={user} token={localStorage.getItem('token')} />
+              </ProtectedRoute>
+            } />
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
