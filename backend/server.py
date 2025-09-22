@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 # Import our modules
 from models import *
 from database import db, initialize_database
+from league_service import LeagueService
 from auth import (
     create_access_token, create_magic_link_token, verify_magic_link_token,
     send_magic_link_email, get_current_user, get_current_verified_user,
