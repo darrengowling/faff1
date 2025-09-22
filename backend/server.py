@@ -350,7 +350,7 @@ async def seed_clubs(current_user: UserResponse = Depends(get_current_verified_u
 async def get_clubs():
     """Get all clubs"""
     clubs = await db.clubs.find().to_list(length=None)
-    return [ClubResponse(**club) for club in clubs]
+    return [convert_doc_to_response(club, ClubResponse) for club in clubs]
 
 # Include the router in the main app
 app.include_router(api_router)
