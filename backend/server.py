@@ -18,6 +18,13 @@ from auth import (
     require_league_access, require_commissioner_access, AccessControl
 )
 
+# Import auction and WebSocket modules
+from auction_engine import initialize_auction_engine, get_auction_engine
+from websocket import sio, get_socketio_app
+
+ROOT_DIR = Path(__file__).parent
+load_dotenv(ROOT_DIR / '.env')
+
 # Helper function to convert MongoDB document to response model
 def convert_doc_to_response(doc, response_class):
     """Convert MongoDB document to Pydantic response model"""
@@ -30,9 +37,6 @@ def convert_doc_to_response(doc, response_class):
         converted['id'] = converted.pop('_id')
     
     return response_class(**converted)
-
-ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
 
 # Create the main app
 app = FastAPI(title="UCL Auction API", version="1.0.0")
@@ -56,12 +60,13 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Startup event to initialize database
+# Startup event to initialize database and auction engine
 @app.on_event("startup")
 async def startup_event():
-    """Initialize database on startup"""
+    """Initialize database and auction engine on startup"""
     await initialize_database()
-    logger.info("UCL Auction API started successfully")
+    initialize_auction_engine(sio)  # Initialize with Socket.IO server
+    logger.info("UCL Auction API with Live Auction Engine started successfully")
 
 @app.on_event("shutdown")
 async def shutdown_event():
@@ -381,6 +386,117 @@ async def accept_invitation(
         logger.error(f"Failed to accept invitation: {e}")
         raise HTTPException(status_code=500, detail="Failed to accept invitation")
 
+# Live Auction Routes
+@api_router.post("/auction/{auction_id}/start")
+async def start_auction(
+    auction_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Start live auction (commissioner only)"""
+    try:
+        engine = get_auction_engine()
+        success = await engine.start_auction(auction_id, current_user.id)
+        
+        if success:
+            return {"message": "Auction started successfully", "auction_id": auction_id}
+        else:
+            raise HTTPException(status_code=400, detail="Failed to start auction")
+    except Exception as e:
+        logger.error(f"Failed to start auction: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/auction/{auction_id}/bid")
+async def place_bid_http(
+    auction_id: str,
+    bid_data: BidCreate,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Place bid via HTTP endpoint"""
+    try:
+        engine = get_auction_engine()
+        result = await engine.place_bid(auction_id, bid_data.lot_id, current_user.id, bid_data.amount)
+        
+        if result["success"]:
+            return result
+        else:
+            raise HTTPException(status_code=400, detail=result["error"])
+    except Exception as e:
+        logger.error(f"Failed to place bid: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/auction/{auction_id}/nominate")
+async def nominate_club(
+    auction_id: str,
+    club_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Nominate club for auction"""
+    try:
+        engine = get_auction_engine()
+        success = await engine.nominate_club(auction_id, current_user.id, club_id)
+        
+        if success:
+            return {"message": "Club nominated successfully"}
+        else:
+            raise HTTPException(status_code=400, detail="Failed to nominate club")
+    except Exception as e:
+        logger.error(f"Failed to nominate club: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/auction/{auction_id}/pause")
+async def pause_auction(
+    auction_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Pause auction (commissioner only)"""
+    try:
+        engine = get_auction_engine()
+        success = await engine.pause_auction(auction_id, current_user.id)
+        
+        if success:
+            return {"message": "Auction paused successfully"}
+        else:
+            raise HTTPException(status_code=400, detail="Failed to pause auction")
+    except Exception as e:
+        logger.error(f"Failed to pause auction: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/auction/{auction_id}/resume")
+async def resume_auction(
+    auction_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Resume auction (commissioner only)"""
+    try:
+        engine = get_auction_engine()
+        success = await engine.resume_auction(auction_id, current_user.id)
+        
+        if success:
+            return {"message": "Auction resumed successfully"}
+        else:
+            raise HTTPException(status_code=400, detail="Failed to resume auction")
+    except Exception as e:
+        logger.error(f"Failed to resume auction: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/auction/{auction_id}/state")
+async def get_auction_state(
+    auction_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get current auction state"""
+    try:
+        engine = get_auction_engine()
+        state = await engine.get_auction_state(auction_id)
+        
+        if state:
+            return state
+        else:
+            raise HTTPException(status_code=404, detail="Auction not found or not active")
+    except Exception as e:
+        logger.error(f"Failed to get auction state: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Club Routes (seed data)
 @api_router.post("/clubs/seed")
 async def seed_clubs(current_user: UserResponse = Depends(get_current_verified_user)):
@@ -428,6 +544,10 @@ async def get_clubs():
 
 # Include the router in the main app
 app.include_router(api_router)
+
+# Mount Socket.IO app for WebSocket support
+socketio_app = get_socketio_app()
+app.mount("/socket.io", socketio_app)
 
 if __name__ == "__main__":
     import uvicorn
