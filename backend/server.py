@@ -156,7 +156,13 @@ async def update_profile(
     )
     
     updated_user = await db.users.find_one({"_id": current_user.id})
-    return UserResponse(**updated_user)
+    return UserResponse(
+        id=updated_user["_id"],
+        email=updated_user["email"],
+        display_name=updated_user["display_name"],
+        verified=updated_user["verified"],
+        created_at=updated_user["created_at"]
+    )
 
 # League Routes
 @api_router.post("/leagues", response_model=LeagueResponse)
