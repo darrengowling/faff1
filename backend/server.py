@@ -17,6 +17,19 @@ from auth import (
     require_league_access, require_commissioner_access, AccessControl
 )
 
+# Helper function to convert MongoDB document to response model
+def convert_doc_to_response(doc, response_class):
+    """Convert MongoDB document to Pydantic response model"""
+    if not doc:
+        return None
+    
+    # Create a copy and map _id to id
+    converted = doc.copy()
+    if '_id' in converted:
+        converted['id'] = converted.pop('_id')
+    
+    return response_class(**converted)
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
