@@ -7,13 +7,6 @@ from typing import Optional
 import os
 import secrets
 import smtplib
-try:
-    from email.mime.text import MimeText
-    from email.mime.multipart import MimeMultipart
-except ImportError:
-    # Fallback for some Python environments
-    from email.MIMEText import MIMEText as MimeText
-    from email.MIMEMultipart import MIMEMultipart as MimeMultipart
 import logging
 
 from models import User, UserResponse
