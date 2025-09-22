@@ -210,7 +210,7 @@ async def create_league(
     
     logger.info(f"Created league {league.id} by user {current_user.id}")
     
-    return LeagueResponse(**league_dict)
+    return convert_doc_to_response(league_dict, LeagueResponse)
 
 @api_router.get("/leagues", response_model=List[LeagueResponse])
 async def get_my_leagues(current_user: UserResponse = Depends(get_current_verified_user)):
