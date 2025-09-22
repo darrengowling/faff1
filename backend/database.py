@@ -34,13 +34,15 @@ SCHEMAS = {
     "leagues": {
         "$jsonSchema": {
             "bsonType": "object",
-            "required": ["_id", "name", "competition", "season", "commissioner_id", "settings", "created_at"],
+            "required": ["_id", "name", "competition", "season", "commissioner_id", "settings", "status", "member_count", "created_at"],
             "properties": {
                 "_id": {"bsonType": "string"},
                 "name": {"bsonType": "string", "minLength": 1, "maxLength": 100},
                 "competition": {"bsonType": "string", "enum": ["UCL"]},
                 "season": {"bsonType": "string"},
                 "commissioner_id": {"bsonType": "string"},
+                "status": {"bsonType": "string", "enum": ["setup", "ready", "active", "completed"]},
+                "member_count": {"bsonType": "int", "minimum": 1, "maximum": 8},
                 "settings": {
                     "bsonType": "object",
                     "properties": {
@@ -48,7 +50,17 @@ SCHEMAS = {
                         "min_increment": {"bsonType": "int", "minimum": 1},
                         "club_slots_per_manager": {"bsonType": "int", "minimum": 1},
                         "anti_snipe_seconds": {"bsonType": "int", "minimum": 0},
-                        "bid_timer_seconds": {"bsonType": "int", "minimum": 1}
+                        "bid_timer_seconds": {"bsonType": "int", "minimum": 1},
+                        "max_managers": {"bsonType": "int", "minimum": 4, "maximum": 8},
+                        "min_managers": {"bsonType": "int", "minimum": 4, "maximum": 8},
+                        "scoring_rules": {
+                            "bsonType": "object",
+                            "properties": {
+                                "club_goal": {"bsonType": "int"},
+                                "club_win": {"bsonType": "int"},
+                                "club_draw": {"bsonType": "int"}
+                            }
+                        }
                     }
                 },
                 "created_at": {"bsonType": "date"}
@@ -58,12 +70,31 @@ SCHEMAS = {
     "memberships": {
         "$jsonSchema": {
             "bsonType": "object",
-            "required": ["_id", "league_id", "user_id", "role"],
+            "required": ["_id", "league_id", "user_id", "role", "status", "joined_at"],
             "properties": {
                 "_id": {"bsonType": "string"},
                 "league_id": {"bsonType": "string"},
                 "user_id": {"bsonType": "string"},
-                "role": {"bsonType": "string", "enum": ["commissioner", "manager"]}
+                "role": {"bsonType": "string", "enum": ["commissioner", "manager"]},
+                "status": {"bsonType": "string", "enum": ["active", "pending"]},
+                "joined_at": {"bsonType": "date"}
+            }
+        }
+    },
+    "invitations": {
+        "$jsonSchema": {
+            "bsonType": "object",
+            "required": ["_id", "league_id", "inviter_id", "email", "token", "status", "expires_at", "created_at"],
+            "properties": {
+                "_id": {"bsonType": "string"},
+                "league_id": {"bsonType": "string"},
+                "inviter_id": {"bsonType": "string"},
+                "email": {"bsonType": "string", "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"},
+                "token": {"bsonType": "string"},
+                "status": {"bsonType": "string", "enum": ["pending", "accepted", "expired"]},
+                "expires_at": {"bsonType": "date"},
+                "created_at": {"bsonType": "date"},
+                "accepted_at": {"bsonType": ["date", "null"]}
             }
         }
     },
@@ -253,11 +284,19 @@ INDEXES = {
     ],
     "leagues": [
         IndexModel([("commissioner_id", ASCENDING)]),
-        IndexModel([("competition", ASCENDING), ("season", ASCENDING)])
+        IndexModel([("competition", ASCENDING), ("season", ASCENDING)]),
+        IndexModel([("status", ASCENDING)])
     ],
     "memberships": [
         IndexModel([("league_id", ASCENDING), ("user_id", ASCENDING)], unique=True),
-        IndexModel([("user_id", ASCENDING)])
+        IndexModel([("user_id", ASCENDING)]),
+        IndexModel([("league_id", ASCENDING), ("status", ASCENDING)])
+    ],
+    "invitations": [
+        IndexModel([("league_id", ASCENDING), ("email", ASCENDING)]),
+        IndexModel([("token", ASCENDING)], unique=True),
+        IndexModel([("status", ASCENDING)]),
+        IndexModel([("expires_at", ASCENDING)])
     ],
     "clubs": [
         IndexModel([("ext_ref", ASCENDING)], unique=True),

@@ -33,21 +33,31 @@ class UserResponse(BaseModel):
     verified: bool
     created_at: datetime
 
-# League Models
+# Enhanced League Models with Commissioner Controls
+class ScoringRulePoints(BaseModel):
+    club_goal: int = 1
+    club_win: int = 3
+    club_draw: int = 1
+
 class LeagueSettings(BaseModel):
     budget_per_manager: int = 100
     min_increment: int = 1
     club_slots_per_manager: int = 3
     anti_snipe_seconds: int = 30
     bid_timer_seconds: int = 60
+    max_managers: int = 8
+    min_managers: int = 4
+    scoring_rules: ScoringRulePoints = Field(default_factory=ScoringRulePoints)
 
 class League(BaseModel):
     id: str = Field(default_factory=generate_uuid, alias="_id")
     name: str
     competition: str = "UCL"
-    season: str
+    season: str = "2025-26"
     commissioner_id: str
     settings: LeagueSettings = Field(default_factory=LeagueSettings)
+    status: str = "setup"  # setup, ready, active, completed
+    member_count: int = 1  # Commissioner is always first member
     created_at: datetime = Field(default_factory=utc_now)
     
     class Config:
@@ -55,7 +65,7 @@ class League(BaseModel):
 
 class LeagueCreate(BaseModel):
     name: str
-    season: str
+    season: Optional[str] = "2025-26"
     settings: Optional[LeagueSettings] = None
 
 class LeagueResponse(BaseModel):
@@ -65,18 +75,63 @@ class LeagueResponse(BaseModel):
     season: str
     commissioner_id: str
     settings: LeagueSettings
+    status: str
+    member_count: int
     created_at: datetime
+
+# Invitation Models
+class InvitationStatus(str, Enum):
+    PENDING = "pending"
+    ACCEPTED = "accepted"
+    EXPIRED = "expired"
+
+class Invitation(BaseModel):
+    id: str = Field(default_factory=generate_uuid, alias="_id")
+    league_id: str
+    inviter_id: str  # Commissioner who sent the invite
+    email: EmailStr
+    token: str
+    status: InvitationStatus = InvitationStatus.PENDING
+    expires_at: datetime
+    created_at: datetime = Field(default_factory=utc_now)
+    accepted_at: Optional[datetime] = None
+    
+    class Config:
+        populate_by_name = True
+
+class InvitationCreate(BaseModel):
+    league_id: str
+    email: EmailStr
+
+class InvitationResponse(BaseModel):
+    id: str
+    league_id: str
+    inviter_id: str
+    email: str
+    status: InvitationStatus
+    expires_at: datetime
+    created_at: datetime
+    accepted_at: Optional[datetime]
+
+class InvitationAccept(BaseModel):
+    token: str
 
 # Membership Models
 class MembershipRole(str, Enum):
     COMMISSIONER = "commissioner"
     MANAGER = "manager"
 
+class MembershipStatus(str, Enum):
+    ACTIVE = "active"
+    PENDING = "pending"
+
 class Membership(BaseModel):
     id: str = Field(default_factory=generate_uuid, alias="_id")
     league_id: str
     user_id: str
     role: MembershipRole
+    status: MembershipStatus = MembershipStatus.ACTIVE
+    joined_at: datetime = Field(default_factory=utc_now)
     
     class Config:
         populate_by_name = True
@@ -91,6 +146,17 @@ class MembershipResponse(BaseModel):
     league_id: str
     user_id: str
     role: MembershipRole
+    status: MembershipStatus
+    joined_at: datetime
+
+# Enhanced League Member Response with User Details
+class LeagueMemberResponse(BaseModel):
+    user_id: str
+    email: str
+    display_name: str
+    role: MembershipRole
+    status: MembershipStatus
+    joined_at: datetime
 
 # Club Models
 class Club(BaseModel):
@@ -276,11 +342,6 @@ class RosterClubResponse(BaseModel):
     acquired_at: datetime
 
 # Scoring Rules Models
-class ScoringRulePoints(BaseModel):
-    club_goal: int = 1
-    club_win: int = 3
-    club_draw: int = 1
-
 class ScoringRules(BaseModel):
     id: str = Field(default_factory=generate_uuid, alias="_id")
     league_id: str
