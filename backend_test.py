@@ -41,6 +41,7 @@ class UCLAuctionAPITester:
             self.tests_passed += 1
             print(f"✅ {name} - PASSED {details}")
         else:
+            self.failed_tests.append(f"{name}: {details}")
             print(f"❌ {name} - FAILED {details}")
         return success
 
