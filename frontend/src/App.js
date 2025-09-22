@@ -945,6 +945,10 @@ const Dashboard = () => {
     setLeagues([newLeague, ...leagues]);
   };
 
+  const handleViewLeague = (league) => {
+    setSelectedLeague(league);
+  };
+
   const handleStartAuction = async (leagueId) => {
     try {
       // Get the auction for this league
