@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-UCL Auction Backend API Testing Suite - Enhanced League Management
-Tests comprehensive league creation, invitation management, and commissioner controls
+UCL Auction Backend API Testing Suite - Comprehensive Live Auction Engine Testing
+Tests atomic bid processing, real-time WebSocket functionality, and auction state management
 """
 
 import requests
@@ -10,6 +10,10 @@ import json
 from datetime import datetime
 import time
 import uuid
+import asyncio
+import socketio
+import threading
+from concurrent.futures import ThreadPoolExecutor
 
 class UCLAuctionAPITester:
     def __init__(self, base_url="https://champbid-1.preview.emergentagent.com"):
