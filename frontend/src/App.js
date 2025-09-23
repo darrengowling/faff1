@@ -1203,12 +1203,33 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-// Auction Room Wrapper to provide user context
+// Component Wrappers to provide user context
 const AuctionRoomWrapper = () => {
   const { user } = useAuth();
   const token = localStorage.getItem('token');
   
   return <AuctionRoom user={user} token={token} />;
+};
+
+const MyClubsWrapper = () => {
+  const { user } = useAuth();
+  const token = localStorage.getItem('token');
+  
+  return <MyClubs user={user} token={token} />;
+};
+
+const FixturesWrapper = () => {
+  const { user } = useAuth();
+  const token = localStorage.getItem('token');
+  
+  return <Fixtures user={user} token={token} />;
+};
+
+const LeaderboardWrapper = () => {
+  const { user } = useAuth();
+  const token = localStorage.getItem('token');
+  
+  return <Leaderboard user={user} token={token} />;
 };
 
 // Main App Component
