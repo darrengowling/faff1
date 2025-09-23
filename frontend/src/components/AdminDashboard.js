@@ -118,6 +118,51 @@ const AdminDashboard = ({ user, token }) => {
 
   const handleSettingsUpdate = async () => {
     try {
+      // Clear previous validation errors
+      setValidationErrors({});
+      
+      // Client-side validation
+      const errors = {};
+      
+      // League size validation
+      if (settingsForm.league_size?.min > settingsForm.league_size?.max) {
+        errors.league_size = "Minimum managers cannot be greater than maximum managers";
+      }
+      
+      if (settingsForm.league_size?.max < members.length) {
+        errors.league_size = `Maximum managers (${settingsForm.league_size?.max}) cannot be less than current member count (${members.length})`;
+      }
+      
+      // Club slots validation - check if decrease would violate current rosters
+      if (settingsForm.club_slots_per_manager < league.settings.club_slots_per_manager) {
+        try {
+          const rosterCheck = await axios.get(`${API}/admin/leagues/${leagueId}/roster-validation?new_slots=${settingsForm.club_slots_per_manager}`, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          
+          if (!rosterCheck.data.valid) {
+            errors.club_slots = `Cannot reduce club slots to ${settingsForm.club_slots_per_manager}: ${rosterCheck.data.message}`;
+          }
+        } catch (rosterError) {
+          // If validation endpoint doesn't exist, show generic error
+          errors.club_slots = `Cannot reduce club slots: some managers may own more than ${settingsForm.club_slots_per_manager} clubs`;
+        }
+      }
+      
+      // Budget change validation
+      if (settingsForm.budget_per_manager !== league.settings.budget_per_manager) {
+        if (auction?.status && !['scheduled', 'paused'].includes(auction.status)) {
+          errors.budget = "Budget can only be changed when auction is scheduled or paused";
+        } else if (hasClubsPurchased) {
+          errors.budget = "Budget can only be changed before any clubs are bought";
+        }
+      }
+      
+      if (Object.keys(errors).length > 0) {
+        setValidationErrors(errors);
+        return;
+      }
+      
       setSaving(true);
       
       const response = await axios.put(
