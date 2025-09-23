@@ -218,7 +218,7 @@ class UCLAuctionSeeder:
                     nomination_order=i,
                     status="pending"
                 )
-                await db.lots.insert_one(lot.dict(by_alias=True))
+                await db.lots.insert_one(lot.model_dump(by_alias=True))
                 
             logger.info(f"✅ Created {len(club_ext_refs)} lots for auction")
         else:
