@@ -310,8 +310,8 @@ class PostDeployVerification:
         logger.info("🔍 Verifying migration record...")
         
         try:
-            # Check if migration record exists
-            migration_record = await db.migrations.find_one({"migration_name": "001_add_configurable_settings"})
+            # Check if migration record exists (using _id as the migration name)
+            migration_record = await db.migrations.find_one({"_id": "001_add_configurable_settings"})
             
             if not migration_record:
                 return self.log_check(
@@ -322,12 +322,12 @@ class PostDeployVerification:
             
             # Check migration status
             status = migration_record.get('status', 'unknown')
-            completed_at = migration_record.get('completed_at')
+            executed_at = migration_record.get('executed_at')
             
             return self.log_check(
                 "Migration record",
                 status == 'completed',
-                f"Status: {status}, completed: {completed_at}"
+                f"Status: {status}, executed: {executed_at}"
             )
             
         except Exception as e:
