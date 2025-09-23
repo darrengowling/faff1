@@ -803,6 +803,192 @@ class UCLAuctionAPITester:
         except Exception as e:
             return self.log_test("Chat Functionality", False, f"Exception: {str(e)}")
 
+    # ==================== NEW AGGREGATION API TESTS ====================
+    
+    def test_my_clubs_endpoint(self):
+        """Test /api/clubs/my-clubs/{league_id} endpoint"""
+        if not self.test_league_id or not self.commissioner_token:
+            return self.log_test("My Clubs Endpoint", False, "Missing league ID or token")
+        
+        success, status, data = self.make_request(
+            'GET',
+            f'clubs/my-clubs/{self.test_league_id}'
+        )
+        
+        # Check response structure
+        valid_response = (
+            success and
+            isinstance(data, dict) and
+            'league_id' in data and
+            'user_id' in data and
+            'owned_clubs' in data and
+            'budget_info' in data and
+            isinstance(data['owned_clubs'], list) and
+            isinstance(data['budget_info'], dict)
+        )
+        
+        return self.log_test(
+            "My Clubs Endpoint",
+            valid_response,
+            f"Status: {status}, Valid structure: {valid_response}, Clubs: {len(data.get('owned_clubs', []))}"
+        )
+    
+    def test_fixtures_endpoint(self):
+        """Test /api/fixtures/{league_id} endpoint"""
+        if not self.test_league_id or not self.commissioner_token:
+            return self.log_test("Fixtures Endpoint", False, "Missing league ID or token")
+        
+        success, status, data = self.make_request(
+            'GET',
+            f'fixtures/{self.test_league_id}'
+        )
+        
+        # Check response structure
+        valid_response = (
+            success and
+            isinstance(data, dict) and
+            'league_id' in data and
+            'season' in data and
+            'fixtures' in data and
+            'grouped_fixtures' in data and
+            'ownership_summary' in data and
+            isinstance(data['fixtures'], list) and
+            isinstance(data['grouped_fixtures'], dict) and
+            isinstance(data['ownership_summary'], dict)
+        )
+        
+        return self.log_test(
+            "Fixtures Endpoint",
+            valid_response,
+            f"Status: {status}, Valid structure: {valid_response}, Fixtures: {len(data.get('fixtures', []))}"
+        )
+    
+    def test_leaderboard_endpoint(self):
+        """Test /api/leaderboard/{league_id} endpoint"""
+        if not self.test_league_id or not self.commissioner_token:
+            return self.log_test("Leaderboard Endpoint", False, "Missing league ID or token")
+        
+        success, status, data = self.make_request(
+            'GET',
+            f'leaderboard/{self.test_league_id}'
+        )
+        
+        # Check response structure
+        valid_response = (
+            success and
+            isinstance(data, dict) and
+            'league_id' in data and
+            'leaderboard' in data and
+            'weekly_breakdown' in data and
+            'total_managers' in data and
+            isinstance(data['leaderboard'], list) and
+            isinstance(data['weekly_breakdown'], dict) and
+            isinstance(data['total_managers'], int)
+        )
+        
+        return self.log_test(
+            "Leaderboard Endpoint",
+            valid_response,
+            f"Status: {status}, Valid structure: {valid_response}, Managers: {data.get('total_managers', 0)}"
+        )
+    
+    def test_head_to_head_endpoint(self):
+        """Test /api/analytics/head-to-head/{league_id} endpoint"""
+        if not self.test_league_id or not self.commissioner_token:
+            return self.log_test("Head-to-Head Endpoint", False, "Missing league ID or token")
+        
+        # Get league members to use for head-to-head comparison
+        success_members, status_members, members = self.make_request('GET', f'leagues/{self.test_league_id}/members')
+        
+        if not success_members or len(members) < 2:
+            return self.log_test(
+                "Head-to-Head Endpoint", 
+                False, 
+                f"Need at least 2 members for comparison. Found: {len(members) if success_members else 0}"
+            )
+        
+        user1_id = members[0]['user_id']
+        user2_id = members[1]['user_id'] if len(members) > 1 else members[0]['user_id']
+        
+        success, status, data = self.make_request(
+            'GET',
+            f'analytics/head-to-head/{self.test_league_id}?user1_id={user1_id}&user2_id={user2_id}'
+        )
+        
+        # Check response structure
+        valid_response = (
+            success and
+            isinstance(data, dict) and
+            'league_id' in data and
+            'comparison' in data and
+            isinstance(data['comparison'], list)
+        )
+        
+        return self.log_test(
+            "Head-to-Head Endpoint",
+            valid_response,
+            f"Status: {status}, Valid structure: {valid_response}, Comparisons: {len(data.get('comparison', []))}"
+        )
+    
+    def test_aggregation_endpoints_access_control(self):
+        """Test access control for aggregation endpoints"""
+        if not self.test_league_id:
+            return self.log_test("Aggregation Access Control", False, "Missing league ID")
+        
+        # Test without authentication token
+        endpoints_to_test = [
+            f'clubs/my-clubs/{self.test_league_id}',
+            f'fixtures/{self.test_league_id}',
+            f'leaderboard/{self.test_league_id}',
+            f'analytics/head-to-head/{self.test_league_id}?user1_id=test1&user2_id=test2'
+        ]
+        
+        unauthorized_results = []
+        for endpoint in endpoints_to_test:
+            success, status, data = self.make_request(
+                'GET',
+                endpoint,
+                token=None,  # No token
+                expected_status=401
+            )
+            unauthorized_results.append(status == 401)
+        
+        # Test with invalid league ID
+        fake_league_id = "fake_league_id_12345"
+        invalid_league_results = []
+        for endpoint_template in ['clubs/my-clubs/{}', 'fixtures/{}', 'leaderboard/{}']:
+            endpoint = endpoint_template.format(fake_league_id)
+            success, status, data = self.make_request(
+                'GET',
+                endpoint,
+                expected_status=403  # Should be forbidden or not found
+            )
+            invalid_league_results.append(status in [403, 404, 500])  # Accept various error codes
+        
+        access_control_working = (
+            all(unauthorized_results) and  # All should return 401 without token
+            all(invalid_league_results)    # All should return error with invalid league
+        )
+        
+        return self.log_test(
+            "Aggregation Access Control",
+            access_control_working,
+            f"Unauthorized blocked: {sum(unauthorized_results)}/{len(unauthorized_results)}, Invalid league blocked: {sum(invalid_league_results)}/{len(invalid_league_results)}"
+        )
+    
+    def test_aggregation_endpoints_comprehensive(self):
+        """Run comprehensive tests for all aggregation endpoints"""
+        print("\n🔍 AGGREGATION ENDPOINTS TESTS")
+        
+        results = []
+        results.append(self.test_my_clubs_endpoint())
+        results.append(self.test_fixtures_endpoint())
+        results.append(self.test_leaderboard_endpoint())
+        results.append(self.test_head_to_head_endpoint())
+        results.append(self.test_aggregation_endpoints_access_control())
+        
+        return all(results)
+
     def run_comprehensive_tests(self):
         """Run comprehensive league management and auction engine tests"""
         print("🚀 Starting UCL Auction Comprehensive Live Auction Engine Tests")
