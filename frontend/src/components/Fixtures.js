@@ -44,7 +44,7 @@ const Fixtures = ({ user, token }) => {
 
   const fetchFixtures = async () => {
     try {
-      const response = await axios.get(`${API}/leagues/${leagueId}/fixtures`, {
+      const response = await axios.get(`${API}/fixtures/${leagueId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFixturesData(response.data);
