@@ -40,13 +40,13 @@ class ScoringRulePoints(BaseModel):
     club_draw: int = 1
 
 class LeagueSettings(BaseModel):
-    budget_per_manager: int = 100
+    budget_per_manager: int = 100  # Configurable by commissioner
     min_increment: int = 1
-    club_slots_per_manager: int = 3
+    club_slots_per_manager: int = 3  # Configurable by commissioner  
     anti_snipe_seconds: int = 30
     bid_timer_seconds: int = 60
-    max_managers: int = 8
-    min_managers: int = 4
+    max_managers: int = 8  # Configurable by commissioner (2-8 range)
+    min_managers: int = 4  # Configurable by commissioner (2-8 range)
     scoring_rules: ScoringRulePoints = Field(default_factory=ScoringRulePoints)
 
 class League(BaseModel):
