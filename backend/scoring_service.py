@@ -22,13 +22,17 @@ class ScoringService:
         Calculate matchday bucket from match date
         UCL typically has 6 group stage matchdays, then knockout rounds
         """
+        # Ensure kicked_off_at is timezone-aware
+        if kicked_off_at.tzinfo is None:
+            kicked_off_at = kicked_off_at.replace(tzinfo=timezone.utc)
+        
         # Simplified matchday calculation based on date
         season_start = datetime(2024, 9, 1, tzinfo=timezone.utc)  # UCL season start
         days_since_start = (kicked_off_at - season_start).days
         
         # Group stage: 6 matchdays (roughly every 2 weeks)
         if days_since_start < 84:  # ~12 weeks for group stage
-            matchday = min(6, (days_since_start // 14) + 1)
+            matchday = min(6, max(1, (days_since_start // 14) + 1))
             return {"type": "matchday", "value": matchday}
         
         # Knockout stage
