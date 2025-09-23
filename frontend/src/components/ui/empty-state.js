@@ -28,7 +28,7 @@ export const EmptyState = ({
     <Card className={`${className}`}>
       <CardContent className={`text-center ${sizeClasses[variant]}`}>
         {Icon && (
-          <Icon className={`${iconSizes[variant]} text-gray-400 mx-auto mb-4`} />
+          <Icon className={`${iconSizes[variant]} text-gray-400 mx-auto mb-4`} aria-hidden="true" />
         )}
         <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
         <p className="text-gray-600 mb-4 max-w-md mx-auto">{description}</p>
