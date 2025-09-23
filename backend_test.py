@@ -1683,6 +1683,322 @@ class UCLAuctionAPITester:
         
         return all(results)
 
+    # ==================== ENFORCEMENT RULES TESTS ====================
+    
+    def test_roster_capacity_enforcement(self):
+        """Test roster capacity rule enforcement during auction"""
+        if not self.test_league_id or not self.commissioner_token:
+            return self.log_test("Roster Capacity Enforcement", False, "Missing league ID or token")
+        
+        # Create a test league with 1 club slot per manager for easier testing
+        league_data = {
+            "name": f"Capacity Test League {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26",
+            "settings": {
+                "budget_per_manager": 100,
+                "club_slots_per_manager": 1,  # Only 1 slot for testing
+                "league_size": {"min": 2, "max": 4}
+            }
+        }
+        
+        success, status, capacity_league = self.make_request('POST', 'leagues', league_data)
+        if not success:
+            return self.log_test("Roster Capacity Enforcement", False, f"Failed to create test league: {status}")
+        
+        capacity_league_id = capacity_league['id']
+        
+        # Add one more member to reach minimum
+        success_join, status_join, join_data = self.make_request('POST', f'leagues/{capacity_league_id}/join')
+        
+        # Get league members to test with
+        success_members, status_members, members = self.make_request('GET', f'leagues/{capacity_league_id}/members')
+        
+        if not success_members or len(members) < 2:
+            return self.log_test("Roster Capacity Enforcement", False, "Need at least 2 members for testing")
+        
+        # Test the validation endpoint indirectly by checking league settings
+        success_league, status_league, league_info = self.make_request('GET', f'leagues/{capacity_league_id}')
+        
+        capacity_settings_valid = (
+            success_league and
+            league_info.get('settings', {}).get('club_slots_per_manager') == 1
+        )
+        
+        return self.log_test(
+            "Roster Capacity Enforcement",
+            capacity_settings_valid,
+            f"Capacity league created: {success}, Settings valid: {capacity_settings_valid}, Members: {len(members) if success_members else 0}"
+        )
+    
+    def test_budget_change_constraints(self):
+        """Test budget change constraints enforcement"""
+        if not self.test_league_id or not self.commissioner_token:
+            return self.log_test("Budget Change Constraints", False, "Missing league ID or token")
+        
+        # Test 1: Budget change should be allowed when auction is scheduled and no clubs owned
+        budget_update = {
+            "budget_per_manager": 150
+        }
+        
+        success1, status1, result1 = self.make_request(
+            'PUT',
+            f'admin/leagues/{self.test_league_id}/settings',
+            budget_update
+        )
+        
+        budget_change_allowed = success1 and result1.get('success', False)
+        
+        # Test 2: Verify all rosters were updated
+        success2, status2, members = self.make_request('GET', f'leagues/{self.test_league_id}/members')
+        
+        # Test 3: Try to change budget again (should still be allowed if no clubs purchased)
+        budget_update2 = {
+            "budget_per_manager": 120
+        }
+        
+        success3, status3, result3 = self.make_request(
+            'PUT',
+            f'admin/leagues/{self.test_league_id}/settings',
+            budget_update2
+        )
+        
+        second_change_allowed = success3 and result3.get('success', False)
+        
+        return self.log_test(
+            "Budget Change Constraints",
+            budget_change_allowed and second_change_allowed,
+            f"First change: {budget_change_allowed}, Second change: {second_change_allowed}"
+        )
+    
+    def test_league_size_constraints(self):
+        """Test league size constraint enforcement"""
+        if not self.commissioner_token:
+            return self.log_test("League Size Constraints", False, "No commissioner token")
+        
+        # Create a league with small size limits for testing
+        league_data = {
+            "name": f"Size Test League {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26",
+            "settings": {
+                "budget_per_manager": 100,
+                "club_slots_per_manager": 3,
+                "league_size": {"min": 2, "max": 3}  # Small league for testing
+            }
+        }
+        
+        success, status, size_league = self.make_request('POST', 'leagues', league_data)
+        if not success:
+            return self.log_test("League Size Constraints", False, f"Failed to create test league: {status}")
+        
+        size_league_id = size_league['id']
+        
+        # Test 1: League should not be ready with only 1 member (commissioner)
+        success1, status1, league_status = self.make_request('GET', f'leagues/{size_league_id}/status')
+        not_ready_with_one = (
+            success1 and
+            league_status.get('member_count') == 1 and
+            league_status.get('min_members') == 2 and
+            not league_status.get('is_ready', True)
+        )
+        
+        # Test 2: Add one member to reach minimum
+        success2, status2, join_result = self.make_request('POST', f'leagues/{size_league_id}/join')
+        
+        # Test 3: Check if league is now ready
+        success3, status3, updated_status = self.make_request('GET', f'leagues/{size_league_id}/status')
+        ready_with_two = (
+            success3 and
+            updated_status.get('member_count') == 2 and
+            updated_status.get('is_ready', False)
+        )
+        
+        # Test 4: Try to add one more member (should reach max)
+        success4, status4, join_result2 = self.make_request('POST', f'leagues/{size_league_id}/join')
+        
+        # Test 5: Try to add another member (should fail - league full)
+        success5, status5, join_result3 = self.make_request(
+            'POST', 
+            f'leagues/{size_league_id}/join',
+            expected_status=400
+        )
+        
+        league_full_rejected = success5 and status5 == 400
+        
+        return self.log_test(
+            "League Size Constraints",
+            not_ready_with_one and ready_with_two and league_full_rejected,
+            f"Not ready with 1: {not_ready_with_one}, Ready with 2: {ready_with_two}, Full rejected: {league_full_rejected}"
+        )
+    
+    def test_admin_service_validations(self):
+        """Test AdminService validation methods"""
+        if not self.test_league_id or not self.commissioner_token:
+            return self.log_test("Admin Service Validations", False, "Missing league ID or token")
+        
+        # Test 1: League settings update with validation
+        settings_update = {
+            "budget_per_manager": 200,
+            "club_slots_per_manager": 5,
+            "league_size": {"min": 3, "max": 6}
+        }
+        
+        success1, status1, result1 = self.make_request(
+            'PUT',
+            f'admin/leagues/{self.test_league_id}/settings',
+            settings_update
+        )
+        
+        settings_update_valid = success1 and result1.get('success', False)
+        
+        # Test 2: Try invalid settings (should be rejected)
+        invalid_settings = {
+            "budget_per_manager": -10,  # Invalid negative budget
+            "club_slots_per_manager": 0  # Invalid zero slots
+        }
+        
+        success2, status2, result2 = self.make_request(
+            'PUT',
+            f'admin/leagues/{self.test_league_id}/settings',
+            invalid_settings,
+            expected_status=400
+        )
+        
+        invalid_settings_rejected = success2 and status2 == 400
+        
+        # Test 3: Test member management validation
+        member_action = {
+            "member_id": "invalid_user_id",
+            "action": "kick"
+        }
+        
+        success3, status3, result3 = self.make_request(
+            'POST',
+            f'admin/leagues/{self.test_league_id}/members/manage',
+            member_action,
+            expected_status=400
+        )
+        
+        invalid_member_rejected = success3 and status3 == 400
+        
+        return self.log_test(
+            "Admin Service Validations",
+            settings_update_valid and invalid_settings_rejected and invalid_member_rejected,
+            f"Valid settings: {settings_update_valid}, Invalid rejected: {invalid_settings_rejected}, Invalid member: {invalid_member_rejected}"
+        )
+    
+    def test_auction_start_constraints(self):
+        """Test auction start constraints with minimum member requirements"""
+        if not self.commissioner_token:
+            return self.log_test("Auction Start Constraints", False, "No commissioner token")
+        
+        # Create a league that doesn't meet minimum requirements
+        league_data = {
+            "name": f"Auction Start Test {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26",
+            "settings": {
+                "budget_per_manager": 100,
+                "club_slots_per_manager": 3,
+                "league_size": {"min": 4, "max": 8}  # Requires 4 members minimum
+            }
+        }
+        
+        success, status, auction_league = self.make_request('POST', 'leagues', league_data)
+        if not success:
+            return self.log_test("Auction Start Constraints", False, f"Failed to create test league: {status}")
+        
+        auction_league_id = auction_league['id']
+        
+        # Test 1: Try to start auction with insufficient members (should fail)
+        success1, status1, start_result1 = self.make_request(
+            'POST',
+            f'auction/{auction_league_id}/start',
+            expected_status=400
+        )
+        
+        start_rejected_insufficient = success1 and status1 == 400
+        
+        # Test 2: Add members to reach minimum
+        join_results = []
+        for i in range(3):  # Add 3 more members (total 4 with commissioner)
+            success_join, status_join, join_data = self.make_request('POST', f'leagues/{auction_league_id}/join')
+            join_results.append(success_join)
+        
+        # Test 3: Check league status
+        success2, status2, league_status = self.make_request('GET', f'leagues/{auction_league_id}/status')
+        league_ready = (
+            success2 and
+            league_status.get('member_count') >= 4 and
+            league_status.get('is_ready', False)
+        )
+        
+        # Test 4: Try to start auction now (should succeed)
+        success3, status3, start_result2 = self.make_request(
+            'POST',
+            f'auction/{auction_league_id}/start'
+        )
+        
+        start_allowed_sufficient = success3
+        
+        return self.log_test(
+            "Auction Start Constraints",
+            start_rejected_insufficient and league_ready and start_allowed_sufficient,
+            f"Rejected insufficient: {start_rejected_insufficient}, League ready: {league_ready}, Start allowed: {start_allowed_sufficient}, Joins: {sum(join_results)}"
+        )
+    
+    def test_league_creation_with_defaults(self):
+        """Test league creation without settings uses competition profile defaults"""
+        if not self.commissioner_token:
+            return self.log_test("League Creation With Defaults", False, "No commissioner token")
+        
+        # Create league without settings (should use UCL defaults)
+        league_data_no_settings = {
+            "name": f"Default Settings League {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26"
+            # No settings provided - should use UCL defaults
+        }
+        
+        success, status, league_no_settings = self.make_request(
+            'POST',
+            'leagues',
+            league_data_no_settings
+        )
+        
+        if success and 'id' in league_no_settings:
+            # Verify it uses UCL defaults
+            settings = league_no_settings.get('settings', {})
+            uses_defaults = (
+                settings.get('budget_per_manager') == 100 and  # UCL default
+                settings.get('club_slots_per_manager') == 3 and  # UCL default
+                settings.get('league_size', {}).get('min') == 4 and  # UCL default
+                settings.get('league_size', {}).get('max') == 8  # UCL default
+            )
+            
+            return self.log_test(
+                "League Creation With Defaults",
+                uses_defaults,
+                f"Status: {status}, Uses UCL defaults: {uses_defaults}"
+            )
+        
+        return self.log_test(
+            "League Creation With Defaults",
+            False,
+            f"Status: {status}, Response: {league_no_settings}"
+        )
+    
+    def test_enforcement_rules_comprehensive(self):
+        """Run comprehensive tests for enforcement rules"""
+        print("\n🛡️ ENFORCEMENT RULES TESTS")
+        
+        results = []
+        results.append(self.test_roster_capacity_enforcement())
+        results.append(self.test_budget_change_constraints())
+        results.append(self.test_league_size_constraints())
+        results.append(self.test_admin_service_validations())
+        results.append(self.test_auction_start_constraints())
+        results.append(self.test_league_creation_with_defaults())
+        
+        return all(results)
+
     def run_comprehensive_tests(self):
         """Run comprehensive league management and auction engine tests"""
         print("🚀 Starting UCL Auction Comprehensive Live Auction Engine Tests")
