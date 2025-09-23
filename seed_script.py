@@ -257,7 +257,7 @@ class UCLAuctionSeeder:
                 club_id=club_id,
                 price=price
             )
-            await db.roster_clubs.insert_one(roster_club.dict(by_alias=True))
+            await db.roster_clubs.insert_one(roster_club.model_dump(by_alias=True))
             
             # Update roster budget
             await db.rosters.update_one(
