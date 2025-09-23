@@ -365,7 +365,7 @@ class LeagueService:
             if not league:
                 return False
             
-            min_members = league["settings"]["min_managers"]
+            min_members = league["settings"]["league_size"]["min"]
             current_members = league["member_count"]
             
             is_ready = current_members >= min_members
