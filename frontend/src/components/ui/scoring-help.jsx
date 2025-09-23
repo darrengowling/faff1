@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip.jsx';
 import { HelpCircle, Trophy, Target } from 'lucide-react';
 
 /**
