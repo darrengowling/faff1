@@ -36,6 +36,8 @@ class UCLAuctionAPITester:
             "manager5@example.com"
         ]
         self.test_league_id = None
+        self.test_league_id_no_settings = None
+        self.test_league_id_custom_settings = None
         self.test_invitations = []
         self.test_auction_id = None
         self.test_clubs = []
