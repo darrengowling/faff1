@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocat
 import axios from 'axios';
 import { Toaster, toast } from 'sonner';
 import './App.css';
+import './styles/mobile-optimizations.css';
 
 // Import components
 import AuctionRoom from './components/AuctionRoom';
