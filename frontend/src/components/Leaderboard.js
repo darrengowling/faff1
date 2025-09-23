@@ -126,7 +126,9 @@ const Leaderboard = ({ user, token }) => {
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">Total Points Awarded</span>
-                    <span className="font-bold text-blue-600">{data.total_points}</span>
+                    <ScoringTooltip>
+                      <span className="font-bold text-blue-600 cursor-help">{data.total_points}</span>
+                    </ScoringTooltip>
                   </div>
                   
                   <Separator />
