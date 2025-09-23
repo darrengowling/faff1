@@ -966,6 +966,11 @@ const LeagueManagement = ({ league, onBack }) => {
           </div>
         </CardContent>
       </Card>
+      
+      {/* Bottom Mobile Navigation */}
+      <BottomTabNav 
+        user={{ email: user?.email, role: isCommissioner ? 'commissioner' : 'manager' }}
+      />
     </div>
   );
 };
