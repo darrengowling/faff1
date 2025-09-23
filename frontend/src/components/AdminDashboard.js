@@ -237,9 +237,9 @@ const AdminDashboard = ({ user, token }) => {
       'start_auction': <Play className="w-4 h-4" />,
       'pause_auction': <Pause className="w-4 h-4" />,
       'resume_auction': <RotateCcw className="w-4 h-4" />,
-      'reorder_nominations': <Activity className="w-4 h-4" />
+      'reorder_nominations': <Activity className="w-4 h-4" aria-hidden="true" />
     };
-    return iconMap[action] || <Activity className="w-4 h-4" />;
+    return iconMap[action] || <Activity className="w-4 h-4" aria-hidden="true" />;
   };
 
   const getActionColor = (action) => {
