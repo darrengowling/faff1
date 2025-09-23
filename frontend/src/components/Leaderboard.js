@@ -336,9 +336,11 @@ const Leaderboard = ({ user, token }) => {
                           <div className="flex items-center space-x-6">
                             {/* Total Points */}
                             <div className="text-center">
-                              <div className="text-2xl font-bold text-green-600">
-                                {manager.total_points}
-                              </div>
+                              <ScoringTooltip>
+                                <div className="text-2xl font-bold text-green-600 cursor-help">
+                                  {manager.total_points}
+                                </div>
+                              </ScoringTooltip>
                               <div className="text-xs text-gray-500">Total Points</div>
                             </div>
 
