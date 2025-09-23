@@ -39,14 +39,23 @@ class ScoringRulePoints(BaseModel):
     club_win: int = 3
     club_draw: int = 1
 
+class LeagueSize(BaseModel):
+    min: int = Field(ge=2, le=8, description="Minimum number of managers")
+    max: int = Field(ge=2, le=8, description="Maximum number of managers")
+    
+    @validator('max')
+    def max_must_be_gte_min(cls, v, values):
+        if 'min' in values and v < values['min']:
+            raise ValueError('max must be greater than or equal to min')
+        return v
+
 class LeagueSettings(BaseModel):
-    budget_per_manager: int = 100  # Configurable by commissioner
-    min_increment: int = 1
-    club_slots_per_manager: int = 3  # Configurable by commissioner  
-    anti_snipe_seconds: int = 30
-    bid_timer_seconds: int = 60
-    max_managers: int = 8  # Configurable by commissioner (2-8 range)
-    min_managers: int = 4  # Configurable by commissioner (2-8 range)
+    budget_per_manager: int = Field(100, ge=50, le=500, description="Budget per manager (50-500M)")
+    min_increment: int = Field(1, ge=1, description="Minimum bid increment")
+    club_slots_per_manager: int = Field(3, ge=1, le=10, description="Club slots per manager (1-10)")
+    anti_snipe_seconds: int = Field(30, ge=0, description="Anti-snipe timer extension")
+    bid_timer_seconds: int = Field(60, ge=30, description="Default bid timer duration")
+    league_size: LeagueSize = Field(default_factory=lambda: LeagueSize(min=4, max=8))
     scoring_rules: ScoringRulePoints = Field(default_factory=ScoringRulePoints)
 
 class League(BaseModel):
