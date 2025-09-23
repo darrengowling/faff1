@@ -813,19 +813,33 @@ const AdminDashboard = ({ user, token }) => {
                   </div>
                   <div className="flex space-x-2">
                     {league.status === 'ready' && (
-                      <Button 
-                        onClick={() => handleAuctionAction('start', league.id)}
-                        className="bg-green-600 hover:bg-green-700"
-                        disabled={members.length < (league.settings.league_size?.min || 4)}
-                      >
-                        <Play className="w-4 h-4 mr-2" />
-                        Start Auction
-                        {members.length < (league.settings.league_size?.min || 4) && (
-                          <span className="ml-2 text-xs opacity-75">
-                            ({members.length}/{league.settings.league_size?.min || 4})
-                          </span>
-                        )}
-                      </Button>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div>
+                              <Button 
+                                onClick={() => handleAuctionAction('start', league.id)}
+                                className="bg-green-600 hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                                disabled={members.length < (league.settings.league_size?.min || 4)}
+                              >
+                                <Play className="w-4 h-4 mr-2" aria-hidden="true" />
+                                Start Auction
+                                {members.length < (league.settings.league_size?.min || 4) && (
+                                  <span className="ml-2 text-xs opacity-75">
+                                    ({members.length}/{league.settings.league_size?.min || 4})
+                                  </span>
+                                )}
+                              </Button>
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            {members.length < (league.settings.league_size?.min || 4) 
+                              ? `Need at least ${league.settings.league_size?.min || 4} managers to start auction (currently have ${members.length})`
+                              : "Ready to start the auction"
+                            }
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     )}
                     {league.status === 'active' && (
                       <Button 
