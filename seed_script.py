@@ -210,13 +210,11 @@ class UCLAuctionSeeder:
                 
                 lot = Lot(
                     auction_id=self.demo_auction_id,
-                    league_id=self.demo_league_id,
                     club_id=club_id,
-                    nominator_id=nominator_id,
-                    starting_bid=1,
+                    nominated_by=nominator_id,
+                    order_index=i,
                     current_bid=0,
-                    nomination_order=i,
-                    status="pending"
+                    status=LotStatus.PENDING
                 )
                 await db.lots.insert_one(lot.model_dump(by_alias=True))
                 
