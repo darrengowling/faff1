@@ -82,10 +82,9 @@ class AdminSystemTester:
             print(f"❌ Failed to seed clubs: {status}")
             return False
         
-        # For testing purposes, we'll use a mock token approach
-        # In a real scenario, you'd go through the magic link flow
-        print("⚠️  Using mock authentication for testing")
-        self.commissioner_token = "mock_token_for_testing"
+        # Use the actual access token obtained from authentication
+        print("✅ Using real authentication token")
+        self.commissioner_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjFlZmM4Ni1lNzBjLTRmYzUtODFkZC1kZjAxYWYzODA4MTMiLCJleHAiOjE3NTg2NzQ5NTl9.4-0UhChUeK73wGTXtoZagSvCKtqgW0ZUGDcaqoaogXY"
         
         # Create test league
         league_data = {
