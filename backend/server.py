@@ -618,6 +618,70 @@ async def get_clubs():
     clubs = await db.clubs.find().to_list(length=None)
     return [convert_doc_to_response(club, ClubResponse) for club in clubs]
 
+# Aggregation Routes for UI pages
+@api_router.get("/clubs/my-clubs/{league_id}")
+async def get_my_clubs(
+    league_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get user's owned clubs with budget info and upcoming fixtures"""
+    await require_league_access(current_user.id, league_id)
+    
+    try:
+        clubs_data = await AggregationService.get_user_clubs(league_id, current_user.id)
+        return clubs_data
+    except Exception as e:
+        logger.error(f"Failed to get user clubs: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/fixtures/{league_id}")
+async def get_league_fixtures(
+    league_id: str,
+    season: str = "2024-25",
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get all fixtures and results for the league with ownership badges"""
+    await require_league_access(current_user.id, league_id)
+    
+    try:
+        fixtures_data = await AggregationService.get_league_fixtures(league_id, season)
+        return fixtures_data
+    except Exception as e:
+        logger.error(f"Failed to get league fixtures: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/leaderboard/{league_id}")
+async def get_league_leaderboard(
+    league_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get comprehensive league leaderboard with total points and weekly breakdown"""
+    await require_league_access(current_user.id, league_id)
+    
+    try:
+        leaderboard_data = await AggregationService.get_league_leaderboard(league_id)
+        return leaderboard_data
+    except Exception as e:
+        logger.error(f"Failed to get league leaderboard: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/analytics/head-to-head/{league_id}")
+async def get_head_to_head(
+    league_id: str,
+    user1_id: str,
+    user2_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get head-to-head comparison between two managers"""
+    await require_league_access(current_user.id, league_id)
+    
+    try:
+        comparison_data = await AggregationService.get_manager_head_to_head(league_id, user1_id, user2_id)
+        return comparison_data
+    except Exception as e:
+        logger.error(f"Failed to get head-to-head comparison: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Include the router in the main app
 app.include_router(api_router)
 
