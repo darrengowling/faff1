@@ -639,6 +639,23 @@ async def update_league_settings_admin(
         logger.error(f"Failed to update league settings: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+@api_router.patch("/leagues/{league_id}/settings")
+async def patch_league_settings(
+    league_id: str,
+    settings_update: LeagueSettingsUpdate,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """PATCH league settings with partial updates (commissioner only)"""
+    try:
+        success, message = await AdminService.update_league_settings(league_id, current_user.id, settings_update)
+        if success:
+            return {"success": True, "message": message}
+        else:
+            raise HTTPException(status_code=400, detail=message)
+    except Exception as e:
+        logger.error(f"Failed to update league settings: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 @api_router.post("/admin/leagues/{league_id}/members/manage")
 async def manage_league_member(
     league_id: str,
