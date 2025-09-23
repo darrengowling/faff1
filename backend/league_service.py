@@ -24,12 +24,21 @@ class LeagueService:
         Create a complete league setup with all related documents
         """
         try:
+            # Get default settings from competition profile if no explicit settings provided
+            if league_data.settings is None:
+                competition_service = CompetitionService()
+                default_settings = await competition_service.get_default_settings("ucl")
+                logger.info(f"Using default settings from UCL competition profile")
+            else:
+                default_settings = league_data.settings
+                logger.info(f"Using explicit settings provided by commissioner")
+            
             # Create league with enhanced settings
             league = League(
                 name=league_data.name,
                 season=league_data.season or "2025-26",
                 commissioner_id=commissioner_id,
-                settings=league_data.settings or LeagueSettings(),
+                settings=default_settings,
                 status="setup",
                 member_count=1
             )
