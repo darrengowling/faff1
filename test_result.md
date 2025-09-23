@@ -300,6 +300,7 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Enforcement Rules Implementation"
     - "Competition Profile Integration in League Creation"
     - "My Clubs Page Component"
     - "Fixtures/Results Page Component"
