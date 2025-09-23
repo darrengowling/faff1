@@ -94,7 +94,7 @@ class UCLAuctionSeeder:
         
         for club_data in clubs_data:
             club = Club(**club_data)
-            club_dict = club.dict(by_alias=True)
+            club_dict = club.model_dump(by_alias=True)
             result = await db.clubs.insert_one(club_dict)
             self.club_ids[club_data["ext_ref"]] = result.inserted_id
             
