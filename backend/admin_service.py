@@ -297,10 +297,8 @@ class AdminService:
                 update_dict["settings.anti_snipe_seconds"] = updates.anti_snipe_seconds
             if updates.bid_timer_seconds is not None:
                 update_dict["settings.bid_timer_seconds"] = updates.bid_timer_seconds
-            if updates.max_managers is not None:
-                update_dict["settings.max_managers"] = updates.max_managers
-            if updates.min_managers is not None:
-                update_dict["settings.min_managers"] = updates.min_managers
+            if updates.league_size is not None:
+                update_dict["settings.league_size"] = updates.league_size.model_dump()
             if updates.scoring_rules is not None:
                 update_dict["settings.scoring_rules"] = updates.scoring_rules.model_dump()
             
