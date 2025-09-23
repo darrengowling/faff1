@@ -251,9 +251,11 @@ const Leaderboard = ({ user, token }) => {
                   <div className="text-sm text-gray-600">Position</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">
-                    {currentUserPosition.total_points}
-                  </div>
+                  <ScoringTooltip>
+                    <div className="text-2xl font-bold text-green-600 cursor-help">
+                      {currentUserPosition.total_points}
+                    </div>
+                  </ScoringTooltip>
                   <div className="text-sm text-gray-600">Total Points</div>
                 </div>
                 <div className="text-center">
