@@ -45,7 +45,7 @@ const Leaderboard = ({ user, token }) => {
 
   const fetchLeaderboard = async () => {
     try {
-      const response = await axios.get(`${API}/leagues/${leagueId}/leaderboard`, {
+      const response = await axios.get(`${API}/leaderboard/${leagueId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setLeaderboardData(response.data);
