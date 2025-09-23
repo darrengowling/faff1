@@ -1251,6 +1251,21 @@ function App() {
                 <AuctionRoomWrapper />
               </ProtectedRoute>
             } />
+            <Route path="/clubs/:leagueId" element={
+              <ProtectedRoute>
+                <MyClubsWrapper />
+              </ProtectedRoute>
+            } />
+            <Route path="/fixtures/:leagueId" element={
+              <ProtectedRoute>
+                <FixturesWrapper />
+              </ProtectedRoute>
+            } />
+            <Route path="/leaderboard/:leagueId" element={
+              <ProtectedRoute>
+                <LeaderboardWrapper />
+              </ProtectedRoute>
+            } />
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
