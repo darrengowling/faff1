@@ -256,6 +256,18 @@ frontend:
         agent: "main"
         comment: "Created complete production deployment system: Environment configuration for MongoDB, JWT secrets, SMTP email provider, WebSocket CORS settings. Docker Compose setup with MongoDB, Redis, Nginx reverse proxy. One-command deployment script (./deploy.sh) with backup, rollback, monitoring capabilities. Health check endpoints for system monitoring. Comprehensive smoke test checklist covering league creation, auction mechanics, scoring system, access control, and admin functionality. Added deployment guide with cloud platform configurations (AWS, GCP, Azure, DigitalOcean). Production-ready with SSL, monitoring, logging, and backup strategies."
 
+  - task: "Configurable League Settings (Non-Breaking)"
+    implemented: true
+    working: true
+    file: "/app/backend/models.py, /app/backend/admin_service.py, /app/frontend/src/components/AdminDashboard.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Made league settings configurable by commissioner while maintaining backward compatibility: Budget per manager (50-500M), Club slots per manager (1-10), League size (2-8 managers). Implemented comprehensive validation guards: Budget changes only when auction scheduled/paused and no purchases exist, Club slots can decrease only if all rosters ≤ new limit, League size max must be ≥ current member count. Updated AdminDashboard with organized configuration sections and constraint explanations. All existing leagues maintain current behavior with proper defaults. Model validation working correctly."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
