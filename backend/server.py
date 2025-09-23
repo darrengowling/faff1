@@ -375,8 +375,8 @@ async def get_league_status(
             "league_id": league_id,
             "status": league["status"],
             "member_count": league["member_count"],
-            "min_members": league["settings"]["min_managers"],
-            "max_members": league["settings"]["max_managers"],
+            "min_members": league["settings"]["league_size"]["min"],
+            "max_members": league["settings"]["league_size"]["max"],
             "is_ready": is_ready,
             "can_start_auction": is_ready and league["status"] == "ready"
         }
