@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: ucl-auction-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ucl_auction
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+    ports:
+      - "27017:27017"
+    networks:
+      - ucl-auction-network
+
+  # Redis for session management and caching
+  redis:
+    image: redis:7-alpine
+    container_name: ucl-auction-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - ucl-auction-network
+
+  # UCL Auction Application
+  app:
+    build: .
+    container_name: ucl-auction-app
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+      - redis
+    environment:
+      - MONGO_URL=mongodb://admin:${MONGO_ROOT_PASSWORD}@mongodb:27017/ucl_auction?authSource=admin
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - FRONTEND_BASE_URL=${FRONTEND_BASE_URL}
+      - ENVIRONMENT=${ENVIRONMENT:-production}
+    volumes:
+      - ./logs:/app/logs
+    ports:
+      - "8000:8000"
+    networks:
+      - ucl-auction-network
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: ucl-auction-nginx
+    restart: unless-stopped
+    depends_on:
+      - app
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - ucl-auction-network
+
+volumes:
+  mongodb_data:
+  mongodb_config:
+  redis_data:
+
+networks:
+  ucl-auction-network:
+    driver: bridge
