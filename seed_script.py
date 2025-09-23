@@ -113,7 +113,7 @@ class UCLAuctionSeeder:
             display_name="Demo Commissioner",
             verified=True
         )
-        comm_dict = commissioner.dict(by_alias=True)
+        comm_dict = commissioner.model_dump(by_alias=True)
         result = await db.users.insert_one(comm_dict)
         self.user_ids["commissioner"] = result.inserted_id
         
