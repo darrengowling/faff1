@@ -149,6 +149,9 @@ update_application() {
     # Check health
     check_health
     
+    # Run database migrations
+    run_migrations
+    
     success "Application updated successfully!"
 }
 
