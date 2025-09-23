@@ -268,6 +268,18 @@ frontend:
         agent: "main"
         comment: "Made league settings configurable by commissioner while maintaining backward compatibility: Budget per manager (50-500M), Club slots per manager (1-10), League size (2-8 managers). Implemented comprehensive validation guards: Budget changes only when auction scheduled/paused and no purchases exist, Club slots can decrease only if all rosters ≤ new limit, League size max must be ≥ current member count. Updated AdminDashboard with organized configuration sections and constraint explanations. All existing leagues maintain current behavior with proper defaults. Model validation working correctly."
 
+  - task: "Competition Profile Integration in League Creation"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/league_service.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Updated create_league_with_setup method to use CompetitionService.get_default_settings() when no explicit settings are provided by commissioner. Integration maintains backward compatibility - explicit settings still take priority. Provides proper fallback to UCL competition profile defaults. Added logging to track which settings source is used."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
