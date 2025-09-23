@@ -279,102 +279,91 @@ class AuctionEngine:
     
     async def place_bid(self, auction_id: str, lot_id: str, bidder_id: str, amount: int) -> Dict:
         """
-        Place bid with atomic validation and anti-snipe logic
+        Place bid with comprehensive validation guardrails and atomic operations
         Returns bid result with success/failure status
         """
-        async with await db.client.start_session() as session:
-            try:
-                async with session.start_transaction():
-                    # Get auction data
-                    auction_data = self.active_auctions.get(auction_id)
-                    if not auction_data:
-                        return {"success": False, "error": "Auction not active"}
-                    
-                    # Get bidder's current budget
-                    roster = await db.rosters.find_one({
-                        "league_id": auction_data["league_id"],
-                        "user_id": bidder_id
-                    }, session=session)
-                    
-                    if not roster:
-                        return {"success": False, "error": "Roster not found"}
-                    
-                    # Check if bidder can fill remaining slots at min price
-                    current_clubs = await db.roster_clubs.count_documents({
-                        "league_id": auction_data["league_id"],
-                        "user_id": bidder_id
-                    }, session=session)
-                    
-                    remaining_slots = roster["club_slots"] - current_clubs
-                    min_budget_needed = remaining_slots * auction_data["settings"]["min_increment"]
-                    
-                    if roster["budget_remaining"] - amount < min_budget_needed:
-                        return {"success": False, "error": "Insufficient budget for remaining slots"}
-                    
-                    # Atomic bid placement with guards
-                    now = datetime.now(timezone.utc)
-                    update_data = {
-                        "current_bid": amount,
-                        "top_bidder_id": bidder_id
-                    }
-                    
-                    # Anti-snipe logic: extend timer if < 3 seconds remain
-                    lot = await db.lots.find_one({"_id": lot_id}, session=session)
-                    if lot and lot.get("timer_ends_at"):
-                        seconds_remaining = (lot["timer_ends_at"] - now).total_seconds()
-                        if seconds_remaining < 3:
-                            update_data["timer_ends_at"] = now + timedelta(seconds=6)
-                            # Cancel and restart timer
-                            if lot_id in self.auction_timers:
-                                self.auction_timers[lot_id].cancel()
-                                self.auction_timers[lot_id] = asyncio.create_task(
-                                    self._lot_timer(auction_id, lot_id, update_data["timer_ends_at"])
-                                )
-                    
-                    # Atomic update with conditions
-                    result = await db.lots.find_one_and_update(
-                        {
-                            "_id": lot_id,
-                            "status": "open",
-                            "current_bid": {"$lt": amount},
-                            "$expr": {
-                                "$gte": [amount, {"$add": ["$current_bid", auction_data["settings"]["min_increment"]]}]
-                            }
-                        },
-                        {"$set": update_data},
-                        session=session,
-                        return_document=True
+        # Import AdminService here to avoid circular imports
+        from admin_service import AdminService
+        
+        try:
+            # Get auction data
+            auction_data = self.active_auctions.get(auction_id)
+            if not auction_data:
+                return {"success": False, "error": "Auction not active"}
+            
+            league_id = auction_data["league_id"]
+            
+            # GUARDRAIL 1: Validate budget constraints
+            budget_valid, budget_error = await AdminService.validate_budget_constraint(
+                bidder_id, league_id, amount
+            )
+            if not budget_valid:
+                return {"success": False, "error": budget_error}
+            
+            # GUARDRAIL 2: Use atomic simultaneous bid handling
+            success, message, bid_id = await AdminService.handle_simultaneous_bids(
+                lot_id, bidder_id, amount
+            )
+            
+            if not success:
+                return {"success": False, "error": message}
+            
+            # Get updated lot state
+            lot = await db.lots.find_one({"_id": lot_id})
+            if not lot:
+                return {"success": False, "error": "Lot not found"}
+            
+            # Anti-snipe logic with timer monotonicity check
+            now = datetime.now(timezone.utc)
+            if lot.get("timer_ends_at"):
+                end_time = lot["timer_ends_at"]
+                if isinstance(end_time, str):
+                    end_time = datetime.fromisoformat(end_time.replace('Z', '+00:00'))
+                
+                seconds_remaining = (end_time - now).total_seconds()
+                if seconds_remaining < 3:
+                    # GUARDRAIL 3: Timer monotonicity - only extend forward
+                    new_end_time = now + timedelta(seconds=6)
+                    timer_valid, timer_error = await AdminService.validate_timer_monotonicity(
+                        auction_id, new_end_time
                     )
                     
-                    if not result:
-                        return {"success": False, "error": "Bid conditions not met"}
+                    if timer_valid:
+                        # Update timer
+                        await db.lots.update_one(
+                            {"_id": lot_id},
+                            {"$set": {"timer_ends_at": new_end_time}}
+                        )
+                        
+                        # Cancel and restart timer
+                        if lot_id in self.auction_timers:
+                            self.auction_timers[lot_id].cancel()
+                            self.auction_timers[lot_id] = asyncio.create_task(
+                                self._lot_timer(auction_id, lot_id, new_end_time)
+                            )
+                        
+                        logger.info(f"Anti-snipe: Timer extended for lot {lot_id}")
+                    else:
+                        logger.warning(f"Timer extension failed: {timer_error}")
+            
+            # Broadcast real-time update
+            await self._broadcast_lot_update(auction_id, lot_id)
+            
+            logger.info(f"Bid placed: {bidder_id} bid {amount} on lot {lot_id}")
+            
+            return {
+                "success": True,
+                "lot_id": lot_id,
+                "amount": amount,
+                "bidder_id": bidder_id,
+                "current_bid": lot["current_bid"],
+                "leading_bidder_id": lot["leading_bidder_id"],
+                "bid_id": bid_id
+            }
                     
-                    # Record bid in bids collection
-                    bid = Bid(
-                        lot_id=lot_id,
-                        bidder_id=bidder_id,
-                        amount=amount
-                    )
-                    bid_dict = bid.dict(by_alias=True)
-                    await db.bids.insert_one(bid_dict, session=session)
-                    
-                    # Broadcast real-time update
-                    await self._broadcast_lot_update(auction_id, lot_id)
-                    
-                    logger.info(f"Bid placed: {bidder_id} bid {amount} on lot {lot_id}")
-                    
-                    return {
-                        "success": True,
-                        "lot_id": lot_id,
-                        "amount": amount,
-                        "bidder_id": bidder_id,
-                        "current_bid": result["current_bid"],
-                        "top_bidder_id": result["top_bidder_id"]
-                    }
-                    
-            except Exception as e:
-                logger.error(f"Bid placement failed: {e}")
-                return {"success": False, "error": str(e)}
+        except Exception as e:
+            logger.error(f"Bid placement failed: {e}")
+            return {"success": False, "error": str(e)}
     
     async def nominate_club(self, auction_id: str, nominator_id: str, club_id: str) -> bool:
         """Nominate next club (if it's nominator's turn)"""
