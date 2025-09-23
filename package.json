@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.55.0"
+    "@playwright/test": "^1.55.0",
+    "axios": "^1.12.2"
   }
 }
