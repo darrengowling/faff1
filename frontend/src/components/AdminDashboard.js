@@ -380,81 +380,146 @@ const AdminDashboard = ({ user, token }) => {
                 </p>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="budget">Budget per Manager</Label>
-                      <Input
-                        id="budget"
-                        type="number"
-                        value={settingsForm.budget_per_manager || ''}
-                        onChange={(e) => setSettingsForm({
-                          ...settingsForm,
-                          budget_per_manager: parseInt(e.target.value)
-                        })}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="minIncrement">Minimum Bid Increment</Label>
-                      <Input
-                        id="minIncrement"
-                        type="number"
-                        value={settingsForm.min_increment || ''}
-                        onChange={(e) => setSettingsForm({
-                          ...settingsForm,
-                          min_increment: parseInt(e.target.value)
-                        })}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="clubSlots">Club Slots per Manager</Label>
-                      <Input
-                        id="clubSlots"
-                        type="number"
-                        value={settingsForm.club_slots_per_manager || ''}
-                        onChange={(e) => setSettingsForm({
-                          ...settingsForm,
-                          club_slots_per_manager: parseInt(e.target.value)
-                        })}
-                      />
+                <div className="space-y-6">
+                  {/* Core Configuration */}
+                  <div>
+                    <h4 className="font-medium mb-4 text-blue-900 flex items-center">
+                      <DollarSign className="w-4 h-4 mr-2" />
+                      Core League Settings
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <Label htmlFor="budget">Budget per Manager (50-500M)</Label>
+                        <Input
+                          id="budget"
+                          type="number"
+                          min="50"
+                          max="500"
+                          value={settingsForm.budget_per_manager || ''}
+                          onChange={(e) => setSettingsForm({
+                            ...settingsForm,
+                            budget_per_manager: parseInt(e.target.value)
+                          })}
+                        />
+                        <div className="text-xs text-gray-500 mt-1">
+                          Can only change before any club purchases
+                        </div>
+                      </div>
+                      <div>
+                        <Label htmlFor="clubSlots">Club Slots per Manager (1-10)</Label>
+                        <Input
+                          id="clubSlots"
+                          type="number"
+                          min="1"
+                          max="10"
+                          value={settingsForm.club_slots_per_manager || ''}
+                          onChange={(e) => setSettingsForm({
+                            ...settingsForm,
+                            club_slots_per_manager: parseInt(e.target.value)
+                          })}
+                        />
+                        <div className="text-xs text-gray-500 mt-1">
+                          Can only decrease if all managers have ≤ new limit
+                        </div>
+                      </div>
+                      <div>
+                        <Label htmlFor="minIncrement">Minimum Bid Increment</Label>
+                        <Input
+                          id="minIncrement"
+                          type="number"
+                          min="1"
+                          value={settingsForm.min_increment || ''}
+                          onChange={(e) => setSettingsForm({
+                            ...settingsForm,
+                            min_increment: parseInt(e.target.value)
+                          })}
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="antiSnipe">Anti-snipe Seconds</Label>
-                      <Input
-                        id="antiSnipe"
-                        type="number"
-                        value={settingsForm.anti_snipe_seconds || ''}
-                        onChange={(e) => setSettingsForm({
-                          ...settingsForm,
-                          anti_snipe_seconds: parseInt(e.target.value)
-                        })}
-                      />
+
+                  {/* League Size Configuration */}
+                  <div>
+                    <h4 className="font-medium mb-4 text-green-900 flex items-center">
+                      <Users className="w-4 h-4 mr-2" />
+                      League Size Settings
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="minManagers">Minimum Managers (2-8)</Label>
+                        <Input
+                          id="minManagers"
+                          type="number"
+                          min="2"
+                          max="8"
+                          value={settingsForm.min_managers || ''}
+                          onChange={(e) => setSettingsForm({
+                            ...settingsForm,
+                            min_managers: parseInt(e.target.value)
+                          })}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="maxManagers">Maximum Managers (2-8)</Label>
+                        <Input
+                          id="maxManagers"
+                          type="number"
+                          min="2"
+                          max="8"
+                          value={settingsForm.max_managers || ''}
+                          onChange={(e) => setSettingsForm({
+                            ...settingsForm,
+                            max_managers: parseInt(e.target.value)
+                          })}
+                        />
+                        <div className="text-xs text-gray-500 mt-1">
+                          Must be ≥ current member count ({league.member_count})
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <Label htmlFor="bidTimer">Bid Timer Seconds</Label>
-                      <Input
-                        id="bidTimer"
-                        type="number"
-                        value={settingsForm.bid_timer_seconds || ''}
-                        onChange={(e) => setSettingsForm({
-                          ...settingsForm,
-                          bid_timer_seconds: parseInt(e.target.value)
-                        })}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="maxManagers">Maximum Managers</Label>
-                      <Input
-                        id="maxManagers"
-                        type="number"
-                        value={settingsForm.max_managers || ''}
-                        onChange={(e) => setSettingsForm({
-                          ...settingsForm,
-                          max_managers: parseInt(e.target.value)
-                        })}
-                      />
+                  </div>
+
+                  {/* Auction Timing Configuration */}
+                  <div>
+                    <h4 className="font-medium mb-4 text-purple-900 flex items-center">
+                      <Clock className="w-4 h-4 mr-2" />
+                      Auction Timing Settings
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="antiSnipe">Anti-snipe Seconds</Label>
+                        <Input
+                          id="antiSnipe"
+                          type="number"
+                          min="0"
+                          max="120"
+                          value={settingsForm.anti_snipe_seconds || ''}
+                          onChange={(e) => setSettingsForm({
+                            ...settingsForm,
+                            anti_snipe_seconds: parseInt(e.target.value)
+                          })}
+                        />
+                        <div className="text-xs text-gray-500 mt-1">
+                          Timer extension when bid placed in final seconds
+                        </div>
+                      </div>
+                      <div>
+                        <Label htmlFor="bidTimer">Bid Timer Seconds</Label>
+                        <Input
+                          id="bidTimer"
+                          type="number"
+                          min="30"
+                          max="300"
+                          value={settingsForm.bid_timer_seconds || ''}
+                          onChange={(e) => setSettingsForm({
+                            ...settingsForm,
+                            bid_timer_seconds: parseInt(e.target.value)
+                          })}
+                        />
+                        <div className="text-xs text-gray-500 mt-1">
+                          Default timer duration for each lot
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
