@@ -334,7 +334,7 @@ const AdminDashboard = ({ user, token }) => {
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <Activity className="w-8 h-8 text-green-600 mx-auto mb-2" />
+              <Activity className="w-8 h-8 text-green-600 mx-auto mb-2" aria-hidden="true" />
               <div className="text-2xl font-bold text-green-600">{adminLogs.length}</div>
               <div className="text-sm text-gray-600">Admin Actions</div>
             </CardContent>
