@@ -60,7 +60,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "test": "craco test",
+    "db:migrate:config": "node ../scripts/db-migrate-config.js"
   },
   "browserslist": {
     "production": [
