@@ -787,6 +787,42 @@ async def get_bid_audit(
         logger.error(f"Failed to get bid audit: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+# Competition Profile Routes
+@api_router.get("/competition-profiles")
+async def get_competition_profiles():
+    """Get all available competition profiles"""
+    try:
+        profiles = await CompetitionService.get_all_profiles()
+        return {"profiles": [profile.dict() for profile in profiles]}
+    except Exception as e:
+        logger.error(f"Failed to get competition profiles: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/competition-profiles/{profile_id}")
+async def get_competition_profile(profile_id: str):
+    """Get specific competition profile"""
+    try:
+        profile = await CompetitionService.get_profile_by_id(profile_id)
+        if profile:
+            return profile.dict()
+        else:
+            raise HTTPException(status_code=404, detail="Competition profile not found")
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to get competition profile: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/competition-profiles/{profile_id}/defaults")
+async def get_profile_defaults(profile_id: str):
+    """Get default settings for a competition profile"""
+    try:
+        defaults = await CompetitionService.get_default_settings(profile_id)
+        return defaults.dict()
+    except Exception as e:
+        logger.error(f"Failed to get profile defaults: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Aggregation Routes for UI pages
 @api_router.get("/clubs/my-clubs/{league_id}")
 async def get_my_clubs(
