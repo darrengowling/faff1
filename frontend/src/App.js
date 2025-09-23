@@ -190,7 +190,8 @@ const Login = () => {
             </div>
             <Button
               type="submit"
-              className="w-full"
+              className="w-full touch-target"
+              size="lg"
               disabled={loading}
             >
               {loading ? 'Sending...' : 'Send Magic Link'}
