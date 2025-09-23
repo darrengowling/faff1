@@ -1272,6 +1272,13 @@ const LeaderboardWrapper = () => {
   return <Leaderboard user={user} token={token} />;
 };
 
+const AdminDashboardWrapper = () => {
+  const { user } = useAuth();
+  const token = localStorage.getItem('token');
+  
+  return <AdminDashboard user={user} token={token} />;
+};
+
 // Main App Component
 function App() {
   return (
