@@ -364,9 +364,9 @@ class AdminService:
                 # Log the settings update
                 await log_league_settings_update(
                     league_id=league_id,
-                    user_id=user_id,
-                    old_settings=current_settings,
-                    new_settings=update_dict
+                    actor_id=user_id,
+                    before=current_settings,
+                    after=update_dict
                 )
             
             logger.info(f"Updated league {league_id} settings by user {user_id}")
