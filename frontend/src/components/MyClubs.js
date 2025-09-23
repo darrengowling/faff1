@@ -181,6 +181,7 @@ const MyClubs = ({ user, token }) => {
               <Badge variant="outline" className="text-blue-700 border-blue-200">
                 {owned_clubs.length} / {budget_info.clubs_owned + budget_info.slots_available} Clubs
               </Badge>
+              <ScoringHelp />
             </div>
           </div>
         </div>
