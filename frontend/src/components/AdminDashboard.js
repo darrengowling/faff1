@@ -325,7 +325,10 @@ const AdminDashboard = ({ user, token }) => {
                   <div className="flex justify-between">
                     <span className="text-gray-600">Members:</span>
                     <span className="font-medium">
-                      {league.member_count}/{league.settings.max_managers}
+                      {league.member_count}/{league.settings.league_size.max}
+                      <span className="text-sm text-gray-500 ml-1">
+                        (min: {league.settings.league_size.min})
+                      </span>
                     </span>
                   </div>
                   <div className="flex justify-between">
