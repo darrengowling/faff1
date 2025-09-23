@@ -7,7 +7,7 @@ import requests
 import json
 
 def test_auth_system():
-    base_url = "https://ucl-manager-hub.preview.emergentagent.com"
+    base_url = "https://ucl-auction.preview.emergentagent.com"
     api_url = f"{base_url}/api"
     
     # Test known protected endpoint
