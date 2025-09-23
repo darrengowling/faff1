@@ -5,6 +5,7 @@ import logging
 from models import *
 from database import db
 from auth import create_magic_link_token, send_magic_link_email
+from competition_service import CompetitionService
 
 logger = logging.getLogger(__name__)
 
