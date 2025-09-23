@@ -715,6 +715,14 @@ const LeagueManagement = ({ league, onBack }) => {
               Commissioner
             </Badge>
           )}
+          <MobileNav 
+            user={{ email: user?.email, role: isCommissioner ? 'commissioner' : 'manager' }}
+            onLogout={() => {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              window.location.href = '/';
+            }}
+          />
         </div>
       </div>
 
