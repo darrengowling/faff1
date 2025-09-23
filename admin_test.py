@@ -115,12 +115,13 @@ class AdminSystemTester:
             return self.log_test("Admin Authentication Required", False, "No test league")
         
         # Test admin endpoints without token
+        test_league_id = self.test_league_id or "test-league-id"
         endpoints = [
-            ('PUT', f'admin/leagues/{self.test_league_id}/settings', {}),
-            ('POST', f'admin/leagues/{self.test_league_id}/members/manage', {}),
-            ('GET', f'admin/leagues/{self.test_league_id}/audit', None),
-            ('GET', f'admin/leagues/{self.test_league_id}/logs', None),
-            ('GET', f'admin/leagues/{self.test_league_id}/bid-audit', None)
+            ('PUT', f'admin/leagues/{test_league_id}/settings', {}),
+            ('POST', f'admin/leagues/{test_league_id}/members/manage', {}),
+            ('GET', f'admin/leagues/{test_league_id}/audit', None),
+            ('GET', f'admin/leagues/{test_league_id}/logs', None),
+            ('GET', f'admin/leagues/{test_league_id}/bid-audit', None)
         ]
         
         auth_required_count = 0
