@@ -447,28 +447,29 @@ const AuctionRoom = ({ user, token }) => {
                       </div>
 
                       {/* Quick Bid Buttons */}
-                      <div className="flex space-x-2">
+                      {/* Quick Bid Buttons - Mobile optimized */}
+                      <div className="flex space-x-2 mobile-button-group">
                         <Button
-                          size="sm"
+                          size="lg"
                           variant="outline"
                           onClick={() => handleQuickBid(1)}
-                          className="border-gray-600 text-gray-300"
+                          className="border-gray-600 text-gray-300 touch-target flex-1"
                         >
                           +1
                         </Button>
                         <Button
-                          size="sm"
+                          size="lg"
                           variant="outline"
                           onClick={() => handleQuickBid(5)}
-                          className="border-gray-600 text-gray-300"
+                          className="border-gray-600 text-gray-300 touch-target flex-1"
                         >
                           +5
                         </Button>
                         <Button
-                          size="sm"
+                          size="lg"
                           variant="outline"
                           onClick={() => handleQuickBid(10)}
-                          className="border-gray-600 text-gray-300"
+                          className="border-gray-600 text-gray-300 touch-target flex-1"
                         >
                           +10
                         </Button>
