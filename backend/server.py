@@ -18,9 +18,10 @@ from auth import (
     require_league_access, require_commissioner_access, AccessControl
 )
 
-# Import auction and WebSocket modules
+# Import auction and scoring modules
 from auction_engine import initialize_auction_engine, get_auction_engine
 from websocket import sio, get_socketio_app
+from scoring_service import ScoringService, get_scoring_worker
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -60,17 +61,25 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Startup event to initialize database and auction engine
+# Startup event to initialize database, auction engine, and scoring worker
 @app.on_event("startup")
 async def startup_event():
-    """Initialize database and auction engine on startup"""
+    """Initialize all systems on startup"""
     await initialize_database()
     initialize_auction_engine(sio)  # Initialize with Socket.IO server
-    logger.info("UCL Auction API with Live Auction Engine started successfully")
+    
+    # Start scoring worker in background
+    scoring_worker = get_scoring_worker()
+    # Note: In production, run scoring worker as separate process/container
+    # asyncio.create_task(scoring_worker.start_continuous_processing())
+    
+    logger.info("UCL Auction API with Live Auction Engine and Scoring System started successfully")
 
 @app.on_event("shutdown")
 async def shutdown_event():
     """Clean up on shutdown"""
+    scoring_worker = get_scoring_worker()
+    scoring_worker.stop()
     logger.info("UCL Auction API shutting down")
 
 # Health check endpoint
@@ -495,6 +504,72 @@ async def get_auction_state(
             raise HTTPException(status_code=404, detail="Auction not found or not active")
     except Exception as e:
         logger.error(f"Failed to get auction state: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+# Scoring and Results Routes
+@api_router.post("/ingest/final_result")
+async def ingest_final_result(result_data: ResultIngestCreate):
+    """Ingest final match result for scoring"""
+    try:
+        result = await ScoringService.ingest_result(
+            league_id=result_data.league_id,
+            match_id=result_data.match_id,
+            season=result_data.season,
+            home_ext=result_data.home_ext,
+            away_ext=result_data.away_ext,
+            home_goals=result_data.home_goals,
+            away_goals=result_data.away_goals,
+            kicked_off_at=result_data.kicked_off_at,
+            status=result_data.status or "final"
+        )
+        
+        if result["success"]:
+            return result
+        else:
+            raise HTTPException(status_code=400, detail=result["message"])
+    except Exception as e:
+        logger.error(f"Failed to ingest result: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/scoring/process")
+async def process_pending_results(current_user: UserResponse = Depends(get_current_verified_user)):
+    """Process pending results (manual trigger for testing)"""
+    try:
+        result = await ScoringService.process_pending_results()
+        return result
+    except Exception as e:
+        logger.error(f"Failed to process results: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/leagues/{league_id}/standings")
+async def get_league_standings(
+    league_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get league standings"""
+    await require_league_access(current_user.id, league_id)
+    
+    try:
+        standings = await ScoringService.get_league_standings(league_id)
+        return {"league_id": league_id, "standings": standings}
+    except Exception as e:
+        logger.error(f"Failed to get standings: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/leagues/{league_id}/user/{user_id}/history")
+async def get_user_match_history(
+    league_id: str,
+    user_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get match history for a user"""
+    await require_league_access(current_user.id, league_id)
+    
+    try:
+        history = await ScoringService.get_user_match_history(league_id, user_id)
+        return {"league_id": league_id, "user_id": user_id, "history": history}
+    except Exception as e:
+        logger.error(f"Failed to get match history: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # Club Routes (seed data)
