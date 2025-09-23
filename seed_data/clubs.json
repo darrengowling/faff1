@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Manchester City",
+    "short_name": "MCI",
+    "country": "England",
+    "ext_ref": "UEFA-MCI"
+  },
+  {
+    "name": "Real Madrid",
+    "short_name": "RMA",
+    "country": "Spain", 
+    "ext_ref": "UEFA-RMA"
+  },
+  {
+    "name": "FC Barcelona",
+    "short_name": "BAR",
+    "country": "Spain",
+    "ext_ref": "UEFA-BAR"
+  },
+  {
+    "name": "Bayern Munich",
+    "short_name": "BAY",
+    "country": "Germany",
+    "ext_ref": "UEFA-BAY"
+  },
+  {
+    "name": "Paris Saint-Germain",
+    "short_name": "PSG",
+    "country": "France",
+    "ext_ref": "UEFA-PSG"
+  },
+  {
+    "name": "Liverpool FC",
+    "short_name": "LIV",
+    "country": "England",
+    "ext_ref": "UEFA-LIV"
+  },
+  {
+    "name": "Arsenal FC",
+    "short_name": "ARS",
+    "country": "England",
+    "ext_ref": "UEFA-ARS"
+  },
+  {
+    "name": "Inter Milan",
+    "short_name": "INT",
+    "country": "Italy",
+    "ext_ref": "UEFA-INT"
+  },
+  {
+    "name": "AC Milan",
+    "short_name": "MIL",
+    "country": "Italy",
+    "ext_ref": "UEFA-MIL"
+  },
+  {
+    "name": "Borussia Dortmund",
+    "short_name": "BVB",
+    "country": "Germany",
+    "ext_ref": "UEFA-BVB"
+  },
+  {
+    "name": "Atlético Madrid",
+    "short_name": "ATM",
+    "country": "Spain",
+    "ext_ref": "UEFA-ATM"
+  },
+  {
+    "name": "Juventus",
+    "short_name": "JUV",
+    "country": "Italy",
+    "ext_ref": "UEFA-JUV"
+  }
+]
