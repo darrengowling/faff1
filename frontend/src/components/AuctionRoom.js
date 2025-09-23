@@ -8,6 +8,7 @@ import { EmptyState, AuctionNotStartedEmptyState, LoadingEmptyState } from './ui
 import { BiddingControls } from './ui/bidding-controls';
 import { AuctionToasts, handleAuctionUpdate } from './ui/auction-toasts';
 import { AuctionTooltip, ScoringTooltip } from './ui/tooltip';
+import { AuctionMechanicsHelp, BiddingTips, BudgetConstraintHelp } from './ui/auction-help';
 
 // Import Shadcn components
 import { Button } from './ui/button';
