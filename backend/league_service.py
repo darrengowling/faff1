@@ -121,9 +121,11 @@ class LeagueService:
             if league["commissioner_id"] != inviter_id:
                 raise ValueError("Only commissioner can send invitations")
             
-            # Check league size limit
-            if league["member_count"] >= league["settings"]["max_managers"]:
-                raise ValueError(f"League is full (max {league['settings']['max_managers']} managers)")
+            # Check league size limit using new league_size settings
+            from admin_service import AdminService
+            size_valid, size_error = await AdminService.validate_league_size_constraints(league_id, "invite")
+            if not size_valid:
+                raise ValueError(size_error)
             
             # Check if email is already invited or member
             existing_invitation = await db.invitations.find_one({
