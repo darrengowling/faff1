@@ -427,20 +427,23 @@ const AuctionRoom = ({ user, token }) => {
                   {/* Bidding Interface */}
                   {currentLot.status === 'open' && (
                     <div className="space-y-4">
-                      <div className="flex items-center space-x-2">
+                      {/* Main Bidding Controls - Mobile optimized */}
+                      <div className="flex items-center space-x-2 thumb-zone">
                         <Input
                           type="number"
                           value={bidAmount}
                           onChange={(e) => setBidAmount(parseInt(e.target.value) || 0)}
                           min={(currentLot.current_bid || 0) + (auctionState?.settings?.min_increment || 1)}
                           max={userBudget}
-                          className="bg-gray-700 border-gray-600 text-white"
+                          className="bg-gray-700 border-gray-600 text-white text-lg"
                           placeholder="Enter bid amount"
                         />
                         <Button
                           onClick={handlePlaceBid}
                           disabled={bidding || bidAmount <= currentLot.current_bid || bidAmount > userBudget}
-                          className="bg-green-600 hover:bg-green-700"
+                          className="bg-green-600 hover:bg-green-700 touch-target min-w-[120px]"
+                          size="lg"
+                          data-primary="true"
                         >
                           {bidding ? 'Bidding...' : 'Place Bid'}
                         </Button>
