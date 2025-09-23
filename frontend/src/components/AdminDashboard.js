@@ -96,6 +96,13 @@ const AdminDashboard = ({ user, token }) => {
       });
       setBidAudit(auditResponse.data.bids || []);
       
+      // Check if any clubs have been purchased
+      const clubsResponse = await axios.get(`${API}/clubs/my-clubs/${leagueId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const totalClubsOwned = clubsResponse.data.clubs_owned || 0;
+      setHasClubsPurchased(totalClubsOwned > 0);
+      
     } catch (error) {
       console.error('Failed to fetch admin data:', error);
       if (error.response?.status === 403) {
