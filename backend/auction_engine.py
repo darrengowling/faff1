@@ -46,6 +46,14 @@ class AuctionEngine:
             if league["status"] != "ready":
                 raise ValueError("League not ready for auction")
             
+            # GUARDRAIL: Enforce minimum league size
+            from admin_service import AdminService
+            size_valid, size_error = await AdminService.validate_league_size_constraints(
+                auction["league_id"], "start_auction"
+            )
+            if not size_valid:
+                raise ValueError(size_error)
+            
             # Update league and auction status
             await db.leagues.update_one(
                 {"_id": auction["league_id"]},
