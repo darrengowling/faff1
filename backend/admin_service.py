@@ -198,7 +198,7 @@ class AdminService:
     @staticmethod
     async def update_league_settings(league_id: str, actor_id: str, updates: LeagueSettingsUpdate) -> Dict:
         """
-        Update league settings with audit logging
+        Update league settings with comprehensive validation and audit logging
         
         Args:
             league_id: League to update
@@ -218,14 +218,89 @@ class AdminService:
             if not league:
                 raise AdminValidationError("League not found")
             
+            current_settings = league.get("settings", {})
+            current_member_count = league.get("member_count", 0)
+            
+            # Get auction status for budget/slots validation
+            auction = await db.auctions.find_one({"league_id": league_id})
+            auction_status = auction.get("status", "scheduled") if auction else "scheduled"
+            
+            # VALIDATION GUARDS
+            
+            # 1. Budget changes validation
+            if updates.budget_per_manager is not None:
+                if auction_status not in ["scheduled", "paused"]:
+                    raise AdminValidationError("Budget can only be changed when auction is scheduled or paused")
+                
+                # Check if any club purchases exist
+                purchases_exist = await db.roster_clubs.count_documents({"league_id": league_id}) > 0
+                if purchases_exist:
+                    raise AdminValidationError("Budget cannot be changed after club purchases have been made")
+            
+            # 2. Club slots validation
+            if updates.club_slots_per_manager is not None:
+                current_slots = current_settings.get("club_slots_per_manager", 3)
+                new_slots = updates.club_slots_per_manager
+                
+                # If decreasing slots, check all rosters can accommodate
+                if new_slots < current_slots:
+                    # Check if any manager has more clubs than new limit
+                    rosters_with_too_many_clubs = await db.roster_clubs.aggregate([
+                        {"$match": {"league_id": league_id}},
+                        {"$group": {"_id": "$user_id", "club_count": {"$sum": 1}}},
+                        {"$match": {"club_count": {"$gt": new_slots}}}
+                    ]).to_list(length=None)
+                    
+                    if rosters_with_too_many_clubs:
+                        manager_names = []
+                        for roster in rosters_with_too_many_clubs:
+                            user = await db.users.find_one({"_id": roster["_id"]})
+                            manager_names.append(f"{user.get('display_name', 'Unknown')} ({roster['club_count']} clubs)")
+                        
+                        raise AdminValidationError(
+                            f"Cannot reduce club slots to {new_slots}. These managers have too many clubs: {', '.join(manager_names)}"
+                        )
+            
+            # 3. League size validation
+            if updates.max_managers is not None:
+                if updates.max_managers < current_member_count:
+                    raise AdminValidationError(
+                        f"Maximum managers ({updates.max_managers}) cannot be less than current member count ({current_member_count})"
+                    )
+            
+            if updates.min_managers is not None and updates.max_managers is not None:
+                if updates.min_managers > updates.max_managers:
+                    raise AdminValidationError("Minimum managers cannot be greater than maximum managers")
+            elif updates.min_managers is not None:
+                current_max = current_settings.get("max_managers", 8)
+                if updates.min_managers > current_max:
+                    raise AdminValidationError(f"Minimum managers ({updates.min_managers}) cannot be greater than current maximum ({current_max})")
+            elif updates.max_managers is not None:
+                current_min = current_settings.get("min_managers", 4)
+                if updates.max_managers < current_min:
+                    raise AdminValidationError(f"Maximum managers ({updates.max_managers}) cannot be less than current minimum ({current_min})")
+            
             # Prepare updates
             update_dict = {}
             if updates.budget_per_manager is not None:
                 update_dict["settings.budget_per_manager"] = updates.budget_per_manager
+                # Update all existing rosters if no purchases made
+                await db.rosters.update_many(
+                    {"league_id": league_id},
+                    {"$set": {
+                        "budget_start": updates.budget_per_manager,
+                        "budget_remaining": updates.budget_per_manager
+                    }}
+                )
             if updates.min_increment is not None:
                 update_dict["settings.min_increment"] = updates.min_increment
             if updates.club_slots_per_manager is not None:
                 update_dict["settings.club_slots_per_manager"] = updates.club_slots_per_manager
+                # Update all existing rosters
+                await db.rosters.update_many(
+                    {"league_id": league_id},
+                    {"$set": {"club_slots": updates.club_slots_per_manager}}
+                )
             if updates.anti_snipe_seconds is not None:
                 update_dict["settings.anti_snipe_seconds"] = updates.anti_snipe_seconds
             if updates.bid_timer_seconds is not None:
@@ -235,13 +310,13 @@ class AdminService:
             if updates.min_managers is not None:
                 update_dict["settings.min_managers"] = updates.min_managers
             if updates.scoring_rules is not None:
-                update_dict["settings.scoring_rules"] = updates.scoring_rules.dict()
+                update_dict["settings.scoring_rules"] = updates.scoring_rules.model_dump()
             
             if not update_dict:
                 return {"success": False, "message": "No updates provided"}
             
             # Store before state for audit
-            before_state = league.get("settings", {})
+            before_state = current_settings.copy()
             
             # Update league
             await db.leagues.update_one(
