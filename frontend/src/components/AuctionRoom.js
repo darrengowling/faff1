@@ -509,9 +509,16 @@ const AuctionRoom = ({ user, token }) => {
             {/* User Wallet */}
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
-                <CardTitle className="text-white flex items-center">
-                  <Wallet className="w-5 h-5 mr-2" />
-                  Your Wallet
+                <CardTitle className="text-white flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Wallet className="w-5 h-5 mr-2" />
+                    Your Wallet
+                  </div>
+                  <BudgetConstraintHelp 
+                    remaining={userBudget} 
+                    slotsLeft={userSlots} 
+                    minIncrement={auctionState?.settings?.min_increment || 1}
+                  />
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
