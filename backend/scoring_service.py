@@ -315,23 +315,33 @@ class ScoringService:
             return False
     
     @staticmethod
-    async def _get_club_owners(league_id: str, club_ext: str, session: AsyncIOMotorClientSession) -> List[str]:
+    async def _get_club_owners(league_id: str, club_ext: str, session=None) -> List[str]:
         """
         Get all owners of a club by external reference
         Returns list of user_ids
         """
         try:
             # Find club by external reference
-            club = await db.clubs.find_one({"ext_ref": club_ext}, session=session)
+            find_args = {"ext_ref": club_ext}
+            if session:
+                club = await db.clubs.find_one(find_args, session=session)
+            else:
+                club = await db.clubs.find_one(find_args)
+                
             if not club:
                 logger.warning(f"Club not found for ext_ref: {club_ext}")
                 return []
             
             # Find all owners of this club in the league
-            roster_clubs = await db.roster_clubs.find({
+            roster_find_args = {
                 "league_id": league_id,
                 "club_id": club["_id"]
-            }, session=session).to_list(length=None)
+            }
+            
+            if session:
+                roster_clubs = await db.roster_clubs.find(roster_find_args, session=session).to_list(length=None)
+            else:
+                roster_clubs = await db.roster_clubs.find(roster_find_args).to_list(length=None)
             
             return [rc["user_id"] for rc in roster_clubs]
             
@@ -346,7 +356,7 @@ class ScoringService:
         match_id: str,
         points_delta: int,
         bucket: Dict,
-        session: AsyncIOMotorClientSession
+        session=None
     ) -> bool:
         """
         Upsert weekly points record (idempotent by leagueId, userId, matchId)
@@ -363,15 +373,22 @@ class ScoringService:
             points_dict = weekly_points.dict(by_alias=True)
             
             # Upsert by unique key (league_id, user_id, match_id)
+            update_args = {
+                "$set": points_dict
+            }
+            upsert_args = {"upsert": True}
+            
+            if session:
+                upsert_args["session"] = session
+            
             await db.weekly_points.update_one(
                 {
                     "league_id": league_id,
                     "user_id": user_id,
                     "match_id": match_id
                 },
-                {"$set": points_dict},
-                upsert=True,
-                session=session
+                update_args,
+                **upsert_args
             )
             
             logger.debug(f"Upserted weekly points: {user_id} +{points_delta} for match {match_id}")
