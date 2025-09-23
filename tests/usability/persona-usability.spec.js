@@ -291,7 +291,7 @@ test.describe('UCL Auction - Persona Usability Tests', () => {
           await page.waitForTimeout(100);
         }
       } catch (error) {
-        usabilityResults.personas[riley].issues.push(`Keyboard navigation error: ${error.message}`);
+        usabilityResults.personas[persona].issues.push(`Keyboard navigation error: ${error.message}`);
       }
       
       if (focusableElements.length > 0) {
