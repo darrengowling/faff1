@@ -850,6 +850,76 @@ async def get_head_to_head(
         logger.error(f"Failed to get head-to-head comparison: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+# Health check endpoint
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for deployment monitoring"""
+    try:
+        # Check database connectivity
+        await db.admin.command('ping')
+        
+        # Check collections exist
+        collections = await db.list_collection_names()
+        required_collections = ['users', 'leagues', 'clubs', 'auctions']
+        missing_collections = [col for col in required_collections if col not in collections]
+        
+        # Basic system info
+        import psutil
+        import os
+        
+        health_status = {
+            "status": "healthy",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "version": "1.0.0",
+            "environment": os.getenv("ENVIRONMENT", "development"),
+            "database": {
+                "connected": True,
+                "collections_count": len(collections),
+                "missing_collections": missing_collections
+            },
+            "system": {
+                "cpu_percent": psutil.cpu_percent(),
+                "memory_percent": psutil.virtual_memory().percent,
+                "disk_percent": psutil.disk_usage('/').percent
+            },
+            "services": {
+                "websocket": True,  # Socket.IO is mounted
+                "email": bool(os.getenv("SMTP_HOST")),
+                "auth": bool(os.getenv("JWT_SECRET"))
+            }
+        }
+        
+        # Determine overall health
+        if missing_collections:
+            health_status["status"] = "degraded"
+        
+        if health_status["system"]["memory_percent"] > 90:
+            health_status["status"] = "warning"
+            
+        if health_status["system"]["disk_percent"] > 95:
+            health_status["status"] = "critical"
+            
+        return health_status
+        
+    except Exception as e:
+        logger.error(f"Health check failed: {e}")
+        return {
+            "status": "unhealthy",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "error": str(e)
+        }
+
+# Version endpoint
+@app.get("/version")
+async def get_version():
+    """Get application version information"""
+    return {
+        "version": "1.0.0",
+        "build_date": "2025-01-15",
+        "commit": os.getenv("GIT_COMMIT", "unknown"),
+        "environment": os.getenv("ENVIRONMENT", "development")
+    }
+
 # Include the router in the main app
 app.include_router(api_router)
 
