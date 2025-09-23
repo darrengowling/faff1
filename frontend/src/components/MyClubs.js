@@ -37,6 +37,7 @@ const MyClubs = ({ user, token }) => {
   const navigate = useNavigate();
   
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [clubsData, setClubsData] = useState(null);
   const [selectedTab, setSelectedTab] = useState('clubs');
 
