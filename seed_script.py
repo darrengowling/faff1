@@ -124,7 +124,7 @@ class UCLAuctionSeeder:
                 display_name=manager_data["display_name"],
                 verified=True
             )
-            user_dict = user.dict(by_alias=True)
+            user_dict = user.model_dump(by_alias=True)
             result = await db.users.insert_one(user_dict)
             self.user_ids[f"manager_{i}"] = result.inserted_id
             
