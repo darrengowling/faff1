@@ -312,6 +312,7 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Mobile UX Optimizations and P2 Usability Improvements"
     - "Enforcement Rules Implementation"
     - "Competition Profile Integration in League Creation"
     - "My Clubs Page Component"
