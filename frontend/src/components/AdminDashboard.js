@@ -380,6 +380,20 @@ const AdminDashboard = ({ user, token }) => {
                 </p>
               </CardHeader>
               <CardContent className="space-y-6">
+                {/* Configuration Status Alert */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-start space-x-3">
+                    <AlertTriangle className="w-5 h-5 text-blue-600 mt-0.5" />
+                    <div>
+                      <div className="font-medium text-blue-800">Configuration Constraints</div>
+                      <div className="text-sm text-blue-700 mt-1 space-y-1">
+                        <div>• Budget can only be changed when auction is scheduled/paused and no purchases exist</div>
+                        <div>• Club slots can decrease only if all managers have ≤ new limit</div>
+                        <div>• League size maximum must be ≥ current member count</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div className="space-y-6">
                   {/* Core Configuration */}
                   <div>
