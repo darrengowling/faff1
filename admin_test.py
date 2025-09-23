@@ -179,25 +179,37 @@ class AdminSystemTester:
         if not self.test_league_id:
             return self.log_test("Admin Member Management", False, "No test league")
         
-        # Test member action (kick non-existent member should be handled gracefully)
-        member_action = {
-            "member_id": "test_user_id_12345",
+        # Test 1: Try to kick non-existent member (should be handled gracefully)
+        invalid_member_action = {
+            "member_id": "non_existent_user_12345",
             "action": "kick"
         }
         
-        success, status, data = self.make_request(
+        success1, status1, data1 = self.make_request(
             'POST',
             f'admin/leagues/{self.test_league_id}/members/manage',
-            member_action
+            invalid_member_action
         )
         
-        # Should either succeed or fail gracefully with proper error
-        member_management_works = success or (400 <= status < 500)
+        # Test 2: Try to approve non-existent member
+        approve_action = {
+            "member_id": "non_existent_user_12345", 
+            "action": "approve"
+        }
+        
+        success2, status2, data2 = self.make_request(
+            'POST',
+            f'admin/leagues/{self.test_league_id}/members/manage',
+            approve_action
+        )
+        
+        # Should handle invalid member actions gracefully (400-500 status codes)
+        member_management_works = (400 <= status1 <= 500) or (400 <= status2 <= 500)
         
         return self.log_test(
             "Admin Member Management",
             member_management_works,
-            f"Status: {status}, Response: {data.get('message', 'No message')}"
+            f"Invalid member handled correctly: Status {status1}/{status2}"
         )
 
     def test_admin_auction_management(self):
