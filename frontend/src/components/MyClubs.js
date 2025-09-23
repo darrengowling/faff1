@@ -46,7 +46,7 @@ const MyClubs = ({ user, token }) => {
 
   const fetchMyClubs = async () => {
     try {
-      const response = await axios.get(`${API}/leagues/${leagueId}/my-clubs`, {
+      const response = await axios.get(`${API}/clubs/my-clubs/${leagueId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setClubsData(response.data);
