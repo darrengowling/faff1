@@ -418,9 +418,11 @@ const Leaderboard = ({ user, token }) => {
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center p-3 bg-blue-50 rounded-lg">
-                <div className="text-xl font-bold text-blue-600">
-                  {leaderboard.reduce((sum, m) => sum + m.total_points, 0)}
-                </div>
+                <ScoringTooltip>
+                  <div className="text-xl font-bold text-blue-600 cursor-help">
+                    {leaderboard.reduce((sum, m) => sum + m.total_points, 0)}
+                  </div>
+                </ScoringTooltip>
                 <div className="text-sm text-gray-600">Total Points</div>
               </div>
               <div className="text-center p-3 bg-green-50 rounded-lg">
