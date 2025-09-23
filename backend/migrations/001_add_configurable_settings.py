@@ -192,8 +192,12 @@ class ConfigurableSettingsMigration:
             }
         }
         
-        # Apply schema validation
-        await db.create_collection("competition_profiles", validator=competition_schema)
+        # Apply schema validation (create collection if it doesn't exist)
+        try:
+            await db.create_collection("competition_profiles", validator=competition_schema)
+        except Exception:
+            # Collection might already exist, just apply validation
+            await db.command("collMod", "competition_profiles", validator=competition_schema)
         
         logger.info(f"✅ Created {len(profiles)} competition profiles")
 
