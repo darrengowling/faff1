@@ -57,6 +57,7 @@ class LeagueService:
             
             # Create default auction document
             auction = Auction(
+                id=league.id,  # Use league_id as auction_id for simplicity
                 league_id=league.id,
                 budget_per_manager=league.settings.budget_per_manager,
                 min_increment=league.settings.min_increment,
