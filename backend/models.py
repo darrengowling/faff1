@@ -499,7 +499,7 @@ class AuthResponse(BaseModel):
     user: UserResponse
 
 # Admin & Audit Models
-class AdminAction(str, Enum):
+class AdminAction:
     """Enumeration of admin actions for audit logging"""
     # League Management
     UPDATE_LEAGUE_SETTINGS = "update_league_settings"
