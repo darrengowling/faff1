@@ -205,13 +205,17 @@ class LeagueService:
                 )
                 raise ValueError("Invitation has expired")
             
-            # Get league and validate capacity
+            # Get league and validate capacity using league_size settings
             league = await db.leagues.find_one({"_id": invitation["league_id"]})
             if not league:
                 raise ValueError("League not found")
             
-            if league["member_count"] >= league["settings"]["max_managers"]:
-                raise ValueError("League is full")
+            from admin_service import AdminService
+            size_valid, size_error = await AdminService.validate_league_size_constraints(
+                invitation["league_id"], "invite"
+            )
+            if not size_valid:
+                raise ValueError(size_error)
             
             # Check if user is already a member
             existing_membership = await db.memberships.find_one({
