@@ -320,6 +320,10 @@ const AuctionRoom = ({ user, token }) => {
               </Badge>
             </div>
             <div className="flex items-center space-x-4">
+              {/* Help components for learnability */}
+              <AuctionMechanicsHelp />
+              <BiddingTips />
+              
               {isCommissioner && (
                 <Button
                   size="sm"
