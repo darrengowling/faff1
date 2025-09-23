@@ -94,25 +94,48 @@ const MyClubs = ({ user, token }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+      <div className="max-w-7xl mx-auto p-6">
+        <LoadingEmptyState message="Loading your clubs..." />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-7xl mx-auto p-6">
+        <EmptyState
+          icon={() => (
+            <div className="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
+              <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+            </div>
+          )}
+          title="Failed to Load"
+          description={error}
+          action={fetchMyClubs}
+          actionLabel="Try Again"
+        />
       </div>
     );
   }
 
   if (!clubsData) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Card className="w-full max-w-md">
-          <CardContent className="text-center p-8">
-            <Trophy className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Failed to Load</h3>
-            <p className="text-gray-600">Unable to load your clubs data.</p>
-            <Button className="mt-4" onClick={() => navigate('/dashboard')}>
-              Back to Dashboard
-            </Button>
-          </CardContent>
-        </Card>
+      <div className="max-w-7xl mx-auto p-6">
+        <EmptyState
+          icon={() => (
+            <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+              <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2m13-8a2 2 0 00-2-2H7a2 2 0 00-2 2v9a2 2 0 002 2h8a2 2 0 002-2V5z" />
+              </svg>
+            </div>
+          )}
+          title="No Data Available"
+          description="Unable to load your club information. Please try refreshing the page."
+          action={fetchMyClubs}
+          actionLabel="Refresh"
+        />
       </div>
     );
   }
