@@ -7,6 +7,7 @@
 - [ ] All services healthy (check `/health` endpoint)
 - [ ] Database initialized with seed data
 - [ ] Email configuration working (check SMTP settings)
+- [ ] Competition profiles seeded (UCL, Europa, Custom)
 
 ### Test Data Reset (if needed)
 ```bash
@@ -21,28 +22,54 @@ docker-compose exec -T mongodb mongosh ucl_auction --eval "
 python3 seed_script.py
 ```
 
+### API Contracts Verification
+- [ ] Run API contracts test: `python test_api_contracts.py`
+- [ ] Verify PATCH `/leagues/:id/settings` endpoint exists (status 403 not 404)
+- [ ] Verify competition profiles have required fields (club_slots, budget_per_manager, league_size)
+- [ ] Verify UCL defaults: 3 slots, 100M budget, 4-8 managers
+
 ---
 
 ## 📋 **SMOKE TEST EXECUTION**
 
-## **TEST 1: League Creation & Member Management**
+## **TEST 1: League Creation & Competition Profile Defaults**
 
-### 1.1 Create League (Commissioner)
+### 1.1 Create League with Default Settings (Commissioner)
 - [ ] Navigate to application: `http://localhost:8000`
 - [ ] Click "Login" and enter email: `commissioner.smoke@smoketest.com`
 - [ ] Check email for magic link (or check logs: `docker-compose logs app | grep "Magic link"`)
 - [ ] Click magic link and verify login
 - [ ] Click "Create League"
-- [ ] Fill league details:
+- [ ] Fill minimal league details (no custom settings):
   ```
-  Name: Smoke Test League 2025-26
+  Name: Default Settings League
   Season: 2025-26
-  Budget: 100M
-  Club Slots: 3
-  Max Managers: 8
   ```
 - [ ] Submit and verify league created
-- [ ] **EXPECTED**: League dashboard shows with commissioner role
+- [ ] **EXPECTED**: League uses UCL competition profile defaults:
+  - Budget: 100M per manager
+  - Club Slots: 3 per manager  
+  - League Size: 4-8 managers
+  - Scoring: 1 goal, 3 win, 1 draw
+
+### 1.2 Create League with Custom Settings (Commissioner)
+- [ ] Create second league with custom settings:
+  ```
+  Name: Custom Settings League
+  Season: 2025-26
+  Budget: 150M
+  Club Slots: 4
+  Min Managers: 2
+  Max Managers: 6
+  ```
+- [ ] Submit and verify custom settings override competition profile defaults
+- [ ] **EXPECTED**: League uses explicit settings, not competition profile defaults
+
+### 1.3 Test League Size Enforcement
+- [ ] In Custom Settings League (max 6), try to invite 7 members
+- [ ] **EXPECTED**: System prevents invites when at max capacity
+- [ ] Try to start auction with only 1 manager (below min of 2)
+- [ ] **EXPECTED**: "Start Auction" button disabled with warning message
 
 ### 1.2 Invite 3 Friends
 - [ ] In league dashboard, click "Invite Members"
