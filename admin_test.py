@@ -134,7 +134,7 @@ class AdminSystemTester:
         return self.log_test(
             "Admin Authentication Required",
             auth_required_count >= 3,  # At least 3 should require auth
-            f"Auth required for {auth_required_count}/{len(endpoints)} endpoints"
+            f"Auth required for {auth_required_count}/{len(endpoints)} endpoints. Status codes: {status_codes}"
         )
 
     def test_admin_league_settings_update(self):
