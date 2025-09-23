@@ -1404,6 +1404,10 @@ class UCLAuctionAPITester:
         print("\n📊 AGGREGATION ENDPOINTS TESTS")
         self.test_aggregation_endpoints_comprehensive()
         
+        # ==================== ADMIN SYSTEM TESTS ====================
+        print("\n🔐 COMPREHENSIVE ADMIN SYSTEM TESTS")
+        self.test_admin_system_comprehensive()
+        
         # Print detailed summary
         print("\n" + "=" * 80)
         print(f"📊 COMPREHENSIVE TEST SUMMARY")
