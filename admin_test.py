@@ -114,8 +114,21 @@ class AdminSystemTester:
         if not self.test_league_id:
             return self.log_test("Admin Authentication Required", False, "No test league")
         
-        # Test admin endpoints without token
-        test_league_id = self.test_league_id or "test-league-id"
+        # Test one endpoint manually to debug
+        import requests
+        url = f"{self.api_url}/admin/leagues/{self.test_league_id}/audit"
+        headers = {'Content-Type': 'application/json'}
+        
+        try:
+            response = requests.get(url, headers=headers, timeout=15)
+            manual_status = response.status_code
+            manual_response = response.text[:100]  # First 100 chars
+        except Exception as e:
+            manual_status = 0
+            manual_response = str(e)
+        
+        # Test admin endpoints without token using our method
+        test_league_id = self.test_league_id
         endpoints = [
             ('PUT', f'admin/leagues/{test_league_id}/settings', {}),
             ('POST', f'admin/leagues/{test_league_id}/members/manage', {}),
@@ -127,7 +140,7 @@ class AdminSystemTester:
         auth_required_count = 0
         status_codes = []
         for method, endpoint, data in endpoints:
-            success, status, response = self.make_request(method, endpoint, data, token=None, expected_status=401)
+            success, status, response = self.make_request(method, endpoint, data, token="", expected_status=401)
             status_codes.append(status)
             if status == 401 or status == 403:  # Accept both 401 and 403 as auth required
                 auth_required_count += 1
@@ -135,7 +148,7 @@ class AdminSystemTester:
         return self.log_test(
             "Admin Authentication Required",
             auth_required_count >= 3,  # At least 3 should require auth
-            f"Auth required for {auth_required_count}/{len(endpoints)} endpoints. Status codes: {status_codes}"
+            f"Auth required for {auth_required_count}/{len(endpoints)} endpoints. Status codes: {status_codes}. Manual test: {manual_status}"
         )
 
     def test_admin_league_settings_update(self):
