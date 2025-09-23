@@ -266,21 +266,25 @@ class AuctionEngine:
                             # 2. Deduct budget from winner's roster
                             await db.rosters.update_one(
                                 {
-                                    "league_id": self.active_auctions[auction_id]["league_id"],
-                                    "user_id": lot["top_bidder_id"]
+                                    "league_id": league_id,
+                                    "user_id": lot["leading_bidder_id"]
                                 },
                                 {"$inc": {"budget_remaining": -lot["current_bid"]}},
                                 session=session
                             )
                             
-                            # 3. Mark lot as sold
+                            # 3. Mark lot as sold with winner info
                             await db.lots.update_one(
                                 {"_id": lot_id},
-                                {"$set": {"status": "sold"}},
+                                {"$set": {
+                                    "status": "sold",
+                                    "winner_id": lot["leading_bidder_id"],
+                                    "final_price": lot["current_bid"]
+                                }},
                                 session=session
                             )
                             
-                            logger.info(f"Lot {lot_id} SOLD to {lot['top_bidder_id']} for {lot['current_bid']}")
+                            logger.info(f"Lot {lot_id} SOLD to {lot['leading_bidder_id']} for {lot['current_bid']}")
                             
                         except DuplicateKeyError:
                             # Club already owned - mark as unsold
