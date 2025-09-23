@@ -414,7 +414,11 @@ const MyClubs = ({ user, token }) => {
                               ) : (
                                 <TrendingDown className="w-3 h-3 mr-1" />
                               )}
-                              +{result.points_delta} pts
+                              <ScoringTooltip>
+                                <span className="cursor-help">
+                                  +{result.points_delta} pts
+                                </span>
+                              </ScoringTooltip>
                             </Badge>
                           </div>
                           <p className="text-sm text-gray-600">
