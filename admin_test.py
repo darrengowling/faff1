@@ -124,8 +124,10 @@ class AdminSystemTester:
         ]
         
         auth_required_count = 0
+        status_codes = []
         for method, endpoint, data in endpoints:
             success, status, response = self.make_request(method, endpoint, data, token=None, expected_status=401)
+            status_codes.append(status)
             if status == 401 or status == 403:  # Accept both 401 and 403 as auth required
                 auth_required_count += 1
         
