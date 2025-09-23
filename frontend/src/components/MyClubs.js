@@ -189,56 +189,38 @@ const MyClubs = ({ user, token }) => {
       </header>
 
       <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        {/* Budget Overview */}
+        {/* Enhanced Budget Overview with Live Status */}
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle className="flex items-center">
-              <Wallet className="w-5 h-5 mr-2" />
-              Budget Overview
+            <CardTitle className="flex items-center justify-between">
+              <span>Budget & Club Status</span>
+              <ScoringHelp />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <BudgetStatus
+              budgetUsed={budget_info.total_spent}
+              budgetTotal={budget_info.budget_start}
+              clubsOwned={budget_info.clubs_owned}
+              clubsMax={budget_info.clubs_owned + budget_info.slots_available}
+            />
+            
+            {/* Additional stats grid */}
+            <div className="grid grid-cols-2 gap-4 mt-6">
               <div className="text-center p-4 bg-green-50 rounded-lg">
-                <DollarSign className="w-6 h-6 text-green-600 mx-auto mb-2" />
+                <Wallet className="w-6 h-6 text-green-600 mx-auto mb-2" aria-hidden="true" />
                 <div className="text-2xl font-bold text-green-600">
                   {budget_info.budget_remaining}
                 </div>
                 <div className="text-sm text-gray-600">Remaining</div>
               </div>
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <Target className="w-6 h-6 text-blue-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-blue-600">
-                  {budget_info.total_spent}
-                </div>
-                <div className="text-sm text-gray-600">Spent</div>
-              </div>
-              <div className="text-center p-4 bg-purple-50 rounded-lg">
-                <Trophy className="w-6 h-6 text-purple-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-purple-600">
-                  {budget_info.clubs_owned}
-                </div>
-                <div className="text-sm text-gray-600">Clubs Owned</div>
-              </div>
               <div className="text-center p-4 bg-orange-50 rounded-lg">
-                <Star className="w-6 h-6 text-orange-600 mx-auto mb-2" />
+                <Star className="w-6 h-6 text-orange-600 mx-auto mb-2" aria-hidden="true" />
                 <div className="text-2xl font-bold text-orange-600">
                   {budget_info.slots_available}
                 </div>
-                <div className="text-sm text-gray-600">Slots Left</div>
+                <div className="text-sm text-gray-600">Slots Available</div>
               </div>
-            </div>
-            
-            {/* Budget Progress Bar */}
-            <div className="mt-4">
-              <div className="flex justify-between text-sm text-gray-600 mb-2">
-                <span>Budget Usage</span>
-                <span>{Math.round((budget_info.total_spent / budget_info.budget_start) * 100)}%</span>
-              </div>
-              <Progress 
-                value={(budget_info.total_spent / budget_info.budget_start) * 100}
-                className="h-2"
-              />
             </div>
           </CardContent>
         </Card>
