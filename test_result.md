@@ -220,6 +220,18 @@ frontend:
         agent: "main"
         comment: "Created comprehensive AdminDashboard component with 5 tabs: Overview, League Settings, Member Management, Auction Control, Audit & Logs. Includes league settings modification, member kick/approve, auction start/pause/resume, admin action logging, and bid audit trail. Added routing and Quick Access button for commissioners. Frontend restarted successfully."
 
+  - task: "UCL 2025-26 Seed Data & Demo Script"
+    implemented: true
+    working: true
+    file: "/app/seed_data/, /app/seed_script.py, /app/run_seed.sh"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Created comprehensive seed data system: clubs.json (12 UCL clubs), fixtures.json (18 fixtures across 3 matchdays), results_sample.json (12 completed matches with realistic scores). Built automated seed_script.py that creates demo league with 4 managers, simulates auction ownership, processes match results, and generates complete demo environment. Includes run_seed.sh script and verification tools. Successfully tested - creates fully functional demo with realistic UCL data."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
