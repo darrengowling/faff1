@@ -1,0 +1,17 @@
+{
+  "demo_league_id": "c560693d-b3c7-4c50-83f7-ceb46de4eebb",
+  "demo_auction_id": "318953ff-75b5-4b89-be88-3259e38492aa",
+  "commissioner_email": "commissioner@demo.com",
+  "manager_emails": [
+    "alice.manager@demo.com",
+    "bob.manager@demo.com",
+    "carol.manager@demo.com",
+    "david.manager@demo.com"
+  ],
+  "clubs_seeded": 12,
+  "clubs_owned": 8,
+  "total_points_awarded": 0,
+  "fixtures_loaded": 18,
+  "results_processed": 12,
+  "standings_preview": []
+}
