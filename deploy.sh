@@ -211,6 +211,36 @@ init_database() {
     success "Database initialized with seed data"
 }
 
+# Run database migrations
+run_migrations() {
+    log "Running database migrations..."
+    
+    # Ensure database is accessible
+    if ! docker-compose exec -T mongodb mongosh --eval "db.adminCommand('ismaster')" > /dev/null 2>&1; then
+        error "MongoDB is not accessible. Cannot run migrations."
+        return 1
+    fi
+    
+    # Run the configurable settings migration
+    log "Running configurable settings migration..."
+    if docker-compose exec -T app python backend/migrations/001_add_configurable_settings.py; then
+        success "Configurable settings migration completed successfully"
+    else
+        error "Configurable settings migration failed"
+        return 1
+    fi
+    
+    # Run post-migration verification
+    log "Running post-migration verification..."
+    if docker-compose exec -T app python post_deploy_verification.py; then
+        success "Post-migration verification passed"
+    else
+        warning "Post-migration verification had issues (check logs)"
+    fi
+    
+    success "Database migrations completed"
+}
+
 # Show deployment status
 show_status() {
     log "Deployment Status:"
