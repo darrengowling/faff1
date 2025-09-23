@@ -908,6 +908,44 @@ const LeagueManagement = ({ league, onBack }) => {
           </div>
         </CardContent>
       </Card>
+
+      {/* Quick Access Navigation */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <MapPin className="w-5 h-5" />
+            <span>Quick Access</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Button 
+              className="flex flex-col items-center justify-center h-20 bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
+              variant="outline"
+              onClick={() => navigate(`/clubs/${league.id}`)}
+            >
+              <Trophy className="w-6 h-6 mb-2" />
+              <span className="text-sm font-medium">My Clubs</span>
+            </Button>
+            <Button 
+              className="flex flex-col items-center justify-center h-20 bg-green-50 hover:bg-green-100 text-green-700 border-green-200"
+              variant="outline"
+              onClick={() => navigate(`/fixtures/${league.id}`)}
+            >
+              <Calendar className="w-6 h-6 mb-2" />
+              <span className="text-sm font-medium">Fixtures & Results</span>
+            </Button>
+            <Button 
+              className="flex flex-col items-center justify-center h-20 bg-purple-50 hover:bg-purple-100 text-purple-700 border-purple-200"
+              variant="outline"
+              onClick={() => navigate(`/leaderboard/${league.id}`)}
+            >
+              <Crown className="w-6 h-6 mb-2" />
+              <span className="text-sm font-medium">Leaderboard</span>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
