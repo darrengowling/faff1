@@ -647,11 +647,11 @@ async def manage_league_member(
 ):
     """Approve or kick league members (commissioner only)"""
     try:
-        result = await AdminService.manage_member(league_id, current_user.id, member_action)
-        if result["success"]:
-            return result
+        success, message = await AdminService.manage_member(league_id, current_user.id, member_action)
+        if success:
+            return {"success": True, "message": message}
         else:
-            raise HTTPException(status_code=400, detail=result["message"])
+            raise HTTPException(status_code=400, detail=message)
     except Exception as e:
         logger.error(f"Failed to manage member: {e}")
         raise HTTPException(status_code=500, detail=str(e))
