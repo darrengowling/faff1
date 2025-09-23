@@ -21,14 +21,13 @@ load_dotenv()
 class TestScoringService:
     """Unit tests for scoring service"""
     
-    @classmethod
-    def setup_class(cls):
-        """Setup test environment"""
-        cls.test_league_id = "test_league_scoring"
-        cls.test_user_1 = "test_user_1"
-        cls.test_user_2 = "test_user_2"
-        cls.test_club_home = "test_club_home"
-        cls.test_club_away = "test_club_away"
+    def __init__(self):
+        """Initialize test instance"""
+        self.test_league_id = "test_league_scoring"
+        self.test_user_1 = "test_user_1"
+        self.test_user_2 = "test_user_2"
+        self.test_club_home = "test_club_home"
+        self.test_club_away = "test_club_away"
         
     async def setup_test_data(self):
         """Setup test data in database"""
