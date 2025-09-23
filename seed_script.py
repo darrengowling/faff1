@@ -12,7 +12,7 @@ import asyncio
 import json
 import logging
 from datetime import datetime, timezone, timedelta
-from pathways import Path
+from pathlib import Path
 import sys
 import os
 
