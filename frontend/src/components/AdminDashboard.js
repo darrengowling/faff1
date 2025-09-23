@@ -264,8 +264,17 @@ const AdminDashboard = ({ user, token }) => {
           <Card>
             <CardContent className="p-4 text-center">
               <Users className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-blue-600">{members.length}</div>
-              <div className="text-sm text-gray-600">Members</div>
+              <div className="text-2xl font-bold text-blue-600">
+                {members.length}/{league?.settings?.league_size?.max || 8}
+              </div>
+              <div className="text-sm text-gray-600">
+                Managers Joined
+                {league?.settings?.league_size?.min && (
+                  <div className="text-xs text-gray-500 mt-1">
+                    Min {league.settings.league_size.min} required
+                  </div>
+                )}
+              </div>
             </CardContent>
           </Card>
           <Card>
