@@ -303,7 +303,7 @@ class UCLAuctionSeeder:
                 away_ext=fixture_data["away_ext"],
                 status=fixture_data["status"]
             )
-            await db.fixtures.insert_one(fixture.dict(by_alias=True))
+            await db.fixtures.insert_one(fixture.model_dump(by_alias=True))
             
         logger.info(f"✅ Seeded {len(fixtures_data)} fixtures")
 
