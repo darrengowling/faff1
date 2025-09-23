@@ -49,12 +49,14 @@ const MyClubs = ({ user, token }) => {
 
   const fetchMyClubs = async () => {
     try {
+      setError(null);
       const response = await axios.get(`${API}/clubs/my-clubs/${leagueId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setClubsData(response.data);
     } catch (error) {
       console.error('Failed to fetch clubs:', error);
+      setError('Failed to load your clubs');
       toast.error('Failed to load your clubs');
     } finally {
       setLoading(false);
