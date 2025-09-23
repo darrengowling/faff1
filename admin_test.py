@@ -39,9 +39,11 @@ class AdminSystemTester:
         url = f"{self.api_url}/{endpoint}"
         headers = {'Content-Type': 'application/json'}
         
-        auth_token = token or self.commissioner_token
-        if auth_token:
-            headers['Authorization'] = f'Bearer {auth_token}'
+        if token is not None:
+            if token:  # Only add header if token is not empty
+                headers['Authorization'] = f'Bearer {token}'
+        elif self.commissioner_token:
+            headers['Authorization'] = f'Bearer {self.commissioner_token}'
             
         try:
             if method == 'GET':
