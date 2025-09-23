@@ -60,7 +60,10 @@ class ConfigurableSettingsMigration:
         logger.info("📚 Creating competitionProfiles collection...")
         
         # Drop existing collection if it exists (for clean migration)
-        await db.competition_profiles.drop()
+        try:
+            await db.competition_profiles.drop()
+        except Exception:
+            pass  # Collection might not exist
         
         # Default competition profiles
         profiles = [
