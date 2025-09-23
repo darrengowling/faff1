@@ -1348,6 +1348,339 @@ class UCLAuctionAPITester:
         
         return all(results)
 
+    # ==================== COMPETITION PROFILE INTEGRATION TESTS ====================
+    
+    def test_competition_profiles_endpoint(self):
+        """Test GET /api/competition-profiles endpoint"""
+        success, status, data = self.make_request('GET', 'competition-profiles')
+        
+        # Check response structure
+        valid_response = (
+            success and
+            isinstance(data, dict) and
+            'profiles' in data and
+            isinstance(data['profiles'], list)
+        )
+        
+        return self.log_test(
+            "Competition Profiles Endpoint",
+            valid_response,
+            f"Status: {status}, Valid structure: {valid_response}, Profiles: {len(data.get('profiles', []))}"
+        )
+    
+    def test_ucl_competition_profile(self):
+        """Test GET /api/competition-profiles/ucl endpoint"""
+        success, status, data = self.make_request('GET', 'competition-profiles/ucl')
+        
+        # Check if UCL profile exists and has proper structure
+        valid_ucl_profile = (
+            success and
+            isinstance(data, dict) and
+            'competition' in data and
+            'defaults' in data and
+            isinstance(data['defaults'], dict)
+        )
+        
+        # Check default values structure
+        if valid_ucl_profile:
+            defaults = data['defaults']
+            defaults_structure_valid = (
+                'budget_per_manager' in defaults and
+                'club_slots' in defaults and
+                'league_size' in defaults and
+                'scoring_rules' in defaults and
+                isinstance(defaults['league_size'], dict) and
+                isinstance(defaults['scoring_rules'], dict)
+            )
+        else:
+            defaults_structure_valid = False
+        
+        return self.log_test(
+            "UCL Competition Profile",
+            valid_ucl_profile and defaults_structure_valid,
+            f"Status: {status}, Profile exists: {valid_ucl_profile}, Defaults valid: {defaults_structure_valid}"
+        )
+    
+    def test_competition_profile_defaults_endpoint(self):
+        """Test GET /api/competition-profiles/ucl/defaults endpoint"""
+        success, status, data = self.make_request('GET', 'competition-profiles/ucl/defaults')
+        
+        # Check if defaults endpoint returns proper LeagueSettings structure
+        valid_defaults = (
+            success and
+            isinstance(data, dict) and
+            'budget_per_manager' in data and
+            'club_slots_per_manager' in data and
+            'league_size' in data and
+            'scoring_rules' in data
+        )
+        
+        return self.log_test(
+            "Competition Profile Defaults Endpoint",
+            valid_defaults,
+            f"Status: {status}, Valid defaults structure: {valid_defaults}"
+        )
+    
+    def test_league_creation_without_settings(self):
+        """Test league creation without explicit settings (should use competition profile defaults)"""
+        league_data = {
+            "name": f"Auto-Default League {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26"
+            # No settings provided - should use competition profile defaults
+        }
+        
+        success, status, data = self.make_request(
+            'POST',
+            'leagues',
+            league_data,
+            expected_status=200
+        )
+        
+        if success and 'id' in data:
+            # Store league ID for cleanup
+            self.test_league_id_no_settings = data['id']
+            
+            # Verify settings were populated from competition profile
+            settings = data.get('settings', {})
+            settings_populated = (
+                settings.get('budget_per_manager') is not None and
+                settings.get('club_slots_per_manager') is not None and
+                settings.get('league_size') is not None and
+                settings.get('scoring_rules') is not None
+            )
+            
+            # Check if settings match expected UCL defaults
+            expected_defaults = (
+                settings.get('budget_per_manager') == 100 and
+                settings.get('club_slots_per_manager') == 3 and
+                settings.get('league_size', {}).get('min') == 4 and
+                settings.get('league_size', {}).get('max') == 8
+            )
+            
+            return self.log_test(
+                "League Creation Without Settings",
+                success and settings_populated and expected_defaults,
+                f"Status: {status}, Settings populated: {settings_populated}, Defaults match: {expected_defaults}"
+            )
+        
+        return self.log_test(
+            "League Creation Without Settings",
+            False,
+            f"Status: {status}, Response: {data}"
+        )
+    
+    def test_league_creation_with_explicit_settings(self):
+        """Test league creation with explicit settings (should override competition profile defaults)"""
+        custom_settings = {
+            "budget_per_manager": 150,
+            "min_increment": 2,
+            "club_slots_per_manager": 4,
+            "anti_snipe_seconds": 45,
+            "bid_timer_seconds": 90,
+            "league_size": {
+                "min": 3,
+                "max": 6
+            },
+            "scoring_rules": {
+                "club_goal": 2,
+                "club_win": 5,
+                "club_draw": 2
+            }
+        }
+        
+        league_data = {
+            "name": f"Custom Settings League {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26",
+            "settings": custom_settings
+        }
+        
+        success, status, data = self.make_request(
+            'POST',
+            'leagues',
+            league_data,
+            expected_status=200
+        )
+        
+        if success and 'id' in data:
+            # Store league ID for cleanup
+            self.test_league_id_custom_settings = data['id']
+            
+            # Verify explicit settings were used (not defaults)
+            settings = data.get('settings', {})
+            explicit_settings_used = (
+                settings.get('budget_per_manager') == 150 and
+                settings.get('min_increment') == 2 and
+                settings.get('club_slots_per_manager') == 4 and
+                settings.get('anti_snipe_seconds') == 45 and
+                settings.get('bid_timer_seconds') == 90 and
+                settings.get('league_size', {}).get('min') == 3 and
+                settings.get('league_size', {}).get('max') == 6 and
+                settings.get('scoring_rules', {}).get('club_goal') == 2 and
+                settings.get('scoring_rules', {}).get('club_win') == 5 and
+                settings.get('scoring_rules', {}).get('club_draw') == 2
+            )
+            
+            return self.log_test(
+                "League Creation With Explicit Settings",
+                success and explicit_settings_used,
+                f"Status: {status}, Explicit settings used: {explicit_settings_used}"
+            )
+        
+        return self.log_test(
+            "League Creation With Explicit Settings",
+            False,
+            f"Status: {status}, Response: {data}"
+        )
+    
+    def test_settings_validation_and_application(self):
+        """Test that fetched default settings are properly validated and applied"""
+        if not hasattr(self, 'test_league_id_no_settings') or not self.test_league_id_no_settings:
+            return self.log_test("Settings Validation and Application", False, "No test league with default settings")
+        
+        # Get the league created with default settings
+        success, status, league = self.make_request('GET', f'leagues/{self.test_league_id_no_settings}')
+        
+        if not success:
+            return self.log_test("Settings Validation and Application", False, f"Failed to get league: {status}")
+        
+        # Verify all related documents were created with proper settings
+        settings = league.get('settings', {})
+        
+        # Check auction document was created with correct settings
+        success_members, status_members, members = self.make_request('GET', f'leagues/{self.test_league_id_no_settings}/members')
+        
+        if success_members and len(members) > 0:
+            # Check if roster was created with correct budget and slots
+            roster_settings_valid = True  # We can't directly check roster without additional endpoints
+        else:
+            roster_settings_valid = False
+        
+        # Verify settings structure and values
+        settings_valid = (
+            isinstance(settings.get('budget_per_manager'), int) and
+            isinstance(settings.get('club_slots_per_manager'), int) and
+            isinstance(settings.get('league_size'), dict) and
+            isinstance(settings.get('scoring_rules'), dict) and
+            settings.get('budget_per_manager') > 0 and
+            settings.get('club_slots_per_manager') > 0
+        )
+        
+        return self.log_test(
+            "Settings Validation and Application",
+            settings_valid and roster_settings_valid,
+            f"Settings valid: {settings_valid}, Roster settings valid: {roster_settings_valid}"
+        )
+    
+    def test_competition_profile_integration_logging(self):
+        """Test that the integration logs properly indicate which settings source is used"""
+        # This test would ideally check backend logs, but we'll test the behavior indirectly
+        # by creating leagues with and without settings and verifying the results
+        
+        # Create league without settings (should log "Using default settings from UCL competition profile")
+        league_data_no_settings = {
+            "name": f"Logging Test No Settings {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26"
+        }
+        
+        success1, status1, data1 = self.make_request('POST', 'leagues', league_data_no_settings)
+        
+        # Create league with settings (should log "Using explicit settings provided by commissioner")
+        league_data_with_settings = {
+            "name": f"Logging Test With Settings {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26",
+            "settings": {
+                "budget_per_manager": 120,
+                "club_slots_per_manager": 3
+            }
+        }
+        
+        success2, status2, data2 = self.make_request('POST', 'leagues', league_data_with_settings)
+        
+        # Verify both leagues were created successfully
+        both_created = success1 and success2 and 'id' in data1 and 'id' in data2
+        
+        # Verify they have different settings (indicating different sources were used)
+        if both_created:
+            settings1 = data1.get('settings', {})
+            settings2 = data2.get('settings', {})
+            
+            different_sources = (
+                settings1.get('budget_per_manager') != settings2.get('budget_per_manager')
+            )
+        else:
+            different_sources = False
+        
+        return self.log_test(
+            "Competition Profile Integration Logging",
+            both_created and different_sources,
+            f"Both created: {both_created}, Different sources detected: {different_sources}"
+        )
+    
+    def test_backward_compatibility(self):
+        """Test that explicit settings take priority over competition profile defaults"""
+        # Get UCL competition profile defaults first
+        success_defaults, status_defaults, defaults = self.make_request('GET', 'competition-profiles/ucl/defaults')
+        
+        if not success_defaults:
+            return self.log_test("Backward Compatibility", False, f"Failed to get defaults: {status_defaults}")
+        
+        # Create league with explicit settings that differ from defaults
+        different_settings = {
+            "budget_per_manager": defaults.get('budget_per_manager', 100) + 50,  # Different from default
+            "club_slots_per_manager": defaults.get('club_slots_per_manager', 3) + 1,  # Different from default
+            "league_size": {
+                "min": defaults.get('league_size', {}).get('min', 4) - 1,  # Different from default
+                "max": defaults.get('league_size', {}).get('max', 8) - 1   # Different from default
+            }
+        }
+        
+        league_data = {
+            "name": f"Backward Compatibility Test {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26",
+            "settings": different_settings
+        }
+        
+        success, status, data = self.make_request('POST', 'leagues', league_data)
+        
+        if success and 'id' in data:
+            settings = data.get('settings', {})
+            
+            # Verify explicit settings were used, not defaults
+            explicit_settings_priority = (
+                settings.get('budget_per_manager') == different_settings['budget_per_manager'] and
+                settings.get('club_slots_per_manager') == different_settings['club_slots_per_manager'] and
+                settings.get('league_size', {}).get('min') == different_settings['league_size']['min'] and
+                settings.get('league_size', {}).get('max') == different_settings['league_size']['max']
+            )
+            
+            return self.log_test(
+                "Backward Compatibility",
+                explicit_settings_priority,
+                f"Explicit settings took priority: {explicit_settings_priority}"
+            )
+        
+        return self.log_test(
+            "Backward Compatibility",
+            False,
+            f"Status: {status}, Response: {data}"
+        )
+    
+    def test_competition_profile_comprehensive(self):
+        """Run comprehensive tests for competition profile integration"""
+        print("\n🏆 COMPETITION PROFILE INTEGRATION TESTS")
+        
+        results = []
+        results.append(self.test_competition_profiles_endpoint())
+        results.append(self.test_ucl_competition_profile())
+        results.append(self.test_competition_profile_defaults_endpoint())
+        results.append(self.test_league_creation_without_settings())
+        results.append(self.test_league_creation_with_explicit_settings())
+        results.append(self.test_settings_validation_and_application())
+        results.append(self.test_competition_profile_integration_logging())
+        results.append(self.test_backward_compatibility())
+        
+        return all(results)
+
     def run_comprehensive_tests(self):
         """Run comprehensive league management and auction engine tests"""
         print("🚀 Starting UCL Auction Comprehensive Live Auction Engine Tests")
@@ -1362,6 +1695,10 @@ class UCLAuctionAPITester:
         print("\n🏆 SETUP TESTS")
         self.test_clubs_seed()
         self.test_get_clubs()
+        
+        # ==================== COMPETITION PROFILE INTEGRATION TESTS ====================
+        print("\n🏆 COMPETITION PROFILE INTEGRATION TESTS")
+        self.test_competition_profile_comprehensive()
         
         # Enhanced League Creation Tests
         print("\n🏟️ ENHANCED LEAGUE CREATION TESTS")
@@ -1420,6 +1757,13 @@ class UCLAuctionAPITester:
             for i, failure in enumerate(self.failed_tests, 1):
                 print(f"   {i}. {failure}")
         
+        # Competition profile specific summary
+        competition_tests = [test for test in self.failed_tests if any(keyword in test.lower() for keyword in ['competition', 'profile', 'default'])]
+        if competition_tests:
+            print(f"\n🏆 COMPETITION PROFILE ISSUES ({len(competition_tests)}):")
+            for i, failure in enumerate(competition_tests, 1):
+                print(f"   {i}. {failure}")
+        
         # Auction-specific summary
         auction_tests = [test for test in self.failed_tests if any(keyword in test.lower() for keyword in ['auction', 'bid', 'websocket', 'chat'])]
         if auction_tests:
@@ -1429,12 +1773,21 @@ class UCLAuctionAPITester:
         
         if self.tests_passed == self.tests_run:
             print("\n🎉 All comprehensive tests passed!")
+            print("✅ Competition profile integration working correctly")
             print("✅ Atomic bid processing working correctly")
             print("✅ Real-time WebSocket functionality operational")
             print("✅ Auction state management functioning properly")
             return 0
         else:
             print(f"\n⚠️  {len(self.failed_tests)} tests failed - see details above")
+            
+            # Provide specific guidance for competition profile issues
+            if competition_tests:
+                print("\n🔧 COMPETITION PROFILE RECOMMENDATIONS:")
+                print("   - Check if UCL competition profile exists in database")
+                print("   - Verify competition_service.py implementation")
+                print("   - Ensure league_service.py integration is working")
+                print("   - Check MongoDB competition_profiles collection")
             
             # Provide specific guidance for auction issues
             if auction_tests:
