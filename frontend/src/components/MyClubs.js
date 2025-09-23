@@ -365,13 +365,7 @@ const MyClubs = ({ user, token }) => {
           {/* Recent Results Tab */}
           <TabsContent value="results" className="space-y-4">
             {recent_results.length === 0 ? (
-              <Card>
-                <CardContent className="text-center py-12">
-                  <Activity className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No Recent Results</h3>
-                  <p className="text-gray-600">Your clubs haven't played any matches yet.</p>
-                </CardContent>
-              </Card>
+              <NoResultsEmptyState />
             ) : (
               <div className="space-y-4">
                 {recent_results.map((result) => (
