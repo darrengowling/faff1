@@ -180,7 +180,7 @@ class UCLAuctionSeeder:
                 budget_remaining=100,
                 club_slots=3
             )
-            await db.rosters.insert_one(roster.dict(by_alias=True))
+            await db.rosters.insert_one(roster.model_dump(by_alias=True))
             
         # Update league member count
         await db.leagues.update_one(
