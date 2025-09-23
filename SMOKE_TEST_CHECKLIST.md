@@ -71,9 +71,64 @@ python3 seed_script.py
 - [ ] Try to start auction with only 1 manager (below min of 2)
 - [ ] **EXPECTED**: "Start Auction" button disabled with warning message
 
-### 1.2 Invite 3 Friends
-- [ ] In league dashboard, click "Invite Members"
+### 1.4 Invite 3 Friends
+- [ ] In Default Settings League, click "Invite Members"
 - [ ] Add emails:
+  ```
+  manager1.smoke@smoketest.com
+  manager2.smoke@smoketest.com
+  manager3.smoke@smoketest.com
+  ```
+- [ ] Send invitations and verify emails sent
+- [ ] **EXPECTED**: Each friend receives magic link invitation
+
+### 1.5 Friends Accept Invitations
+- [ ] For each friend, check email and click magic link
+- [ ] Complete profile and join league
+- [ ] **EXPECTED**: League member count increases (4/8 total)
+- [ ] **EXPECTED**: "Start Auction" button becomes enabled (min 4 reached)
+
+---
+
+## **TEST 2: Commissioner Settings & Enforcement Rules**
+
+### 2.1 Access Admin Dashboard
+- [ ] As commissioner, navigate to league admin dashboard
+- [ ] Go to "League Settings" tab
+- [ ] **EXPECTED**: See current settings with live preview showing "4/8 managers"
+
+### 2.2 Test Budget Change Enforcement
+- [ ] Try to change budget from 100M to 150M
+- [ ] **EXPECTED**: Should succeed (auction scheduled, no clubs purchased)
+- [ ] Verify all manager rosters updated to 150M budget
+- [ ] Simulate club purchase (or start and close auction lot)
+- [ ] Try to change budget again
+- [ ] **EXPECTED**: Budget input disabled with warning "Cannot change - clubs already purchased"
+
+### 2.3 Test Club Slots Enforcement  
+- [ ] Try to increase club slots from 3 to 5
+- [ ] **EXPECTED**: Should succeed, all rosters updated to 5 slots
+- [ ] Simulate manager owning 4 clubs
+- [ ] Try to decrease club slots to 3 (below owned count)
+- [ ] **EXPECTED**: Error message showing which managers exceed new limit
+
+### 2.4 Test League Size Enforcement
+- [ ] Try to reduce max managers to 3 (below current count of 4)
+- [ ] **EXPECTED**: Error message "Cannot reduce max league size to 3: currently have 4 members"
+- [ ] Try to increase max managers to 6
+- [ ] **EXPECTED**: Should succeed, live preview updates to "4/6 managers"
+
+### 2.5 Test API Endpoints
+- [ ] Test PATCH `/leagues/:id/settings` with partial update:
+  ```json
+  { "club_slots_per_manager": 4 }
+  ```
+- [ ] **EXPECTED**: Only club slots updated, other settings unchanged
+- [ ] Test validation with invalid data:
+  ```json
+  { "league_size": { "min": 8, "max": 4 } }
+  ```
+- [ ] **EXPECTED**: Error message about min > max validation
   ```
   manager1.smoke@smoketest.com
   manager2.smoke@smoketest.com  
