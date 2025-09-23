@@ -6,6 +6,9 @@ import './App.css';
 
 // Import components
 import AuctionRoom from './components/AuctionRoom';
+import MyClubs from './components/MyClubs';
+import Fixtures from './components/Fixtures';
+import Leaderboard from './components/Leaderboard';
 
 // Import Shadcn components
 import { Button } from './components/ui/button';
