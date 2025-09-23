@@ -57,6 +57,9 @@ const AdminDashboard = ({ user, token }) => {
   // Form states
   const [settingsForm, setSettingsForm] = useState({});
   const [saving, setSaving] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({});
+  const [hasClubsPurchased, setHasClubsPurchased] = useState(false);
+  const [rosterValidation, setRosterValidation] = useState(null);
 
   useEffect(() => {
     if (token && leagueId && user) {
