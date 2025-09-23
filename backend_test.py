@@ -1041,6 +1041,10 @@ class UCLAuctionAPITester:
         self.test_websocket_bid_placement()
         self.test_chat_functionality()
         
+        # ==================== NEW AGGREGATION API TESTS ====================
+        print("\n📊 AGGREGATION ENDPOINTS TESTS")
+        self.test_aggregation_endpoints_comprehensive()
+        
         # Print detailed summary
         print("\n" + "=" * 80)
         print(f"📊 COMPREHENSIVE TEST SUMMARY")
