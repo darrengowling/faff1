@@ -495,10 +495,13 @@ const AdminDashboard = ({ user, token }) => {
                           type="number"
                           min="2"
                           max="8"
-                          value={settingsForm.max_managers || ''}
+                          value={settingsForm.league_size?.max || ''}
                           onChange={(e) => setSettingsForm({
                             ...settingsForm,
-                            max_managers: parseInt(e.target.value)
+                            league_size: {
+                              ...settingsForm.league_size,
+                              max: parseInt(e.target.value)
+                            }
                           })}
                         />
                         <div className="text-xs text-gray-500 mt-1">
