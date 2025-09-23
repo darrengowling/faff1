@@ -76,11 +76,12 @@ class AdminSystemTester:
             print(f"❌ Backend not healthy: {status}")
             return False
         
-        # Seed clubs
-        success, status, data = self.make_request('POST', 'clubs/seed')
-        if not success:
-            print(f"❌ Failed to seed clubs: {status}")
+        # Check if clubs exist
+        success, status, data = self.make_request('GET', 'clubs')
+        if not success or len(data) < 10:
+            print(f"❌ Not enough clubs available: {len(data) if success else 0}")
             return False
+        print(f"✅ Found {len(data)} clubs available")
         
         # Use the actual access token obtained from authentication
         print("✅ Using real authentication token")
