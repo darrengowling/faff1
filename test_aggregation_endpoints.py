@@ -262,6 +262,7 @@ class AggregationEndpointTester:
         ]
         
         unauthorized_results = []
+        status_codes = []
         for endpoint in endpoints_to_test:
             success, status, data = self.make_request(
                 'GET',
@@ -269,6 +270,7 @@ class AggregationEndpointTester:
                 token=None,  # No token
                 expected_status=403  # FastAPI returns 403 for "Not authenticated"
             )
+            status_codes.append(status)
             unauthorized_results.append(status in [401, 403])  # Accept both 401 and 403
         
         access_control_working = all(unauthorized_results)
@@ -276,7 +278,7 @@ class AggregationEndpointTester:
         return self.log_test(
             "Access Control",
             access_control_working,
-            f"Unauthorized blocked: {sum(unauthorized_results)}/{len(unauthorized_results)}"
+            f"Unauthorized blocked: {sum(unauthorized_results)}/{len(unauthorized_results)}, Status codes: {status_codes}"
         )
 
     def run_tests(self):
