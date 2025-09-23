@@ -1313,6 +1313,11 @@ function App() {
                 <LeaderboardWrapper />
               </ProtectedRoute>
             } />
+            <Route path="/admin/:leagueId" element={
+              <ProtectedRoute>
+                <AdminDashboardWrapper />
+              </ProtectedRoute>
+            } />
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
