@@ -450,7 +450,7 @@ const AdminDashboard = ({ user, token }) => {
                 {/* Live Preview Status */}
                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
                   <div className="flex items-start space-x-3">
-                    <Activity className="w-5 h-5 text-slate-600 mt-0.5" />
+                    <Activity className="w-5 h-5 text-slate-600 mt-0.5" aria-hidden="true" />
                     <div>
                       <div className="font-medium text-slate-800">League Status</div>
                       <div className="text-sm text-slate-700 mt-1 space-y-1">
