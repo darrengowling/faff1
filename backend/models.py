@@ -550,14 +550,14 @@ class AdminLogResponse(BaseModel):
 
 # Admin Request Models
 class LeagueSettingsUpdate(BaseModel):
-    budget_per_manager: Optional[int] = None
+    budget_per_manager: Optional[int] = Field(None, ge=50, le=500, description="Budget per manager (50-500M)")
     min_increment: Optional[int] = None
-    club_slots_per_manager: Optional[int] = None
+    club_slots_per_manager: Optional[int] = Field(None, ge=1, le=10, description="Club slots per manager (1-10)")
     anti_snipe_seconds: Optional[int] = None
     bid_timer_seconds: Optional[int] = None
-    max_managers: Optional[int] = None
-    min_managers: Optional[int] = None
-    scoring_rules: Optional[ScoringRules] = None
+    max_managers: Optional[int] = Field(None, ge=2, le=8, description="Maximum managers (2-8)")
+    min_managers: Optional[int] = Field(None, ge=2, le=8, description="Minimum managers (2-8)")
+    scoring_rules: Optional[ScoringRulePoints] = None
 
 class MemberAction(BaseModel):
     member_id: str
