@@ -21,6 +21,7 @@ sys.path.append('/app/backend')
 
 from database import initialize_database, db
 from models import *
+from models import LotStatus
 from league_service import LeagueService
 from auction_engine import AuctionEngine
 from scoring_service import ScoringService
