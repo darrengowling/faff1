@@ -1,0 +1,197 @@
+[
+  {
+    "match_id": "UCL-2025-26-MD1-001",
+    "league_id": "demo_league",
+    "season": "2025-26",
+    "home_ext": "UEFA-MCI",
+    "away_ext": "UEFA-PSG", 
+    "home_goals": 3,
+    "away_goals": 1,
+    "kicked_off_at": "2025-09-17T20:00:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "home", "minute": 23, "player": "Haaland"},
+      {"type": "goal", "team": "away", "minute": 34, "player": "Mbappé"},
+      {"type": "goal", "team": "home", "minute": 67, "player": "De Bruyne"},
+      {"type": "goal", "team": "home", "minute": 89, "player": "Haaland"}
+    ]
+  },
+  {
+    "match_id": "UCL-2025-26-MD1-002",
+    "league_id": "demo_league", 
+    "season": "2025-26",
+    "home_ext": "UEFA-RMA",
+    "away_ext": "UEFA-BAY",
+    "home_goals": 2,
+    "away_goals": 2,
+    "kicked_off_at": "2025-09-17T20:00:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "home", "minute": 15, "player": "Vinicius Jr."},
+      {"type": "goal", "team": "away", "minute": 28, "player": "Kane"},
+      {"type": "goal", "team": "away", "minute": 55, "player": "Musiala"},
+      {"type": "goal", "team": "home", "minute": 78, "player": "Bellingham"}
+    ]
+  },
+  {
+    "match_id": "UCL-2025-26-MD1-003",
+    "league_id": "demo_league",
+    "season": "2025-26", 
+    "home_ext": "UEFA-BAR",
+    "away_ext": "UEFA-LIV",
+    "home_goals": 1,
+    "away_goals": 3,
+    "kicked_off_at": "2025-09-18T17:45:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "away", "minute": 12, "player": "Salah"},
+      {"type": "goal", "team": "home", "minute": 42, "player": "Lewandowski"},
+      {"type": "goal", "team": "away", "minute": 69, "player": "Núñez"},
+      {"type": "goal", "team": "away", "minute": 85, "player": "Gakpo"}
+    ]
+  },
+  {
+    "match_id": "UCL-2025-26-MD1-004",
+    "league_id": "demo_league",
+    "season": "2025-26",
+    "home_ext": "UEFA-ARS",
+    "away_ext": "UEFA-INT",
+    "home_goals": 2,
+    "away_goals": 0,
+    "kicked_off_at": "2025-09-18T17:45:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "home", "minute": 31, "player": "Saka"},
+      {"type": "goal", "team": "home", "minute": 76, "player": "Havertz"}
+    ]
+  },
+  {
+    "match_id": "UCL-2025-26-MD1-005",
+    "league_id": "demo_league",
+    "season": "2025-26",
+    "home_ext": "UEFA-MIL",
+    "away_ext": "UEFA-BVB",
+    "home_goals": 1,
+    "away_goals": 1,
+    "kicked_off_at": "2025-09-18T20:00:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "home", "minute": 38, "player": "Leão"},
+      {"type": "goal", "team": "away", "minute": 72, "player": "Bellingham"}
+    ]
+  },
+  {
+    "match_id": "UCL-2025-26-MD1-006",
+    "league_id": "demo_league",
+    "season": "2025-26",
+    "home_ext": "UEFA-ATM",
+    "away_ext": "UEFA-JUV", 
+    "home_goals": 0,
+    "away_goals": 1,
+    "kicked_off_at": "2025-09-18T20:00:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "away", "minute": 64, "player": "Vlahovic"}
+    ]
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-001",
+    "league_id": "demo_league",
+    "season": "2025-26",
+    "home_ext": "UEFA-PSG",
+    "away_ext": "UEFA-BAR",
+    "home_goals": 4,
+    "away_goals": 2,
+    "kicked_off_at": "2025-10-01T20:00:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "home", "minute": 8, "player": "Mbappé"},
+      {"type": "goal", "team": "away", "minute": 19, "player": "Pedri"},
+      {"type": "goal", "team": "home", "minute": 33, "player": "Neymar"},
+      {"type": "goal", "team": "home", "minute": 58, "player": "Mbappé"},
+      {"type": "goal", "team": "away", "minute": 71, "player": "Lewandowski"},
+      {"type": "goal", "team": "home", "minute": 90, "player": "Ramos"}
+    ]
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-002",
+    "league_id": "demo_league",
+    "season": "2025-26",
+    "home_ext": "UEFA-BAY",
+    "away_ext": "UEFA-ARS",
+    "home_goals": 3,
+    "away_goals": 2,
+    "kicked_off_at": "2025-10-01T20:00:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "away", "minute": 22, "player": "Martinelli"},
+      {"type": "goal", "team": "home", "minute": 35, "player": "Kane"},
+      {"type": "goal", "team": "home", "minute": 51, "player": "Sané"},
+      {"type": "goal", "team": "away", "minute": 68, "player": "Ødegaard"},
+      {"type": "goal", "team": "home", "minute": 84, "player": "Müller"}
+    ]
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-003",
+    "league_id": "demo_league",
+    "season": "2025-26",
+    "home_ext": "UEFA-LIV",
+    "away_ext": "UEFA-MCI",
+    "home_goals": 2,
+    "away_goals": 1,
+    "kicked_off_at": "2025-10-02T17:45:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "home", "minute": 27, "player": "Salah"},
+      {"type": "goal", "team": "away", "minute": 45, "player": "Haaland"},
+      {"type": "goal", "team": "home", "minute": 79, "player": "Alexander-Arnold"}
+    ]
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-004",
+    "league_id": "demo_league",
+    "season": "2025-26",
+    "home_ext": "UEFA-INT",
+    "away_ext": "UEFA-RMA",
+    "home_goals": 1,
+    "away_goals": 2,
+    "kicked_off_at": "2025-10-02T17:45:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "away", "minute": 18, "player": "Vinicius Jr."},
+      {"type": "goal", "team": "home", "minute": 56, "player": "Lautaro"},
+      {"type": "goal", "team": "away", "minute": 88, "player": "Modric"}
+    ]
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-005",
+    "league_id": "demo_league",
+    "season": "2025-26",
+    "home_ext": "UEFA-BVB",
+    "away_ext": "UEFA-ATM",
+    "home_goals": 3,
+    "away_goals": 0,
+    "kicked_off_at": "2025-10-02T20:00:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "home", "minute": 25, "player": "Bellingham"},
+      {"type": "goal", "team": "home", "minute": 47, "player": "Haaland"},
+      {"type": "goal", "team": "home", "minute": 82, "player": "Sancho"}
+    ]
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-006",
+    "league_id": "demo_league",
+    "season": "2025-26",
+    "home_ext": "UEFA-JUV",
+    "away_ext": "UEFA-MIL",
+    "home_goals": 1,
+    "away_goals": 1,
+    "kicked_off_at": "2025-10-02T20:00:00Z",
+    "status": "final",
+    "events": [
+      {"type": "goal", "team": "away", "minute": 41, "player": "Giroud"},
+      {"type": "goal", "team": "home", "minute": 73, "player": "Chiesa"}
+    ]
+  }
+]
