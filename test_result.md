@@ -134,52 +134,64 @@ backend:
 
 frontend:
   - task: "My Clubs Page Component"
-    implemented: false
-    working: false
+    implemented: true
+    working: "NA"
     file: "/app/frontend/src/components/MyClubs.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: false
         agent: "main"
         comment: "Not yet implemented - need to create React component for displaying user's owned clubs, budget info, and upcoming fixtures"
+      - working: "NA"
+        agent: "main"
+        comment: "Component exists but updated API endpoint from /leagues/{leagueId}/my-clubs to /clubs/my-clubs/{leagueId} to match backend implementation. Ready for testing."
 
   - task: "Fixtures/Results Page Component"
-    implemented: false
-    working: false
+    implemented: true
+    working: "NA"
     file: "/app/frontend/src/components/Fixtures.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: false
         agent: "main"
         comment: "Not yet implemented - need to create React component for displaying league fixtures and results with ownership badges"
+      - working: "NA"
+        agent: "main"
+        comment: "Component exists but updated API endpoint from /leagues/{leagueId}/fixtures to /fixtures/{leagueId} to match backend implementation. Ready for testing."
 
   - task: "Leaderboard Page Component"
-    implemented: false
-    working: false
+    implemented: true
+    working: "NA"
     file: "/app/frontend/src/components/Leaderboard.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: false
         agent: "main"
         comment: "Not yet implemented - need to create React component for displaying league rankings and weekly point breakdowns"
+      - working: "NA"
+        agent: "main"
+        comment: "Component exists but updated API endpoint from /leagues/{leagueId}/leaderboard to /leaderboard/{leagueId} to match backend implementation. Ready for testing."
 
   - task: "App.js Routing Updates"
-    implemented: false
-    working: false
+    implemented: true
+    working: "NA"
     file: "/app/frontend/src/App.js"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: false
         agent: "main"
         comment: "Not yet implemented - need to add routing for new pages and navigation links"
+      - working: "NA"
+        agent: "main"
+        comment: "Added routing for /clubs/{leagueId}, /fixtures/{leagueId}, /leaderboard/{leagueId} with wrapper components. Added Quick Access navigation buttons in LeagueManagement component. Frontend restarted successfully."
 
 metadata:
   created_by: "main_agent"
