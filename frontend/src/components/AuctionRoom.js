@@ -408,9 +408,9 @@ const AuctionRoom = ({ user, token }) => {
                     </div>
                   </div>
 
-                  {/* Timer Bar */}
+                  {/* Timer Bar - Sticky on mobile */}
                   {currentLot.status === 'open' && timeRemaining > 0 && (
-                    <div className="space-y-2">
+                    <div className="space-y-2 auction-timer mobile-sticky">
                       <Progress 
                         value={(timeRemaining / (auctionState?.settings?.bid_timer_seconds || 60)) * 100}
                         className="h-3"
