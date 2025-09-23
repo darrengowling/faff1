@@ -267,9 +267,9 @@ class AggregationEndpointTester:
                 'GET',
                 endpoint,
                 token=None,  # No token
-                expected_status=401
+                expected_status=403  # FastAPI returns 403 for "Not authenticated"
             )
-            unauthorized_results.append(status == 401)
+            unauthorized_results.append(status in [401, 403])  # Accept both 401 and 403
         
         access_control_working = all(unauthorized_results)
         
