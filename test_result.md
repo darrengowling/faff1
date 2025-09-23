@@ -288,6 +288,7 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Competition Profile Integration in League Creation"
     - "My Clubs Page Component"
     - "Fixtures/Results Page Component"
     - "Leaderboard Page Component"
