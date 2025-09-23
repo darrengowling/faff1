@@ -620,6 +620,172 @@ async def get_clubs():
     clubs = await db.clubs.find().to_list(length=None)
     return [convert_doc_to_response(club, ClubResponse) for club in clubs]
 
+# Admin Routes (Commissioner-only)
+@api_router.put("/admin/leagues/{league_id}/settings")
+async def update_league_settings_admin(
+    league_id: str,
+    settings_update: LeagueSettingsUpdate,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Update league settings (commissioner only)"""
+    try:
+        result = await AdminService.update_league_settings(league_id, current_user.id, settings_update)
+        if result["success"]:
+            return result
+        else:
+            raise HTTPException(status_code=400, detail=result["message"])
+    except Exception as e:
+        logger.error(f"Failed to update league settings: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/admin/leagues/{league_id}/members/manage")
+async def manage_league_member(
+    league_id: str,
+    member_action: MemberAction,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Approve or kick league members (commissioner only)"""
+    try:
+        result = await AdminService.manage_member(league_id, current_user.id, member_action)
+        if result["success"]:
+            return result
+        else:
+            raise HTTPException(status_code=400, detail=result["message"])
+    except Exception as e:
+        logger.error(f"Failed to manage member: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/admin/auctions/{auction_id}/manage")
+async def manage_auction_admin(
+    auction_id: str,
+    action: str,
+    league_id: str,
+    params: Optional[Dict] = None,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Start, pause, resume auction (commissioner only)"""
+    try:
+        result = await AdminService.manage_auction(league_id, current_user.id, action, auction_id, params or {})
+        if result["success"]:
+            return result
+        else:
+            raise HTTPException(status_code=400, detail=result["message"])
+    except Exception as e:
+        logger.error(f"Failed to manage auction: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/admin/auctions/{auction_id}/reorder-nominations")
+async def reorder_nominations_admin(
+    auction_id: str,
+    league_id: str,
+    new_order: List[str],
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Reorder nomination queue (commissioner only)"""
+    try:
+        reorder_request = NominationReorder(auction_id=auction_id, new_order=new_order)
+        result = await AdminService.reorder_nominations(league_id, current_user.id, reorder_request)
+        if result["success"]:
+            return result
+        else:
+            raise HTTPException(status_code=400, detail=result["message"])
+    except Exception as e:
+        logger.error(f"Failed to reorder nominations: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/admin/leagues/{league_id}/audit")
+async def get_comprehensive_audit(
+    league_id: str,
+    auction_id: Optional[str] = None,
+    user_id: Optional[str] = None,
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get comprehensive audit information (commissioner only)"""
+    try:
+        # Parse dates if provided
+        parsed_start_date = None
+        parsed_end_date = None
+        
+        if start_date:
+            parsed_start_date = datetime.fromisoformat(start_date.replace('Z', '+00:00'))
+        if end_date:
+            parsed_end_date = datetime.fromisoformat(end_date.replace('Z', '+00:00'))
+        
+        audit_request = BidAuditRequest(
+            auction_id=auction_id,
+            league_id=league_id,
+            user_id=user_id,
+            start_date=parsed_start_date,
+            end_date=parsed_end_date
+        )
+        
+        result = await AdminService.get_comprehensive_audit(league_id, current_user.id, audit_request)
+        if result["success"]:
+            return result["data"]
+        else:
+            raise HTTPException(status_code=400, detail=result["message"])
+    except Exception as e:
+        logger.error(f"Failed to get audit data: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/admin/leagues/{league_id}/logs")
+async def get_admin_logs(
+    league_id: str,
+    limit: int = 100,
+    offset: int = 0,
+    actor_id: Optional[str] = None,
+    action_filter: Optional[str] = None,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get admin logs for league (commissioner only)"""
+    try:
+        # Validate commissioner access
+        if not await AdminService.validate_commissioner_access(current_user.id, league_id):
+            raise HTTPException(status_code=403, detail="Commissioner access required")
+        
+        logs = await AuditService.get_audit_logs(
+            league_id=league_id,
+            limit=limit,
+            offset=offset,
+            actor_id=actor_id,
+            action_filter=action_filter
+        )
+        
+        return {"logs": [log.dict() for log in logs]}
+    except Exception as e:
+        logger.error(f"Failed to get admin logs: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/admin/leagues/{league_id}/bid-audit")
+async def get_bid_audit(
+    league_id: str,
+    auction_id: Optional[str] = None,
+    user_id: Optional[str] = None,
+    limit: int = 100,
+    offset: int = 0,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get read-only bid audit (commissioner only)"""
+    try:
+        # Validate commissioner access
+        if not await AdminService.validate_commissioner_access(current_user.id, league_id):
+            raise HTTPException(status_code=403, detail="Commissioner access required")
+        
+        bid_audit = await AuditService.get_bid_audit(
+            league_id=league_id,
+            auction_id=auction_id,
+            user_id=user_id,
+            limit=limit,
+            offset=offset
+        )
+        
+        return {"bids": bid_audit}
+    except Exception as e:
+        logger.error(f"Failed to get bid audit: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Aggregation Routes for UI pages
 @api_router.get("/clubs/my-clubs/{league_id}")
 async def get_my_clubs(
