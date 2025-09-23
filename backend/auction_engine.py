@@ -215,14 +215,48 @@ class AuctionEngine:
                     if not lot:
                         return
                     
-                    if lot["current_bid"] > 0 and lot["top_bidder_id"]:
-                        # SOLD - process transaction atomically
+                    if lot["current_bid"] > 0 and lot["leading_bidder_id"]:
+                        # SOLD - process transaction atomically with guardrails
                         try:
-                            # 1. Create roster club (fails if already owned)
+                            # Import AdminService here to avoid circular imports
+                            from admin_service import AdminService
+                            
+                            # GUARDRAIL: Check no duplicate ownership
+                            league_id = self.active_auctions[auction_id]["league_id"]
+                            no_duplicate = await AdminService.validate_no_duplicate_ownership(
+                                league_id, lot["club_id"]
+                            )
+                            
+                            if not no_duplicate:
+                                # Club already owned - mark as unsold
+                                await db.lots.update_one(
+                                    {"_id": lot_id},
+                                    {"$set": {"status": "unsold"}},
+                                    session=session
+                                )
+                                logger.warning(f"Lot {lot_id} - duplicate ownership prevented - marked unsold")
+                                return
+                            
+                            # GUARDRAIL: Final budget check at lot close
+                            budget_valid, budget_error = await AdminService.validate_budget_constraint(
+                                lot["leading_bidder_id"], league_id, lot["current_bid"]
+                            )
+                            
+                            if not budget_valid:
+                                # Insufficient budget - mark as unsold
+                                await db.lots.update_one(
+                                    {"_id": lot_id},
+                                    {"$set": {"status": "unsold"}},
+                                    session=session
+                                )
+                                logger.warning(f"Lot {lot_id} - budget check failed: {budget_error} - marked unsold")
+                                return
+                            
+                            # 1. Create roster club (with guardrails passed)
                             roster_club = RosterClub(
-                                roster_id=f"roster_{lot['top_bidder_id']}_{auction_id}",  # Will be resolved
-                                league_id=self.active_auctions[auction_id]["league_id"],
-                                user_id=lot["top_bidder_id"],
+                                roster_id=f"roster_{lot['leading_bidder_id']}_{auction_id}",  # Will be resolved
+                                league_id=league_id,
+                                user_id=lot["leading_bidder_id"],
                                 club_id=lot["club_id"],
                                 price=lot["current_bid"]
                             )
