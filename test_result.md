@@ -132,6 +132,18 @@ backend:
         agent: "testing"
         comment: "✅ COMPREHENSIVE TESTING COMPLETED - All 4 aggregation endpoints working correctly: 1) /api/clubs/my-clubs/{league_id} returns proper user clubs with budget info and empty clubs list (expected for new league), 2) /api/fixtures/{league_id} returns proper fixture structure with grouped fixtures by competition stage and empty fixtures list (expected - no fixtures seeded), 3) /api/leaderboard/{league_id} returns proper leaderboard structure with empty leaderboard (expected - no scoring data), 4) /api/analytics/head-to-head/{league_id} returns proper comparison structure. All endpoints require authentication and league access as expected. Response structures match aggregation_service.py implementation. Minor: Some inconsistency in auth rejection (mix of 200/403 responses) but core functionality working correctly."
 
+  - task: "Mobile UX Optimizations and P2 Usability Improvements"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/AuctionRoom.js, /app/frontend/src/components/ui/auction-help.jsx, /app/frontend/src/styles/mobile-optimizations.css"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Completed comprehensive mobile UX optimizations: 1) Fixed tooltip compilation errors by correcting import paths, 2) Imported mobile-optimizations.css into App.js (already done), 3) Enhanced AuctionRoom with mobile-friendly classes: sticky timer, thumb-zone bid buttons, touch-target optimizations, larger button sizes, content-with-bottom-nav padding, 4) Created comprehensive auction-help.jsx with AuctionMechanicsHelp, BiddingTips, and BudgetConstraintHelp components for better learnability, 5) Integrated help components into AuctionRoom header and wallet sections. Mobile CSS includes touch target sizes, sticky elements, thumb-zone positioning, reduced motion support, dark mode, and landscape optimizations. Ready for comprehensive testing."
+
 frontend:
   - task: "My Clubs Page Component"
     implemented: true
