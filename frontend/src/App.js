@@ -919,7 +919,7 @@ const LeagueManagement = ({ league, onBack }) => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className={`grid grid-cols-1 gap-4 ${isCommissioner ? 'md:grid-cols-4' : 'md:grid-cols-3'}`}>
             <Button 
               className="flex flex-col items-center justify-center h-20 bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
               variant="outline"
@@ -944,6 +944,16 @@ const LeagueManagement = ({ league, onBack }) => {
               <Crown className="w-6 h-6 mb-2" />
               <span className="text-sm font-medium">Leaderboard</span>
             </Button>
+            {isCommissioner && (
+              <Button 
+                className="flex flex-col items-center justify-center h-20 bg-red-50 hover:bg-red-100 text-red-700 border-red-200"
+                variant="outline"
+                onClick={() => navigate(`/admin/${league.id}`)}
+              >
+                <Shield className="w-6 h-6 mb-2" />
+                <span className="text-sm font-medium">Admin Panel</span>
+              </Button>
+            )}
           </div>
         </CardContent>
       </Card>
