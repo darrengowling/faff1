@@ -155,102 +155,164 @@ class ScoringService:
     @staticmethod
     async def _process_single_result(result: Dict) -> bool:
         """
-        Process a single result with full transaction atomicity
+        Process a single result with idempotency (adapted for single MongoDB instance)
         Returns True if successfully processed, False otherwise
         """
-        async with await db.client.start_session() as session:
+        try:
+            # Check if we're using a single MongoDB instance (no transactions available)
             try:
-                async with session.start_transaction():
-                    # 1. Try to create settlement record (idempotency check)
-                    settlement = Settlement(
-                        league_id=result["league_id"],
-                        match_id=result["match_id"]
-                    )
-                    settlement_dict = settlement.dict(by_alias=True)
-                    
-                    try:
-                        await db.settlements.insert_one(settlement_dict, session=session)
-                    except DuplicateKeyError:
-                        # Already settled, abort transaction
-                        logger.info(f"Match {result['match_id']} already settled, skipping")
-                        await session.abort_transaction()
-                        return True  # Not an error, just already processed
-                    
-                    # 2. Resolve club owners from roster_clubs
-                    home_owners = await ScoringService._get_club_owners(
-                        result["league_id"], result["home_ext"], session
-                    )
-                    away_owners = await ScoringService._get_club_owners(
-                        result["league_id"], result["away_ext"], session
-                    )
-                    
-                    # 3. Calculate points for each owner
-                    home_goals = result["home_goals"]
-                    away_goals = result["away_goals"]
-                    
-                    # Determine match result
-                    if home_goals > away_goals:
-                        home_result_points = 3  # Win
-                        away_result_points = 0  # Loss
-                    elif away_goals > home_goals:
-                        home_result_points = 0  # Loss
-                        away_result_points = 3  # Win
-                    else:
-                        home_result_points = 1  # Draw
-                        away_result_points = 1  # Draw
-                    
-                    # Calculate matchday bucket
-                    bucket = ScoringService.calculate_matchday_bucket(
-                        result["kicked_off_at"], 
-                        result.get("season", "2024-25")
-                    )
-                    
-                    # 4. Create/update weekly points for home team owners
-                    for owner_id in home_owners:
-                        total_points = home_goals + home_result_points  # Goals + result
-                        await ScoringService._upsert_weekly_points(
-                            result["league_id"],
-                            owner_id,
-                            result["match_id"],
-                            total_points,
-                            bucket,
-                            session
-                        )
-                    
-                    # 5. Create/update weekly points for away team owners
-                    for owner_id in away_owners:
-                        total_points = away_goals + away_result_points  # Goals + result
-                        await ScoringService._upsert_weekly_points(
-                            result["league_id"],
-                            owner_id,
-                            result["match_id"],
-                            total_points,
-                            bucket,
-                            session
-                        )
-                    
-                    # 6. Mark result as processed
-                    await db.result_ingest.update_one(
-                        {"_id": result["_id"]},
-                        {"$set": {"processed": True}},
-                        session=session
-                    )
-                    
-                    # Commit transaction
-                    await session.commit_transaction()
-                    
-                    logger.info(
-                        f"Successfully processed match {result['match_id']}: "
-                        f"{result['home_ext']} {home_goals}-{away_goals} {result['away_ext']}, "
-                        f"Home owners: {len(home_owners)}, Away owners: {len(away_owners)}"
-                    )
-                    
-                    return True
-                    
+                # Try transaction-based approach first
+                async with await db.client.start_session() as session:
+                    async with session.start_transaction():
+                        return await ScoringService._process_with_transaction(result, session)
             except Exception as e:
-                logger.error(f"Failed to process result {result['match_id']}: {e}")
+                if "Transaction numbers are only allowed" in str(e):
+                    # Fall back to non-transactional approach for local MongoDB
+                    logger.info("Using non-transactional processing for local MongoDB")
+                    return await ScoringService._process_without_transaction(result)
+                else:
+                    raise e
+        except Exception as e:
+            logger.error(f"Failed to process result {result['match_id']}: {e}")
+            return False
+    
+    @staticmethod
+    async def _process_with_transaction(result: Dict, session) -> bool:
+        """Process result with full transaction support"""
+        # 1. Try to create settlement record (idempotency check)
+        settlement = Settlement(
+            league_id=result["league_id"],
+            match_id=result["match_id"]
+        )
+        settlement_dict = settlement.dict(by_alias=True)
+        
+        try:
+            await db.settlements.insert_one(settlement_dict, session=session)
+        except DuplicateKeyError:
+            # Already settled, abort transaction
+            logger.info(f"Match {result['match_id']} already settled, skipping")
+            await session.abort_transaction()
+            return True  # Not an error, just already processed
+        
+        # Continue with processing logic...
+        return await ScoringService._complete_processing(result, session)
+    
+    @staticmethod
+    async def _process_without_transaction(result: Dict) -> bool:
+        """Process result without transactions (for local MongoDB)"""
+        try:
+            # 1. Check if already settled (idempotency)
+            existing_settlement = await db.settlements.find_one({
+                "league_id": result["league_id"],
+                "match_id": result["match_id"]
+            })
+            
+            if existing_settlement:
+                logger.info(f"Match {result['match_id']} already settled, skipping")
+                return True
+            
+            # 2. Create settlement record
+            settlement = Settlement(
+                league_id=result["league_id"],
+                match_id=result["match_id"]
+            )
+            settlement_dict = settlement.dict(by_alias=True)
+            
+            try:
+                await db.settlements.insert_one(settlement_dict)
+            except DuplicateKeyError:
+                # Race condition - another process settled it
+                logger.info(f"Match {result['match_id']} settled by another process, skipping")
+                return True
+            
+            # 3. Process the settlement
+            return await ScoringService._complete_processing(result, None)
+            
+        except Exception as e:
+            logger.error(f"Failed to process result without transaction: {e}")
+            return False
+    
+    @staticmethod
+    async def _complete_processing(result: Dict, session=None) -> bool:
+        """Complete the scoring processing logic"""
+        try:
+            # 2. Resolve club owners from roster_clubs
+            home_owners = await ScoringService._get_club_owners(
+                result["league_id"], result["home_ext"], session
+            )
+            away_owners = await ScoringService._get_club_owners(
+                result["league_id"], result["away_ext"], session
+            )
+            
+            # 3. Calculate points for each owner
+            home_goals = result["home_goals"]
+            away_goals = result["away_goals"]
+            
+            # Determine match result
+            if home_goals > away_goals:
+                home_result_points = 3  # Win
+                away_result_points = 0  # Loss
+            elif away_goals > home_goals:
+                home_result_points = 0  # Loss
+                away_result_points = 3  # Win
+            else:
+                home_result_points = 1  # Draw
+                away_result_points = 1  # Draw
+            
+            # Calculate matchday bucket
+            bucket = ScoringService.calculate_matchday_bucket(
+                result["kicked_off_at"], 
+                result.get("season", "2024-25")
+            )
+            
+            # 4. Create/update weekly points for home team owners
+            for owner_id in home_owners:
+                total_points = home_goals + home_result_points  # Goals + result
+                await ScoringService._upsert_weekly_points(
+                    result["league_id"],
+                    owner_id,
+                    result["match_id"],
+                    total_points,
+                    bucket,
+                    session
+                )
+            
+            # 5. Create/update weekly points for away team owners
+            for owner_id in away_owners:
+                total_points = away_goals + away_result_points  # Goals + result
+                await ScoringService._upsert_weekly_points(
+                    result["league_id"],
+                    owner_id,
+                    result["match_id"],
+                    total_points,
+                    bucket,
+                    session
+                )
+            
+            # 6. Mark result as processed
+            await db.result_ingest.update_one(
+                {"_id": result["_id"]},
+                {"$set": {"processed": True}},
+                **({"session": session} if session else {})
+            )
+            
+            # Commit transaction if using one
+            if session:
+                await session.commit_transaction()
+            
+            logger.info(
+                f"Successfully processed match {result['match_id']}: "
+                f"{result['home_ext']} {home_goals}-{away_goals} {result['away_ext']}, "
+                f"Home owners: {len(home_owners)}, Away owners: {len(away_owners)}"
+            )
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"Failed to complete processing for {result['match_id']}: {e}")
+            if session:
                 await session.abort_transaction()
-                return False
+            return False
     
     @staticmethod
     async def _get_club_owners(league_id: str, club_ext: str, session: AsyncIOMotorClientSession) -> List[str]:
