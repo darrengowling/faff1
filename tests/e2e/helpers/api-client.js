@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 class APIClient {
-  constructor(baseURL = 'https://ucl-auction.preview.emergentagent.com/api') {
+  constructor(baseURL = 'https://ucl-auction-1.preview.emergentagent.com/api') {
     this.baseURL = baseURL;
     this.defaultHeaders = {
       'Content-Type': 'application/json'
