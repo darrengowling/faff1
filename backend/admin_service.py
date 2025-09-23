@@ -463,6 +463,22 @@ class AdminService:
             return False, f"Failed to remove member: {str(e)}"
 
     @staticmethod
+    async def manage_member(league_id: str, commissioner_id: str, member_action: 'MemberAction') -> Tuple[bool, str]:
+        """
+        Manage league member (approve or kick)
+        """
+        try:
+            if member_action.action == "approve":
+                return await AdminService.approve_member(league_id, commissioner_id, member_action.member_id)
+            elif member_action.action == "kick":
+                return await AdminService.kick_member(league_id, commissioner_id, member_action.member_id)
+            else:
+                return False, f"Unknown action: {member_action.action}"
+        except Exception as e:
+            logger.error(f"Failed to manage member: {e}")
+            return False, f"Failed to manage member: {str(e)}"
+
+    @staticmethod
     async def start_auction(league_id: str, commissioner_id: str) -> Tuple[bool, str]:
         """
         Start the auction for a league
