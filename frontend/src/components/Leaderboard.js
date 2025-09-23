@@ -170,25 +170,30 @@ const Leaderboard = ({ user, token }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <LoadingEmptyState message="Loading leaderboard..." />
+        </div>
       </div>
     );
   }
 
   if (!leaderboardData) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Card className="w-full max-w-md">
-          <CardContent className="text-center p-8">
-            <Trophy className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No Data Available</h3>
-            <p className="text-gray-600">Unable to load leaderboard data.</p>
-            <Button className="mt-4" onClick={() => navigate('/dashboard')}>
-              Back to Dashboard
-            </Button>
-          </CardContent>
-        </Card>
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <EmptyState
+            icon={() => (
+              <div className="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
+                <Trophy className="w-8 h-8 text-red-500" />
+              </div>
+            )}
+            title="Failed to Load"
+            description="Unable to load leaderboard data. Please try refreshing the page."
+            action={() => navigate('/dashboard')}
+            actionLabel="Back to Dashboard"
+          />
+        </div>
       </div>
     );
   }
