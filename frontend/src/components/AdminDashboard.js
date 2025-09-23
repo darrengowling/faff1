@@ -492,19 +492,35 @@ const AdminDashboard = ({ user, token }) => {
                               />
                             ) : null}
                           </Label>
-                          <Input
-                            id="budget"
-                            type="number"
-                            min="50"
-                            max="500"
-                            value={settingsForm.budget_per_manager || ''}
-                            disabled={(auction?.status && !['scheduled', 'paused'].includes(auction.status)) || hasClubsPurchased}
-                            onChange={(e) => setSettingsForm({
-                              ...settingsForm,
-                              budget_per_manager: parseInt(e.target.value)
-                            })}
-                            className={validationErrors.budget ? 'border-red-500' : ''}
-                          />
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <div>
+                                  <Input
+                                    id="budget"
+                                    type="number"
+                                    min="50"
+                                    max="500"
+                                    value={settingsForm.budget_per_manager || ''}
+                                    disabled={(auction?.status && !['scheduled', 'paused'].includes(auction.status)) || hasClubsPurchased}
+                                    onChange={(e) => setSettingsForm({
+                                      ...settingsForm,
+                                      budget_per_manager: parseInt(e.target.value)
+                                    })}
+                                    className={validationErrors.budget ? 'border-red-500' : ''}
+                                  />
+                                </div>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                {hasClubsPurchased 
+                                  ? "Budget can only be changed before any clubs are purchased"
+                                  : auction?.status && !['scheduled', 'paused'].includes(auction.status)
+                                  ? "Budget can only be changed when auction is scheduled or paused"
+                                  : "Budget per manager - can be changed before auction starts"
+                                }
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                           {validationErrors.budget && (
                             <div className="text-red-500 text-xs mt-1">{validationErrors.budget}</div>
                           )}
