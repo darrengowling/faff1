@@ -18,10 +18,11 @@ from auth import (
     require_league_access, require_commissioner_access, AccessControl
 )
 
-# Import auction and scoring modules
+# Import auction, scoring, and aggregation modules
 from auction_engine import initialize_auction_engine, get_auction_engine
 from websocket import sio, get_socketio_app
 from scoring_service import ScoringService, get_scoring_worker
+from aggregation_service import AggregationService
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
