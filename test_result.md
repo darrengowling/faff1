@@ -270,15 +270,18 @@ frontend:
 
   - task: "Competition Profile Integration in League Creation"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/league_service.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Updated create_league_with_setup method to use CompetitionService.get_default_settings() when no explicit settings are provided by commissioner. Integration maintains backward compatibility - explicit settings still take priority. Provides proper fallback to UCL competition profile defaults. Added logging to track which settings source is used."
+      - working: true
+        agent: "testing"
+        comment: "✅ COMPREHENSIVE COMPETITION PROFILE INTEGRATION TESTING COMPLETE - All 5 core integration tests passed (100% success rate): 1) Competition Profiles Endpoint - GET /api/competition-profiles returns proper structure with 3 profiles, 2) UCL Competition Profile - GET /api/competition-profiles/ucl returns valid UCL profile with complete defaults structure (budget_per_manager: 100, club_slots: 3, league_size: 4-8, scoring_rules), 3) League Creation Without Settings - Successfully creates league using competition profile defaults, all settings properly populated and match expected UCL values, 4) League Creation With Explicit Settings - Successfully creates league with custom settings (budget: 150, slots: 4, size: 3-6), explicit settings override defaults correctly, 5) Backward Compatibility - Explicit settings take priority over competition profile defaults as expected. Backend logging working correctly: 'Using default settings from UCL competition profile' vs 'Using explicit settings provided by commissioner'. Integration maintains full backward compatibility while providing proper fallback to competition profile defaults. Settings validation and scoring rules setup working correctly."
 
 metadata:
   created_by: "main_agent"
