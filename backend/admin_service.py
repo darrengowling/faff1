@@ -262,23 +262,15 @@ class AdminService:
                         )
             
             # 3. League size validation
-            if updates.max_managers is not None:
-                if updates.max_managers < current_member_count:
+            if updates.league_size is not None:
+                new_min = updates.league_size.min
+                new_max = updates.league_size.max
+                
+                # Check that new max is not less than current member count
+                if new_max < current_member_count:
                     raise AdminValidationError(
-                        f"Maximum managers ({updates.max_managers}) cannot be less than current member count ({current_member_count})"
+                        f"Maximum managers ({new_max}) cannot be less than current member count ({current_member_count})"
                     )
-            
-            if updates.min_managers is not None and updates.max_managers is not None:
-                if updates.min_managers > updates.max_managers:
-                    raise AdminValidationError("Minimum managers cannot be greater than maximum managers")
-            elif updates.min_managers is not None:
-                current_max = current_settings.get("max_managers", 8)
-                if updates.min_managers > current_max:
-                    raise AdminValidationError(f"Minimum managers ({updates.min_managers}) cannot be greater than current maximum ({current_max})")
-            elif updates.max_managers is not None:
-                current_min = current_settings.get("min_managers", 4)
-                if updates.max_managers < current_min:
-                    raise AdminValidationError(f"Maximum managers ({updates.max_managers}) cannot be less than current minimum ({current_min})")
             
             # Prepare updates
             update_dict = {}
