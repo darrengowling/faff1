@@ -309,7 +309,7 @@ async def join_league_direct(
         raise HTTPException(status_code=400, detail="Already a member of this league")
     
     # Check league capacity
-    if league["member_count"] >= league["settings"]["max_managers"]:
+    if league["member_count"] >= league["settings"]["league_size"]["max"]:
         raise HTTPException(status_code=400, detail="League is full")
     
     # Add membership
