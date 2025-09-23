@@ -621,6 +621,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
 // League Management Component
 const LeagueManagement = ({ league, onBack }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [members, setMembers] = useState([]);
   const [invitations, setInvitations] = useState([]);
   const [leagueStatus, setLeagueStatus] = useState(null);
