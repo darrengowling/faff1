@@ -3,6 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { toast } from 'sonner';
 
+// Import UX components
+import { EmptyState, AuctionNotStartedEmptyState, LoadingEmptyState } from './ui/empty-state';
+import { BiddingControls } from './ui/bidding-controls';
+import { AuctionToasts, handleAuctionUpdate } from './ui/auction-toasts';
+import { AuctionTooltip, ScoringTooltip } from './ui/tooltip';
+
 // Import Shadcn components
 import { Button } from './ui/button';
 import { Input } from './ui/input';
