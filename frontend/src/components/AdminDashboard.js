@@ -472,7 +472,7 @@ const AdminDashboard = ({ user, token }) => {
                   </div>
                 </div>
 
-                <TooltipProvider>
+                <div className="space-y-6">
                   <div className="space-y-6">
                     {/* Core Rules Configuration */}
                     <div>
@@ -485,14 +485,10 @@ const AdminDashboard = ({ user, token }) => {
                           <Label htmlFor="budget" className="flex items-center space-x-1">
                             <span>Budget per Manager (50-500M)</span>
                             {(auction?.status && !['scheduled', 'paused'].includes(auction.status)) || hasClubsPurchased ? (
-                              <Tooltip>
-                                <TooltipTrigger>
-                                  <AlertTriangle className="w-4 h-4 text-amber-500" />
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  Budget can only be changed before any clubs are bought and when auction is scheduled or paused
-                                </TooltipContent>
-                              </Tooltip>
+                              <AlertTriangle 
+                                className="w-4 h-4 text-amber-500" 
+                                title="Budget can only be changed before any clubs are bought and when auction is scheduled or paused"
+                              />
                             ) : null}
                           </Label>
                           <Input
@@ -656,7 +652,7 @@ const AdminDashboard = ({ user, token }) => {
                       </div>
                     </div>
                   </div>
-                </TooltipProvider>
+                </div>
                 
                 <Separator />
                 
