@@ -711,9 +711,15 @@ const AdminDashboard = ({ user, token }) => {
                       <Button 
                         onClick={() => handleAuctionAction('start', league.id)}
                         className="bg-green-600 hover:bg-green-700"
+                        disabled={members.length < (league.settings.league_size?.min || 4)}
                       >
                         <Play className="w-4 h-4 mr-2" />
                         Start Auction
+                        {members.length < (league.settings.league_size?.min || 4) && (
+                          <span className="ml-2 text-xs opacity-75">
+                            ({members.length}/{league.settings.league_size?.min || 4})
+                          </span>
+                        )}
                       </Button>
                     )}
                     {league.status === 'active' && (
