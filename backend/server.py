@@ -630,11 +630,11 @@ async def update_league_settings_admin(
 ):
     """Update league settings (commissioner only)"""
     try:
-        result = await AdminService.update_league_settings(league_id, current_user.id, settings_update)
-        if result["success"]:
-            return result
+        success, message = await AdminService.update_league_settings(league_id, current_user.id, settings_update)
+        if success:
+            return {"success": True, "message": message}
         else:
-            raise HTTPException(status_code=400, detail=result["message"])
+            raise HTTPException(status_code=400, detail=message)
     except Exception as e:
         logger.error(f"Failed to update league settings: {e}")
         raise HTTPException(status_code=500, detail=str(e))
