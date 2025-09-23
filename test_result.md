@@ -232,6 +232,7 @@ test_plan:
     - "Fixtures/Results Page Component"
     - "Leaderboard Page Component"
     - "App.js Routing Updates"
+    - "Admin Dashboard Frontend Component"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
