@@ -2063,6 +2063,10 @@ class UCLAuctionAPITester:
         print("\n🔐 COMPREHENSIVE ADMIN SYSTEM TESTS")
         self.test_admin_system_comprehensive()
         
+        # ==================== ENFORCEMENT RULES TESTS ====================
+        print("\n🛡️ ENFORCEMENT RULES TESTS")
+        self.test_enforcement_rules_comprehensive()
+        
         # Print detailed summary
         print("\n" + "=" * 80)
         print(f"📊 COMPREHENSIVE TEST SUMMARY")
