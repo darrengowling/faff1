@@ -497,3 +497,79 @@ class AuthResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
     user: UserResponse
+
+# Admin & Audit Models
+class AdminAction(BaseModel):
+    """Enumeration of admin actions for audit logging"""
+    # League Management
+    UPDATE_LEAGUE_SETTINGS = "update_league_settings"
+    APPROVE_MEMBER = "approve_member" 
+    KICK_MEMBER = "kick_member"
+    
+    # Auction Management
+    START_AUCTION = "start_auction"
+    PAUSE_AUCTION = "pause_auction"
+    RESUME_AUCTION = "resume_auction"
+    REORDER_NOMINATIONS = "reorder_nominations"
+    FORCE_LOT_CLOSE = "force_lot_close"
+    
+    # Emergency Actions
+    EMERGENCY_STOP = "emergency_stop"
+    RESET_AUCTION = "reset_auction"
+
+class AdminLog(BaseModel):
+    id: str = Field(default_factory=generate_uuid, alias="_id")
+    league_id: str
+    actor_id: str  # Commissioner who performed the action
+    action: str    # AdminAction value
+    before: Optional[Dict] = None  # State before action
+    after: Optional[Dict] = None   # State after action
+    metadata: Optional[Dict] = None  # Additional context
+    created_at: datetime = Field(default_factory=utc_now)
+    
+    class Config:
+        populate_by_name = True
+
+class AdminLogCreate(BaseModel):
+    league_id: str
+    actor_id: str
+    action: str
+    before: Optional[Dict] = None
+    after: Optional[Dict] = None
+    metadata: Optional[Dict] = None
+
+class AdminLogResponse(BaseModel):
+    id: str
+    league_id: str
+    actor_id: str
+    action: str
+    before: Optional[Dict] = None
+    after: Optional[Dict] = None
+    metadata: Optional[Dict] = None
+    created_at: datetime
+
+# Admin Request Models
+class LeagueSettingsUpdate(BaseModel):
+    budget_per_manager: Optional[int] = None
+    min_increment: Optional[int] = None
+    club_slots_per_manager: Optional[int] = None
+    anti_snipe_seconds: Optional[int] = None
+    bid_timer_seconds: Optional[int] = None
+    max_managers: Optional[int] = None
+    min_managers: Optional[int] = None
+    scoring_rules: Optional[ScoringRules] = None
+
+class MemberAction(BaseModel):
+    member_id: str
+    action: str  # "approve", "kick", "promote", "demote"
+
+class NominationReorder(BaseModel):
+    auction_id: str
+    new_order: List[str]  # List of club IDs in new order
+
+class BidAuditRequest(BaseModel):
+    auction_id: Optional[str] = None
+    league_id: Optional[str] = None
+    user_id: Optional[str] = None
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
