@@ -507,6 +507,35 @@ class AuthResponse(BaseModel):
     token_type: str = "bearer"
     user: UserResponse
 
+# Competition Profile Models
+class CompetitionDefaults(BaseModel):
+    club_slots: int = Field(ge=1, le=10)
+    budget_per_manager: int = Field(ge=50, le=500)
+    league_size: LeagueSize
+    min_increment: int = Field(ge=1)
+    anti_snipe_seconds: int = Field(ge=0)
+    bid_timer_seconds: int = Field(ge=30)
+    scoring_rules: ScoringRulePoints
+
+class CompetitionProfile(BaseModel):
+    id: str = Field(default_factory=generate_uuid, alias="_id")
+    competition: str
+    short_name: str
+    defaults: CompetitionDefaults
+    description: Optional[str] = None
+    created_at: datetime = Field(default_factory=utc_now)
+    updated_at: datetime = Field(default_factory=utc_now)
+    
+    class Config:
+        populate_by_name = True
+
+class CompetitionProfileResponse(BaseModel):
+    id: str
+    competition: str
+    short_name: str
+    defaults: CompetitionDefaults
+    description: Optional[str] = None
+
 # Admin & Audit Models
 class AdminAction:
     """Enumeration of admin actions for audit logging"""
