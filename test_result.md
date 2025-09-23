@@ -214,5 +214,7 @@ agent_communication:
     message: "Added 4 new aggregation API endpoints to server.py. Backend restarted successfully. Ready to test the new endpoints before proceeding with frontend implementation."
   - agent: "main"
     message: "Completed frontend implementation: Updated existing MyClubs, Fixtures, and Leaderboard components to use correct API endpoints. Added routing for /clubs/{leagueId}, /fixtures/{leagueId}, /leaderboard/{leagueId}. Added Quick Access navigation in league management. Frontend restarted. Ready for comprehensive testing."
+  - agent: "main"
+    message: "MAJOR UPDATE: Implemented comprehensive Admin system with guardrails and audit logging. Added AdminLogs model, AuditService, AdminService with validation guardrails (duplicate ownership, budget checks, timer monotonicity, simultaneous bids). Added 8 admin API endpoints. Created AdminDashboard frontend component with league settings, member management, auction control, and audit trail. Updated auction engine with enhanced guardrails. Both backend and frontend restarted. Ready for admin functionality testing."
   - agent: "testing"
     message: "✅ AGGREGATION ENDPOINTS TESTING COMPLETE - All 4 new API endpoints are working correctly with proper authentication, league access control, and response structures. The endpoints return empty data as expected since no auction/scoring data exists yet. Ready for frontend implementation. The aggregation_service.py MongoDB pipelines are properly integrated and functional."
