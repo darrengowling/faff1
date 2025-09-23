@@ -412,6 +412,7 @@ class ResultIngest(BaseModel):
 class ResultIngestCreate(BaseModel):
     league_id: str
     match_id: str
+    season: str
     home_ext: str
     away_ext: str
     home_goals: int
