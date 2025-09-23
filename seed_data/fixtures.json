@@ -1,0 +1,182 @@
+[
+  {
+    "match_id": "UCL-2025-26-MD1-001",
+    "date": "2025-09-17T20:00:00Z",
+    "home_ext": "UEFA-MCI",
+    "away_ext": "UEFA-PSG",
+    "season": "2025-26",
+    "matchday": 1,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD1-002", 
+    "date": "2025-09-17T20:00:00Z",
+    "home_ext": "UEFA-RMA",
+    "away_ext": "UEFA-BAY",
+    "season": "2025-26",
+    "matchday": 1,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD1-003",
+    "date": "2025-09-18T17:45:00Z", 
+    "home_ext": "UEFA-BAR",
+    "away_ext": "UEFA-LIV",
+    "season": "2025-26",
+    "matchday": 1,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD1-004",
+    "date": "2025-09-18T17:45:00Z",
+    "home_ext": "UEFA-ARS",
+    "away_ext": "UEFA-INT",
+    "season": "2025-26", 
+    "matchday": 1,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD1-005",
+    "date": "2025-09-18T20:00:00Z",
+    "home_ext": "UEFA-MIL",
+    "away_ext": "UEFA-BVB",
+    "season": "2025-26",
+    "matchday": 1,
+    "competition": "Champions League", 
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD1-006",
+    "date": "2025-09-18T20:00:00Z",
+    "home_ext": "UEFA-ATM",
+    "away_ext": "UEFA-JUV",
+    "season": "2025-26",
+    "matchday": 1,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-001",
+    "date": "2025-10-01T20:00:00Z",
+    "home_ext": "UEFA-PSG", 
+    "away_ext": "UEFA-BAR",
+    "season": "2025-26",
+    "matchday": 2,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-002",
+    "date": "2025-10-01T20:00:00Z",
+    "home_ext": "UEFA-BAY",
+    "away_ext": "UEFA-ARS",
+    "season": "2025-26",
+    "matchday": 2,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-003",
+    "date": "2025-10-02T17:45:00Z",
+    "home_ext": "UEFA-LIV",
+    "away_ext": "UEFA-MCI",
+    "season": "2025-26",
+    "matchday": 2,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-004",
+    "date": "2025-10-02T17:45:00Z",
+    "home_ext": "UEFA-INT",
+    "away_ext": "UEFA-RMA",
+    "season": "2025-26",
+    "matchday": 2,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-005",
+    "date": "2025-10-02T20:00:00Z",
+    "home_ext": "UEFA-BVB",
+    "away_ext": "UEFA-ATM",
+    "season": "2025-26",
+    "matchday": 2,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD2-006",
+    "date": "2025-10-02T20:00:00Z",
+    "home_ext": "UEFA-JUV",
+    "away_ext": "UEFA-MIL",
+    "season": "2025-26",
+    "matchday": 2,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD3-001",
+    "date": "2025-10-22T20:00:00Z",
+    "home_ext": "UEFA-MCI",
+    "away_ext": "UEFA-BVB",
+    "season": "2025-26",
+    "matchday": 3,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD3-002",
+    "date": "2025-10-22T20:00:00Z",
+    "home_ext": "UEFA-RMA",
+    "away_ext": "UEFA-LIV",
+    "season": "2025-26",
+    "matchday": 3,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD3-003",
+    "date": "2025-10-23T17:45:00Z",
+    "home_ext": "UEFA-BAR",
+    "away_ext": "UEFA-INT",
+    "season": "2025-26",
+    "matchday": 3,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD3-004",
+    "date": "2025-10-23T17:45:00Z",
+    "home_ext": "UEFA-PSG",
+    "away_ext": "UEFA-ATM",
+    "season": "2025-26",
+    "matchday": 3,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD3-005",
+    "date": "2025-10-23T20:00:00Z",
+    "home_ext": "UEFA-ARS",
+    "away_ext": "UEFA-JUV",
+    "season": "2025-26",
+    "matchday": 3,
+    "competition": "Champions League",
+    "status": "scheduled"
+  },
+  {
+    "match_id": "UCL-2025-26-MD3-006",
+    "date": "2025-10-23T20:00:00Z",
+    "home_ext": "UEFA-BAY",
+    "away_ext": "UEFA-MIL",
+    "season": "2025-26",
+    "matchday": 3,
+    "competition": "Champions League",
+    "status": "scheduled"
+  }
+]
