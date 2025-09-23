@@ -252,6 +252,21 @@ class AuctionEngine:
                                 logger.warning(f"Lot {lot_id} - budget check failed: {budget_error} - marked unsold")
                                 return
                             
+                            # GUARDRAIL: Roster capacity check at lot close
+                            capacity_valid, capacity_error = await AdminService.validate_roster_capacity(
+                                lot["leading_bidder_id"], league_id
+                            )
+                            
+                            if not capacity_valid:
+                                # Roster full - mark as unsold
+                                await db.lots.update_one(
+                                    {"_id": lot_id},
+                                    {"$set": {"status": "unsold"}},
+                                    session=session
+                                )
+                                logger.warning(f"Lot {lot_id} - roster capacity check failed: {capacity_error} - marked unsold")
+                                return
+                            
                             # 1. Create roster club (with guardrails passed)
                             roster_club = RosterClub(
                                 roster_id=f"roster_{lot['leading_bidder_id']}_{auction_id}",  # Will be resolved
