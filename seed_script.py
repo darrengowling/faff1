@@ -146,7 +146,7 @@ class UCLAuctionSeeder:
                 bid_timer_seconds=60,
                 max_managers=8,
                 min_managers=4,
-                scoring_rules=ScoringRules(
+                scoring_rules=ScoringRulePoints(
                     club_goal=1,
                     club_win=3,
                     club_draw=1
