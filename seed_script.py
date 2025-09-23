@@ -170,7 +170,7 @@ class UCLAuctionSeeder:
                 user_id=user_id,
                 role=MembershipRole.MANAGER
             )
-            await db.memberships.insert_one(membership.dict(by_alias=True))
+            await db.memberships.insert_one(membership.model_dump(by_alias=True))
             
             # Create roster
             roster = Roster(
