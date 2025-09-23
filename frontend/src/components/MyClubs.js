@@ -298,13 +298,7 @@ const MyClubs = ({ user, token }) => {
           {/* Upcoming Fixtures Tab */}
           <TabsContent value="fixtures" className="space-y-4">
             {upcoming_fixtures.length === 0 ? (
-              <Card>
-                <CardContent className="text-center py-12">
-                  <Calendar className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No Upcoming Fixtures</h3>
-                  <p className="text-gray-600">Your clubs don't have any upcoming matches scheduled.</p>
-                </CardContent>
-              </Card>
+              <NoFixturesEmptyState />
             ) : (
               <div className="space-y-4">
                 {upcoming_fixtures.map((fixture) => (
