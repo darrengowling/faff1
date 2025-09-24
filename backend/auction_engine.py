@@ -426,7 +426,7 @@ class AuctionEngine:
             if not lot:
                 return {"success": False, "error": "Lot not found"}
             
-            # Anti-snipe logic with timer monotonicity check
+            # Anti-snipe logic with server-authoritative timing
             now = datetime.now(timezone.utc)
             if lot.get("timer_ends_at"):
                 end_time = lot["timer_ends_at"]
@@ -434,15 +434,18 @@ class AuctionEngine:
                     end_time = datetime.fromisoformat(end_time.replace('Z', '+00:00'))
                 
                 seconds_remaining = (end_time - now).total_seconds()
-                if seconds_remaining < 3:
-                    # GUARDRAIL 3: Timer monotonicity - only extend forward
-                    new_end_time = now + timedelta(seconds=6)
+                # Use auction-specific anti-snipe seconds from settings
+                anti_snipe_threshold = auction_data["settings"]["anti_snipe_seconds"]
+                
+                if seconds_remaining < anti_snipe_threshold:
+                    # GUARDRAIL 3: Server-authoritative timer extension (only forward)
+                    new_end_time = now + timedelta(seconds=anti_snipe_threshold + 3)
                     timer_valid, timer_error = await AdminService.validate_timer_monotonicity(
                         auction_id, new_end_time
                     )
                     
                     if timer_valid:
-                        # Update timer
+                        # Atomically update timer - only server can do this
                         await db.lots.update_one(
                             {"_id": lot_id},
                             {"$set": {"timer_ends_at": new_end_time}}
@@ -455,11 +458,11 @@ class AuctionEngine:
                                 self._lot_timer(auction_id, lot_id, new_end_time)
                             )
                         
-                        logger.info(f"Anti-snipe: Timer extended for lot {lot_id}")
+                        logger.info(f"Server-authoritative anti-snipe: Timer extended for lot {lot_id} to {new_end_time}")
                     else:
                         logger.warning(f"Timer extension failed: {timer_error}")
             
-            # Broadcast real-time update
+            # Broadcast real-time update with latest server state
             await self._broadcast_lot_update(auction_id, lot_id)
             
             logger.info(f"Bid placed: {bidder_id} bid {amount} on lot {lot_id}")
