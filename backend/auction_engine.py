@@ -30,6 +30,55 @@ class AuctionEngine:
         self.sio = sio
         self.active_auctions: Dict[str, Dict] = {}  # auction_id -> auction_data
         self.auction_timers: Dict[str, asyncio.Task] = {}  # lot_id -> timer_task
+        self.time_sync_tasks: Dict[str, asyncio.Task] = {}  # auction_id -> sync_task
+        
+    async def start_time_sync(self, auction_id: str):
+        """Start periodic time synchronization for an auction"""
+        if auction_id in self.time_sync_tasks:
+            return  # Already running
+        
+        self.time_sync_tasks[auction_id] = asyncio.create_task(
+            self._time_sync_loop(auction_id)
+        )
+        logger.info(f"Started time sync for auction {auction_id}")
+    
+    async def stop_time_sync(self, auction_id: str):
+        """Stop time synchronization for an auction"""
+        if auction_id in self.time_sync_tasks:
+            self.time_sync_tasks[auction_id].cancel()
+            del self.time_sync_tasks[auction_id]
+            logger.info(f"Stopped time sync for auction {auction_id}")
+    
+    async def _time_sync_loop(self, auction_id: str):
+        """Send server time every 2 seconds for client synchronization"""
+        try:
+            while auction_id in self.active_auctions:
+                server_now = datetime.now(timezone.utc)
+                
+                # Get current lot timer info if exists
+                current_lot = None
+                auction = await db.auctions.find_one({"_id": auction_id})
+                if auction and auction.get("current_lot_id"):
+                    lot = await db.lots.find_one({"_id": auction["current_lot_id"]})
+                    if lot and lot.get("timer_ends_at"):
+                        current_lot = {
+                            "lot_id": lot["_id"],
+                            "timer_ends_at": lot["timer_ends_at"].isoformat(),
+                            "status": lot["status"]
+                        }
+                
+                # Broadcast time sync
+                await self.sio.emit('time_sync', {
+                    'server_now': server_now.isoformat(),
+                    'current_lot': current_lot
+                }, room=f"auction_{auction_id}")
+                
+                await asyncio.sleep(2)  # Send every 2 seconds
+                
+        except asyncio.CancelledError:
+            logger.info(f"Time sync cancelled for auction {auction_id}")
+        except Exception as e:
+            logger.error(f"Time sync error for auction {auction_id}: {e}")
         
     async def start_auction(self, auction_id: str, commissioner_id: str) -> bool:
         """Start an auction if league is ready"""
