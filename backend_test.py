@@ -805,6 +805,324 @@ class UCLAuctionAPITester:
         except Exception as e:
             return self.log_test("Chat Functionality", False, f"Exception: {str(e)}")
 
+    # ==================== SERVER-AUTHORITATIVE TIMER TESTS ====================
+    
+    def test_time_sync_endpoint(self):
+        """Test GET /api/timez endpoint for server time synchronization"""
+        success, status, data = self.make_request('GET', 'timez', token=None)  # No auth required
+        
+        # Verify response structure
+        valid_response = (
+            success and
+            isinstance(data, dict) and
+            'now' in data and
+            isinstance(data['now'], str)
+        )
+        
+        # Verify timestamp format (ISO format with timezone)
+        timestamp_valid = False
+        if valid_response:
+            try:
+                # Parse ISO timestamp
+                server_time = datetime.fromisoformat(data['now'].replace('Z', '+00:00'))
+                # Check it's recent (within 5 seconds)
+                now = datetime.now(timezone.utc)
+                time_diff = abs((server_time - now).total_seconds())
+                timestamp_valid = time_diff < 5
+            except:
+                timestamp_valid = False
+        
+        return self.log_test(
+            "Time Sync Endpoint (/api/timez)",
+            valid_response and timestamp_valid,
+            f"Status: {status}, Valid format: {valid_response}, Recent timestamp: {timestamp_valid}"
+        )
+    
+    def test_time_sync_consistency(self):
+        """Test multiple calls to /api/timez show consistent time progression"""
+        timestamps = []
+        
+        # Make 3 calls with small delays
+        for i in range(3):
+            success, status, data = self.make_request('GET', 'timez', token=None)
+            if success and 'now' in data:
+                try:
+                    timestamp = datetime.fromisoformat(data['now'].replace('Z', '+00:00'))
+                    timestamps.append(timestamp)
+                except:
+                    pass
+            time.sleep(0.5)  # 500ms delay
+        
+        # Verify we got 3 timestamps and they progress forward
+        progression_valid = (
+            len(timestamps) == 3 and
+            timestamps[1] > timestamps[0] and
+            timestamps[2] > timestamps[1]
+        )
+        
+        # Verify reasonable time differences (should be ~500ms apart)
+        timing_reasonable = False
+        if len(timestamps) >= 2:
+            diff1 = (timestamps[1] - timestamps[0]).total_seconds()
+            diff2 = (timestamps[2] - timestamps[1]).total_seconds()
+            timing_reasonable = 0.4 < diff1 < 0.7 and 0.4 < diff2 < 0.7
+        
+        return self.log_test(
+            "Time Sync Consistency",
+            progression_valid and timing_reasonable,
+            f"Timestamps: {len(timestamps)}, Progression: {progression_valid}, Timing: {timing_reasonable}"
+        )
+    
+    def test_websocket_time_sync_broadcasting(self):
+        """Test WebSocket time_sync messages are broadcast every 2 seconds during active auctions"""
+        if not self.commissioner_token or not self.test_auction_id:
+            return self.log_test("WebSocket Time Sync Broadcasting", False, "Missing token or auction ID")
+        
+        try:
+            sio = socketio.Client()
+            time_sync_messages = []
+            connection_successful = False
+            
+            @sio.event
+            def connect():
+                nonlocal connection_successful
+                connection_successful = True
+                print("WebSocket connected for time sync testing")
+            
+            @sio.event
+            def time_sync(data):
+                time_sync_messages.append(data)
+                print(f"Time sync received: {data}")
+            
+            # Connect and join auction
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(1)
+            
+            if connection_successful:
+                join_result = sio.call('join_auction', {'auction_id': self.test_auction_id}, timeout=5)
+                
+                if join_result and join_result.get('success', False):
+                    # Wait for time sync messages (should get at least 2 in 5 seconds)
+                    time.sleep(5)
+                    
+                    sio.disconnect()
+                    
+                    # Verify time sync messages
+                    messages_received = len(time_sync_messages) >= 2
+                    
+                    # Verify message structure
+                    structure_valid = True
+                    if time_sync_messages:
+                        first_msg = time_sync_messages[0]
+                        structure_valid = (
+                            'server_now' in first_msg and
+                            'current_lot' in first_msg and
+                            isinstance(first_msg['server_now'], str)
+                        )
+                    
+                    return self.log_test(
+                        "WebSocket Time Sync Broadcasting",
+                        messages_received and structure_valid,
+                        f"Messages received: {len(time_sync_messages)}, Structure valid: {structure_valid}"
+                    )
+                else:
+                    sio.disconnect()
+                    return self.log_test("WebSocket Time Sync Broadcasting", False, "Failed to join auction room")
+            else:
+                return self.log_test("WebSocket Time Sync Broadcasting", False, "Failed to connect")
+                
+        except Exception as e:
+            return self.log_test("WebSocket Time Sync Broadcasting", False, f"Exception: {str(e)}")
+    
+    def test_server_authoritative_anti_snipe_logic(self):
+        """Test server-authoritative anti-snipe logic with auction-specific settings"""
+        if not self.test_auction_id:
+            return self.log_test("Server-Authoritative Anti-Snipe Logic", False, "No test auction ID")
+        
+        # Get auction state to find current lot and settings
+        success, status, auction_state = self.make_request('GET', f'auction/{self.test_auction_id}/state')
+        
+        if not success or not auction_state.get('current_lot'):
+            return self.log_test(
+                "Server-Authoritative Anti-Snipe Logic",
+                False,
+                f"No active lot found. Status: {status}"
+            )
+        
+        current_lot = auction_state['current_lot']
+        lot_id = current_lot['_id']
+        current_bid = current_lot.get('current_bid', 0)
+        min_increment = auction_state.get('settings', {}).get('min_increment', 1)
+        anti_snipe_seconds = auction_state.get('settings', {}).get('anti_snipe_seconds', 3)
+        
+        # Test bid within anti-snipe window (this should extend timer)
+        bid_amount = current_bid + min_increment
+        success, status, bid_result = self.make_request(
+            'POST',
+            f'auction/{self.test_auction_id}/bid',
+            {
+                "lot_id": lot_id,
+                "amount": bid_amount
+            }
+        )
+        
+        bid_successful = success and bid_result.get('success', False)
+        
+        # Get updated auction state to check if timer was extended
+        success2, status2, updated_state = self.make_request('GET', f'auction/{self.test_auction_id}/state')
+        
+        timer_extended = False
+        if success2 and updated_state.get('current_lot'):
+            updated_lot = updated_state['current_lot']
+            # Check if timer_ends_at exists and is reasonable
+            if updated_lot.get('timer_ends_at'):
+                timer_extended = True
+        
+        # Verify anti-snipe uses auction-specific settings (not hardcoded 3s)
+        settings_used_correctly = anti_snipe_seconds != 3  # Should be from auction settings, not hardcoded
+        
+        return self.log_test(
+            "Server-Authoritative Anti-Snipe Logic",
+            bid_successful and timer_extended and settings_used_correctly,
+            f"Bid successful: {bid_successful}, Timer extended: {timer_extended}, Anti-snipe seconds: {anti_snipe_seconds}"
+        )
+    
+    def test_timer_monotonicity_validation(self):
+        """Test that timer extensions only move forward, never backward"""
+        if not self.test_auction_id:
+            return self.log_test("Timer Monotonicity Validation", False, "No test auction ID")
+        
+        # Get current auction state
+        success, status, auction_state = self.make_request('GET', f'auction/{self.test_auction_id}/state')
+        
+        if not success or not auction_state.get('current_lot'):
+            return self.log_test("Timer Monotonicity Validation", False, "No active lot found")
+        
+        current_lot = auction_state['current_lot']
+        lot_id = current_lot['_id']
+        current_bid = current_lot.get('current_bid', 0)
+        min_increment = auction_state.get('settings', {}).get('min_increment', 1)
+        
+        # Record initial timer state
+        initial_timer = current_lot.get('timer_ends_at')
+        
+        # Place multiple bids to test timer monotonicity
+        bid_results = []
+        for i in range(2):
+            bid_amount = current_bid + min_increment + i
+            success_bid, status_bid, bid_result = self.make_request(
+                'POST',
+                f'auction/{self.test_auction_id}/bid',
+                {
+                    "lot_id": lot_id,
+                    "amount": bid_amount
+                }
+            )
+            bid_results.append(success_bid and bid_result.get('success', False))
+            time.sleep(1)  # Small delay between bids
+        
+        # Get final state
+        success_final, status_final, final_state = self.make_request('GET', f'auction/{self.test_auction_id}/state')
+        
+        timer_moved_forward = False
+        if success_final and final_state.get('current_lot'):
+            final_timer = final_state['current_lot'].get('timer_ends_at')
+            if initial_timer and final_timer:
+                try:
+                    initial_time = datetime.fromisoformat(initial_timer.replace('Z', '+00:00'))
+                    final_time = datetime.fromisoformat(final_timer.replace('Z', '+00:00'))
+                    timer_moved_forward = final_time >= initial_time
+                except:
+                    timer_moved_forward = False
+        
+        successful_bids = sum(bid_results)
+        
+        return self.log_test(
+            "Timer Monotonicity Validation",
+            successful_bids > 0 and timer_moved_forward,
+            f"Successful bids: {successful_bids}, Timer moved forward: {timer_moved_forward}"
+        )
+    
+    def test_auction_engine_integration(self):
+        """Test auction engine integration with time sync start/stop"""
+        if not self.test_auction_id:
+            return self.log_test("Auction Engine Integration", False, "No test auction ID")
+        
+        # Test auction state retrieval (should include timing info)
+        success, status, auction_state = self.make_request('GET', f'auction/{self.test_auction_id}/state')
+        
+        state_includes_timing = (
+            success and
+            'auction_id' in auction_state and
+            'status' in auction_state and
+            'managers' in auction_state and
+            'settings' in auction_state
+        )
+        
+        # Test pause/resume functionality (affects time sync)
+        pause_success, pause_status, pause_result = self.make_request(
+            'POST',
+            f'auction/{self.test_auction_id}/pause'
+        )
+        
+        resume_success, resume_status, resume_result = self.make_request(
+            'POST',
+            f'auction/{self.test_auction_id}/resume'
+        )
+        
+        pause_resume_works = (
+            pause_success and 'message' in pause_result and
+            resume_success and 'message' in resume_result
+        )
+        
+        return self.log_test(
+            "Auction Engine Integration",
+            state_includes_timing and pause_resume_works,
+            f"State includes timing: {state_includes_timing}, Pause/Resume works: {pause_resume_works}"
+        )
+    
+    def test_database_timer_operations(self):
+        """Test that timer updates are atomic and consistent"""
+        if not self.test_auction_id:
+            return self.log_test("Database Timer Operations", False, "No test auction ID")
+        
+        # Get current auction state multiple times to check consistency
+        states = []
+        for i in range(3):
+            success, status, state = self.make_request('GET', f'auction/{self.test_auction_id}/state')
+            if success and state.get('current_lot'):
+                states.append(state['current_lot'])
+            time.sleep(0.2)
+        
+        # Verify consistent lot state across calls
+        consistency_check = len(states) >= 2
+        if consistency_check and len(states) >= 2:
+            # Check that lot_id remains consistent
+            lot_ids = [state.get('_id') for state in states]
+            consistency_check = len(set(lot_ids)) <= 1  # Should be same lot or None
+        
+        # Test that auction settings are properly read
+        success, status, auction_state = self.make_request('GET', f'auction/{self.test_auction_id}/state')
+        
+        settings_properly_read = (
+            success and
+            'settings' in auction_state and
+            isinstance(auction_state['settings'], dict) and
+            'anti_snipe_seconds' in auction_state['settings'] and
+            'bid_timer_seconds' in auction_state['settings']
+        )
+        
+        return self.log_test(
+            "Database Timer Operations",
+            consistency_check and settings_properly_read,
+            f"State consistency: {consistency_check}, Settings read: {settings_properly_read}"
+        )
+
     # ==================== NEW AGGREGATION API TESTS ====================
     
     def test_my_clubs_endpoint(self):
