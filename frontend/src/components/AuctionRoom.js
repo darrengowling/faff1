@@ -209,16 +209,26 @@ const AuctionRoom = ({ user, token }) => {
     };
   }, [token, auctionId, user.id, auctionState?.settings]);
 
-  // Timer countdown
+  // Server-authoritative timer countdown
   useEffect(() => {
     if (timeRemaining > 0 && currentLot?.status === 'open') {
       const timer = setInterval(() => {
-        setTimeRemaining(prev => Math.max(0, prev - 1));
+        // Use server time for calculations
+        const serverNow = Date.now() + serverTimeOffset;
+        
+        if (currentLot?.timer_ends_at) {
+          const timerEndsAt = new Date(currentLot.timer_ends_at).getTime();
+          const remaining = Math.max(0, Math.floor((timerEndsAt - serverNow) / 1000));
+          setTimeRemaining(remaining);
+        } else {
+          // Fallback to countdown if no server timer
+          setTimeRemaining(prev => Math.max(0, prev - 1));
+        }
       }, 1000);
 
       return () => clearInterval(timer);
     }
-  }, [timeRemaining, currentLot?.status]);
+  }, [timeRemaining, currentLot?.status, currentLot?.timer_ends_at, serverTimeOffset]);
 
   // Check if user is commissioner
   useEffect(() => {
