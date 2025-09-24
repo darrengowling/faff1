@@ -243,30 +243,60 @@ async def authenticate_socket(token: str) -> Optional[UserResponse]:
 
 @sio.event
 async def connect(sid, environ, auth):
-    """Handle client connection"""
+    """Handle client connection with enhanced presence tracking"""
     try:
-        # Get token from auth data
-        if not auth or 'token' not in auth:
-            logger.warning(f"Connection {sid} rejected: no token")
+        logger.info(f"Client {sid} attempting to connect")
+        
+        # Extract token from auth
+        token = None
+        if auth and 'token' in auth:
+            token = auth['token']
+        
+        if not token:
+            logger.warning(f"Client {sid} connected without token")
+            await sio.emit('connection_status', {
+                'status': 'unauthenticated',
+                'message': 'Authentication required'
+            }, to=sid)
             return False
         
         # Authenticate user
-        user = await authenticate_socket(auth['token'])
+        user = await authenticate_socket(token)
         if not user:
-            logger.warning(f"Connection {sid} rejected: invalid token")
+            logger.warning(f"Client {sid} authentication failed")
+            await sio.emit('connection_status', {
+                'status': 'auth_failed',
+                'message': 'Authentication failed'
+            }, to=sid)
             return False
         
-        # Store user session
+        # Store session
         user_sessions[sid] = {
-            "user": user,
-            "joined_auctions": set()
+            'user': user,
+            'token': token,
+            'connected_at': datetime.now(timezone.utc)
         }
         
-        logger.info(f"User {user.display_name} connected with session {sid}")
+        # Send connection success
+        await sio.emit('connection_status', {
+            'status': 'connected',
+            'user': {
+                'id': user.id,
+                'display_name': user.display_name,
+                'email': user.email
+            },
+            'server_time': datetime.now(timezone.utc).isoformat()
+        }, to=sid)
+        
+        logger.info(f"Client {sid} connected successfully as {user.display_name}")
         return True
         
     except Exception as e:
-        logger.error(f"Connection error: {e}")
+        logger.error(f"Connection error for {sid}: {e}")
+        await sio.emit('connection_status', {
+            'status': 'error',
+            'message': 'Connection failed'
+        }, to=sid)
         return False
 
 @sio.event
