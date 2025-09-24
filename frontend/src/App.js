@@ -119,15 +119,23 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [linkSent, setLinkSent] = useState(false);
+  const [magicLink, setMagicLink] = useState(null);
 
   const handleSendMagicLink = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      await axios.post(`${API}/auth/magic-link`, { email });
+      const response = await axios.post(`${API}/auth/magic-link`, { email });
       setLinkSent(true);
-      toast.success('Magic link sent! Check your email (or console for development).');
+      
+      // Check if development magic link is provided
+      if (response.data.dev_magic_link) {
+        setMagicLink(response.data.dev_magic_link);
+        toast.success('Magic link generated! Click the link below to login.');
+      } else {
+        toast.success('Magic link sent! Check your email.');
+      }
     } catch (error) {
       toast.error('Failed to send magic link. Please try again.');
     } finally {
