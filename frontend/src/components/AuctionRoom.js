@@ -305,6 +305,11 @@ const AuctionRoom = ({ user, token }) => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  // Get server-synchronized time
+  const getServerTime = () => {
+    return Date.now() + serverTimeOffset;
+  };
+
   const getLotStatusColor = (status) => {
     switch (status) {
       case 'open': return 'bg-green-500';
