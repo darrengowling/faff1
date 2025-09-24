@@ -46,6 +46,10 @@ const AuctionRoom = ({ user, token }) => {
   const [socket, setSocket] = useState(null);
   const [connected, setConnected] = useState(false);
   
+  // Server time synchronization state
+  const [serverTimeOffset, setServerTimeOffset] = useState(0);
+  const [lastServerTime, setLastServerTime] = useState(null);
+  
   // Auction state
   const [auctionState, setAuctionState] = useState(null);
   const [currentLot, setCurrentLot] = useState(null);
