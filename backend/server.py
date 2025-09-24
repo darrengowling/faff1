@@ -91,6 +91,12 @@ async def shutdown_event():
 async def health_check():
     return {"status": "healthy", "timestamp": datetime.now(timezone.utc)}
 
+# Time sync endpoint for client drift correction
+@api_router.get("/timez")
+async def get_server_time():
+    """Return current server time for client synchronization"""
+    return {"now": datetime.now(timezone.utc).isoformat()}
+
 # Authentication Routes
 @api_router.post("/auth/magic-link")
 async def request_magic_link(request: MagicLinkRequest):
