@@ -305,8 +305,8 @@ class TimerTester:
         results.append(self.test_time_sync_endpoint())
         results.append(self.test_time_consistency())
         
-        # Use a recent magic token from logs
-        magic_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhcnJlbi5nb3dsaW5nQGdtYWlsLmNvbSIsImV4cCI6MTc1ODc1NTI1MiwidHlwZSI6Im1hZ2ljX2xpbmsifQ.YDMqwPM86hMbKYkyog_cq7Ox8gSwHr9r5DuiSehPsU"
+        # Use a fresh magic token
+        magic_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRpbWVyLnRlc3RAZXhhbXBsZS5jb20iLCJleHAiOjE3NTg3NTY5OTcsInR5cGUiOiJtYWdpY19saW5rIn0.rpNeShCacIxgcuVdeTGueeiXI4otaAwPYOy-sdyHbxs"
         
         if self.authenticate_with_token(magic_token):
             # Authenticated tests
