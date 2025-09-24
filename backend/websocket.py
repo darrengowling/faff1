@@ -19,8 +19,101 @@ sio = socketio.AsyncServer(
     engineio_logger=True
 )
 
-# Store user sessions
+# Store user sessions with presence tracking
 user_sessions: Dict[str, Dict] = {}  # session_id -> user_data
+user_presence: Dict[str, Dict] = {}  # user_id -> presence_info
+
+class PresenceStatus:
+    ONLINE = "online"
+    AWAY = "away"
+    OFFLINE = "offline"
+
+class ConnectionManager:
+    """Manages WebSocket connections and presence"""
+    
+    def __init__(self):
+        self.connections: Dict[str, Dict] = {}  # session_id -> connection_info
+        self.heartbeat_interval = 30  # seconds
+        self.presence_timeout = 60  # seconds
+    
+    async def add_connection(self, sid: str, user: UserResponse, auction_id: str = None):
+        """Add new connection and update presence"""
+        connection_info = {
+            'user_id': user.id,
+            'user': user,
+            'auction_id': auction_id,
+            'last_seen': datetime.now(timezone.utc),
+            'connected_at': datetime.now(timezone.utc)
+        }
+        
+        self.connections[sid] = connection_info
+        
+        # Update user presence
+        user_presence[user.id] = {
+            'status': PresenceStatus.ONLINE,
+            'last_seen': datetime.now(timezone.utc),
+            'auction_id': auction_id,
+            'display_name': user.display_name,
+            'session_id': sid
+        }
+        
+        # Broadcast presence update to auction room
+        if auction_id:
+            await sio.emit('user_presence', {
+                'user_id': user.id,
+                'display_name': user.display_name,
+                'status': PresenceStatus.ONLINE,
+                'timestamp': datetime.now(timezone.utc).isoformat()
+            }, room=f"auction_{auction_id}")
+            
+        logger.info(f"User {user.display_name} connected to auction {auction_id}")
+    
+    async def remove_connection(self, sid: str):
+        """Remove connection and update presence"""
+        if sid not in self.connections:
+            return
+            
+        connection_info = self.connections[sid]
+        user_id = connection_info['user_id']
+        auction_id = connection_info.get('auction_id')
+        
+        # Update presence to offline
+        if user_id in user_presence:
+            user_presence[user_id]['status'] = PresenceStatus.OFFLINE
+            user_presence[user_id]['last_seen'] = datetime.now(timezone.utc)
+            
+            # Broadcast presence update
+            if auction_id:
+                await sio.emit('user_presence', {
+                    'user_id': user_id,
+                    'display_name': connection_info['user']['display_name'],
+                    'status': PresenceStatus.OFFLINE,
+                    'timestamp': datetime.now(timezone.utc).isoformat()
+                }, room=f"auction_{auction_id}")
+        
+        del self.connections[sid]
+        logger.info(f"User {connection_info['user']['display_name']} disconnected")
+    
+    async def update_heartbeat(self, sid: str):
+        """Update last seen timestamp for connection"""
+        if sid in self.connections:
+            self.connections[sid]['last_seen'] = datetime.now(timezone.utc)
+            user_id = self.connections[sid]['user_id']
+            if user_id in user_presence:
+                user_presence[user_id]['last_seen'] = datetime.now(timezone.utc)
+    
+    def get_auction_users(self, auction_id: str) -> List[Dict]:
+        """Get all users present in an auction"""
+        auction_users = []
+        for sid, conn in self.connections.items():
+            if conn.get('auction_id') == auction_id:
+                user_id = conn['user_id']
+                if user_id in user_presence:
+                    auction_users.append(user_presence[user_id])
+        return auction_users
+
+# Global connection manager
+connection_manager = ConnectionManager()
 
 async def authenticate_socket(token: str) -> Optional[UserResponse]:
     """Authenticate socket connection using JWT token"""
