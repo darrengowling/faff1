@@ -9,6 +9,109 @@ from database import db
 from auth import SECRET_KEY, ALGORITHM
 from auction_engine import get_auction_engine
 
+class StateSnapshot:
+    """Manages server state snapshots for reconnection"""
+    
+    @staticmethod
+    async def get_auction_snapshot(auction_id: str, user_id: str) -> Dict:
+        """Get complete auction state snapshot for reconnecting user"""
+        try:
+            # Get auction state
+            auction = await db.auctions.find_one({"_id": auction_id})
+            if not auction:
+                return {"error": "Auction not found"}
+            
+            # Get current lot
+            current_lot = None
+            if auction.get("current_lot_id"):
+                lot = await db.lots.find_one({"_id": auction["current_lot_id"]})
+                if lot:
+                    current_lot = {
+                        "id": lot["_id"],
+                        "club_id": lot["club_id"],
+                        "status": lot["status"],
+                        "current_bid": lot.get("current_bid", 0),
+                        "leading_bidder_id": lot.get("leading_bidder_id"),
+                        "timer_ends_at": lot.get("timer_ends_at").isoformat() if lot.get("timer_ends_at") else None
+                    }
+            
+            # Get user's roster and budget
+            user_roster = await db.rosters.find_one({
+                "league_id": auction["league_id"],
+                "user_id": user_id
+            })
+            
+            user_budget = user_roster["budget_remaining"] if user_roster else 0
+            user_slots = len(user_roster.get("clubs", [])) if user_roster else 0
+            
+            # Get all auction participants
+            participants = []
+            league_rosters = await db.rosters.find({"league_id": auction["league_id"]}).to_list(length=None)
+            for roster in league_rosters:
+                user = await db.users.find_one({"_id": roster["user_id"]})
+                if user:
+                    participants.append({
+                        "user_id": user["_id"],
+                        "display_name": user["display_name"],
+                        "budget_remaining": roster["budget_remaining"],
+                        "clubs_owned": len(roster.get("clubs", []))
+                    })
+            
+            # Get auction settings
+            settings = {
+                "min_increment": auction["min_increment"],
+                "bid_timer_seconds": auction["bid_timer_seconds"],
+                "anti_snipe_seconds": auction["anti_snipe_seconds"],
+                "budget_per_manager": auction["budget_per_manager"]
+            }
+            
+            # Get presence information
+            present_users = connection_manager.get_auction_users(auction_id)
+            
+            snapshot = {
+                "auction": {
+                    "id": auction["_id"],
+                    "status": auction["status"],
+                    "settings": settings
+                },
+                "current_lot": current_lot,
+                "user_state": {
+                    "budget_remaining": user_budget,
+                    "slots_used": user_slots,
+                    "max_slots": user_roster.get("max_slots", 3) if user_roster else 3
+                },
+                "participants": participants,
+                "presence": present_users,
+                "server_time": datetime.now(timezone.utc).isoformat(),
+                "snapshot_version": "1.0"
+            }
+            
+            return snapshot
+            
+        except Exception as e:
+            logger.error(f"Error creating auction snapshot: {e}")
+            return {"error": "Failed to create snapshot"}
+    
+    @staticmethod
+    async def validate_snapshot_integrity(snapshot: Dict) -> bool:
+        """Validate that snapshot data is consistent"""
+        try:
+            required_fields = ["auction", "server_time", "snapshot_version"]
+            for field in required_fields:
+                if field not in snapshot:
+                    return False
+            
+            # Validate auction exists
+            auction_id = snapshot["auction"]["id"]
+            auction = await db.auctions.find_one({"_id": auction_id})
+            if not auction:
+                return False
+            
+            return True
+            
+        except Exception:
+            return False
+
 logger = logging.getLogger(__name__)
 
 # Create Socket.IO server
