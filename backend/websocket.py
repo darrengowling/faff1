@@ -317,59 +317,57 @@ async def disconnect(sid):
     except Exception as e:
         logger.error(f"Disconnect error: {e}")
 
-@sio.event
+@sio.event 
 async def join_auction(sid, data):
-    """Join auction room for real-time updates"""
+    """Join auction room with presence tracking and state snapshot"""
     try:
         if sid not in user_sessions:
-            return {"success": False, "error": "Not authenticated"}
+            await sio.emit('error', {'message': 'Not authenticated'}, to=sid)
+            return
         
-        auction_id = data.get("auction_id")
+        auction_id = data.get('auction_id')
         if not auction_id:
-            return {"success": False, "error": "Missing auction_id"}
+            await sio.emit('error', {'message': 'Auction ID required'}, to=sid)
+            return
         
-        user = user_sessions[sid]["user"]
+        user = user_sessions[sid]['user']
         
-        # Verify user has access to this auction's league
+        # Verify user has access to auction
         auction = await db.auctions.find_one({"_id": auction_id})
         if not auction:
-            return {"success": False, "error": "Auction not found"}
+            await sio.emit('error', {'message': 'Auction not found'}, to=sid)
+            return
         
-        # Check membership
+        # Check league membership
         membership = await db.memberships.find_one({
             "league_id": auction["league_id"],
-            "user_id": user.id
+            "user_id": user.id,
+            "status": "accepted"
         })
         
         if not membership:
-            return {"success": False, "error": "Access denied"}
+            await sio.emit('error', {'message': 'Access denied'}, to=sid)
+            return
         
         # Join auction room
         await sio.enter_room(sid, f"auction_{auction_id}")
-        user_sessions[sid]["joined_auctions"].add(auction_id)
         
-        # Send current auction state
-        engine = get_auction_engine()
-        auction_state = await engine.get_auction_state(auction_id)
+        # Add to connection manager
+        await connection_manager.add_connection(sid, user, auction_id)
         
-        if auction_state:
-            await sio.emit('auction_state', auction_state, room=sid)
+        # Get and send state snapshot
+        snapshot = await StateSnapshot.get_auction_snapshot(auction_id, user.id)
+        await sio.emit('auction_snapshot', snapshot, to=sid)
         
-        # Notify room of new participant
-        await sio.emit('user_joined', {
-            "user": {
-                "id": user.id,
-                "display_name": user.display_name
-            }
-        }, room=f"auction_{auction_id}", skip_sid=sid)
+        # Send current presence list
+        present_users = connection_manager.get_auction_users(auction_id)
+        await sio.emit('presence_list', {'users': present_users}, to=sid)
         
         logger.info(f"User {user.display_name} joined auction {auction_id}")
         
-        return {"success": True}
-        
     except Exception as e:
-        logger.error(f"Join auction error: {e}")
-        return {"success": False, "error": str(e)}
+        logger.error(f"Join auction error for {sid}: {e}")
+        await sio.emit('error', {'message': 'Failed to join auction'}, to=sid)
 
 @sio.event
 async def leave_auction(sid, data):
