@@ -131,6 +131,9 @@ class AuctionEngine:
                 }
             }
             
+            # Start time synchronization
+            await self.start_time_sync(auction_id)
+            
             # Start first lot
             await self._start_next_lot(auction_id)
             
