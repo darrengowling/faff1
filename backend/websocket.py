@@ -1,7 +1,7 @@
 import socketio
 import jwt
 import logging
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 from datetime import datetime, timezone
 
 from models import UserResponse
