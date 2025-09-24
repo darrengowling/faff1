@@ -312,9 +312,206 @@ const AuctionRoom = ({ user, token }) => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // Get server-synchronized time
-  const getServerTime = () => {
-    return Date.now() + serverTimeOffset;
+  // Connection management functions
+  const getReconnectDelay = (attempts) => {
+    // Exponential backoff: 1s → 2s → 4s → 8s → 10s (max)
+    const delay = Math.min(1000 * Math.pow(2, attempts), 10000);
+    return delay + Math.random() * 1000; // Add jitter
+  };
+
+  const connectWebSocket = useCallback(async () => {
+    if (socket) {
+      socket.close();
+    }
+
+    try {
+      setConnectionStatus('connecting');
+      
+      const newSocket = io(API.replace('/api', ''), {
+        auth: { token },
+        transports: ['websocket'],
+        timeout: 10000,
+        forceNew: true
+      });
+
+      // Connection status events
+      newSocket.on('connect', () => {
+        console.log('WebSocket connected');
+        setConnected(true);
+        setConnectionStatus('connected');
+        setReconnectAttempts(0);
+        
+        // Join auction room
+        newSocket.emit('join_auction', { auction_id: auctionId });
+      });
+
+      newSocket.on('disconnect', (reason) => {
+        console.log('WebSocket disconnected:', reason);
+        setConnected(false);
+        
+        if (reason === 'io server disconnect') {
+          // Server initiated disconnect, don't reconnect
+          setConnectionStatus('offline');
+        } else {
+          // Client-side disconnect, attempt reconnect
+          setConnectionStatus('reconnecting');
+          attemptReconnect();
+        }
+      });
+
+      newSocket.on('connect_error', (error) => {
+        console.log('WebSocket connection error:', error);
+        setConnected(false);
+        setConnectionStatus('reconnecting');
+        attemptReconnect();
+      });
+
+      // Enhanced connection status handler
+      newSocket.on('connection_status', (data) => {
+        console.log('Connection status:', data);
+        if (data.status === 'connected') {
+          setConnectionStatus('connected');
+        } else if (data.status === 'auth_failed') {
+          setConnectionStatus('offline');
+          toast.error('Authentication failed. Please refresh and log in again.');
+        }
+      });
+
+      // Auction state snapshot handler
+      newSocket.on('auction_snapshot', (snapshot) => {
+        console.log('Received auction snapshot:', snapshot);
+        restoreStateFromSnapshot(snapshot);
+      });
+
+      // Presence tracking handlers
+      newSocket.on('presence_list', (data) => {
+        setPresentUsers(data.users || []);
+        const presenceMap = {};
+        data.users?.forEach(user => {
+          presenceMap[user.user_id] = user.status;
+        });
+        setUserPresence(presenceMap);
+      });
+
+      newSocket.on('user_presence', (data) => {
+        setUserPresence(prev => ({
+          ...prev,
+          [data.user_id]: data.status
+        }));
+        
+        if (data.status === 'online') {
+          toast.info(`${data.display_name} joined the auction`);
+        } else if (data.status === 'offline') {
+          toast.info(`${data.display_name} left the auction`);
+        }
+      });
+
+      // Heartbeat system
+      const heartbeatInterval = setInterval(() => {
+        if (newSocket.connected) {
+          newSocket.emit('heartbeat', { timestamp: Date.now() });
+        }
+      }, 30000); // Every 30 seconds
+
+      newSocket.on('heartbeat_ack', (data) => {
+        // Update server time offset
+        const serverTime = new Date(data.server_time).getTime();
+        const clientTime = Date.now();
+        const offset = serverTime - clientTime;
+        
+        if (Math.abs(offset - serverTimeOffset) > 150) {
+          setServerTimeOffset(offset);
+        }
+      });
+
+      // Store cleanup function
+      newSocket._cleanup = () => {
+        clearInterval(heartbeatInterval);
+      };
+
+      setSocket(newSocket);
+      return newSocket;
+
+    } catch (error) {
+      console.error('Failed to create WebSocket:', error);
+      setConnectionStatus('offline');
+      return null;
+    }
+  }, [token, auctionId, API]);
+
+  const attemptReconnect = useCallback(() => {
+    if (reconnectAttempts >= maxReconnectAttempts) {
+      setConnectionStatus('offline');
+      toast.error('Connection lost. Please refresh the page.');
+      return;
+    }
+
+    const delay = getReconnectDelay(reconnectAttempts);
+    console.log(`Reconnecting in ${delay}ms (attempt ${reconnectAttempts + 1}/${maxReconnectAttempts})`);
+    
+    setTimeout(() => {
+      setReconnectAttempts(prev => prev + 1);
+      connectWebSocket();
+    }, delay);
+  }, [reconnectAttempts, maxReconnectAttempts, connectWebSocket]);
+
+  const restoreStateFromSnapshot = (snapshot) => {
+    try {
+      if (snapshot.error) {
+        toast.error(`State sync failed: ${snapshot.error}`);
+        return;
+      }
+
+      // Restore auction state
+      if (snapshot.auction) {
+        setAuctionState(snapshot.auction);
+        setAuctionStatus(snapshot.auction.status);
+      }
+
+      // Restore current lot
+      if (snapshot.current_lot) {
+        setCurrentLot(snapshot.current_lot);
+        
+        // Update timer if lot is active
+        if (snapshot.current_lot.timer_ends_at) {
+          const serverNow = Date.now() + serverTimeOffset;
+          const timerEndsAt = new Date(snapshot.current_lot.timer_ends_at).getTime();
+          const remaining = Math.max(0, Math.floor((timerEndsAt - serverNow) / 1000));
+          setTimeRemaining(remaining);
+        }
+      }
+
+      // Restore user state
+      if (snapshot.user_state) {
+        setUserBudget(snapshot.user_state.budget_remaining);
+        setUserSlots(snapshot.user_state.max_slots);
+      }
+
+      // Restore participants
+      if (snapshot.participants) {
+        setManagers(snapshot.participants);
+      }
+
+      // Restore presence
+      if (snapshot.presence) {
+        setPresentUsers(snapshot.presence);
+      }
+
+      // Update server time offset
+      if (snapshot.server_time) {
+        const serverTime = new Date(snapshot.server_time).getTime();
+        const clientTime = Date.now();
+        const offset = serverTime - clientTime;
+        setServerTimeOffset(offset);
+      }
+
+      console.log('State restored from snapshot');
+      toast.success('Connection restored');
+
+    } catch (error) {
+      console.error('Failed to restore state from snapshot:', error);
+      toast.error('Failed to sync auction state');
+    }
   };
 
   const getLotStatusColor = (status) => {
