@@ -301,21 +301,21 @@ async def connect(sid, environ, auth):
 
 @sio.event
 async def disconnect(sid):
-    """Handle client disconnection"""
+    """Handle client disconnection with presence cleanup"""
     try:
+        # Remove from connection manager
+        await connection_manager.remove_connection(sid)
+        
+        # Clean up session
         if sid in user_sessions:
-            user = user_sessions[sid]["user"]
-            
-            # Leave all auction rooms
-            for auction_id in user_sessions[sid]["joined_auctions"]:
-                await sio.leave_room(sid, f"auction_{auction_id}")
-            
-            # Clean up session
+            user = user_sessions[sid]['user']
+            logger.info(f"User {user.display_name} disconnected")
             del user_sessions[sid]
+        else:
+            logger.info(f"Client {sid} disconnected")
             
-            logger.info(f"User {user.display_name} disconnected (session {sid})")
     except Exception as e:
-        logger.error(f"Disconnect error: {e}")
+        logger.error(f"Disconnect error for {sid}: {e}")
 
 @sio.event 
 async def join_auction(sid, data):
