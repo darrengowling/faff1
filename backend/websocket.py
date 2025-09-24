@@ -370,6 +370,45 @@ async def join_auction(sid, data):
         await sio.emit('error', {'message': 'Failed to join auction'}, to=sid)
 
 @sio.event
+async def heartbeat(sid, data):
+    """Handle client heartbeat for presence tracking"""
+    try:
+        if sid in user_sessions:
+            await connection_manager.update_heartbeat(sid)
+            await sio.emit('heartbeat_ack', {
+                'server_time': datetime.now(timezone.utc).isoformat()
+            }, to=sid)
+    except Exception as e:
+        logger.error(f"Heartbeat error for {sid}: {e}")
+
+@sio.event
+async def request_snapshot(sid, data):
+    """Handle request for fresh state snapshot"""
+    try:
+        if sid not in user_sessions:
+            await sio.emit('error', {'message': 'Not authenticated'}, to=sid)
+            return
+        
+        auction_id = data.get('auction_id')
+        if not auction_id:
+            await sio.emit('error', {'message': 'Auction ID required'}, to=sid)
+            return
+        
+        user = user_sessions[sid]['user']
+        snapshot = await StateSnapshot.get_auction_snapshot(auction_id, user.id)
+        
+        # Validate snapshot before sending
+        if await StateSnapshot.validate_snapshot_integrity(snapshot):
+            await sio.emit('auction_snapshot', snapshot, to=sid)
+            logger.info(f"Sent snapshot to {user.display_name} for auction {auction_id}")
+        else:
+            await sio.emit('error', {'message': 'Invalid snapshot'}, to=sid)
+            
+    except Exception as e:
+        logger.error(f"Snapshot request error for {sid}: {e}")
+        await sio.emit('error', {'message': 'Failed to get snapshot'}, to=sid)
+
+@sio.event
 async def leave_auction(sid, data):
     """Leave auction room"""
     try:
