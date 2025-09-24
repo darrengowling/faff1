@@ -148,24 +148,69 @@ const Login = () => {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-gray-900">Check Your Email</CardTitle>
+            <CardTitle className="text-2xl font-bold text-gray-900">
+              {magicLink ? 'Magic Link Ready!' : 'Check Your Email'}
+            </CardTitle>
           </CardHeader>
           <CardContent className="text-center space-y-4">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <Mail className="w-8 h-8 text-green-600 mx-auto mb-2" />
-              <p className="text-green-800">
-                We've sent a magic link to <strong>{email}</strong>
-              </p>
-              <p className="text-sm text-green-600 mt-2">
-                Click the link to log in (check console in development)
-              </p>
-            </div>
+            {magicLink ? (
+              // Development mode - show magic link directly
+              <div className="space-y-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <Shield className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                  <p className="text-blue-800 mb-2">
+                    <strong>Development Mode</strong>
+                  </p>
+                  <p className="text-sm text-blue-600 mb-3">
+                    Click the button below to login instantly:
+                  </p>
+                  <Button
+                    onClick={() => window.location.href = magicLink}
+                    className="w-full mb-3 touch-target"
+                    size="lg"
+                  >
+                    🚀 Login Now
+                  </Button>
+                  <div className="text-xs text-gray-500 border-t pt-3">
+                    <p>Or copy this link:</p>
+                    <div className="bg-gray-100 p-2 rounded text-xs break-all mt-1">
+                      {magicLink}
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        navigator.clipboard.writeText(magicLink);
+                        toast.success('Magic link copied to clipboard!');
+                      }}
+                      className="mt-2"
+                    >
+                      📋 Copy Link
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              // Production mode - email sent
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <Mail className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                <p className="text-green-800">
+                  We've sent a magic link to <strong>{email}</strong>
+                </p>
+                <p className="text-sm text-green-600 mt-2">
+                  Click the link in your email to log in
+                </p>
+              </div>
+            )}
             <Button
               variant="outline"
-              onClick={() => setLinkSent(false)}
+              onClick={() => {
+                setLinkSent(false);
+                setMagicLink(null);
+              }}
               className="w-full"
             >
-              Send Another Link
+              ← Send Another Link
             </Button>
           </CardContent>
         </Card>
