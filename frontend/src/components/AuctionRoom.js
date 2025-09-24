@@ -107,6 +107,37 @@ const AuctionRoom = ({ user, token }) => {
       }
     });
 
+    // Server time synchronization
+    newSocket.on('time_sync', (data) => {
+      const clientReceiveTime = Date.now();
+      const serverTime = new Date(data.server_now).getTime();
+      
+      // Calculate round-trip time and offset
+      const roundTripTime = clientReceiveTime - (lastServerTime || clientReceiveTime);
+      const estimatedServerTime = serverTime + (roundTripTime / 2);
+      const offset = estimatedServerTime - clientReceiveTime;
+      
+      // Update offset only if drift is significant (>150ms)
+      if (Math.abs(offset - serverTimeOffset) > 150) {
+        setServerTimeOffset(offset);
+        console.log('Time sync updated - offset:', offset, 'ms');
+      }
+      
+      setLastServerTime(clientReceiveTime);
+      
+      // Update current lot timer if provided
+      if (data.current_lot && data.current_lot.timer_ends_at) {
+        const serverNow = clientReceiveTime + serverTimeOffset;
+        const timerEndsAt = new Date(data.current_lot.timer_ends_at).getTime();
+        const remaining = Math.max(0, Math.floor((timerEndsAt - serverNow) / 1000));
+        
+        // Only update if significant difference to prevent jitter
+        if (Math.abs(remaining - timeRemaining) > 1) {
+          setTimeRemaining(remaining);
+        }
+      }
+    });
+
     newSocket.on('lot_update', (data) => {
       console.log('Lot update:', data);
       setCurrentLot(data.lot);
