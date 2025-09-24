@@ -42,13 +42,20 @@ const AuctionRoom = ({ user, token }) => {
   const { auctionId } = useParams();
   const navigate = useNavigate();
   
-  // WebSocket connection
+  // WebSocket connection with reconnect logic
   const [socket, setSocket] = useState(null);
   const [connected, setConnected] = useState(false);
+  const [connectionStatus, setConnectionStatus] = useState('connecting'); // 'connecting', 'connected', 'reconnecting', 'offline'
+  const [reconnectAttempts, setReconnectAttempts] = useState(0);
+  const [maxReconnectAttempts] = useState(10);
   
   // Server time synchronization state
   const [serverTimeOffset, setServerTimeOffset] = useState(0);
   const [lastServerTime, setLastServerTime] = useState(null);
+  
+  // Presence tracking
+  const [presentUsers, setPresentUsers] = useState([]);
+  const [userPresence, setUserPresence] = useState({});
   
   // Auction state
   const [auctionState, setAuctionState] = useState(null);
