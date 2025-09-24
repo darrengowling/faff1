@@ -2373,6 +2373,16 @@ class UCLAuctionAPITester:
         self.test_websocket_bid_placement()
         self.test_chat_functionality()
         
+        # ==================== SERVER-AUTHORITATIVE TIMER TESTS ====================
+        print("\n⏰ SERVER-AUTHORITATIVE TIMER TESTS")
+        self.test_time_sync_endpoint()
+        self.test_time_sync_consistency()
+        self.test_websocket_time_sync_broadcasting()
+        self.test_server_authoritative_anti_snipe_logic()
+        self.test_timer_monotonicity_validation()
+        self.test_auction_engine_integration()
+        self.test_database_timer_operations()
+        
         # ==================== NEW AGGREGATION API TESTS ====================
         print("\n📊 AGGREGATION ENDPOINTS TESTS")
         self.test_aggregation_endpoints_comprehensive()
