@@ -132,6 +132,18 @@ backend:
         agent: "testing"
         comment: "✅ COMPREHENSIVE TESTING COMPLETED - All 4 aggregation endpoints working correctly: 1) /api/clubs/my-clubs/{league_id} returns proper user clubs with budget info and empty clubs list (expected for new league), 2) /api/fixtures/{league_id} returns proper fixture structure with grouped fixtures by competition stage and empty fixtures list (expected - no fixtures seeded), 3) /api/leaderboard/{league_id} returns proper leaderboard structure with empty leaderboard (expected - no scoring data), 4) /api/analytics/head-to-head/{league_id} returns proper comparison structure. All endpoints require authentication and league access as expected. Response structures match aggregation_service.py implementation. Minor: Some inconsistency in auth rejection (mix of 200/403 responses) but core functionality working correctly."
 
+  - task: "Server-Authoritative Timer with Client Drift Correction"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/auction_engine.py, /app/backend/server.py, /app/frontend/src/components/AuctionRoom.js, /app/test_timer_sync.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Implemented server-authoritative timer system: 1) Added /timez endpoint returning server time for client sync, 2) Enhanced AuctionEngine with time_sync_loop sending server timestamps every 2s via WebSocket, 3) Modified anti-snipe logic to use auction-specific anti_snipe_seconds from settings, 4) Updated client-side AuctionRoom.js with drift correction - computes server offset and reconciles if >150ms difference, 5) Timer calculations now use serverNow + (timerEndsAt - serverNow) pattern, 6) Only server can update timerEndsAt atomically, 7) Added unit tests for late bid with drift and anti-snipe forward-only extension, 8) Client uses server-synchronized time for countdown display. Maintains all auction rules, anti-snipe timing, and UI design invariants as requested."
+
   - task: "Mobile UX Optimizations and P2 Usability Improvements"
     implemented: true
     working: true
