@@ -150,11 +150,11 @@ const AuctionRoom = ({ user, token }) => {
         setBidAmount(auctionState?.settings?.min_increment || 1);
       }
       
-      // Calculate time remaining
+      // Calculate time remaining using server-authoritative timing
       if (data.lot.timer_ends_at) {
-        const endTime = new Date(data.lot.timer_ends_at);
-        const now = new Date();
-        const remaining = Math.max(0, Math.floor((endTime - now) / 1000));
+        const serverNow = Date.now() + serverTimeOffset;
+        const timerEndsAt = new Date(data.lot.timer_ends_at).getTime();
+        const remaining = Math.max(0, Math.floor((timerEndsAt - serverNow) / 1000));
         setTimeRemaining(remaining);
       }
     });
