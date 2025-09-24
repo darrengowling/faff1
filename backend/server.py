@@ -113,7 +113,16 @@ async def request_magic_link(request: MagicLinkRequest):
     token = create_magic_link_token(request.email)
     await send_magic_link_email(request.email, token)
     
-    return {"message": "Magic link sent to your email"}
+    # For development mode, return the magic link in the response
+    is_development = os.environ.get('NODE_ENV', 'development') == 'development' or not os.environ.get('SMTP_SERVER')
+    response = {"message": "Magic link sent to your email"}
+    
+    if is_development:
+        magic_link = f"http://localhost:3000/auth/verify?token={token}"
+        response["dev_magic_link"] = magic_link
+        response["message"] = "Magic link generated! (Development Mode - Check below)"
+    
+    return response
 
 @api_router.post("/auth/verify", response_model=AuthResponse)
 async def verify_magic_link(request: MagicLinkVerify):
