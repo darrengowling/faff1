@@ -245,6 +245,21 @@ const DiagnosticPage = () => {
           </CardContent>
         </Card>
 
+        {/* Polling-Only Banner */}
+        {actualTransport === 'polling' && connectionStatus === 'connected' && (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+            <div className="flex items-center">
+              <AlertCircle className="h-5 w-5 text-yellow-600 mr-2" />
+              <div>
+                <h4 className="text-yellow-800 font-medium">Polling-Only Connection</h4>
+                <p className="text-yellow-700 text-sm">
+                  WebSocket upgrade failed. Connection is using HTTP polling which may impact performance.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Connection Test */}
         <Card>
           <CardHeader>
@@ -261,6 +276,24 @@ const DiagnosticPage = () => {
                   Status: {connectionStatus.charAt(0).toUpperCase() + connectionStatus.slice(1)}
                 </span>
               </div>
+
+              {/* Session ID and Transport Info */}
+              {sessionId && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="font-medium text-gray-700">Session ID (SID):</label>
+                    <div className="bg-green-50 p-2 rounded font-mono text-sm text-green-800">
+                      {sessionId}
+                    </div>
+                  </div>
+                  <div>
+                    <label className="font-medium text-gray-700">Active Transport:</label>
+                    <div className="bg-blue-50 p-2 rounded font-mono text-sm text-blue-800">
+                      {actualTransport}
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {connectionDetails && (
                 <div className="bg-gray-50 p-4 rounded">
