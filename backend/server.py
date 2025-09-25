@@ -25,7 +25,7 @@ from scoring_service import ScoringService, get_scoring_worker
 from aggregation_service import AggregationService
 from admin_service import AdminService
 from audit_service import AuditService
-from competition_service import CompetitionService
+from lot_closing_service import LotClosingService
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
