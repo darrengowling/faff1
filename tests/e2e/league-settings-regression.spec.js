@@ -167,7 +167,7 @@ test.describe('League Settings Regression Tests', () => {
       const profiles = await profilesResponse.json();
       
       // Verify UCL profile structure includes clubSlots: 5
-      const uclProfile = profiles.profiles.find(p => p._id === 'ucl');
+      const uclProfile = profiles.profiles.find(p => p.id === 'ucl');  // Use 'id' not '_id'
       expect(uclProfile.defaults.club_slots).toBe(5);
       
       console.log('✅ API Contract Test: Competition profiles correctly define 5 club slots');
