@@ -105,7 +105,7 @@ export const translations = {
   leagueCreation: {
     createNewLeague: "Create New League",
     leagueName: "League Name",
-    leagueNamePlaceholder: "Champions League 2025-26",
+    leagueNamePlaceholder: "European Competition 2025-26",
     competitionTemplate: "Competition Template",
     templateDescription: "Choose a template to set default values. You can customize them below.",
     leagueSettings: "League Settings",
