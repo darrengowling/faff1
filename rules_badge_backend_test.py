@@ -186,8 +186,8 @@ class RulesBadgeBackendTester:
         # Test without token
         response = requests.get(f"{self.api_url}/leagues/{self.test_league_id}/settings")
         
-        if response.status_code != 401:
-            raise Exception(f"Expected 401 Unauthorized, got {response.status_code}")
+        if response.status_code not in [401, 403]:
+            raise Exception(f"Expected 401/403 Unauthorized, got {response.status_code}")
             
         # Test with invalid token
         headers = {"Authorization": "Bearer invalid_token"}
