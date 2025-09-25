@@ -344,7 +344,7 @@ export const translations = {
   // Auction Help
   auctionHelp: {
     howItWorks: "How it works",
-    auctionGuide: "🏆 UCL Auction Guide",
+    auctionGuide: "🏆 Football Auction Guide",
     timerSystem: "Timer System",
     timerDescription: "Each club has a bidding timer. New bids extend the timer to prevent sniping.",
     budgetManagement: "Budget Management", 
