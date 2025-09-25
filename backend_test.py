@@ -808,8 +808,8 @@ class UCLAuctionAPITester:
     # ==================== SOCKET.IO DIAGNOSTICS TESTS ====================
     
     def test_socketio_diagnostic_endpoint(self):
-        """Test GET /api/socketio/diag endpoint returns proper response with {ok: true, path, now}"""
-        success, status, data = self.make_request('GET', 'socketio/diag', token=None)  # No auth required
+        """Test GET /api/socketio-diag endpoint returns proper response with {ok: true, path, now}"""
+        success, status, data = self.make_request('GET', 'socketio-diag', token=None)  # No auth required
         
         # Verify response structure
         valid_response = (
@@ -835,11 +835,11 @@ class UCLAuctionAPITester:
             except:
                 timestamp_valid = False
         
-        # Verify path configuration
-        path_valid = data.get('path') == '/api/socket.io' if valid_response else False
+        # Verify path configuration - should be /api/socketio for new implementation
+        path_valid = data.get('path') == '/api/socketio' if valid_response else False
         
         return self.log_test(
-            "Socket.IO Diagnostic Endpoint (/api/socketio/diag)",
+            "Socket.IO Diagnostic Endpoint (/api/socketio-diag)",
             valid_response and timestamp_valid and path_valid,
             f"Status: {status}, Valid response: {valid_response}, Timestamp valid: {timestamp_valid}, Path: {data.get('path', 'N/A')}"
         )
