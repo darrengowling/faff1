@@ -52,7 +52,7 @@ const SimpleLandingPage = () => {
                 className="w-full sm:w-auto text-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all"
               >
                 <Trophy className="w-5 h-5 mr-2" />
-                Create a League
+                {t('branding.ctaButtons.createLeague')}
               </Button>
               <Button 
                 variant="outline" 
@@ -61,7 +61,7 @@ const SimpleLandingPage = () => {
                 className="w-full sm:w-auto text-lg px-8 py-4"
               >
                 <Users className="w-5 h-5 mr-2" />
-                Join with an Invite
+                {t('branding.ctaButtons.joinInvite')}
               </Button>
             </div>
           </div>
