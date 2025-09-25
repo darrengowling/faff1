@@ -86,7 +86,7 @@ class APIContractRegressionTester:
         # Find UCL profile
         ucl_profile = None
         for profile in profiles:
-            if profile.get('_id') == 'ucl':
+            if profile.get('id') == 'ucl':  # Use 'id' not '_id'
                 ucl_profile = profile
                 break
         
