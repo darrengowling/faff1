@@ -4,6 +4,25 @@
  */
 
 export const translations = {
+  // Brand messaging and key value propositions
+  branding: {
+    tagline: "Sports gaming with friends. No gambling. All strategy.",
+    subtag: "Join the social sports arena where skill beats luck.",
+    heroCaption: "No bets. No chance. Just you, the game, and bragging rights.",
+    heroTitle: "Football Auctions",
+    heroTitleAccent: "with Friends",
+    heroSubheading: "Create private football leagues, auction your dream teams, and compete for glory. Strategy meets friendship in the ultimate fantasy experience.",
+    valueProps: {
+      transparent: "Transparent scoring",
+      fairPlay: "Fair play by design",
+      realTime: "Compete with friends in real-time"
+    },
+    ctaButtons: {
+      createLeague: "Create a League",
+      joinInvite: "Join with an Invite"
+    }
+  },
+
   // Common/Generic terms
   common: {
     loading: "Loading...",
