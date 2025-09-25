@@ -23,6 +23,31 @@ export const translations = {
     }
   },
 
+  // Landing page sections
+  landing: {
+    howItWorks: {
+      title: "How It Works",
+      subtitle: "Three simple steps to start your football auction adventure",
+      steps: {
+        create: {
+          step: "Step 1",
+          title: "Create League", 
+          description: "Invite 2-8 friends to your private league. Set your budget, club slots, and competition format."
+        },
+        auction: {
+          step: "Step 2",
+          title: "Live Auction",
+          description: "Bid on your favorite football clubs in real-time. Anti-snipe protection ensures fair competition."
+        },
+        score: {
+          step: "Step 3", 
+          title: "Score from Results",
+          description: "Earn points from real match results. Goals, wins, and draws translate to leaderboard success."
+        }
+      }
+    }
+  },
+
   // Common/Generic terms
   common: {
     loading: "Loading...",
