@@ -7,6 +7,7 @@ Tests atomic bid processing, real-time WebSocket functionality, and auction stat
 import requests
 import sys
 import json
+import os
 from datetime import datetime, timezone
 import time
 import uuid
