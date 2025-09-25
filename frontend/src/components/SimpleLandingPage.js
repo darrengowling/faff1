@@ -30,19 +30,18 @@ const SimpleLandingPage = () => {
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Football Auctions
-              <span className="text-blue-600 block">with Friends</span>
+              {t('branding.heroTitle')}
+              <span className="text-blue-600 block">{t('branding.heroTitleAccent')}</span>
             </h1>
 
             {/* Caption */}
             <p className="text-xl sm:text-2xl text-gray-600 mb-4 max-w-3xl mx-auto font-light">
-              No bets. No chance. Just you, the game, and bragging rights.
+              {t('branding.heroCaption')}
             </p>
 
             {/* Subheadline */}
             <p className="text-lg text-gray-700 mb-10 max-w-2xl mx-auto">
-              Create private football leagues, auction your dream teams, and compete for glory. 
-              Strategy meets friendship in the ultimate fantasy experience.
+              {t('branding.heroSubheading')}
             </p>
 
             {/* CTAs */}
