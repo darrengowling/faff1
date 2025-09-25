@@ -96,10 +96,10 @@ const SimpleLandingPage = () => {
               <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Trophy className="w-8 h-8" />
               </div>
-              <div className="text-sm font-semibold text-blue-600 mb-2">Step 2</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Live Auction</h3>
+              <div className="text-sm font-semibold text-blue-600 mb-2">{t('landing.howItWorks.steps.auction.step')}</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">{t('landing.howItWorks.steps.auction.title')}</h3>
               <p className="text-gray-600">
-                Bid on your favorite football clubs in real-time. Anti-snipe protection ensures fair competition.
+                {t('landing.howItWorks.steps.auction.description')}
               </p>
             </div>
 
