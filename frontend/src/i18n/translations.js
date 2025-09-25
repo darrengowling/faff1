@@ -45,7 +45,7 @@ export const translations = {
 
   // Authentication
   auth: {
-    loginTitle: "UCL Auction",
+    loginTitle: "{{brandName}}", // Dynamic brand name
     loginSubtitle: "Enter your email to get started",
     sendMagicLink: "Send Magic Link",
     sending: "Sending...",
@@ -76,8 +76,8 @@ export const translations = {
     leaderboard: "Leaderboard",
     auction: "Auction",
     admin: "Admin",
-    uclAuction: "UCL Auction",
-    uclFixturesResults: "UCL Fixtures & Results",
+    appName: "{{brandName}}", // Dynamic brand name
+    uclFixturesResults: "{{brandName}} Fixtures & Results", // Dynamic
     backToDashboard: "Back to Dashboard",
     manageLeague: "Manage League",
     goToDashboard: "Go to Dashboard"
