@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   Trophy, Users, Shield, Clock, Target, Star, 
   Check, ArrowRight, Zap, Award, Eye, Heart, MessageCircle
@@ -14,6 +15,7 @@ import { BrandBadge } from './ui/brand-badge';
 
 const SimpleLandingPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen bg-white">
