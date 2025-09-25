@@ -414,12 +414,15 @@ const AuctionRoom = ({ user, token }) => {
       // Extract base URL from API URL (remove /api suffix if present)
       const baseUrl = apiOrigin.replace(/\/api$/, '');
       
+      // Socket.IO path for mounted sub-application (needs /socket.io suffix)
+      const fullSocketPath = `${socketPath}/socket.io`;
+      
       const newSocket = io(baseUrl, {
         auth: { token },
         transports: ['websocket', 'polling'],
         timeout: 10000,
         forceNew: true,
-        path: socketPath
+        path: fullSocketPath
       });
 
       // Connection status events
