@@ -200,7 +200,7 @@ class AdminServiceFallbackTester:
             "club_slots_per_manager": 6,  # Increase from 5
             "league_size": {
                 "min": 2,  # Keep minimum at 2 (new default)
-                "max": 10  # Increase maximum
+                "max": 8   # Keep maximum at 8 (constraint limit)
             }
         }
         
