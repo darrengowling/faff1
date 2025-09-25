@@ -1508,8 +1508,9 @@ function App() {
             } />
             <Route path="/diag" element={<DiagnosticPage />} />
             <Route path="/" element={<RootRoute />} />
-          </Routes>
-          <Toaster position="top-right" />
+            </Routes>
+            <Toaster position="top-right" />
+          </main>
         </div>
       </Router>
     </AuthProvider>
