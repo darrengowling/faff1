@@ -13,11 +13,13 @@ import { useTranslation } from 'react-i18next';
  * @param {string} className - Additional CSS classes
  */
 export const RulesBadge = ({ leagueSettings, loading = false, className = "" }) => {
+  const { t } = useTranslation();
+  
   if (loading || !leagueSettings) {
     return (
       <Badge variant="outline" className={`text-xs ${className}`}>
         <Info className="w-3 h-3 mr-1" />
-        Loading rules...
+        {t('rules.loading')}
       </Badge>
     );
   }
@@ -25,7 +27,10 @@ export const RulesBadge = ({ leagueSettings, loading = false, className = "" }) 
   const { clubSlots, budgetPerManager, leagueSize } = leagueSettings;
   
   // Format the rules text
-  const rulesText = `Slots: ${clubSlots} · Budget: ${budgetPerManager} · Min: ${leagueSize.min} · Max: ${leagueSize.max}`;
+  const rulesText = t('rules.slots', { slots: clubSlots }) + ' · ' + 
+                   t('rules.budget', { budget: budgetPerManager }) + ' · ' + 
+                   t('rules.min', { min: leagueSize.min }) + ' · ' + 
+                   t('rules.max', { max: leagueSize.max });
   
   return (
     <TooltipProvider>
@@ -33,17 +38,17 @@ export const RulesBadge = ({ leagueSettings, loading = false, className = "" }) 
         <TooltipTrigger asChild>
           <Badge variant="outline" className={`text-xs bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 cursor-help ${className}`}>
             <Info className="w-3 h-3 mr-1" />
-            Rules
+            {t('rules.rules')}
           </Badge>
         </TooltipTrigger>
         <TooltipContent side="bottom" className="max-w-xs">
           <div className="text-sm">
-            <div className="font-medium mb-1">League Rules</div>
+            <div className="font-medium mb-1">{t('rules.leagueRules')}</div>
             <div className="space-y-1 text-xs">
-              <div>• Club Slots per Manager: <strong>{clubSlots}</strong></div>
-              <div>• Budget per Manager: <strong>${budgetPerManager}M</strong></div>
-              <div>• Min Managers: <strong>{leagueSize.min}</strong></div>
-              <div>• Max Managers: <strong>{leagueSize.max}</strong></div>
+              <div>• {t('rules.clubSlotsPerManager', { slots: clubSlots })}</div>
+              <div>• {t('rules.budgetPerManager', { budget: budgetPerManager })}</div>
+              <div>• {t('rules.minManagers', { min: leagueSize.min })}</div>
+              <div>• {t('rules.maxManagers', { max: leagueSize.max })}</div>
             </div>
           </div>
         </TooltipContent>
