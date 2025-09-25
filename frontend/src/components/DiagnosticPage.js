@@ -53,7 +53,7 @@ const DiagnosticPage = () => {
   };
 
   const testConnection = async () => {
-    setIsesting(true);
+    setIsTesting(true);
     setConnectionStatus('testing');
     
     try {
