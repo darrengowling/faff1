@@ -230,7 +230,7 @@ const MyClubs = ({ user, token }) => {
               <div className="text-center p-4 bg-orange-50 rounded-lg">
                 <Star className="w-6 h-6 text-orange-600 mx-auto mb-2" aria-hidden="true" />
                 <div className="text-2xl font-bold text-orange-600">
-                  {budget_info.slots_available}
+                  {rosterSummary ? rosterSummary.remaining : '—'}
                 </div>
                 <div className="text-sm text-gray-600">Slots Available</div>
               </div>
