@@ -575,6 +575,14 @@ const AuctionRoom = ({ user, token }) => {
               </Badge>
             </div>
             <div className="flex items-center space-x-4">
+              {/* Connection Status */}
+              <ConnectionStatusIndicator 
+                status={connectionStatus}
+                reconnectAttempts={reconnectAttempts}
+                maxAttempts={maxReconnectAttempts}
+                className="mr-4"
+              />
+              
               {/* Help components for learnability */}
               <AuctionMechanicsHelp />
               <BiddingTips />
