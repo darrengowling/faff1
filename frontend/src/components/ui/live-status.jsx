@@ -228,16 +228,27 @@ export const BudgetStatus = ({
       <div className="flex justify-between items-center">
         <span className="text-sm text-gray-600">Club Slots</span>
         <div className="flex items-center space-x-2">
-          <span className="font-medium">{clubsOwned}/{clubsMax}</span>
-          {slotsRemaining > 0 && (
-            <Badge variant="outline" className="text-xs">
-              {slotsRemaining} available
-            </Badge>
-          )}
-          {slotsRemaining === 0 && (
-            <Badge variant="outline" className="text-xs bg-red-50 text-red-700 border-red-200">
-              Full
-            </Badge>
+          {isLoading ? (
+            <div className="flex items-center space-x-2">
+              <span className="font-medium">—/—</span>
+              <Badge variant="outline" className="text-xs">
+                — available
+              </Badge>
+            </div>
+          ) : (
+            <>
+              <span className="font-medium">{clubsOwned}/{clubsMax}</span>
+              {slotsRemaining > 0 && (
+                <Badge variant="outline" className="text-xs">
+                  {slotsRemaining} available
+                </Badge>
+              )}
+              {slotsRemaining === 0 && (
+                <Badge variant="outline" className="text-xs bg-red-50 text-red-700 border-red-200">
+                  Full
+                </Badge>
+              )}
+            </>
           )}
         </div>
       </div>
