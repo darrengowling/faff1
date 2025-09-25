@@ -17,8 +17,8 @@ const getBrandName = () => {
 export const brandConfig = {
   name: getBrandName(),
   shortName: 'PIFA',
-  tagline: 'Football Auctions with Friends',
-  description: 'Create and manage football club auctions with your friends in the most exciting competitions.',
+  tagline: 'Sports gaming with friends. No gambling. All strategy.',
+  description: 'Join the social sports arena where skill beats luck.',
   
   colors: {
     primary: '#2563eb', // Blue-600
