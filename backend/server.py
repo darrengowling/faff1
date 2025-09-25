@@ -882,7 +882,7 @@ async def get_league_settings(
         membership = await db.memberships.find_one({
             "league_id": league_id,
             "user_id": current_user.id,
-            "status": "accepted"
+            "status": {"$in": ["accepted", "active"]}
         })
         if not membership:
             raise HTTPException(status_code=403, detail="Not a member of this league")
