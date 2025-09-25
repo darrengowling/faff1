@@ -131,10 +131,10 @@ const MyClubs = ({ user, token }) => {
               </svg>
             </div>
           )}
-          title="Failed to Load"
+          title={t('errors.failedToLoad')}
           description={error}
           action={fetchMyClubs}
-          actionLabel="Try Again"
+          actionLabel={t('errors.tryAgain')}
         />
       </div>
     );
