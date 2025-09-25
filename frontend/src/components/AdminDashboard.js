@@ -855,8 +855,8 @@ const AdminDashboard = ({ user, token }) => {
                             </div>
                           </TooltipTrigger>
                           <TooltipContent>
-                            {members.length < (leagueSettings?.leagueSize?.min || league.settings.league_size?.min || 4) 
-                              ? `Need at least ${leagueSettings?.leagueSize?.min || league.settings.league_size?.min || 4} managers to start auction (currently have ${members.length})`
+                            {members.length < (leagueSettings?.leagueSize?.min || league.settings.league_size?.min || 2) 
+                              ? `Need at least ${leagueSettings?.leagueSize?.min || league.settings.league_size?.min || 2} managers to start auction (currently have ${members.length})`
                               : "Ready to start the auction"
                             }
                           </TooltipContent>
