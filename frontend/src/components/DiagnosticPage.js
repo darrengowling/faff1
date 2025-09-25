@@ -83,6 +83,8 @@ const DiagnosticPage = () => {
       socket.on('connect', () => {
         console.log('Diagnostic: Socket connected');
         setConnectionStatus('connected');
+        setSessionId(socket.id);
+        setActualTransport(socket.io.engine.transport.name);
         setConnectionDetails({
           socketId: socket.id,
           transport: socket.io.engine.transport.name,
@@ -94,6 +96,8 @@ const DiagnosticPage = () => {
       socket.on('connect_error', (error) => {
         console.log('Diagnostic: Socket connection error:', error);
         setConnectionStatus('error');
+        setSessionId(null);
+        setActualTransport(null);
         setConnectionDetails({
           error: error.message,
           errorAt: new Date().toISOString()
