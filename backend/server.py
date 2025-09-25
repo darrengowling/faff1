@@ -1138,15 +1138,15 @@ async def get_version():
         "environment": os.getenv("ENVIRONMENT", "development")
     }
 
-# Mount Socket.IO BEFORE including API router to avoid path conflicts
-from socket_handler import sio
+# Mount Socket.IO at /api/socketio to route through API prefix without conflicts
+from socket_handler import sio  
 import socketio
 
-# Create Socket.IO ASGI app and mount at /socketio (avoiding /api conflict)
+# Create Socket.IO ASGI app and mount at /api/socketio
 socketio_asgi = socketio.ASGIApp(sio)
-app.mount("/socketio", socketio_asgi)
+app.mount("/api/socketio", socketio_asgi)
 
-# Include the router in the main app (AFTER mounting Socket.IO)
+# Include the router in the main app (API routes won't conflict with /api/socketio)
 app.include_router(api_router)
 
 if __name__ == "__main__":
