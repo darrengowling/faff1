@@ -88,7 +88,7 @@ class SocketIODiagnosticsTester:
         return self.log_test(
             "Diagnostic Endpoint (/api/socketio/diag)",
             valid_response and timestamp_valid and path_valid,
-            f"Status: {status}, Response: {data}, Timestamp valid: {timestamp_valid}, Path: {data.get('path', 'N/A')}"
+            f"Status: {status}, Valid response: {valid_response}, Timestamp valid: {timestamp_valid}, Path: {data.get('path', 'N/A') if isinstance(data, dict) else 'N/A'}"
         )
     
     def test_cli_test_script_exists(self):
