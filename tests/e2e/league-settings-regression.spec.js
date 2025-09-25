@@ -92,7 +92,7 @@ test.describe('League Settings Regression Tests', () => {
       expect(profiles).toHaveProperty('profiles');
       
       // Find UCL profile and verify it has min=2, max=8 settings
-      const uclProfile = profiles.profiles.find(p => p._id === 'ucl');
+      const uclProfile = profiles.profiles.find(p => p.id === 'ucl');  // Use 'id' not '_id'
       expect(uclProfile).toBeDefined();
       expect(uclProfile.defaults.league_size.min).toBe(2);
       expect(uclProfile.defaults.league_size.max).toBe(8);
