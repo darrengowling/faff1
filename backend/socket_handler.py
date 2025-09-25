@@ -119,7 +119,7 @@ logger = logging.getLogger(__name__)
 SOCKET_PATH = os.getenv('SOCKET_PATH', '/api/socket.io')
 FRONTEND_ORIGIN = os.getenv('FRONTEND_ORIGIN', 'https://ucl-auction-1.preview.emergentagent.com')
 
-# Create Socket.IO server with CORS configuration (path handled by FastAPI mounting)
+# Create Socket.IO server with CORS configuration (integrated via ASGIApp overlay)
 sio = socketio.AsyncServer(
     cors_allowed_origins=FRONTEND_ORIGIN,
     logger=logging.getLogger('socketio'),
