@@ -12,7 +12,7 @@ import os
 from datetime import datetime, timezone
 
 class SocketIODiagnosticsTester:
-    def __init__(self, base_url="https://realtime-socket-fix.preview.emergentagent.com"):
+    def __init__(self, base_url="https://champion-bid-portal.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.tests_run = 0

@@ -419,7 +419,7 @@ const AuctionRoom = ({ user, token }) => {
                      process.env.NEXT_PUBLIC_API_URL ||
                      (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_PUBLIC_API_URL) ||
                      process.env.REACT_APP_API_ORIGIN ||
-                     'https://realtime-socket-fix.preview.emergentagent.com';
+                     'https://champion-bid-portal.preview.emergentagent.com';
                        
       const path = (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_SOCKET_PATH) ||
                    process.env.NEXT_PUBLIC_SOCKET_PATH ||

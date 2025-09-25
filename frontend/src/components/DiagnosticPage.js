@@ -46,7 +46,7 @@ const DiagnosticPage = () => {
     origin: config.viteApiUrl !== 'Not set' ? config.viteApiUrl :
             config.nextApiUrl !== 'Not set' ? config.nextApiUrl :
             config.reactApiOrigin !== 'Not set' ? config.reactApiOrigin :
-            'https://realtime-socket-fix.preview.emergentagent.com',
+            'https://champion-bid-portal.preview.emergentagent.com',
                
     path: config.viteSocketPath !== 'Not set' ? config.viteSocketPath :
           config.nextSocketPath !== 'Not set' ? config.nextSocketPath :

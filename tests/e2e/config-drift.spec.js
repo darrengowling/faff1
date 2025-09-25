@@ -8,7 +8,7 @@
 const { test, expect } = require('@playwright/test');
 
 // Use baseURL from config
-const BASE_URL = process.env.FRONTEND_URL || 'https://realtime-socket-fix.preview.emergentagent.com';
+const BASE_URL = process.env.FRONTEND_URL || 'https://champion-bid-portal.preview.emergentagent.com';
 
 test.describe('Config Drift Prevention', () => {
   

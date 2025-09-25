@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 import time
 
 class RulesBadgeBackendTester:
-    def __init__(self, base_url="https://realtime-socket-fix.preview.emergentagent.com"):
+    def __init__(self, base_url="https://champion-bid-portal.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.commissioner_token = None

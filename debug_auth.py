@@ -7,7 +7,7 @@ import requests
 import json
 
 def test_auth_system():
-    base_url = "https://realtime-socket-fix.preview.emergentagent.com"
+    base_url = "https://champion-bid-portal.preview.emergentagent.com"
     api_url = f"{base_url}/api"
     
     # Test known protected endpoint
