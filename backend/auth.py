@@ -70,7 +70,7 @@ def verify_magic_link_token(token: str) -> Optional[str]:
 
 async def send_magic_link_email(email: str, token: str):
     """Send magic link email (for development, we'll just log it)"""
-    frontend_url = os.getenv("FRONTEND_URL", "https://champion-bid-portal.preview.emergentagent.com")
+    frontend_url = os.getenv("FRONTEND_URL", "https://pifa-friends.preview.emergentagent.com")
     magic_link = f"{frontend_url}/auth/verify?token={token}"
     
     # For development, just log the magic link

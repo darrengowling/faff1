@@ -11,7 +11,7 @@ test.describe('League Settings Regression Tests', () => {
   
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
-    apiUrl = process.env.REACT_APP_BACKEND_URL || 'https://champion-bid-portal.preview.emergentagent.com';
+    apiUrl = process.env.REACT_APP_BACKEND_URL || 'https://pifa-friends.preview.emergentagent.com';
   });
 
   test.describe('Min=2 Gate: Start Auction Button Logic', () => {
