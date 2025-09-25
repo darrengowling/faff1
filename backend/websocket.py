@@ -1,6 +1,7 @@
 import socketio
 import jwt
 import logging
+import os
 from typing import Dict, Optional, List
 from datetime import datetime, timezone
 
