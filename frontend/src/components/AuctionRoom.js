@@ -813,6 +813,11 @@ const AuctionRoom = ({ user, token }) => {
                   {managers.map((manager) => (
                     <div key={manager.user_id} className="flex items-center justify-between p-2 bg-gray-700 rounded">
                       <div className="flex items-center space-x-2">
+                        <PresenceIndicator 
+                          status={userPresence[manager.user_id] || 'offline'}
+                          showName={false}
+                          className="mr-1"
+                        />
                         <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
                           <span className="text-xs text-white font-bold">
                             {manager.display_name[0].toUpperCase()}
