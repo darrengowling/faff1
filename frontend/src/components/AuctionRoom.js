@@ -407,11 +407,19 @@ const AuctionRoom = ({ user, token }) => {
     try {
       setConnectionStatus('connecting');
       
-      const newSocket = io(process.env.REACT_APP_BACKEND_URL.replace('/api', ''), {
+      // Get Socket.IO configuration from environment
+      const apiOrigin = process.env.REACT_APP_BACKEND_URL || 'https://ucl-auction-1.preview.emergentagent.com/api';
+      const socketPath = process.env.REACT_APP_SOCKET_PATH || '/api/socket.io';
+      
+      // Extract base URL from API URL (remove /api suffix if present)
+      const baseUrl = apiOrigin.replace(/\/api$/, '');
+      
+      const newSocket = io(baseUrl, {
         auth: { token },
-        transports: ['websocket'],
+        transports: ['websocket', 'polling'],
         timeout: 10000,
-        forceNew: true
+        forceNew: true,
+        path: socketPath
       });
 
       // Connection status events
