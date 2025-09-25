@@ -18,20 +18,20 @@ const DiagnosticPage = () => {
 
   // Get environment configuration
   const config = {
-    // React
-    apiOrigin: process.env.REACT_APP_API_ORIGIN || 'Not set',
-    backendUrl: process.env.REACT_APP_BACKEND_URL || 'Not set',
-    socketPath: process.env.REACT_APP_SOCKET_PATH || 'Not set',
+    // React (legacy)
+    reactApiOrigin: process.env.REACT_APP_API_ORIGIN || 'Not set',
+    reactBackendUrl: process.env.REACT_APP_BACKEND_URL || 'Not set',
+    reactSocketPath: process.env.REACT_APP_SOCKET_PATH || 'Not set',
     
-    // Next.js fallbacks
-    nextApiOrigin: process.env.NEXT_PUBLIC_API_ORIGIN || 'Not set',
-    nextApiUrl: process.env.NEXT_PUBLIC_API_URL || 'Not set', 
+    // Cross-origin pattern (Next.js)
+    nextApiUrl: process.env.NEXT_PUBLIC_API_URL || 'Not set',
     nextSocketPath: process.env.NEXT_PUBLIC_SOCKET_PATH || 'Not set',
+    nextSocketTransports: process.env.NEXT_PUBLIC_SOCKET_TRANSPORTS || 'Not set',
     
-    // Vite fallbacks
-    viteApiOrigin: process.env.VITE_API_ORIGIN || 'Not set',
-    viteApiUrl: process.env.VITE_PUBLIC_API_URL || 'Not set',
-    viteSocketPath: process.env.VITE_SOCKET_PATH || 'Not set',
+    // Cross-origin pattern (Vite)
+    viteApiUrl: (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_PUBLIC_API_URL) || 'Not set',
+    viteSocketPath: (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_SOCKET_PATH) || 'Not set',
+    viteSocketTransports: (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_SOCKET_TRANSPORTS) || 'Not set',
     
     // Window/browser info
     windowOrigin: window.location.origin,
@@ -39,17 +39,20 @@ const DiagnosticPage = () => {
     timestamp: new Date().toISOString()
   };
 
-  // Get active configuration (what would actually be used)
+  // Get active configuration using cross-origin pattern
   const activeConfig = {
-    apiOrigin: config.apiOrigin !== 'Not set' ? config.apiOrigin : 
-               config.nextApiOrigin !== 'Not set' ? config.nextApiOrigin :
-               config.viteApiOrigin !== 'Not set' ? config.viteApiOrigin :
-               'https://realtime-socket-fix.preview.emergentagent.com',
+    origin: config.viteApiUrl !== 'Not set' ? config.viteApiUrl :
+            config.nextApiUrl !== 'Not set' ? config.nextApiUrl :
+            config.reactApiOrigin !== 'Not set' ? config.reactApiOrigin :
+            'https://realtime-socket-fix.preview.emergentagent.com',
                
-    socketPath: config.socketPath !== 'Not set' ? config.socketPath :
-               config.nextSocketPath !== 'Not set' ? config.nextSocketPath :
-               config.viteSocketPath !== 'Not set' ? config.viteSocketPath :
-               '/api/socketio'
+    path: config.viteSocketPath !== 'Not set' ? config.viteSocketPath :
+          config.nextSocketPath !== 'Not set' ? config.nextSocketPath :
+          '/api/socketio',
+          
+    transports: (config.viteSocketTransports !== 'Not set' ? config.viteSocketTransports :
+                config.nextSocketTransports !== 'Not set' ? config.nextSocketTransports :
+                'polling,websocket').split(',')
   };
 
   const testConnection = async () => {
