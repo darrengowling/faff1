@@ -1422,6 +1422,257 @@ class UCLAuctionAPITester:
         except Exception as e:
             return self.log_test("Socket Path Consistency", False, f"Exception: {str(e)}")
 
+    # ==================== SERVER-COMPUTED ROSTER SUMMARY TESTS ====================
+    
+    def test_roster_summary_endpoint_structure(self):
+        """Test GET /api/leagues/{league_id}/roster/summary endpoint returns proper JSON structure"""
+        if not self.test_league_id:
+            return self.log_test("Roster Summary Endpoint Structure", False, "No test league ID")
+        
+        success, status, data = self.make_request('GET', f'leagues/{self.test_league_id}/roster/summary')
+        
+        # Verify response structure
+        valid_response = (
+            success and
+            isinstance(data, dict) and
+            'ownedCount' in data and
+            'clubSlots' in data and
+            'remaining' in data and
+            isinstance(data['ownedCount'], int) and
+            isinstance(data['clubSlots'], int) and
+            isinstance(data['remaining'], int)
+        )
+        
+        # Verify calculation logic: remaining = clubSlots - ownedCount
+        calculation_correct = False
+        if valid_response:
+            expected_remaining = max(0, data['clubSlots'] - data['ownedCount'])
+            calculation_correct = data['remaining'] == expected_remaining
+        
+        return self.log_test(
+            "Roster Summary Endpoint Structure",
+            valid_response and calculation_correct,
+            f"Status: {status}, Valid structure: {valid_response}, Calculation correct: {calculation_correct}, Data: {data if success else 'N/A'}"
+        )
+    
+    def test_roster_summary_authentication_required(self):
+        """Test roster summary endpoint requires authentication"""
+        if not self.test_league_id:
+            return self.log_test("Roster Summary Authentication", False, "No test league ID")
+        
+        # Test without token
+        success, status, data = self.make_request(
+            'GET', 
+            f'leagues/{self.test_league_id}/roster/summary',
+            token=None,
+            expected_status=401
+        )
+        
+        auth_required = success and status == 401
+        
+        return self.log_test(
+            "Roster Summary Authentication Required",
+            auth_required,
+            f"Status: {status}, Auth required: {auth_required}"
+        )
+    
+    def test_roster_summary_league_access_control(self):
+        """Test roster summary endpoint requires league access"""
+        if not self.test_league_id:
+            return self.log_test("Roster Summary League Access", False, "No test league ID")
+        
+        # Test with valid token but for current league (should work)
+        success, status, data = self.make_request('GET', f'leagues/{self.test_league_id}/roster/summary')
+        
+        access_granted = success and status == 200
+        
+        # Test with invalid league ID (should fail)
+        fake_league_id = "invalid_league_id_12345"
+        success2, status2, data2 = self.make_request(
+            'GET', 
+            f'leagues/{fake_league_id}/roster/summary',
+            expected_status=403
+        )
+        
+        access_denied = success2 and (status2 == 403 or status2 == 404)
+        
+        return self.log_test(
+            "Roster Summary League Access Control",
+            access_granted and access_denied,
+            f"Valid league access: {access_granted}, Invalid league denied: {access_denied}"
+        )
+    
+    def test_roster_summary_user_id_parameter(self):
+        """Test roster summary endpoint with optional userId parameter"""
+        if not self.test_league_id:
+            return self.log_test("Roster Summary UserId Parameter", False, "No test league ID")
+        
+        # Test without userId (should default to current user)
+        success1, status1, data1 = self.make_request('GET', f'leagues/{self.test_league_id}/roster/summary')
+        
+        # Test with explicit userId (using current user's ID)
+        if success1 and self.user_data:
+            user_id = self.user_data.get('id')
+            success2, status2, data2 = self.make_request('GET', f'leagues/{self.test_league_id}/roster/summary?userId={user_id}')
+            
+            # Both should return same data since it's the same user
+            same_data = (
+                success1 and success2 and
+                data1.get('ownedCount') == data2.get('ownedCount') and
+                data1.get('clubSlots') == data2.get('clubSlots') and
+                data1.get('remaining') == data2.get('remaining')
+            )
+            
+            return self.log_test(
+                "Roster Summary UserId Parameter",
+                same_data,
+                f"Default user data matches explicit userId: {same_data}"
+            )
+        else:
+            return self.log_test(
+                "Roster Summary UserId Parameter",
+                success1,
+                f"Basic endpoint works: {success1}, Status: {status1}"
+            )
+    
+    def test_roster_summary_server_side_calculation(self):
+        """Test that roster summary calculations are performed server-side from database"""
+        if not self.test_league_id:
+            return self.log_test("Roster Summary Server Calculation", False, "No test league ID")
+        
+        # Get roster summary
+        success, status, roster_data = self.make_request('GET', f'leagues/{self.test_league_id}/roster/summary')
+        
+        if not success:
+            return self.log_test("Roster Summary Server Calculation", False, f"Failed to get roster summary: {status}")
+        
+        # Get league settings to verify club slots
+        success2, status2, league_data = self.make_request('GET', f'leagues/{self.test_league_id}')
+        
+        if not success2:
+            return self.log_test("Roster Summary Server Calculation", False, f"Failed to get league data: {status2}")
+        
+        # Verify club slots match league settings
+        league_club_slots = league_data.get('settings', {}).get('club_slots_per_manager', 0)
+        roster_club_slots = roster_data.get('clubSlots', 0)
+        
+        club_slots_match = league_club_slots == roster_club_slots
+        
+        # Verify owned count is non-negative integer
+        owned_count = roster_data.get('ownedCount', -1)
+        owned_count_valid = isinstance(owned_count, int) and owned_count >= 0
+        
+        # Verify remaining calculation
+        remaining = roster_data.get('remaining', -1)
+        expected_remaining = max(0, roster_club_slots - owned_count)
+        remaining_correct = remaining == expected_remaining
+        
+        server_calculation_valid = club_slots_match and owned_count_valid and remaining_correct
+        
+        return self.log_test(
+            "Roster Summary Server-Side Calculation",
+            server_calculation_valid,
+            f"Club slots match: {club_slots_match} ({league_club_slots}={roster_club_slots}), Owned count valid: {owned_count_valid} ({owned_count}), Remaining correct: {remaining_correct} ({remaining}={expected_remaining})"
+        )
+    
+    def test_roster_summary_different_league_settings(self):
+        """Test roster summary with different league settings (different club slots)"""
+        # Create a second league with different settings
+        league_data = {
+            "name": f"Test League Different Settings {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26",
+            "settings": {
+                "budget_per_manager": 150,
+                "min_increment": 1,
+                "club_slots_per_manager": 5,  # Different from default 3
+                "anti_snipe_seconds": 30,
+                "bid_timer_seconds": 60,
+                "max_managers": 6,
+                "min_managers": 2,
+                "scoring_rules": {
+                    "club_goal": 1,
+                    "club_win": 3,
+                    "club_draw": 1
+                }
+            }
+        }
+        
+        success, status, data = self.make_request('POST', 'leagues', league_data)
+        
+        if not success or 'id' not in data:
+            return self.log_test(
+                "Roster Summary Different League Settings",
+                False,
+                f"Failed to create test league: {status}"
+            )
+        
+        test_league_id_custom = data['id']
+        
+        # Get roster summary for new league
+        success2, status2, roster_data = self.make_request('GET', f'leagues/{test_league_id_custom}/roster/summary')
+        
+        if not success2:
+            return self.log_test(
+                "Roster Summary Different League Settings",
+                False,
+                f"Failed to get roster summary: {status2}"
+            )
+        
+        # Verify club slots reflect the custom setting
+        club_slots = roster_data.get('clubSlots', 0)
+        owned_count = roster_data.get('ownedCount', 0)
+        remaining = roster_data.get('remaining', 0)
+        
+        # Should have 5 club slots (custom setting)
+        correct_club_slots = club_slots == 5
+        # Should have 0 owned clubs (new league)
+        correct_owned_count = owned_count == 0
+        # Should have 5 remaining slots
+        correct_remaining = remaining == 5
+        
+        different_settings_work = correct_club_slots and correct_owned_count and correct_remaining
+        
+        return self.log_test(
+            "Roster Summary Different League Settings",
+            different_settings_work,
+            f"Club slots: {club_slots}/5, Owned: {owned_count}/0, Remaining: {remaining}/5, All correct: {different_settings_work}"
+        )
+    
+    def test_roster_summary_performance(self):
+        """Test roster summary endpoint performance and response time"""
+        if not self.test_league_id:
+            return self.log_test("Roster Summary Performance", False, "No test league ID")
+        
+        import time
+        
+        # Test multiple calls to measure performance
+        response_times = []
+        success_count = 0
+        
+        for i in range(5):
+            start_time = time.time()
+            success, status, data = self.make_request('GET', f'leagues/{self.test_league_id}/roster/summary')
+            end_time = time.time()
+            
+            response_time = (end_time - start_time) * 1000  # Convert to milliseconds
+            response_times.append(response_time)
+            
+            if success:
+                success_count += 1
+        
+        avg_response_time = sum(response_times) / len(response_times)
+        max_response_time = max(response_times)
+        all_successful = success_count == 5
+        
+        # Performance should be good (under 1000ms average, under 2000ms max)
+        good_performance = avg_response_time < 1000 and max_response_time < 2000
+        
+        return self.log_test(
+            "Roster Summary Performance",
+            all_successful and good_performance,
+            f"All successful: {all_successful} ({success_count}/5), Avg: {avg_response_time:.1f}ms, Max: {max_response_time:.1f}ms, Good performance: {good_performance}"
+        )
+
     # ==================== SERVER-AUTHORITATIVE TIMER TESTS ====================
     
     def test_time_sync_endpoint(self):
