@@ -185,33 +185,33 @@ const SimpleLandingPage = () => {
             {[
               {
                 icon: Users,
-                title: 'Private Leagues (2–8 Players)',
-                description: 'Perfect size for friend groups with customizable league settings'
+                title: t('landing.features.items.privateLeagues.title'),
+                description: t('landing.features.items.privateLeagues.description')
               },
               {
                 icon: Target,
-                title: 'Configurable Slots & Budgets',
-                description: 'Tailor your league with flexible team sizes and spending limits'
+                title: t('landing.features.items.configurable.title'),
+                description: t('landing.features.items.configurable.description')
               },
               {
                 icon: Clock,
-                title: 'Anti-Snipe Auction',
-                description: 'Fair bidding with automatic timer extensions for last-second bids'
+                title: t('landing.features.items.antiSnipe.title'),
+                description: t('landing.features.items.antiSnipe.description')
               },
               {
                 icon: Zap,
-                title: 'Real-Time Scoring',
-                description: 'Live updates from actual match results and instant point calculations'
+                title: t('landing.features.items.realTimeScoring.title'),
+                description: t('landing.features.items.realTimeScoring.description')
               },
               {
                 icon: Award,
-                title: 'Dynamic Leaderboards',
-                description: 'Track performance across matchdays with detailed statistics'
+                title: t('landing.features.items.leaderboards.title'),
+                description: t('landing.features.items.leaderboards.description')
               },
               {
                 icon: MessageCircle,
-                title: 'League Chat & Banter',
-                description: 'Built-in communication for trash talk and strategy discussions'
+                title: t('landing.features.items.communication.title'),
+                description: t('landing.features.items.communication.description')
               }
             ].map((feature, index) => (
               <div key={index} className="flex items-start space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-colors">
