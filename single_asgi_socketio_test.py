@@ -197,8 +197,8 @@ class SingleASGISocketIOTester:
         # Test Socket.IO route
         try:
             socketio_url = f"{self.base_url}/api/socketio/"
-            response = requests.get(socketio_url, params={'transport': 'polling'}, timeout=10)
-            socketio_works = response.status_code == 200 and ('sid' in response.text or 'socket.io' in response.text.lower())
+            response = requests.get(socketio_url, params={'transport': 'polling', 'EIO': '4'}, timeout=10)
+            socketio_works = response.status_code == 200 and ('sid' in response.text or 'upgrades' in response.text)
         except:
             socketio_works = False
         
