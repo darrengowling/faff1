@@ -8,12 +8,12 @@ import { Badge } from './badge';
  * Shows real-time WebSocket connection status with appropriate styling
  */
 export const ConnectionStatusIndicator = ({
-  const { t } = useTranslation(); 
   status, 
   reconnectAttempts = 0, 
   maxAttempts = 10,
   className = "" 
 }) => {
+  const { t } = useTranslation();
   const getStatusConfig = () => {
     switch (status) {
       case 'connected':
