@@ -475,13 +475,8 @@ metadata:
 test_plan:
   current_focus:
     - "WebSocket Connection Management System"
-    - "Presence Tracking System"
-    - "State Snapshot System"
-    - "WebSocket Event Handlers"
-    - "WebSocket Authentication and Access Control"
-    - "Enforcement Rules Implementation"
-    - "Competition Profile Integration in League Creation"
-  stuck_tasks: []
+  stuck_tasks:
+    - "WebSocket Connection Management System"
   test_all: false
   test_priority: "critical_first"
 
