@@ -29,8 +29,8 @@ import {
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const Fixtures = ({
-  const { t } = useTranslation(); user, token }) => {
+const Fixtures = ({ user, token }) => {
+  const { t } = useTranslation();
   const { leagueId } = useParams();
   const navigate = useNavigate();
   
