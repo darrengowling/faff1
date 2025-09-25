@@ -459,6 +459,21 @@ const SimpleLandingPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Sticky CTA (mobile) */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 md:hidden z-40">
+        <Button 
+          onClick={() => navigate('/login')} 
+          className="w-full"
+          size="lg"
+        >
+          <Trophy className="w-5 h-5 mr-2" />
+          Get Started Free
+        </Button>
+      </div>
+      
+      {/* Bottom padding for sticky CTA on mobile */}
+      <div className="h-20 md:hidden" />
     </div>
   );
 };
