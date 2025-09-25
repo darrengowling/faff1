@@ -324,15 +324,18 @@ frontend:
 
   - task: "WebSocket Connection Management System"
     implemented: true
-    working: "NA"
+    working: false
     file: "/app/backend/websocket.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "critical"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Implemented enhanced WebSocket connection management with authentication, session tracking, and error handling. Features: connect/disconnect event handlers with JWT token validation, connection_status responses, proper session cleanup, and error emission for invalid requests."
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL ISSUE: WebSocket client connections failing with 'One or more namespaces failed to connect' error. Backend WebSocket endpoint is accessible (HTTP 200) and Socket.IO server is mounted at /socket.io, but Socket.IO client cannot establish connection. Backend logic is implemented correctly - authentication, session management, and event handlers are present. Issue appears to be Socket.IO client/server compatibility or configuration problem."
 
   - task: "Presence Tracking System"
     implemented: true
