@@ -414,6 +414,8 @@ const AuctionRoom = ({ user, token }) => {
       // Extract base URL from API URL (remove /api suffix if present)
       const baseUrl = apiOrigin.replace(/\/api$/, '');
       
+      // Note: socketio_path="api/socketio" on server (no leading slash)
+      // but client path needs leading slash: "/api/socketio"
       const newSocket = io(baseUrl, {
         auth: { token },
         transports: ['websocket', 'polling'],
