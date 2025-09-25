@@ -60,8 +60,8 @@ function logSummary() {
 // Test 1: Diagnostic endpoint
 async function testDiagnosticEndpoint() {
     return new Promise((resolve) => {
-        const url = `${API_ORIGIN}/api/socketio/diag`;
-        const client = API_ORIGIN.startsWith('https:') ? https : http;
+        const url = `${origin}/api/socketio/diag`;
+        const client = origin.startsWith('https:') ? https : http;
         
         const req = client.get(url, (res) => {
             let data = '';
