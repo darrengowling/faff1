@@ -1138,6 +1138,17 @@ async def get_version():
         "environment": os.getenv("ENVIRONMENT", "development")
     }
 
+# Socket.IO Diagnostic endpoint
+@api_router.get("/socketio/diag")
+async def socketio_diagnostics():
+    """Socket.IO diagnostics endpoint"""
+    socket_path = os.getenv('SOCKET_PATH', '/api/socket.io')
+    return {
+        "ok": True,
+        "path": socket_path,
+        "now": datetime.now(timezone.utc).isoformat()
+    }
+
 # Include the router in the main app
 fastapi_app.include_router(api_router)
 
