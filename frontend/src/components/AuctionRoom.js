@@ -10,6 +10,12 @@ import { AuctionToasts, handleAuctionUpdate } from './ui/auction-toasts';
 import { AuctionTooltip, ScoringTooltip } from './ui/tooltip';
 import { AuctionMechanicsHelp, BiddingTips, BudgetConstraintHelp } from './ui/auction-help';
 import { ConnectionStatusIndicator, PresenceIndicator } from './ui/connection-status';
+import { 
+  LotCloseConfirmation, 
+  UndoCountdown, 
+  LotStatusIndicator, 
+  CommissionerLotControls 
+} from './ui/lot-closing';
 
 // Import Shadcn components
 import { Button } from './ui/button';
