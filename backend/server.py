@@ -1141,10 +1141,14 @@ async def get_version():
 # Include the router in the main app
 app.include_router(api_router)
 
-# Mount Socket.IO at /api/socket.io path (routes Socket.IO via existing API prefix)
+# Mount Socket.IO under /api path (Socket.IO will handle /socket.io internally)
 from socket_handler import sio
 import socketio
-app.mount("/api/socket.io", socketio.ASGIApp(sio))
+
+# Create Socket.IO ASGI app and mount it at /api (not /api/socket.io)
+# This way /api/socket.io/* requests will be handled by Socket.IO
+socketio_asgi = socketio.ASGIApp(sio)
+app.mount("/api/socket.io", socketio_asgi)
 
 if __name__ == "__main__":
     import uvicorn
