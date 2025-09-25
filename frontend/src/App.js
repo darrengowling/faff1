@@ -5,6 +5,9 @@ import { Toaster, toast } from 'sonner';
 import './App.css';
 import './styles/mobile-optimizations.css';
 
+// Initialize i18n
+import './i18n';
+
 // Import components
 import AuctionRoom from './components/AuctionRoom';
 import MyClubs from './components/MyClubs';
