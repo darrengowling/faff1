@@ -70,7 +70,8 @@ def verify_magic_link_token(token: str) -> Optional[str]:
 
 async def send_magic_link_email(email: str, token: str):
     """Send magic link email (for development, we'll just log it)"""
-    magic_link = f"http://localhost:3000/auth/verify?token={token}"
+    frontend_url = os.getenv("FRONTEND_URL", "https://ucl-auction-1.preview.emergentagent.com")
+    magic_link = f"{frontend_url}/auth/verify?token={token}"
     
     # For development, just log the magic link
     logger.info(f"Magic link for {email}: {magic_link}")
