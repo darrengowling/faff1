@@ -208,13 +208,25 @@ const DiagnosticPage = () => {
               <div>
                 <label className="font-medium text-gray-700">API Origin:</label>
                 <div className="bg-gray-100 p-2 rounded font-mono text-sm">
-                  {activeConfig.apiOrigin}
+                  {activeConfig.origin}
                 </div>
               </div>
               <div>
                 <label className="font-medium text-gray-700">Socket Path:</label>
                 <div className="bg-gray-100 p-2 rounded font-mono text-sm">
-                  {activeConfig.socketPath}
+                  {activeConfig.path}
+                </div>
+              </div>
+              <div>
+                <label className="font-medium text-gray-700">Transports:</label>
+                <div className="bg-gray-100 p-2 rounded font-mono text-sm">
+                  {activeConfig.transports.join(', ')}
+                </div>
+              </div>
+              <div>
+                <label className="font-medium text-gray-700">Full Socket URL:</label>
+                <div className="bg-blue-50 p-2 rounded font-mono text-sm text-blue-800">
+                  {activeConfig.origin}{activeConfig.path}
                 </div>
               </div>
               <div>
@@ -223,12 +235,7 @@ const DiagnosticPage = () => {
                   {config.windowOrigin}
                 </div>
               </div>
-              <div>
-                <label className="font-medium text-gray-700">Full Socket URL:</label>
-                <div className="bg-blue-50 p-2 rounded font-mono text-sm text-blue-800">
-                  {activeConfig.apiOrigin}{activeConfig.socketPath}
-                </div>
-              </div>
+            </div>
             </div>
           </CardContent>
         </Card>
