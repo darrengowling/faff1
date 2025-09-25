@@ -2,6 +2,7 @@ import React from 'react';
 import { Badge } from './badge.jsx';
 import { Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip.jsx';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Rules Badge Component
