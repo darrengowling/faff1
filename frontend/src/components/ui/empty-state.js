@@ -127,7 +127,7 @@ export const AuctionNotStartedEmptyState = ({ canStart, onStartAuction }) => (
   />
 );
 
-export const NoMembersEmptyState = ({ onInviteMembers }) => (
+export const NoMembersEmptyState = ({ onInviteMembers, minManagers = 4 }) => (
   <EmptyState
     icon={() => (
       <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
@@ -144,7 +144,7 @@ export const NoMembersEmptyState = ({ onInviteMembers }) => (
       </div>
     )}
     title="No Members Yet"
-    description="Invite friends to join your league! You need at least 4 managers to start the auction."
+    description={`Invite friends to join your league! You need at least ${minManagers} managers to start the auction.`}
     action={onInviteMembers}
     actionLabel="Invite Members"
   />
