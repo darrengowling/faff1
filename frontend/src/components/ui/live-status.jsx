@@ -190,7 +190,6 @@ export const MemberCountStatus = ({
 };
 
 export const BudgetStatus = ({
-  const { t } = useTranslation(); 
   budgetUsed, 
   budgetTotal, 
   clubsOwned, 
@@ -198,6 +197,7 @@ export const BudgetStatus = ({
   isLoading = false,  // Add loading prop
   className = "" 
 }) => {
+  const { t } = useTranslation();
   const budgetRemaining = budgetTotal - budgetUsed;
   const budgetPercentage = (budgetUsed / budgetTotal) * 100;
   const slotsRemaining = clubsMax - clubsOwned;
