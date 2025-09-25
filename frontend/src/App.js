@@ -1457,7 +1457,13 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="App">
-          <Routes>
+          <Toaster />
+          {/* Global Navigation */}
+          <GlobalNavbar />
+          
+          {/* Main Content */}
+          <main id="main-content" className="min-h-screen">
+            <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/auth/verify" element={<MagicLinkVerify />} />
             <Route path="/invite" element={
