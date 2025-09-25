@@ -1139,7 +1139,7 @@ async def get_version():
     }
 
 # Include the router in the main app
-app.include_router(api_router)
+fastapi_app.include_router(api_router)
 
 # Wrap FastAPI with Socket.IO ASGIApp overlay (no mounting, no path conflicts)
 from socket_handler import sio
@@ -1147,7 +1147,7 @@ import socketio
 
 # Create Socket.IO ASGIApp wrapper around FastAPI
 # socketio_path="api/socketio" (no leading slash as per Socket.IO docs)
-final_app = socketio.ASGIApp(sio, other_asgi_app=app, socketio_path="api/socketio")
+app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app, socketio_path="api/socketio")
 
 if __name__ == "__main__":
     import uvicorn
