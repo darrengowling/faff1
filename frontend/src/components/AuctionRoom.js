@@ -11,12 +11,16 @@ import { AuctionToasts, handleAuctionUpdate } from './ui/auction-toasts';
 import { AuctionTooltip, ScoringTooltip } from './ui/tooltip';
 import { AuctionMechanicsHelp, BiddingTips, BudgetConstraintHelp } from './ui/auction-help';
 import { ConnectionStatusIndicator, PresenceIndicator } from './ui/connection-status';
+import { RulesBadge, CompactRules } from './ui/rules-badge';
 import { 
   LotCloseConfirmation, 
   UndoCountdown, 
   LotStatusIndicator, 
   CommissionerLotControls 
 } from './ui/lot-closing';
+
+// Hooks
+import { useLeagueSettings } from '../hooks/useLeagueSettings';
 
 // Import Shadcn components
 import { Button } from './ui/button';
