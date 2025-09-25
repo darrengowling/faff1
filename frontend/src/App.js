@@ -465,20 +465,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
       setFormData({
         name: '',
         season: '2025-26',
-        settings: {
-          budget_per_manager: 100,
-          min_increment: 1,
-          club_slots_per_manager: 3,
-          anti_snipe_seconds: 30,
-          bid_timer_seconds: 60,
-          max_managers: 8,
-          min_managers: 4,
-          scoring_rules: {
-            club_goal: 1,
-            club_win: 3,
-            club_draw: 1
-          }
-        }
+        settings: { ...DEFAULT_LEAGUE_SETTINGS }
       });
       toast.success('League created successfully!');
     } catch (error) {
