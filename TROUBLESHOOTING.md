@@ -1,5 +1,30 @@
 # UCL Auction Troubleshooting Guide
 
+## WebSocket Routing Issues (Platform-Level)
+
+### Symptoms
+- WebSocket connections fail to establish
+- Real-time features not working (presence, live updates)
+- Connection status shows "Reconnecting..." continuously
+- Socket.IO endpoint returns HTML instead of WebSocket response
+
+### Root Cause
+Ingress configuration routes `/socket.io/*` paths to frontend instead of backend service.
+
+### Solution (For Platform Administrators)
+Apply the WebSocket routing configuration provided in `WEBSOCKET_ROUTING_FIX.md`:
+
+```bash
+kubectl apply -f k8s-ingress.yaml
+```
+
+### Verification
+Test Socket.IO endpoint:
+```bash
+curl "https://ucl-auction-1.preview.emergentagent.com/socket.io/?EIO=4&transport=polling"
+```
+Should return Socket.IO handshake response, not HTML.
+
 ## Connection Issues
 
 ### WebSocket Connection Problems
