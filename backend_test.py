@@ -808,8 +808,9 @@ class UCLAuctionAPITester:
     # ==================== SOCKET.IO DIAGNOSTICS TESTS ====================
     
     def test_socketio_diagnostic_endpoint(self):
-        """Test GET /api/socketio-diag endpoint returns proper response with {ok: true, path, now}"""
-        success, status, data = self.make_request('GET', 'socketio-diag', token=None)  # No auth required
+        """Test GET /api/socketio/diag endpoint returns proper response with {ok: true, path, now}"""
+        # Test the middleware-intercepted endpoint first
+        success, status, data = self.make_request('GET', 'socketio/diag', token=None)  # No auth required
         
         # Verify response structure
         valid_response = (
@@ -838,10 +839,14 @@ class UCLAuctionAPITester:
         # Verify path configuration - should be /api/socketio for new implementation
         path_valid = data.get('path') == '/api/socketio' if valid_response else False
         
+        # Also test the alternative endpoint
+        success_alt, status_alt, data_alt = self.make_request('GET', 'socket-diag', token=None)
+        alt_endpoint_works = success_alt and data_alt.get('ok') is True
+        
         return self.log_test(
-            "Socket.IO Diagnostic Endpoint (/api/socketio-diag)",
+            "Socket.IO Diagnostic Endpoint (/api/socketio/diag)",
             valid_response and timestamp_valid and path_valid,
-            f"Status: {status}, Valid response: {valid_response}, Timestamp valid: {timestamp_valid}, Path: {data.get('path', 'N/A')}"
+            f"Status: {status}, Valid response: {valid_response}, Timestamp valid: {timestamp_valid}, Path: {data.get('path', 'N/A')}, Alt endpoint: {alt_endpoint_works}"
         )
     
     def test_cli_test_script_exists(self):
