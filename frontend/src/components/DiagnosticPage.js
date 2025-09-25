@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card.jsx';
 import { Badge } from './ui/badge.jsx';
 import { Button } from './ui/button.jsx';
@@ -10,6 +11,7 @@ import { RefreshCw, CheckCircle, XCircle, AlertCircle, Wifi, WifiOff } from 'luc
  * Shows current API configuration and live Socket.IO connection status
  */
 const DiagnosticPage = () => {
+  const { t } = useTranslation();
   const [connectionStatus, setConnectionStatus] = useState('disconnected');
   const [connectionDetails, setConnectionDetails] = useState(null);
   const [sessionId, setSessionId] = useState(null);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from './button';
 import { AlertTriangle, Clock, X, CheckCircle } from 'lucide-react';
 import { Badge } from './badge';
@@ -8,7 +9,8 @@ import { toast } from 'sonner';
  * Lot Close Confirmation Dialog
  * Shows confirmation with 10-second undo countdown
  */
-export const LotCloseConfirmation = ({ 
+export const LotCloseConfirmation = ({
+  const { t } = useTranslation(); 
   isOpen, 
   onClose, 
   onConfirm, 

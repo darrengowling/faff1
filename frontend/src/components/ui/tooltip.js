@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 // Enhanced tooltip component with rich content support
 export const Tooltip = ({ 
@@ -122,7 +123,8 @@ export const BudgetTooltip = ({ remaining, slotsLeft, minIncrement, children }) 
 };
 
 // Auction mechanics tooltip
-export const AuctionTooltip = ({ children }) => {
+export const AuctionTooltip = ({
+  const { t } = useTranslation(); children }) => {
   const auctionContent = (
     <div className="space-y-2">
       <div className="font-semibold text-white">Auction Rules</div>

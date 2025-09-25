@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Wifi, WifiOff, RefreshCw, AlertCircle } from 'lucide-react';
 import { Badge } from './badge';
 
@@ -6,7 +7,8 @@ import { Badge } from './badge';
  * Connection Status Indicator Component
  * Shows real-time WebSocket connection status with appropriate styling
  */
-export const ConnectionStatusIndicator = ({ 
+export const ConnectionStatusIndicator = ({
+  const { t } = useTranslation(); 
   status, 
   reconnectAttempts = 0, 
   maxAttempts = 10,

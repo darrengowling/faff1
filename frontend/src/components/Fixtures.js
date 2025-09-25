@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'sonner';
@@ -28,7 +29,8 @@ import {
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const Fixtures = ({ user, token }) => {
+const Fixtures = ({
+  const { t } = useTranslation(); user, token }) => {
   const { leagueId } = useParams();
   const navigate = useNavigate();
   

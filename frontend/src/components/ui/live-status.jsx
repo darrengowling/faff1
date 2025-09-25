@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Badge } from './badge';
 import { Clock, DollarSign, Trophy } from 'lucide-react';
 
@@ -188,7 +189,8 @@ export const MemberCountStatus = ({
   );
 };
 
-export const BudgetStatus = ({ 
+export const BudgetStatus = ({
+  const { t } = useTranslation(); 
   budgetUsed, 
   budgetTotal, 
   clubsOwned, 

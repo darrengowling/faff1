@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip.jsx';
 import { HelpCircle, Timer, DollarSign, Users, Shield, Target, TrendingUp, AlertTriangle } from 'lucide-react';
 
@@ -6,7 +7,8 @@ import { HelpCircle, Timer, DollarSign, Users, Shield, Target, TrendingUp, Alert
  * Comprehensive auction mechanics explanation component
  * Provides detailed guidance for new users on how the auction system works
  */
-export const AuctionMechanicsHelp = ({ className = "" }) => {
+export const AuctionMechanicsHelp = ({
+  const { t } = useTranslation(); className = "" }) => {
   return (
     <TooltipProvider>
       <Tooltip>
