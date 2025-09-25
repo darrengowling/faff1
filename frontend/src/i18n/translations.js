@@ -45,6 +45,58 @@ export const translations = {
           description: "Earn points from real match results. Goals, wins, and draws translate to leaderboard success."
         }
       }
+    },
+    features: {
+      title: "Powerful Features",
+      subtitle: "Everything you need for the perfect football auction experience",
+      items: {
+        privateLeagues: {
+          title: "Private Leagues (2–8 Players)",
+          description: "Perfect size for friend groups with customizable league settings"
+        },
+        configurable: {
+          title: "Configurable Slots & Budgets", 
+          description: "Tailor your league with flexible team sizes and spending limits"
+        },
+        antiSnipe: {
+          title: "Anti-Snipe Auction",
+          description: "Fair bidding with automatic timer extensions for last-second bids"
+        },
+        realTimeScoring: {
+          title: "Real-Time Scoring",
+          description: "Compete with friends in real-time"
+        },
+        leaderboards: {
+          title: "Dynamic Leaderboards",
+          description: "Track performance across matchdays with detailed statistics"
+        },
+        communication: {
+          title: "League Chat & Banter",
+          description: "Built-in communication for trash talk and strategy discussions"
+        }
+      }
+    },
+    fairPlay: {
+      title: "Fair Play & Transparency", 
+      subtitle: "Built on principles of fairness and transparency. No hidden mechanics, just pure football strategy.",
+      items: {
+        noWagering: {
+          title: "No Wagering",
+          description: "Zero gambling. Play for pride, bragging rights, and the love of the game."
+        },
+        performance: {
+          title: "Points from Performance", 
+          description: "Your clubs earn points based on real match results. Goals, wins, and draws count."
+        },
+        transparent: {
+          title: "Clear Rules",
+          description: "Transparent scoring system and auction mechanics. Everyone knows how it works."
+        },
+        private: {
+          title: "Private & Secure",
+          description: "Your leagues are private to your group. No public rankings or external pressure."
+        }
+      }
     }
   },
 
