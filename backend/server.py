@@ -795,8 +795,8 @@ async def get_user_match_history(
 # Club Routes (seed data)
 @api_router.post("/clubs/seed")
 async def seed_clubs(current_user: UserResponse = Depends(get_current_verified_user)):
-    """Seed UCL clubs data"""
-    # Sample UCL clubs
+    """Seed football clubs data"""
+    # Sample football clubs
     clubs_data = [
         {"name": "Real Madrid", "short_name": "RMA", "country": "Spain", "ext_ref": "real_madrid"},
         {"name": "FC Barcelona", "short_name": "BAR", "country": "Spain", "ext_ref": "barcelona"},
