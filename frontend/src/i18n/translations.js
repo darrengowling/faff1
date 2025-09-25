@@ -88,7 +88,7 @@ export const translations = {
     myLeagues: "My Leagues",
     createLeague: "Create League",
     noLeaguesYet: "No Leagues Yet",
-    createFirstLeague: "Create your first league to start auctioning UCL clubs!",
+    createFirstLeague: "Create your first league to start auctioning football clubs!",
     members: "Members",
     budget: "Budget",
     clubSlots: "Club Slots",
