@@ -1,5 +1,5 @@
 /**
- * Translation keys for UCL Auction application
+ * Translation keys for Friends of PIFA application
  * Organized by feature/component areas for maintainability
  */
 
