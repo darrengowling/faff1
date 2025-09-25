@@ -4,6 +4,7 @@ import { io } from 'socket.io-client';
 import { toast } from 'sonner';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import { getBrandName } from '../brand';
 
 // Import UX components
 import { EmptyState, AuctionNotStartedEmptyState, LoadingEmptyState } from './ui/empty-state';
