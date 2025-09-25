@@ -1215,141 +1215,15 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                <Trophy className="w-5 h-5 text-white" />
-              </div>
-              <h1 className="text-xl font-bold text-gray-900">{t('nav.appName', { brandName: getBrandName() })}</h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <User className="w-4 h-4 text-gray-600" />
-                <span className="text-sm text-gray-700">{user.display_name}</span>
-              </div>
-              <Button variant="outline" size="sm" onClick={logout}>
-                <LogOut className="w-4 h-4 mr-2" />
-                Logout
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">My Leagues</h2>
-          <Button onClick={() => setShowCreateLeague(true)}>
-            <Plus className="w-4 h-4 mr-2" />
-            Create League
-          </Button>
-        </div>
-
-        {/* Leagues Grid */}
-        {leagues.length === 0 ? (
-          <Card className="text-center py-12">
-            <CardContent>
-              <Trophy className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No Leagues Yet</h3>
-              <p className="text-gray-600 mb-4">{t('dashboard.createFirstLeague')}</p>
-              <Button onClick={() => setShowCreateLeague(true)}>
-                <Plus className="w-4 h-4 mr-2" />
-                Create League
-              </Button>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {leagues.map((league) => (
-              <Card key={league.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <CardTitle className="text-lg">{league.name}</CardTitle>
-                      <p className="text-sm text-gray-600 flex items-center mt-1">
-                        <Calendar className="w-3 h-3 mr-1" />
-                        {league.season}
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-end space-y-1">
-                      {league.commissioner_id === user.id && (
-                        <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
-                          <Crown className="w-3 h-3 mr-1" />
-                          Commissioner
-                        </Badge>
-                      )}
-                      <Badge variant={league.status === 'ready' ? 'default' : 'secondary'}>
-                        {league.status}
-                      </Badge>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600 flex items-center">
-                        <Users className="w-3 h-3 mr-1" />
-                        Members
-                      </span>
-                      <span className="font-medium">{league.member_count}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600 flex items-center">
-                        <DollarSign className="w-3 h-3 mr-1" />
-                        Budget
-                      </span>
-                      <span className="font-medium">{league.settings.budget_per_manager} credits</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600 flex items-center">
-                        <Target className="w-3 h-3 mr-1" />
-                        Club Slots
-                      </span>
-                      <span className="font-medium">{league.settings.club_slots_per_manager}</span>
-                    </div>
-                    <Separator />
-                    <div className="flex space-x-2">
-                      <Button 
-                        className="flex-1" 
-                        variant="outline"
-                        onClick={() => handleViewLeague(league)}
-                      >
-                        <Eye className="w-4 h-4 mr-2" />
-                        Manage League
-                      </Button>
-                      {league.status === 'ready' && league.commissioner_id === user.id && (
-                        <Button
-                          size="sm"
-                          onClick={() => handleStartAuction(league.id)}
-                          className="bg-green-600 hover:bg-green-700"
-                        >
-                          <Play className="w-4 h-4 mr-1" />
-                          Start Auction
-                        </Button>
-                      )}
-                      {league.status === 'active' && (
-                        <Button
-                          size="sm"
-                          onClick={() => handleViewAuction(league.id)}
-                          className="bg-blue-600 hover:bg-blue-700"
-                        >
-                          <Gavel className="w-4 h-4 mr-1" />
-                          Join Auction
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        )}
-      </main>
+    <>
+      <EnhancedHomeScreen
+        leagues={leagues}
+        loading={loading}
+        onCreateLeague={() => setShowCreateLeague(true)}
+        onViewLeague={handleViewLeague}
+        onStartAuction={handleStartAuction}
+        onViewAuction={handleViewAuction}
+      />
 
       {/* Create League Dialog */}
       <CreateLeagueDialog
@@ -1357,7 +1231,7 @@ const Dashboard = () => {
         onOpenChange={setShowCreateLeague}
         onLeagueCreated={handleLeagueCreated}
       />
-    </div>
+    </>
   );
 };
 
