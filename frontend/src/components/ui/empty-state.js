@@ -132,7 +132,7 @@ export const AuctionNotStartedEmptyState = ({ canStart, onStartAuction }) => (
     )}
     title="Auction Not Started"
     description={canStart 
-      ? "The auction is ready to begin! Start bidding to acquire Champions League clubs for your squad."
+      ? "The auction is ready to begin! Start bidding to acquire football clubs for your squad."
       : "The auction hasn't started yet. The commissioner will begin the auction when all managers are ready."
     }
     action={canStart ? onStartAuction : undefined}
