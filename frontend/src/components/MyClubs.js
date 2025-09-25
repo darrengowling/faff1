@@ -103,7 +103,7 @@ const MyClubs = ({ user, token }) => {
     return gradients[country] || 'from-blue-500 to-purple-500';
   };
 
-  if (loading || settingsLoading) {
+  if (loading || settingsLoading || rosterLoading) {
     return (
       <div className="max-w-7xl mx-auto p-6">
         <LoadingEmptyState message="Loading your clubs..." />
