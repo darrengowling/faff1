@@ -11,6 +11,7 @@ import MyClubs from './components/MyClubs';
 import Fixtures from './components/Fixtures';
 import Leaderboard from './components/Leaderboard';
 import AdminDashboard from './components/AdminDashboard';
+import DiagnosticPage from './components/DiagnosticPage';
 import { MobileNav, BottomTabNav } from './components/ui/mobile-nav';
 
 // Import Shadcn components
