@@ -1128,7 +1128,7 @@ async def health_check():
         }
 
 # Version endpoint
-@app.get("/version")
+@fastapi_app.get("/version")
 async def get_version():
     """Get application version information"""
     return {
