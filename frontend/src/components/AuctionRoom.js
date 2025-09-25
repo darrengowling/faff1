@@ -9,6 +9,7 @@ import { BiddingControls } from './ui/bidding-controls';
 import { AuctionToasts, handleAuctionUpdate } from './ui/auction-toasts';
 import { AuctionTooltip, ScoringTooltip } from './ui/tooltip';
 import { AuctionMechanicsHelp, BiddingTips, BudgetConstraintHelp } from './ui/auction-help';
+import { ConnectionStatusIndicator, PresenceIndicator } from './ui/connection-status';
 
 // Import Shadcn components
 import { Button } from './ui/button';
