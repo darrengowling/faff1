@@ -1447,7 +1447,7 @@ const RootRoute = () => {
   }
   
   // If user is not logged in, show landing page
-  return <LandingPage />;
+  return <SimpleLandingPage />;
 };
 
 // Main App Component
