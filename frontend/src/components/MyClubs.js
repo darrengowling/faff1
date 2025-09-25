@@ -183,18 +183,18 @@ const MyClubs = ({ user, token }) => {
                 className="text-gray-600 hover:text-gray-900"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back
+                {t('common.back')}
               </Button>
               <div className="flex items-center space-x-2">
                 <Trophy className="w-6 h-6 text-blue-600" />
-                <h1 className="text-xl font-bold text-gray-900">My Clubs</h1>
+                <h1 className="text-xl font-bold text-gray-900">{t('myClubs.title')}</h1>
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <Badge variant="outline" className="text-blue-700 border-blue-200">
                 {rosterSummary ? 
-                  `${rosterSummary.ownedCount} / ${rosterSummary.clubSlots} Clubs` :
-                  `${owned_clubs.length} / — Clubs`
+                  t('myClubs.clubsCount', { current: rosterSummary.ownedCount, total: rosterSummary.clubSlots }) :
+                  t('myClubs.clubsCount', { current: owned_clubs.length, total: '—' })
                 }
               </Badge>
               <ScoringHelp />
