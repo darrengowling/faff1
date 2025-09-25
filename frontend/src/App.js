@@ -363,13 +363,13 @@ const InvitationAccept = () => {
       try {
         const response = await axios.post(`${API}/invitations/accept`, { token });
         setLeague(response.data);
-        toast.success(`Successfully joined ${response.data.name}!`);
+        toast.success(t('leagueManagement.joinedSuccessfully', { league: response.data.name }));
         setTimeout(() => {
           navigate('/dashboard');
         }, 2000);
       } catch (error) {
-        setError(error.response?.data?.detail || 'Failed to accept invitation');
-        toast.error('Failed to accept invitation');
+        setError(error.response?.data?.detail || t('leagueManagement.failedToAcceptInvitation'));
+        toast.error(t('leagueManagement.failedToAcceptInvitation'));
       } finally {
         setLoading(false);
       }
