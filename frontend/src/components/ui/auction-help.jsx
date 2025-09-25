@@ -7,8 +7,8 @@ import { HelpCircle, Timer, DollarSign, Users, Shield, Target, TrendingUp, Alert
  * Comprehensive auction mechanics explanation component
  * Provides detailed guidance for new users on how the auction system works
  */
-export const AuctionMechanicsHelp = ({
-  const { t } = useTranslation(); className = "" }) => {
+export const AuctionMechanicsHelp = ({ className = "" }) => {
+  const { t } = useTranslation();
   return (
     <TooltipProvider>
       <Tooltip>
