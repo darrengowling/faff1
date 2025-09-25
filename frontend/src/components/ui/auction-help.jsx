@@ -24,7 +24,7 @@ export const AuctionMechanicsHelp = ({ className = "" }) => {
         >
           <div className="space-y-3">
             <div className="font-semibold text-blue-300 border-b border-gray-700 pb-2">
-              🏆 UCL Auction Guide
+              {t('auctionHelp.auctionGuide')}
             </div>
             
             <div className="space-y-2">
