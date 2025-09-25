@@ -228,14 +228,14 @@ const MyClubs = ({ user, token }) => {
                 <div className="text-2xl font-bold text-green-600">
                   {budget_info.budget_remaining}
                 </div>
-                <div className="text-sm text-gray-600">Remaining</div>
+                <div className="text-sm text-gray-600">{t('tooltips.remaining')}</div>
               </div>
               <div className="text-center p-4 bg-orange-50 rounded-lg">
                 <Star className="w-6 h-6 text-orange-600 mx-auto mb-2" aria-hidden="true" />
                 <div className="text-2xl font-bold text-orange-600">
                   {rosterSummary ? rosterSummary.remaining : '—'}
                 </div>
-                <div className="text-sm text-gray-600">Slots Available</div>
+                <div className="text-sm text-gray-600">{t('myClubs.slotsAvailable')}</div>
               </div>
             </div>
           </CardContent>
