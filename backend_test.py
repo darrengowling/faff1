@@ -1123,6 +1123,513 @@ class UCLAuctionAPITester:
             f"State consistency: {consistency_check}, Settings read: {settings_properly_read}"
         )
 
+    # ==================== WEBSOCKET CONNECTION MANAGEMENT TESTS ====================
+    
+    def test_websocket_connection_authentication(self):
+        """Test WebSocket connection with JWT authentication"""
+        if not self.commissioner_token:
+            return self.log_test("WebSocket Connection Authentication", False, "Missing authentication token")
+        
+        try:
+            sio = socketio.Client()
+            connection_successful = False
+            auth_successful = False
+            connection_status_received = False
+            
+            @sio.event
+            def connect():
+                nonlocal connection_successful
+                connection_successful = True
+                print("WebSocket connected successfully")
+            
+            @sio.event
+            def connect_error(data):
+                print(f"WebSocket connection failed: {data}")
+            
+            @sio.event
+            def connection_status(data):
+                nonlocal auth_successful, connection_status_received
+                connection_status_received = True
+                if data.get('status') == 'connected':
+                    auth_successful = True
+                print(f"Connection status: {data}")
+            
+            # Test connection with valid token
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(3)  # Wait for connection and auth
+            sio.disconnect()
+            
+            return self.log_test(
+                "WebSocket Connection Authentication",
+                connection_successful and auth_successful and connection_status_received,
+                f"Connected: {connection_successful}, Authenticated: {auth_successful}, Status received: {connection_status_received}"
+            )
+            
+        except Exception as e:
+            return self.log_test("WebSocket Connection Authentication", False, f"Exception: {str(e)}")
+    
+    def test_websocket_connection_without_token(self):
+        """Test WebSocket connection fails without authentication token"""
+        try:
+            sio = socketio.Client()
+            connection_failed = False
+            auth_failed = False
+            
+            @sio.event
+            def connect():
+                print("WebSocket connected without token (unexpected)")
+            
+            @sio.event
+            def connect_error(data):
+                nonlocal connection_failed
+                connection_failed = True
+                print(f"WebSocket connection failed as expected: {data}")
+            
+            @sio.event
+            def connection_status(data):
+                nonlocal auth_failed
+                if data.get('status') in ['unauthenticated', 'auth_failed']:
+                    auth_failed = True
+                print(f"Connection status: {data}")
+            
+            # Test connection without token
+            sio.connect(
+                self.base_url,
+                auth={},  # No token
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(2)
+            sio.disconnect()
+            
+            return self.log_test(
+                "WebSocket Connection Without Token",
+                connection_failed or auth_failed,
+                f"Connection failed: {connection_failed}, Auth failed: {auth_failed}"
+            )
+            
+        except Exception as e:
+            # Connection should fail, so exception is expected
+            return self.log_test("WebSocket Connection Without Token", True, f"Connection properly rejected: {str(e)}")
+    
+    def test_websocket_join_auction_with_access_control(self):
+        """Test join_auction event with proper access control"""
+        if not self.commissioner_token or not self.test_league_id:
+            return self.log_test("WebSocket Join Auction Access Control", False, "Missing token or league ID")
+        
+        try:
+            sio = socketio.Client()
+            connection_successful = False
+            join_successful = False
+            snapshot_received = False
+            presence_list_received = False
+            
+            @sio.event
+            def connect():
+                nonlocal connection_successful
+                connection_successful = True
+            
+            @sio.event
+            def auction_snapshot(data):
+                nonlocal snapshot_received
+                snapshot_received = True
+                print(f"Auction snapshot received: {data.get('auction', {}).get('id', 'unknown')}")
+            
+            @sio.event
+            def presence_list(data):
+                nonlocal presence_list_received
+                presence_list_received = True
+                print(f"Presence list received: {len(data.get('users', []))} users")
+            
+            @sio.event
+            def error(data):
+                print(f"WebSocket error: {data}")
+            
+            # Connect with authentication
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(2)
+            
+            if connection_successful:
+                # Try to join auction (using league_id as auction_id)
+                join_result = sio.call('join_auction', {'auction_id': self.test_league_id}, timeout=10)
+                join_successful = join_result is not None
+                
+                time.sleep(3)  # Wait for snapshot and presence list
+                
+                sio.disconnect()
+                
+                return self.log_test(
+                    "WebSocket Join Auction Access Control",
+                    join_successful and (snapshot_received or presence_list_received),
+                    f"Join successful: {join_successful}, Snapshot: {snapshot_received}, Presence: {presence_list_received}"
+                )
+            else:
+                return self.log_test("WebSocket Join Auction Access Control", False, "Failed to connect")
+                
+        except Exception as e:
+            return self.log_test("WebSocket Join Auction Access Control", False, f"Exception: {str(e)}")
+    
+    def test_websocket_heartbeat_system(self):
+        """Test WebSocket heartbeat and heartbeat_ack system"""
+        if not self.commissioner_token:
+            return self.log_test("WebSocket Heartbeat System", False, "Missing authentication token")
+        
+        try:
+            sio = socketio.Client()
+            connection_successful = False
+            heartbeat_ack_received = False
+            
+            @sio.event
+            def connect():
+                nonlocal connection_successful
+                connection_successful = True
+            
+            @sio.event
+            def heartbeat_ack(data):
+                nonlocal heartbeat_ack_received
+                heartbeat_ack_received = True
+                print(f"Heartbeat ack received: {data}")
+            
+            # Connect with authentication
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(2)
+            
+            if connection_successful:
+                # Send heartbeat
+                heartbeat_result = sio.call('heartbeat', {}, timeout=5)
+                
+                time.sleep(2)  # Wait for heartbeat_ack
+                
+                sio.disconnect()
+                
+                return self.log_test(
+                    "WebSocket Heartbeat System",
+                    heartbeat_ack_received,
+                    f"Heartbeat ack received: {heartbeat_ack_received}"
+                )
+            else:
+                return self.log_test("WebSocket Heartbeat System", False, "Failed to connect")
+                
+        except Exception as e:
+            return self.log_test("WebSocket Heartbeat System", False, f"Exception: {str(e)}")
+    
+    def test_websocket_request_snapshot(self):
+        """Test request_snapshot event functionality"""
+        if not self.commissioner_token or not self.test_league_id:
+            return self.log_test("WebSocket Request Snapshot", False, "Missing token or league ID")
+        
+        try:
+            sio = socketio.Client()
+            connection_successful = False
+            snapshot_received = False
+            snapshot_valid = False
+            
+            @sio.event
+            def connect():
+                nonlocal connection_successful
+                connection_successful = True
+            
+            @sio.event
+            def auction_snapshot(data):
+                nonlocal snapshot_received, snapshot_valid
+                snapshot_received = True
+                # Validate snapshot structure
+                snapshot_valid = (
+                    isinstance(data, dict) and
+                    'server_time' in data and
+                    'snapshot_version' in data
+                )
+                print(f"Snapshot received, valid: {snapshot_valid}")
+            
+            @sio.event
+            def error(data):
+                print(f"WebSocket error: {data}")
+            
+            # Connect with authentication
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(2)
+            
+            if connection_successful:
+                # Request snapshot
+                snapshot_result = sio.call('request_snapshot', {'auction_id': self.test_league_id}, timeout=10)
+                
+                time.sleep(3)  # Wait for snapshot
+                
+                sio.disconnect()
+                
+                return self.log_test(
+                    "WebSocket Request Snapshot",
+                    snapshot_received and snapshot_valid,
+                    f"Snapshot received: {snapshot_received}, Valid structure: {snapshot_valid}"
+                )
+            else:
+                return self.log_test("WebSocket Request Snapshot", False, "Failed to connect")
+                
+        except Exception as e:
+            return self.log_test("WebSocket Request Snapshot", False, f"Exception: {str(e)}")
+    
+    def test_presence_tracking_system(self):
+        """Test presence tracking with user_presence events"""
+        if not self.commissioner_token or not self.test_league_id:
+            return self.log_test("Presence Tracking System", False, "Missing token or league ID")
+        
+        try:
+            sio = socketio.Client()
+            connection_successful = False
+            presence_update_received = False
+            presence_list_received = False
+            
+            @sio.event
+            def connect():
+                nonlocal connection_successful
+                connection_successful = True
+            
+            @sio.event
+            def user_presence(data):
+                nonlocal presence_update_received
+                presence_update_received = True
+                print(f"User presence update: {data}")
+            
+            @sio.event
+            def presence_list(data):
+                nonlocal presence_list_received
+                presence_list_received = True
+                print(f"Presence list: {len(data.get('users', []))} users")
+            
+            # Connect with authentication
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(2)
+            
+            if connection_successful:
+                # Join auction to trigger presence tracking
+                join_result = sio.call('join_auction', {'auction_id': self.test_league_id}, timeout=10)
+                
+                time.sleep(3)  # Wait for presence events
+                
+                sio.disconnect()
+                
+                return self.log_test(
+                    "Presence Tracking System",
+                    presence_update_received or presence_list_received,
+                    f"Presence update: {presence_update_received}, Presence list: {presence_list_received}"
+                )
+            else:
+                return self.log_test("Presence Tracking System", False, "Failed to connect")
+                
+        except Exception as e:
+            return self.log_test("Presence Tracking System", False, f"Exception: {str(e)}")
+    
+    def test_state_snapshot_integrity(self):
+        """Test state snapshot data integrity and validation"""
+        if not self.commissioner_token or not self.test_league_id:
+            return self.log_test("State Snapshot Integrity", False, "Missing token or league ID")
+        
+        try:
+            sio = socketio.Client()
+            connection_successful = False
+            snapshot_data = None
+            
+            @sio.event
+            def connect():
+                nonlocal connection_successful
+                connection_successful = True
+            
+            @sio.event
+            def auction_snapshot(data):
+                nonlocal snapshot_data
+                snapshot_data = data
+                print(f"Snapshot received for validation")
+            
+            # Connect with authentication
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(2)
+            
+            if connection_successful:
+                # Request snapshot
+                sio.call('request_snapshot', {'auction_id': self.test_league_id}, timeout=10)
+                
+                time.sleep(3)  # Wait for snapshot
+                
+                sio.disconnect()
+                
+                # Validate snapshot structure
+                if snapshot_data:
+                    required_fields = ['server_time', 'snapshot_version']
+                    has_required_fields = all(field in snapshot_data for field in required_fields)
+                    
+                    # Check if auction data is present (if auction exists)
+                    has_auction_structure = 'auction' in snapshot_data or 'error' in snapshot_data
+                    
+                    # Check server time format
+                    server_time_valid = False
+                    if 'server_time' in snapshot_data:
+                        try:
+                            datetime.fromisoformat(snapshot_data['server_time'].replace('Z', '+00:00'))
+                            server_time_valid = True
+                        except:
+                            pass
+                    
+                    integrity_valid = has_required_fields and has_auction_structure and server_time_valid
+                    
+                    return self.log_test(
+                        "State Snapshot Integrity",
+                        integrity_valid,
+                        f"Required fields: {has_required_fields}, Structure: {has_auction_structure}, Time valid: {server_time_valid}"
+                    )
+                else:
+                    return self.log_test("State Snapshot Integrity", False, "No snapshot received")
+            else:
+                return self.log_test("State Snapshot Integrity", False, "Failed to connect")
+                
+        except Exception as e:
+            return self.log_test("State Snapshot Integrity", False, f"Exception: {str(e)}")
+    
+    def test_websocket_error_handling(self):
+        """Test WebSocket error handling for invalid requests"""
+        if not self.commissioner_token:
+            return self.log_test("WebSocket Error Handling", False, "Missing authentication token")
+        
+        try:
+            sio = socketio.Client()
+            connection_successful = False
+            error_received = False
+            error_messages = []
+            
+            @sio.event
+            def connect():
+                nonlocal connection_successful
+                connection_successful = True
+            
+            @sio.event
+            def error(data):
+                nonlocal error_received
+                error_received = True
+                error_messages.append(data.get('message', 'Unknown error'))
+                print(f"Error received: {data}")
+            
+            # Connect with authentication
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(2)
+            
+            if connection_successful:
+                # Test invalid auction ID
+                sio.call('join_auction', {'auction_id': 'invalid_auction_id'}, timeout=5)
+                time.sleep(1)
+                
+                # Test missing auction ID
+                sio.call('join_auction', {}, timeout=5)
+                time.sleep(1)
+                
+                # Test request snapshot without auction ID
+                sio.call('request_snapshot', {}, timeout=5)
+                time.sleep(1)
+                
+                sio.disconnect()
+                
+                return self.log_test(
+                    "WebSocket Error Handling",
+                    error_received and len(error_messages) > 0,
+                    f"Errors received: {len(error_messages)}, Messages: {error_messages[:2]}"
+                )
+            else:
+                return self.log_test("WebSocket Error Handling", False, "Failed to connect")
+                
+        except Exception as e:
+            return self.log_test("WebSocket Error Handling", False, f"Exception: {str(e)}")
+    
+    def test_websocket_session_cleanup(self):
+        """Test WebSocket session cleanup on disconnect"""
+        if not self.commissioner_token:
+            return self.log_test("WebSocket Session Cleanup", False, "Missing authentication token")
+        
+        try:
+            # Test multiple connect/disconnect cycles
+            for i in range(3):
+                sio = socketio.Client()
+                connection_successful = False
+                
+                @sio.event
+                def connect():
+                    nonlocal connection_successful
+                    connection_successful = True
+                
+                # Connect
+                sio.connect(
+                    self.base_url,
+                    auth={'token': self.commissioner_token},
+                    transports=['websocket', 'polling']
+                )
+                
+                time.sleep(1)
+                
+                if connection_successful:
+                    # Disconnect
+                    sio.disconnect()
+                    time.sleep(0.5)
+                else:
+                    return self.log_test("WebSocket Session Cleanup", False, f"Failed to connect on cycle {i+1}")
+            
+            return self.log_test(
+                "WebSocket Session Cleanup",
+                True,
+                "Successfully completed 3 connect/disconnect cycles"
+            )
+            
+        except Exception as e:
+            return self.log_test("WebSocket Session Cleanup", False, f"Exception: {str(e)}")
+    
+    def test_websocket_comprehensive(self):
+        """Run comprehensive WebSocket and presence system tests"""
+        print("\n🔌 WEBSOCKET CONNECTION MANAGEMENT TESTS")
+        
+        results = []
+        results.append(self.test_websocket_connection_authentication())
+        results.append(self.test_websocket_connection_without_token())
+        results.append(self.test_websocket_join_auction_with_access_control())
+        results.append(self.test_websocket_heartbeat_system())
+        results.append(self.test_websocket_request_snapshot())
+        results.append(self.test_presence_tracking_system())
+        results.append(self.test_state_snapshot_integrity())
+        results.append(self.test_websocket_error_handling())
+        results.append(self.test_websocket_session_cleanup())
+        
+        return all(results)
+
     # ==================== NEW AGGREGATION API TESTS ====================
     
     def test_my_clubs_endpoint(self):
