@@ -407,23 +407,27 @@ const AuctionRoom = ({ user, token }) => {
     try {
       setConnectionStatus('connecting');
       
-      // Get Socket.IO configuration from environment (use API_ORIGIN, not window origin)
-      const apiOrigin = process.env.REACT_APP_API_ORIGIN || 
-                       process.env.NEXT_PUBLIC_API_ORIGIN || 
-                       process.env.VITE_API_ORIGIN ||
-                       'https://realtime-socket-fix.preview.emergentagent.com';
+      // Get Socket.IO configuration from environment (cross-origin pattern)
+      const origin = (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_PUBLIC_API_URL) || 
+                     process.env.NEXT_PUBLIC_API_URL ||
+                     (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_PUBLIC_API_URL) ||
+                     process.env.REACT_APP_API_ORIGIN ||
+                     'https://realtime-socket-fix.preview.emergentagent.com';
                        
-      const socketPath = process.env.REACT_APP_SOCKET_PATH ||
-                        process.env.NEXT_PUBLIC_SOCKET_PATH ||
-                        process.env.VITE_SOCKET_PATH ||
-                        '/api/socketio';
+      const path = (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_SOCKET_PATH) ||
+                   process.env.NEXT_PUBLIC_SOCKET_PATH ||
+                   '/api/socketio';
+                   
+      const transports = ((typeof window !== 'undefined' && window.import?.meta?.env?.VITE_SOCKET_TRANSPORTS) || 
+                         process.env.NEXT_PUBLIC_SOCKET_TRANSPORTS || 
+                         'polling,websocket').split(',');
       
-      console.log(`Socket.IO connecting to: ${apiOrigin} with path: ${socketPath}`);
+      console.log(`Socket.IO connecting to: ${origin} with path: ${path}, transports: ${transports}`);
       
-      const newSocket = io(apiOrigin, {
+      const newSocket = io(origin, {
         auth: { token },
-        path: socketPath,
-        transports: ['websocket', 'polling'],
+        path,
+        transports,
         withCredentials: true,
         timeout: 10000,
         forceNew: true
