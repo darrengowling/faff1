@@ -14,6 +14,9 @@ import { EmptyState, NoClubsEmptyState, NoFixturesEmptyState, NoResultsEmptyStat
 import { ScoringHelp, QuickScoringTip } from './ui/scoring-help';
 import { BudgetStatus } from './ui/live-status';
 
+// Hooks
+import { useLeagueSettings } from '../hooks/useLeagueSettings';
+
 // Icons
 import { 
   ArrowLeft,
