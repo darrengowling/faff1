@@ -230,11 +230,11 @@ class I18NBackendValidationTester:
                 method, 
                 endpoint, 
                 {} if method == 'POST' else None,
-                expected_status=401,  # Should return 401 Unauthorized
+                expected_status=403,  # Should return 403 Forbidden (auth middleware working)
                 token=None
             )
             
-            endpoint_protected = success and status == 401
+            endpoint_protected = success and status == 403
             endpoint_results.append(f"{method} {endpoint}: {'✓' if endpoint_protected else '✗'}")
             
             if not endpoint_protected:
