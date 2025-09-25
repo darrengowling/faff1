@@ -10,13 +10,13 @@ import { toast } from 'sonner';
  * Shows confirmation with 10-second undo countdown
  */
 export const LotCloseConfirmation = ({
-  const { t } = useTranslation(); 
   isOpen, 
   onClose, 
   onConfirm, 
   lotDetails,
   loading = false 
 }) => {
+  const { t } = useTranslation();
   const [reason, setReason] = useState('');
   const [forced, setForced] = useState(false);
 
