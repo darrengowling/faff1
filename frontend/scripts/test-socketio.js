@@ -8,15 +8,25 @@ const { io } = require('socket.io-client');
 const https = require('https');
 const http = require('http');
 
-// Configuration from environment or defaults
-const API_ORIGIN = process.env.REACT_APP_API_ORIGIN || 'https://realtime-socket-fix.preview.emergentagent.com';
-const SOCKET_PATH = process.env.REACT_APP_SOCKET_PATH || '/api/socket.io';
+// Configuration from environment using cross-origin pattern
+const origin = process.env.NEXT_PUBLIC_API_URL || 
+               process.env.VITE_PUBLIC_API_URL || 
+               process.env.REACT_APP_API_ORIGIN || 
+               'https://realtime-socket-fix.preview.emergentagent.com';
+
+const path = process.env.NEXT_PUBLIC_SOCKET_PATH || 
+             '/api/socketio';
+
+const transports = (process.env.NEXT_PUBLIC_SOCKET_TRANSPORTS || 
+                   process.env.VITE_SOCKET_TRANSPORTS || 
+                   'polling,websocket').split(',');
 
 console.log('🔍 Socket.IO Diagnostics Test');
 console.log('================================');
-console.log(`API Origin: ${API_ORIGIN}`);
-console.log(`Socket Path: ${SOCKET_PATH}`);
-console.log(`Full URL: ${API_ORIGIN}${SOCKET_PATH}`);
+console.log(`API Origin: ${origin}`);
+console.log(`Socket Path: ${path}`);
+console.log(`Transports: ${transports.join(', ')}`);
+console.log(`Full URL: ${origin}${path}`);
 console.log('');
 
 // Test results tracker
