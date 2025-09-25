@@ -123,8 +123,8 @@ export const BudgetTooltip = ({ remaining, slotsLeft, minIncrement, children }) 
 };
 
 // Auction mechanics tooltip
-export const AuctionTooltip = ({
-  const { t } = useTranslation(); children }) => {
+export const AuctionTooltip = ({ children }) => {
+  const { t } = useTranslation();
   const auctionContent = (
     <div className="space-y-2">
       <div className="font-semibold text-white">Auction Rules</div>
