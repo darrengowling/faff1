@@ -96,31 +96,32 @@ class AdminService:
     @staticmethod
     async def validate_roster_capacity(user_id: str, league_id: str) -> Tuple[bool, str]:
         """
-        GUARDRAIL: Validate roster capacity constraints before club acquisition
+        GUARDRAIL: Validate roster capacity constraints with user-friendly errors
         
         Args:
             user_id: User acquiring club
             league_id: League context
             
         Returns:
-            Tuple of (is_valid, error_message)
+            Tuple of (is_valid, user_friendly_error_message)
         """
         try:
-            # Get user's roster
-            roster = await db.rosters.find_one({"user_id": user_id, "league_id": league_id})
-            if not roster:
-                return False, "User roster not found"
+            # Get league settings for club slots
+            league = await db.leagues.find_one({"_id": league_id})
+            if not league:
+                return False, "League not found"
             
-            # Count current clubs owned
+            max_slots = league["settings"]["club_slots_per_manager"]
+            
+            # Count current clubs owned by user
             current_clubs_count = await db.roster_clubs.count_documents({
                 "user_id": user_id,
                 "league_id": league_id
             })
             
             # Check if user has available club slots
-            max_slots = roster["club_slots"]
             if current_clubs_count >= max_slots:
-                return False, f"Roster full: {current_clubs_count}/{max_slots} clubs owned"
+                return False, f"You already own {current_clubs_count}/{max_slots} clubs"
             
             return True, ""
         except Exception as e:
