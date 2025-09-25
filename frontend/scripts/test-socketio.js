@@ -94,8 +94,8 @@ async function testDiagnosticEndpoint() {
 // Test 2: Socket.IO Polling connection
 async function testPollingConnection() {
     return new Promise((resolve) => {
-        const socket = io(API_ORIGIN, {
-            path: SOCKET_PATH,
+        const socket = io(origin, {
+            path: path,
             transports: ['polling'],
             timeout: 10000,
             forceNew: true
