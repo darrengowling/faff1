@@ -89,8 +89,8 @@ export const translations = {
           description: "Your clubs earn points based on real match results. Goals, wins, and draws count."
         },
         transparent: {
-          title: "Clear Rules",
-          description: "Transparent scoring system and auction mechanics. Everyone knows how it works."
+          title: "Transparent scoring",
+          description: "Clear auction mechanics and scoring rules. Everyone knows how it works."
         },
         private: {
           title: "Private & Secure",
