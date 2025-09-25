@@ -390,17 +390,16 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Mobile UX Optimizations and P2 Usability Improvements"
+    - "WebSocket Connection Management System"
+    - "Presence Tracking System"
+    - "State Snapshot System"
+    - "WebSocket Event Handlers"
+    - "WebSocket Authentication and Access Control"
     - "Enforcement Rules Implementation"
     - "Competition Profile Integration in League Creation"
-    - "My Clubs Page Component"
-    - "Fixtures/Results Page Component"
-    - "Leaderboard Page Component"
-    - "App.js Routing Updates"
-    - "Admin Dashboard Frontend Component"
   stuck_tasks: []
   test_all: false
-  test_priority: "high_first"
+  test_priority: "critical_first"
 
 agent_communication:
   - agent: "main"
