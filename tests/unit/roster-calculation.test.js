@@ -1,7 +1,10 @@
 /**
  * Unit Tests for Roster Calculation Logic
  * Ensures remaining = max(0, clubSlots - ownedCount) never goes negative
+ * @jest-environment node
  */
+
+/* eslint-env jest */
 
 describe('Roster Calculation Logic', () => {
   describe('Remaining Slots Calculation', () => {
