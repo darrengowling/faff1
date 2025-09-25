@@ -218,7 +218,7 @@ class AdminServiceFallbackTester:
         updated_correctly = (
             verify_data.get('clubSlots') == 6 and
             verify_data.get('leagueSize', {}).get('min') == 2 and
-            verify_data.get('leagueSize', {}).get('max') == 10
+            verify_data.get('leagueSize', {}).get('max') == 8
         )
         
         return self.log_test(
