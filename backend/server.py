@@ -136,7 +136,7 @@ async def shutdown_event():
     """Clean up on shutdown"""
     scoring_worker = get_scoring_worker()
     scoring_worker.stop()
-    logger.info("UCL Auction API shutting down")
+    logger.info("Friends of PIFA API shutting down")
 
 # Health check endpoint
 @api_router.get("/health")
