@@ -38,6 +38,25 @@ SOCKETIO_PATH_INTERNAL = SOCKET_PATH.lstrip("/")  # "api/socketio"
 # Create Socket.IO server
 sio = socketio.AsyncServer(async_mode="asgi", cors_allowed_origins=[FRONTEND_ORIGIN])
 
+# Socket.IO event handlers
+@sio.event
+async def connect(sid, environ):
+    """Handle client connection"""
+    print(f"Socket.IO client connected: {sid}")
+
+@sio.event
+async def disconnect(sid):
+    """Handle client disconnection"""
+    print(f"Socket.IO client disconnected: {sid}")
+
+@sio.event
+async def join_auction(sid, data):
+    """Join auction room"""
+    auction_id = data.get('auction_id')
+    if auction_id:
+        await sio.enter_room(sid, f"auction_{auction_id}")
+        await sio.emit('joined', {'auction_id': auction_id}, to=sid)
+
 # Create FastAPI app
 fastapi_app = FastAPI(title="UCL Auction API", version="1.0.0")
 
