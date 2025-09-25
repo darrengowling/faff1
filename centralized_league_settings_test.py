@@ -191,8 +191,8 @@ class CentralizedLeagueSettingsTest:
         success, status, data = self.make_request(
             'GET', 
             f'leagues/{self.test_league_id}/settings',
-            token=None,
-            expected_status=403
+            expected_status=403,
+            use_auth=False
         )
         
         auth_required = success and status == 403
