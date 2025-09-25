@@ -31,6 +31,8 @@ If you experience connection issues:
 4. **Try a different browser or incognito mode**
 5. **Check if other users can connect**
 
+**For Platform Administrators**: If WebSocket connections fail consistently, see `WEBSOCKET_ROUTING_FIX.md` for ingress configuration updates that route `/socket.io/*` paths to the backend service (port 8001).
+
 The system automatically handles temporary disconnections and will restore your auction state when reconnected.
 
 ## Testing
