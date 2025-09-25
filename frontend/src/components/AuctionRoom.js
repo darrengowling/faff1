@@ -990,6 +990,24 @@ const AuctionRoom = ({ user, token }) => {
           </div>
         </div>
       </div>
+      
+      {/* Lot Close Confirmation Dialog */}
+      <LotCloseConfirmation
+        isOpen={showCloseConfirmation}
+        onClose={() => {
+          setShowCloseConfirmation(false);
+          setSelectedLotForClose(null);
+        }}
+        onConfirm={handleConfirmClose}
+        lotDetails={selectedLotForClose ? {
+          club_name: selectedLotForClose.club?.name || 'Unknown Club',
+          current_bid: selectedLotForClose.current_bid || 0,
+          leading_bidder: selectedLotForClose.leading_bidder_name || null,
+          timer_active: selectedLotForClose.timer_ends_at ? 
+            new Date(selectedLotForClose.timer_ends_at) > new Date() : false
+        } : null}
+        loading={lotClosingLoading}
+      />
     </div>
   );
 };
