@@ -1141,13 +1141,12 @@ async def get_version():
 # Include the router in the main app
 app.include_router(api_router)
 
-# Mount Socket.IO under /api path (Socket.IO will handle /socket.io internally)
+# Mount Socket.IO under /api/socket.io path with correct socketio_path
 from socket_handler import sio
 import socketio
 
-# Create Socket.IO ASGI app and mount it at /api (not /api/socket.io)
-# This way /api/socket.io/* requests will be handled by Socket.IO
-socketio_asgi = socketio.ASGIApp(sio)
+# Create Socket.IO ASGI app with socketio_path for proper sub-path mounting
+socketio_asgi = socketio.ASGIApp(sio, socketio_path='socket.io')
 app.mount("/api/socket.io", socketio_asgi)
 
 if __name__ == "__main__":
