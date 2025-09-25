@@ -210,7 +210,7 @@ const Login = () => {
                   {t('auth.emailSentMessage', { email })}
                 </p>
                 <p className="text-sm text-green-600 mt-2">
-                  Click the link in your email to log in
+                  {t('auth.clickEmailLink')}
                 </p>
               </div>
             )}
