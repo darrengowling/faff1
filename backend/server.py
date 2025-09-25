@@ -1138,16 +1138,16 @@ async def get_version():
         "environment": os.getenv("ENVIRONMENT", "development")
     }
 
-# Mount Socket.IO at /api/socketio to route through API prefix without conflicts
-from socket_handler import sio  
+# Include the router in the main app
+app.include_router(api_router)
+
+# Wrap FastAPI with Socket.IO ASGIApp overlay (no mounting, no path conflicts)
+from socket_handler import sio
 import socketio
 
-# Create Socket.IO ASGI app and mount at /api/socketio
-socketio_asgi = socketio.ASGIApp(sio)
-app.mount("/api/socketio", socketio_asgi)
-
-# Include the router in the main app (API routes won't conflict with /api/socketio)
-app.include_router(api_router)
+# Create Socket.IO ASGIApp wrapper around FastAPI
+# socketio_path="api/socketio" (no leading slash as per Socket.IO docs)
+final_app = socketio.ASGIApp(sio, other_asgi_app=app, socketio_path="api/socketio")
 
 if __name__ == "__main__":
     import uvicorn
