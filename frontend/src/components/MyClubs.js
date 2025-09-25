@@ -40,6 +40,9 @@ const MyClubs = ({ user, token }) => {
   const { leagueId } = useParams();
   const navigate = useNavigate();
   
+  // Load centralized league settings
+  const { settings: leagueSettings, loading: settingsLoading } = useLeagueSettings(leagueId);
+  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [clubsData, setClubsData] = useState(null);
