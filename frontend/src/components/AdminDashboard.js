@@ -51,6 +51,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const AdminDashboard = ({ user, token }) => {
+  const { t } = useTranslation();
   const { leagueId } = useParams();
   const navigate = useNavigate();
   
