@@ -77,7 +77,7 @@ export const translations = {
     auction: "Auction",
     admin: "Admin",
     appName: "{{brandName}}", // Dynamic brand name
-    uclFixturesResults: "{{brandName}} Fixtures & Results", // Dynamic
+    fixturesResults: "{{brandName}} Fixtures & Results", // Dynamic
     backToDashboard: "Back to Dashboard",
     manageLeague: "Manage League",
     goToDashboard: "Go to Dashboard"
