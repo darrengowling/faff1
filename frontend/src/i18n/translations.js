@@ -234,7 +234,7 @@ export const translations = {
 
   // Fixtures
   fixtures: {
-    title: "UCL Fixtures & Results",
+    title: "{{brandName}} Fixtures & Results",
     groupStage: "Group Stage",
     roundOf16: "Round of 16",
     quarterFinals: "Quarter Finals",
