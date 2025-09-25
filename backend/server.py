@@ -20,7 +20,7 @@ from auth import (
 
 # Import auction, scoring, aggregation, and admin modules
 from auction_engine import initialize_auction_engine, get_auction_engine
-from websocket import sio, get_socketio_app
+from socket_handler import sio, get_socketio_app
 from scoring_service import ScoringService, get_scoring_worker
 from aggregation_service import AggregationService
 from admin_service import AdminService
