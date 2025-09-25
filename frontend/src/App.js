@@ -1219,7 +1219,7 @@ const Dashboard = () => {
               <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
                 <Trophy className="w-5 h-5 text-white" />
               </div>
-              <h1 className="text-xl font-bold text-gray-900">UCL Auction</h1>
+              <h1 className="text-xl font-bold text-gray-900">{t('nav.appName', { brandName: getBrandName() })}</h1>
             </div>
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
