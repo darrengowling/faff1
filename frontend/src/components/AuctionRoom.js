@@ -52,6 +52,7 @@ import {
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const AuctionRoom = ({ user, token }) => {
+  const { t } = useTranslation();
   const { auctionId } = useParams();
   const navigate = useNavigate();
   
