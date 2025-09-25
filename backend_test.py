@@ -3431,6 +3431,15 @@ class UCLAuctionAPITester:
         self.test_clubs_seed()
         self.test_get_clubs()
         
+        # ==================== DIAGNOSTIC PAGE & SOCKET.IO CONFIGURATION TESTS ====================
+        print("\n🔧 DIAGNOSTIC PAGE & SOCKET.IO CONFIGURATION TESTS")
+        print("-" * 60)
+        self.test_diagnostic_page_accessibility()
+        self.test_backend_socketio_configuration()
+        self.test_environment_configuration_display()
+        self.test_socketio_connection_attempt()
+        self.test_socket_path_consistency()
+        
         # Enhanced League Creation Tests
         print("\n🏟️ ENHANCED LEAGUE CREATION TESTS")
         self.test_enhanced_league_creation()
