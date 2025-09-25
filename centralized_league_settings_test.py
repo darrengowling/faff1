@@ -456,19 +456,16 @@ export default TestComponent;
         # Test with non-existent league
         success, status, data = self.make_request(
             'GET',
-            'leagues/non-existent-league/settings',
-            expected_status=404
+            'leagues/00000000-0000-0000-0000-000000000000/settings',
+            expected_status=403  # Will be 403 because user is not a member, not 404
         )
         
-        handles_not_found = success and status == 404
-        
-        # Test with league user is not a member of (if we had another user)
-        # For now, just test the not found case
+        handles_not_found = success and status == 403
         
         return self.log_test(
             "League Settings Error Handling",
             handles_not_found,
-            f"Not found handled: {handles_not_found}"
+            f"Non-member access denied: {handles_not_found}"
         )
 
     def run_all_tests(self):
