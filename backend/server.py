@@ -21,13 +21,14 @@ from auth import (
     require_league_access, require_commissioner_access, AccessControl
 )
 
-# Import auction, scoring, aggregation, and admin modules
+# Import auction, scoring, aggregation, admin, and competition modules
 from auction_engine import initialize_auction_engine, get_auction_engine
 from scoring_service import ScoringService, get_scoring_worker
 from aggregation_service import AggregationService
 from admin_service import AdminService
 from audit_service import AuditService
 from lot_closing_service import LotClosingService
+from competition_service import CompetitionService
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
