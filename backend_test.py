@@ -850,9 +850,9 @@ class UCLAuctionAPITester:
         )
     
     def test_cli_test_script_exists(self):
-        """Test that scripts/test-socketio.js exists and is executable"""
+        """Test that scripts/diag-socketio.mjs exists and is executable"""
         import os
-        script_path = "/app/frontend/scripts/test-socketio.js"
+        script_path = "/app/frontend/scripts/diag-socketio.mjs"
         
         try:
             # Check if file exists
@@ -872,14 +872,15 @@ class UCLAuctionAPITester:
             # Check if script has proper shebang and structure
             has_shebang = script_content.startswith('#!/usr/bin/env node')
             has_socketio_import = 'socket.io-client' in script_content
-            has_test_functions = 'testDiagnosticEndpoint' in script_content and 'testPollingConnection' in script_content
+            has_test_functions = 'testPollingHandshake' in script_content and 'testWebSocketConnection' in script_content
+            has_proper_env_vars = 'NEXT_PUBLIC_API_URL' in script_content and 'VITE_PUBLIC_API_URL' in script_content
             
-            script_valid = has_shebang and has_socketio_import and has_test_functions
+            script_valid = has_shebang and has_socketio_import and has_test_functions and has_proper_env_vars
             
             return self.log_test(
-                "CLI Test Script Exists (scripts/test-socketio.js)",
+                "CLI Test Script Exists (scripts/diag-socketio.mjs)",
                 file_exists and file_readable and script_valid,
-                f"Exists: {file_exists}, Readable: {file_readable}, Valid structure: {script_valid}"
+                f"Exists: {file_exists}, Readable: {file_readable}, Valid structure: {script_valid}, Has env vars: {has_proper_env_vars}"
             )
         except Exception as e:
             return self.log_test("CLI Test Script Exists", False, f"Exception: {str(e)}")
