@@ -79,7 +79,7 @@ async def startup_event():
     
     logger.info("UCL Auction API with Live Auction Engine and Scoring System started successfully")
 
-@app.on_event("shutdown")
+@fastapi_app.on_event("shutdown")
 async def shutdown_event():
     """Clean up on shutdown"""
     scoring_worker = get_scoring_worker()
