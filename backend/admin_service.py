@@ -296,7 +296,11 @@ class AdminService:
             
             # 3. CLUB SLOTS VALIDATION
             if updates.club_slots_per_manager is not None:
-                current_slots = current_settings.get("club_slots_per_manager", 3)
+                # After migration, all leagues should have club_slots_per_manager set
+                current_slots = current_settings.get("club_slots_per_manager")
+                if current_slots is None:
+                    return False, "League missing club_slots_per_manager setting. Please run migration."
+                
                 new_slots = updates.club_slots_per_manager
                 
                 # If decreasing slots, ensure all current rosters fit the new limit
