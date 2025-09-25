@@ -1493,8 +1493,13 @@ function App() {
                 <Dashboard />
               </ProtectedRoute>
             } />
+            <Route path="/app" element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
             <Route path="/diag" element={<DiagnosticPage />} />
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/" element={<RootRoute />} />
           </Routes>
           <Toaster position="top-right" />
         </div>
