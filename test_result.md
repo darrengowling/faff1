@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Complete the i18n implementation - Create detailed translation keys for all microcopy and replace ad-hoc hardcoded strings in the frontend UI with these new i18n keys."
+user_problem_statement: "Complete the sticky in-page navigation bar and fix GlobalNavbar issues - Implement StickyPageNav.js with tabs, scroll-spy behavior, browser hash updates, accessibility, fix GlobalNavbar dropdown visibility and mobile responsiveness."
 
 backend:
   - task: "Complete I18N Implementation"
