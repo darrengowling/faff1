@@ -259,7 +259,7 @@ const DiagnosticPage = () => {
               <div className="flex space-x-3">
                 <Button 
                   onClick={testConnection} 
-                  disabled={isesting}
+                  disabled={isTesting}
                   className="flex items-center space-x-2"
                 >
                   <RefreshCw className={`w-4 h-4 ${isesting ? 'animate-spin' : ''}`} />
