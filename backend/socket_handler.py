@@ -121,6 +121,7 @@ FRONTEND_ORIGIN = os.getenv('FRONTEND_ORIGIN', 'https://realtime-socket-fix.prev
 
 # Create Socket.IO server with CORS configuration (integrated via ASGIApp overlay)
 sio = socketio.AsyncServer(
+    async_mode='asgi',
     cors_allowed_origins=FRONTEND_ORIGIN,
     logger=logging.getLogger('socketio'),
     engineio_logger=logging.getLogger('socketio.engineio'),
