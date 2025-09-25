@@ -203,6 +203,239 @@ const SimpleLandingPage = () => {
         </div>
       </section>
 
+      {/* Why Friends of PIFA Section */}
+      <section id="why" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Why Friends of PIFA
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Fair, social, and skill-based. The way football competition should be.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8 text-center">
+                <Shield className="w-12 h-12 text-green-600 mx-auto mb-6" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  No Gambling, All Strategy
+                </h3>
+                <p className="text-gray-600">
+                  Pure skill-based competition with zero wagering. Your football knowledge and tactical decisions determine success.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8 text-center">
+                <Users className="w-12 h-12 text-blue-600 mx-auto mb-6" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  The Social Arena
+                </h3>
+                <p className="text-gray-600">
+                  Where skill beats luck. Compete with friends in a fair environment built for strategy and friendly rivalry.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8 text-center">
+                <Heart className="w-12 h-12 text-red-600 mx-auto mb-6" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Built for Friends
+                </h3>
+                <p className="text-gray-600">
+                  Private leagues create the perfect space for banter, competition, and shared football passion.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Powerful Features
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Everything you need for the perfect football auction experience
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Users,
+                title: 'Private Leagues (2–8 Players)',
+                description: 'Perfect size for friend groups with customizable league settings'
+              },
+              {
+                icon: Target,
+                title: 'Configurable Slots & Budgets',
+                description: 'Tailor your league with flexible team sizes and spending limits'
+              },
+              {
+                icon: Clock,
+                title: 'Anti-Snipe Auction',
+                description: 'Fair bidding with automatic timer extensions for last-second bids'
+              },
+              {
+                icon: Zap,
+                title: 'Real-Time Scoring',
+                description: 'Live updates from actual match results and instant point calculations'
+              },
+              {
+                icon: Award,
+                title: 'Dynamic Leaderboards',
+                description: 'Track performance across matchdays with detailed statistics'
+              },
+              {
+                icon: MessageCircle,
+                title: 'League Chat & Banter',
+                description: 'Built-in communication for trash talk and strategy discussions'
+              }
+            ].map((feature, index) => (
+              <div key={index} className="flex items-start space-x-4 p-6 rounded-lg hover:bg-gray-50 transition-colors">
+                <div className="flex-shrink-0">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <feature.icon className="w-6 h-6 text-blue-600" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Safety & Fair Play Section */}
+      <section id="safety" className="py-20 bg-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Fair Play & Transparency
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Built on principles of fairness and transparency. No hidden mechanics, just pure football strategy.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              {[
+                {
+                  title: 'No Wagering',
+                  description: 'Zero gambling. Play for pride, bragging rights, and the love of the game.'
+                },
+                {
+                  title: 'Points from Performance',
+                  description: 'Your clubs earn points based on real match results. Goals, wins, and draws count.'
+                },
+                {
+                  title: 'Clear Rules',
+                  description: 'Transparent scoring system and auction mechanics. Everyone knows how it works.'
+                },
+                {
+                  title: 'Private & Secure',
+                  description: 'Your leagues are private to your group. No public rankings or external pressure.'
+                }
+              ].map((item, index) => (
+                <div key={index} className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                    <Check className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
+                    <p className="text-gray-600">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Eye className="w-16 h-16 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Complete Transparency
+              </h3>
+              <p className="text-gray-600">
+                Every bid, every point, every result is visible to all league members. 
+                Fairness through complete openness.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xl text-gray-600">
+              Everything you need to know about Friends of PIFA
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              {
+                question: 'How does scoring work?',
+                answer: 'Your clubs earn points based on real match results: +1 for each goal scored, +3 for wins, +1 for draws.'
+              },
+              {
+                question: 'What happens if I miss the auction?',
+                answer: 'Auctions are scheduled by your league commissioner. If you miss it, you can still join future auctions or trade with other managers.'
+              },
+              {
+                question: 'Can I create multiple leagues?',
+                answer: 'Yes! You can create and participate in multiple leagues with different friend groups.'
+              },
+              {
+                question: 'Is there any cost to play?',
+                answer: 'Friends of PIFA is free to play. No hidden fees, no premium features - just pure football fun.'
+              },
+              {
+                question: 'How do invites work?',
+                answer: 'League commissioners can send email invites to friends. Recipients just click the link to join the league.'
+              },
+              {
+                question: 'What competitions are supported?',
+                answer: 'We support major European competitions with plans to expand to more leagues and tournaments.'
+              }
+            ].map((faq, index) => (
+              <Card key={index} className="border border-gray-200">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg font-medium text-gray-900">
+                    {faq.question}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-gray-600">
+                    {faq.answer}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA Section */}
       <section id="cta" className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
