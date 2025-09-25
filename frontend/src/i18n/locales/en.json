@@ -1,0 +1,127 @@
+{
+  "rules": {
+    "minManagers": "You must have ≥ {{count}} managers to start",
+    "currentlyHave": "currently have {{count}}",
+    "clubSlots": "{{count}} club slots per manager",
+    "budgetPerManager": "${{amount}}M per manager",
+    "leagueSize": "{{min}}-{{max}} managers",
+    "antiSnipe": "{{seconds}}s anti-snipe",
+    "bidTimer": "{{seconds}}s bid timer",
+    "needMoreManagers": "Need {{count}} more managers to start auction",
+    "waitingForMoreManagers": "Waiting for More Managers",
+    "needAtLeastManagers": "Need at least {{count}} managers to start the auction",
+    "readyToStart": "Ready to start the auction"
+  },
+  
+  "ui": {
+    "slotsRemaining": "{{count}} remaining",
+    "slotsAvailable": "{{count}} available", 
+    "clubsOwned": "{{owned}}/{{max}} clubs",
+    "clubsOwnedShort": "{{count}} / {{max}} Clubs",
+    "slotsLeft": "{{count}} slots left",
+    "noSlotsRemaining": "No slots remaining",
+    "fullRoster": "Full roster",
+    "loading": "Loading...",
+    "loadingRules": "Loading rules...",
+    "managersCount": "{{count}} managers",
+    "managersJoined": "{{count}}/{{max}} joined",
+    "budgetUsed": "${{used}}M / ${{total}}M",
+    "budgetRemaining": "${{remaining}}M remaining"
+  },
+  
+  "auction": {
+    "startAuction": "Start Auction",
+    "startAuctionDisabled": "Start Auction ({{current}}/{{min}})",
+    "notEnoughManagers": "Not enough managers to start auction",
+    "auctionStarted": "Auction Started",
+    "auctionEnded": "Auction Ended",
+    "waitingToStart": "Waiting to start",
+    "rosterFull": "You already own {{owned}}/{{slots}} clubs",
+    "cannotBid": "Cannot bid - roster full",
+    "bidPlaced": "Bid placed successfully",
+    "bidFailed": "Bid failed",
+    "connectionLost": "Connection lost",
+    "reconnecting": "Reconnecting..."
+  },
+  
+  "league": {
+    "createLeague": "Create League",
+    "leagueCreated": "League created successfully",
+    "leagueSettings": "League Settings", 
+    "competitionTemplate": "Competition Template",
+    "inviteMembers": "Invite Members",
+    "memberInvited": "Member invited successfully",
+    "leagueFull": "League is full ({{current}}/{{max}} managers)",
+    "leagueNotFound": "League not found",
+    "accessDenied": "Access denied",
+    "notAMember": "Not a member of this league"
+  },
+  
+  "roster": {
+    "myClubs": "My Clubs",
+    "noClubs": "No clubs yet",
+    "clubsPurchased": "Clubs Purchased",
+    "totalSpent": "Total Spent",
+    "budgetRemaining": "Budget Remaining",
+    "slotsAvailable": "Slots Available",
+    "rosterCapacity": "Roster Capacity",
+    "clubsInRoster": "{{count}} clubs in roster"
+  },
+  
+  "admin": {
+    "adminPanel": "Commissioner Panel",
+    "startAuctionTooltip": "{{canStart, select, true {Ready to start the auction} other {Need at least {{min}} managers to start auction (currently have {{current}})}}",
+    "leagueStatus": "League Status",
+    "memberManagement": "Member Management",
+    "auctionControls": "Auction Controls",
+    "settingsUpdated": "Settings updated successfully",
+    "cannotChangeSettings": "Cannot change settings after auction starts"
+  },
+  
+  "errors": {
+    "budgetExceeded": "Not enough budget remaining",
+    "rosterFull": "Your roster is full",
+    "invalidBid": "Invalid bid amount",
+    "auctionNotActive": "Auction is not active",
+    "connectionError": "Connection error",
+    "serverError": "Server error occurred",
+    "unauthorized": "Unauthorized access",
+    "forbidden": "Access forbidden"
+  },
+  
+  "status": {
+    "connected": "LIVE",
+    "disconnected": "DISCONNECTED", 
+    "reconnecting": "RECONNECTING",
+    "ready": "Ready",
+    "waiting": "Waiting",
+    "active": "Active",
+    "ended": "Ended",
+    "full": "Full"
+  },
+  
+  "tooltips": {
+    "rules": "League Rules",
+    "clubSlots": "Club Slots per Manager: {{count}}",
+    "budget": "Budget per Manager: ${{amount}}M",
+    "minManagers": "Min Managers: {{count}}",
+    "maxManagers": "Max Managers: {{count}}",
+    "connection": "Connection Status",
+    "help": "Help & Tips"
+  },
+  
+  "help": {
+    "howToPlay": "How to Play",
+    "biddingTips": "Bidding Tips", 
+    "scoringSystem": "Scoring System",
+    "auctionMechanics": "Auction Mechanics"
+  },
+  
+  "validation": {
+    "required": "This field is required",
+    "minValue": "Minimum value is {{min}}",
+    "maxValue": "Maximum value is {{max}}",
+    "invalidEmail": "Invalid email address",
+    "passwordTooShort": "Password must be at least {{min}} characters"
+  }
+}
