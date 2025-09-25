@@ -19,6 +19,7 @@ import Leaderboard from './components/Leaderboard';
 import AdminDashboard from './components/AdminDashboard';
 import DiagnosticPage from './components/DiagnosticPage';
 import LandingPage from './components/LandingPage';
+import SimpleLandingPage from './components/SimpleLandingPage';
 import { MobileNav, BottomTabNav } from './components/ui/mobile-nav';
 
 // Import Shadcn components
