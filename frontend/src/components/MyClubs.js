@@ -158,10 +158,10 @@ const MyClubs = ({ user, token }) => {
               </svg>
             </div>
           )}
-          title="No Data Available"
-          description="Unable to load your club information. Please try refreshing the page."
+          title={t('errors.noData')}
+          description={t('errors.failedToLoadDescription', { item: 'club information' })}
           action={fetchMyClubs}
-          actionLabel="Refresh"
+          actionLabel={t('common.refresh')}
         />
       </div>
     );
