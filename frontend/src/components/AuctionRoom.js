@@ -320,6 +320,72 @@ const AuctionRoom = ({ user, token }) => {
     }
   };
 
+  // Lot closing functions
+  const handleCloseLot = async (lot) => {
+    setSelectedLotForClose(lot);
+    setShowCloseConfirmation(true);
+  };
+
+  const handleConfirmClose = async (reason, forced) => {
+    if (!selectedLotForClose) return;
+
+    setLotClosingLoading(true);
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/lots/${selectedLotForClose._id}/close`,
+        { reason, forced },
+        { headers: { Authorization: `Bearer ${token}` }}
+      );
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setShowCloseConfirmation(false);
+        
+        // Add to undo actions
+        setUndoActions(prev => [...prev, {
+          action_id: response.data.action_id,
+          undo_deadline: response.data.undo_deadline,
+          lot_id: selectedLotForClose._id
+        }]);
+      }
+    } catch (error) {
+      const errorMessage = error.response?.data?.detail || 'Failed to close lot';
+      toast.error(errorMessage);
+    } finally {
+      setLotClosingLoading(false);
+    }
+  };
+
+  const handleUndoLotClose = async (actionId) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/lots/undo/${actionId}`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` }}
+      );
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        
+        // Remove from undo actions
+        setUndoActions(prev => prev.filter(action => action.action_id !== actionId));
+      }
+    } catch (error) {
+      const errorMessage = error.response?.data?.detail || 'Failed to undo lot close';
+      toast.error(errorMessage);
+    }
+  };
+
+  const handleUndoExpired = (actionId) => {
+    // Remove expired undo action
+    setUndoActions(prev => prev.filter(action => action.action_id !== actionId));
+  };
+
+  // Get server-synchronized time
+  const getServerTime = () => {
+    return Date.now() + serverTimeOffset;
+  };
+
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
