@@ -231,13 +231,13 @@ const Login = () => {
           <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
             <Trophy className="w-8 h-8 text-white" />
           </div>
-          <CardTitle className="text-2xl font-bold text-gray-900">UCL Auction</CardTitle>
-          <p className="text-gray-600">Enter your email to get started</p>
+          <CardTitle className="text-2xl font-bold text-gray-900">{t('auth.loginTitle')}</CardTitle>
+          <p className="text-gray-600">{t('auth.loginSubtitle')}</p>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSendMagicLink} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('common.email')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -253,7 +253,7 @@ const Login = () => {
               size="lg"
               disabled={loading}
             >
-              {loading ? 'Sending...' : 'Send Magic Link'}
+              {loading ? t('auth.sending') : t('auth.sendMagicLink')}
             </Button>
           </form>
         </CardContent>
