@@ -276,7 +276,7 @@ const MagicLinkVerify = () => {
       const token = urlParams.get('token');
 
       if (!token) {
-        setError('No token provided');
+        setError(t('auth.invalidToken'));
         setLoading(false);
         return;
       }
@@ -284,11 +284,11 @@ const MagicLinkVerify = () => {
       try {
         const response = await axios.post(`${API}/auth/verify`, { token });
         login(response.data.access_token, response.data.user);
-        toast.success('Successfully logged in!');
+        toast.success(t('auth.loginSuccess'));
         navigate('/dashboard');
       } catch (error) {
-        setError('Invalid or expired token');
-        toast.error('Invalid or expired magic link');
+        setError(t('auth.invalidToken'));
+        toast.error(t('auth.invalidMagicLink'));
       } finally {
         setLoading(false);
       }
