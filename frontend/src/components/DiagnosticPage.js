@@ -44,7 +44,7 @@ const DiagnosticPage = () => {
     apiOrigin: config.apiOrigin !== 'Not set' ? config.apiOrigin : 
                config.nextApiOrigin !== 'Not set' ? config.nextApiOrigin :
                config.viteApiOrigin !== 'Not set' ? config.viteApiOrigin :
-               'https://ucl-auction-1.preview.emergentagent.com',
+               'https://realtime-socket-fix.preview.emergentagent.com',
                
     socketPath: config.socketPath !== 'Not set' ? config.socketPath :
                config.nextSocketPath !== 'Not set' ? config.nextSocketPath :

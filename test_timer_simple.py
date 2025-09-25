@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 import time
 
 class SimpleTimerTester:
-    def __init__(self, base_url="https://ucl-auction-1.preview.emergentagent.com"):
+    def __init__(self, base_url="https://realtime-socket-fix.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         

@@ -8,7 +8,7 @@ const { test, expect } = require('@playwright/test');
  */
 
 test.describe('UCL Auction - Core User Flows', () => {
-  const BASE_URL = 'https://ucl-auction-1.preview.emergentagent.com';
+  const BASE_URL = 'https://realtime-socket-fix.preview.emergentagent.com';
   
   let testResults = {
     passed: [],

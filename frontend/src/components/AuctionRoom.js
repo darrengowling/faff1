@@ -411,7 +411,7 @@ const AuctionRoom = ({ user, token }) => {
       const apiOrigin = process.env.REACT_APP_API_ORIGIN || 
                        process.env.NEXT_PUBLIC_API_ORIGIN || 
                        process.env.VITE_API_ORIGIN ||
-                       'https://ucl-auction-1.preview.emergentagent.com';
+                       'https://realtime-socket-fix.preview.emergentagent.com';
                        
       const socketPath = process.env.REACT_APP_SOCKET_PATH ||
                         process.env.NEXT_PUBLIC_SOCKET_PATH ||
