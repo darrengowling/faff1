@@ -1,10 +1,4 @@
-import js from '@eslint/js';
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
-
 export default [
-  js.configs.recommended,
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
@@ -27,12 +21,8 @@ export default [
         require: 'readonly',
         exports: 'readonly',
         global: 'readonly',
+        React: 'readonly',
       },
-    },
-    plugins: {
-      react,
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
     },
     rules: {
       // Custom rule to forbid magic number 3 for club slots
@@ -42,8 +32,7 @@ export default [
         enforceConst: false,
         detectObjects: false,
         ignoreDefaultValues: true
-      }],
-      ...reactHooks.configs.recommended.rules,
+      }]
     },
   },
   {
