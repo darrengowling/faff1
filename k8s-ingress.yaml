@@ -1,0 +1,85 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ucl-auction-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # Enable WebSocket support
+    nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
+    nginx.ingress.kubernetes.io/proxy-set-header-upgrade: "$http_upgrade"
+    nginx.ingress.kubernetes.io/proxy-set-header-connection: "upgrade"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    # Additional WebSocket optimizations
+    nginx.ingress.kubernetes.io/proxy-set-header-host: "$host"
+    nginx.ingress.kubernetes.io/proxy-set-header-x-real-ip: "$remote_addr"
+    nginx.ingress.kubernetes.io/proxy-set-header-x-forwarded-for: "$proxy_add_x_forwarded_for"
+    nginx.ingress.kubernetes.io/proxy-set-header-x-forwarded-proto: "$scheme"
+    # Disable SSL redirect for WebSocket compatibility
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - host: ucl-auction-1.preview.emergentagent.com
+    http:
+      paths:
+      # Socket.IO WebSocket routes (CRITICAL FIX)
+      - path: /socket.io
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 8001
+      
+      # API routes to backend
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 8001
+      
+      # All other routes to frontend
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 3000
+
+---
+# Backend Service Definition
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: ucl-auction-backend
+  ports:
+  - name: http
+    port: 8001
+    targetPort: 8001
+  - name: websocket
+    port: 8001
+    targetPort: 8001
+    protocol: TCP
+  type: ClusterIP
+
+---
+# Frontend Service Definition  
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: ucl-auction-frontend
+  ports:
+  - name: http
+    port: 3000
+    targetPort: 3000
+  type: ClusterIP
