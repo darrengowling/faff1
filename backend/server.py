@@ -61,7 +61,7 @@ async def join_auction(sid, data):
         await sio.emit('joined', {'auction_id': auction_id}, to=sid)
 
 # Create FastAPI app
-fastapi_app = FastAPI(title="UCL Auction API", version="1.0.0")
+fastapi_app = FastAPI(title="Friends of PIFA API", version="1.0.0")
 
 # Add CORS middleware
 fastapi_app.add_middleware(
