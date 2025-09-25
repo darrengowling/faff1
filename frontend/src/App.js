@@ -452,6 +452,45 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
   });
   const [loading, setLoading] = useState(false);
 
+  // Fetch competition profiles on component mount
+  useEffect(() => {
+    const fetchCompetitionProfiles = async () => {
+      try {
+        const response = await axios.get(`${API}/competition-profiles`);
+        setCompetitionProfiles(response.data);
+      } catch (error) {
+        console.error('Failed to fetch competition profiles:', error);
+        toast.error('Failed to load competition templates');
+      }
+    };
+
+    if (open) {
+      fetchCompetitionProfiles();
+    }
+  }, [open]);
+
+  // Update form data when selected profile changes
+  useEffect(() => {
+    if (selectedProfile && competitionProfiles.length > 0) {
+      const profile = competitionProfiles.find(p => p._id === selectedProfile);
+      if (profile && profile.defaults) {
+        setFormData(prev => ({
+          ...prev,
+          settings: {
+            ...prev.settings,
+            budget_per_manager: profile.defaults.budget_per_manager,
+            club_slots_per_manager: profile.defaults.club_slots,
+            league_size: profile.defaults.league_size,
+            min_increment: profile.defaults.min_increment,
+            anti_snipe_seconds: profile.defaults.anti_snipe_seconds,
+            bid_timer_seconds: profile.defaults.bid_timer_seconds,
+            scoring_rules: profile.defaults.scoring_rules
+          }
+        }));
+      }
+    }
+  }, [selectedProfile, competitionProfiles]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
