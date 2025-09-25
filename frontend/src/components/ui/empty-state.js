@@ -163,15 +163,19 @@ export const NoMembersEmptyState = ({ onInviteMembers, minManagers = 4 }) => (
   />
 );
 
-export const LoadingEmptyState = ({ message = "Loading..." }) => (
-  <EmptyState
-    icon={() => (
-      <div className="w-16 h-16 mx-auto mb-4">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600"></div>
-      </div>
-    )}
-    title={message}
-    description="Please wait while we fetch your data."
-    variant="compact"
-  />
-);
+export const LoadingEmptyState = ({ message }) => {
+  const { t } = useTranslation();
+  
+  return (
+    <EmptyState
+      icon={() => (
+        <div className="w-16 h-16 mx-auto mb-4">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600"></div>
+        </div>
+      )}
+      title={message || t('loading.loading')}
+      description={t('loading.pleaseWait')}
+      variant="compact"
+    />
+  );
+};
