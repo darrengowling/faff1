@@ -429,23 +429,6 @@ const InvitationAccept = () => {
   return null;
 };
 
-// Default league settings constants
-const DEFAULT_CLUB_SLOTS_PER_MANAGER = 3;
-const DEFAULT_LEAGUE_SETTINGS = {
-  budget_per_manager: 100,
-  min_increment: 1,
-  club_slots_per_manager: DEFAULT_CLUB_SLOTS_PER_MANAGER,
-  anti_snipe_seconds: 30,
-  bid_timer_seconds: 60,
-  max_managers: 8,
-  min_managers: 4,
-  scoring_rules: {
-    club_goal: 1,
-    club_win: 3,
-    club_draw: 1
-  }
-};
-
 // Enhanced League Creation Dialog
 const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
   const [formData, setFormData] = useState({
