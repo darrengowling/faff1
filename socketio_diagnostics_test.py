@@ -92,8 +92,8 @@ class SocketIODiagnosticsTester:
         )
     
     def test_cli_test_script_exists(self):
-        """Test that scripts/test-socketio.js exists and is executable"""
-        script_path = "/app/frontend/scripts/test-socketio.js"
+        """Test that scripts/diag-socketio.mjs exists and is executable"""
+        script_path = "/app/frontend/scripts/diag-socketio.mjs"
         
         try:
             # Check if file exists
