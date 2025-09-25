@@ -193,7 +193,7 @@ test.describe('League Settings Regression Tests', () => {
       expect(profilesResponse.ok()).toBeTruthy();
       
       const profiles = await profilesResponse.json();
-      const uclProfile = profiles.profiles.find(p => p._id === 'ucl');
+      const uclProfile = profiles.profiles.find(p => p.id === 'ucl');  // Use 'id' not '_id'
       
       // Verify UCL defaults
       expect(uclProfile.defaults).toMatchObject({
