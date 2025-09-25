@@ -82,6 +82,12 @@ const AuctionRoom = ({ user, token }) => {
   const [chatInput, setChatInput] = useState('');
   const chatScrollRef = useRef(null);
   
+  // Lot closing state
+  const [showCloseConfirmation, setShowCloseConfirmation] = useState(false);
+  const [selectedLotForClose, setSelectedLotForClose] = useState(null);
+  const [lotClosingLoading, setLotClosingLoading] = useState(false);
+  const [undoActions, setUndoActions] = useState([]);
+
   // UI state
   const [showChat, setShowChat] = useState(true);
   const [isCommissioner, setIsCommissioner] = useState(false);
