@@ -113,7 +113,8 @@ class SocketIODiagnosticsTester:
             # Check if script has proper shebang and structure
             has_shebang = script_content.startswith('#!/usr/bin/env node')
             has_socketio_import = 'socket.io-client' in script_content
-            has_test_functions = 'testDiagnosticEndpoint' in script_content and 'testPollingConnection' in script_content
+            has_test_functions = 'testPollingHandshake' in script_content and 'testWebSocketConnection' in script_content
+            has_proper_env_vars = 'NEXT_PUBLIC_API_URL' in script_content and 'VITE_PUBLIC_API_URL' in script_content
             
             script_valid = has_shebang and has_socketio_import and has_test_functions
             
