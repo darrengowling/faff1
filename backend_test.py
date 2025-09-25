@@ -1221,6 +1221,79 @@ class UCLAuctionAPITester:
         except Exception as e:
             return self.log_test("DiagnosticPage Accessibility", False, f"Exception: {str(e)}")
     
+    def test_socketio_handshake_validation(self):
+        """Test Socket.IO handshake validation with proper Engine.IO format"""
+        try:
+            # Test polling handshake directly
+            timestamp = str(int(time.time() * 1000))
+            handshake_url = f"{self.base_url}/api/socketio/?EIO=4&transport=polling&t={timestamp}"
+            
+            response = requests.get(handshake_url, timeout=10)
+            
+            # Check for proper Engine.IO handshake response
+            handshake_successful = response.status_code == 200
+            proper_format = response.text.startswith('0{') and '"sid":' in response.text
+            has_upgrades = '"upgrades":' in response.text
+            
+            # Parse the handshake response
+            handshake_data = None
+            if proper_format:
+                try:
+                    # Remove the '0' prefix and parse JSON
+                    json_part = response.text[1:]
+                    handshake_data = json.loads(json_part)
+                except:
+                    pass
+            
+            valid_handshake_data = (
+                handshake_data is not None and
+                'sid' in handshake_data and
+                'upgrades' in handshake_data and
+                isinstance(handshake_data['upgrades'], list)
+            )
+            
+            return self.log_test(
+                "Socket.IO Handshake Validation",
+                handshake_successful and proper_format and valid_handshake_data,
+                f"Status: {response.status_code}, Proper format: {proper_format}, Valid data: {valid_handshake_data}, SID: {handshake_data.get('sid', 'N/A') if handshake_data else 'N/A'}"
+            )
+        except Exception as e:
+            return self.log_test("Socket.IO Handshake Validation", False, f"Exception: {str(e)}")
+    
+    def test_ui_diagnostic_features(self):
+        """Test UI diagnostic features are properly implemented"""
+        try:
+            # Check DiagnosticPage component file
+            diagnostic_page_path = "/app/frontend/src/components/DiagnosticPage.js"
+            
+            if not os.path.exists(diagnostic_page_path):
+                return self.log_test("UI Diagnostic Features", False, "DiagnosticPage.js not found")
+            
+            with open(diagnostic_page_path, 'r') as f:
+                component_content = f.read()
+            
+            # Check for required UI features
+            has_api_origin_display = 'API Origin:' in component_content
+            has_socket_path_display = 'Socket Path:' in component_content
+            has_transport_info = 'transports' in component_content.lower()
+            has_session_id_display = 'Session ID' in component_content or 'sessionId' in component_content
+            has_polling_banner = 'Polling-Only' in component_content or 'polling' in component_content.lower()
+            has_connection_status = 'connectionStatus' in component_content
+            
+            ui_features_complete = (
+                has_api_origin_display and has_socket_path_display and 
+                has_transport_info and has_session_id_display and 
+                has_polling_banner and has_connection_status
+            )
+            
+            return self.log_test(
+                "UI Diagnostic Features",
+                ui_features_complete,
+                f"API Origin: {has_api_origin_display}, Socket Path: {has_socket_path_display}, Transport info: {has_transport_info}, Session ID: {has_session_id_display}, Polling banner: {has_polling_banner}"
+            )
+        except Exception as e:
+            return self.log_test("UI Diagnostic Features", False, f"Exception: {str(e)}")
+    
     def test_backend_socketio_configuration(self):
         """Test backend Socket.IO configuration with correct socketio_path"""
         try:
