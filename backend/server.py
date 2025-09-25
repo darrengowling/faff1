@@ -129,7 +129,7 @@ async def startup_event():
     # Note: In production, run scoring worker as separate process/container
     # asyncio.create_task(scoring_worker.start_continuous_processing())
     
-    logger.info("UCL Auction API with Live Auction Engine and Scoring System started successfully")
+    logger.info("Friends of PIFA API with Live Auction Engine and Scoring System started successfully")
 
 @fastapi_app.on_event("shutdown")
 async def shutdown_event():
