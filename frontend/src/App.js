@@ -431,10 +431,24 @@ const InvitationAccept = () => {
 
 // Enhanced League Creation Dialog
 const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
+  const [competitionProfiles, setCompetitionProfiles] = useState([]);
+  const [selectedProfile, setSelectedProfile] = useState('ucl');
   const [formData, setFormData] = useState({
     name: '',
     season: '2025-26',
-    settings: { ...DEFAULT_LEAGUE_SETTINGS }
+    settings: {
+      budget_per_manager: 100,
+      min_increment: 1,
+      club_slots_per_manager: 5,  // Default to 5 instead of 3
+      anti_snipe_seconds: 30,
+      bid_timer_seconds: 60,
+      league_size: { min: 2, max: 8 },  // Default to min: 2, max: 8
+      scoring_rules: {
+        club_goal: 1,
+        club_win: 3,
+        club_draw: 1
+      }
+    }
   });
   const [loading, setLoading] = useState(false);
 
