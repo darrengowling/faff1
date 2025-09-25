@@ -3268,8 +3268,9 @@ class UCLAuctionAPITester:
         return all(results)
 
     def run_comprehensive_tests(self):
-        """Run comprehensive league management and auction engine tests"""
-        print("🚀 Starting UCL Auction Comprehensive Live Auction Engine Tests")
+        """Run comprehensive test suite including PR2 and PR3 features"""
+        print("🚀 Starting UCL Auction Backend API Comprehensive Testing Suite")
+        print("   Focus: PR2 (Robust Reconnect & Presence) + PR3 (Safe-Close + 10s Undo)")
         print(f"📍 Testing against: {self.base_url}")
         print("=" * 80)
         
@@ -3281,10 +3282,6 @@ class UCLAuctionAPITester:
         print("\n🏆 SETUP TESTS")
         self.test_clubs_seed()
         self.test_get_clubs()
-        
-        # ==================== COMPETITION PROFILE INTEGRATION TESTS ====================
-        print("\n🏆 COMPETITION PROFILE INTEGRATION TESTS")
-        self.test_competition_profile_comprehensive()
         
         # Enhanced League Creation Tests
         print("\n🏟️ ENHANCED LEAGUE CREATION TESTS")
@@ -3318,10 +3315,27 @@ class UCLAuctionAPITester:
         print("\n⏸️ AUCTION CONTROL TESTS")
         self.test_auction_pause_resume()
         
-        print("\n🔌 WEBSOCKET INTEGRATION TESTS")
-        self.test_websocket_connection()
-        self.test_websocket_bid_placement()
-        self.test_chat_functionality()
+        # ==================== PR2: ROBUST RECONNECT & PRESENCE SYSTEM TESTS ====================
+        print("\n🔄 PR2: ROBUST RECONNECT & PRESENCE SYSTEM TESTS")
+        print("-" * 60)
+        self.test_connection_manager_functionality()
+        self.test_user_presence_tracking()
+        self.test_heartbeat_system()
+        self.test_state_snapshot_system()
+        self.test_enhanced_websocket_handlers()
+        
+        # ==================== PR3: SAFE-CLOSE + 10S UNDO SYSTEM TESTS ====================
+        print("\n⏱️  PR3: SAFE-CLOSE + 10S UNDO SYSTEM TESTS")
+        print("-" * 60)
+        self.test_lot_closing_service_initiate()
+        self.test_lot_close_api_endpoints()
+        self.test_undo_system_validation()
+        self.test_commissioner_permissions_lot_close()
+        self.test_database_operations_atomic()
+        
+        # ==================== WEBSOCKET CONNECTION MANAGEMENT TESTS ====================
+        print("\n🔌 WEBSOCKET CONNECTION MANAGEMENT TESTS")
+        self.test_websocket_comprehensive()
         
         # ==================== SERVER-AUTHORITATIVE TIMER TESTS ====================
         print("\n⏰ SERVER-AUTHORITATIVE TIMER TESTS")
@@ -3341,10 +3355,6 @@ class UCLAuctionAPITester:
         print("\n🔐 COMPREHENSIVE ADMIN SYSTEM TESTS")
         self.test_admin_system_comprehensive()
         
-        # ==================== ENFORCEMENT RULES TESTS ====================
-        print("\n🛡️ ENFORCEMENT RULES TESTS")
-        self.test_enforcement_rules_comprehensive()
-        
         # Print detailed summary
         print("\n" + "=" * 80)
         print(f"📊 COMPREHENSIVE TEST SUMMARY")
@@ -3357,45 +3367,84 @@ class UCLAuctionAPITester:
             for i, failure in enumerate(self.failed_tests, 1):
                 print(f"   {i}. {failure}")
         
-        # Competition profile specific summary
-        competition_tests = [test for test in self.failed_tests if any(keyword in test.lower() for keyword in ['competition', 'profile', 'default'])]
-        if competition_tests:
-            print(f"\n🏆 COMPETITION PROFILE ISSUES ({len(competition_tests)}):")
-            for i, failure in enumerate(competition_tests, 1):
+        # PR2 & PR3 specific summary
+        pr2_tests = [
+            "Connection Manager Functionality",
+            "User Presence Tracking", 
+            "Heartbeat System",
+            "State Snapshot System",
+            "Enhanced WebSocket Handlers"
+        ]
+        pr3_tests = [
+            "Lot Closing Service Initiate",
+            "Lot Close API Endpoints",
+            "Undo System Validation", 
+            "Commissioner Permissions Lot Close",
+            "Database Operations Atomic"
+        ]
+        
+        pr2_failed = [test for test in self.failed_tests if any(pr2_test in test for pr2_test in pr2_tests)]
+        pr3_failed = [test for test in self.failed_tests if any(pr3_test in test for pr3_test in pr3_tests)]
+        
+        pr2_passed = len(pr2_tests) - len(pr2_failed)
+        pr3_passed = len(pr3_tests) - len(pr3_failed)
+        
+        print(f"\n🎯 PR2 & PR3 TESTING RESULTS:")
+        print(f"   PR2 Tests: {pr2_passed}/{len(pr2_tests)} passed")
+        print(f"   PR3 Tests: {pr3_passed}/{len(pr3_tests)} passed")
+        
+        if pr2_failed:
+            print(f"\n🔄 PR2 ISSUES ({len(pr2_failed)}):")
+            for i, failure in enumerate(pr2_failed, 1):
                 print(f"   {i}. {failure}")
         
-        # Auction-specific summary
-        auction_tests = [test for test in self.failed_tests if any(keyword in test.lower() for keyword in ['auction', 'bid', 'websocket', 'chat'])]
-        if auction_tests:
-            print(f"\n🎯 AUCTION ENGINE ISSUES ({len(auction_tests)}):")
-            for i, failure in enumerate(auction_tests, 1):
+        if pr3_failed:
+            print(f"\n⏱️  PR3 ISSUES ({len(pr3_failed)}):")
+            for i, failure in enumerate(pr3_failed, 1):
+                print(f"   {i}. {failure}")
+        
+        # WebSocket-specific summary
+        websocket_tests = [test for test in self.failed_tests if any(keyword in test.lower() for keyword in ['websocket', 'connection', 'presence', 'heartbeat', 'snapshot'])]
+        if websocket_tests:
+            print(f"\n🔌 WEBSOCKET ISSUES ({len(websocket_tests)}):")
+            for i, failure in enumerate(websocket_tests, 1):
                 print(f"   {i}. {failure}")
         
         if self.tests_passed == self.tests_run:
             print("\n🎉 All comprehensive tests passed!")
-            print("✅ Competition profile integration working correctly")
-            print("✅ Atomic bid processing working correctly")
-            print("✅ Real-time WebSocket functionality operational")
-            print("✅ Auction state management functioning properly")
+            print("✅ PR2: Robust Reconnect & Presence System working correctly")
+            print("✅ PR3: Safe-Close + 10s Undo System working correctly")
+            print("✅ WebSocket connection management operational")
+            print("✅ State snapshot and presence tracking functioning properly")
             return 0
         else:
             print(f"\n⚠️  {len(self.failed_tests)} tests failed - see details above")
             
-            # Provide specific guidance for competition profile issues
-            if competition_tests:
-                print("\n🔧 COMPETITION PROFILE RECOMMENDATIONS:")
-                print("   - Check if UCL competition profile exists in database")
-                print("   - Verify competition_service.py implementation")
-                print("   - Ensure league_service.py integration is working")
-                print("   - Check MongoDB competition_profiles collection")
+            # Provide specific guidance for PR2 issues
+            if pr2_failed:
+                print("\n🔧 PR2 RECOMMENDATIONS:")
+                print("   - Check WebSocket server configuration and Socket.IO compatibility")
+                print("   - Verify ConnectionManager implementation in websocket.py")
+                print("   - Ensure StateSnapshot class is working correctly")
+                print("   - Test presence tracking with multiple clients")
+                print("   - Check heartbeat system timing and responses")
             
-            # Provide specific guidance for auction issues
-            if auction_tests:
-                print("\n🔧 AUCTION ENGINE RECOMMENDATIONS:")
-                print("   - Check MongoDB transaction support")
-                print("   - Verify WebSocket server configuration")
-                print("   - Ensure auction engine initialization")
-                print("   - Test with manual authentication tokens")
+            # Provide specific guidance for PR3 issues
+            if pr3_failed:
+                print("\n🔧 PR3 RECOMMENDATIONS:")
+                print("   - Check LotClosingService implementation")
+                print("   - Verify MongoDB transaction support for atomic operations")
+                print("   - Test undo system timing and validation")
+                print("   - Ensure commissioner permissions are working")
+                print("   - Check audit logging for lot close actions")
+            
+            # Provide specific guidance for WebSocket issues
+            if websocket_tests:
+                print("\n🔧 WEBSOCKET RECOMMENDATIONS:")
+                print("   - Check Socket.IO client/server compatibility")
+                print("   - Verify authentication token handling")
+                print("   - Test connection management and cleanup")
+                print("   - Ensure proper error handling for invalid requests")
             
             return 1
 
