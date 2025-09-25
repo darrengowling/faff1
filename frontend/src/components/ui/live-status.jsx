@@ -193,6 +193,7 @@ export const BudgetStatus = ({
   budgetTotal, 
   clubsOwned, 
   clubsMax,
+  isLoading = false,  // Add loading prop
   className = "" 
 }) => {
   const budgetRemaining = budgetTotal - budgetUsed;
