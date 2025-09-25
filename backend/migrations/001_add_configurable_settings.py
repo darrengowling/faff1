@@ -72,10 +72,10 @@ class ConfigurableSettingsMigration:
                 "competition": "UEFA Champions League",
                 "short_name": "UCL",
                 "defaults": {
-                    "club_slots": 3,
+                    "club_slots": 5,  # Updated from 3 to 5
                     "budget_per_manager": 100,
                     "league_size": {
-                        "min": 4,
+                        "min": 2,  # Updated from 4 to 2
                         "max": 8
                     },
                     "min_increment": 1,
