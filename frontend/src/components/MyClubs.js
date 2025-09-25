@@ -208,7 +208,7 @@ const MyClubs = ({ user, token }) => {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
-              <span>Budget & Club Status</span>
+              <span>{t('myClubs.budgetRemaining')}</span>
               <ScoringHelp />
             </CardTitle>
           </CardHeader>
