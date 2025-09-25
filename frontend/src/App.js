@@ -559,23 +559,23 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Create New League</DialogTitle>
+          <DialogTitle>{t('leagueCreation.createNewLeague')}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Basic Info */}
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">League Name</Label>
+              <Label htmlFor="name">{t('leagueCreation.leagueName')}</Label>
               <Input
                 id="name"
-                placeholder="Champions League 2025-26"
+                placeholder={t('leagueCreation.leagueNamePlaceholder')}
                 value={formData.name}
                 onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="season">Season</Label>
+              <Label htmlFor="season">{t('dashboard.season')}</Label>
               <Input
                 id="season"
                 placeholder="2025-26"
