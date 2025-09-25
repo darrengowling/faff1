@@ -85,10 +85,10 @@ const SimpleLandingPage = () => {
               <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Users className="w-8 h-8" />
               </div>
-              <div className="text-sm font-semibold text-blue-600 mb-2">Step 1</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Create League</h3>
+              <div className="text-sm font-semibold text-blue-600 mb-2">{t('landing.howItWorks.steps.create.step')}</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">{t('landing.howItWorks.steps.create.title')}</h3>
               <p className="text-gray-600">
-                Invite 2-8 friends to your private league. Set your budget, club slots, and competition format.
+                {t('landing.howItWorks.steps.create.description')}
               </p>
             </div>
 
