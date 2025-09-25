@@ -62,7 +62,7 @@
     "build": "craco build",
     "test": "craco test",
     "db:migrate:config": "node ../scripts/db-migrate-config.js",
-    "diag:socketio": "node scripts/test-socketio.js",
+    "diag:socketio": "node scripts/diag-socketio.mjs",
     "test:e2e": "playwright test --config=../playwright.config.js",
     "test:e2e:headed": "playwright test --config=../playwright.config.js --headed",
     "test:e2e:ui": "playwright test --config=../playwright.config.js --ui",
