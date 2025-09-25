@@ -37,14 +37,16 @@ class CentralizedLeagueSettingsTest:
             print(f"❌ {name} - FAILED {details}")
         return success
 
-    def make_request(self, method, endpoint, data=None, expected_status=200, token=None):
+    def make_request(self, method, endpoint, data=None, expected_status=200, token=None, use_auth=True):
         """Make HTTP request with proper headers"""
         url = f"{self.api_url}/{endpoint}"
         headers = {'Content-Type': 'application/json'}
         
-        auth_token = token if token is not None else self.token
-        if auth_token:
-            headers['Authorization'] = f'Bearer {auth_token}'
+        # Handle authentication
+        if use_auth:
+            auth_token = token if token is not None else self.token
+            if auth_token:
+                headers['Authorization'] = f'Bearer {auth_token}'
             
         try:
             if method == 'GET':
