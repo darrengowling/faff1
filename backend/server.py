@@ -433,6 +433,140 @@ async def start_auction(
         logger.error(f"Failed to start auction: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+# Lot closing endpoints
+@api_router.post("/lots/{lot_id}/close")
+async def initiate_lot_close(
+    lot_id: str,
+    request: dict,
+    current_user: UserResponse = Depends(get_current_user)
+):
+    """Initiate lot closing with 10-second undo window"""
+    try:
+        # Verify user is commissioner
+        lot = await db.lots.find_one({"_id": lot_id})
+        if not lot:
+            raise HTTPException(status_code=404, detail="Lot not found")
+        
+        auction = await db.auctions.find_one({"_id": lot["auction_id"]})
+        if not auction:
+            raise HTTPException(status_code=404, detail="Auction not found")
+        
+        # Check commissioner permission
+        membership = await db.memberships.find_one({
+            "league_id": auction["league_id"],
+            "user_id": current_user.id,
+            "role": "commissioner"
+        })
+        
+        if not membership:
+            raise HTTPException(status_code=403, detail="Only commissioners can close lots")
+        
+        # Initiate closing
+        forced = request.get("forced", False)
+        reason = request.get("reason", "Commissioner closed lot")
+        
+        success, message, action_id = await LotClosingService.initiate_lot_close(
+            lot_id, current_user.id, forced, reason
+        )
+        
+        if success:
+            return {
+                "success": True,
+                "message": message,
+                "action_id": action_id,
+                "undo_deadline": (datetime.now(timezone.utc) + timedelta(seconds=10)).isoformat()
+            }
+        else:
+            raise HTTPException(status_code=400, detail=message)
+            
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error in lot close endpoint: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.post("/lots/undo/{action_id}")
+async def undo_lot_close(
+    action_id: str,
+    current_user: UserResponse = Depends(get_current_user)
+):
+    """Undo lot closing within undo window"""
+    try:
+        # Get the action to verify permissions
+        action_doc = await db.undoable_actions.find_one({"action_id": action_id})
+        if not action_doc:
+            raise HTTPException(status_code=404, detail="Action not found")
+        
+        # Verify user is commissioner  
+        lot = await db.lots.find_one({"_id": action_doc["lot_id"]})
+        if not lot:
+            raise HTTPException(status_code=404, detail="Lot not found")
+            
+        auction = await db.auctions.find_one({"_id": lot["auction_id"]})
+        if not auction:
+            raise HTTPException(status_code=404, detail="Auction not found")
+        
+        membership = await db.memberships.find_one({
+            "league_id": auction["league_id"],
+            "user_id": current_user.id,
+            "role": "commissioner"
+        })
+        
+        if not membership:
+            raise HTTPException(status_code=403, detail="Only commissioners can undo lot closes")
+        
+        # Attempt undo
+        success, message = await LotClosingService.undo_lot_close(action_id, current_user.id)
+        
+        if success:
+            return {"success": True, "message": message}
+        else:
+            raise HTTPException(status_code=400, detail=message)
+            
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error in undo endpoint: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.get("/lots/{lot_id}/undo-actions")
+async def get_lot_undo_actions(
+    lot_id: str,
+    current_user: UserResponse = Depends(get_current_user)
+):
+    """Get active undo actions for a lot"""
+    try:
+        # Verify access to lot
+        lot = await db.lots.find_one({"_id": lot_id})
+        if not lot:
+            raise HTTPException(status_code=404, detail="Lot not found")
+            
+        auction = await db.auctions.find_one({"_id": lot["auction_id"]})
+        if not auction:
+            raise HTTPException(status_code=404, detail="Auction not found")
+        
+        # Check user has access to auction
+        membership = await db.memberships.find_one({
+            "league_id": auction["league_id"],
+            "user_id": current_user.id,
+            "status": "accepted"
+        })
+        
+        if not membership:
+            raise HTTPException(status_code=403, detail="Access denied")
+        
+        # Get active undo actions
+        actions = await LotClosingService.get_active_undo_actions(lot_id)
+        
+        return {"actions": actions}
+            
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error in undo actions endpoint: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+# Place bid endpoint (existing endpoint)
 @api_router.post("/auction/{auction_id}/bid")
 async def place_bid_http(
     auction_id: str,
