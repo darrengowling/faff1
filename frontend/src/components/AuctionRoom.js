@@ -69,8 +69,8 @@ const AuctionRoom = ({ user, token }) => {
   const [presentUsers, setPresentUsers] = useState([]);
   const [userPresence, setUserPresence] = useState({});
   
-  // League settings for rules display
-  const { settings: leagueSettings, loading: settingsLoading } = useLeagueSettings(leagueId);
+  // League settings for rules display  
+  const { settings: leagueSettings, loading: settingsLoading } = useLeagueSettings(auctionState?.league_id);
   
   // Auction state
   const [auctionState, setAuctionState] = useState(null);
