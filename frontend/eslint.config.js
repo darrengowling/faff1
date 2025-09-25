@@ -44,7 +44,7 @@ export default [
         ignoreArrayIndexes: true,
         enforceConst: false,
         detectObjects: false,
-        ignoreDefaultValues: true,
+        ignoreDefaultValues: false, // Changed to false to catch variable assignments
       }]
     },
   },
