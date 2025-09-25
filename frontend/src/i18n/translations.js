@@ -321,7 +321,7 @@ export const translations = {
 
   // Tooltip Content
   tooltips: {
-    scoringSystem: "UCL Scoring System",
+    scoringSystem: "Football Scoring System",
     goals: "Goals: +1 point each",
     wins: "Wins: +3 points", 
     draws: "Draws: +1 point",
