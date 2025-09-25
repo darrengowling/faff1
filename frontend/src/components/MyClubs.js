@@ -206,9 +206,9 @@ const MyClubs = ({ user, token }) => {
           <CardContent>
             <BudgetStatus
               budgetUsed={budget_info.total_spent}
-              budgetTotal={budget_info.budget_start}
+              budgetTotal={leagueSettings ? leagueSettings.budgetPerManager : budget_info.budget_start}
               clubsOwned={budget_info.clubs_owned}
-              clubsMax={budget_info.clubs_owned + budget_info.slots_available}
+              clubsMax={leagueSettings ? leagueSettings.clubSlots : budget_info.clubs_owned + budget_info.slots_available}
             />
             
             {/* Additional stats grid */}
