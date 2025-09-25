@@ -524,9 +524,9 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
           }
         }
       });
-      toast.success('League created successfully!');
+      toast.success(t('leagueCreation.leagueCreatedSuccess'));
     } catch (error) {
-      toast.error('Failed to create league');
+      toast.error(t('errors.failedToCreate', { item: 'league' }));
     } finally {
       setLoading(false);
     }
