@@ -96,7 +96,7 @@ class CentralizedLeagueSettingsTest:
                     'POST',
                     'auth/verify',
                     {"token": token},
-                    token=None
+                    use_auth=False
                 )
                 
                 if success and 'access_token' in auth_data:
