@@ -576,6 +576,26 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                 required
               />
             </div>
+            
+            {/* Competition Profile Selection */}
+            <div className="space-y-2">
+              <Label htmlFor="profile">Competition Template</Label>
+              <select
+                id="profile"
+                className="w-full p-2 border border-gray-300 rounded-md"
+                value={selectedProfile}
+                onChange={(e) => setSelectedProfile(e.target.value)}
+              >
+                {competitionProfiles.map(profile => (
+                  <option key={profile._id} value={profile._id}>
+                    {profile.competition} ({profile.short_name}) - {profile.defaults.club_slots} slots
+                  </option>
+                ))}
+              </select>
+              <p className="text-sm text-gray-600">
+                Choose a template to set default values. You can customize them below.
+              </p>
+            </div>
           </div>
 
           <Separator />
