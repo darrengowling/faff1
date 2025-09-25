@@ -1157,16 +1157,16 @@ async def socketio_diagnostics():
         "now": datetime.now(timezone.utc).isoformat()
     }
 
+# Health endpoint (as specified in the pattern)
+@fastapi_app.get("/api/health")
+async def health():
+    return {"ok": True}
+
 # Include the router in the main app
 fastapi_app.include_router(api_router)
 
-# Wrap FastAPI with Socket.IO ASGIApp overlay (no mounting, no path conflicts)
-from socket_handler import sio
-import socketio
-
-# Create Socket.IO ASGIApp wrapper around FastAPI
-# socketio_path="api/socketio" (no leading slash as per Socket.IO docs)
-app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app, socketio_path="api/socketio")
+# Create single ASGI wrapper - Socket.IO intercepts /api/socketio, all other routes go to FastAPI
+app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app, socketio_path=SOCKETIO_PATH_INTERNAL)
 
 if __name__ == "__main__":
     import uvicorn
