@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from './ui/card.jsx';
+import { Badge } from './ui/badge.jsx';
+import { Button } from './ui/button.jsx';
 import { io } from 'socket.io-client';
 import { RefreshCw, CheckCircle, XCircle, AlertCircle, Wifi, WifiOff } from 'lucide-react';
 
