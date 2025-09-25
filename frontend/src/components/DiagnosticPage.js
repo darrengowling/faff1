@@ -236,7 +236,6 @@ const DiagnosticPage = () => {
                 </div>
               </div>
             </div>
-            </div>
           </CardContent>
         </Card>
 
