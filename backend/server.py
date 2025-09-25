@@ -1107,6 +1107,44 @@ async def get_my_clubs(
         logger.error(f"Failed to get user clubs: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+@api_router.get("/leagues/{league_id}/roster/summary")
+async def get_roster_summary(
+    league_id: str,
+    userId: str = None,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get roster summary with owned count and remaining slots computed server-side"""
+    await require_league_access(current_user.id, league_id)
+    
+    try:
+        # Use provided userId or default to current user
+        target_user_id = userId or current_user.id
+        
+        # Get league settings for club slots
+        league = await db.leagues.find_one({"_id": league_id})
+        if not league:
+            raise HTTPException(status_code=404, detail="League not found")
+        
+        club_slots = league["settings"]["club_slots_per_manager"]
+        
+        # Get user's roster to count owned clubs
+        roster = await db.rosters.find_one({
+            "league_id": league_id,
+            "user_id": target_user_id
+        })
+        
+        owned_count = len(roster.get("clubs", [])) if roster else 0
+        remaining = club_slots - owned_count
+        
+        return {
+            "ownedCount": owned_count,
+            "clubSlots": club_slots,
+            "remaining": max(0, remaining)  # Ensure non-negative
+        }
+    except Exception as e:
+        logger.error(f"Failed to get roster summary: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 @api_router.get("/fixtures/{league_id}")
 async def get_league_fixtures(
     league_id: str,
