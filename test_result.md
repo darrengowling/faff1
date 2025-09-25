@@ -544,6 +544,21 @@ frontend:
         agent: "testing"
         comment: "✅ PR3 VERIFIED: Atomic database operations implementation confirmed correct. All lot closing operations use MongoDB transactions (async with await db.client.start_session() as session), atomic updates to lot status and UndoableAction creation, proper transaction rollback on errors, audit logging within transaction scope. Database consistency and atomicity properly maintained."
 
+  - task: "Server-Computed Roster Summary Implementation"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py, /app/frontend/src/hooks/useRosterSummary.js, /app/frontend/src/components/MyClubs.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Implemented server-computed roster summary features: 1) Backend endpoint GET /leagues/:id/roster/summary?userId=... returning {ownedCount, clubSlots, remaining: clubSlots - ownedCount}, 2) Frontend hook useRosterSummary(leagueId, userId) to fetch server-computed slot data, 3) UI updates - MyClubs component updated to use server data instead of client calculations, 4) Loading states - Show skeleton/— until both settings and roster summary are loaded"
+      - working: true
+        agent: "testing"
+        comment: "✅ SERVER-COMPUTED ROSTER SUMMARY TESTING COMPLETE - Comprehensive testing of server-computed roster summary implementation completed with 100% success rate (7/7 tests passed). BACKEND ENDPOINT VERIFICATION: ✅ Endpoint Structure (/api/leagues/{league_id}/roster/summary) - Returns proper JSON structure with {ownedCount: number, clubSlots: number, remaining: number}, validates calculation logic remaining = max(0, clubSlots - ownedCount), ✅ Authentication Required - Endpoint correctly requires Bearer token authentication (401 Unauthorized without token), ✅ League Access Control - Validates user has access to specified league (403 Forbidden for invalid leagues), ✅ Optional userId Parameter - Supports ?userId=... parameter, defaults to current user when omitted, ✅ Server-Side Calculation - Owned count computed from database roster data, club slots retrieved from league settings, remaining calculated server-side with non-negative constraint. FRONTEND INTEGRATION VERIFICATION: ✅ useRosterSummary Hook - Properly implemented with loading states, error handling, Socket.IO subscription for real-time updates, validates response format, ✅ MyClubs Component Integration - Uses server data for club count display ('X / Y Clubs'), shows skeleton '—' during loading, BudgetStatus component updated with server-computed values, slots available section shows server-computed remaining count. LOADING STATES: ✅ Component waits for both settingsLoading and rosterLoading before rendering, shows LoadingEmptyState during data fetch, displays '—' placeholder until roster summary loads. IMPLEMENTATION STATUS: All server-computed roster summary features are fully functional and working as specified. Backend performs all calculations server-side from database, frontend displays server data instead of client calculations, loading states properly implemented, and real-time updates configured via Socket.IO subscription."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
