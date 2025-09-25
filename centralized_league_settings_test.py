@@ -42,7 +42,7 @@ class CentralizedLeagueSettingsTest:
         url = f"{self.api_url}/{endpoint}"
         headers = {'Content-Type': 'application/json'}
         
-        auth_token = token or self.token
+        auth_token = token if token is not None else self.token
         if auth_token:
             headers['Authorization'] = f'Bearer {auth_token}'
             
