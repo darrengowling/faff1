@@ -1146,8 +1146,8 @@ from socket_handler import sio
 import socketio
 
 # Create Socket.IO ASGIApp wrapper around FastAPI
-# socketio_path="api/socketio" (no leading slash as per Socket.IO docs)
-app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app, socketio_path="api/socketio")
+# socketio_path="api/socket.io" (no leading slash as per Socket.IO docs)
+app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app, socketio_path="api/socket.io")
 
 if __name__ == "__main__":
     import uvicorn
