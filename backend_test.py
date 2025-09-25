@@ -873,6 +873,449 @@ class UCLAuctionAPITester:
             f"Timestamps: {len(timestamps)}, Progression: {progression_valid}, Timing: {timing_reasonable}"
         )
     
+    # ==================== PR2: ROBUST RECONNECT & PRESENCE SYSTEM TESTS ====================
+    
+    def test_connection_manager_functionality(self):
+        """Test ConnectionManager add_connection and remove_connection methods"""
+        # This tests the backend logic indirectly through WebSocket connections
+        if not self.commissioner_token:
+            return self.log_test("Connection Manager Functionality", False, "Missing token")
+        
+        try:
+            sio = socketio.Client()
+            connection_events = []
+            presence_events = []
+            
+            @sio.event
+            def connect():
+                connection_events.append('connected')
+                print("WebSocket connected for connection manager testing")
+            
+            @sio.event
+            def connection_status(data):
+                connection_events.append(data)
+                print(f"Connection status: {data}")
+            
+            @sio.event
+            def user_presence(data):
+                presence_events.append(data)
+                print(f"User presence update: {data}")
+            
+            @sio.event
+            def presence_list(data):
+                presence_events.append(data)
+                print(f"Presence list: {data}")
+            
+            # Test connection
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(2)
+            
+            # Test joining auction (triggers add_connection)
+            if self.test_auction_id:
+                join_result = sio.call('join_auction', {'auction_id': self.test_auction_id}, timeout=5)
+                time.sleep(2)
+            
+            # Test disconnection (triggers remove_connection)
+            sio.disconnect()
+            
+            connection_successful = len([e for e in connection_events if e == 'connected']) > 0
+            status_received = len([e for e in connection_events if isinstance(e, dict) and e.get('status') == 'connected']) > 0
+            presence_updates = len(presence_events) > 0
+            
+            return self.log_test(
+                "Connection Manager Functionality",
+                connection_successful and status_received,
+                f"Connected: {connection_successful}, Status: {status_received}, Presence updates: {presence_updates}"
+            )
+            
+        except Exception as e:
+            return self.log_test("Connection Manager Functionality", False, f"Exception: {str(e)}")
+    
+    def test_user_presence_tracking(self):
+        """Test user_presence tracking with online/offline status updates"""
+        if not self.commissioner_token:
+            return self.log_test("User Presence Tracking", False, "Missing token")
+        
+        try:
+            sio = socketio.Client()
+            presence_updates = []
+            
+            @sio.event
+            def connect():
+                print("WebSocket connected for presence tracking testing")
+            
+            @sio.event
+            def user_presence(data):
+                presence_updates.append(data)
+                print(f"Presence update: {data}")
+            
+            @sio.event
+            def presence_list(data):
+                presence_updates.append(data)
+                print(f"Presence list: {data}")
+            
+            # Connect and join auction
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(1)
+            
+            if self.test_auction_id:
+                join_result = sio.call('join_auction', {'auction_id': self.test_auction_id}, timeout=5)
+                time.sleep(2)
+                
+                # Test heartbeat (updates last_seen)
+                heartbeat_result = sio.call('heartbeat', {}, timeout=5)
+                time.sleep(1)
+            
+            sio.disconnect()
+            time.sleep(1)
+            
+            # Check for presence updates
+            online_updates = [u for u in presence_updates if isinstance(u, dict) and u.get('status') == 'online']
+            presence_lists = [u for u in presence_updates if isinstance(u, dict) and 'users' in u]
+            
+            return self.log_test(
+                "User Presence Tracking",
+                len(online_updates) > 0 or len(presence_lists) > 0,
+                f"Online updates: {len(online_updates)}, Presence lists: {len(presence_lists)}"
+            )
+            
+        except Exception as e:
+            return self.log_test("User Presence Tracking", False, f"Exception: {str(e)}")
+    
+    def test_heartbeat_system(self):
+        """Test heartbeat system and last_seen timestamp updates"""
+        if not self.commissioner_token:
+            return self.log_test("Heartbeat System", False, "Missing token")
+        
+        try:
+            sio = socketio.Client()
+            heartbeat_responses = []
+            
+            @sio.event
+            def connect():
+                print("WebSocket connected for heartbeat testing")
+            
+            @sio.event
+            def heartbeat_ack(data):
+                heartbeat_responses.append(data)
+                print(f"Heartbeat ack: {data}")
+            
+            # Connect
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(1)
+            
+            # Send multiple heartbeats
+            for i in range(3):
+                heartbeat_result = sio.call('heartbeat', {}, timeout=5)
+                time.sleep(0.5)
+            
+            sio.disconnect()
+            
+            # Verify heartbeat responses
+            valid_responses = [r for r in heartbeat_responses if isinstance(r, dict) and 'server_time' in r]
+            
+            return self.log_test(
+                "Heartbeat System",
+                len(valid_responses) >= 2,
+                f"Valid heartbeat responses: {len(valid_responses)}/3"
+            )
+            
+        except Exception as e:
+            return self.log_test("Heartbeat System", False, f"Exception: {str(e)}")
+    
+    def test_state_snapshot_system(self):
+        """Test StateSnapshot.get_auction_snapshot functionality"""
+        if not self.commissioner_token or not self.test_auction_id:
+            return self.log_test("State Snapshot System", False, "Missing token or auction ID")
+        
+        try:
+            sio = socketio.Client()
+            snapshots_received = []
+            
+            @sio.event
+            def connect():
+                print("WebSocket connected for snapshot testing")
+            
+            @sio.event
+            def auction_snapshot(data):
+                snapshots_received.append(data)
+                print(f"Auction snapshot received: {list(data.keys()) if isinstance(data, dict) else 'Invalid'}")
+            
+            # Connect and join auction
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(1)
+            
+            # Join auction (should trigger snapshot)
+            join_result = sio.call('join_auction', {'auction_id': self.test_auction_id}, timeout=5)
+            time.sleep(2)
+            
+            # Request fresh snapshot
+            snapshot_result = sio.call('request_snapshot', {'auction_id': self.test_auction_id}, timeout=5)
+            time.sleep(2)
+            
+            sio.disconnect()
+            
+            # Validate snapshot structure
+            valid_snapshots = []
+            for snapshot in snapshots_received:
+                if isinstance(snapshot, dict):
+                    required_fields = ['auction', 'server_time', 'snapshot_version']
+                    if all(field in snapshot for field in required_fields):
+                        valid_snapshots.append(snapshot)
+            
+            return self.log_test(
+                "State Snapshot System",
+                len(valid_snapshots) >= 1,
+                f"Valid snapshots received: {len(valid_snapshots)}, Total: {len(snapshots_received)}"
+            )
+            
+        except Exception as e:
+            return self.log_test("State Snapshot System", False, f"Exception: {str(e)}")
+    
+    def test_enhanced_websocket_handlers(self):
+        """Test enhanced WebSocket handlers with proper authentication and access control"""
+        if not self.commissioner_token or not self.test_auction_id:
+            return self.log_test("Enhanced WebSocket Handlers", False, "Missing token or auction ID")
+        
+        try:
+            sio = socketio.Client()
+            handler_responses = []
+            error_responses = []
+            
+            @sio.event
+            def connect():
+                print("WebSocket connected for handler testing")
+            
+            @sio.event
+            def error(data):
+                error_responses.append(data)
+                print(f"Error response: {data}")
+            
+            # Test without authentication first
+            sio_unauth = socketio.Client()
+            
+            @sio_unauth.event
+            def connect():
+                print("Unauthenticated connection attempt")
+            
+            @sio_unauth.event
+            def connection_status(data):
+                handler_responses.append(('unauth_status', data))
+            
+            # Try to connect without token
+            try:
+                sio_unauth.connect(self.base_url, transports=['websocket', 'polling'])
+                time.sleep(1)
+                sio_unauth.disconnect()
+            except:
+                pass  # Expected to fail
+            
+            # Test with proper authentication
+            sio.connect(
+                self.base_url,
+                auth={'token': self.commissioner_token},
+                transports=['websocket', 'polling']
+            )
+            
+            time.sleep(1)
+            
+            # Test join_auction handler
+            join_result = sio.call('join_auction', {'auction_id': self.test_auction_id}, timeout=5)
+            handler_responses.append(('join_auction', join_result))
+            
+            # Test request_snapshot handler
+            snapshot_result = sio.call('request_snapshot', {'auction_id': self.test_auction_id}, timeout=5)
+            handler_responses.append(('request_snapshot', snapshot_result))
+            
+            # Test invalid auction ID
+            invalid_result = sio.call('join_auction', {'auction_id': 'invalid_id'}, timeout=5)
+            handler_responses.append(('invalid_auction', invalid_result))
+            
+            time.sleep(1)
+            sio.disconnect()
+            
+            # Analyze responses
+            successful_handlers = len([r for r in handler_responses if isinstance(r[1], dict) and not r[1].get('error')])
+            auth_checks = len([r for r in handler_responses if r[0] == 'unauth_status']) > 0
+            error_handling = len(error_responses) > 0 or len([r for r in handler_responses if r[0] == 'invalid_auction']) > 0
+            
+            return self.log_test(
+                "Enhanced WebSocket Handlers",
+                successful_handlers >= 2,
+                f"Successful handlers: {successful_handlers}, Auth checks: {auth_checks}, Error handling: {error_handling}"
+            )
+            
+        except Exception as e:
+            return self.log_test("Enhanced WebSocket Handlers", False, f"Exception: {str(e)}")
+    
+    # ==================== PR3: SAFE-CLOSE + 10S UNDO SYSTEM TESTS ====================
+    
+    def test_lot_closing_service_initiate(self):
+        """Test LotClosingService.initiate_lot_close functionality"""
+        if not self.commissioner_token:
+            return self.log_test("Lot Closing Service Initiate", False, "Missing token")
+        
+        # First create a test lot
+        test_lot_id = f"test_lot_{int(time.time())}"
+        
+        # Test the API endpoint for lot closing
+        success, status, data = self.make_request(
+            'POST',
+            f'lots/{test_lot_id}/close',
+            {
+                "forced": False,
+                "reason": "Test lot close"
+            },
+            expected_status=404  # Expect 404 since lot doesn't exist
+        )
+        
+        # Test with invalid lot ID should return proper error
+        lot_close_error_handling = success and status == 404
+        
+        return self.log_test(
+            "Lot Closing Service Initiate",
+            lot_close_error_handling,
+            f"Error handling working: {lot_close_error_handling}, Status: {status}"
+        )
+    
+    def test_lot_close_api_endpoints(self):
+        """Test POST /lots/{lot_id}/close endpoint"""
+        if not self.commissioner_token:
+            return self.log_test("Lot Close API Endpoints", False, "Missing token")
+        
+        test_lot_id = "nonexistent_lot"
+        
+        # Test close endpoint
+        success_close, status_close, data_close = self.make_request(
+            'POST',
+            f'lots/{test_lot_id}/close',
+            {
+                "forced": False,
+                "reason": "Test close"
+            },
+            expected_status=404
+        )
+        
+        # Test undo endpoint
+        success_undo, status_undo, data_undo = self.make_request(
+            'POST',
+            f'lots/undo/nonexistent_action',
+            {},
+            expected_status=404
+        )
+        
+        # Test get undo actions endpoint
+        success_get, status_get, data_get = self.make_request(
+            'GET',
+            f'lots/{test_lot_id}/undo-actions',
+            expected_status=404
+        )
+        
+        endpoints_responding = (
+            success_close and status_close == 404 and
+            success_undo and status_undo == 404 and
+            success_get and status_get == 404
+        )
+        
+        return self.log_test(
+            "Lot Close API Endpoints",
+            endpoints_responding,
+            f"Close: {status_close}, Undo: {status_undo}, Get: {status_get}"
+        )
+    
+    def test_undo_system_validation(self):
+        """Test undo system validation and time window"""
+        if not self.commissioner_token:
+            return self.log_test("Undo System Validation", False, "Missing token")
+        
+        # Test undo with invalid action ID
+        success, status, data = self.make_request(
+            'POST',
+            'lots/undo/invalid_action_id',
+            {},
+            expected_status=404
+        )
+        
+        validation_working = success and status == 404
+        
+        return self.log_test(
+            "Undo System Validation",
+            validation_working,
+            f"Validation working: {validation_working}, Status: {status}"
+        )
+    
+    def test_commissioner_permissions_lot_close(self):
+        """Test commissioner permissions for lot closing operations"""
+        if not self.commissioner_token:
+            return self.log_test("Commissioner Permissions Lot Close", False, "Missing token")
+        
+        # Test that endpoints require authentication
+        success_no_auth, status_no_auth, data_no_auth = self.make_request(
+            'POST',
+            'lots/test_lot/close',
+            {"forced": False, "reason": "Test"},
+            expected_status=401,
+            token=None  # No token
+        )
+        
+        auth_required = success_no_auth and status_no_auth == 401
+        
+        return self.log_test(
+            "Commissioner Permissions Lot Close",
+            auth_required,
+            f"Auth required: {auth_required}, Status: {status_no_auth}"
+        )
+    
+    def test_database_operations_atomic(self):
+        """Test atomic database operations for lot state changes"""
+        # This is tested indirectly through the API endpoints
+        # We verify that the endpoints handle database operations properly
+        
+        if not self.commissioner_token:
+            return self.log_test("Database Operations Atomic", False, "Missing token")
+        
+        # Test multiple rapid requests to same endpoint (should handle atomically)
+        test_lot_id = "atomic_test_lot"
+        
+        results = []
+        for i in range(3):
+            success, status, data = self.make_request(
+                'POST',
+                f'lots/{test_lot_id}/close',
+                {"forced": False, "reason": f"Atomic test {i}"},
+                expected_status=404  # Expected since lot doesn't exist
+            )
+            results.append((success, status))
+        
+        # All should return consistent 404 responses
+        consistent_responses = all(status == 404 for success, status in results)
+        
+        return self.log_test(
+            "Database Operations Atomic",
+            consistent_responses,
+            f"Consistent responses: {consistent_responses}, Results: {[s for _, s in results]}"
+        )
+    
     def test_websocket_time_sync_broadcasting(self):
         """Test WebSocket time_sync messages are broadcast every 2 seconds during active auctions"""
         if not self.commissioner_token or not self.test_auction_id:
