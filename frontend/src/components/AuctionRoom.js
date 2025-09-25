@@ -438,7 +438,7 @@ const AuctionRoom = ({ user, token }) => {
       setConnectionStatus('offline');
       return null;
     }
-  }, [token, auctionId, API]);
+  }, [token, auctionId, serverTimeOffset]);
 
   const attemptReconnect = useCallback(() => {
     if (reconnectAttempts >= maxReconnectAttempts) {
