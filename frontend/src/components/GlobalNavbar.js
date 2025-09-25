@@ -243,7 +243,7 @@ const GlobalNavbar = () => {
         {isActive && (
           <div
             ref={dropdownRef}
-            className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
+            className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-[60]"
             role="menu"
             aria-labelledby={`dropdown-trigger-${item.id}`}
             id={`dropdown-menu-${item.id}`}
