@@ -71,26 +71,30 @@ export const NoClubsEmptyState = ({ onNavigateToAuction }) => {
   );
 };
 
-export const NoFixturesEmptyState = () => (
-  <EmptyState
-    icon={() => (
-      <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-        <svg 
-          className="w-8 h-8 text-gray-400" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-          role="img"
-          aria-label="Empty fixtures icon"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      </div>
-    )}
-    title="No Fixtures Scheduled"
-    description="The Champions League fixtures haven't been loaded yet. Check back soon for the match schedule!"
-  />
-);
+export const NoFixturesEmptyState = () => {
+  const { t } = useTranslation();
+  
+  return (
+    <EmptyState
+      icon={() => (
+        <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+          <svg 
+            className="w-8 h-8 text-gray-400" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+            role="img"
+            aria-label="Empty fixtures icon"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+      )}
+      title={t('myClubsEmpty.noFixtures')}
+      description={t('myClubsEmpty.noFixturesDescription')}
+    />
+  );
+};
 
 export const NoResultsEmptyState = () => (
   <EmptyState
