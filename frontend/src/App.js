@@ -335,6 +335,7 @@ const MagicLinkVerify = () => {
 
 // Invitation Accept Component
 const InvitationAccept = () => {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
