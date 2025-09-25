@@ -115,12 +115,17 @@ class StateSnapshot:
 
 logger = logging.getLogger(__name__)
 
-# Create Socket.IO server
+# Socket.IO configuration with environment variables
+SOCKET_PATH = os.getenv('SOCKET_PATH', '/api/socket.io')
+FRONTEND_ORIGIN = os.getenv('FRONTEND_ORIGIN', 'https://ucl-auction-1.preview.emergentagent.com')
+
+# Create Socket.IO server with API path and CORS configuration
 sio = socketio.AsyncServer(
-    async_mode='asgi',
-    cors_allowed_origins="*",
-    logger=True,
-    engineio_logger=True
+    cors_allowed_origins=FRONTEND_ORIGIN,
+    logger=logging.getLogger('socketio'),
+    engineio_logger=logging.getLogger('socketio.engineio'),
+    path=SOCKET_PATH,
+    transports=['websocket', 'polling']
 )
 
 # Store user sessions with presence tracking
