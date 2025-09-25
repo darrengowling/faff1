@@ -66,7 +66,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Startup event to initialize database, auction engine, and scoring worker
-@app.on_event("startup")
+@fastapi_app.on_event("startup")
 async def startup_event():
     """Initialize all systems on startup"""
     await initialize_database()
