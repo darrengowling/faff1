@@ -50,6 +50,22 @@ fastapi_app.add_middleware(
     allow_headers=["*"]
 )
 
+# Helper function to convert MongoDB document to response model
+def convert_doc_to_response(doc, response_class):
+    """Convert MongoDB document to Pydantic response model"""
+    if not doc:
+        return None
+    
+    # Create a copy and map _id to id
+    converted = doc.copy()
+    if '_id' in converted:
+        converted['id'] = converted.pop('_id')
+    
+    return response_class(**converted)
+
+# Create a router with the /api prefix
+api_router = APIRouter(prefix="/api")
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
