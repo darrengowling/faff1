@@ -1165,10 +1165,10 @@ async def get_version():
         "environment": os.getenv("ENVIRONMENT", "development")
     }
 
-# Socket.IO Diagnostic endpoint
-@api_router.get("/socketio-diag")
+# Socket.IO Diagnostic endpoint  
+@api_router.get("/socketio/diag")
 async def socketio_diagnostics():
-    """Socket.IO diagnostics endpoint"""
+    """Socket.IO diagnostics endpoint - GET /api/socketio/diag"""
     socket_path = os.getenv('SOCKET_PATH', '/api/socketio')
     return {
         "ok": True,
