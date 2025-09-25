@@ -237,7 +237,21 @@ async def get_my_leagues(current_user: UserResponse = Depends(get_current_verifi
     league_ids = [m["league_id"] for m in memberships]
     
     leagues = await db.leagues.find({"_id": {"$in": league_ids}}).to_list(length=None)
-    return [convert_doc_to_response(league, LeagueResponse) for league in leagues]
+    
+    # Add missing fields for each league
+    enriched_leagues = []
+    for league in leagues:
+        # Add status field (default to 'setup' if not present)
+        if 'status' not in league:
+            league['status'] = 'setup'
+        
+        # Add member_count by counting memberships
+        member_count = await db.memberships.count_documents({"league_id": league["_id"]})
+        league['member_count'] = member_count
+        
+        enriched_leagues.append(league)
+    
+    return [convert_doc_to_response(league, LeagueResponse) for league in enriched_leagues]
 
 @api_router.get("/leagues/{league_id}", response_model=LeagueResponse)
 async def get_league(
