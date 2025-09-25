@@ -96,10 +96,10 @@ class ConfigurableSettingsMigration:
                 "competition": "UEFA Europa League",
                 "short_name": "UEL",
                 "defaults": {
-                    "club_slots": 4,
+                    "club_slots": 5,  # Updated from 4 to 5
                     "budget_per_manager": 80,
                     "league_size": {
-                        "min": 3,
+                        "min": 2,  # Updated from 3 to 2
                         "max": 6
                     },
                     "min_increment": 1,
