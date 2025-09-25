@@ -430,10 +430,11 @@ const InvitationAccept = () => {
 };
 
 // Default league settings constants
+const DEFAULT_CLUB_SLOTS_PER_MANAGER = 3;
 const DEFAULT_LEAGUE_SETTINGS = {
   budget_per_manager: 100,
   min_increment: 1,
-  club_slots_per_manager: 3,
+  club_slots_per_manager: DEFAULT_CLUB_SLOTS_PER_MANAGER,
   anti_snipe_seconds: 30,
   bid_timer_seconds: 60,
   max_managers: 8,
