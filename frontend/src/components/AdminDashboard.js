@@ -50,6 +50,9 @@ const AdminDashboard = ({ user, token }) => {
   const { leagueId } = useParams();
   const navigate = useNavigate();
   
+  // Load centralized league settings
+  const { settings: leagueSettings, loading: settingsLoading } = useLeagueSettings(leagueId);
+  
   const [loading, setLoading] = useState(true);
   const [league, setLeague] = useState(null);
   const [members, setMembers] = useState([]);
