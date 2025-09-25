@@ -328,7 +328,7 @@ const AuctionRoom = ({ user, token }) => {
     try {
       setConnectionStatus('connecting');
       
-      const newSocket = io(API.replace('/api', ''), {
+      const newSocket = io(process.env.REACT_APP_BACKEND_URL.replace('/api', ''), {
         auth: { token },
         transports: ['websocket'],
         timeout: 10000,
