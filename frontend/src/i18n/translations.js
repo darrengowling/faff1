@@ -227,7 +227,7 @@ export const translations = {
     noClubsYet: "No Clubs Owned Yet",
     noClubsDescription: "You haven't acquired any clubs yet. Join the auction to build your football squad and compete for points!",
     noFixtures: "No Fixtures Scheduled", 
-    noFixturesDescription: "The Champions League fixtures haven't been loaded yet. Check back soon for the match schedule!",
+    noFixturesDescription: "The competition fixtures haven't been loaded yet. Check back soon for the match schedule!",
     noResults: "No Results Yet",
     noResultsDescription: "Match results will appear here once games are completed and scores are recorded."
   },
