@@ -413,7 +413,14 @@ class AuctionEngine:
             if not budget_valid:
                 return {"success": False, "error": budget_error}
             
-            # GUARDRAIL 2: Use atomic simultaneous bid handling
+            # GUARDRAIL 2: Validate roster capacity constraints  
+            capacity_valid, capacity_error = await AdminService.validate_roster_capacity(
+                bidder_id, league_id
+            )
+            if not capacity_valid:
+                return {"success": False, "error": capacity_error}
+            
+            # GUARDRAIL 3: Use atomic simultaneous bid handling
             success, message, bid_id = await AdminService.handle_simultaneous_bids(
                 lot_id, bidder_id, amount
             )
