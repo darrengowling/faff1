@@ -108,7 +108,7 @@ const MyClubs = ({ user, token }) => {
   if (loading || settingsLoading || rosterLoading) {
     return (
       <div className="max-w-7xl mx-auto p-6">
-        <LoadingEmptyState message="Loading your clubs..." />
+        <LoadingEmptyState message={t('myClubs.loadingClubs')} />
       </div>
     );
   }
