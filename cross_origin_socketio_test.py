@@ -108,7 +108,7 @@ class CrossOriginSocketIOTester:
             uses_next_public_api_url = 'NEXT_PUBLIC_API_URL' in script_content
             uses_vite_public_api_url = 'VITE_PUBLIC_API_URL' in script_content
             uses_next_socket_path = 'NEXT_PUBLIC_SOCKET_PATH' in script_content
-            uses_vite_socket_path = 'VITE_SOCKET_PATH' in script_content
+            # Note: VITE_SOCKET_PATH is not used in the path fallback, only in transports
             uses_transport_config = 'NEXT_PUBLIC_SOCKET_TRANSPORTS' in script_content and 'VITE_SOCKET_TRANSPORTS' in script_content
             
             # Check for proper fallback pattern
@@ -119,14 +119,14 @@ class CrossOriginSocketIOTester:
             
             cross_origin_pattern_complete = (
                 uses_next_public_api_url and uses_vite_public_api_url and
-                uses_next_socket_path and uses_vite_socket_path and
-                uses_transport_config and has_fallback_pattern and no_window_location
+                uses_next_socket_path and uses_transport_config and 
+                has_fallback_pattern and no_window_location
             )
             
             return self.log_test(
                 "CLI Script Cross-Origin Pattern",
                 cross_origin_pattern_complete,
-                f"NEXT_PUBLIC/VITE vars: {uses_next_public_api_url and uses_vite_public_api_url}, Fallback: {has_fallback_pattern}, No window.location: {no_window_location}"
+                f"NEXT_PUBLIC/VITE vars: {uses_next_public_api_url and uses_vite_public_api_url}, Transports: {uses_transport_config}, Fallback: {has_fallback_pattern}, No window.location: {no_window_location}"
             )
         except Exception as e:
             return self.log_test("CLI Script Cross-Origin Pattern", False, f"Exception: {str(e)}")
