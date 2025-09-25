@@ -65,11 +65,11 @@ const DiagnosticPage = () => {
         testSocket.close();
       }
 
-      console.log(`Testing Socket.IO connection to: ${activeConfig.apiOrigin} with path: ${activeConfig.socketPath}`);
+      console.log(`Testing Socket.IO connection to: ${activeConfig.origin} with path: ${activeConfig.path}, transports: ${activeConfig.transports}`);
       
-      const socket = io(activeConfig.apiOrigin, {
-        path: activeConfig.socketPath,
-        transports: ['websocket', 'polling'],
+      const socket = io(activeConfig.origin, {
+        path: activeConfig.path,
+        transports: activeConfig.transports,
         withCredentials: true,
         timeout: 10000,
         forceNew: true
