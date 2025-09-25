@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Complete implementation of the 'My Clubs,' 'Fixtures/Results,' and 'Leaderboard' pages using MongoDB aggregation pipelines already created in aggregation_service.py. Need to add API endpoints to server.py and create frontend components."
+user_problem_statement: "Complete implementation of i18n for microcopy normalization. Create detailed translation keys for all microcopy and replace ad-hoc hardcoded strings in the frontend UI with these new i18n keys."
 
 backend:
   - task: "Socket.IO Diagnostics Features"
