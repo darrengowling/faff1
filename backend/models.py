@@ -235,8 +235,21 @@ class AuctionResponse(BaseModel):
 class LotStatus(str, Enum):
     PENDING = "pending"
     OPEN = "open"
+    PRE_CLOSED = "pre_closed"  # New: 10s undo window
     SOLD = "sold"
     UNSOLD = "unsold"
+
+class UndoableAction(BaseModel):
+    """Model for tracking undoable actions during lot closing"""
+    action_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    lot_id: str
+    action_type: str  # "lot_close"
+    commissioner_id: str
+    original_state: Dict = {}
+    new_state: Dict = {}
+    undo_deadline: datetime
+    is_undone: bool = False
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class Lot(BaseModel):
     id: str = Field(default_factory=generate_uuid, alias="_id")
