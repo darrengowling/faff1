@@ -18,6 +18,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/t
 // Hooks
 import { useLeagueSettings } from '../hooks/useLeagueSettings';
 
+// UI Components
+import { RulesBadge } from './ui/rules-badge';
+
 // Icons
 import { 
   ArrowLeft,
