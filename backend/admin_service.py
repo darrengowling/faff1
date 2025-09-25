@@ -222,14 +222,14 @@ class AdminService:
     @staticmethod
     async def validate_league_size_constraints(league_id: str, action: str) -> Tuple[bool, str]:
         """
-        GUARDRAIL: Validate league size constraints
+        GUARDRAIL: Validate league size constraints with user-friendly errors
         
         Args:
             league_id: League to check
             action: Action being performed ("invite", "start_auction")
             
         Returns:
-            Tuple of (is_valid, error_message)
+            Tuple of (is_valid, user_friendly_error_message)
         """
         try:
             # Get league settings
@@ -250,7 +250,7 @@ class AdminService:
             elif action == "start_auction":
                 # Check if current members meet minimum requirement
                 if current_members < min_size:
-                    return False, f"Not enough managers to start auction ({current_members}/{min_size} minimum required)"
+                    return False, f"You must have ≥ {min_size} managers to start (currently have {current_members})"
             
             return True, ""
         except Exception as e:
