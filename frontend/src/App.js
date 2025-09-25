@@ -22,6 +22,7 @@ import LandingPage from './components/LandingPage';
 import SimpleLandingPage from './components/SimpleLandingPage';
 import GlobalNavbar from './components/GlobalNavbar';
 import StickyPageNav from './components/StickyPageNav';
+import EnhancedHomeScreen from './components/EnhancedHomeScreen';
 import { MobileNav, BottomTabNav } from './components/ui/mobile-nav';
 
 // Import Shadcn components
