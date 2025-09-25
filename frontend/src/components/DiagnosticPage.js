@@ -14,7 +14,7 @@ const DiagnosticPage = () => {
   const [connectionDetails, setConnectionDetails] = useState(null);
   const [testSocket, setTestSocket] = useState(null);
   const [lastTest, setLastTest] = useState(null);
-  const [isTesting, setIstesting] = useState(false);
+  const [isTesting, setIsTesting] = useState(false);
 
   // Get environment configuration
   const config = {
