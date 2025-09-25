@@ -409,20 +409,17 @@ const AuctionRoom = ({ user, token }) => {
       
       // Get Socket.IO configuration from environment
       const apiOrigin = process.env.REACT_APP_BACKEND_URL || 'https://ucl-auction-1.preview.emergentagent.com/api';
-      const socketPath = process.env.REACT_APP_SOCKET_PATH || '/api/socket.io';
+      const socketPath = process.env.REACT_APP_SOCKET_PATH || '/socketio';
       
       // Extract base URL from API URL (remove /api suffix if present)
       const baseUrl = apiOrigin.replace(/\/api$/, '');
-      
-      // Socket.IO path for mounted sub-application (needs /socket.io suffix)
-      const fullSocketPath = `${socketPath}/socket.io`;
       
       const newSocket = io(baseUrl, {
         auth: { token },
         transports: ['websocket', 'polling'],
         timeout: 10000,
         forceNew: true,
-        path: fullSocketPath
+        path: socketPath
       });
 
       // Connection status events
