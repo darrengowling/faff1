@@ -14,27 +14,6 @@ import { BrandBadge } from './ui/brand-badge';
 
 const SimpleLandingPage = () => {
   const navigate = useNavigate();
-  const [activeSection, setActiveSection] = useState('home');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Navigation sections
-  const navSections = [
-    { id: 'home', label: 'Home' },
-    { id: 'how', label: 'How it Works' },
-    { id: 'why', label: 'Why PIFA' },
-    { id: 'features', label: 'Features' },
-    { id: 'safety', label: 'Fair Play' },
-    { id: 'faq', label: 'FAQ' },
-  ];
-
-  // Smooth scroll to section
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    setMobileMenuOpen(false);
-  };
 
   return (
     <div className="min-h-screen bg-white">
