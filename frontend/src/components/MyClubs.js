@@ -216,6 +216,7 @@ const MyClubs = ({ user, token }) => {
               budgetTotal={leagueSettings ? leagueSettings.budgetPerManager : budget_info.budget_start}
               clubsOwned={rosterSummary ? rosterSummary.ownedCount : budget_info.clubs_owned}
               clubsMax={rosterSummary ? rosterSummary.clubSlots : (leagueSettings ? leagueSettings.clubSlots : budget_info.clubs_owned + budget_info.slots_available)}
+              isLoading={rosterLoading}
             />
             
             {/* Additional stats grid */}
