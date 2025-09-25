@@ -312,6 +312,12 @@ const AdminDashboard = ({ user, token }) => {
               </div>
             </div>
             <div className="flex items-center space-x-4">
+              {/* Rules Badge */}
+              <RulesBadge 
+                leagueSettings={leagueSettings}
+                loading={settingsLoading}
+              />
+              
               <Badge variant="outline" className="text-red-700 border-red-200">
                 Commissioner Panel
               </Badge>
