@@ -262,8 +262,8 @@ const DiagnosticPage = () => {
                   disabled={isTesting}
                   className="flex items-center space-x-2"
                 >
-                  <RefreshCw className={`w-4 h-4 ${isesting ? 'animate-spin' : ''}`} />
-                  <span>{isesting ? 'Testing...' : 'Test Connection'}</span>
+                  <RefreshCw className={`w-4 h-4 ${isTesting ? 'animate-spin' : ''}`} />
+                  <span>{isTesting ? 'Testing...' : 'Test Connection'}</span>
                 </Button>
                 
                 {testSocket && (
