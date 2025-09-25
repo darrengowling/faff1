@@ -724,13 +724,30 @@ const AuctionRoom = ({ user, token }) => {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  {/* Club Details */}
-                  <div className="flex items-center justify-center">
-                    <div className="w-32 h-32 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                  {/* Current Lot Display */}
+                  <div className="text-center mb-6">
+                    <div className="w-32 h-32 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                       <span className="text-3xl font-bold text-white">
                         {currentLot.club.short_name}
                       </span>
                     </div>
+                    
+                    {/* Lot Status and Commissioner Controls */}
+                    <div className="flex items-center justify-center space-x-3 mb-4">
+                      <h2 className="text-2xl font-bold text-white">{currentLot.club.name}</h2>
+                      <LotStatusIndicator status={currentLot.status} />
+                    </div>
+                    
+                    {/* Commissioner Lot Controls */}
+                    <CommissionerLotControls
+                      lot={currentLot}
+                      isCommissioner={isCommissioner}
+                      onCloseLot={handleCloseLot}
+                      onUndoAction={handleUndoLotClose}
+                      undoActions={undoActions.filter(action => action.lot_id === currentLot._id)}
+                      loading={lotClosingLoading}
+                      className="mb-4"
+                    />
                   </div>
 
                   {/* Bid Information */}
