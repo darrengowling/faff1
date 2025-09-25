@@ -78,7 +78,7 @@ export const translations = {
     },
     fairPlay: {
       title: "Fair Play & Transparency", 
-      subtitle: "Built on principles of fairness and transparency. No hidden mechanics, just pure football strategy.",
+      subtitle: "Fair play by design. Built on principles of fairness and transparency. No hidden mechanics, just pure football strategy.",
       items: {
         noWagering: {
           title: "No Wagering",
