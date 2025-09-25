@@ -67,6 +67,7 @@ export const Tooltip = ({
 
 // Specialized scoring tooltip with examples
 export const ScoringTooltip = ({ children, className = "" }) => {
+  const { t } = useTranslation();
   const scoringContent = (
     <div className="space-y-2">
       <div className="font-semibold text-white">{t('tooltips.scoringSystem')}</div>
