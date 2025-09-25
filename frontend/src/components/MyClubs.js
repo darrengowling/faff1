@@ -16,6 +16,7 @@ import { BudgetStatus } from './ui/live-status';
 
 // Hooks
 import { useLeagueSettings } from '../hooks/useLeagueSettings';
+import { useRosterSummary } from '../hooks/useRosterSummary';
 
 // Icons
 import { 
