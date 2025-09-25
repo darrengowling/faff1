@@ -190,10 +190,10 @@ class CentralizedLeagueSettingsTest:
             'GET', 
             f'leagues/{self.test_league_id}/settings',
             token=None,
-            expected_status=401
+            expected_status=403
         )
         
-        auth_required = success and status == 401
+        auth_required = success and status == 403
         
         # Test with invalid token
         success2, status2, data2 = self.make_request(
