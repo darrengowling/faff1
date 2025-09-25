@@ -1100,6 +1100,7 @@ const LeagueManagement = ({ league, onBack }) => {
 
 // Dashboard Component
 const Dashboard = () => {
+  const { t } = useTranslation();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [leagues, setLeagues] = useState([]);
