@@ -3884,7 +3884,41 @@ class UCLAuctionAPITester:
         
         return all(results)
 
-    def run_comprehensive_tests(self):
+    def run_socketio_diagnostics_tests(self):
+        """Run Socket.IO diagnostics tests"""
+        print("\n" + "="*80)
+        print("🔍 SOCKET.IO DIAGNOSTICS TESTS")
+        print("="*80)
+        
+        # Test diagnostic endpoint
+        self.test_socketio_diagnostic_endpoint()
+        
+        # Test CLI script exists and is properly configured
+        self.test_cli_test_script_exists()
+        
+        # Test NPM command configuration
+        self.test_npm_diag_socketio_command()
+        
+        # Test environment variables
+        self.test_cross_origin_environment_variables()
+        
+        # Test backend Socket.IO path
+        self.test_backend_socketio_path_updated()
+        
+        # Test CLI script execution
+        self.test_cli_script_execution()
+        
+        # Test diagnostic page accessibility
+        self.test_diagnostic_page_accessibility()
+        
+        # Test Socket.IO handshake validation
+        self.test_socketio_handshake_validation()
+        
+        # Test UI diagnostic features
+        self.test_ui_diagnostic_features()
+        
+        print(f"\n🔍 Socket.IO Diagnostics Tests Complete: {self.tests_passed}/{self.tests_run} passed")
+        return self.tests_passed, self.tests_run
         """Run comprehensive test suite including PR2 and PR3 features"""
         print("🚀 Starting UCL Auction Backend API Comprehensive Testing Suite")
         print("   Focus: PR2 (Robust Reconnect & Presence) + PR3 (Safe-Close + 10s Undo)")
