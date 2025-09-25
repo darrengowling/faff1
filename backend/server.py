@@ -1147,4 +1147,4 @@ socketio_app = socketio.ASGIApp(sio, other_asgi_app=app)
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    uvicorn.run(socketio_app, host="0.0.0.0", port=8001)
