@@ -1462,6 +1462,9 @@ function App() {
           {/* Global Navigation */}
           <GlobalNavbar />
           
+          {/* Sticky Page Navigation - only shows on landing page */}
+          <StickyPageNav />
+          
           {/* Main Content */}
           <main id="main-content" className="min-h-screen">
             <Routes>
