@@ -69,6 +69,28 @@ fastapi_app.add_middleware(
     allow_headers=["*"]
 )
 
+# Custom middleware to handle /api/socketio/diag before Socket.IO intercepts it
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.responses import JSONResponse
+
+class SocketIODiagMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        # Intercept /api/socketio/diag requests before they reach Socket.IO
+        if request.url.path == "/api/socketio/diag":
+            socket_path = os.getenv('SOCKET_PATH', '/api/socketio')
+            return JSONResponse({
+                "ok": True,
+                "path": socket_path,
+                "now": datetime.now(timezone.utc).isoformat()
+            })
+        
+        # Let other requests continue normally
+        response = await call_next(request)
+        return response
+
+# Add the diagnostic middleware
+fastapi_app.add_middleware(SocketIODiagMiddleware)
+
 # Helper function to convert MongoDB document to response model
 def convert_doc_to_response(doc, response_class):
     """Convert MongoDB document to Pydantic response model"""
