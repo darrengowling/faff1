@@ -302,30 +302,26 @@ const DiagnosticPage = () => {
           <CardContent>
             <div className="space-y-4">
               <div>
-                <h4 className="font-medium text-gray-700 mb-2">React Configuration:</h4>
+                <h4 className="font-medium text-gray-700 mb-2">React Configuration (Legacy):</h4>
                 <div className="grid grid-cols-1 gap-2 text-sm">
                   <div className="flex justify-between">
                     <span>REACT_APP_API_ORIGIN:</span>
-                    <code className="bg-gray-100 px-2 py-1 rounded">{config.apiOrigin}</code>
+                    <code className="bg-gray-100 px-2 py-1 rounded">{config.reactApiOrigin}</code>
                   </div>
                   <div className="flex justify-between">
                     <span>REACT_APP_BACKEND_URL:</span>
-                    <code className="bg-gray-100 px-2 py-1 rounded">{config.backendUrl}</code>
+                    <code className="bg-gray-100 px-2 py-1 rounded">{config.reactBackendUrl}</code>
                   </div>
                   <div className="flex justify-between">
                     <span>REACT_APP_SOCKET_PATH:</span>
-                    <code className="bg-gray-100 px-2 py-1 rounded">{config.socketPath}</code>
+                    <code className="bg-gray-100 px-2 py-1 rounded">{config.reactSocketPath}</code>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-medium text-gray-700 mb-2">Next.js Configuration:</h4>
+                <h4 className="font-medium text-gray-700 mb-2">Cross-Origin Configuration (Next.js):</h4>
                 <div className="grid grid-cols-1 gap-2 text-sm">
-                  <div className="flex justify-between">
-                    <span>NEXT_PUBLIC_API_ORIGIN:</span>
-                    <code className="bg-gray-100 px-2 py-1 rounded">{config.nextApiOrigin}</code>
-                  </div>
                   <div className="flex justify-between">
                     <span>NEXT_PUBLIC_API_URL:</span>
                     <code className="bg-gray-100 px-2 py-1 rounded">{config.nextApiUrl}</code>
@@ -334,16 +330,16 @@ const DiagnosticPage = () => {
                     <span>NEXT_PUBLIC_SOCKET_PATH:</span>
                     <code className="bg-gray-100 px-2 py-1 rounded">{config.nextSocketPath}</code>
                   </div>
+                  <div className="flex justify-between">
+                    <span>NEXT_PUBLIC_SOCKET_TRANSPORTS:</span>
+                    <code className="bg-gray-100 px-2 py-1 rounded">{config.nextSocketTransports}</code>
+                  </div>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-medium text-gray-700 mb-2">Vite Configuration:</h4>
+                <h4 className="font-medium text-gray-700 mb-2">Cross-Origin Configuration (Vite):</h4>
                 <div className="grid grid-cols-1 gap-2 text-sm">
-                  <div className="flex justify-between">
-                    <span>VITE_API_ORIGIN:</span>
-                    <code className="bg-gray-100 px-2 py-1 rounded">{config.viteApiOrigin}</code>
-                  </div>
                   <div className="flex justify-between">
                     <span>VITE_PUBLIC_API_URL:</span>
                     <code className="bg-gray-100 px-2 py-1 rounded">{config.viteApiUrl}</code>
@@ -351,6 +347,10 @@ const DiagnosticPage = () => {
                   <div className="flex justify-between">
                     <span>VITE_SOCKET_PATH:</span>
                     <code className="bg-gray-100 px-2 py-1 rounded">{config.viteSocketPath}</code>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>VITE_SOCKET_TRANSPORTS:</span>
+                    <code className="bg-gray-100 px-2 py-1 rounded">{config.viteSocketTransports}</code>
                   </div>
                 </div>
               </div>
