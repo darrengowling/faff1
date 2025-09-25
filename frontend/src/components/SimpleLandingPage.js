@@ -9,6 +9,7 @@ import {
   Menu, X, Check, ArrowRight, Zap, Award, Eye, Heart, MessageCircle
 } from 'lucide-react';
 import { Button } from './ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { BrandBadge } from './ui/brand-badge';
 
 const SimpleLandingPage = () => {
