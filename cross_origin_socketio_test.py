@@ -134,9 +134,9 @@ class CrossOriginSocketIOTester:
     def test_backend_socketio_path(self):
         """Test backend Socket.IO server responds at /api/socketio path"""
         try:
-            # Test new Socket.IO path
+            # Test new Socket.IO path with proper Engine.IO parameters
             socketio_url = f"{self.base_url}/api/socketio/"
-            response = requests.get(socketio_url, params={'transport': 'polling'}, timeout=10)
+            response = requests.get(socketio_url, params={'EIO': '4', 'transport': 'polling'}, timeout=10)
             
             # Socket.IO handshake should return specific response format
             handshake_successful = response.status_code == 200
