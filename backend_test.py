@@ -4267,6 +4267,16 @@ class UCLAuctionAPITester:
         print("\n📊 AGGREGATION ENDPOINTS TESTS")
         self.test_aggregation_endpoints_comprehensive()
         
+        # ==================== SERVER-COMPUTED ROSTER SUMMARY TESTS ====================
+        print("\n🏆 SERVER-COMPUTED ROSTER SUMMARY TESTS")
+        self.test_roster_summary_endpoint_structure()
+        self.test_roster_summary_authentication_required()
+        self.test_roster_summary_league_access_control()
+        self.test_roster_summary_user_id_parameter()
+        self.test_roster_summary_server_side_calculation()
+        self.test_roster_summary_different_league_settings()
+        self.test_roster_summary_performance()
+        
         # ==================== ADMIN SYSTEM TESTS ====================
         print("\n🔐 COMPREHENSIVE ADMIN SYSTEM TESTS")
         self.test_admin_system_comprehensive()
