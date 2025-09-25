@@ -1,9 +1,10 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Depends, Request, status
 from dotenv import load_dotenv
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import socketio
 from pathlib import Path
 from typing import List
 from datetime import datetime, timezone, timedelta
@@ -20,7 +21,6 @@ from auth import (
 
 # Import auction, scoring, aggregation, and admin modules
 from auction_engine import initialize_auction_engine, get_auction_engine
-from socket_handler import sio, get_socketio_app
 from scoring_service import ScoringService, get_scoring_worker
 from aggregation_service import AggregationService
 from admin_service import AdminService
@@ -30,32 +30,24 @@ from lot_closing_service import LotClosingService
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# Helper function to convert MongoDB document to response model
-def convert_doc_to_response(doc, response_class):
-    """Convert MongoDB document to Pydantic response model"""
-    if not doc:
-        return None
-    
-    # Create a copy and map _id to id
-    converted = doc.copy()
-    if '_id' in converted:
-        converted['id'] = converted.pop('_id')
-    
-    return response_class(**converted)
+# Socket.IO ASGI wrapper configuration
+FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:3000")
+SOCKET_PATH = os.getenv("SOCKET_PATH", "/api/socketio")
+SOCKETIO_PATH_INTERNAL = SOCKET_PATH.lstrip("/")  # "api/socketio"
 
-# Create the main app
+# Create Socket.IO server
+sio = socketio.AsyncServer(async_mode="asgi", cors_allowed_origins=[FRONTEND_ORIGIN])
+
+# Create FastAPI app
 fastapi_app = FastAPI(title="UCL Auction API", version="1.0.0")
 
-# Create a router with the /api prefix
-api_router = APIRouter(prefix="/api")
-
-# CORS middleware
+# Add CORS middleware
 fastapi_app.add_middleware(
     CORSMiddleware,
+    allow_origins=[FRONTEND_ORIGIN],
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
 # Configure logging
