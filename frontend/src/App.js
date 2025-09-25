@@ -1428,6 +1428,27 @@ const AdminDashboardWrapper = () => {
   return <AdminDashboard user={user} token={token} />;
 };
 
+// Smart Root Route Component
+const RootRoute = () => {
+  const { user, loading } = useAuth();
+  
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+      </div>
+    );
+  }
+  
+  // If user is logged in, redirect to dashboard (/app)
+  if (user) {
+    return <Navigate to="/dashboard" replace />;
+  }
+  
+  // If user is not logged in, show landing page
+  return <LandingPage />;
+};
+
 // Main App Component
 function App() {
   return (
