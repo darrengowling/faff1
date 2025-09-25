@@ -4170,6 +4170,8 @@ class UCLAuctionAPITester:
         
         print(f"\n🔍 Socket.IO Diagnostics Tests Complete: {self.tests_passed}/{self.tests_run} passed")
         return self.tests_passed, self.tests_run
+    
+    def run_comprehensive_tests(self):
         """Run comprehensive test suite including PR2 and PR3 features"""
         print("🚀 Starting UCL Auction Backend API Comprehensive Testing Suite")
         print("   Focus: PR2 (Robust Reconnect & Presence) + PR3 (Safe-Close + 10s Undo)")
