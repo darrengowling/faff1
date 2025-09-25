@@ -121,6 +121,7 @@ const useAuth = () => {
 
 // Login Component
 const Login = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [linkSent, setLinkSent] = useState(false);
@@ -137,7 +138,7 @@ const Login = () => {
       // Check if development magic link is provided
       if (response.data.dev_magic_link) {
         setMagicLink(response.data.dev_magic_link);
-        toast.success('Magic link generated! Click the link below to login.');
+        toast.success(t('auth.magicLinkSent'));
       } else {
         toast.success('Magic link sent! Check your email.');
       }
