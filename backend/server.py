@@ -44,7 +44,7 @@ def convert_doc_to_response(doc, response_class):
     return response_class(**converted)
 
 # Create the main app
-app = FastAPI(title="UCL Auction API", version="1.0.0")
+fastapi_app = FastAPI(title="UCL Auction API", version="1.0.0")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
