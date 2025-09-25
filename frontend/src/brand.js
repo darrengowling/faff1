@@ -43,7 +43,7 @@ export const brandConfig = {
   
   social: {
     siteName: getBrandName(),
-    description: 'Football Auctions with Friends - Create and manage exciting football club auctions',
+    description: 'Sports gaming with friends. No gambling. All strategy.',
     image: '/og-image.png', // Placeholder - to be replaced with actual image
   },
 };
