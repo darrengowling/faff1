@@ -1403,6 +1403,7 @@ function App() {
                 <Dashboard />
               </ProtectedRoute>
             } />
+            <Route path="/diag" element={<DiagnosticPage />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
           </Routes>
           <Toaster position="top-right" />
