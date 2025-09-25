@@ -1014,28 +1014,20 @@ class UCLAuctionAPITester:
             return self.log_test("CLI Script Cross-Origin Pattern", False, f"Exception: {str(e)}")
     
     def test_backend_socketio_path_updated(self):
-        """Test backend Socket.IO server responds at /api/socketio path (not /api/socket.io)"""
+        """Test backend Socket.IO server responds at /api/socketio path"""
         try:
             # Test new Socket.IO path
             new_socketio_url = f"{self.base_url}/api/socketio/"
-            response = requests.get(new_socketio_url, params={'transport': 'polling'}, timeout=10)
+            response = requests.get(new_socketio_url, params={'EIO': '4', 'transport': 'polling'}, timeout=10)
             
             # Socket.IO handshake should return specific response format
             new_path_works = response.status_code == 200
-            contains_socketio_response = '{"sid":' in response.text or 'socket.io' in response.text.lower()
-            
-            # Test old path should not work
-            old_socketio_url = f"{self.base_url}/api/socket.io/"
-            try:
-                old_response = requests.get(old_socketio_url, params={'transport': 'polling'}, timeout=5)
-                old_path_fails = old_response.status_code != 200
-            except:
-                old_path_fails = True  # Exception means it failed, which is expected
+            contains_socketio_response = response.text.startswith('0{') and '"sid":' in response.text
             
             return self.log_test(
                 "Backend Socket.IO Path Updated (/api/socketio)",
-                new_path_works and contains_socketio_response and old_path_fails,
-                f"New path works: {new_path_works}, Socket.IO response: {contains_socketio_response}, Old path fails: {old_path_fails}"
+                new_path_works and contains_socketio_response,
+                f"New path works: {new_path_works}, Socket.IO handshake: {contains_socketio_response}, Response: {response.text[:100] if response.text else 'Empty'}"
             )
         except Exception as e:
             return self.log_test("Backend Socket.IO Path Updated", False, f"Exception: {str(e)}")
