@@ -461,11 +461,11 @@ const AdminDashboard = ({ user, token }) => {
                     <div>
                       <div className="font-medium text-slate-800">League Status</div>
                       <div className="text-sm text-slate-700 mt-1 space-y-1">
-                        <div>You have <strong>{members.length} managers</strong>; maximum is <strong>{settingsForm.league_size?.max || league.settings.league_size?.max || 8}</strong></div>
-                        {members.length < (settingsForm.league_size?.min || league.settings.league_size?.min || 4) && (
+                        <div>You have <strong>{members.length} managers</strong>; maximum is <strong>{settingsForm.league_size?.max || leagueSettings?.leagueSize?.max || league.settings.league_size?.max || 8}</strong></div>
+                        {members.length < (settingsForm.league_size?.min || leagueSettings?.leagueSize?.min || league.settings.league_size?.min || 4) && (
                           <div className="text-amber-600 flex items-center">
                             <AlertTriangle className="w-4 h-4 mr-1" />
-                            Need {(settingsForm.league_size?.min || league.settings.league_size?.min || 4) - members.length} more managers to start auction
+                            Need {(settingsForm.league_size?.min || leagueSettings?.leagueSize?.min || league.settings.league_size?.min || 4) - members.length} more managers to start auction
                           </div>
                         )}
                         {members.length > (settingsForm.league_size?.max || league.settings.league_size?.max || 8) && (
