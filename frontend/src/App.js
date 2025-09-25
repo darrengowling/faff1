@@ -8,6 +8,8 @@ import './styles/mobile-optimizations.css';
 // Initialize i18n
 import './i18n';
 import { useTranslation } from 'react-i18next';
+import { getBrandName } from './brand';
+import { AuthBrand } from './components/ui/brand-badge';
 
 // Import components
 import AuctionRoom from './components/AuctionRoom';
