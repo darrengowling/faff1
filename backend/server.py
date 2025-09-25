@@ -871,6 +871,42 @@ async def patch_league_settings(
         logger.error(f"Failed to update league settings: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+@api_router.get("/leagues/{league_id}/settings")
+async def get_league_settings(
+    league_id: str,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Get league settings for centralized configuration"""
+    try:
+        # Verify user has access to this league
+        membership = await db.memberships.find_one({
+            "league_id": league_id,
+            "user_id": current_user.id,
+            "status": "accepted"
+        })
+        if not membership:
+            raise HTTPException(status_code=403, detail="Not a member of this league")
+        
+        # Get league data
+        league = await db.leagues.find_one({"_id": league_id})
+        if not league:
+            raise HTTPException(status_code=404, detail="League not found")
+        
+        # Return centralized settings
+        return {
+            "clubSlots": league["settings"]["club_slots_per_manager"],
+            "budgetPerManager": league["settings"]["budget_per_manager"],
+            "leagueSize": {
+                "min": league["settings"]["league_size"]["min"],
+                "max": league["settings"]["league_size"]["max"]
+            }
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to get league settings: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 @api_router.post("/admin/leagues/{league_id}/members/manage")
 async def manage_league_member(
     league_id: str,
