@@ -2,9 +2,12 @@
  * Simple Landing Page for Testing
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trophy, Users } from 'lucide-react';
+import { 
+  Trophy, Users, Shield, Clock, Target, Star, 
+  Menu, X, Check, ArrowRight, Zap, Award, Eye, Heart, MessageCircle
+} from 'lucide-react';
 import { Button } from './ui/button';
 import { BrandBadge } from './ui/brand-badge';
 
