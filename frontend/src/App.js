@@ -384,7 +384,7 @@ const InvitationAccept = () => {
         <Card className="w-full max-w-md">
           <CardContent className="text-center p-8">
             <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
-            <p>Processing invitation...</p>
+            <p>{t('leagueManagement.processingInvitation')}</p>
           </CardContent>
         </Card>
       </div>
