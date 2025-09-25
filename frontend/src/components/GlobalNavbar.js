@@ -334,7 +334,7 @@ const GlobalNavbar = () => {
     );
   };
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside or pressing escape
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -343,9 +343,20 @@ const GlobalNavbar = () => {
       }
     };
 
+    const handleGlobalKeyDown = (event) => {
+      if (event.key === 'Escape' && activeDropdown) {
+        setActiveDropdown(null);
+        setFocusedIndex(-1);
+      }
+    };
+
     if (activeDropdown) {
       document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleGlobalKeyDown);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('keydown', handleGlobalKeyDown);
+      };
     }
   }, [activeDropdown]);
 
