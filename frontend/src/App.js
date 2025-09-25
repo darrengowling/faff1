@@ -146,7 +146,7 @@ const Login = () => {
         setMagicLink(response.data.dev_magic_link);
         toast.success(t('auth.magicLinkSent'));
       } else {
-        toast.success('Magic link sent! Check your email.');
+        toast.success(t('auth.magicLinkSent'));
       }
     } catch (error) {
       toast.error('Failed to send magic link. Please try again.');
