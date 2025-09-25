@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 // Import UX components
 import { EmptyState, AuctionNotStartedEmptyState, LoadingEmptyState } from './ui/empty-state';
