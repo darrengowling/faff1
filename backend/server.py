@@ -1141,9 +1141,9 @@ async def get_version():
 # Include the router in the main app
 app.include_router(api_router)
 
-# Mount Socket.IO app for WebSocket support
-socketio_app = get_socketio_app()
-app.mount("/socket.io", socketio_app)
+# Integrate Socket.IO with FastAPI (no mounting needed - Socket.IO handles path internally)
+from websocket import sio
+socketio_app = socketio.ASGIApp(sio, other_asgi_app=app)
 
 if __name__ == "__main__":
     import uvicorn
