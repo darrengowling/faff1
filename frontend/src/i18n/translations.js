@@ -258,7 +258,7 @@ export const translations = {
     roundOf16: "First knockout round - Winner takes all", 
     quarterFinals: "Quarter-final stage - 8 teams remain",
     semiFinals: "Semi-final stage - 4 teams battle for the final",
-    final: "The ultimate match - Champions League Final"
+    final: "The ultimate match - Competition Final"
   },
 
   // Leaderboard
