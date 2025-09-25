@@ -407,21 +407,26 @@ const AuctionRoom = ({ user, token }) => {
     try {
       setConnectionStatus('connecting');
       
-      // Get Socket.IO configuration from environment  
-      const apiOrigin = process.env.REACT_APP_BACKEND_URL || 'https://ucl-auction-1.preview.emergentagent.com/api';
-      const socketPath = process.env.REACT_APP_SOCKET_PATH || '/api/socketio';
+      // Get Socket.IO configuration from environment (use API_ORIGIN, not window origin)
+      const apiOrigin = process.env.REACT_APP_API_ORIGIN || 
+                       process.env.NEXT_PUBLIC_API_ORIGIN || 
+                       process.env.VITE_API_ORIGIN ||
+                       'https://ucl-auction-1.preview.emergentagent.com';
+                       
+      const socketPath = process.env.REACT_APP_SOCKET_PATH ||
+                        process.env.NEXT_PUBLIC_SOCKET_PATH ||
+                        process.env.VITE_SOCKET_PATH ||
+                        '/api/socketio';
       
-      // Extract base URL from API URL (remove /api suffix if present)
-      const baseUrl = apiOrigin.replace(/\/api$/, '');
+      console.log(`Socket.IO connecting to: ${apiOrigin} with path: ${socketPath}`);
       
-      // Note: socketio_path="api/socketio" on server (no leading slash)
-      // but client path needs leading slash: "/api/socketio"
-      const newSocket = io(baseUrl, {
+      const newSocket = io(apiOrigin, {
         auth: { token },
+        path: socketPath,
         transports: ['websocket', 'polling'],
+        withCredentials: true,
         timeout: 10000,
-        forceNew: true,
-        path: socketPath
+        forceNew: true
       });
 
       // Connection status events
