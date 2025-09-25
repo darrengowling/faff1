@@ -120,7 +120,7 @@ class ConfigurableSettingsMigration:
                 "competition": "Custom Competition",
                 "short_name": "CUSTOM",
                 "defaults": {
-                    "club_slots": 3,
+                    "club_slots": 5,  # Updated from 3 to 5
                     "budget_per_manager": 100,
                     "league_size": {
                         "min": 2,
