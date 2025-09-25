@@ -885,14 +885,14 @@ const AdminDashboard = ({ user, token }) => {
                 </div>
                 
                 {/* League Status Messages */}
-                {league.status === 'ready' && members.length < (leagueSettings?.leagueSize?.min || league.settings.league_size?.min || 4) && (
+                {league.status === 'ready' && members.length < (leagueSettings?.leagueSize?.min || league.settings.league_size?.min || 2) && (
                   <div className="p-4 border border-amber-200 bg-amber-50 rounded-lg">
                     <div className="flex items-start space-x-3">
                       <AlertTriangle className="w-5 h-5 text-amber-600 mt-0.5" />
                       <div>
                         <div className="font-medium text-amber-800">Waiting for More Managers</div>
                         <div className="text-sm text-amber-700 mt-1">
-                          Need at least {leagueSettings?.leagueSize?.min || league.settings.league_size?.min || 4} managers to start the auction. 
+                          Need at least {leagueSettings?.leagueSize?.min || league.settings.league_size?.min || 2} managers to start the auction. 
                           Currently have {members.length} manager{members.length !== 1 ? 's' : ''}.
                         </div>
                       </div>
