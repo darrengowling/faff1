@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'sonner';
+import { getBrandName } from '../brand';
 
 // Import Shadcn components
 import { Button } from './ui/button';
