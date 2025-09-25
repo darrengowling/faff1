@@ -44,28 +44,32 @@ export const EmptyState = ({
 };
 
 // Specific empty state variants for common scenarios
-export const NoClubsEmptyState = ({ onNavigateToAuction }) => (
-  <EmptyState
-    icon={() => (
-      <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-        <svg 
-          className="w-8 h-8 text-gray-400" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-          role="img"
-          aria-label="Empty clubs icon"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-        </svg>
-      </div>
-    )}
-    title="No Clubs Owned Yet"
-    description="You haven't acquired any clubs yet. Join the auction to build your Champions League squad and compete for points!"
-    action={onNavigateToAuction}
-    actionLabel="Go to Auction"
-  />
-);
+export const NoClubsEmptyState = ({ onNavigateToAuction }) => {
+  const { t } = useTranslation();
+  
+  return (
+    <EmptyState
+      icon={() => (
+        <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+          <svg 
+            className="w-8 h-8 text-gray-400" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+            role="img"
+            aria-label="Empty clubs icon"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+        </div>
+      )}
+      title={t('myClubsEmpty.noClubsYet')}
+      description={t('myClubsEmpty.noClubsDescription')}
+      action={onNavigateToAuction}
+      actionLabel={t('myClubs.goToAuction')}
+    />
+  );
+};
 
 export const NoFixturesEmptyState = () => (
   <EmptyState
