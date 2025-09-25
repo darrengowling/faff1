@@ -680,6 +680,13 @@ const AuctionRoom = ({ user, token }) => {
               </Badge>
             </div>
             <div className="flex items-center space-x-4">
+              {/* Rules Badge */}
+              <RulesBadge 
+                leagueSettings={leagueSettings}
+                loading={settingsLoading}
+                className="mr-2"
+              />
+              
               {/* Connection Status */}
               <ConnectionStatusIndicator 
                 status={connectionStatus}
