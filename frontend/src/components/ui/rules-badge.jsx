@@ -62,16 +62,21 @@ export const RulesBadge = ({ leagueSettings, loading = false, className = "" }) 
  * Shows the full rules text inline (for headers/status bars)
  */
 export const CompactRules = ({ leagueSettings, loading = false, className = "" }) => {
+  const { t } = useTranslation();
+  
   if (loading || !leagueSettings) {
     return (
       <span className={`text-xs text-gray-500 ${className}`}>
-        Loading rules...
+        {t('rules.loading')}
       </span>
     );
   }
 
   const { clubSlots, budgetPerManager, leagueSize } = leagueSettings;
-  const rulesText = `Slots: ${clubSlots} · Budget: ${budgetPerManager} · Min: ${leagueSize.min} · Max: ${leagueSize.max}`;
+  const rulesText = t('rules.slots', { slots: clubSlots }) + ' · ' + 
+                   t('rules.budget', { budget: budgetPerManager }) + ' · ' + 
+                   t('rules.min', { min: leagueSize.min }) + ' · ' + 
+                   t('rules.max', { max: leagueSize.max });
   
   return (
     <span className={`text-xs text-gray-600 font-mono ${className}`}>
