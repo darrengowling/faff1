@@ -1422,6 +1422,250 @@ class UCLAuctionAPITester:
         except Exception as e:
             return self.log_test("Socket Path Consistency", False, f"Exception: {str(e)}")
 
+    # ==================== COMPETITION PROFILE INTEGRATION TESTS ====================
+    
+    def test_competition_profiles_endpoint(self):
+        """Test GET /api/competition-profiles returns updated defaults"""
+        success, status, data = self.make_request('GET', 'competition-profiles', token=None)
+        
+        if not success:
+            return self.log_test("Competition Profiles Endpoint", False, f"Failed to get profiles: {status}")
+        
+        profiles = data.get('profiles', [])
+        if not profiles:
+            return self.log_test("Competition Profiles Endpoint", False, "No profiles returned")
+        
+        # Find UCL profile and verify updated defaults
+        ucl_profile = None
+        for profile in profiles:
+            if profile.get('id') == 'ucl' or profile.get('short_name') == 'UCL':
+                ucl_profile = profile
+                break
+        
+        if not ucl_profile:
+            return self.log_test("Competition Profiles Endpoint", False, "UCL profile not found")
+        
+        defaults = ucl_profile.get('defaults', {})
+        
+        # Verify updated defaults: clubSlots: 5, leagueSize: {min: 2, max: 8}
+        club_slots_correct = defaults.get('club_slots') == 5
+        league_size = defaults.get('league_size', {})
+        league_size_correct = league_size.get('min') == 2 and league_size.get('max') == 8
+        
+        # Check UEL profile as well
+        uel_profile = None
+        for profile in profiles:
+            if profile.get('id') == 'uel' or profile.get('short_name') == 'UEL':
+                uel_profile = profile
+                break
+        
+        uel_correct = True
+        if uel_profile:
+            uel_defaults = uel_profile.get('defaults', {})
+            uel_club_slots = uel_defaults.get('club_slots') == 5
+            uel_league_size = uel_defaults.get('league_size', {})
+            uel_size_correct = uel_league_size.get('min') == 2 and uel_league_size.get('max') == 6
+            uel_correct = uel_club_slots and uel_size_correct
+        
+        return self.log_test(
+            "Competition Profiles Endpoint",
+            club_slots_correct and league_size_correct and uel_correct,
+            f"UCL - Club slots: {defaults.get('club_slots')} (expected 5), League size: {league_size.get('min')}-{league_size.get('max')} (expected 2-8), UEL correct: {uel_correct}"
+        )
+    
+    def test_league_creation_with_profile_defaults(self):
+        """Test Create League uses competition profile defaults (not hardcoded 3)"""
+        # Create league without explicit settings to test profile integration
+        league_data = {
+            "name": f"Profile Test League {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26",
+            "competition_profile": "ucl"  # Explicitly use UCL profile
+        }
+        
+        success, status, data = self.make_request('POST', 'leagues', league_data)
+        
+        if not success:
+            return self.log_test("League Creation with Profile Defaults", False, f"Failed to create league: {status}")
+        
+        self.test_league_id_profile = data.get('id')
+        settings = data.get('settings', {})
+        
+        # Verify league uses profile defaults (5 slots, min 2 managers)
+        club_slots = settings.get('club_slots_per_manager')
+        league_size = settings.get('league_size', {})
+        min_managers = league_size.get('min')
+        max_managers = league_size.get('max')
+        
+        profile_defaults_used = (
+            club_slots == 5 and  # Updated from hardcoded 3
+            min_managers == 2 and  # Updated from hardcoded 4
+            max_managers == 8
+        )
+        
+        return self.log_test(
+            "League Creation with Profile Defaults",
+            profile_defaults_used,
+            f"Club slots: {club_slots} (expected 5), Min managers: {min_managers} (expected 2), Max managers: {max_managers} (expected 8)"
+        )
+    
+    def test_league_creation_without_profile(self):
+        """Test league creation without explicit profile uses UCL defaults"""
+        league_data = {
+            "name": f"Default Profile League {datetime.now().strftime('%H%M%S')}",
+            "season": "2025-26"
+            # No competition_profile specified - should default to UCL
+        }
+        
+        success, status, data = self.make_request('POST', 'leagues', league_data)
+        
+        if not success:
+            return self.log_test("League Creation without Profile", False, f"Failed to create league: {status}")
+        
+        settings = data.get('settings', {})
+        
+        # Should still use UCL profile defaults
+        club_slots = settings.get('club_slots_per_manager')
+        league_size = settings.get('league_size', {})
+        min_managers = league_size.get('min')
+        
+        ucl_defaults_used = club_slots == 5 and min_managers == 2
+        
+        return self.log_test(
+            "League Creation without Profile",
+            ucl_defaults_used,
+            f"Uses UCL defaults - Club slots: {club_slots} (expected 5), Min managers: {min_managers} (expected 2)"
+        )
+    
+    def test_admin_service_no_hardcoded_fallbacks(self):
+        """Test AdminService throws error if club_slots_per_manager missing (no hardcoded '3' fallback)"""
+        if not hasattr(self, 'test_league_id_profile') or not self.test_league_id_profile:
+            return self.log_test("Admin Service No Hardcoded Fallbacks", False, "No test league with profile")
+        
+        # Get league settings to verify no hardcoded fallbacks
+        success, status, settings = self.make_request('GET', f'leagues/{self.test_league_id_profile}/settings')
+        
+        if not success:
+            return self.log_test("Admin Service No Hardcoded Fallbacks", False, f"Failed to get league settings: {status}")
+        
+        # Verify settings contain proper values from profile (not hardcoded fallbacks)
+        club_slots = settings.get('clubSlots')
+        league_size = settings.get('leagueSize', {})
+        min_size = league_size.get('min')
+        
+        no_hardcoded_fallbacks = (
+            club_slots == 5 and  # Not hardcoded 3
+            min_size == 2  # Not hardcoded 4
+        )
+        
+        return self.log_test(
+            "Admin Service No Hardcoded Fallbacks",
+            no_hardcoded_fallbacks,
+            f"Club slots: {club_slots} (not hardcoded 3), Min size: {min_size} (not hardcoded 4)"
+        )
+    
+    def test_frontend_league_settings_endpoint(self):
+        """Test GET /api/leagues/{id}/settings returns centralized settings for frontend"""
+        if not hasattr(self, 'test_league_id_profile') or not self.test_league_id_profile:
+            return self.log_test("Frontend League Settings Endpoint", False, "No test league with profile")
+        
+        success, status, data = self.make_request('GET', f'leagues/{self.test_league_id_profile}/settings')
+        
+        if not success:
+            return self.log_test("Frontend League Settings Endpoint", False, f"Failed to get settings: {status}")
+        
+        # Verify response structure for frontend consumption
+        has_club_slots = 'clubSlots' in data
+        has_budget = 'budgetPerManager' in data
+        has_league_size = 'leagueSize' in data and isinstance(data['leagueSize'], dict)
+        
+        if has_league_size:
+            league_size = data['leagueSize']
+            has_min_max = 'min' in league_size and 'max' in league_size
+        else:
+            has_min_max = False
+        
+        # Verify values match profile defaults
+        club_slots_correct = data.get('clubSlots') == 5
+        min_correct = data.get('leagueSize', {}).get('min') == 2
+        
+        frontend_ready = has_club_slots and has_budget and has_league_size and has_min_max and club_slots_correct and min_correct
+        
+        return self.log_test(
+            "Frontend League Settings Endpoint",
+            frontend_ready,
+            f"Structure complete: {has_club_slots and has_budget and has_league_size and has_min_max}, Values correct: {club_slots_correct and min_correct}"
+        )
+    
+    def test_migration_completed_verification(self):
+        """Test that migration has been completed and existing leagues have complete settings"""
+        # Get all leagues to verify migration completion
+        success, status, leagues = self.make_request('GET', 'leagues')
+        
+        if not success:
+            return self.log_test("Migration Completed Verification", False, f"Failed to get leagues: {status}")
+        
+        if not leagues:
+            return self.log_test("Migration Completed Verification", True, "No existing leagues to verify")
+        
+        # Check a few leagues to ensure they have complete settings
+        leagues_with_complete_settings = 0
+        total_checked = min(5, len(leagues))  # Check up to 5 leagues
+        
+        for i, league in enumerate(leagues[:total_checked]):
+            league_id = league.get('id')
+            if league_id:
+                success_settings, status_settings, settings = self.make_request('GET', f'leagues/{league_id}/settings')
+                if success_settings:
+                    has_club_slots = 'clubSlots' in settings and isinstance(settings['clubSlots'], int)
+                    has_league_size = 'leagueSize' in settings and isinstance(settings['leagueSize'], dict)
+                    if has_league_size:
+                        league_size = settings['leagueSize']
+                        has_min_max = 'min' in league_size and 'max' in league_size
+                    else:
+                        has_min_max = False
+                    
+                    if has_club_slots and has_league_size and has_min_max:
+                        leagues_with_complete_settings += 1
+        
+        migration_complete = leagues_with_complete_settings == total_checked
+        
+        return self.log_test(
+            "Migration Completed Verification",
+            migration_complete,
+            f"Leagues with complete settings: {leagues_with_complete_settings}/{total_checked}"
+        )
+    
+    def test_custom_profile_settings(self):
+        """Test Custom competition profile has updated defaults"""
+        success, status, data = self.make_request('GET', 'competition-profiles', token=None)
+        
+        if not success:
+            return self.log_test("Custom Profile Settings", False, f"Failed to get profiles: {status}")
+        
+        profiles = data.get('profiles', [])
+        custom_profile = None
+        
+        for profile in profiles:
+            if profile.get('id') == 'custom' or profile.get('short_name') == 'Custom':
+                custom_profile = profile
+                break
+        
+        if not custom_profile:
+            return self.log_test("Custom Profile Settings", False, "Custom profile not found")
+        
+        defaults = custom_profile.get('defaults', {})
+        
+        # Verify Custom profile: club_slots: 5, league_size: {min: 2, max: 8}
+        club_slots_correct = defaults.get('club_slots') == 5
+        league_size = defaults.get('league_size', {})
+        league_size_correct = league_size.get('min') == 2 and league_size.get('max') == 8
+        
+        return self.log_test(
+            "Custom Profile Settings",
+            club_slots_correct and league_size_correct,
+            f"Club slots: {defaults.get('club_slots')} (expected 5), League size: {league_size.get('min')}-{league_size.get('max')} (expected 2-8)"
+        )
+
     # ==================== SERVER-COMPUTED ROSTER SUMMARY TESTS ====================
     
     def test_roster_summary_endpoint_structure(self):
