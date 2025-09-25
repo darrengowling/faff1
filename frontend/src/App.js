@@ -20,6 +20,7 @@ import AdminDashboard from './components/AdminDashboard';
 import DiagnosticPage from './components/DiagnosticPage';
 import LandingPage from './components/LandingPage';
 import SimpleLandingPage from './components/SimpleLandingPage';
+import GlobalNavbar from './components/GlobalNavbar';
 import { MobileNav, BottomTabNav } from './components/ui/mobile-nav';
 
 // Import Shadcn components
