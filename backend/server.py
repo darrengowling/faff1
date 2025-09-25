@@ -1151,4 +1151,4 @@ app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app, socketio_path="api/socke
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(final_app, host="0.0.0.0", port=8001)
+    uvicorn.run(app, host="0.0.0.0", port=8001)
