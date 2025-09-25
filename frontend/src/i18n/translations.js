@@ -225,7 +225,7 @@ export const translations = {
   // Empty States for My Clubs
   myClubsEmpty: {
     noClubsYet: "No Clubs Owned Yet",
-    noClubsDescription: "You haven't acquired any clubs yet. Join the auction to build your Champions League squad and compete for points!",
+    noClubsDescription: "You haven't acquired any clubs yet. Join the auction to build your football squad and compete for points!",
     noFixtures: "No Fixtures Scheduled", 
     noFixturesDescription: "The Champions League fixtures haven't been loaded yet. Check back soon for the match schedule!",
     noResults: "No Results Yet",
