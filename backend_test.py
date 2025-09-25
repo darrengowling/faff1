@@ -4431,6 +4431,17 @@ class UCLAuctionAPITester:
         self.test_clubs_seed()
         self.test_get_clubs()
         
+        # ==================== COMPETITION PROFILE INTEGRATION TESTS ====================
+        print("\n🏅 COMPETITION PROFILE INTEGRATION TESTS")
+        print("-" * 60)
+        self.test_competition_profiles_endpoint()
+        self.test_league_creation_with_profile_defaults()
+        self.test_league_creation_without_profile()
+        self.test_admin_service_no_hardcoded_fallbacks()
+        self.test_frontend_league_settings_endpoint()
+        self.test_migration_completed_verification()
+        self.test_custom_profile_settings()
+        
         # ==================== SOCKET.IO DIAGNOSTICS TESTS ====================
         print("\n🔧 SOCKET.IO DIAGNOSTICS TESTS")
         print("-" * 60)
