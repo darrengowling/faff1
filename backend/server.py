@@ -50,7 +50,7 @@ fastapi_app = FastAPI(title="UCL Auction API", version="1.0.0")
 api_router = APIRouter(prefix="/api")
 
 # CORS middleware
-app.add_middleware(
+fastapi_app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
     allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
