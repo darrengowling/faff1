@@ -168,9 +168,9 @@ async function testWebSocketConnection() {
 // Test 4: Socket.IO Mixed transport connection (polling + websocket upgrade)
 async function testMixedTransportConnection() {
     return new Promise((resolve) => {
-        const socket = io(API_ORIGIN, {
-            path: SOCKET_PATH,
-            transports: ['polling', 'websocket'],
+        const socket = io(origin, {
+            path: path,
+            transports: transports,
             timeout: 10000,
             forceNew: true
         });
