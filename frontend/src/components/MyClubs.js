@@ -244,9 +244,9 @@ const MyClubs = ({ user, token }) => {
         {/* Main Content Tabs */}
         <Tabs value={selectedTab} onValueChange={setSelectedTab}>
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="clubs">My Clubs</TabsTrigger>
-            <TabsTrigger value="fixtures">Upcoming Fixtures</TabsTrigger>
-            <TabsTrigger value="results">Recent Results</TabsTrigger>
+            <TabsTrigger value="clubs">{t('myClubs.yourClubs')}</TabsTrigger>
+            <TabsTrigger value="fixtures">{t('myClubs.upcomingFixtures')}</TabsTrigger>
+            <TabsTrigger value="results">{t('myClubs.recentResults')}</TabsTrigger>
           </TabsList>
 
           {/* My Clubs Tab */}
