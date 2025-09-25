@@ -144,7 +144,7 @@ class SocketIODiagnosticsTester:
             
             # Check if diag:socketio script is defined
             diag_script = scripts.get('diag:socketio')
-            script_configured = diag_script == 'node scripts/test-socketio.js'
+            script_configured = diag_script == 'node scripts/diag-socketio.mjs'
             
             # Check if socket.io-client dependency exists
             dependencies = package_data.get('dependencies', {})
