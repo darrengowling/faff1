@@ -1179,18 +1179,22 @@ class UCLAuctionAPITester:
             
             # Check output format
             output = result.stdout + result.stderr
-            has_test_header = '🔍 Socket.IO Diagnostics Test' in output
+            has_test_header = '🔍 Socket.IO Handshake Diagnostics' in output
             has_configuration_info = 'API Origin:' in output and 'Socket Path:' in output
-            has_test_results = ('✅' in output or '❌' in output) and 'Test Results:' in output
+            has_test_results = ('✅' in output or '❌' in output) and 'Results:' in output
             has_clear_format = has_test_header and has_configuration_info and has_test_results
             
-            # Expected: 1/4 tests passing (diagnostic endpoint works, Socket.IO connections fail)
-            expected_pattern = '1/4 passed' in output or 'Diagnostic Endpoint' in output
+            # Check for proper handshake tests
+            has_polling_test = 'Polling Handshake' in output
+            has_websocket_test = 'WebSocket Connection' in output
+            
+            # Expected: Some tests passing (diagnostic endpoint should work)
+            has_results_summary = 'tests passed' in output or 'passed' in output
             
             return self.log_test(
                 "CLI Script Execution (npm run diag:socketio)",
-                command_executed and has_clear_format,
-                f"Executed: {command_executed}, Clear format: {has_clear_format}, Expected pattern: {expected_pattern}"
+                command_executed and has_clear_format and has_polling_test and has_websocket_test,
+                f"Executed: {command_executed}, Clear format: {has_clear_format}, Has tests: {has_polling_test and has_websocket_test}, Exit code: {result.returncode}"
             )
         except subprocess.TimeoutExpired:
             return self.log_test("CLI Script Execution", False, "Command timed out after 30 seconds")
