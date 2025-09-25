@@ -78,7 +78,7 @@ class CentralizedLeagueSettingsTest:
             'POST', 
             'auth/magic-link', 
             {"email": self.test_email},
-            token=None
+            use_auth=False
         )
         
         if not success:
