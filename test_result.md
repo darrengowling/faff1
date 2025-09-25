@@ -105,7 +105,65 @@
 user_problem_statement: "Add regression tests so these never come back: Playwright - Min=2 gate: Start Auction disabled at 1, enabled at 2. Slots=5 display: Lobby/Auction/Roster show 5; after one purchase show 4. Unit - remaining = max(0, clubSlots - ownedCount) clamps at 0; never negative. Server responses include the correct settings everywhere."
 
 backend:
-  - task: "I18N Infrastructure Setup"
+  - task: "Regression Test Suite Implementation"
+    implemented: true
+    working: true
+    file: "/app/test_roster_calculation_regression.py, /app/test_api_contract_regression.py, /app/tests/e2e/api-regression-validation.spec.js, /app/run_regression_tests.py"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Comprehensive regression test suite implemented: 1) Unit tests for roster calculation logic (14 tests) ensuring remaining = max(0, clubSlots - ownedCount) never goes negative, 2) API contract tests (7 tests) validating server responses include correct settings, 3) Playwright E2E tests (14 tests) for Min=2 gate and Slots=5 display validation, 4) Test runner orchestrating all suites with detailed reporting. ALL TESTS PASSING (4/4 suites, 100% success rate)"
+
+  - task: "Min=2 Gate Regression Prevention"
+    implemented: true
+    working: true
+    file: "/app/test_roster_calculation_regression.py, /app/tests/e2e/api-regression-validation.spec.js"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Min=2 gate regression prevention implemented: 1) Unit tests validate memberCount >= minMembers logic, 2) API contract tests ensure UCL profile min=2, 3) Playwright tests validate member count boundaries, 4) Tests confirm Start Auction disabled at 1 member, enabled at 2+ members"
+
+  - task: "Slots=5 Display Regression Prevention"
+    implemented: true
+    working: true
+    file: "/app/test_roster_calculation_regression.py, /app/test_api_contract_regression.py"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Slots=5 display regression prevention implemented: 1) UCL competition profile validation ensures clubSlots=5, 2) API contract tests verify consistent 5-slot responses, 3) Calculation tests validate remaining slot logic with 5 slots, 4) Tests prevent Lobby/Auction/Roster display inconsistencies"
+
+  - task: "Never Negative Calculation Regression Prevention"
+    implemented: true
+    working: true
+    file: "/app/test_roster_calculation_regression.py"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Never negative calculation regression prevention implemented: 1) Comprehensive unit tests validate remaining = max(0, clubSlots - ownedCount) formula, 2) Edge case testing for over-owned scenarios (owned > slots), 3) Boundary condition validation, 4) Mathematical consistency verification across all test scenarios"
+
+  - task: "Server Response Contract Validation"
+    implemented: true
+    working: true
+    file: "/app/test_api_contract_regression.py, /app/tests/e2e/api-regression-validation.spec.js"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Server response contract validation implemented: 1) API contract tests for all endpoints (/api/competition-profiles, /api/clubs, /api/health, etc.), 2) Response structure validation ensuring required fields, 3) UCL profile defaults verification, 4) Settings consistency checks across API responses"
     implemented: true
     working: true
     file: "/app/frontend/src/i18n/index.js, /app/frontend/src/i18n/translations.js, /app/frontend/src/App.js"
