@@ -372,6 +372,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "❌ PR2 & PR3 UI TESTING: WebSocket connection issues persist preventing full real-time functionality testing. However, all UI components are properly implemented and ready for WebSocket integration. ConnectionStatusIndicator, PresenceIndicator, and Auto-reconnect interface components are present with correct styling and behavior. Issue is Socket.IO client/server compatibility, not UI implementation."
+      - working: false
+        agent: "testing"
+        comment: "🔍 ROOT CAUSE IDENTIFIED: Kubernetes ingress routing issue - external Socket.IO requests (/socket.io/*) are routed to frontend instead of backend, while /api/* routes correctly. Backend Socket.IO server works perfectly on localhost:8001 with proper handshake responses. All backend implementation (ConnectionManager, StateSnapshot, authentication, presence tracking) verified correct. This is NOT a Socket.IO compatibility issue but an infrastructure configuration problem requiring ingress update to route /socket.io/* to backend service."
 
   - task: "Presence Tracking System"
     implemented: true
