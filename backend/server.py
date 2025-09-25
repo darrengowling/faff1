@@ -1069,7 +1069,7 @@ async def get_head_to_head(
         raise HTTPException(status_code=500, detail=str(e))
 
 # Health check endpoint
-@app.get("/health")
+@fastapi_app.get("/health")
 async def health_check():
     """Health check endpoint for deployment monitoring"""
     try:
