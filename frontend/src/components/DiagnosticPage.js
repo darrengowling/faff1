@@ -12,6 +12,8 @@ import { RefreshCw, CheckCircle, XCircle, AlertCircle, Wifi, WifiOff } from 'luc
 const DiagnosticPage = () => {
   const [connectionStatus, setConnectionStatus] = useState('disconnected');
   const [connectionDetails, setConnectionDetails] = useState(null);
+  const [sessionId, setSessionId] = useState(null);
+  const [actualTransport, setActualTransport] = useState(null);
   const [testSocket, setTestSocket] = useState(null);
   const [lastTest, setLastTest] = useState(null);
   const [isTesting, setIsTesting] = useState(false);
