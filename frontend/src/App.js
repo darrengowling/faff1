@@ -349,7 +349,7 @@ const InvitationAccept = () => {
       const token = urlParams.get('token');
 
       if (!token) {
-        setError('No invitation token provided');
+        setError(t('leagueManagement.noInvitationToken'));
         setLoading(false);
         return;
       }
