@@ -126,7 +126,7 @@ const DiagnosticPage = () => {
         errorAt: new Date().toISOString()
       });
     } finally {
-      setIsesting(false);
+      setIsTesting(false);
     }
   };
 
