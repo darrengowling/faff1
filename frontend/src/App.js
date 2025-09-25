@@ -155,7 +155,7 @@ const Login = () => {
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold text-gray-900">
-              {magicLink ? 'Magic Link Ready!' : 'Check Your Email'}
+              {magicLink ? t('auth.magicLinkReady') : t('auth.checkEmail')}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center space-y-4">
@@ -165,20 +165,20 @@ const Login = () => {
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <Shield className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                   <p className="text-blue-800 mb-2">
-                    <strong>Development Mode</strong>
+                    <strong>{t('auth.developmentMode')}</strong>
                   </p>
                   <p className="text-sm text-blue-600 mb-3">
-                    Click the button below to login instantly:
+                    {t('auth.developmentLoginText')}
                   </p>
                   <Button
                     onClick={() => window.location.href = magicLink}
                     className="w-full mb-3 touch-target"
                     size="lg"
                   >
-                    🚀 Login Now
+                    {t('auth.loginNow')}
                   </Button>
                   <div className="text-xs text-gray-500 border-t pt-3">
-                    <p>Or copy this link:</p>
+                    <p>{t('auth.orCopyLink')}</p>
                     <div className="bg-gray-100 p-2 rounded text-xs break-all mt-1">
                       {magicLink}
                     </div>
@@ -187,11 +187,11 @@ const Login = () => {
                       size="sm"
                       onClick={() => {
                         navigator.clipboard.writeText(magicLink);
-                        toast.success('Magic link copied to clipboard!');
+                        toast.success(t('auth.magicLinkCopied'));
                       }}
                       className="mt-2"
                     >
-                      📋 Copy Link
+                      {t('auth.copyLink')}
                     </Button>
                   </div>
                 </div>
@@ -216,7 +216,7 @@ const Login = () => {
               }}
               className="w-full"
             >
-              ← Send Another Link
+              {t('auth.sendAnotherLink')}
             </Button>
           </CardContent>
         </Card>
