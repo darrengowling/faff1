@@ -250,20 +250,20 @@ const SimpleLandingPage = () => {
             <div className="space-y-8">
               {[
                 {
-                  title: 'No Wagering',
-                  description: 'Zero gambling. Play for pride, bragging rights, and the love of the game.'
+                  title: t('landing.fairPlay.items.noWagering.title'),
+                  description: t('landing.fairPlay.items.noWagering.description')
                 },
                 {
-                  title: 'Points from Performance',
-                  description: 'Your clubs earn points based on real match results. Goals, wins, and draws count.'
+                  title: t('landing.fairPlay.items.performance.title'),
+                  description: t('landing.fairPlay.items.performance.description')
                 },
                 {
-                  title: 'Clear Rules',
-                  description: 'Transparent scoring system and auction mechanics. Everyone knows how it works.'
+                  title: t('landing.fairPlay.items.transparent.title'),
+                  description: t('landing.fairPlay.items.transparent.description')
                 },
                 {
-                  title: 'Private & Secure',
-                  description: 'Your leagues are private to your group. No public rankings or external pressure.'
+                  title: t('landing.fairPlay.items.private.title'),
+                  description: t('landing.fairPlay.items.private.description')
                 }
               ].map((item, index) => (
                 <div key={index} className="flex items-start space-x-4">
