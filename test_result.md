@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Add regression tests so these never come back: Playwright - Min=2 gate: Start Auction disabled at 1, enabled at 2. Slots=5 display: Lobby/Auction/Roster show 5; after one purchase show 4. Unit - remaining = max(0, clubSlots - ownedCount) clamps at 0; never negative. Server responses include the correct settings everywhere."
+user_problem_statement: "Complete the i18n implementation - Create detailed translation keys for all microcopy and replace ad-hoc hardcoded strings in the frontend UI with these new i18n keys."
 
 backend:
   - task: "Regression Test Suite Implementation"
