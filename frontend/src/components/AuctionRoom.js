@@ -407,9 +407,9 @@ const AuctionRoom = ({ user, token }) => {
     try {
       setConnectionStatus('connecting');
       
-      // Get Socket.IO configuration from environment
+      // Get Socket.IO configuration from environment  
       const apiOrigin = process.env.REACT_APP_BACKEND_URL || 'https://ucl-auction-1.preview.emergentagent.com/api';
-      const socketPath = process.env.REACT_APP_SOCKET_PATH || '/socketio';
+      const socketPath = process.env.REACT_APP_SOCKET_PATH || '/api/socketio';
       
       // Extract base URL from API URL (remove /api suffix if present)
       const baseUrl = apiOrigin.replace(/\/api$/, '');
