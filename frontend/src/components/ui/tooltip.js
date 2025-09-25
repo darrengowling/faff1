@@ -69,7 +69,7 @@ export const Tooltip = ({
 export const ScoringTooltip = ({ children, className = "" }) => {
   const scoringContent = (
     <div className="space-y-2">
-      <div className="font-semibold text-white">UCL Scoring System</div>
+      <div className="font-semibold text-white">{t('tooltips.scoringSystem')}</div>
       <div className="space-y-1 text-xs">
         <div>
           <span className="font-medium text-green-300">Goals:</span> +1 point each
