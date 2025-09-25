@@ -155,6 +155,7 @@ export const translations = {
     magicLinkCopied: "Magic link copied to clipboard!",
     magicLinkSent: "Magic link sent! Check your email.",
     emailSentMessage: "We've sent a magic link to {{email}}",
+    clickEmailLink: "Click the link in your email to log in",
     sendAnotherLink: "← Send Another Link",
     verifyingLogin: "Verifying your login...",
     loginSuccess: "Successfully logged in!",
