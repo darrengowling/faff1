@@ -548,4 +548,6 @@ async def ping(sid, data):
 
 def get_socketio_app():
     """Get the Socket.IO ASGI application"""
+    # Note: This function is kept for backward compatibility
+    # The main integration now uses socketio.ASGIApp(sio, other_asgi_app=app)
     return socketio.ASGIApp(sio)
