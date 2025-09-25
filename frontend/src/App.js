@@ -438,6 +438,7 @@ const InvitationAccept = () => {
 
 // Enhanced League Creation Dialog
 const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
+  const { t } = useTranslation();
   const [competitionProfiles, setCompetitionProfiles] = useState([]);
   const [selectedProfile, setSelectedProfile] = useState('ucl');
   const [formData, setFormData] = useState({
