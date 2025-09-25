@@ -107,10 +107,10 @@ const SimpleLandingPage = () => {
               <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Trophy className="w-8 h-8" />
               </div>
-              <div className="text-sm font-semibold text-blue-600 mb-2">Step 3</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Score from Results</h3>
+              <div className="text-sm font-semibold text-blue-600 mb-2">{t('landing.howItWorks.steps.score.step')}</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">{t('landing.howItWorks.steps.score.title')}</h3>
               <p className="text-gray-600">
-                Earn points from real match results. Goals, wins, and draws translate to leaderboard success.
+                {t('landing.howItWorks.steps.score.description')}
               </p>
             </div>
           </div>
