@@ -116,12 +116,12 @@ class SocketIODiagnosticsTester:
             has_test_functions = 'testPollingHandshake' in script_content and 'testWebSocketConnection' in script_content
             has_proper_env_vars = 'NEXT_PUBLIC_API_URL' in script_content and 'VITE_PUBLIC_API_URL' in script_content
             
-            script_valid = has_shebang and has_socketio_import and has_test_functions
+            script_valid = has_shebang and has_socketio_import and has_test_functions and has_proper_env_vars
             
             return self.log_test(
-                "CLI Test Script Exists (scripts/test-socketio.js)",
+                "CLI Test Script Exists (scripts/diag-socketio.mjs)",
                 file_exists and file_readable and script_valid,
-                f"Exists: {file_exists}, Readable: {file_readable}, Valid structure: {script_valid}"
+                f"Exists: {file_exists}, Readable: {file_readable}, Valid structure: {script_valid}, Has env vars: {has_proper_env_vars}"
             )
         except Exception as e:
             return self.log_test("CLI Test Script Exists", False, f"Exception: {str(e)}")
