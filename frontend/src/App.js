@@ -264,6 +264,7 @@ const Login = () => {
 
 // Magic Link Verification Component
 const MagicLinkVerify = () => {
+  const { t } = useTranslation();
   const { login } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
