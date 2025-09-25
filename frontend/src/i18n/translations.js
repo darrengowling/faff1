@@ -26,7 +26,7 @@ export const translations = {
   // Landing page sections
   landing: {
     howItWorks: {
-      title: "How It Works",
+      title: "How It Works", 
       subtitle: "Three simple steps to start your football auction adventure",
       steps: {
         create: {
