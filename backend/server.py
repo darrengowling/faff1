@@ -501,9 +501,18 @@ async def start_auction(
             return {"message": "Auction started successfully", "auction_id": auction_id}
         else:
             raise HTTPException(status_code=400, detail="Failed to start auction")
+    except ValueError as e:
+        # Handle specific business logic errors with appropriate status codes
+        error_msg = str(e).lower()
+        if "not found" in error_msg:
+            raise HTTPException(status_code=404, detail=str(e))
+        elif "not ready" in error_msg or "permission" in error_msg or "commissioner" in error_msg:
+            raise HTTPException(status_code=400, detail=str(e))
+        else:
+            raise HTTPException(status_code=422, detail=str(e))
     except Exception as e:
         logger.error(f"Failed to start auction: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 # Lot closing endpoints
 @api_router.post("/lots/{lot_id}/close")
