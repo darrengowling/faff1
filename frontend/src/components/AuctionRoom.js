@@ -797,7 +797,7 @@ const AuctionRoom = ({ user, token }) => {
                       <div className="text-sm text-gray-400">Current Bid</div>
                     </div>
                     <div className="text-center p-4 bg-gray-700 rounded-lg">
-                      <div className="text-3xl font-bold text-blue-400">
+                      <div className="text-3xl font-bold text-blue-400" data-testid={TESTIDS.auctionTopBidder}>
                         {currentLot.top_bidder?.display_name || 'No Bids'}
                       </div>
                       <div className="text-sm text-gray-400">Top Bidder</div>
