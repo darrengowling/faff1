@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Complete the sticky in-page navigation bar and fix GlobalNavbar issues - Implement StickyPageNav.js with tabs, scroll-spy behavior, browser hash updates, accessibility, fix GlobalNavbar dropdown visibility and mobile responsiveness."
+user_problem_statement: "Complete the navigation registry implementation and create reusable React component that consumes the navRegistry.ts to dynamically render navigation menus for the primary navigation, product dropdown, and footer."
 
 backend:
   - task: "Complete I18N Implementation"
