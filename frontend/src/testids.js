@@ -39,6 +39,12 @@ export const TESTIDS = {
   magicLinkSubmit: 'auth-magic-link-submit',
   loginNowButton: 'auth-login-now-button',
   
+  // Authentication Page (/login)
+  authEmailInput: 'auth-email-input',
+  authSubmitBtn: 'auth-submit-btn',
+  authError: 'auth-error',
+  authSuccess: 'auth-success',
+  
   // Home/dashboard
   homeGotoDropdown: 'home-goto',
   homeGotoAuction: 'home-goto-auction',
