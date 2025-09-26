@@ -22,57 +22,102 @@ import {
 
 const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
   const { t } = useTranslation();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [lastSelection, setLastSelection] = useState('');
+  const [showTooltip, setShowTooltip] = useState(null);
   
   const dropdownRef = useRef(null);
   const triggerRef = useRef(null);
 
-  // Menu items with context-aware navigation
-  const menuItems = [
-    {
-      id: 'auction',
-      label: t('nav.auction', 'Auction Room'),
-      icon: Trophy,
-      description: 'Join live bidding session',
-      action: () => selectedLeague ? navigate(`/auction/${selectedLeague.id}`) : null,
-      enabled: !!selectedLeague
-    },
-    {
-      id: 'roster',
-      label: t('nav.myClubs', 'My Roster'),
-      icon: Users,
-      description: 'View your clubs and budget',
-      action: () => selectedLeague ? navigate(`/clubs/${selectedLeague.id}`) : null,
-      enabled: !!selectedLeague
-    },
-    {
-      id: 'fixtures',
-      label: t('nav.fixtures', 'Fixtures'),
-      icon: Calendar,
-      description: 'Match schedules and results',
-      action: () => selectedLeague ? navigate(`/fixtures/${selectedLeague.id}`) : null,
-      enabled: !!selectedLeague
-    },
-    {
-      id: 'leaderboard',
-      label: t('nav.leaderboard', 'Leaderboard'),
-      icon: BarChart3,
-      description: 'Rankings and statistics',
-      action: () => selectedLeague ? navigate(`/leaderboard/${selectedLeague.id}`) : null,
-      enabled: !!selectedLeague
-    },
-    {
-      id: 'settings',
-      label: t('nav.admin', 'League Settings'),
-      icon: Settings,
-      description: 'Manage league configuration',
-      action: () => selectedLeague ? navigate(`/admin/${selectedLeague.id}`) : null,
-      enabled: !!selectedLeague
+  // Create app state for navigation registry
+  const appState = {
+    selectedLeague,
+    leagues: selectedLeague ? [selectedLeague] : [],
+    isAuthenticated: !!user,
+    user
+  };
+
+  // Get navigation items from registry
+  const registryItems = productDropdownNavigation;
+  const fallbackItems = dashboardActions; // Always available options
+
+  // Convert registry items to menu format with enhanced context awareness
+  const createMenuItems = () => {
+    const items = [];
+    
+    // Add primary navigation items (league-specific)
+    registryItems.forEach(navItem => {
+      const isVisible = navItem.visible(user, appState);
+      const isEnabled = navItem.enabled(user, appState);
+      const href = buildHref(navItem, appState);
+      
+      items.push({
+        id: navItem.id,
+        label: navItem.label,
+        icon: navItem.icon,
+        description: navItem.description || 'Navigate to this section',
+        href,
+        visible: isVisible,
+        enabled: isEnabled,
+        action: () => {
+          if (isEnabled) {
+            navigate(href);
+          }
+        },
+        tooltip: !isEnabled && isVisible 
+          ? "Start or join a league to access this section" 
+          : null,
+        priority: 'primary'
+      });
+    });
+
+    // Add fallback options if no primary items are enabled
+    const enabledPrimary = items.filter(item => item.enabled && item.visible);
+    
+    if (enabledPrimary.length === 0) {
+      fallbackItems.forEach(navItem => {
+        const isVisible = navItem.visible(user, appState);
+        const isEnabled = navItem.enabled(user, appState);
+        const href = buildHref(navItem, appState);
+        
+        items.push({
+          id: navItem.id,
+          label: navItem.label,
+          icon: navItem.icon,
+          description: navItem.description || 'Quick action',
+          href,
+          visible: isVisible,
+          enabled: isEnabled,
+          action: () => {
+            if (isEnabled) {
+              if (navItem.id === 'create-league') {
+                // Trigger create league dialog
+                const createButton = document.querySelector('button:has-text("Create League")');
+                if (createButton) {
+                  createButton.click();
+                } else {
+                  navigate('/app');
+                }
+              } else {
+                navigate(href);
+              }
+            }
+          },
+          tooltip: null,
+          priority: 'fallback'
+        });
+      });
     }
-  ];
+
+    return items;
+  };
+
+  const menuItems = createMenuItems();
+  const visibleItems = menuItems.filter(item => item.visible);
+  const enabledItems = visibleItems.filter(item => item.enabled);
 
   // Load last selection from localStorage
   useEffect(() => {
