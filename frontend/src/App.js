@@ -120,6 +120,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     setToken(null);
     setUser(null);
+    setLoading(false);
     delete axios.defaults.headers.common['Authorization'];
   };
 
