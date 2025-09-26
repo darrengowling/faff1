@@ -1394,12 +1394,12 @@ function App() {
                   </AuctionLayout>
                 </SafeRoute>
               } />
-              <Route path="/clubs/:leagueId" element={
-                <ProtectedRoute>
+              <Route path="/clubs" element={
+                <SafeRoute path="/clubs" authRequired={true} leagueRequired={true}>
                   <RosterLayout>
                     <MyClubsWrapper />
                   </RosterLayout>
-                </ProtectedRoute>
+                </SafeRoute>
               } />
               <Route path="/fixtures/:leagueId" element={
                 <ProtectedRoute>
