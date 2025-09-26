@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { BrandBadge, FooterBrand } from './brand-badge';
 import { getBrandName } from '../../brand';
+import { FooterNavigation } from '../navigation/NavigationMenu';
 
 const Footer = ({ variant = 'default', className = '' }) => {
   const { t } = useTranslation();
