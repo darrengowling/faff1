@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from './button';
 import { Card, CardContent } from './card';
+import { TESTIDS } from '../../testids';
 
 // Enhanced empty state component with consistent styling and actions
 export const EmptyState = ({ 
