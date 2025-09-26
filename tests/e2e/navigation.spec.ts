@@ -1,10 +1,12 @@
 /**
- * Navigation Specification Tests
- * Tests landing anchors, top nav dropdowns, mobile navigation, and "Go to..." menu
+ * Navigation Tests - Production Readiness Regression
+ * Tests landing anchors, top-nav dropdowns, hamburger drawer, 404 recovery
+ * HARD RULE: Only data-testid selectors allowed
  */
 
 import { test, expect } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids.js';
+import { TestHelpers } from './utils/test-helpers';
+import { TESTIDS } from '../../frontend/src/testids';
 
 test.describe('Navigation Tests', () => {
   
