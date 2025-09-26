@@ -736,6 +736,8 @@ async def get_auction_state(
             return state
         else:
             raise HTTPException(status_code=404, detail="Auction not found or not active")
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Failed to get auction state: {e}")
         raise HTTPException(status_code=500, detail=str(e))
