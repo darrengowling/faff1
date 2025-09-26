@@ -7,7 +7,7 @@ import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Separator } from './ui/separator';
 import { TESTIDS } from '../testids';
 import { ArrowLeft, Mail, CheckCircle, AlertCircle, Home } from 'lucide-react';
-import { getSearchParam } from '../utils/safeBrowser';
+import { getSearchParam } from '../utils/safeBrowser.ts';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
