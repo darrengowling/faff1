@@ -345,6 +345,18 @@ backend:
         agent: "main"
         comment: "Fixed authentication issues in core-smoke test: 1) Updated loginUser function to use proper magic link authentication flow, 2) Replaced fake token authentication with working pattern from league-settings-regression.spec.js, 3) Added proper wait for '🚀 Login Now' button in development mode, 4) Fixed URL expectations to use /app instead of /dashboard, 5) Test now uses the same authentication pattern as other working tests"
 
+  - task: "AuctionRoom Variable Initialization Bug Fix"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/AuctionRoom.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Fixed JavaScript runtime error in AuctionRoom component: 1) Resolved 'Cannot access auctionState before initialization' error by moving auctionState state declaration before useLeagueSettings hook, 2) Fixed variable declaration order where useLeagueSettings was trying to access auctionState?.league_id before auctionState was initialized, 3) Prevented dropdown navigation errors when users try to access Auction Room, 4) Maintained all existing functionality while fixing the initialization order issue"
+
   - task: "Context-Aware Go To Dropdown Enhancement"
     implemented: true
     working: true
