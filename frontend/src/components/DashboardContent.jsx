@@ -17,7 +17,6 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
 import { useAuth } from '../App';
-import { TESTIDS } from '../testids';
 import PageMenuDropdown from './ui/page-menu-dropdown';
 import QuickActionCards from './ui/quick-action-cards';
 import LeagueSwitcher from './ui/league-switcher';
