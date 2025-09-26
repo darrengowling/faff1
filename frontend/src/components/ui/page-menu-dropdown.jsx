@@ -33,6 +33,18 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
   const dropdownRef = useRef(null);
   const triggerRef = useRef(null);
 
+  // Map menu item IDs to test IDs
+  const getTestIdForMenuItem = (itemId) => {
+    const testIdMap = {
+      'auction-room': TESTIDS.homeGotoAuction,
+      'my-roster': TESTIDS.homeGotoRoster,
+      'fixtures': TESTIDS.homeGotoFixtures,
+      'leaderboard': TESTIDS.homeGotoLeaderboard,
+      'league-admin': TESTIDS.homeGotoSettings
+    };
+    return testIdMap[itemId] || `home-goto-${itemId}`;
+  };
+
   // Create app state for navigation registry
   const appState = {
     selectedLeague,
