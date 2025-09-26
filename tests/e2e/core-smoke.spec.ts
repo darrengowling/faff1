@@ -239,16 +239,12 @@ async function loginUser(page: Page, email: string): Promise<void> {
   await page.fill('input[type="email"]', email);
   await page.click('button:has-text("Send Magic Link"), button[type="submit"]');
   
-  // Wait for magic link sent confirmation
-  await expect(page.locator('text=Check your email, text=Magic link sent')).toBeVisible({ timeout: 10000 });
+  // Wait for magic link sent confirmation and login button (development mode)
+  await page.waitForSelector('button:has-text("🚀 Login Now")', { timeout: 10000 });
+  await page.click('button:has-text("🚀 Login Now")');
   
-  // For testing, simulate magic link verification by direct API call or navigation
-  // In development/test mode, use a test token or bypass
-  const testToken = Buffer.from(email).toString('base64');
-  await page.goto(`/auth/verify?token=test_${testToken}`);
-  
-  // Wait for successful login redirect to dashboard
-  await page.waitForURL('**/dashboard', { timeout: 15000 });
+  // Wait for successful login redirect to dashboard/app
+  await page.waitForURL('**/app', { timeout: 15000 });
   console.log(`✅ User logged in: ${email}`);
 }
 
