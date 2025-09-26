@@ -241,33 +241,25 @@ async function loginUser(page: Page, email: string): Promise<void> {
 }
 
 async function createLeague(page: Page, settings: typeof LEAGUE_SETTINGS): Promise<{ leagueId: string }> {
-  // Click create league button
-  await page.click('button:has-text("Create League")');
-  await page.waitForSelector('[role="dialog"]', { timeout: 5000 });
+  const helpers = new TestHelpers(page);
   
-  // Fill league form
-  await page.fill('input[name="name"]', settings.name);
+  const leagueData = {
+    name: settings.name,
+    season: '2024-25',
+    settings: {
+      budget_per_manager: settings.budgetPerManager,
+      club_slots_per_manager: settings.clubSlots,
+      league_size: settings.leagueSize
+    }
+  };
   
-  // Set budget
-  await page.fill('input[name="budget_per_manager"]', settings.budgetPerManager.toString());
+  const result = await helpers.createLeague(leagueData);
   
-  // Set club slots  
-  await page.fill('input[name="club_slots_per_manager"]', settings.clubSlots.toString());
+  if (!result.success) {
+    throw new Error(`Failed to create league: ${result.error}`);
+  }
   
-  // Set min league size
-  await page.fill('input[name="min_league_size"]', settings.leagueSize.min.toString());
-  
-  // Submit form
-  await page.click('button:has-text("Create League")');
-  
-  // Wait for redirect to league page
-  await page.waitForURL('**/admin/**', { timeout: 10000 });
-  
-  // Extract league ID from URL
-  const url = page.url();
-  const leagueId = url.split('/admin/')[1];
-  
-  return { leagueId };
+  return { leagueId: result.leagueId };
 }
 
 async function getInviteLinks(page: Page): Promise<string[]> {
