@@ -133,8 +133,8 @@ test.describe('Navigation Usability Tests', () => {
           await productDropdown.click();
           await page.waitForTimeout(300);
           
-          // Find and click the item
-          const menuItem = page.locator(`[role="menuitem"]:has-text("${item.text}"), button:has-text("${item.text}")`).first();
+          // Find and click the item (look in the visible dropdown)
+          const menuItem = page.locator('button').filter({ hasText: item.text }).first();
           
           if (await menuItem.isVisible()) {
             await menuItem.click();
