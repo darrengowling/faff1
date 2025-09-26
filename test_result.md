@@ -102,7 +102,22 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the league creation form validation fix to verify that users can now create leagues with a minimum of 2 managers instead of being forced to use 4 or more."
+user_problem_statement: "League creation form was preventing users from creating tournaments with 2 managers, forcing minimum of 4 managers despite previous changes to allow minimum of 2"
+
+  - task: "League Creation Minimum Manager Validation Fix"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Fixed CreateLeagueDialog validation issue: 1) Changed HTML min attribute from min='4' to min='2' for both Min and Max Managers inputs, 2) Fixed form data structure to use league_size.min and league_size.max instead of separate min_managers/max_managers fields, 3) Updated onChange handlers to properly update league_size object structure, 4) Ensured form validation allows 2-manager tournaments as intended"
+      - working: true
+        agent: "testing"
+        comment: "✅ LEAGUE CREATION VALIDATION FIX VERIFIED - Working perfectly with Min=2 managers support. CRITICAL VALIDATION FIX VERIFIED: HTML min attribute correctly set to '2' (not '4'), form accepts minimum value of 2 managers as required, form field functionality tested (Min=2, Max=4 league creation successful), complete form submission working (POST /api/leagues - Status 200), league created successfully with Min=2 managers, success toast displayed ('League created successfully!'), dashboard integration verified (created league appears with correct settings). The league creation validation fix resolves the issue where users were prevented from creating tournaments with 2 managers. Test Results: 100% Success Rate (6/6 tests passed)."
 
 backend:
   - task: "Complete I18N Implementation"
