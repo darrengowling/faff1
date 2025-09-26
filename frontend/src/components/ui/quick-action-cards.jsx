@@ -110,6 +110,7 @@ const QuickActionCards = ({
                     }
                   }}
                   disabled={!action.enabled}
+                  data-testid={action.id === 'join-via-invite' ? TESTIDS.joinLeagueButton : undefined}
                 >
                   <span className="flex items-center space-x-2">
                     <span>{action.buttonText}</span>
