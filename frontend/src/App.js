@@ -1401,26 +1401,26 @@ function App() {
                   </RosterLayout>
                 </SafeRoute>
               } />
-              <Route path="/fixtures/:leagueId" element={
-                <ProtectedRoute>
+              <Route path="/fixtures" element={
+                <SafeRoute path="/fixtures" authRequired={true} leagueRequired={true}>
                   <FixturesLayout>
                     <FixturesWrapper />
                   </FixturesLayout>
-                </ProtectedRoute>
+                </SafeRoute>
               } />
-              <Route path="/leaderboard/:leagueId" element={
-                <ProtectedRoute>
+              <Route path="/leaderboard" element={
+                <SafeRoute path="/leaderboard" authRequired={true} leagueRequired={true}>
                   <LeaderboardLayout>
                     <LeaderboardWrapper />
                   </LeaderboardLayout>
-                </ProtectedRoute>
+                </SafeRoute>
               } />
-              <Route path="/admin/:leagueId" element={
-                <ProtectedRoute>
+              <Route path="/admin" element={
+                <SafeRoute path="/admin" authRequired={true} leagueRequired={true}>
                   <AdminLayout>
                     <AdminDashboardWrapper />
                   </AdminLayout>
-                </ProtectedRoute>
+                </SafeRoute>
               } />
               <Route path="/dashboard" element={
                 <ProtectedRoute>
