@@ -172,30 +172,15 @@ test.describe('Authentication UI Tests', () => {
 });
 
 test.describe('Authentication UI Integration', () => {
-  test('Complete auth flow from login to app', async ({ page }) => {
+  test('Complete auth flow using UI login mode', async ({ page }) => {
     // Start at login page
     await page.goto('/login');
     
-    // Fill and submit form using only data-testids
-    await page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`).fill('integration-test@example.com');
+    // Use UI mode explicitly to test the authentication interface
+    await login(page, 'ui-integration-test@example.com', { mode: 'ui' });
     
-    // Wait for network response
-    const responsePromise = page.waitForResponse(response => 
-      response.url().includes('/api/auth/magic-link') && response.status() === 200
-    );
-    
-    await page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`).click();
-    
-    // Wait for API response
-    await responsePromise;
-    
-    // Wait for success and automatic redirect in test mode
-    await expect(page.locator(`[data-testid="${TESTIDS.authSuccess}"]`)).toBeVisible();
-    
-    // Wait for navigation to either /auth/verify or /app
-    await page.waitForURL(url => url.pathname === '/auth/verify' || url.pathname === '/app', { timeout: 10000 });
-    
-    // Verify we navigated away from login
+    // Verify we navigated away from login and to the app
     await expect(page).not.toHaveURL('/login');
+    await expect(page).toHaveURL(/\/(app|auth\/verify)/);
   });
 });
