@@ -983,9 +983,9 @@ const LeagueManagement = ({ league, onBack }) => {
                   <p className="text-gray-500 text-sm">No invitations sent yet</p>
                 ) : (
                   invitations.map((invitation) => (
-                    <div key={invitation.id} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <div key={invitation.id} className="flex items-center justify-between p-2 bg-gray-50 rounded" data-testid={TESTIDS.inviteLinkItem}>
                       <div className="flex items-center space-x-2">
-                        <div className="text-sm font-medium">{invitation.email}</div>
+                        <div className="text-sm font-medium" data-testid={TESTIDS.inviteLinkUrl}>{invitation.email}</div>
                         <Badge 
                           variant={
                             invitation.status === 'accepted' ? 'default' :
