@@ -367,6 +367,7 @@ const MyClubs = ({ user, token }) => {
                           </div>
                           <Badge 
                             variant={fixture.status === 'scheduled' ? 'secondary' : 'default'}
+                            data-testid={TESTIDS.fixtureStatus}
                           >
                             {fixture.status.toUpperCase()}
                           </Badge>
