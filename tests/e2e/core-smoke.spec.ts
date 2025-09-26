@@ -253,25 +253,44 @@ async function loginUser(page: Page, email: string): Promise<void> {
 }
 
 async function createLeague(page: Page, settings: typeof LEAGUE_SETTINGS): Promise<{ leagueId: string }> {
-  const helpers = new TestHelpers(page);
+  console.log(`🏟️ Creating league: ${settings.name}`);
   
-  const leagueData = {
-    name: settings.name,
-    season: '2024-25',
-    settings: {
-      budget_per_manager: settings.budgetPerManager,
-      club_slots_per_manager: settings.clubSlots,
-      league_size: settings.leagueSize
-    }
-  };
+  // Click create league button from dashboard
+  await page.click('button:has-text("Create League")');
+  await page.waitForSelector('[role="dialog"], .modal', { timeout: 5000 });
   
-  const result = await helpers.createLeague(leagueData);
+  // Fill league form
+  await page.fill('input[name="name"]', settings.name);
+  await page.fill('input[name="season"]', '2025-26');
   
-  if (!result.success) {
-    throw new Error(`Failed to create league: ${result.error}`);
+  // Set competition profile (try UCL first, then custom)
+  const profileSelect = page.locator('select[name="competition_profile_id"]');
+  if (await profileSelect.isVisible()) {
+    await profileSelect.selectOption({ label: /UCL|Champions League/i });
   }
   
-  return { leagueId: result.leagueId };
+  // Set budget
+  await page.fill('input[name="budget_per_manager"]', settings.budgetPerManager.toString());
+  
+  // Set club slots  
+  await page.fill('input[name="club_slots_per_manager"]', settings.clubSlots.toString());
+  
+  // Set league size
+  await page.fill('input[name="min_managers"]', settings.leagueSize.min.toString());
+  await page.fill('input[name="max_managers"]', settings.leagueSize.max.toString());
+  
+  // Submit form
+  await page.click('button[type="submit"], button:has-text("Create League")');
+  
+  // Wait for redirect to league admin page
+  await page.waitForURL('**/admin/**', { timeout: 10000 });
+  
+  // Extract league ID from URL
+  const url = page.url();
+  const leagueId = url.split('/admin/')[1];
+  
+  console.log(`✅ League created with ID: ${leagueId}`);
+  return { leagueId };
 }
 
 async function getInviteLinks(page: Page): Promise<string[]> {
