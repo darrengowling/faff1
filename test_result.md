@@ -345,6 +345,18 @@ backend:
         agent: "main"
         comment: "Fixed authentication issues in core-smoke test: 1) Updated loginUser function to use proper magic link authentication flow, 2) Replaced fake token authentication with working pattern from league-settings-regression.spec.js, 3) Added proper wait for '🚀 Login Now' button in development mode, 4) Fixed URL expectations to use /app instead of /dashboard, 5) Test now uses the same authentication pattern as other working tests"
 
+  - task: "Context-Aware Go To Dropdown Enhancement"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/ui/page-menu-dropdown.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Enhanced PageMenuDropdown component with context-aware destinations: 1) Integrated with navigation registry for dynamic menu generation, 2) Added conditional visibility/enablement based on user authentication and league selection, 3) Implemented tooltips for disabled routes with explanatory messages ('Start/Join a league to access'), 4) Enhanced keyboard accessibility with proper focus management and ARIA attributes, 5) Added fallback options to prevent empty dropdown states, 6) Included visual indicators for disabled items and helpful descriptions, 7) Added hover tooltips and screen reader announcements for better UX"
+
 frontend:
   - task: "Navigation Registry Implementation"
     implemented: true
