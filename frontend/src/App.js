@@ -888,7 +888,7 @@ const LeagueManagement = ({ league, onBack }) => {
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600">{leagueStatus.member_count}</div>
+                <div className="text-2xl font-bold text-blue-600" data-testid={TESTIDS.lobbyJoinedCount}>{leagueStatus.member_count}</div>
                 <div className="text-sm text-gray-600">Members</div>
               </div>
               <div className="text-center">
