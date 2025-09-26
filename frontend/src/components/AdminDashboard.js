@@ -540,7 +540,7 @@ const AdminDashboard = ({ user, token }) => {
                             </Tooltip>
                           </TooltipProvider>
                           {validationErrors.budget && (
-                            <div className="text-red-500 text-xs mt-1">{validationErrors.budget}</div>
+                            <div className="text-red-500 text-xs mt-1" data-testid={TESTIDS.errorMessage}>{validationErrors.budget}</div>
                           )}
                           <div className="text-xs text-gray-500 mt-1">
                             {hasClubsPurchased ? "⚠️ Cannot change - clubs already purchased" : 
