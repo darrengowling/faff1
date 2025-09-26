@@ -4,7 +4,7 @@
  */
 
 import { test, expect, Browser, BrowserContext, Page } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids';
+import { TESTIDS } from '../../frontend/src/testids.js';
 import { login, createLeague, startAuction, nominateFirstAsset, bid } from './utils/helpers';
 
 test.describe('Auction Tests', () => {
