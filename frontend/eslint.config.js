@@ -1,8 +1,10 @@
+import ssrSafetyRules from './eslint-rules/index.js';
+
 export default [
   {
     files: ['**/*.{js,jsx}'],
     plugins: {
-      'ssr-safety': require('./eslint-rules/index.js')
+      'ssr-safety': ssrSafetyRules
     },
     languageOptions: {
       ecmaVersion: 2020,
