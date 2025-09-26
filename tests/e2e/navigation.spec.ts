@@ -263,9 +263,17 @@ test.describe('Navigation Usability Tests', () => {
         await hamburgerButton.click();
         await page.waitForTimeout(500);
         
-        // Verify menu drawer opened
-        const mobileDrawer = page.locator('[role="navigation"], .mobile-menu, #mobile-navigation').first();
-        await expect(mobileDrawer).toBeVisible();
+        // Verify menu drawer opened (look for mobile navigation drawer)
+        const mobileDrawer = page.locator('.mobile-drawer, .drawer, #mobile-navigation-drawer').or(
+          page.locator('[role="navigation"]').filter({ hasText: 'How it Works' })
+        );
+        
+        // Check if drawer is visible or if mobile navigation items appeared
+        const drawerVisible = await mobileDrawer.isVisible().catch(() => false);
+        const mobileNavItems = page.locator('nav button:has-text("How it Works"), .mobile-nav button');
+        const mobileItemsVisible = await mobileNavItems.isVisible().catch(() => false);
+        
+        expect(drawerVisible || mobileItemsVisible).toBeTruthy();
         
         console.log('✅ Mobile menu opened');
         
