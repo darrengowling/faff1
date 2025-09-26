@@ -31,7 +31,7 @@ const GlobalNavbar = () => {
   // State management
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [productDropdownOpen, setProductDropdownOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   
   // Refs for accessibility
