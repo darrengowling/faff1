@@ -1289,6 +1289,13 @@ async def get_version():
         "environment": os.getenv("ENVIRONMENT", "development")
     }
 
+# Socket.IO configuration endpoint
+@api_router.get("/socket/config")
+async def socket_config():
+    """Socket.IO configuration endpoint - returns canonical socket path"""
+    socket_path = os.getenv('SOCKET_PATH', '/api/socketio')
+    return {"path": socket_path}
+
 # Socket.IO Diagnostic endpoint (alternative path to avoid routing conflicts)
 @api_router.get("/socket-diag") 
 async def socketio_diagnostics():
