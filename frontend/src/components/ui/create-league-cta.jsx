@@ -61,7 +61,7 @@ export const PrimaryCreateLeagueCTA = ({
         disabled={isLoading}
         size="lg"
         className={`px-8 py-3 ${className}`}
-        data-testid={TESTIDS.homeCreateLeagueBtn}
+        data-testid={TESTIDS.createLeagueBtn}
         aria-label={
           isLoading 
             ? "Loading leagues data, create league will be available shortly" 
