@@ -40,6 +40,22 @@ const useAppState = () => {
 };
 
 /**
+ * Map navigation item IDs to test IDs
+ */
+const getItemTestId = (item, variant) => {
+  const idMap = {
+    'auction-room': TESTIDS.navDropdownItemAuction,
+    'my-roster': TESTIDS.navDropdownItemRoster, 
+    'fixtures': TESTIDS.navDropdownItemFixtures,
+    'leaderboard': TESTIDS.navDropdownItemLeaderboard,
+    'league-admin': TESTIDS.navDropdownItemSettings,
+    'league-settings': TESTIDS.navDropdownItemSettings
+  };
+  
+  return idMap[item.id] || null;
+};
+
+/**
  * Generic Navigation Item Component
  */
 const NavigationItem = ({ 
