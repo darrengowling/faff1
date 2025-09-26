@@ -96,7 +96,7 @@ export const MobileNav = ({ user, onLogout }) => {
           )}
 
           {/* Navigation items */}
-          <nav className="space-y-2" role="navigation">
+          <div className="space-y-2" role="navigation">
             {navItems.map((item) => {
               // Skip admin-only items for non-admin users
               if (item.adminOnly && user?.role !== 'commissioner') {
