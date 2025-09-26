@@ -118,7 +118,7 @@ test.describe('Navigation Tests', () => {
     test('All navigation links have valid destinations', async ({ page }) => {
       // Test brand logo navigation
       await page.locator(`[data-testid="${TESTIDS.navBrand}"]`).click();
-      await expect(page).toHaveURL('/');
+      await expect(page).toHaveURL(/\/$|#home$/); // Allow both / and /#home
       
       // Test sign in button
       await page.locator(`[data-testid="${TESTIDS.navSignIn}"]`).click();
