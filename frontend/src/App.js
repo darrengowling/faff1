@@ -671,10 +671,13 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                 <Input
                   id="minManagers"
                   type="number"
-                  min="4"
+                  min="2"
                   max="8"
-                  value={formData.settings.min_managers}
-                  onChange={(e) => updateSettings('min_managers', e.target.value)}
+                  value={formData.settings.league_size?.min || 2}
+                  onChange={(e) => updateSettings('league_size', { 
+                    ...formData.settings.league_size, 
+                    min: parseInt(e.target.value) || 2 
+                  })}
                 />
               </div>
               <div className="space-y-2">
@@ -682,10 +685,13 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                 <Input
                   id="maxManagers"
                   type="number"
-                  min="4"
+                  min="2"
                   max="8"
-                  value={formData.settings.max_managers}
-                  onChange={(e) => updateSettings('max_managers', e.target.value)}
+                  value={formData.settings.league_size?.max || 8}
+                  onChange={(e) => updateSettings('league_size', { 
+                    ...formData.settings.league_size, 
+                    max: parseInt(e.target.value) || 8 
+                  })}
                 />
               </div>
             </div>
