@@ -1,6 +1,9 @@
 export default [
   {
     files: ['**/*.{js,jsx}'],
+    plugins: {
+      'ssr-safety': require('./eslint-rules/index.js')
+    },
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: 'module',
@@ -25,6 +28,9 @@ export default [
       },
     },
     rules: {
+      // SSR Safety: Prevent module-scope browser API usage
+      'ssr-safety/no-window-at-module-scope': 'error',
+      
       // Custom rule to forbid magic number 3 for club slots
       'no-magic-numbers': ['warn', {
         ignore: [0, 1, 2, -1],
