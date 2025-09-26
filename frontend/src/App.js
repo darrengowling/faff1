@@ -927,7 +927,7 @@ const LeagueManagement = ({ league, onBack }) => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
+            <div className="space-y-3" data-testid={TESTIDS.lobbyMembersList}>
               {members.map((member) => (
                 <div key={member.user_id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-center space-x-3">
