@@ -20,9 +20,9 @@ const Toaster = ({
             "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
           cancelButton:
             "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
-          error: "error-toast",
-          success: "success-toast",
-          info: "info-toast",
+          error: `group toast ${TESTIDS.errorToast}`,
+          success: `group toast ${TESTIDS.successToast}`,
+          info: `group toast ${TESTIDS.infoToast}`,
         },
         unstyled: false,
         duration: 4000,
