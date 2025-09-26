@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import theme styles */
+@import './theme/theme-styles.css';
+
 /* Custom scrollbar hiding for horizontal scroll */
 @layer utilities {
   .scrollbar-hide {
