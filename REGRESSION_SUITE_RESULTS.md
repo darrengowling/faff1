@@ -57,23 +57,23 @@ STATUS: Login page now renders correctly
 
 ---
 
-### BLOCKER 2: FRONTEND COMPONENT INTEGRATION FAILURE (CRITICAL - P0)
-**Issue:** Recent navigation and routing changes may have broken frontend build
+### BLOCKER 2: DASHBOARD UI INTEGRATION (MEDIUM - P1)
+**Issue:** Dashboard components not rendering expected UI elements for test automation  
 **Impact:** 
-- Core authentication infrastructure non-functional
-- Cannot validate any user flows
-- Testing infrastructure compromised
+- Create League functionality not accessible via data-testids
+- Core user workflows cannot be validated via automated testing
+- Manual functionality may work but automated testing blocked
 
 **Evidence:**
-- Frontend compiled successfully according to logs
-- But runtime JavaScript errors prevent page rendering
-- Suggests integration issues between new components
+- Authentication now working: Users successfully log in via test-only endpoint
+- Test failure: `page.click('[data-testid="create-league-btn"]')` times out
+- Suggests dashboard rendering or testid implementation issues
 
-**Investigation Required:**
-1. Check LoginPage.jsx imports and dependencies
-2. Verify RouteGuards.jsx integration
-3. Test enhanced navigation components
-4. Validate component props and interfaces
+**Required Investigation:**
+1. Verify DashboardContent.jsx renders Create League button with correct testid
+2. Check component mounting and React state management  
+3. Validate navigation and routing to dashboard pages
+4. Ensure testids are properly applied to interactive elements
 
 ---
 
