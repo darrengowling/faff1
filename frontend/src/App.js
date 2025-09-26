@@ -1331,68 +1331,70 @@ const RootRoute = () => {
 // Main App Component
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="App">
-          <Toaster />
-          {/* Global Navigation */}
-          <GlobalNavbar />
-          
-          {/* Sticky Page Navigation - only shows on landing page */}
-          <StickyPageNav />
-          
-          {/* Main Content */}
-          <main id="main-content" className="min-h-screen">
-            <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/auth/verify" element={<MagicLinkVerify />} />
-            <Route path="/invite" element={
-              <ProtectedRoute>
-                <InvitationAccept />
-              </ProtectedRoute>
-            } />
-            <Route path="/auction/:auctionId" element={
-              <ProtectedRoute>
-                <AuctionRoomWrapper />
-              </ProtectedRoute>
-            } />
-            <Route path="/clubs/:leagueId" element={
-              <ProtectedRoute>
-                <MyClubsWrapper />
-              </ProtectedRoute>
-            } />
-            <Route path="/fixtures/:leagueId" element={
-              <ProtectedRoute>
-                <FixturesWrapper />
-              </ProtectedRoute>
-            } />
-            <Route path="/leaderboard/:leagueId" element={
-              <ProtectedRoute>
-                <LeaderboardWrapper />
-              </ProtectedRoute>
-            } />
-            <Route path="/admin/:leagueId" element={
-              <ProtectedRoute>
-                <AdminDashboardWrapper />
-              </ProtectedRoute>
-            } />
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } />
-            <Route path="/app" element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } />
-            <Route path="/diag" element={<DiagnosticPage />} />
-            <Route path="/" element={<RootRoute />} />
-            </Routes>
-          </main>
-        </div>
-      </Router>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <div className="App">
+            <Toaster />
+            {/* Global Navigation */}
+            <GlobalNavbar />
+            
+            {/* Sticky Page Navigation - only shows on landing page */}
+            <StickyPageNav />
+            
+            {/* Main Content */}
+            <main id="main-content" className="min-h-screen">
+              <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/auth/verify" element={<MagicLinkVerify />} />
+              <Route path="/invite" element={
+                <ProtectedRoute>
+                  <InvitationAccept />
+                </ProtectedRoute>
+              } />
+              <Route path="/auction/:auctionId" element={
+                <ProtectedRoute>
+                  <AuctionRoomWrapper />
+                </ProtectedRoute>
+              } />
+              <Route path="/clubs/:leagueId" element={
+                <ProtectedRoute>
+                  <MyClubsWrapper />
+                </ProtectedRoute>
+              } />
+              <Route path="/fixtures/:leagueId" element={
+                <ProtectedRoute>
+                  <FixturesWrapper />
+                </ProtectedRoute>
+              } />
+              <Route path="/leaderboard/:leagueId" element={
+                <ProtectedRoute>
+                  <LeaderboardWrapper />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/:leagueId" element={
+                <ProtectedRoute>
+                  <AdminDashboardWrapper />
+                </ProtectedRoute>
+              } />
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+              <Route path="/app" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+              <Route path="/diag" element={<DiagnosticPage />} />
+              <Route path="/" element={<RootRoute />} />
+              </Routes>
+            </main>
+          </div>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
