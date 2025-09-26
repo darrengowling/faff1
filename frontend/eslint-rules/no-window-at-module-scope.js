@@ -154,8 +154,7 @@ export default {
           },
           suggest: [
             {
-              desc: "Move this code inside a function or React component",
-              messageId: "suggestion"
+              desc: "Move this code inside a function or React component"
             }
           ]
         });
