@@ -176,6 +176,7 @@ export const UndoCountdown = ({
           variant="outline"
           size="sm"
           className="border-yellow-600 text-yellow-700 hover:bg-yellow-100"
+          data-testid={TESTIDS.undoButton}
         >
           {isUndoing ? 'Undoing...' : 'Undo'}
         </Button>
