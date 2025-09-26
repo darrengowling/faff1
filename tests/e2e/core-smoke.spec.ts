@@ -128,7 +128,7 @@ test.describe('Core Smoke Test', () => {
     // Bob joins  
     await bobPage.goto(inviteLinks[0]);
     await bobPage.waitForLoadState('networkidle');
-    await loginUser(bobPage, USERS.bob.email);
+    await loginTestOnly(bobPage, USERS.bob.email);
     await expectLobbyState(bobPage, '3/3'); // All joined
     
     console.log('✅ All users joined lobby');
