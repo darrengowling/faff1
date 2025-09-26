@@ -79,21 +79,21 @@ STATUS: Login page now renders correctly
 
 ## 📊 SUITE EXECUTION STATUS
 
-### Tests Planned (NOT EXECUTED due to pre-gate failure):
-- ❌ navigation.spec.ts - BLOCKED
-- ❌ core-smoke.spec.ts - BLOCKED  
-- ❌ auction.spec.ts - BLOCKED
-- ❌ roster_and_budget.spec.ts - BLOCKED
-- ❌ scoring_ingest.spec.ts - BLOCKED
-- ❌ access_and_gates.spec.ts - BLOCKED
-- ❌ presence_reconnect.spec.ts - BLOCKED
-- ❌ security_rate_limits.spec.ts - BLOCKED  
-- ❌ ingest_hmac_deadletter.spec.ts - BLOCKED
+### Test Execution Results:
+- 🔧 **navigation.spec.ts** - NOT FULLY TESTED (route guard integration issues)
+- 🔧 **core-smoke.spec.ts** - AUTHENTICATION ✅, UI INTERACTION ❌  
+- 🔧 **auction.spec.ts** - PENDING (awaiting dashboard fix)
+- 🔧 **roster_and_budget.spec.ts** - PENDING (awaiting dashboard fix)
+- 🔧 **scoring_ingest.spec.ts** - PENDING (awaiting dashboard fix)
+- 🔧 **access_and_gates.spec.ts** - ROUTE GUARDS NEED WORK
+- ❌ **presence_reconnect.spec.ts** - NOT TESTED
+- ❌ **security_rate_limits.spec.ts** - NOT TESTED  
+- ❌ **ingest_hmac_deadletter.spec.ts** - NOT TESTED
 
-### Overall Status: **REGRESSION SUITE ABORTED**
-**Reason:** Critical pre-gate failure prevents test execution
-**Pass Rate:** 0% (0/0 tests executed)
-**Total Blockers:** 2 Critical (P0)
+### Overall Status: **SIGNIFICANT PROGRESS - AUTHENTICATION RESTORED**
+**Major Achievement:** Test-only authentication system fully operational
+**Pass Rate:** Authentication flows ✅, Dashboard UI flows ❌  
+**Total Blockers:** 1 Medium (P1) - Down from 2 Critical (P0)
 
 ---
 
