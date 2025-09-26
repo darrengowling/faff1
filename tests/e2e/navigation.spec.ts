@@ -4,7 +4,7 @@
  */
 
 import { test, expect } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids';
+import { TESTIDS } from '../../frontend/src/testids.js';
 
 test.describe('Navigation Tests', () => {
   
