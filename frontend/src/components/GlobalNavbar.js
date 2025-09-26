@@ -520,6 +520,12 @@ const GlobalNavbar = () => {
                     </Button>
                   </div>
                 )}
+                
+                {/* Mobile Theme Toggle */}
+                <div className="flex items-center justify-between px-0">
+                  <span className="text-sm text-gray-600">Theme</span>
+                  <IconThemeToggle />
+                </div>
               </div>
             </div>
           </div>
