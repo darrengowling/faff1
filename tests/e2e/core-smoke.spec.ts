@@ -231,7 +231,7 @@ async function createLeague(page: Page, settings: typeof LEAGUE_SETTINGS): Promi
   console.log(`🏟️ Creating league: ${settings.name}`);
   
   // Click create league button from dashboard
-  await page.click('button:has-text("Create League")');
+  await page.click(`[data-testid="${TESTIDS.createLeagueBtn}"]`);
   await page.waitForSelector('[role="dialog"], .modal', { timeout: 5000 });
   
   // Fill league form
