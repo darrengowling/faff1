@@ -314,7 +314,7 @@ test.describe('Navigation Components - Comprehensive Testing', () => {
 
       // Check for proper button labels
       const buttons = await page.locator('button').count();
-      const labeledButtons = await page.locator('button[aria-label], button:has-text()').count();
+      const labeledButtons = await page.locator('button[aria-label], button:has-text("")').count();
       const buttonLabelRatio = buttons > 0 ? (labeledButtons / buttons) * 100 : 100;
       trackResult('Button Labels', buttonLabelRatio >= 90, `${labeledButtons}/${buttons} buttons properly labeled (${buttonLabelRatio.toFixed(1)}%)`);
 
