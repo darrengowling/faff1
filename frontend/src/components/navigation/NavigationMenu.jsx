@@ -80,13 +80,12 @@ const NavigationItem = ({
       onClick(item);
     } else if (isEnabled) {
       if (item.external) {
-        // Handle external links or placeholder actions
+        // Handle external links
         if (href.startsWith('http')) {
           window.open(href, '_blank', 'noopener,noreferrer');
         } else {
-          // Placeholder for unimplemented pages
-          console.log(`Navigate to ${item.label}`);
-          alert(`${item.label} page coming soon!`);
+          // Navigate to external placeholder pages
+          navigate(href);
         }
       } else {
         navigate(href);
