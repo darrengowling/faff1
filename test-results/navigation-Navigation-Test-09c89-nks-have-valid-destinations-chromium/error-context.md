@@ -1,12 +1,12 @@
 # Page snapshot
 
 ```yaml
-- generic [active] [ref=e1]:
+- generic [ref=e1]:
   - generic [ref=e3]:
     - region "Notifications alt+T"
     - banner [ref=e4]:
       - generic [ref=e6]:
-        - button "Friends of PIFA" [ref=e7] [cursor=pointer]:
+        - button "Friends of PIFA" [active] [ref=e7] [cursor=pointer]:
           - img [ref=e9] [cursor=pointer]
           - generic [ref=e15] [cursor=pointer]: Friends of PIFA
         - navigation [ref=e16]:
