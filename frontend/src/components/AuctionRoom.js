@@ -926,11 +926,11 @@ const AuctionRoom = ({ user, token }) => {
               <CardContent className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-400">Budget:</span>
-                  <span className="text-green-400 font-bold">{userBudget} credits</span>
+                  <span className="text-green-400 font-bold" data-testid={TESTIDS.yourBudget}>{userBudget} credits</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Slots Used:</span>
-                  <span className="text-blue-400 font-bold">0 / {userSlots}</span>
+                  <span className="text-blue-400 font-bold" data-testid={TESTIDS.yourSlotsRemaining}>0 / {userSlots}</span>
                 </div>
                 <Separator className="bg-gray-700" />
                 <div className="text-sm text-gray-500">
