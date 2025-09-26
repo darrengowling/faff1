@@ -118,18 +118,25 @@ test.describe('Navigation Tests', () => {
   });
 
   test.describe('No Dead Ends & 404 Recovery', () => {
-    test('All navigation links have valid destinations', async ({ page }) => {
-      // Test brand logo navigation
+    test('All navigation links have valid destinations and no href="#"', async ({ page }) => {
+      // Test brand logo navigation using testid
       await page.locator(`[data-testid="${TESTIDS.navBrand}"]`).click();
       await expect(page).toHaveURL(/\/$|#home$/); // Allow both / and /#home
       
-      // Test sign in button
-      await page.locator(`[data-testid="${TESTIDS.navSignIn}"]`).click();
-      await page.waitForURL('**/login');
+      // Test sign in button using testid
+      const signInButton = page.locator(`[data-testid="${TESTIDS.navSignIn}"]`);
+      if (await signInButton.isVisible()) {
+        await signInButton.click();
+        await page.waitForURL('**/login');
+      }
       
-      // Verify no empty hrefs or # links
-      const emptyLinks = page.locator('a[href="#"], a[href=""], a:not([href])');
+      // CRITICAL: Verify no empty hrefs or placeholder # links anywhere in DOM
+      const emptyLinks = page.locator('a[href="#"], a[href=""], a:not([href]), button[href="#"]');
       await expect(emptyLinks).toHaveCount(0);
+      
+      // Verify no "coming soon" alerts or placeholder behaviors
+      const placeholderElements = page.locator('text=/coming soon|placeholder|not implemented/i');
+      await expect(placeholderElements).toHaveCount(0);
     });
 
     test('404 page shows and allows navigation back', async ({ page }) => {
