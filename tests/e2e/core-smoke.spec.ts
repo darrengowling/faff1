@@ -255,7 +255,7 @@ async function createLeague(page: Page, settings: typeof LEAGUE_SETTINGS): Promi
   await page.fill('input[name="max_managers"]', settings.leagueSize.max.toString());
   
   // Submit form
-  await page.click('button[type="submit"], button:has-text("Create League")');
+  await page.click(`[data-testid="${TESTIDS.createSubmit}"]`);
   
   // Wait for redirect to league admin page
   await page.waitForURL('**/admin/**', { timeout: 10000 });
