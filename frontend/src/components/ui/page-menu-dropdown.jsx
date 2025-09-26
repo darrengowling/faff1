@@ -250,11 +250,10 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
   // Announce dropdown state changes to screen readers
   useEffect(() => {
     if (isOpen) {
-      announceToScreenReader(`Go to menu opened. ${menuItems.filter(item => item.enabled).length} options available.`);
+      announceToScreenReader(`Go to menu opened. ${enabledItems.length} options available.`);
     }
-  }, [isOpen]);
+  }, [isOpen, enabledItems.length]);
 
-  const enabledItems = menuItems.filter(item => item.enabled);
   const hasSelection = lastSelection && enabledItems.some(item => item.id === lastSelection);
 
   return (
@@ -267,13 +266,13 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
         className="w-full justify-between min-w-48 bg-white border-2 hover:border-blue-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
         aria-expanded={isOpen}
         aria-haspopup="menu"
-        aria-label={selectedLeague ? "Navigate to league sections" : "Select a league first to navigate"}
-        disabled={!selectedLeague}
+        aria-label={enabledItems.length > 0 ? "Navigate to available sections" : "Create or join a league to access navigation"}
+        disabled={enabledItems.length === 0}
       >
         <div className="flex items-center space-x-2">
           <Navigation className="w-4 h-4 text-blue-600" />
           <span className="font-medium">
-            {selectedLeague ? 'Go to...' : 'Select League First'}
+            {enabledItems.length > 0 ? 'Go to...' : 'No Options Available'}
           </span>
         </div>
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
