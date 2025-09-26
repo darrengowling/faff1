@@ -20,7 +20,7 @@ import {
   waitForJoinedCount,
   captureDebugInfo
 } from './utils/helpers';
-import { TESTIDS } from '../../frontend/src/testids';
+import { TESTIDS } from '../../frontend/src/testids.js';
 
 test.describe('Core Smoke Test', () => {
   let commissionerPage: Page;
