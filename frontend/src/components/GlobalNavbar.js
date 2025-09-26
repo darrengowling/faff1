@@ -46,6 +46,17 @@ const GlobalNavbar = () => {
       const sectionId = item.href.substring(2); // Remove /#
       scrollToSection(sectionId);
     }
+    setMobileMenuOpen(false);
+  };
+
+  // Handle product dropdown toggle
+  const handleProductDropdownToggle = () => {
+    setProductDropdownOpen(!productDropdownOpen);
+    if (!productDropdownOpen) {
+      setFocusedIndex(0);
+    } else {
+      setFocusedIndex(-1);
+    }
   };
 
   // Scroll-spy functionality
