@@ -207,7 +207,8 @@ const GlobalNavbar = () => {
           {/* Left - Brand */}
           <HeaderBrand 
             onClick={() => navigate('/')} 
-            className="cursor-pointer hover:opacity-80 transition-opacity" 
+            className="cursor-pointer hover:opacity-80 transition-opacity"
+            data-testid={TESTIDS.navBrand}
           />
           
           {/* Center - Desktop Navigation */}
