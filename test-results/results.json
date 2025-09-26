@@ -1,0 +1,302 @@
+{
+  "config": {
+    "configFile": "/app/playwright.config.js",
+    "rootDir": "/app/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/app/tests/e2e/global-setup.js",
+    "globalTeardown": "/app/tests/e2e/global-teardown.js",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": {
+      "command": "echo \"Using existing preview server\"",
+      "url": "https://auction-platform-6.preview.emergentagent.com",
+      "reuseExistingServer": true,
+      "timeout": 5000
+    }
+  },
+  "suites": [
+    {
+      "title": "e2e/core-smoke.spec.ts",
+      "file": "e2e/core-smoke.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Core Smoke Test",
+          "file": "e2e/core-smoke.spec.ts",
+          "line": 25,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Complete auction flow: create → invite → join → auction → bid → sell",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 32600,
+                      "error": {
+                        "message": "Error: Login failed for commish@example.com: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-magic-link-submit\"]:not([disabled])') to be visible\u001b[22m\n",
+                        "stack": "Error: Login failed for commish@example.com: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-magic-link-submit\"]:not([disabled])') to be visible\u001b[22m\n\n    at loginUser (/app/tests/e2e/core-smoke.spec.ts:264:11)\n    at /app/tests/e2e/core-smoke.spec.ts:100:5",
+                        "location": {
+                          "file": "/app/tests/e2e/core-smoke.spec.ts",
+                          "column": 11,
+                          "line": 264
+                        },
+                        "snippet": "  262 |     }\n  263 |     \n> 264 |     throw new Error(`Login failed for ${email}: ${error.message}`);\n      |           ^\n  265 |   }\n  266 | }\n  267 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/core-smoke.spec.ts",
+                            "column": 11,
+                            "line": 264
+                          },
+                          "message": "Error: Login failed for commish@example.com: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-magic-link-submit\"]:not([disabled])') to be visible\u001b[22m\n\n\n  262 |     }\n  263 |     \n> 264 |     throw new Error(`Login failed for ${email}: ${error.message}`);\n      |           ^\n  265 |   }\n  266 | }\n  267 |\n    at loginUser (/app/tests/e2e/core-smoke.spec.ts:264:11)\n    at /app/tests/e2e/core-smoke.spec.ts:100:5"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🚀 Starting core smoke test...\n"
+                        },
+                        {
+                          "text": "📝 Step 1: Commissioner creates league...\n"
+                        },
+                        {
+                          "text": "🔐 Logging in user: commish@example.com\n"
+                        },
+                        {
+                          "text": "Test failed, capturing artifacts...\n"
+                        },
+                        {
+                          "text": "Screenshots saved with timestamp: 2025-09-26T13-26-48-630Z\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-26T13:26:15.693Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-2.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-3.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/core-smoke.spec.ts",
+                        "column": 11,
+                        "line": 264
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a5fcfbe8c85b541a0c0c-8b6509bfa1611018d41b",
+              "file": "e2e/core-smoke.spec.ts",
+              "line": 95,
+              "column": 7
+            },
+            {
+              "title": "Complete auction flow: create → invite → join → auction → bid → sell",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 33344,
+                      "error": {
+                        "message": "Error: Login failed for commish@example.com: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-magic-link-submit\"]:not([disabled])') to be visible\u001b[22m\n",
+                        "stack": "Error: Login failed for commish@example.com: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-magic-link-submit\"]:not([disabled])') to be visible\u001b[22m\n\n    at loginUser (/app/tests/e2e/core-smoke.spec.ts:264:11)\n    at /app/tests/e2e/core-smoke.spec.ts:100:5",
+                        "location": {
+                          "file": "/app/tests/e2e/core-smoke.spec.ts",
+                          "column": 11,
+                          "line": 264
+                        },
+                        "snippet": "  262 |     }\n  263 |     \n> 264 |     throw new Error(`Login failed for ${email}: ${error.message}`);\n      |           ^\n  265 |   }\n  266 | }\n  267 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/core-smoke.spec.ts",
+                            "column": 11,
+                            "line": 264
+                          },
+                          "message": "Error: Login failed for commish@example.com: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-magic-link-submit\"]:not([disabled])') to be visible\u001b[22m\n\n\n  262 |     }\n  263 |     \n> 264 |     throw new Error(`Login failed for ${email}: ${error.message}`);\n      |           ^\n  265 |   }\n  266 | }\n  267 |\n    at loginUser (/app/tests/e2e/core-smoke.spec.ts:264:11)\n    at /app/tests/e2e/core-smoke.spec.ts:100:5"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🚀 Starting core smoke test...\n"
+                        },
+                        {
+                          "text": "📝 Step 1: Commissioner creates league...\n"
+                        },
+                        {
+                          "text": "🔐 Logging in user: commish@example.com\n"
+                        },
+                        {
+                          "text": "Test failed, capturing artifacts...\n"
+                        },
+                        {
+                          "text": "Screenshots saved with timestamp: 2025-09-26T13-27-22-854Z\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-26T13:26:49.981Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-3.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-2.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/core-smoke.spec.ts",
+                        "column": 11,
+                        "line": 264
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a5fcfbe8c85b541a0c0c-421cd7f1e1881018034b",
+              "file": "e2e/core-smoke.spec.ts",
+              "line": 95,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-26T13:26:13.680Z",
+    "duration": 70478.852,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}
