@@ -68,7 +68,13 @@ export default {
       },
 
       // Track entering function/class scopes
-      "FunctionDeclaration, FunctionExpression, ArrowFunctionExpression"() {
+      "FunctionDeclaration"() {
+        functionDepth++;
+      },
+      "FunctionExpression"() {
+        functionDepth++;
+      },
+      "ArrowFunctionExpression"() {
         functionDepth++;
       },
 
