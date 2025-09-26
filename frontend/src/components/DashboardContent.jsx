@@ -256,7 +256,20 @@ const DashboardContent = ({
           />
         </div>
 
-        {leagues.length === 0 ? (
+        {loading ? (
+          /* Loading State - Skeleton */
+          <Card className="text-center py-12 bg-theme-surface border-theme-surface-border">
+            <CardContent>
+              <div className="animate-pulse">
+                <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4" />
+                <div className="h-6 w-32 bg-gray-200 rounded mx-auto mb-2" />
+                <div className="h-4 w-48 bg-gray-200 rounded mx-auto mb-4" />
+                <div className="h-10 w-32 bg-gray-200 rounded mx-auto" />
+              </div>
+            </CardContent>
+          </Card>
+        ) : leagues.length === 0 ? (
+          /* Empty State */
           <Card className="text-center py-12 bg-theme-surface border-theme-surface-border">
             <CardContent>
               <Trophy className="w-16 h-16 text-theme-text-tertiary mx-auto mb-4" />
@@ -264,8 +277,14 @@ const DashboardContent = ({
               <p className="text-theme-text-secondary mb-4">
                 {t('dashboard.createFirstLeague', 'Create your first league to get started')}
               </p>
-              <Button onClick={onCreateLeague} data-testid={TESTIDS.createLeagueBtn}>
-                <Plus className="w-4 h-4 mr-2" />
+              {/* Always render CTA with testid, even in empty state */}
+              <Button 
+                onClick={onCreateLeague} 
+                data-testid={TESTIDS.homeCreateLeagueBtn}
+                size="lg"
+                className="px-8 py-3"
+              >
+                <Plus className="w-5 h-5 mr-2" />
                 Create League
               </Button>
             </CardContent>
