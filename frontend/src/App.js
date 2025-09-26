@@ -21,6 +21,7 @@ import Leaderboard from './components/Leaderboard';
 import AdminDashboard from './components/AdminDashboard';
 import DiagnosticPage from './components/DiagnosticPage';
 import LandingPage from './components/LandingPage';
+import LoginPage from './components/LoginPage';
 import SimpleLandingPage from './components/SimpleLandingPage';
 import GlobalNavbar from './components/GlobalNavbar';
 import StickyPageNav from './components/StickyPageNav';
