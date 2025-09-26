@@ -21,13 +21,6 @@ const Footer = ({ variant = 'default', className = '' }) => {
   const isLanding = variant === 'landing';
   const isInApp = variant === 'in-app';
 
-  const handleLegalClick = (type) => {
-    // Placeholder navigation - could be implemented to show modals or pages
-    console.log(`Navigate to ${type}`);
-    // For now, just show an alert
-    alert(`${type} page coming soon!`);
-  };
-
   if (isMinimal) {
     return (
       <footer className={`bg-gray-50 border-t border-gray-200 py-4 ${className}`}>
