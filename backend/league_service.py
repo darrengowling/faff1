@@ -61,14 +61,14 @@ class LeagueService:
             membership_dict = membership.dict(by_alias=True)
             await db.memberships.insert_one(membership_dict)
             
-            # Create default auction document
+            # Create default auction document with test overrides if needed
             auction = Auction(
                 id=league.id,  # Use league_id as auction_id for simplicity
                 league_id=league.id,
                 budget_per_manager=league.settings.budget_per_manager,
                 min_increment=league.settings.min_increment,
-                anti_snipe_seconds=league.settings.anti_snipe_seconds,
-                bid_timer_seconds=league.settings.bid_timer_seconds
+                anti_snipe_seconds=TEST_ANTI_SNIPE_SECONDS if IS_TEST_MODE else league.settings.anti_snipe_seconds,
+                bid_timer_seconds=TEST_BID_TIMER_SECONDS if IS_TEST_MODE else league.settings.bid_timer_seconds
             )
             auction_dict = auction.dict(by_alias=True)
             await db.auctions.insert_one(auction_dict)
