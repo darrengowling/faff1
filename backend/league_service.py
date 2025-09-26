@@ -4,6 +4,12 @@ import logging
 
 from models import *
 from database import db
+import os
+
+# Test environment overrides
+IS_TEST_MODE = os.getenv("PLAYWRIGHT_TEST") == "true"
+TEST_BID_TIMER_SECONDS = int(os.getenv("BID_TIMER_SECONDS", "60"))
+TEST_ANTI_SNIPE_SECONDS = int(os.getenv("ANTI_SNIPE_SECONDS", "30"))
 from auth import create_magic_link_token, send_magic_link_email
 from competition_service import CompetitionService
 
