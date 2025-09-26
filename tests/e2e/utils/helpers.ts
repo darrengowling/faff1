@@ -4,7 +4,7 @@
  */
 
 import { Page, expect, Locator } from '@playwright/test';
-import { TESTIDS } from '../../../frontend/src/testids';
+import { TESTIDS } from '../../../frontend/src/testids.js';
 
 /**
  * Authentication helpers
