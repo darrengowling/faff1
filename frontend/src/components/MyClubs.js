@@ -252,9 +252,11 @@ const MyClubs = ({ user, token }) => {
           {/* My Clubs Tab */}
           <TabsContent value="clubs" className="space-y-4">
             {owned_clubs.length === 0 ? (
-              <NoClubsEmptyState 
-                onNavigateToAuction={() => navigate(`/auction/${leagueId}`)}
-              />
+              <div data-testid={TESTIDS.rosterEmpty}>
+                <NoClubsEmptyState 
+                  onNavigateToAuction={() => navigate(`/auction/${leagueId}`)}
+                />
+              </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid={TESTIDS.rosterList}>
                 {owned_clubs.map((club) => (
