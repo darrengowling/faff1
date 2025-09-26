@@ -15,6 +15,12 @@ import { Button } from './ui/button';
 import { HeaderBrand } from './ui/brand-badge';
 import { IconThemeToggle } from './ui/theme-toggle';
 import { useAuth } from '../App';
+import { 
+  PrimaryNavigation, 
+  ProductDropdownMenu, 
+  AuthNavigation, 
+  MobileNavigation 
+} from './navigation/NavigationMenu';
 
 const GlobalNavbar = () => {
   const { t } = useTranslation();
