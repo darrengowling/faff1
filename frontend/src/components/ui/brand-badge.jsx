@@ -84,6 +84,7 @@ export const BrandBadge = ({
         onClick={onClick}
         role={onClick ? 'button' : undefined}
         tabIndex={onClick ? 0 : undefined}
+        data-testid={dataTestId}
       >
         <span className={`font-bold text-gray-900 ${config.textSize}`}>
           {brandName}
