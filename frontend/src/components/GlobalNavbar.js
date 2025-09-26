@@ -241,6 +241,7 @@ const GlobalNavbar = () => {
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
+            data-testid={TESTIDS.navHamburger}
           >
             {mobileMenuOpen ? (
               <X className="w-6 h-6" />
