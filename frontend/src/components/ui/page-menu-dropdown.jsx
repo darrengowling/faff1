@@ -179,7 +179,7 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
 
   // Keyboard navigation
   const handleKeyDown = (e) => {
-    const enabledItems = menuItems.filter(item => item.enabled);
+    const currentEnabledItems = enabledItems;
     
     switch (e.key) {
       case 'ArrowDown':
@@ -189,7 +189,7 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
           setFocusedIndex(0);
         } else {
           setFocusedIndex(prev => 
-            prev < enabledItems.length - 1 ? prev + 1 : 0
+            prev < currentEnabledItems.length - 1 ? prev + 1 : 0
           );
         }
         break;
@@ -198,7 +198,7 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
         e.preventDefault();
         if (isOpen) {
           setFocusedIndex(prev => 
-            prev > 0 ? prev - 1 : enabledItems.length - 1
+            prev > 0 ? prev - 1 : currentEnabledItems.length - 1
           );
         }
         break;
@@ -210,7 +210,7 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
           setIsOpen(true);
           setFocusedIndex(0);
         } else if (focusedIndex >= 0) {
-          handleSelect(enabledItems[focusedIndex]);
+          handleSelect(currentEnabledItems[focusedIndex]);
         }
         break;
         
@@ -218,6 +218,7 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
         e.preventDefault();
         setIsOpen(false);
         setFocusedIndex(-1);
+        setShowTooltip(null);
         triggerRef.current?.focus();
         break;
         
@@ -225,6 +226,7 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
         if (isOpen) {
           setIsOpen(false);
           setFocusedIndex(-1);
+          setShowTooltip(null);
         }
         break;
     }
