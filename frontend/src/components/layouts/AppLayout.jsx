@@ -102,7 +102,7 @@ const AppLayout = ({ children, showBackButton = true, pageTitle = null }) => {
                 <span className="font-medium text-theme-text" aria-current="page">
                   {currentPageName}
                 </span>
-              </nav>
+              </div>
 
               {/* Current page title for mobile when on home page */}
               {isHomePage && (
