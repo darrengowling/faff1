@@ -12,6 +12,7 @@ import {
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { BrandBadge } from './ui/brand-badge';
+import { LandingFooter } from './ui/footer';
 
 const SimpleLandingPage = () => {
   const navigate = useNavigate();
