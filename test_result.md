@@ -203,9 +203,9 @@ backend:
 
   - task: "Backend Auction Engine"
     implemented: true
-    working: false
+    working: true
     file: "/app/backend/auction_engine.py, /app/backend/server.py"
-    stuck_count: 1
+    stuck_count: 0
     priority: "high"
     needs_retesting: false
     status_history:
@@ -215,6 +215,9 @@ backend:
       - working: false
         agent: "testing"
         comment: "🔍 DETAILED ANALYSIS COMPLETED: Auction engine returns 500 Internal Server Error with message 'Internal server error: 400: Failed to start auction'. Backend logs show actual error is 'League not ready for auction' which should return 400 Bad Request, not 500. This is an error handling issue in the auction start endpoint - it's catching a business logic error (400) and wrapping it in a 500 response. SOLUTION: Fix error handling in /auction/{auction_id}/start endpoint to properly return 400 status codes for business logic failures instead of wrapping them in 500 errors."
+      - working: true
+        agent: "testing"
+        comment: "✅ AUCTION ENGINE ERROR HANDLING FIXED: Updated error handling in auction endpoints to properly return business logic errors as 400 status codes instead of 500. Auction start returns proper 400 errors with clear messages ('League not ready for auction'), auction state returns 404 for non-existent auctions, bid placement returns 400 for invalid bids, pause/resume return 400 for invalid operations. All auction endpoints now have proper HTTP status code handling and clear error messages."
 
   - task: "Backend Environment Configuration"
     implemented: true
