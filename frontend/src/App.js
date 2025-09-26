@@ -685,6 +685,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                     ...formData.settings.league_size, 
                     min: parseInt(e.target.value) || 2 
                   })}
+                  data-testid={TESTIDS.createMinInput}
                 />
               </div>
               <div className="space-y-2">
