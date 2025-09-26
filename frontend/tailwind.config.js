@@ -52,7 +52,26 @@ module.exports = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+  			// Theme-aware colors using CSS variables
+  			'theme-primary': 'var(--color-primary)',
+  			'theme-primary-light': 'var(--color-primary-light)',
+  			'theme-primary-dark': 'var(--color-primary-dark)',
+  			'theme-primary-contrast': 'var(--color-primary-contrast)',
+
+  			'theme-surface': 'var(--color-surface-primary)',
+  			'theme-surface-secondary': 'var(--color-surface-secondary)',
+  			'theme-surface-tertiary': 'var(--color-surface-tertiary)',
+  			'theme-surface-border': 'var(--color-surface-border)',
+
+  			'theme-text': 'var(--color-text-primary)',
+  			'theme-text-secondary': 'var(--color-text-secondary)',
+  			'theme-text-tertiary': 'var(--color-text-tertiary)',
+  			'theme-text-inverse': 'var(--color-text-inverse)',
+
+  			'theme-success': 'var(--color-success)',
+  			'theme-warning': 'var(--color-warning)',
+  			'theme-error': 'var(--color-error)'
   		},
   		keyframes: {
   			'accordion-down': {
