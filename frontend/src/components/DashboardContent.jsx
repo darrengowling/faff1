@@ -239,14 +239,21 @@ const DashboardContent = ({
 
       {/* All Leagues Overview */}
       <div>
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold text-theme-text">
-            All Leagues ({leagues.length})
-          </h2>
-          <Button onClick={onCreateLeague} data-testid={TESTIDS.createLeagueBtn}>
-            <Plus className="w-4 h-4 mr-2" />
-            Create League
-          </Button>
+        {/* Always-Present Create League CTA Section */}
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <h2 className="text-xl font-semibold text-theme-text">
+              {loading ? (
+                <div className="h-6 w-32 bg-gray-200 rounded animate-pulse" />
+              ) : (
+                `All Leagues (${leagues.length})`
+              )}
+            </h2>
+          </div>
+          <CreateLeagueCTA 
+            isLoading={loading}
+            onCreateLeague={onCreateLeague}
+          />
         </div>
 
         {leagues.length === 0 ? (
