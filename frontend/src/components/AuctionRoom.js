@@ -838,6 +838,7 @@ const AuctionRoom = ({ user, token }) => {
                           max={userBudget}
                           className="bg-gray-700 border-gray-600 text-white text-lg"
                           placeholder="Enter bid amount"
+                          data-testid={TESTIDS.bidInput}
                         />
                         <Button
                           onClick={handlePlaceBid}
@@ -845,6 +846,7 @@ const AuctionRoom = ({ user, token }) => {
                           className="bg-green-600 hover:bg-green-700 touch-target min-w-[120px]"
                           size="lg"
                           data-primary="true"
+                          data-testid={TESTIDS.bidSubmit}
                         >
                           {bidding ? 'Bidding...' : 'Place Bid'}
                         </Button>
