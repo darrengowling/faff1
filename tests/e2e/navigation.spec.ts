@@ -122,10 +122,8 @@ test.describe('Navigation Usability Tests', () => {
         await productDropdown.click();
         await page.waitForTimeout(500);
         
-        // Verify dropdown is open (look for the actual dropdown container with proper selector)
-        const dropdown = page.locator('[role="menu"]').or(
-          page.locator('.absolute.top-full').filter({ hasText: 'Auction Room' })
-        );
+        // Verify dropdown is open (look for the actual dropdown container with data-testid)
+        const dropdown = page.locator('[data-testid="product-dropdown-menu"]');
         await expect(dropdown).toBeVisible({ timeout: 10000 });
         
         console.log('✅ Product dropdown opened');
