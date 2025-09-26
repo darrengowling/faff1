@@ -65,7 +65,7 @@ const LandingPage = () => {
     <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <HeaderBrand onClick={() => scrollToSection('home')} className="cursor-pointer" />
+          <HeaderBrand onClick={() => scrollToSection('home')} className="cursor-pointer" data-testid="landing-nav-brand" />
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
