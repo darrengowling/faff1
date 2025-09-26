@@ -102,33 +102,31 @@ const GlobalNavbar = () => {
   };
 
   // Keyboard navigation for dropdowns
-  const handleDropdownKeyDown = (e, items) => {
+  const handleDropdownKeyDown = (e) => {
+    const productDropdownItems = 5; // We know there are 5 items in product dropdown
+    
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault();
-        setFocusedIndex(prev => (prev + 1) % items.length);
+        setFocusedIndex(prev => (prev + 1) % productDropdownItems);
         break;
       case 'ArrowUp':
         e.preventDefault();
-        setFocusedIndex(prev => prev <= 0 ? items.length - 1 : prev - 1);
+        setFocusedIndex(prev => prev <= 0 ? productDropdownItems - 1 : prev - 1);
         break;
       case 'Enter':
       case ' ':
         e.preventDefault();
-        if (focusedIndex >= 0 && items[focusedIndex]) {
-          items[focusedIndex].action();
-          setActiveDropdown(null);
-          setFocusedIndex(-1);
-        }
+        // The NavigationMenu component handles this
         break;
       case 'Escape':
         e.preventDefault();
-        setActiveDropdown(null);
+        setProductDropdownOpen(false);
         setFocusedIndex(-1);
         break;
       case 'Tab':
         // Let natural tab behavior close the dropdown
-        setActiveDropdown(null);
+        setProductDropdownOpen(false);
         setFocusedIndex(-1);
         break;
     }
