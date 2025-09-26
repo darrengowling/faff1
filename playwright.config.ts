@@ -62,30 +62,12 @@ export default defineConfig({
   globalSetup: require.resolve('./tests/e2e/utils/global-setup.ts'),
   globalTeardown: require.resolve('./tests/e2e/utils/global-teardown.ts'),
   
-  // Projects for different browsers
+  // Projects for different browsers (only Chromium for container environment)
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-    
-    // Mobile testing
-    {
-      name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
-    },
-    {
-      name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
-    },
+    }
   ],
   
   // Output directory
