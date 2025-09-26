@@ -258,8 +258,8 @@ const GlobalNavbar = () => {
                   setActiveDropdown(null);
                   setFocusedIndex(-1);
                 }}
-                className={`w-full flex items-start space-x-3 px-4 py-3 text-left hover:bg-gray-50 transition-colors ${
-                  index === focusedIndex ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                className={`w-full flex items-start space-x-3 px-4 py-3 text-left hover:bg-theme-surface-tertiary transition-colors ${
+                  index === focusedIndex ? 'bg-theme-surface-tertiary text-theme-primary' : 'text-theme-text'
                 }`}
                 role="menuitem"
                 tabIndex={index === focusedIndex ? 0 : -1}
