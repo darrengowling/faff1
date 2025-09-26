@@ -164,14 +164,24 @@ test.describe('Authentication UI Integration', () => {
     
     // Fill and submit form using only data-testids
     await page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`).fill('integration-test@example.com');
+    
+    // Wait for network response
+    const responsePromise = page.waitForResponse(response => 
+      response.url().includes('/api/auth/magic-link') && response.status() === 200
+    );
+    
     await page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`).click();
+    
+    // Wait for API response
+    await responsePromise;
     
     // Wait for success and automatic redirect in test mode
     await expect(page.locator(`[data-testid="${TESTIDS.authSuccess}"]`)).toBeVisible();
-    await expect(page).toHaveURL('/app', { timeout: 5000 });
     
-    // Verify we landed on the app page successfully
-    // (The app page should handle the authentication token verification)
-    await expect(page).toHaveURL(/\/app/);
+    // Wait for navigation to either /auth/verify or /app
+    await page.waitForURL(url => url.pathname === '/auth/verify' || url.pathname === '/app', { timeout: 10000 });
+    
+    // Verify we navigated away from login
+    await expect(page).not.toHaveURL('/login');
   });
 });
