@@ -56,16 +56,21 @@ const LoginPage = () => {
 
       setSuccess('Magic link sent! Check your email or use the link below.');
       
+      console.log('Magic link response:', response.data);
+      console.log('Test mode:', isTestMode);
+      
       // In development, show the magic link
       if (response.data.dev_magic_link) {
         setMagicLink(response.data.dev_magic_link);
         
         // In test mode, auto-click the magic link for seamless testing
         if (isTestMode) {
+          console.log('Auto-navigating to magic link verification...');
           setTimeout(() => {
             const url = new URL(response.data.dev_magic_link);
             const token = url.searchParams.get('token');
             if (token) {
+              console.log('Navigating to /auth/verify with token:', token);
               navigate(`/auth/verify?token=${token}`);
             }
           }, 500);
