@@ -8,6 +8,11 @@
 export const TESTIDS = {
   // Global navigation & landing
   navBrand: 'nav-brand',
+  
+  // Brand components
+  HeaderBrand: 'header-brand',
+  AuthBrand: 'auth-brand',
+  MinimalBrand: 'minimal-brand',
   navDropdownProduct: 'nav-dd-product',
   navDropdownItemAuction: 'nav-dd-auction',
   navDropdownItemRoster: 'nav-dd-roster',
