@@ -856,7 +856,7 @@ const LeagueManagement = ({ league, onBack }) => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <Button variant="outline" onClick={onBack}>
+          <Button variant="outline" onClick={onBack} data-testid={TESTIDS.backButton}>
             ← Back
           </Button>
           <div>
