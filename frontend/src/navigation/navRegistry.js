@@ -151,7 +151,7 @@ export const productDropdownNavigation = [
 ];
 
 // Dashboard Quick Actions
-export const dashboardActions: NavigationItem[] = [
+export const dashboardActions = [
   {
     id: 'create-league',
     label: 'Create League',
