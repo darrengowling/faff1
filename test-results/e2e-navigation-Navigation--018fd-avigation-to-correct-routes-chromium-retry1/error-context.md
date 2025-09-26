@@ -17,10 +17,10 @@
             - button "Navigate to Why FoP" [ref=e25] [cursor=pointer]:
               - img [ref=e26] [cursor=pointer]
               - generic [ref=e30] [cursor=pointer]: Why FoP
-            - button "Navigate to FAQ" [active] [ref=e31] [cursor=pointer]:
+            - button "Navigate to FAQ" [ref=e31] [cursor=pointer]:
               - img [ref=e32] [cursor=pointer]
               - generic [ref=e36] [cursor=pointer]: FAQ
-          - button "Product" [ref=e38] [cursor=pointer]:
+          - button "Product" [expanded] [active] [ref=e38] [cursor=pointer]:
             - generic [ref=e39] [cursor=pointer]: Product
             - img [ref=e40] [cursor=pointer]
         - generic [ref=e42]:
@@ -36,7 +36,7 @@
         - /url: "#main-content"
     - navigation "Page sections navigation" [ref=e55]:
       - generic [ref=e58]:
-        - tab "Home" [ref=e59] [cursor=pointer]:
+        - tab "Home" [selected] [ref=e59] [cursor=pointer]:
           - generic [ref=e60] [cursor=pointer]:
             - img [ref=e61] [cursor=pointer]: 🏠
             - generic [ref=e62] [cursor=pointer]: Home
@@ -56,12 +56,12 @@
           - generic [ref=e76] [cursor=pointer]:
             - img [ref=e77] [cursor=pointer]: 🛡️
             - generic [ref=e78] [cursor=pointer]: Fair Play
-        - tab "FAQ" [selected] [ref=e79] [cursor=pointer]:
+        - tab "FAQ" [ref=e79] [cursor=pointer]:
           - generic [ref=e80] [cursor=pointer]:
             - img [ref=e81] [cursor=pointer]: ❓
             - generic [ref=e82] [cursor=pointer]: FAQ
       - progressbar "Section progress" [ref=e83]
-      - generic [ref=e84]: "Currently viewing: FAQ"
+      - generic [ref=e84]: "Currently viewing: Home"
     - main [ref=e85]:
       - generic [ref=e86]:
         - generic [ref=e89]:
