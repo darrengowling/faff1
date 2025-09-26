@@ -7,7 +7,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
-  Menu, X, ChevronDown, ChevronRight,
+  Menu, X, ChevronDown, ChevronRight, Plus,
   Trophy, Users, Calendar, BarChart3, Settings,
   ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Escape
 } from 'lucide-react';
