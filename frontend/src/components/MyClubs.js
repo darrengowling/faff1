@@ -340,7 +340,9 @@ const MyClubs = ({ user, token }) => {
                                 )}
                               </div>
 
-                              <div className="text-gray-500 text-xl font-bold">VS</div>
+                              <div className="text-gray-500 text-xl font-bold" data-testid={TESTIDS.fixtureScore}>
+                                {fixture.score ? `${fixture.home_goals}-${fixture.away_goals}` : 'VS'}
+                              </div>
 
                               {/* Away Team */}
                               <div className="text-center">
