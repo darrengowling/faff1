@@ -299,6 +299,7 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
                   onMouseEnter={() => handleItemHover(item, index)}
                   onMouseLeave={handleItemLeave}
                   disabled={!item.enabled}
+                  data-testid={getTestIdForMenuItem(item.id)}
                   className={`w-full flex items-start space-x-3 px-4 py-3 text-left transition-colors ${
                     item.enabled 
                       ? `hover:bg-blue-50 cursor-pointer ${isFocused ? 'bg-blue-50 text-blue-700' : 'text-gray-700'}`
