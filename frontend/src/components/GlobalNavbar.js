@@ -226,36 +226,7 @@ const GlobalNavbar = () => {
 
           {/* Right - Auth Actions */}
           <div className="hidden md:flex items-center space-x-3">
-            {user ? (
-              <div className="flex items-center space-x-3">
-                <span className="text-sm text-gray-600">
-                  Welcome, {user.name || user.email}
-                </span>
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={() => navigate('/dashboard')}
-                >
-                  Dashboard
-                </Button>
-              </div>
-            ) : (
-              <>
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  onClick={() => navigate('/login')}
-                >
-                  Sign In
-                </Button>
-                <Button 
-                  size="sm"
-                  onClick={() => navigate('/login')}
-                >
-                  Get Started
-                </Button>
-              </>
-            )}
+            <AuthNavigation variant="desktop" />
             
             {/* Theme Toggle */}
             <IconThemeToggle className="hidden md:flex" />
