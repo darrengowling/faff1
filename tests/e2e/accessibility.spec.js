@@ -322,7 +322,7 @@ test.describe('Accessibility - Comprehensive Testing', () => {
 
       // Test button accessibility
       const buttons = await page.locator('button').count();
-      const accessibleButtons = await page.locator('button[aria-label], button:has-text()').count();
+      const accessibleButtons = await page.locator('button[aria-label], button:has-text("")').count();
       const buttonAccessibility = buttons === 0 || (accessibleButtons / buttons) >= 0.9;
       
       trackResult('Button Accessibility', buttonAccessibility,
