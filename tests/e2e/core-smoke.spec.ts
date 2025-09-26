@@ -240,8 +240,8 @@ async function loginUser(page: Page, email: string): Promise<void> {
   await page.click('button:has-text("Send Magic Link"), button[type="submit"]');
   
   // Wait for magic link sent confirmation and login button (development mode)
-  await page.waitForSelector('button:has-text("🚀 Login Now")', { timeout: 10000 });
-  await page.click('button:has-text("🚀 Login Now")');
+  await page.waitForSelector('[data-testid="auth-login-now-button"]', { timeout: 10000 });
+  await page.click('[data-testid="auth-login-now-button"]');
   
   // Wait for successful login redirect to dashboard
   await page.waitForURL('**/dashboard', { timeout: 15000 });
