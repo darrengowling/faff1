@@ -6,6 +6,7 @@
 import React from 'react';
 import { brandConfig, getBrandName, getBrandTagline } from '../../brand';
 import { Users } from 'lucide-react';
+import { TESTIDS } from '../../testids.js';
 
 export const BrandBadge = ({
   variant = 'full',
