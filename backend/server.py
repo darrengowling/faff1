@@ -33,6 +33,11 @@ from competition_service import CompetitionService
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
+# Test environment overrides for deterministic testing
+TEST_BID_TIMER_SECONDS = int(os.getenv("BID_TIMER_SECONDS", "60"))
+TEST_ANTI_SNIPE_SECONDS = int(os.getenv("ANTI_SNIPE_SECONDS", "30"))
+IS_TEST_MODE = os.getenv("PLAYWRIGHT_TEST") == "true"
+
 # Socket.IO ASGI wrapper configuration
 FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:3000")
 SOCKET_PATH = os.getenv("SOCKET_PATH", "/api/socketio")
