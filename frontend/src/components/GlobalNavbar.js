@@ -227,6 +227,20 @@ const GlobalNavbar = () => {
 
           {/* Right - Auth Actions */}
           <div className="hidden md:flex items-center space-x-3">
+            {/* Create League Button (when authenticated) */}
+            {user && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => navigate('/app/leagues/new')}
+                className="text-blue-600 border-blue-600 hover:bg-blue-50"
+                data-testid={TESTIDS.navCreateLeagueBtn}
+              >
+                <Plus className="w-4 h-4 mr-1" />
+                New League
+              </Button>
+            )}
+            
             <AuthNavigation variant="desktop" />
             
             {/* Theme Toggle */}
