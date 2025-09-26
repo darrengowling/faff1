@@ -410,7 +410,9 @@ export const MobileNavigation = ({ className, onItemClick }) => {
     {
       id: 'product-mobile',
       label: 'Product',
-      items: menuConfigs.globalNavbar.productDropdown
+      items: menuConfigs.globalNavbar.productDropdown,
+      visible: (user, appState) => true,
+      enabled: (user, appState) => true
     },
     ...menuConfigs.globalNavbar.auth
   ];
