@@ -148,13 +148,10 @@ export const TESTIDS = {
   submitButton: 'submit-button',
   backButton: 'back-button',
   
-} as const;
-
-// Type for test ID keys
-export type TestId = keyof typeof TESTIDS;
+} // End of TESTIDS object
 
 // Utility function to get test ID selector
-export const getTestId = (testId: TestId): string => `[data-testid="${TESTIDS[testId]}"]`;
+export const getTestId = (testId) => `[data-testid="${TESTIDS[testId]}"]`;
 
 // Utility function to create test ID attribute
-export const testId = (id: TestId) => ({ 'data-testid': TESTIDS[id] });
+export const testId = (id) => ({ 'data-testid': TESTIDS[id] });
