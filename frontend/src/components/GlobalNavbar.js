@@ -40,69 +40,13 @@ const GlobalNavbar = () => {
   const firstFocusableRef = useRef(null);
   const lastFocusableRef = useRef(null);
 
-  // Navigation configuration
-  const navItems = [
-    {
-      id: 'product',
-      label: 'Product',
-      type: 'dropdown',
-      items: [
-        { 
-          id: 'auction-room', 
-          label: 'Auction Room', 
-          icon: Trophy,
-          description: 'Live bidding experience',
-          action: () => user ? navigate('/auction') : navigate('/login')
-        },
-        { 
-          id: 'roster', 
-          label: 'My Roster', 
-          icon: Users,
-          description: 'Manage your teams',
-          action: () => user ? navigate('/clubs') : navigate('/login')
-        },
-        { 
-          id: 'fixtures', 
-          label: 'Fixtures', 
-          icon: Calendar,
-          description: 'Match schedules & results',
-          action: () => user ? navigate('/fixtures') : navigate('/login')
-        },
-        { 
-          id: 'leaderboard', 
-          label: 'Leaderboard', 
-          icon: BarChart3,
-          description: 'Rankings & statistics',
-          action: () => user ? navigate('/leaderboard') : navigate('/login')
-        },
-        { 
-          id: 'admin', 
-          label: 'League Admin', 
-          icon: Settings,
-          description: 'Manage your leagues',
-          action: () => user ? navigate('/admin') : navigate('/login')
-        }
-      ]
-    },
-    {
-      id: 'how',
-      label: 'How it Works',
-      type: 'anchor',
-      action: () => scrollToSection('how')
-    },
-    {
-      id: 'why',
-      label: 'Why FoP',
-      type: 'anchor', 
-      action: () => scrollToSection('why')
-    },
-    {
-      id: 'faq',
-      label: 'FAQ',
-      type: 'anchor',
-      action: () => scrollToSection('faq')
+  // Handle navigation item clicks for anchor scrolling
+  const handleNavItemClick = (item) => {
+    if (item.href.startsWith('/#')) {
+      const sectionId = item.href.substring(2); // Remove /#
+      scrollToSection(sectionId);
     }
-  ];
+  };
 
   // Scroll-spy functionality
   useEffect(() => {
