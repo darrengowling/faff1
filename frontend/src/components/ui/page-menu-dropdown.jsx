@@ -1,6 +1,6 @@
 /**
  * Page Menu Dropdown Component
- * A prominent "Go to..." dropdown with keyboard navigation and accessibility
+ * A prominent "Go to..." dropdown with keyboard navigation, accessibility, and context-aware destinations
  */
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -8,9 +8,17 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
   ChevronDown, Trophy, Users, Calendar, BarChart3, Settings,
-  Navigation
+  Navigation, HelpCircle, Plus, UserPlus
 } from 'lucide-react';
 import { Button } from './button';
+import { useAuth } from '../../App';
+import { 
+  productDropdownNavigation, 
+  dashboardActions, 
+  getVisibleItems, 
+  getEnabledItems, 
+  buildHref 
+} from '../../navigation/navRegistry.js';
 
 const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
   const { t } = useTranslation();
