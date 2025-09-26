@@ -1,0 +1,693 @@
+{
+  "config": {
+    "configFile": "/app/playwright.config.js",
+    "rootDir": "/app/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/app/tests/e2e/global-setup.js",
+    "globalTeardown": "/app/tests/e2e/global-teardown.js",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": {
+      "command": "echo \"Using existing preview server\"",
+      "url": "https://friends-of-pifa.preview.emergentagent.com",
+      "reuseExistingServer": true,
+      "timeout": 5000
+    }
+  },
+  "suites": [
+    {
+      "title": "e2e/navigation.spec.ts",
+      "file": "e2e/navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Navigation Usability Tests",
+          "file": "e2e/navigation.spec.ts",
+          "line": 30,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Desktop Navigation Tests",
+              "file": "e2e/navigation.spec.ts",
+              "line": 39,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Landing page top nav links jump to sections with scroll-spy",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 6385,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "🧪 Testing desktop navigation scroll-spy behavior...\n"
+                            },
+                            {
+                              "text": "✅ How it Works navigation working\n"
+                            },
+                            {
+                              "text": "✅ Why FoP navigation working\n"
+                            },
+                            {
+                              "text": "✅ FAQ navigation working\n"
+                            },
+                            {
+                              "text": "✅ Navigation elements present, scroll-spy may use different active states\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-26T03:02:39.385Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-dc72729969a1ebe8284e",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 44,
+                  "column": 9
+                },
+                {
+                  "title": "Product dropdown navigation to correct routes",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 17210,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:127:32",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 32,
+                              "line": 127
+                            },
+                            "snippet": "  125 |         // Verify dropdown is open (look for the actual dropdown container)\n  126 |         const dropdown = page.locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' });\n> 127 |         await expect(dropdown).toBeVisible({ timeout: 10000 });\n      |                                ^\n  128 |         \n  129 |         console.log('✅ Product dropdown opened');\n  130 |         "
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 32,
+                                "line": 127
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\u001b[22m\n\n\n  125 |         // Verify dropdown is open (look for the actual dropdown container)\n  126 |         const dropdown = page.locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' });\n> 127 |         await expect(dropdown).toBeVisible({ timeout: 10000 });\n      |                                ^\n  128 |         \n  129 |         console.log('✅ Product dropdown opened');\n  130 |         \n    at /app/tests/e2e/navigation.spec.ts:127:32"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🧪 Testing Product dropdown navigation...\n"
+                            },
+                            {
+                              "text": "📸 Failure screenshot saved: test-results/nav-product-dropdown-routes-failure-2025-09-26T03-02-59-649Z.png\n"
+                            },
+                            {
+                              "text": "\n============================================================\n"
+                            },
+                            {
+                              "text": "📊 Navigation Usability Test Summary Complete\n"
+                            },
+                            {
+                              "text": "🎯 Tests covered:\n"
+                            },
+                            {
+                              "text": "  ✅ Desktop scroll-spy navigation\n"
+                            },
+                            {
+                              "text": "  ✅ Product dropdown routing\n"
+                            },
+                            {
+                              "text": "  ✅ Keyboard accessibility\n"
+                            },
+                            {
+                              "text": "  ✅ Mobile hamburger menu\n"
+                            },
+                            {
+                              "text": "  ✅ Focus trap and drawer management\n"
+                            },
+                            {
+                              "text": "  ✅ No placeholder links validation\n"
+                            },
+                            {
+                              "text": "  ✅ Cross-viewport compatibility\n"
+                            },
+                            {
+                              "text": "============================================================\n"
+                            }
+                          ],
+                          "stderr": [
+                            {
+                              "text": "❌ Product dropdown test failed: ExpectError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\u001b[22m\n\n    at \u001b[90m/app/\u001b[39mtests/e2e/navigation.spec.ts:127:32 {\n  matcherResult: {\n    message: \u001b[32m'\\x1B[2mexpect(\\x1B[22m\\x1B[31mlocator\\x1B[39m\\x1B[2m).\\x1B[22mtoBeVisible\\x1B[2m()\\x1B[22m failed\\n'\u001b[39m +\n      \u001b[32m'\\n'\u001b[39m +\n      \u001b[32m\"Locator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\n\"\u001b[39m +\n      \u001b[32m'Expected: visible\\n'\u001b[39m +\n      \u001b[32m'Received: <element(s) not found>\\n'\u001b[39m +\n      \u001b[32m'Timeout:  10000ms\\n'\u001b[39m +\n      \u001b[32m'\\n'\u001b[39m +\n      \u001b[32m'Call log:\\n'\u001b[39m +\n      \u001b[32m'\\x1B[2m  - Expect \"toBeVisible\" with timeout 10000ms\\x1B[22m\\n'\u001b[39m +\n      \u001b[32m\"\\x1B[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\x1B[22m\\n\"\u001b[39m,\n    pass: \u001b[33mfalse\u001b[39m,\n    actual: \u001b[32m'<element(s) not found>'\u001b[39m,\n    name: \u001b[32m'toBeVisible'\u001b[39m,\n    expected: \u001b[32m'visible'\u001b[39m,\n    log: [\n      \u001b[32m'  - Expect \"toBeVisible\" with timeout 10000ms'\u001b[39m,\n      \u001b[32m\"  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\"\u001b[39m\n    ],\n    timeout: \u001b[33m10000\u001b[39m\n  },\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    category: \u001b[32m'expect'\u001b[39m,\n    apiName: \u001b[32m'expect.toBeVisible'\u001b[39m,\n    title: \u001b[32m'Expect \"toBeVisible\"'\u001b[39m,\n    params: { expected: \u001b[36m[Object]\u001b[39m },\n    infectParentStepsWithError: \u001b[90mundefined\u001b[39m,\n    stepId: \u001b[32m'expect@34'\u001b[39m,\n    group: \u001b[90mundefined\u001b[39m,\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    location: {\n      file: \u001b[32m'/app/tests/e2e/navigation.spec.ts'\u001b[39m,\n      line: \u001b[33m127\u001b[39m,\n      column: \u001b[33m32\u001b[39m\n    },\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'expect@34'\u001b[39m,\n      _title: \u001b[32m'Expect \"toBeVisible\"'\u001b[39m,\n      _parentStep: \u001b[90mundefined\u001b[39m,\n      skip: \u001b[36m[Function (anonymous)]\u001b[39m\n    },\n    recoverFromStepError: \u001b[36m[AsyncFunction: recoverFromStepError]\u001b[39m,\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1758855779645\u001b[39m,\n    error: {\n      message: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mlocator\\x1B[39m\\x1B[2m).\\x1B[22mtoBeVisible\\x1B[2m()\\x1B[22m failed\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m\"Locator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\n\"\u001b[39m +\n        \u001b[32m'Expected: visible\\n'\u001b[39m +\n        \u001b[32m'Received: <element(s) not found>\\n'\u001b[39m +\n        \u001b[32m'Timeout:  10000ms\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Call log:\\n'\u001b[39m +\n        \u001b[32m'\\x1B[2m  - Expect \"toBeVisible\" with timeout 10000ms\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m\"\\x1B[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\x1B[22m\\n\"\u001b[39m,\n      stack: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mlocator\\x1B[39m\\x1B[2m).\\x1B[22mtoBeVisible\\x1B[2m()\\x1B[22m failed\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m\"Locator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\n\"\u001b[39m +\n        \u001b[32m'Expected: visible\\n'\u001b[39m +\n        \u001b[32m'Received: <element(s) not found>\\n'\u001b[39m +\n        \u001b[32m'Timeout:  10000ms\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Call log:\\n'\u001b[39m +\n        \u001b[32m'\\x1B[2m  - Expect \"toBeVisible\" with timeout 10000ms\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m\"\\x1B[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\x1B[22m\\n\"\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'    at /app/tests/e2e/navigation.spec.ts:127:32'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                            }
+                          ],
+                          "retry": 0,
+                          "startTime": "2025-09-26T03:02:46.042Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/e2e-navigation-Navigation--018fd-avigation-to-correct-routes-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/e2e-navigation-Navigation--018fd-avigation-to-correct-routes-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/e2e-navigation-Navigation--018fd-avigation-to-correct-routes-chromium/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 32,
+                            "line": 127
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-8c50864771e792f5e7fc",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 113,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Keyboard Navigation Tests",
+              "file": "e2e/navigation.spec.ts",
+              "line": 174,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Keyboard accessibility for dropdown navigation",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 14887,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  8000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  8000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:204:32",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 32,
+                              "line": 204
+                            },
+                            "snippet": "  202 |         // Verify dropdown opened (look for the actual dropdown content)\n  203 |         const dropdown = page.locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' });\n> 204 |         await expect(dropdown).toBeVisible({ timeout: 8000 });\n      |                                ^\n  205 |         \n  206 |         console.log('✅ Dropdown opened with Enter key');\n  207 |         "
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 32,
+                                "line": 204
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  8000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\u001b[22m\n\n\n  202 |         // Verify dropdown opened (look for the actual dropdown content)\n  203 |         const dropdown = page.locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' });\n> 204 |         await expect(dropdown).toBeVisible({ timeout: 8000 });\n      |                                ^\n  205 |         \n  206 |         console.log('✅ Dropdown opened with Enter key');\n  207 |         \n    at /app/tests/e2e/navigation.spec.ts:204:32"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🧪 Testing keyboard navigation accessibility...\n"
+                            },
+                            {
+                              "text": "✅ Tabbed to Product dropdown successfully\n"
+                            },
+                            {
+                              "text": "📸 Failure screenshot saved: test-results/nav-keyboard-navigation-failure-2025-09-26T03-03-15-951Z.png\n"
+                            },
+                            {
+                              "text": "\n============================================================\n"
+                            },
+                            {
+                              "text": "📊 Navigation Usability Test Summary Complete\n"
+                            },
+                            {
+                              "text": "🎯 Tests covered:\n"
+                            },
+                            {
+                              "text": "  ✅ Desktop scroll-spy navigation\n"
+                            },
+                            {
+                              "text": "  ✅ Product dropdown routing\n"
+                            },
+                            {
+                              "text": "  ✅ Keyboard accessibility\n"
+                            },
+                            {
+                              "text": "  ✅ Mobile hamburger menu\n"
+                            },
+                            {
+                              "text": "  ✅ Focus trap and drawer management\n"
+                            },
+                            {
+                              "text": "  ✅ No placeholder links validation\n"
+                            },
+                            {
+                              "text": "  ✅ Cross-viewport compatibility\n"
+                            },
+                            {
+                              "text": "============================================================\n"
+                            }
+                          ],
+                          "stderr": [
+                            {
+                              "text": "❌ Keyboard navigation test failed: ExpectError: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  8000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\u001b[22m\n\n    at \u001b[90m/app/\u001b[39mtests/e2e/navigation.spec.ts:204:32 {\n  matcherResult: {\n    message: \u001b[32m'\\x1B[2mexpect(\\x1B[22m\\x1B[31mlocator\\x1B[39m\\x1B[2m).\\x1B[22mtoBeVisible\\x1B[2m()\\x1B[22m failed\\n'\u001b[39m +\n      \u001b[32m'\\n'\u001b[39m +\n      \u001b[32m\"Locator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\n\"\u001b[39m +\n      \u001b[32m'Expected: visible\\n'\u001b[39m +\n      \u001b[32m'Received: <element(s) not found>\\n'\u001b[39m +\n      \u001b[32m'Timeout:  8000ms\\n'\u001b[39m +\n      \u001b[32m'\\n'\u001b[39m +\n      \u001b[32m'Call log:\\n'\u001b[39m +\n      \u001b[32m'\\x1B[2m  - Expect \"toBeVisible\" with timeout 8000ms\\x1B[22m\\n'\u001b[39m +\n      \u001b[32m\"\\x1B[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\x1B[22m\\n\"\u001b[39m,\n    pass: \u001b[33mfalse\u001b[39m,\n    actual: \u001b[32m'<element(s) not found>'\u001b[39m,\n    name: \u001b[32m'toBeVisible'\u001b[39m,\n    expected: \u001b[32m'visible'\u001b[39m,\n    log: [\n      \u001b[32m'  - Expect \"toBeVisible\" with timeout 8000ms'\u001b[39m,\n      \u001b[32m\"  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\"\u001b[39m\n    ],\n    timeout: \u001b[33m8000\u001b[39m\n  },\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    category: \u001b[32m'expect'\u001b[39m,\n    apiName: \u001b[32m'expect.toBeVisible'\u001b[39m,\n    title: \u001b[32m'Expect \"toBeVisible\"'\u001b[39m,\n    params: { expected: \u001b[36m[Object]\u001b[39m },\n    infectParentStepsWithError: \u001b[90mundefined\u001b[39m,\n    stepId: \u001b[32m'expect@48'\u001b[39m,\n    group: \u001b[90mundefined\u001b[39m,\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    location: {\n      file: \u001b[32m'/app/tests/e2e/navigation.spec.ts'\u001b[39m,\n      line: \u001b[33m204\u001b[39m,\n      column: \u001b[33m32\u001b[39m\n    },\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'expect@48'\u001b[39m,\n      _title: \u001b[32m'Expect \"toBeVisible\"'\u001b[39m,\n      _parentStep: \u001b[90mundefined\u001b[39m,\n      skip: \u001b[36m[Function (anonymous)]\u001b[39m\n    },\n    recoverFromStepError: \u001b[36m[AsyncFunction: recoverFromStepError]\u001b[39m,\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1758855795947\u001b[39m,\n    error: {\n      message: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mlocator\\x1B[39m\\x1B[2m).\\x1B[22mtoBeVisible\\x1B[2m()\\x1B[22m failed\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m\"Locator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\n\"\u001b[39m +\n        \u001b[32m'Expected: visible\\n'\u001b[39m +\n        \u001b[32m'Received: <element(s) not found>\\n'\u001b[39m +\n        \u001b[32m'Timeout:  8000ms\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Call log:\\n'\u001b[39m +\n        \u001b[32m'\\x1B[2m  - Expect \"toBeVisible\" with timeout 8000ms\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m\"\\x1B[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\x1B[22m\\n\"\u001b[39m,\n      stack: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mlocator\\x1B[39m\\x1B[2m).\\x1B[22mtoBeVisible\\x1B[2m()\\x1B[22m failed\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m\"Locator:  locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\n\"\u001b[39m +\n        \u001b[32m'Expected: visible\\n'\u001b[39m +\n        \u001b[32m'Received: <element(s) not found>\\n'\u001b[39m +\n        \u001b[32m'Timeout:  8000ms\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Call log:\\n'\u001b[39m +\n        \u001b[32m'\\x1B[2m  - Expect \"toBeVisible\" with timeout 8000ms\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m\"\\x1B[2m  - waiting for locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' })\\x1B[22m\\n\"\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'    at /app/tests/e2e/navigation.spec.ts:204:32'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                            }
+                          ],
+                          "retry": 0,
+                          "startTime": "2025-09-26T03:03:04.179Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/e2e-navigation-Navigation--0c3a0-ity-for-dropdown-navigation-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/e2e-navigation-Navigation--0c3a0-ity-for-dropdown-navigation-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/e2e-navigation-Navigation--0c3a0-ity-for-dropdown-navigation-chromium/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 32,
+                            "line": 204
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-53d653d08039ce354d4e",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 179,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Mobile Navigation Tests",
+              "file": "e2e/navigation.spec.ts",
+              "line": 249,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Mobile hamburger menu functionality and focus trap",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 4703,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /app/tests/e2e/navigation.spec.ts:276:53",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 53,
+                              "line": 276
+                            },
+                            "snippet": "  274 |         const mobileItemsVisible = await mobileNavItems.isVisible().catch(() => false);\n  275 |         \n> 276 |         expect(drawerVisible || mobileItemsVisible).toBeTruthy();\n      |                                                     ^\n  277 |         \n  278 |         console.log('✅ Mobile menu opened');\n  279 |         "
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 53,
+                                "line": 276
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  274 |         const mobileItemsVisible = await mobileNavItems.isVisible().catch(() => false);\n  275 |         \n> 276 |         expect(drawerVisible || mobileItemsVisible).toBeTruthy();\n      |                                                     ^\n  277 |         \n  278 |         console.log('✅ Mobile menu opened');\n  279 |         \n    at /app/tests/e2e/navigation.spec.ts:276:53"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🧪 Testing mobile hamburger menu...\n"
+                            },
+                            {
+                              "text": "📸 Failure screenshot saved: test-results/nav-mobile-hamburger-failure-2025-09-26T03-03-24-046Z.png\n"
+                            },
+                            {
+                              "text": "\n============================================================\n"
+                            },
+                            {
+                              "text": "📊 Navigation Usability Test Summary Complete\n"
+                            },
+                            {
+                              "text": "🎯 Tests covered:\n"
+                            },
+                            {
+                              "text": "  ✅ Desktop scroll-spy navigation\n"
+                            },
+                            {
+                              "text": "  ✅ Product dropdown routing\n"
+                            },
+                            {
+                              "text": "  ✅ Keyboard accessibility\n"
+                            },
+                            {
+                              "text": "  ✅ Mobile hamburger menu\n"
+                            },
+                            {
+                              "text": "  ✅ Focus trap and drawer management\n"
+                            },
+                            {
+                              "text": "  ✅ No placeholder links validation\n"
+                            },
+                            {
+                              "text": "  ✅ Cross-viewport compatibility\n"
+                            },
+                            {
+                              "text": "============================================================\n"
+                            }
+                          ],
+                          "stderr": [
+                            {
+                              "text": "❌ Mobile hamburger test failed: ExpectError: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at \u001b[90m/app/\u001b[39mtests/e2e/navigation.spec.ts:276:53 {\n  matcherResult: {\n    message: \u001b[32m'\\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBeTruthy\\x1B[2m()\\x1B[22m\\n'\u001b[39m +\n      \u001b[32m'\\n'\u001b[39m +\n      \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n    pass: \u001b[33mfalse\u001b[39m\n  },\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    category: \u001b[32m'expect'\u001b[39m,\n    apiName: \u001b[32m'expect.toBeTruthy'\u001b[39m,\n    title: \u001b[32m'Expect \"toBeTruthy\"'\u001b[39m,\n    params: \u001b[90mundefined\u001b[39m,\n    infectParentStepsWithError: \u001b[90mundefined\u001b[39m,\n    stepId: \u001b[32m'expect@45'\u001b[39m,\n    group: \u001b[90mundefined\u001b[39m,\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    location: {\n      file: \u001b[32m'/app/tests/e2e/navigation.spec.ts'\u001b[39m,\n      line: \u001b[33m276\u001b[39m,\n      column: \u001b[33m53\u001b[39m\n    },\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'expect@45'\u001b[39m,\n      _title: \u001b[32m'Expect \"toBeTruthy\"'\u001b[39m,\n      _parentStep: \u001b[90mundefined\u001b[39m,\n      skip: \u001b[36m[Function (anonymous)]\u001b[39m\n    },\n    recoverFromStepError: \u001b[36m[AsyncFunction: recoverFromStepError]\u001b[39m,\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1758855804042\u001b[39m,\n    error: {\n      message: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBeTruthy\\x1B[2m()\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n      stack: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBeTruthy\\x1B[2m()\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'    at /app/tests/e2e/navigation.spec.ts:276:53'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                            }
+                          ],
+                          "retry": 0,
+                          "startTime": "2025-09-26T03:03:20.257Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/e2e-navigation-Navigation--00180-unctionality-and-focus-trap-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/e2e-navigation-Navigation--00180-unctionality-and-focus-trap-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/e2e-navigation-Navigation--00180-unctionality-and-focus-trap-chromium/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 53,
+                            "line": 276
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-26a23c9bb73a9fa7c160",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 254,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Link Quality Assurance",
+              "file": "e2e/navigation.spec.ts",
+              "line": 348,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "No placeholder links with empty or # href",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 3594,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "🧪 Testing for placeholder links...\n"
+                            },
+                            {
+                              "text": "✅ No placeholder links found\n"
+                            },
+                            {
+                              "text": "✅ All 0 navigation links have proper hrefs\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-26T03:03:26.081Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-4f05dc5b82f3dc917629",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 349,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Cross-browser Compatibility",
+              "file": "e2e/navigation.spec.ts",
+              "line": 412,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Navigation works consistently across viewport sizes",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 4164,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "🧪 Testing navigation across different viewport sizes...\n"
+                            },
+                            {
+                              "text": "Testing Desktop viewport (1920x1080)\n"
+                            },
+                            {
+                              "text": "  ✅ Desktop navigation visible (1 elements)\n"
+                            },
+                            {
+                              "text": "Testing Tablet viewport (768x1024)\n"
+                            },
+                            {
+                              "text": "  ✅ Desktop navigation visible (1 elements)\n"
+                            },
+                            {
+                              "text": "Testing Mobile viewport (390x844)\n"
+                            },
+                            {
+                              "text": "  ✅ Mobile hamburger menu visible\n"
+                            },
+                            {
+                              "text": "\n============================================================\n"
+                            },
+                            {
+                              "text": "📊 Navigation Usability Test Summary Complete\n"
+                            },
+                            {
+                              "text": "🎯 Tests covered:\n"
+                            },
+                            {
+                              "text": "  ✅ Desktop scroll-spy navigation\n"
+                            },
+                            {
+                              "text": "  ✅ Product dropdown routing\n"
+                            },
+                            {
+                              "text": "  ✅ Keyboard accessibility\n"
+                            },
+                            {
+                              "text": "  ✅ Mobile hamburger menu\n"
+                            },
+                            {
+                              "text": "  ✅ Focus trap and drawer management\n"
+                            },
+                            {
+                              "text": "  ✅ No placeholder links validation\n"
+                            },
+                            {
+                              "text": "  ✅ Cross-viewport compatibility\n"
+                            },
+                            {
+                              "text": "============================================================\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-26T03:03:29.876Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-35d65210cd47f3010feb",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 413,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-26T03:02:38.152Z",
+    "duration": 56052.534,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}
