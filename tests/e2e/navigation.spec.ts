@@ -277,8 +277,8 @@ test.describe('Navigation Usability Tests', () => {
         
         console.log('✅ Mobile menu opened');
         
-        // Check that menu items are listed
-        const menuItems = page.locator('[role="navigation"] button, [role="navigation"] a');
+        // Check that menu items are listed (look for mobile navigation items)
+        const menuItems = page.locator('button:has-text("How it Works"), button:has-text("Why FoP"), button:has-text("Sign In")');
         const itemCount = await menuItems.count();
         expect(itemCount).toBeGreaterThan(0);
         
