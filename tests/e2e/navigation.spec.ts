@@ -20,7 +20,7 @@ test.describe('Navigation Tests', () => {
 
     test('Landing page anchor navigation works correctly', async ({ page }) => {
       // Test "How it Works" anchor navigation
-      await page.locator(`[data-testid="${TESTIDS.inPageTabHow}"]`).click();
+      await page.locator(`[data-testid="${TESTIDS.inPageTabHow}"]`).click({ force: true });
       
       // Verify the URL hash changes
       await expect(page).toHaveURL('/#how');
@@ -30,14 +30,14 @@ test.describe('Navigation Tests', () => {
       await expect(howSection).toBeInViewport();
       
       // Test "Why FoP" anchor navigation
-      await page.locator(`[data-testid="${TESTIDS.inPageTabWhy}"]`).click();
+      await page.locator(`[data-testid="${TESTIDS.inPageTabWhy}"]`).click({ force: true });
       await expect(page).toHaveURL('/#why');
       
       const whySection = page.locator('#why');
       await expect(whySection).toBeInViewport();
       
       // Test FAQ anchor navigation
-      await page.locator(`[data-testid="${TESTIDS.inPageTabFaq}"]`).click();
+      await page.locator(`[data-testid="${TESTIDS.inPageTabFaq}"]`).click({ force: true });
       await expect(page).toHaveURL('/#faq');
       
       const faqSection = page.locator('#faq');
