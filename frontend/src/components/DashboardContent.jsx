@@ -256,7 +256,7 @@ const DashboardContent = ({
               <p className="text-theme-text-secondary mb-4">
                 {t('dashboard.createFirstLeague', 'Create your first league to get started')}
               </p>
-              <Button onClick={onCreateLeague}>
+              <Button onClick={onCreateLeague} data-testid={TESTIDS.createLeagueBtn}>
                 <Plus className="w-4 h-4 mr-2" />
                 Create League
               </Button>
