@@ -11,37 +11,42 @@ import {
   Plus, UserPlus, Mail, Shield
 } from 'lucide-react';
 
-export interface User {
-  id: string;
-  display_name?: string;
-  email?: string;
-}
+// Type definitions (in JSDoc format for JavaScript)
+/**
+ * @typedef {Object} User
+ * @property {string} id
+ * @property {string} [display_name]
+ * @property {string} [email]
+ */
 
-export interface League {
-  id: string;
-  name: string;
-  status: string;
-  commissioner_id?: string;
-  member_count?: number;
-}
+/**
+ * @typedef {Object} League
+ * @property {string} id
+ * @property {string} name
+ * @property {string} status
+ * @property {string} [commissioner_id]
+ * @property {number} [member_count]
+ */
 
-export interface AppState {
-  selectedLeague?: League | null;
-  leagues?: League[];
-  isAuthenticated: boolean;
-  user?: User | null;
-}
+/**
+ * @typedef {Object} AppState
+ * @property {League|null} [selectedLeague]
+ * @property {League[]} [leagues]
+ * @property {boolean} isAuthenticated
+ * @property {User|null} [user]
+ */
 
-export interface NavigationItem {
-  id: string;
-  label: string;
-  href: string;
-  icon?: any;
-  description?: string;
-  external?: boolean;
-  enabled: (user?: User | null, appState?: AppState) => boolean;
-  visible: (user?: User | null, appState?: AppState) => boolean;
-}
+/**
+ * @typedef {Object} NavigationItem
+ * @property {string} id
+ * @property {string} label
+ * @property {string} href
+ * @property {any} [icon]
+ * @property {string} [description]
+ * @property {boolean} [external]
+ * @property {function(User|null, AppState): boolean} enabled
+ * @property {function(User|null, AppState): boolean} visible
+ */
 
 // Primary Navigation (main navbar items)
 export const primaryNavigation: NavigationItem[] = [
