@@ -31,7 +31,7 @@ export default defineConfig({
     baseURL: process.env.PLAYWRIGHT_BASE_URL || 'https://friends-of-pifa.preview.emergentagent.com',
     
     // Browser context
-    headless: process.env.CI ? true : false,
+    headless: true, // Always run headless in container
     
     // Timeouts
     actionTimeout: 10000,
