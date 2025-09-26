@@ -272,7 +272,7 @@ const MyClubs = ({ user, token }) => {
                         </Badge>
                       </div>
                       <div>
-                        <CardTitle className="text-lg">{club.club_name}</CardTitle>
+                        <CardTitle className="text-lg" data-testid={TESTIDS.rosterItemName}>{club.club_name}</CardTitle>
                         <p className="text-sm text-gray-600">
                           Acquired {formatDate(club.acquired_at)}
                         </p>
