@@ -336,11 +336,11 @@ backend:
 frontend:
   - task: "Navigation Registry Implementation"
     implemented: true
-    working: true
+    working: "NA"
     file: "/app/frontend/src/navigation/navRegistry.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: true
         agent: "main"
@@ -348,11 +348,11 @@ frontend:
 
   - task: "Reusable NavigationMenu Component"
     implemented: true
-    working: true
+    working: "NA"
     file: "/app/frontend/src/components/navigation/NavigationMenu.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: true
         agent: "main"
@@ -360,11 +360,11 @@ frontend:
 
   - task: "GlobalNavbar Integration"
     implemented: true
-    working: true
+    working: "NA"
     file: "/app/frontend/src/components/GlobalNavbar.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: true
         agent: "main"
@@ -372,11 +372,11 @@ frontend:
 
   - task: "Footer Navigation Integration"
     implemented: true
-    working: true
+    working: "NA"
     file: "/app/frontend/src/components/ui/footer.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: true
         agent: "main"
