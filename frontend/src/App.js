@@ -648,6 +648,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                   max="10"
                   value={formData.settings.club_slots_per_manager}
                   onChange={(e) => updateSettings('club_slots_per_manager', e.target.value)}
+                  data-testid={TESTIDS.createSlotsInput}
                 />
               </div>
               <div className="space-y-2">
