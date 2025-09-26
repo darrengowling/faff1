@@ -93,21 +93,19 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await axios.get(`${API}/auth/me`);
       setUser(response.data);
+      setLoading(false);
     } catch (error) {
       console.error('Failed to fetch user:', error);
       
       // Only logout on authentication errors (401, 403), not on network/server errors
       if (error.response && (error.response.status === 401 || error.response.status === 403)) {
         console.log('Token expired or invalid, logging out');
-        logout();
+        logout(); // This will set loading to false
       } else {
-        // For network errors or server issues, keep the token but clear loading state
+        // For network errors or server issues, keep the token and session active
         console.log('Network/server error, keeping session active');
         setLoading(false);
-        return;
       }
-    } finally {
-      setLoading(false);
     }
   };
 
