@@ -28,7 +28,7 @@ import EnhancedHomeScreen from './components/EnhancedHomeScreen';
 import DashboardContent from './components/DashboardContent';
 import AppLayout, { DashboardLayout, AuctionLayout, AdminLayout, RosterLayout, FixturesLayout, LeaderboardLayout } from './components/layouts/AppLayout';
 import NotFoundPage from './components/NotFoundPage';
-import { MobileNav, BottomTabNav } from './components/ui/mobile-nav';
+import { BottomTabNav } from './components/ui/mobile-nav';
 
 // Import Shadcn components
 import { Button } from './components/ui/button';
