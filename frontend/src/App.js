@@ -1220,7 +1220,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <EnhancedHomeScreen
+      <DashboardContent
         leagues={leagues}
         loading={loading}
         onCreateLeague={() => setShowCreateLeague(true)}
