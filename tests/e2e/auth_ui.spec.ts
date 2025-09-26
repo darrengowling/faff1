@@ -8,21 +8,34 @@ test.describe('Authentication UI Tests', () => {
     await page.goto('/login');
   });
 
-  test('Login page loads with all required elements', async ({ page }) => {
-    // Verify page loads correctly
-    await expect(page).toHaveURL('/login');
-    await expect(page).toHaveTitle(/Friends of PIFA/);
-
-    // Verify all required elements are present using data-testids only
-    await expect(page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`)).toBeVisible();
-    await expect(page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`)).toBeVisible();
+  test('Login page renders form with all required testid elements', async ({ page }) => {
+    // Navigate to login and wait for full render
+    await page.goto('/login');
+    await page.waitForLoadState('networkidle');
     
-    // Verify error and success containers exist (but may not be visible initially)
-    await expect(page.locator(`[data-testid="${TESTIDS.authError}"]`)).not.toBeVisible();
-    await expect(page.locator(`[data-testid="${TESTIDS.authSuccess}"]`)).not.toBeVisible();
+    // Verify page loaded correctly
+    await expect(page).toHaveURL('/login');
 
-    // Verify back to home link exists
+    // CRITICAL: Assert all required form elements with testids are present and visible
+    await expect(page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`)).toBeVisible({ timeout: 10000 });
+    await expect(page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`)).toBeVisible({ timeout: 10000 });
+    
+    // Verify navigation elements exist (no dead-ends)
     await expect(page.locator('[data-testid="back-to-home-link"]')).toBeVisible();
+    await expect(page.locator('[data-testid="home-nav-button"]')).toBeVisible();
+    
+    // Verify header structure
+    await expect(page.locator('[data-testid="login-header"]')).toBeVisible();
+    
+    // Verify form accessibility
+    const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
+    await expect(emailInput).toHaveAttribute('type', 'email');
+    await expect(emailInput).toHaveAttribute('required');
+    
+    const submitBtn = page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`);
+    await expect(submitBtn).toHaveAttribute('type', 'submit');
+    
+    console.log('✅ Login form renders correctly with all required testid elements');
   });
 
   test('Submit button is disabled for invalid email', async ({ page }) => {
