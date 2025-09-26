@@ -700,6 +700,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                     ...formData.settings.league_size, 
                     max: parseInt(e.target.value) || 8 
                   })}
+                  data-testid={TESTIDS.createMaxInput}
                 />
               </div>
             </div>
