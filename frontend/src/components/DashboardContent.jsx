@@ -20,6 +20,7 @@ import { useAuth } from '../App';
 import PageMenuDropdown from './ui/page-menu-dropdown';
 import QuickActionCards from './ui/quick-action-cards';
 import LeagueSwitcher from './ui/league-switcher';
+import CreateLeagueCTA from './ui/create-league-cta';
 import { TESTIDS } from '../testids.js';
 
 const DashboardContent = ({ 
