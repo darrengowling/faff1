@@ -173,7 +173,7 @@ export const dashboardActions = [
 ];
 
 // Footer Navigation
-export const footerNavigation: NavigationItem[] = [
+export const footerNavigation = [
   {
     id: 'terms',
     label: 'Terms of Service',
