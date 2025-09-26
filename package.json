@@ -30,6 +30,8 @@
     "@playwright/test": "^1.55.0",
     "axios": "^1.12.2",
     "jest-axe": "^10.0.0",
+    "mongodb": "^6.20.0",
+    "socket.io-client": "^4.8.1",
     "typescript": "^5.9.2"
   }
 }
