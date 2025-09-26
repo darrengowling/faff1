@@ -43,8 +43,9 @@ export interface LeagueSettings {
 export async function createLeague(page: Page, settings: LeagueSettings): Promise<string> {
   console.log(`🏆 Creating league: ${settings.name}`);
   
-  // Open create league dialog
-  await page.locator(`[data-testid="${TESTIDS.landingCtaCreate}"]`).click();
+  // Open create league dialog from dashboard
+  // Look for Create League button on dashboard
+  await page.locator('button').filter({ hasText: /create.*league/i }).first().click();
   await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'visible' });
   
   // Fill form fields
