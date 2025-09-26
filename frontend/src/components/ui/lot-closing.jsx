@@ -270,6 +270,7 @@ export const CommissionerLotControls = ({
           variant="outline"
           size="sm"
           className="border-red-300 text-red-700 hover:bg-red-50"
+          data-testid={TESTIDS.closeLotButton}
         >
           Close Lot
         </Button>
