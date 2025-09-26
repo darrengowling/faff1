@@ -226,46 +226,6 @@ test.describe('Core Smoke Test', () => {
 
 // Helper Functions
 
-async function loginUser(page: Page, email: string): Promise<void> {
-  console.log(`🔐 Logging in user: ${email}`);
-  
-  // Navigate to login if not already there
-  if (!page.url().includes('/login')) {
-    await page.goto('/login');
-  }
-  
-  await page.waitForLoadState('networkidle');
-  
-  // Enter email and submit
-  await page.fill('[data-testid="auth-email-input"]', email);
-  await page.click('[data-testid="auth-magic-link-submit"]');
-  
-  // Wait for either success state or error state
-  try {
-    // First wait for the loading state to end
-    await page.waitForSelector('[data-testid="auth-magic-link-submit"]:not([disabled])', { timeout: 15000 });
-    
-    // Then look for the login button with longer timeout
-    await page.waitForSelector('[data-testid="auth-login-now-button"]', { timeout: 20000 });
-    await page.click('[data-testid="auth-login-now-button"]');
-    
-    // Wait for successful login redirect to dashboard
-    await page.waitForURL('**/dashboard', { timeout: 15000 });
-    console.log(`✅ User logged in: ${email}`);
-  } catch (error) {
-    // Take screenshot for debugging
-    await page.screenshot({ path: `login-debug-${email.replace('@', '-at-')}.png` });
-    
-    // Check if there's an error message on the page
-    const errorMessage = await page.locator('.toast-error, .error-message').textContent().catch(() => null);
-    if (errorMessage) {
-      console.log(`❌ Login error: ${errorMessage}`);
-    }
-    
-    throw new Error(`Login failed for ${email}: ${error.message}`);
-  }
-}
-
 async function createLeague(page: Page, settings: typeof LEAGUE_SETTINGS): Promise<{ leagueId: string }> {
   console.log(`🏟️ Creating league: ${settings.name}`);
   
