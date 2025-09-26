@@ -21,6 +21,7 @@ import { useLeagueSettings } from '../hooks/useLeagueSettings';
 
 // UI Components
 import { RulesBadge } from './ui/rules-badge';
+import { TESTIDS } from '../testids';
 
 // Icons
 import { 
