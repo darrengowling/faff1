@@ -1289,10 +1289,11 @@ async def socketio_diagnostics():
         "now": datetime.now(timezone.utc).isoformat()
     }
 
-# Health endpoint (as specified in the pattern)
+# Health endpoint (as specified in the pattern) - Use detailed health check
 @fastapi_app.get("/api/health")
 async def health():
-    return {"ok": True}
+    """Detailed health check endpoint"""
+    return await health_check()
 
 # Include the router in the main app
 fastapi_app.include_router(api_router)
