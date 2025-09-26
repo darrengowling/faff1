@@ -969,8 +969,9 @@ const LeagueManagement = ({ league, onBack }) => {
                   onChange={(e) => setInviteEmail(e.target.value)}
                   required
                   className="flex-1"
+                  data-testid={TESTIDS.inviteEmailInput}
                 />
-                <Button type="submit" disabled={inviteLoading}>
+                <Button type="submit" disabled={inviteLoading} data-testid={TESTIDS.inviteSubmitButton}>
                   {inviteLoading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <UserPlus className="w-4 h-4" />}
                 </Button>
               </form>
