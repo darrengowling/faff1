@@ -35,7 +35,7 @@ export async function login(page: Page, email: string, options: LoginOptions = {
  * Test-only login that bypasses UI authentication
  * Only works when ALLOW_TEST_LOGIN=true is set on the backend
  */
-async function loginTestOnly(page: Page, email: string, timeout: number): Promise<void> {
+async function loginTestOnlyInternal(page: Page, email: string, timeout: number): Promise<void> {
   console.log(`🧪 Test-only login for user: ${email}`);
   
   try {
