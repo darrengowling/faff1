@@ -57,13 +57,18 @@ const LoginPage = () => {
       // In development, show the magic link
       if (response.data.dev_magic_link) {
         setMagicLink(response.data.dev_magic_link);
-      }
-
-      // Auto-redirect after 3 seconds in test mode
-      if (isTestMode) {
-        setTimeout(() => {
-          navigate('/app');
-        }, 1000);
+        
+        // In test mode, auto-click the magic link for seamless testing
+        if (isTestMode) {
+          setTimeout(() => {
+            const url = new URL(response.data.dev_magic_link);
+            const token = url.searchParams.get('token');
+            if (token) {
+              navigate(`/auth/verify?token=${token}`);
+            }
+          }, 500);
+          return;
+        }
       }
 
     } catch (err) {
