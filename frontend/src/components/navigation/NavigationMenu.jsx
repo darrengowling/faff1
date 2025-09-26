@@ -17,7 +17,7 @@ import {
   menuConfigs 
 } from '../../navigation/navRegistry.js';
 import { useAuth } from '../../App';
-import { TESTIDS } from '../../testids.ts';
+import { TESTIDS } from '../../testids.js';
 
 /**
  * Hook to get current app state for navigation
