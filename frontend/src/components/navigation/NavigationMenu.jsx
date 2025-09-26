@@ -158,6 +158,7 @@ const DesktopDropdown = ({
           ref={dropdownRef}
           className="absolute top-full left-0 mt-1 w-64 bg-theme-surface rounded-lg shadow-lg border border-theme-surface-border py-2 z-[60]"
           role="menu"
+          data-testid="product-dropdown-menu"
         >
           {visibleItems.map((item, index) => (
             <NavigationItem
