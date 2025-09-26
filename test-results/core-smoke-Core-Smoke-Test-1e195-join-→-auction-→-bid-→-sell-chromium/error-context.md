@@ -34,22 +34,22 @@
         - /url: "#main-content"
     - main [ref=e49]:
       - generic [ref=e51]:
-        - generic [ref=e52]:
-          - generic [ref=e53]:
-            - img [ref=e55]
-            - generic [ref=e60]:
-              - generic [ref=e61]: Friends of PIFA
-              - generic [ref=e62]: Sports gaming with friends. No gambling. All strategy.
-          - heading "Friends of PIFA" [level=3] [ref=e63]
-          - paragraph [ref=e64]: Enter your email to get started
-        - generic [ref=e66]:
-          - generic [ref=e67]:
-            - generic [ref=e68]: Email
-            - textbox "Email" [ref=e69]: commish@test.local
-          - button "Send Magic Link" [ref=e70] [cursor=pointer]
-  - link "Emergent platform logo Made with Emergent" [ref=e71] [cursor=pointer]:
+        - heading "Magic Link Ready!" [level=3] [ref=e53]
+        - generic [ref=e54]:
+          - generic [ref=e56]:
+            - img [ref=e57]
+            - paragraph [ref=e59]:
+              - strong [ref=e60]: Development Mode
+            - paragraph [ref=e61]: "Click the button below to login instantly:"
+            - button "🚀 Login Now" [ref=e62] [cursor=pointer]
+            - generic [ref=e63]:
+              - paragraph [ref=e64]: "Or copy this link:"
+              - generic [ref=e65]: https://auction-platform-6.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvbW1pc2hAZXhhbXBsZS5jb20iLCJleHAiOjE3NTg4OTM3MzAsInR5cGUiOiJtYWdpY19saW5rIn0.-3fSmW4U2LRfCzjalh9eVXPEEdY1xZ2nZSZAMZhy6YU
+              - button "📋 Copy Link" [ref=e66] [cursor=pointer]
+          - button "← Send Another Link" [ref=e67] [cursor=pointer]
+  - link "Emergent platform logo Made with Emergent" [ref=e68] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e72] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e73] [cursor=pointer]
-      - paragraph [ref=e74] [cursor=pointer]: Made with Emergent
+    - generic [ref=e69] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e70] [cursor=pointer]
+      - paragraph [ref=e71] [cursor=pointer]: Made with Emergent
 ```
