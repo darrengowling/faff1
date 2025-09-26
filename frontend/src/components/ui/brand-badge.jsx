@@ -164,6 +164,7 @@ export const MinimalBrand = ({ className }) => (
     variant="compact" 
     size="sm" 
     className={className}
+    data-testid={TESTIDS.MinimalBrand}
   />
 );
 
