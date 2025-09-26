@@ -24,6 +24,7 @@ import SimpleLandingPage from './components/SimpleLandingPage';
 import GlobalNavbar from './components/GlobalNavbar';
 import StickyPageNav from './components/StickyPageNav';
 import EnhancedHomeScreen from './components/EnhancedHomeScreen';
+import DashboardContent from './components/DashboardContent';
 import AppLayout, { DashboardLayout, AuctionLayout, AdminLayout, RosterLayout, FixturesLayout, LeaderboardLayout } from './components/layouts/AppLayout';
 import NotFoundPage from './components/NotFoundPage';
 import { MobileNav, BottomTabNav } from './components/ui/mobile-nav';
