@@ -6,7 +6,7 @@
  */
 
 import { test, expect, BrowserContext, Page } from '@playwright/test';
-import { TestHelpers } from './helpers/test-helpers.js';
+const TestHelpers = require('./helpers/test-helpers.js');
 
 // Test configuration
 const TEST_TIMEOUT = 90000; // 90 seconds max
