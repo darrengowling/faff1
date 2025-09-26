@@ -376,13 +376,13 @@ const AdminDashboard = ({ user, token }) => {
         </div>
 
         {/* Main Content Tabs */}
-        <Tabs value={selectedTab} onValueChange={setSelectedTab}>
+        <Tabs value={selectedTab} onValueChange={setSelectedTab} data-testid={TESTIDS.adminPanel}>
           <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="settings">League Settings</TabsTrigger>
-            <TabsTrigger value="members">Member Management</TabsTrigger>
-            <TabsTrigger value="auction">Auction Control</TabsTrigger>
-            <TabsTrigger value="audit">Audit & Logs</TabsTrigger>
+            <TabsTrigger value="overview" data-testid={TESTIDS.adminOverview}>Overview</TabsTrigger>
+            <TabsTrigger value="settings" data-testid={TESTIDS.adminLeagueSettings}>League Settings</TabsTrigger>
+            <TabsTrigger value="members" data-testid={TESTIDS.adminMemberManagement}>Member Management</TabsTrigger>
+            <TabsTrigger value="auction" data-testid={TESTIDS.adminAuctionControl}>Auction Control</TabsTrigger>
+            <TabsTrigger value="audit" data-testid={TESTIDS.adminTab}>Audit & Logs</TabsTrigger>
           </TabsList>
 
           {/* Overview Tab */}
