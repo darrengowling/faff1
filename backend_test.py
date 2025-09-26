@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-UCL Auction Backend API Testing Suite - Comprehensive Live Auction Engine Testing
-Tests atomic bid processing, real-time WebSocket functionality, and auction state management
+Comprehensive Backend API Testing Suite
+Tests all core backend functionality including auth, leagues, auctions, database operations
 """
 
 import requests
@@ -11,10 +11,6 @@ import os
 from datetime import datetime, timezone
 import time
 import uuid
-import asyncio
-import socketio
-import threading
-from concurrent.futures import ThreadPoolExecutor
 
 class UCLAuctionAPITester:
     def __init__(self, base_url="https://auction-platform-6.preview.emergentagent.com"):
