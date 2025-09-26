@@ -25,7 +25,7 @@ export async function login(page: Page, email: string, options: LoginOptions = {
   console.log(`🔐 Logging in user: ${email} (mode: ${mode})`);
   
   if (mode === 'test') {
-    await loginTestOnly(page, email, timeout);
+    await loginTestOnlyInternal(page, email, timeout);
   } else {
     await loginUI(page, email, timeout);
   }
