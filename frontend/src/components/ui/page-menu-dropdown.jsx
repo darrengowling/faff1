@@ -140,11 +140,27 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
       saveSelection(item.id);
       setIsOpen(false);
       setFocusedIndex(-1);
+      setShowTooltip(null);
       
       // Announce navigation to screen readers
       const message = `Navigating to ${item.label}`;
       announceToScreenReader(message);
     }
+  };
+
+  // Handle tooltip display for disabled items
+  const handleItemHover = (item, index) => {
+    setFocusedIndex(index);
+    if (!item.enabled && item.tooltip) {
+      setShowTooltip({ text: item.tooltip, itemId: item.id });
+    } else {
+      setShowTooltip(null);
+    }
+  };
+
+  // Handle tooltip hide
+  const handleItemLeave = () => {
+    setShowTooltip(null);
   };
 
   // Screen reader announcement
