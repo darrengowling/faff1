@@ -755,6 +755,7 @@ const AuctionRoom = ({ user, token }) => {
                     </div>
                     <Badge 
                       className={`text-white font-bold ${getLotStatusColor(currentLot.status)}`}
+                      data-testid={TESTIDS.soldBadge}
                     >
                       {getLotStatusText(currentLot.status)}
                     </Badge>
