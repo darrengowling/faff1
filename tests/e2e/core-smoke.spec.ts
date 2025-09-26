@@ -243,8 +243,8 @@ async function loginUser(page: Page, email: string): Promise<void> {
   await page.waitForSelector('button:has-text("🚀 Login Now")', { timeout: 10000 });
   await page.click('button:has-text("🚀 Login Now")');
   
-  // Wait for successful login redirect to dashboard/app
-  await page.waitForURL('**/app', { timeout: 15000 });
+  // Wait for successful login redirect to dashboard
+  await page.waitForURL('**/dashboard', { timeout: 15000 });
   console.log(`✅ User logged in: ${email}`);
 }
 
