@@ -1,11 +1,13 @@
 /**
  * Test IDs for Playwright E2E Tests
- * 
- * Centralized test identifiers to ensure stable, deterministic testing
- * without heuristic text-based selectors.
+ * @deprecated Use testids.ts instead
  */
 
-export const TESTIDS = {
+// Re-export from TypeScript file for backward compatibility
+export { TESTIDS } from './testids.ts';
+
+// Legacy export (to be removed)
+const LEGACY_TESTIDS = {
   // Global navigation & landing
   navBrand: 'nav-brand',
   
