@@ -13,7 +13,9 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 // Check if running in test mode to disable animations
-const isTestMode = process.env.NODE_ENV === 'test' || process.env.PLAYWRIGHT_TEST === 'true';
+const isTestMode = process.env.NODE_ENV === 'test' || 
+                   process.env.REACT_APP_PLAYWRIGHT_TEST === 'true' ||
+                   window.location.search.includes('playwright=true');
 
 const LoginPage = () => {
   const { t } = useTranslation();
