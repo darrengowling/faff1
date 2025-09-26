@@ -151,12 +151,7 @@ export default {
           messageId: "moduleScope",
           data: {
             name: node.name
-          },
-          suggest: [
-            {
-              desc: "Move this code inside a function or React component"
-            }
-          ]
+          }
         });
       },
 
