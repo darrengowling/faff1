@@ -1,0 +1,151 @@
+/**
+ * Stable Test IDs for E2E Testing
+ * 
+ * Centralized constants for data-testid attributes used in Playwright tests.
+ * These IDs should remain stable across UI changes to ensure reliable automation.
+ */
+
+export const TESTIDS = {
+  // Home/Dashboard Create League CTAs
+  homeCreateLeagueBtn: 'create-league-btn', // main CTA on /app
+  navCreateLeagueBtn: 'nav-create-league-btn', // header "+ New League" button
+  joinViaInviteBtn: 'join-via-invite-btn',
+
+  // Create League Wizard
+  createLeagueWizardName: 'create-name',
+  createLeagueWizardSlots: 'create-slots',
+  createLeagueWizardBudget: 'create-budget',
+  createLeagueWizardMin: 'create-min',
+  createLeagueWizardSubmit: 'create-submit',
+  
+  // Authentication
+  emailInput: 'auth-email-input',
+  magicLinkSubmit: 'auth-magic-link-submit',
+  loginNowButton: 'auth-login-now-button',
+  
+  // Authentication Page (/login)
+  authEmailInput: 'auth-email-input',
+  authSubmitBtn: 'auth-submit-btn',
+  authError: 'auth-error',
+  authSuccess: 'auth-success',
+  
+  // Navigation
+  navBrand: 'nav-brand',
+  navSignIn: 'nav-sign-in',
+  navDropdownProduct: 'nav-dd-product',
+  navDdAuction: 'nav-dd-auction',
+  navDdRoster: 'nav-dd-roster',
+  navDdFixtures: 'nav-dd-fixtures',
+  navDdLeaderboard: 'nav-dd-leaderboard',
+  navDdSettings: 'nav-dd-settings',
+  navDropdownItemAuction: 'nav-dd-auction', // Legacy alias
+  navDropdownItemRoster: 'nav-dd-roster', // Legacy alias
+  navDropdownItemFixtures: 'nav-dd-fixtures', // Legacy alias
+  navDropdownItemLeaderboard: 'nav-dd-leaderboard', // Legacy alias
+  navDropdownItemSettings: 'nav-dd-settings', // Legacy alias
+  navHamburger: 'nav-hamburger',
+  navMobileDrawer: 'nav-mobile-drawer',
+  navMobileItemAuction: 'nav-mobile-item-auction-room',
+  navMobileItemRoster: 'nav-mobile-item-my-roster',
+  navMobileItemFixtures: 'nav-mobile-item-fixtures',
+  navMobileItemLeaderboard: 'nav-mobile-item-leaderboard',
+  navMobileItemSettings: 'nav-mobile-item-league-admin',
+  
+  // Landing Page
+  landingCtaCreate: 'cta-create-league',
+  landingCtaJoin: 'cta-join-league',
+  inPageTabHome: 'tab-home',
+  inPageTabWhy: 'tab-why',
+  inPageTabHow: 'tab-how',
+  inPageTabFair: 'tab-fair',
+  inPageTabFaq: 'tab-faq',
+  
+  // Branding
+  AuthBrand: 'auth-brand',
+  HeaderBrand: 'header-brand',
+  MinimalBrand: 'minimal-brand',
+  
+  // Home/dashboard
+  homeGotoDropdown: 'home-goto',
+  homeGotoAuction: 'home-goto-auction',
+  homeGotoRoster: 'home-goto-roster',
+  homeGotoFixtures: 'home-goto-fixtures',
+  homeGotoLeaderboard: 'home-goto-leaderboard',
+  homeGotoSettings: 'home-goto-settings',
+  createLeagueBtn: 'create-league-btn', // Legacy alias for homeCreateLeagueBtn
+  
+  // Navigation & Breadcrumbs
+  backButton: 'back-button',
+  backToHomeButton: 'back-to-home-button',
+
+  // League Creation/Management
+  createSubmit: 'create-submit',
+  createCancel: 'create-cancel',
+  
+  // Auction
+  auctionRoom: 'auction-room',
+  auctionStatus: 'auction-status',
+  auctionLot: 'auction-lot-number',
+  auctionTopBidder: 'auction-top-bidder',
+  auctionBudget: 'auction-budget',
+  auctionSlots: 'auction-slots',
+  auctionNextLot: 'auction-next-lot',
+  nominateSelect: 'nominate-select',
+  nominateSubmit: 'nominate-submit',
+  bidInput: 'bid-input',
+  bidSubmit: 'bid-submit',
+  
+  // Dashboard Actions  
+  startAuctionBtn: 'start-auction-btn',
+  joinAuctionBtn: 'join-auction-btn',
+
+  // League List & Management
+  leagueList: 'league-list',
+  leagueItem: 'league-item',
+  leagueCreate: 'league-create',
+  leagueJoin: 'league-join',
+  leagueInviteCode: 'league-invite-code',
+  leagueInviteSubmit: 'league-invite-submit',
+  inviteEmailInput: 'invite-email-input',
+  inviteEmailSubmit: 'invite-email-submit',
+  inviteLinkCopy: 'invite-link-copy',
+  inviteLinkItem: 'invite-link-0',
+  inviteLinkShare: 'invite-link-share',
+
+  // Roster/Club Management
+  clubList: 'club-list',
+  clubBudget: 'club-budget',
+  clubSlots: 'club-slots',
+
+  // Leaderboard
+  leaderboardTable: 'leaderboard-table',
+  leaderboardManager: 'leaderboard-manager',
+  leaderboardGoals: 'leaderboard-goals',
+  leaderboardWins: 'leaderboard-wins', 
+  leaderboardDraws: 'leaderboard-draws',
+
+  // Admin Dashboard
+  adminSettings: 'admin-settings',
+  adminSaveBtn: 'admin-save-btn',
+  adminCloseBtn: 'admin-close-btn',
+  adminUndoBtn: 'admin-undo-btn',
+  
+  // UI Components
+  loadingSpinner: 'loading-spinner',
+  errorMessage: 'error-message',
+  toastMessage: 'toast-message',
+  dialogClose: 'dialog-close',
+  dialogOverlay: 'dialog-overlay',
+  confirmBtn: 'confirm-btn',
+  cancelBtn: 'cancel-btn',
+  alertConfirm: 'alert-confirm',
+  alertCancel: 'alert-cancel',
+  
+  // Quick Actions
+  quickJoinLeague: 'quick-join-league',
+} as const;
+
+// Type for testid values (for TypeScript safety)
+export type TestId = typeof TESTIDS[keyof typeof TESTIDS];
+
+export default TESTIDS;
