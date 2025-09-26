@@ -17,12 +17,12 @@ const StickyPageNav = () => {
 
   // Navigation sections configuration
   const sections = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'how', label: 'How it Works', icon: '⚙️' },
-    { id: 'why', label: 'Why FoP', icon: '💡' },
-    { id: 'features', label: 'Features', icon: '🚀' },
-    { id: 'safety', label: 'Fair Play', icon: '🛡️' },
-    { id: 'faq', label: 'FAQ', icon: '❓' }
+    { id: 'home', label: 'Home', icon: '🏠', testId: TESTIDS.inPageTabHome },
+    { id: 'how', label: 'How it Works', icon: '⚙️', testId: TESTIDS.inPageTabHow },
+    { id: 'why', label: 'Why FoP', icon: '💡', testId: TESTIDS.inPageTabWhy },
+    { id: 'features', label: 'Features', icon: '🚀', testId: TESTIDS.inPageTabFeatures },
+    { id: 'safety', label: 'Fair Play', icon: '🛡️', testId: TESTIDS.inPageTabFair },
+    { id: 'faq', label: 'FAQ', icon: '❓', testId: TESTIDS.inPageTabFaq }
   ];
 
   // Check for reduced motion preference
