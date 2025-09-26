@@ -21,6 +21,7 @@ import {
   AuthNavigation, 
   MobileNavigation 
 } from './navigation/NavigationMenu';
+import { TESTIDS } from '../testids';
 
 const GlobalNavbar = () => {
   const { t } = useTranslation();
