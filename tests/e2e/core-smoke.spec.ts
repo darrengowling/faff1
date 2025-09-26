@@ -42,7 +42,6 @@ test.describe('Core Smoke Test', () => {
       process.env.NEXT_PUBLIC_SOCKET_TRANSPORTS = 'polling';
     }
 
-  test.beforeAll(async ({ browser }) => {
     // Create separate browser contexts for each user
     commissionerContext = await browser.newContext();
     aliceContext = await browser.newContext();
@@ -60,6 +59,31 @@ test.describe('Core Smoke Test', () => {
         }
       });
     });
+  });
+
+  test.afterEach(async ({ }, testInfo) => {
+    // Take screenshot and save console logs on failure
+    if (testInfo.status !== testInfo.expectedStatus) {
+      console.log('Test failed, capturing artifacts...');
+      
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      
+      // Screenshots
+      await commissionerPage.screenshot({ 
+        path: `test-results/commissioner-${timestamp}.png`, 
+        fullPage: true 
+      });
+      await alicePage.screenshot({ 
+        path: `test-results/alice-${timestamp}.png`, 
+        fullPage: true 
+      });
+      await bobPage.screenshot({ 
+        path: `test-results/bob-${timestamp}.png`, 
+        fullPage: true 
+      });
+      
+      console.log(`Screenshots saved with timestamp: ${timestamp}`);
+    }
   });
 
   test.afterAll(async () => {
