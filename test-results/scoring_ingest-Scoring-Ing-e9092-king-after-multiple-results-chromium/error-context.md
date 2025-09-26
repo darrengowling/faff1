@@ -1,0 +1,66 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - region "Notifications alt+T"
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - button "Friends of PIFA" [ref=e7] [cursor=pointer]:
+          - img [ref=e9] [cursor=pointer]
+          - generic [ref=e15] [cursor=pointer]: Friends of PIFA
+        - navigation [ref=e16]:
+          - generic [ref=e17]:
+            - button "Navigate to How it Works" [ref=e18] [cursor=pointer]:
+              - img [ref=e19] [cursor=pointer]
+              - generic [ref=e24] [cursor=pointer]: How it Works
+            - button "Navigate to Why FoP" [ref=e25] [cursor=pointer]:
+              - img [ref=e26] [cursor=pointer]
+              - generic [ref=e30] [cursor=pointer]: Why FoP
+            - button "Navigate to FAQ" [ref=e31] [cursor=pointer]:
+              - img [ref=e32] [cursor=pointer]
+              - generic [ref=e36] [cursor=pointer]: FAQ
+          - button "Product" [ref=e38] [cursor=pointer]:
+            - generic [ref=e39] [cursor=pointer]: Product
+            - img [ref=e40] [cursor=pointer]
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - button "Sign In" [ref=e44] [cursor=pointer]
+            - button "Get Started" [ref=e45] [cursor=pointer]
+          - button "Switch to dark mode" [ref=e46] [cursor=pointer]:
+            - generic [ref=e47] [cursor=pointer]:
+              - img
+      - link "Skip to main content" [ref=e48] [cursor=pointer]:
+        - /url: "#main-content"
+    - main [ref=e49]:
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - img [ref=e54]
+          - heading "404" [level=1] [ref=e56]
+          - heading "Page Not Found" [level=2] [ref=e57]
+          - paragraph [ref=e58]: The page you're looking for doesn't exist or has been moved. Let's get you back to your football auctions!
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - img [ref=e62]
+            - generic [ref=e68]: Friends of PIFA
+          - paragraph [ref=e69]: Sports gaming with friends. No gambling. All strategy.
+        - generic [ref=e72] [cursor=pointer]:
+          - img [ref=e74] [cursor=pointer]
+          - heading "Get Started" [level=3] [ref=e77] [cursor=pointer]
+          - paragraph [ref=e78] [cursor=pointer]: Learn about Friends of PIFA
+          - button "Get Started" [ref=e79] [cursor=pointer]:
+            - generic [ref=e80] [cursor=pointer]:
+              - generic [ref=e81] [cursor=pointer]: Get Started
+              - img
+        - generic [ref=e82]:
+          - paragraph [ref=e83]: Still having trouble? Try refreshing the page or check your URL.
+          - generic [ref=e84]:
+            - button "Refresh Page" [ref=e85] [cursor=pointer]
+            - generic [ref=e86]: •
+            - button "Go Back" [ref=e87] [cursor=pointer]
+  - link "Emergent platform logo Made with Emergent" [ref=e88] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e89] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e90] [cursor=pointer]
+      - paragraph [ref=e91] [cursor=pointer]: Made with Emergent
+```

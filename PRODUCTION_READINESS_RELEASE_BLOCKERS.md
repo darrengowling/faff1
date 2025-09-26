@@ -37,11 +37,14 @@ Testing websocket transport...
 ### Test Categories Executed
 | Test Suite | Status | Pass Rate | Issues |
 |------------|--------|-----------|---------|
-| Socket.IO Diagnostics | ✅ PASS | 100% | None |
-| Landing Page Tests | ✅ MOSTLY PASS | 80% | Minor scroll-spy highlighting |
+| Socket.IO Diagnostics | ✅ PASS | 100% | None - ALL TRANSPORTS WORKING |
+| Landing Page Tests | ✅ MOSTLY PASS | 80% (4/5) | Minor scroll-spy highlighting |
 | Navigation Tests | ❌ FAIL | 25% (2/8) | UI navigation, mobile menu, dropdown issues |
 | Core Smoke Tests | ❌ FAIL | 0% (0/1) | Authentication flow blocking |
-| Roster & Budget Tests | ❌ FAIL | 0% (partial) | Authentication flow blocking |
+| Roster & Budget Tests | ❌ FAIL | 0% (0/6) | Authentication flow blocking |
+| Access & Gates Tests | ❌ FAIL | 0% (0/9) | Authentication flow blocking |
+| Scoring Ingest Tests | ❌ FAIL | 0% (0/6) | Authentication flow blocking |
+| **Overall E2E Suite** | ❌ **BLOCKED** | **~15%** | **Authentication prevents all authenticated flows** |
 
 ---
 
