@@ -1214,7 +1214,8 @@ async def health_check():
     """Health check endpoint for deployment monitoring"""
     try:
         # Check database connectivity
-        await db.admin.command('ping')
+        from database import client
+        await client.admin.command('ping')
         
         # Check collections exist
         collections = await db.list_collection_names()
