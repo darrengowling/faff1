@@ -6,6 +6,7 @@
  */
 
 import { test, expect, BrowserContext, Page } from '@playwright/test';
+import { loginTestOnly } from './utils/helpers';
 
 // Test configuration
 const TEST_TIMEOUT = 90000; // 90 seconds max
