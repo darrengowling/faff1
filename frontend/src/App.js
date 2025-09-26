@@ -309,7 +309,7 @@ const MagicLinkVerify = () => {
         const response = await axios.post(`${API}/auth/verify`, { token });
         login(response.data.access_token, response.data.user);
         toast.success(t('auth.loginSuccess'));
-        navigate('/dashboard');
+        navigate('/app');
       } catch (error) {
         setError(t('auth.invalidToken'));
         toast.error(t('auth.invalidMagicLink'));
