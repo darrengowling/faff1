@@ -12,37 +12,26 @@ from datetime import datetime, timezone
 import time
 import uuid
 
-class UCLAuctionAPITester:
+class ComprehensiveBackendTester:
     def __init__(self, base_url="https://auction-platform-6.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
-        self.commissioner_token = None
-        self.manager_tokens = {}
-        self.user_data = {}
+        self.token = None
+        self.user_data = None
+        self.test_league_id = None
+        self.test_auction_id = None
+        self.test_clubs = []
         self.tests_run = 0
         self.tests_passed = 0
         self.failed_tests = []
         
         # Test data
-        self.commissioner_email = "commissioner@example.com"
+        self.test_email = "backend_test@example.com"
         self.manager_emails = [
             "manager1@example.com",
             "manager2@example.com", 
-            "manager3@example.com",
-            "manager4@example.com",
-            "manager5@example.com"
+            "manager3@example.com"
         ]
-        self.test_league_id = None
-        self.test_league_id_no_settings = None
-        self.test_league_id_custom_settings = None
-        self.test_invitations = []
-        self.test_auction_id = None
-        self.test_clubs = []
-        
-        # WebSocket testing
-        self.socket_clients = {}
-        self.websocket_events = []
-        self.bid_results = []
         
     def log_test(self, name, success, details=""):
         """Log test results"""
