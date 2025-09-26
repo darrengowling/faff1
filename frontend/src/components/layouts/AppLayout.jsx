@@ -85,7 +85,7 @@ const AppLayout = ({ children, showBackButton = true, pageTitle = null }) => {
               )}
 
               {/* Desktop Breadcrumb (larger screens) */}
-              <nav className="hidden md:flex items-center space-x-2 text-sm" aria-label="Breadcrumb">
+              <div className="hidden md:flex items-center space-x-2 text-sm" aria-label="Breadcrumb">
                 {showBackButton && !isHomePage && (
                   <>
                     <button
