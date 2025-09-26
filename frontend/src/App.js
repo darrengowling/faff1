@@ -1379,7 +1379,7 @@ function App() {
             {/* Main Content */}
             <main id="main-content" className="min-h-screen">
               <Routes>
-              <Route path="/login" element={<Login />} />
+              <Route path="/login" element={<LoginPage />} />
               <Route path="/auth/verify" element={<MagicLinkVerify />} />
               <Route path="/invite" element={
                 <ProtectedRoute>
