@@ -464,7 +464,7 @@ const AdminDashboard = ({ user, token }) => {
                   Configure core league rules. Changes will be logged for audit.
                 </p>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6" data-testid={TESTIDS.settingsForm}>
                 {/* Live Preview Status */}
                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
                   <div className="flex items-start space-x-3">
