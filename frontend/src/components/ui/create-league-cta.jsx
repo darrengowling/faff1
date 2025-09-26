@@ -23,7 +23,7 @@ const CreateLeagueCTA = ({
       disabled={isLoading}
       className={className}
       variant={variant}
-      data-testid={TESTIDS.homeCreateLeagueBtn}
+      data-testid={TESTIDS.createLeagueBtn}
       aria-label={
         isLoading 
           ? "Loading leagues data, create league will be available shortly" 
