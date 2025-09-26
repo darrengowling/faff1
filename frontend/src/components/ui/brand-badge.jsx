@@ -159,12 +159,12 @@ export const CompactBrand = ({ className }) => (
   />
 );
 
-export const MinimalBrand = ({ className }) => (
+export const MinimalBrand = ({ className, 'data-testid': dataTestId }) => (
   <BrandBadge 
     variant="compact" 
     size="sm" 
     className={className}
-    data-testid={TESTIDS.MinimalBrand}
+    data-testid={dataTestId || TESTIDS.MinimalBrand}
   />
 );
 
