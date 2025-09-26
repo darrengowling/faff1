@@ -30,6 +30,49 @@ export async function login(page: Page, email: string): Promise<void> {
 }
 
 /**
+ * Test-only login helper that bypasses UI authentication
+ * Only works when ALLOW_TEST_LOGIN=true is set on the backend
+ */
+export async function loginTestOnly(page: Page, email: string): Promise<void> {
+  console.log(`🧪 Test-only login for user: ${email}`);
+  
+  const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'https://friends-pifa.preview.emergentagent.com';
+  
+  try {
+    // Call the test-only login endpoint
+    const response = await page.request.post(`${BASE_URL}/api/auth/test-login`, {
+      data: { email }
+    });
+    
+    if (!response.ok()) {
+      throw new Error(`Test login failed: ${response.status()} ${await response.text()}`);
+    }
+    
+    const data = await response.json();
+    
+    // Set the authentication token in localStorage for the browser session
+    await page.goto('/'); // Navigate to any page first to set localStorage
+    await page.evaluate((token) => {
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify({
+        email: arguments[1],
+        display_name: arguments[1].split('@')[0],
+        verified: true
+      }));
+    }, data.access_token, email);
+    
+    // Verify we can access protected routes
+    await page.goto('/app');
+    await page.waitForLoadState('networkidle');
+    
+    console.log(`✅ Test-only login successful: ${email}`);
+  } catch (error) {
+    console.error(`❌ Test login failed for ${email}:`, error);
+    throw error;
+  }
+}
+
+/**
  * League creation helpers
  */
 export interface LeagueSettings {
