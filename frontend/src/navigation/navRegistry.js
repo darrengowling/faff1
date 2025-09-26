@@ -244,10 +244,10 @@ export const getVisibleItems = (
 };
 
 export const getEnabledItems = (
-  items: NavigationItem[],
-  user?: User | null, 
-  appState?: AppState
-): NavigationItem[] => {
+  items,
+  user, 
+  appState
+) => {
   return items.filter(item => 
     item.visible(user, appState) && item.enabled(user, appState)
   );
