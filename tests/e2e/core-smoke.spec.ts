@@ -122,7 +122,7 @@ test.describe('Core Smoke Test', () => {
     // Alice joins
     await alicePage.goto(inviteLinks[0]);
     await alicePage.waitForLoadState('networkidle');
-    await loginUser(alicePage, USERS.alice.email);
+    await loginTestOnly(alicePage, USERS.alice.email);
     await expectLobbyState(alicePage, '2/3'); // Commissioner + Alice
     
     // Bob joins  
