@@ -1437,6 +1437,11 @@ function App() {
                   </DashboardLayout>
                 </ProtectedRoute>
               } />
+              <Route path="/app/leagues/new" element={
+                <SafeRoute path="/app/leagues/new" authRequired={true}>
+                  <CreateLeagueWizard />
+                </SafeRoute>
+              } />
               <Route path="/diag" element={<DiagnosticPage />} />
               <Route path="/" element={<RootRoute />} />
               {/* 404 - Catch all unmatched routes */}
