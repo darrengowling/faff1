@@ -52,14 +52,14 @@ export async function loginTestOnly(page: Page, email: string): Promise<void> {
     
     // Set the authentication token in localStorage for the browser session
     await page.goto('/'); // Navigate to any page first to set localStorage
-    await page.evaluate((token) => {
+    await page.evaluate(({ token, email }) => {
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify({
-        email: arguments[1],
-        display_name: arguments[1].split('@')[0],
+        email: email,
+        display_name: email.split('@')[0],
         verified: true
       }));
-    }, data.access_token, email);
+    }, { token: data.access_token, email });
     
     // Verify we can access protected routes
     await page.goto('/app');
