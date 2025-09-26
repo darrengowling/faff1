@@ -186,6 +186,7 @@ const Login = () => {
                     onClick={() => window.location.href = magicLink}
                     className="w-full mb-3 touch-target"
                     size="lg"
+                    data-testid={TESTIDS.loginNowButton}
                   >
                     {t('auth.loginNow')}
                   </Button>
