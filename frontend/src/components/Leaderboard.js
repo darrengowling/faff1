@@ -328,7 +328,7 @@ const Leaderboard = ({ user, token }) => {
                           </div>
                           <div>
                             <div className="flex items-center space-x-2">
-                              <h3 className="font-semibold text-gray-900">
+                              <h3 className="font-semibold text-gray-900" data-testid={TESTIDS.leaderboardManager}>
                                 {manager.display_name}
                               </h3>
                               {manager.user_id === user?.id && (
