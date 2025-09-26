@@ -601,7 +601,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                 value={selectedProfile}
                 onChange={(e) => setSelectedProfile(e.target.value)}
               >
-                {competitionProfiles.map(profile => (
+                {Array.isArray(competitionProfiles) && competitionProfiles.map(profile => (
                   <option key={profile._id} value={profile._id}>
                     {profile.competition} ({profile.short_name}) - {profile.defaults.club_slots} slots
                   </option>
