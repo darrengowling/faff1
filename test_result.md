@@ -347,15 +347,18 @@ backend:
 
   - task: "Navigation Usability Playwright Tests"
     implemented: true
-    working: true
+    working: false
     file: "/app/tests/e2e/navigation.spec.ts"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Created comprehensive Playwright test suite for navigation usability: 1) Desktop navigation tests with scroll-spy verification for #how, #why, #faq sections, 2) Product dropdown navigation testing for all 5 items (Auction, Roster, Fixtures, Leaderboard, Admin), 3) Keyboard accessibility tests with Tab/Enter/Arrow keys/Escape functionality, 4) Mobile hamburger menu tests with focus trap and drawer management, 5) Link quality assurance to prevent placeholder links with href='#' or empty href, 6) Cross-viewport compatibility testing, 7) Failure screenshot artifacts with timestamps, 8) Comprehensive test coverage for all navigation usability requirements. Testing shows: ✅ Landing page scroll-spy navigation working, ✅ No placeholder links detected, ✅ Cross-viewport compatibility confirmed for desktop/tablet/mobile"
+      - working: false
+        agent: "testing"
+        comment: "❌ NAVIGATION USABILITY TEST VALIDATION FAILED - Comprehensive testing revealed critical issues with the navigation.spec.ts test suite: 1) TEST SUITE EXECUTION FAILURE: The original navigation.spec.ts file contains incorrect selectors that don't match the actual implementation, causing tests to fail with 'element not found' errors, 2) PRODUCT DROPDOWN ISSUE: The test expects dropdown content with role='menu' but the actual implementation doesn't use this selector pattern - dropdown opens (aria-expanded changes from false to true) but content isn't found by test selectors, 3) SELECTOR MISMATCH: Tests use selectors like '.bg-theme-surface, .bg-white' which don't exist in the actual DOM structure, 4) SUCCESSFUL MANUAL VALIDATION: Manual testing confirms navigation IS working correctly: ✅ Desktop scroll-spy navigation works (How it Works, Why FoP, FAQ sections found), ✅ Product dropdown opens (aria-expanded toggles), ✅ Mobile hamburger menu functions, ✅ No placeholder links detected, ✅ Cross-viewport compatibility confirmed. ISSUE: The test suite needs selector updates to match the actual NavigationMenu component implementation using proper data-testid attributes or correct DOM selectors."
 
   - task: "AuctionRoom Variable Initialization Bug Fix"
     implemented: true
