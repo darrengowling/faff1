@@ -263,6 +263,7 @@ const Login = () => {
               className="w-full touch-target"
               size="lg"
               disabled={loading}
+              data-testid={TESTIDS.magicLinkSubmit}
             >
               {loading ? t('auth.sending') : t('auth.sendMagicLink')}
             </Button>
