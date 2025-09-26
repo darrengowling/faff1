@@ -786,6 +786,49 @@ const AuctionRoom = ({ user, token }) => {
                       loading={lotClosingLoading}
                       className="mb-4"
                     />
+
+                    {/* Nomination Controls (Commissioner Only) */}
+                    {isCommissioner && currentLot.status === 'pending' && (
+                      <Card className="bg-gray-800 border-gray-700 mb-4">
+                        <CardHeader>
+                          <CardTitle className="text-white flex items-center">
+                            <Plus className="w-5 h-5 mr-2" />
+                            Nominate Next Club
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-3">
+                          <div className="flex space-x-2">
+                            <select 
+                              className="flex-1 bg-gray-700 border-gray-600 text-white rounded-md px-3 py-2"
+                              data-testid={TESTIDS.nominateSelect}
+                            >
+                              <option value="">Select a club to nominate...</option>
+                              <option value="arsenal">Arsenal</option>
+                              <option value="chelsea">Chelsea</option>
+                              <option value="liverpool">Liverpool</option>
+                              <option value="man-city">Manchester City</option>
+                              <option value="man-utd">Manchester United</option>
+                              <option value="tottenham">Tottenham</option>
+                            </select>
+                            <Button 
+                              size="sm"
+                              data-testid={TESTIDS.nominateSubmit}
+                              className="bg-blue-600 hover:bg-blue-700"
+                            >
+                              Nominate
+                            </Button>
+                          </div>
+                          <Button 
+                            variant="outline"
+                            size="sm"
+                            className="w-full"
+                            data-testid={TESTIDS.nominateBtn}
+                          >
+                            Start Nomination Process
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    )}
                   </div>
 
                   {/* Bid Information */}
