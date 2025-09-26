@@ -1357,37 +1357,51 @@ function App() {
               } />
               <Route path="/auction/:auctionId" element={
                 <ProtectedRoute>
-                  <AuctionRoomWrapper />
+                  <AuctionLayout>
+                    <AuctionRoomWrapper />
+                  </AuctionLayout>
                 </ProtectedRoute>
               } />
               <Route path="/clubs/:leagueId" element={
                 <ProtectedRoute>
-                  <MyClubsWrapper />
+                  <RosterLayout>
+                    <MyClubsWrapper />
+                  </RosterLayout>
                 </ProtectedRoute>
               } />
               <Route path="/fixtures/:leagueId" element={
                 <ProtectedRoute>
-                  <FixturesWrapper />
+                  <FixturesLayout>
+                    <FixturesWrapper />
+                  </FixturesLayout>
                 </ProtectedRoute>
               } />
               <Route path="/leaderboard/:leagueId" element={
                 <ProtectedRoute>
-                  <LeaderboardWrapper />
+                  <LeaderboardLayout>
+                    <LeaderboardWrapper />
+                  </LeaderboardLayout>
                 </ProtectedRoute>
               } />
               <Route path="/admin/:leagueId" element={
                 <ProtectedRoute>
-                  <AdminDashboardWrapper />
+                  <AdminLayout>
+                    <AdminDashboardWrapper />
+                  </AdminLayout>
                 </ProtectedRoute>
               } />
               <Route path="/dashboard" element={
                 <ProtectedRoute>
-                  <Dashboard />
+                  <DashboardLayout>
+                    <Dashboard />
+                  </DashboardLayout>
                 </ProtectedRoute>
               } />
               <Route path="/app" element={
                 <ProtectedRoute>
-                  <Dashboard />
+                  <DashboardLayout>
+                    <Dashboard />
+                  </DashboardLayout>
                 </ProtectedRoute>
               } />
               <Route path="/diag" element={<DiagnosticPage />} />
