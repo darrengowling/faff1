@@ -140,9 +140,13 @@ class AuctionEngine:
             logger.info(f"Started auction {auction_id} for league {auction['league_id']}")
             return True
             
+        except ValueError as e:
+            # Re-raise business logic errors for proper HTTP status codes
+            logger.error(f"Failed to start auction {auction_id}: {e}")
+            raise e
         except Exception as e:
             logger.error(f"Failed to start auction {auction_id}: {e}")
-            return False
+            raise Exception(f"Auction start failed: {str(e)}")
     
     async def _create_auction_lots(self, auction_id: str, league_id: str, nomination_order: List[str]):
         """Create lots for all clubs in nomination order"""
