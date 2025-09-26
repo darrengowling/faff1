@@ -208,7 +208,7 @@ export const BudgetStatus = ({
       <div>
         <div className="flex justify-between text-sm mb-1">
           <span>Budget Used</span>
-          <span className="font-medium">£{budgetUsed}M / £{budgetTotal}M</span>
+          <span className="font-medium" data-testid={TESTIDS.budgetUsed}>£{budgetUsed}M / £{budgetTotal}M</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
           <div 
