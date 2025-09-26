@@ -52,6 +52,7 @@ export const TESTIDS = {
   homeGotoFixtures: 'home-goto-fixtures',
   homeGotoLeaderboard: 'home-goto-leaderboard',
   homeGotoSettings: 'home-goto-settings',
+  createLeagueBtn: 'create-league-btn',
   
   // League creation
   createDialog: 'create-league-dialog',
