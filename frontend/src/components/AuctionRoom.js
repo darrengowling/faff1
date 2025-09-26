@@ -790,7 +790,7 @@ const AuctionRoom = ({ user, token }) => {
                   {/* Bid Information */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center p-4 bg-gray-700 rounded-lg">
-                      <div className="text-3xl font-bold text-green-400">
+                      <div className="text-3xl font-bold text-green-400" data-testid={TESTIDS.auctionTopBid}>
                         {currentLot.current_bid || 0}
                       </div>
                       <div className="text-sm text-gray-400">Current Bid</div>
