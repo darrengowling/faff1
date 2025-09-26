@@ -11,7 +11,7 @@
     "test:e2e": "source ./scripts/test-env.sh && playwright test",
     "test:core": "source ./scripts/test-env.sh && playwright test tests/e2e/core.smoke.spec.ts",
     "test:e2e:headed": "source ./scripts/test-env.sh && playwright test --headed",
-    "test:navigation": "source ./scripts/test-env.sh && playwright test tests/e2e/navigation.spec.ts", 
+    "test:navigation": "source ./scripts/test-env.sh && playwright test tests/e2e/navigation.spec.ts",
     "test:auction": "source ./scripts/test-env.sh && playwright test tests/e2e/auction.spec.ts",
     "test:roster": "source ./scripts/test-env.sh && playwright test tests/e2e/roster_and_budget.spec.ts",
     "test:scoring": "source ./scripts/test-env.sh && playwright test tests/e2e/scoring_ingest.spec.ts",
@@ -29,6 +29,7 @@
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.55.0",
     "axios": "^1.12.2",
-    "jest-axe": "^10.0.0"
+    "jest-axe": "^10.0.0",
+    "typescript": "^5.9.2"
   }
 }
