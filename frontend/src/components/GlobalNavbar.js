@@ -436,6 +436,9 @@ const GlobalNavbar = () => {
                 </Button>
               </>
             )}
+            
+            {/* Theme Toggle */}
+            <IconThemeToggle className="hidden md:flex" />
           </div>
 
           {/* Mobile Menu Button */}
