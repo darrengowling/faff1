@@ -36,7 +36,7 @@ const SimpleLandingPage = () => {
             </h1>
 
             {/* Caption */}
-            <p className="text-xl sm:text-2xl text-gray-600 mb-4 max-w-3xl mx-auto font-light">
+            <p className="text-xl sm:text-2xl text-theme-text-secondary mb-4 max-w-3xl mx-auto font-light">
               {t('branding.heroCaption')}
             </p>
 
