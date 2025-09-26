@@ -44,7 +44,7 @@
             - button "🚀 Login Now" [ref=e62] [cursor=pointer]
             - generic [ref=e63]:
               - paragraph [ref=e64]: "Or copy this link:"
-              - generic [ref=e65]: https://auction-platform-6.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvbW1pc2hAZXhhbXBsZS5jb20iLCJleHAiOjE3NTg4OTM3MzAsInR5cGUiOiJtYWdpY19saW5rIn0.-3fSmW4U2LRfCzjalh9eVXPEEdY1xZ2nZSZAMZhy6YU
+              - generic [ref=e65]: https://auction-platform-6.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvbW1pc2hAZXhhbXBsZS5jb20iLCJleHAiOjE3NTg4OTQwMzUsInR5cGUiOiJtYWdpY19saW5rIn0.DIi70PP1DwIeHI0FT_iiYJ9n0Y9moIuJgcKAhDoX3LM
               - button "📋 Copy Link" [ref=e66] [cursor=pointer]
           - button "← Send Another Link" [ref=e67] [cursor=pointer]
   - link "Emergent platform logo Made with Emergent" [ref=e68] [cursor=pointer]:
