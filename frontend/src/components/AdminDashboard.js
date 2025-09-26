@@ -743,7 +743,7 @@ const AdminDashboard = ({ user, token }) => {
                 </div>
                 
                 <div className="flex justify-end">
-                  <Button onClick={handleSettingsUpdate} disabled={saving} data-testid={TESTIDS.settingsSave}>
+                  <Button onClick={handleSettingsUpdate} disabled={saving} data-testid={`${TESTIDS.settingsSave} ${TESTIDS.submitButton}`}>
                     {saving ? (
                       <>
                         <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
