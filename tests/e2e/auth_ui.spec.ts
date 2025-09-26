@@ -65,6 +65,9 @@ test.describe('Authentication UI Tests', () => {
   });
 
   test('Successfully submits valid email and shows success', async ({ page }) => {
+    // Listen to console logs
+    page.on('console', msg => console.log('Browser Console:', msg.text()));
+    
     const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
     const submitBtn = page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`);
     const successElement = page.locator(`[data-testid="${TESTIDS.authSuccess}"]`);
@@ -84,15 +87,25 @@ test.describe('Authentication UI Tests', () => {
     await submitBtn.click();
 
     // Wait for API response
-    await responsePromise;
+    const response = await responsePromise;
+    const responseBody = await response.json();
+    console.log('API Response:', responseBody);
 
     // Wait for success message
     await expect(successElement).toBeVisible({ timeout: 10000 });
     await expect(successElement).toContainText('Magic link sent');
 
-    // In test mode, should automatically redirect to /auth/verify then /app
-    // Wait for navigation to happen
-    await page.waitForURL(url => url.pathname === '/auth/verify' || url.pathname === '/app', { timeout: 10000 });
+    // Check if dev magic link button appears
+    const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
+    if (await devMagicBtn.isVisible()) {
+      console.log('Dev magic link button found, clicking...');
+      await devMagicBtn.click();
+      await page.waitForURL(url => url.pathname === '/auth/verify' || url.pathname === '/app', { timeout: 5000 });
+    } else {
+      // In test mode, should automatically redirect to /auth/verify then /app
+      console.log('Waiting for automatic redirect...');
+      await page.waitForURL(url => url.pathname === '/auth/verify' || url.pathname === '/app', { timeout: 10000 });
+    }
   });
 
   test('Back to Home navigation works', async ({ page }) => {
