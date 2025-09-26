@@ -1,11 +1,10 @@
 /**
- * Navigation Tests - Production Readiness Regression
+ * Navigation Tests - Enhanced with Accessibility & No Placeholders
  * Tests landing anchors, top-nav dropdowns, hamburger drawer, 404 recovery
- * HARD RULE: Only data-testid selectors allowed
+ * HARD RULE: Only data-testid selectors allowed, no href="#" in DOM
  */
 
 import { test, expect } from '@playwright/test';
-import { TestHelpers } from './utils/test-helpers';
 import { TESTIDS } from '../../frontend/src/testids';
 
 test.describe('Navigation Tests', () => {
