@@ -58,7 +58,16 @@ export default [
     files: ['**/*.test.js', '**/*.test.jsx', '**/__tests__/**/*', '**/__mocks__/**/*'],
     rules: {
       // Allow magic numbers in tests
-      'no-magic-numbers': 'off'
+      'no-magic-numbers': 'off',
+      // Allow browser globals in tests  
+      'ssr-safety/no-window-at-module-scope': 'off'
+    },
+  },
+  {
+    files: ['scripts/**/*.js', 'scripts/**/*.jsx', 'public/**/*.js'],
+    rules: {
+      // Allow browser globals in scripts and public files
+      'ssr-safety/no-window-at-module-scope': 'off'
     },
   },
 ];
