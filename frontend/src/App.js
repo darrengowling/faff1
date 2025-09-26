@@ -95,7 +95,17 @@ const AuthProvider = ({ children }) => {
       setUser(response.data);
     } catch (error) {
       console.error('Failed to fetch user:', error);
-      logout();
+      
+      // Only logout on authentication errors (401, 403), not on network/server errors
+      if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+        console.log('Token expired or invalid, logging out');
+        logout();
+      } else {
+        // For network errors or server issues, keep the token but clear loading state
+        console.log('Network/server error, keeping session active');
+        setLoading(false);
+        return;
+      }
     } finally {
       setLoading(false);
     }
