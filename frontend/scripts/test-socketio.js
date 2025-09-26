@@ -12,7 +12,7 @@ const http = require('http');
 const origin = process.env.NEXT_PUBLIC_API_URL || 
                process.env.VITE_PUBLIC_API_URL || 
                process.env.REACT_APP_API_ORIGIN || 
-               'https://friends-of-pifa.preview.emergentagent.com';
+               'https://auction-platform-6.preview.emergentagent.com';
 
 const path = process.env.NEXT_PUBLIC_SOCKET_PATH || 
              '/api/socketio';

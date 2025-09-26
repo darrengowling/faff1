@@ -10,7 +10,7 @@ from datetime import datetime
 import sys
 
 class EnforcementRulesTester:
-    def __init__(self, base_url="https://friends-of-pifa.preview.emergentagent.com"):
+    def __init__(self, base_url="https://auction-platform-6.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.token = None

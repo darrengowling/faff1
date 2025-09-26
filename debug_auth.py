@@ -7,7 +7,7 @@ import requests
 import json
 
 def test_auth_system():
-    base_url = "https://friends-of-pifa.preview.emergentagent.com"
+    base_url = "https://auction-platform-6.preview.emergentagent.com"
     api_url = f"{base_url}/api"
     
     # Test known protected endpoint

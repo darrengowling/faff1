@@ -87,7 +87,7 @@ class RegressionTestRunner:
         """Quick backend health check"""
         print("\n🏥 Running Backend Health Check...")
         return self.run_command(
-            "curl -f https://friends-of-pifa.preview.emergentagent.com/api/health",
+            "curl -f https://auction-platform-6.preview.emergentagent.com/api/health",
             "Backend Health Check"
         )
 

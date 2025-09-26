@@ -10,7 +10,7 @@ from datetime import datetime
 
 class SettingsValidationTester:
     def __init__(self):
-        self.base_url = "https://friends-of-pifa.preview.emergentagent.com"
+        self.base_url = "https://auction-platform-6.preview.emergentagent.com"
         self.api_url = f"{self.base_url}/api"
         self.access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODc4MzY3Zi05YmQzLTQ2NGQtODQ2YS1jZTQyYjYzZGI1MWYiLCJleHAiOjE3NTg2NzkyNjB9.ebAyqnx0FJ_sknhqY2sIB7FgD3tXHj6ZjSBTNfulBxY"
         self.tests_run = 0
