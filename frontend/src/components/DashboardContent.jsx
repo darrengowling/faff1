@@ -214,6 +214,7 @@ const DashboardContent = ({
                     size="sm"
                     onClick={() => onStartAuction(selectedLeague.id)}
                     className="bg-green-600 hover:bg-green-700"
+                    data-testid={TESTIDS.startAuctionBtn}
                   >
                     <Play className="w-4 h-4 mr-1" />
                     Start Auction
