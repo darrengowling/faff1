@@ -121,13 +121,13 @@ export const BrandBadge = ({
 };
 
 // Specialized variants for common use cases
-export const HeaderBrand = ({ onClick, className, ...props }) => (
+export const HeaderBrand = ({ onClick, className, 'data-testid': dataTestId, ...props }) => (
   <BrandBadge 
     variant="full" 
     size="md" 
     onClick={onClick}
     className={className}
-    data-testid={TESTIDS.HeaderBrand}
+    data-testid={dataTestId || TESTIDS.HeaderBrand}
     {...props}
   />
 );
