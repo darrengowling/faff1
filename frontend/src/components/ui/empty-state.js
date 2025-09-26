@@ -170,7 +170,7 @@ export const LoadingEmptyState = ({ message }) => {
   return (
     <EmptyState
       icon={() => (
-        <div className="w-16 h-16 mx-auto mb-4">
+        <div className="w-16 h-16 mx-auto mb-4" data-testid={TESTIDS.loadingSpinner}>
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600"></div>
         </div>
       )}
