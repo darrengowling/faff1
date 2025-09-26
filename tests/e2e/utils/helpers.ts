@@ -25,7 +25,7 @@ export async function login(page: Page, email: string): Promise<void> {
   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).click();
   
   // Wait for successful login redirect
-  await page.waitForURL('**/app', { timeout: 15000 });
+  await page.waitForURL('**/dashboard', { timeout: 15000 });
   console.log(`✅ User logged in: ${email}`);
 }
 
