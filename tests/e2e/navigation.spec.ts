@@ -122,10 +122,10 @@ test.describe('Navigation Usability Tests', () => {
         // Test each dropdown item navigation
         const dropdownItems = [
           { text: 'Auction Room', expectedRoute: '/login' }, // Should redirect to login for unauthenticated users
-          { text: 'My Roster', expectedRoute: '/login' },
+          { text: 'Roster', expectedRoute: '/login' },
           { text: 'Fixtures', expectedRoute: '/login' },
           { text: 'Leaderboard', expectedRoute: '/login' },
-          { text: 'League', expectedRoute: '/login' } // League Settings/Admin
+          { text: 'Settings', expectedRoute: '/login' } // League Settings/Admin
         ];
         
         for (const item of dropdownItems) {
