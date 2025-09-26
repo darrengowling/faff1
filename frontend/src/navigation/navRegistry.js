@@ -77,7 +77,7 @@ export const primaryNavigation = [
 ];
 
 // Product Dropdown Navigation (authenticated user features)
-export const productDropdownNavigation: NavigationItem[] = [
+export const productDropdownNavigation = [
   {
     id: 'auction-room',
     label: 'Auction Room',
