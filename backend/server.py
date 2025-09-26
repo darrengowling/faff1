@@ -327,7 +327,7 @@ async def get_league(
 @api_router.post("/leagues/{league_id}/invite")
 async def invite_manager(
     league_id: str,
-    invitation_data: InvitationCreate,
+    invitation_data: InvitationEmailRequest,
     current_user: UserResponse = Depends(get_current_verified_user)
 ):
     """Send invitation to join league as manager"""
