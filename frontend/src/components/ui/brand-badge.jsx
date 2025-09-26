@@ -12,7 +12,8 @@ export const BrandBadge = ({
   size = 'md',
   className = '',
   showTagline = false,
-  onClick
+  onClick,
+  'data-testid': dataTestId
 }) => {
   const brandName = getBrandName();
   const tagline = getBrandTagline();
