@@ -293,9 +293,14 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Verify Complete Playwright Test Suite"
-  stuck_tasks: []
-  test_all: true
+    - "Backend League Management System"
+    - "Backend Auction Engine"
+    - "Backend Environment Configuration"
+  stuck_tasks:
+    - "Backend League Management System"
+    - "Backend Auction Engine"
+    - "Backend Environment Configuration"
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
