@@ -49,7 +49,7 @@ import {
  */
 
 // Primary Navigation (main navbar items)
-export const primaryNavigation: NavigationItem[] = [
+export const primaryNavigation = [
   {
     id: 'how-it-works',
     label: 'How it Works',
