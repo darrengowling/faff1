@@ -177,11 +177,14 @@ backend:
     file: "/app/backend/server.py, /app/backend/league_service.py"
     stuck_count: 1
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "testing"
         comment: "❌ LEAGUE MANAGEMENT PARTIALLY WORKING: League creation working (✅), league settings retrieval working (✅), league member management working (✅), BUT invitation system failing with 422 errors and league join functionality blocked with 400 errors. Core league functionality works but invitation/join workflows need debugging. League status and member count tracking working correctly."
+      - working: false
+        agent: "testing"
+        comment: "🔍 DETAILED ANALYSIS COMPLETED: League invitation 422 errors caused by InvitationCreate model expecting both league_id and email in request body, but league_id is already provided in URL path (/leagues/{league_id}/invite). This is a model design issue - the endpoint should only require email. League join 400 errors are expected behavior when user tries to join their own league (they're already commissioner). SOLUTION: Fix InvitationCreate model to only require email field, or create separate EmailOnlyRequest model for invitation endpoint."
 
   - task: "Backend Database Operations"
     implemented: true
