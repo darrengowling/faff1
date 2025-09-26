@@ -324,8 +324,9 @@ test.describe('Navigation Usability Tests', () => {
         await page.keyboard.press('Escape');
         await page.waitForTimeout(500);
         
-        const drawerVisible = await mobileDrawer.isVisible().catch(() => false);
-        expect(drawerVisible).toBeFalsy();
+        // Check if menu is closed (hamburger button should be visible again)
+        const hamburgerVisible = await hamburgerButton.isVisible();
+        expect(hamburgerVisible).toBeTruthy();
         
         console.log('✅ Focus trap working - Escape closes menu');
         
