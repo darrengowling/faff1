@@ -293,7 +293,7 @@ export const menuConfigs = {
   dashboard: {
     quickActions: dashboardActions
   }
-} as const;
+};
 
 export default {
   primaryNavigation,
