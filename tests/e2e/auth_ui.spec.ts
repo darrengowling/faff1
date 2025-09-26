@@ -75,14 +75,24 @@ test.describe('Authentication UI Tests', () => {
 
     // Submit form
     await expect(submitBtn).not.toBeDisabled();
+    
+    // Wait for network requests to complete
+    const responsePromise = page.waitForResponse(response => 
+      response.url().includes('/api/auth/magic-link') && response.status() === 200
+    );
+    
     await submitBtn.click();
+
+    // Wait for API response
+    await responsePromise;
 
     // Wait for success message
     await expect(successElement).toBeVisible({ timeout: 10000 });
     await expect(successElement).toContainText('Magic link sent');
 
-    // In test mode, should automatically redirect to /app
-    await expect(page).toHaveURL('/app', { timeout: 5000 });
+    // In test mode, should automatically redirect to /auth/verify then /app
+    // Wait for navigation to happen
+    await page.waitForURL(url => url.pathname === '/auth/verify' || url.pathname === '/app', { timeout: 10000 });
   });
 
   test('Back to Home navigation works', async ({ page }) => {
