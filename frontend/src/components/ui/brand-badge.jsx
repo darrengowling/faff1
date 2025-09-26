@@ -146,6 +146,7 @@ export const AuthBrand = ({ className }) => (
     size="lg" 
     showTagline={true}
     className={className}
+    data-testid={TESTIDS.AuthBrand}
   />
 );
 
