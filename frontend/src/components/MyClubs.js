@@ -317,9 +317,9 @@ const MyClubs = ({ user, token }) => {
             {upcoming_fixtures.length === 0 ? (
               <NoFixturesEmptyState />
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-4" data-testid={TESTIDS.fixturesTable}>
                 {upcoming_fixtures.map((fixture) => (
-                  <Card key={fixture.match_id} className="hover:shadow-md transition-shadow">
+                  <Card key={fixture.match_id} className="hover:shadow-md transition-shadow" data-testid={TESTIDS.fixtureRow}>
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
