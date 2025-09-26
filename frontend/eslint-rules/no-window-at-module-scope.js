@@ -8,9 +8,7 @@
  * @author Friends of PIFA Development Team
  */
 
-"use strict";
-
-module.exports = {
+export default {
   meta: {
     type: "problem",
     docs: {
