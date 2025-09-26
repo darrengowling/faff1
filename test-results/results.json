@@ -1,0 +1,2845 @@
+{
+  "config": {
+    "configFile": "/app/playwright.config.ts",
+    "rootDir": "/app/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/app/tests/e2e/utils/global-setup.ts",
+    "globalTeardown": "/app/tests/e2e/utils/global-teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "port": 3000,
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "access_and_gates.spec.ts",
+      "file": "access_and_gates.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Access and Gates Tests",
+          "file": "access_and_gates.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Start Auction disabled when below minimum managers",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "91910e7029255d4e252d-4d766a18a22a39ba7c56",
+              "file": "access_and_gates.spec.ts",
+              "line": 31,
+              "column": 7
+            },
+            {
+              "title": "Start Auction enabled when minimum managers reached",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "91910e7029255d4e252d-8a37e8c296076804fe21",
+              "file": "access_and_gates.spec.ts",
+              "line": 60,
+              "column": 7
+            },
+            {
+              "title": "Route guards redirect unauthenticated users",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "91910e7029255d4e252d-e5e5a94df3e63b656c03",
+              "file": "access_and_gates.spec.ts",
+              "line": 89,
+              "column": 7
+            },
+            {
+              "title": "Non-existent league routes show 404 or redirect safely",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "91910e7029255d4e252d-a953b14f11409a48212d",
+              "file": "access_and_gates.spec.ts",
+              "line": 112,
+              "column": 7
+            },
+            {
+              "title": "League members can access league pages",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "91910e7029255d4e252d-c7d086a622900dd554b5",
+              "file": "access_and_gates.spec.ts",
+              "line": 133,
+              "column": 7
+            },
+            {
+              "title": "Non-league members cannot access league pages",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "91910e7029255d4e252d-ab6f723b5e9ac6526f89",
+              "file": "access_and_gates.spec.ts",
+              "line": 170,
+              "column": 7
+            },
+            {
+              "title": "Commissioner has admin access, members do not",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "91910e7029255d4e252d-e316d4e90b84fd027fcc",
+              "file": "access_and_gates.spec.ts",
+              "line": 199,
+              "column": 7
+            },
+            {
+              "title": "Auction access requires active auction",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "91910e7029255d4e252d-b0343f4b04c2e63c03f1",
+              "file": "access_and_gates.spec.ts",
+              "line": 237,
+              "column": 7
+            },
+            {
+              "title": "Deep link recovery works for valid routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "91910e7029255d4e252d-c91f204558d8e75f4963",
+              "file": "access_and_gates.spec.ts",
+              "line": 267,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "accessibility.spec.js",
+      "file": "accessibility.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Accessibility - Comprehensive Testing",
+          "file": "accessibility.spec.js",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Lighthouse accessibility audit ≥90",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d316df4bad39fab891ed-535497cc9b01b3ba2425",
+              "file": "accessibility.spec.js",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "WCAG contrast checks pass",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d316df4bad39fab891ed-aa31052668a049bf2818",
+              "file": "accessibility.spec.js",
+              "line": 138,
+              "column": 3
+            },
+            {
+              "title": "Keyboard navigation completeness",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d316df4bad39fab891ed-99c833110dc6cf75895a",
+              "file": "accessibility.spec.js",
+              "line": 218,
+              "column": 3
+            },
+            {
+              "title": "Screen reader compatibility",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d316df4bad39fab891ed-ed5e1320115dc88b6a58",
+              "file": "accessibility.spec.js",
+              "line": 310,
+              "column": 3
+            },
+            {
+              "title": "Mobile accessibility compliance",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d316df4bad39fab891ed-e9605016bde158d0f16c",
+              "file": "accessibility.spec.js",
+              "line": 360,
+              "column": 3
+            },
+            {
+              "title": "Focus trap and modal accessibility",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d316df4bad39fab891ed-ab7d0eebee9f511beb99",
+              "file": "accessibility.spec.js",
+              "line": 420,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "api-regression-validation.spec.js",
+      "file": "api-regression-validation.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "API Regression Validation",
+          "file": "api-regression-validation.spec.js",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "UCL Competition Profile - Min=2, Slots=5 Validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d588d151b4b9d5841edb-3556f91ade6c64866d0e",
+              "file": "api-regression-validation.spec.js",
+              "line": 11,
+              "column": 3
+            },
+            {
+              "title": "Roster Calculation Logic - Never Negative",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d588d151b4b9d5841edb-37035c93cf074bcd82eb",
+              "file": "api-regression-validation.spec.js",
+              "line": 33,
+              "column": 3
+            },
+            {
+              "title": "Member Count Gate Logic - Min=2 Validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d588d151b4b9d5841edb-0556481cc54e2d646901",
+              "file": "api-regression-validation.spec.js",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "API Endpoints Health Check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d588d151b4b9d5841edb-5d54d7e111c510a0bf38",
+              "file": "api-regression-validation.spec.js",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "Settings Structure Validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d588d151b4b9d5841edb-a61abbbfcaf27d459c9c",
+              "file": "api-regression-validation.spec.js",
+              "line": 92,
+              "column": 3
+            },
+            {
+              "title": "Calculation Edge Cases - Boundary Validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d588d151b4b9d5841edb-3ee988c944b19771d399",
+              "file": "api-regression-validation.spec.js",
+              "line": 122,
+              "column": 3
+            },
+            {
+              "title": "UCL Specific Requirements Validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d588d151b4b9d5841edb-3b198123a8863e565512",
+              "file": "api-regression-validation.spec.js",
+              "line": 144,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "auction.spec.ts",
+      "file": "auction.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Auction Tests",
+          "file": "auction.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Anti-snipe extends timer when bid placed in final seconds",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0671ecdb228e1389986c-325f1a57560a1b86677c",
+              "file": "auction.spec.ts",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "Simultaneous bids resolve deterministically",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0671ecdb228e1389986c-291e3fc5caec6c5672cf",
+              "file": "auction.spec.ts",
+              "line": 89,
+              "column": 7
+            },
+            {
+              "title": "Safe lot close prevents data corruption",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0671ecdb228e1389986c-740943cb92e9a9bab9b4",
+              "file": "auction.spec.ts",
+              "line": 130,
+              "column": 7
+            },
+            {
+              "title": "Undo disabled once next lot opens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0671ecdb228e1389986c-d6b27c4d25e773f6e60e",
+              "file": "auction.spec.ts",
+              "line": 174,
+              "column": 7
+            },
+            {
+              "title": "Bid validation prevents invalid amounts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0671ecdb228e1389986c-0465eacdd55ed7a6a229",
+              "file": "auction.spec.ts",
+              "line": 229,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "basic-e2e.spec.js",
+      "file": "basic-e2e.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "UCL Auction - Basic E2E Validation",
+          "file": "basic-e2e.spec.js",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "1. Application Loads Successfully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7270ff05b0ced7fc15ab-184e4bb2119f71c8a0ec",
+              "file": "basic-e2e.spec.js",
+              "line": 47,
+              "column": 3
+            },
+            {
+              "title": "2. Authentication UI Present",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7270ff05b0ced7fc15ab-a7df20e1f453e57c0afb",
+              "file": "basic-e2e.spec.js",
+              "line": 69,
+              "column": 3
+            },
+            {
+              "title": "3. Competition Profiles API Working",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7270ff05b0ced7fc15ab-5481a2e2b7554e3d447f",
+              "file": "basic-e2e.spec.js",
+              "line": 90,
+              "column": 3
+            },
+            {
+              "title": "4. UCL Competition Profile Structure",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7270ff05b0ced7fc15ab-a18a55356e3b8773f27d",
+              "file": "basic-e2e.spec.js",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "5. PATCH Endpoint Exists",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7270ff05b0ced7fc15ab-c115644eb9dc1f056340",
+              "file": "basic-e2e.spec.js",
+              "line": 141,
+              "column": 3
+            },
+            {
+              "title": "6. Responsive Design Check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7270ff05b0ced7fc15ab-46089dc649370b3b4fd1",
+              "file": "basic-e2e.spec.js",
+              "line": 163,
+              "column": 3
+            },
+            {
+              "title": "7. Performance Check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7270ff05b0ced7fc15ab-56f9db253c6174fd1882",
+              "file": "basic-e2e.spec.js",
+              "line": 201,
+              "column": 3
+            },
+            {
+              "title": "8. Navigation Structure",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7270ff05b0ced7fc15ab-b30e846972bb172c449e",
+              "file": "basic-e2e.spec.js",
+              "line": 225,
+              "column": 3
+            },
+            {
+              "title": "9. Error Handling",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7270ff05b0ced7fc15ab-7c931746cbc225624539",
+              "file": "basic-e2e.spec.js",
+              "line": 246,
+              "column": 3
+            },
+            {
+              "title": "10. Overall Application Health",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7270ff05b0ced7fc15ab-4910baeda24af175ad4a",
+              "file": "basic-e2e.spec.js",
+              "line": 270,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "config-drift.spec.js",
+      "file": "config-drift.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Config Drift Prevention",
+          "file": "config-drift.spec.js",
+          "line": 13,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Rules Badge displays correct format in components",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6b6ee09b446a613d2552-b2f6c5561241aeeb3f3f",
+              "file": "config-drift.spec.js",
+              "line": 15,
+              "column": 3
+            },
+            {
+              "title": "Check for hardcoded \"3\" values on key pages",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6b6ee09b446a613d2552-2bd182d93ce687cdb62a",
+              "file": "config-drift.spec.js",
+              "line": 55,
+              "column": 3
+            },
+            {
+              "title": "Verify Rules badge format matches specification",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "6b6ee09b446a613d2552-ea7aa187ac370398d418",
+              "file": "config-drift.spec.js",
+              "line": 98,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "core-smoke.spec.ts",
+      "file": "core-smoke.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Core Smoke Test",
+          "file": "core-smoke.spec.ts",
+          "line": 25,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Complete auction flow: create → invite → join → auction → bid → sell",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a1185c8c8a119dd4daa6-824956169c2fdc1743ba",
+              "file": "core-smoke.spec.ts",
+              "line": 95,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "core.smoke.spec.ts",
+      "file": "core.smoke.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Core Smoke Test",
+          "file": "core.smoke.spec.ts",
+          "line": 25,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Complete auction flow: Create → Invite → Join → Start → Nominate → Bid → Sell",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "213d5cbba276d4092737-87fa5ae52721aa393d0d",
+              "file": "core.smoke.spec.ts",
+              "line": 56,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "i18n-validation.spec.js",
+      "file": "i18n-validation.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "i18n Validation - Comprehensive Testing",
+          "file": "i18n-validation.spec.js",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "i18n keys render correctly (no missing string warnings)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0c6612ee2d19d79b2c77-b4152d753780cf9733ab",
+              "file": "i18n-validation.spec.js",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "Key brand messaging renders from i18n",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0c6612ee2d19d79b2c77-6815cb113f245f70ed62",
+              "file": "i18n-validation.spec.js",
+              "line": 108,
+              "column": 3
+            },
+            {
+              "title": "Landing page sections use i18n keys",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0c6612ee2d19d79b2c77-830ea358855ad76b002d",
+              "file": "i18n-validation.spec.js",
+              "line": 155,
+              "column": 3
+            },
+            {
+              "title": "Navigation components use i18n keys",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0c6612ee2d19d79b2c77-1219122bf16357c7150e",
+              "file": "i18n-validation.spec.js",
+              "line": 197,
+              "column": 3
+            },
+            {
+              "title": "Footer and legal content use i18n",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0c6612ee2d19d79b2c77-54536f261fed4deb52d2",
+              "file": "i18n-validation.spec.js",
+              "line": 244,
+              "column": 3
+            },
+            {
+              "title": "Theme toggle and accessibility labels use i18n",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0c6612ee2d19d79b2c77-4e12d63510232dad064d",
+              "file": "i18n-validation.spec.js",
+              "line": 274,
+              "column": 3
+            },
+            {
+              "title": "No raw translation keys visible in UI",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0c6612ee2d19d79b2c77-ec71d65e2bba4f4238ee",
+              "file": "i18n-validation.spec.js",
+              "line": 312,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "landing-page.spec.js",
+      "file": "landing-page.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Landing Page - Comprehensive Testing",
+          "file": "landing-page.spec.js",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Landing page loads correctly with all sections",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-950d2067fc9dcc96137b",
+              "file": "landing-page.spec.js",
+              "line": 53,
+              "column": 3
+            },
+            {
+              "title": "Sticky in-page navigation anchors scroll correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-98b23e8810ac776541ae",
+              "file": "landing-page.spec.js",
+              "line": 102,
+              "column": 3
+            },
+            {
+              "title": "Scroll-spy updates active section highlighting",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-58981c169aa2575ed4b7",
+              "file": "landing-page.spec.js",
+              "line": 171,
+              "column": 3
+            },
+            {
+              "title": "CTAs route to create/join flows correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-322cd155575eb62f4280",
+              "file": "landing-page.spec.js",
+              "line": 215,
+              "column": 3
+            },
+            {
+              "title": "Responsive design and mobile layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-9b9429a5f5c1114e8018",
+              "file": "landing-page.spec.js",
+              "line": 275,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "league-settings-regression.spec.js",
+      "file": "league-settings-regression.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "League Settings Regression Tests",
+          "file": "league-settings-regression.spec.js",
+          "line": 8,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Min=2 Gate: Start Auction Button Logic",
+              "file": "league-settings-regression.spec.js",
+              "line": 17,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Start Auction disabled at 1 member, enabled at 2+ members",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "e58b64c9f063b59549de-46dbc021c6ecc9fbe752",
+                  "file": "league-settings-regression.spec.js",
+                  "line": 18,
+                  "column": 5
+                },
+                {
+                  "title": "Verify league status calculations with different member counts",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "e58b64c9f063b59549de-88a33b417d0d7b033473",
+                  "file": "league-settings-regression.spec.js",
+                  "line": 86,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Slots=5 Display: UI Consistency Tests",
+              "file": "league-settings-regression.spec.js",
+              "line": 105,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Lobby shows 5 slots, Auction shows 5 slots, Roster tracks correctly",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "e58b64c9f063b59549de-65258c951887a45805ef",
+                  "file": "league-settings-regression.spec.js",
+                  "line": 106,
+                  "column": 5
+                },
+                {
+                  "title": "Roster summary API returns correct slot calculations",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "e58b64c9f063b59549de-4d571bbedf0969507bd0",
+                  "file": "league-settings-regression.spec.js",
+                  "line": 161,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Settings Persistence and Consistency",
+              "file": "league-settings-regression.spec.js",
+              "line": 187,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Server responses include correct settings everywhere",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "e58b64c9f063b59549de-f12a94b76bb77f0c9fb4",
+                  "file": "league-settings-regression.spec.js",
+                  "line": 188,
+                  "column": 5
+                },
+                {
+                  "title": "Settings validation prevents invalid configurations",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "e58b64c9f063b59549de-a13b2b91de4b5272b02c",
+                  "file": "league-settings-regression.spec.js",
+                  "line": 224,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Edge Cases and Boundary Conditions",
+              "file": "league-settings-regression.spec.js",
+              "line": 257,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Remaining slots calculation handles edge cases",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "e58b64c9f063b59549de-8aa9555115495ba292e8",
+                  "file": "league-settings-regression.spec.js",
+                  "line": 258,
+                  "column": 5
+                },
+                {
+                  "title": "League member count boundaries",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "e58b64c9f063b59549de-12148c0879dcac98131d",
+                  "file": "league-settings-regression.spec.js",
+                  "line": 278,
+                  "column": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "navigation.spec.js",
+      "file": "navigation.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Navigation Components - Comprehensive Testing",
+          "file": "navigation.spec.js",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "GlobalNavbar dropdown keyboard navigation works",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ce7c070a851ea64285fd-542b94c1ac8168dd58a8",
+              "file": "navigation.spec.js",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "Mobile drawer behaves correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ce7c070a851ea64285fd-cac4bebec24c113e60a7",
+              "file": "navigation.spec.js",
+              "line": 134,
+              "column": 3
+            },
+            {
+              "title": "Focus trap and keyboard accessibility",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ce7c070a851ea64285fd-78b904606e5337997378",
+              "file": "navigation.spec.js",
+              "line": 213,
+              "column": 3
+            },
+            {
+              "title": "ARIA attributes and semantic markup",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ce7c070a851ea64285fd-89ccdcbc4880c73f9521",
+              "file": "navigation.spec.js",
+              "line": 290,
+              "column": 3
+            },
+            {
+              "title": "Theme toggle functionality across contexts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ce7c070a851ea64285fd-bced8df5bbbfc9622f67",
+              "file": "navigation.spec.js",
+              "line": 326,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "navigation.spec.ts",
+      "file": "navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Navigation Tests",
+          "file": "navigation.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Desktop Navigation",
+              "file": "navigation.spec.ts",
+              "line": 16,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Landing page anchor navigation works correctly",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-84da4f540692867c9b31",
+                  "file": "navigation.spec.ts",
+                  "line": 21,
+                  "column": 9
+                },
+                {
+                  "title": "Product dropdown navigation routes correctly",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-b8b403c56eac5bf6c134",
+                  "file": "navigation.spec.ts",
+                  "line": 47,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Mobile Navigation",
+              "file": "navigation.spec.ts",
+              "line": 74,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Mobile hamburger menu works correctly",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-13ede477cf1247e81029",
+                  "file": "navigation.spec.ts",
+                  "line": 79,
+                  "column": 9
+                },
+                {
+                  "title": "Mobile navigation item tap works",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-ee837e02d547dc1f7da6",
+                  "file": "navigation.spec.ts",
+                  "line": 95,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "No Dead Ends & 404 Recovery",
+              "file": "navigation.spec.ts",
+              "line": 117,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "All navigation links have valid destinations",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-acaebbd3dee55644f654",
+                  "file": "navigation.spec.ts",
+                  "line": 118,
+                  "column": 9
+                },
+                {
+                  "title": "404 page shows and allows navigation back",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-94a303b80d3b9c4f6dfb",
+                  "file": "navigation.spec.ts",
+                  "line": 132,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Go to... Menu on /app",
+              "file": "navigation.spec.ts",
+              "line": 146,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Go to dropdown shows appropriate options",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-35eeb63fe2427bc62273",
+                  "file": "navigation.spec.ts",
+                  "line": 147,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Keyboard Navigation",
+              "file": "navigation.spec.ts",
+              "line": 159,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Tab navigation works through navbar elements",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [],
+                      "status": "skipped"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-35ba84dcf91dd77e1494",
+                  "file": "navigation.spec.ts",
+                  "line": 160,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "reconnect-presence-e2e.spec.js",
+      "file": "reconnect-presence-e2e.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Robust Reconnect & Presence System",
+          "file": "reconnect-presence-e2e.spec.js",
+          "line": 52,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should show connection status indicator in auction room",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b28cb3a06e5e15c44e99-d941bdf4f461f7de7d14",
+              "file": "reconnect-presence-e2e.spec.js",
+              "line": 66,
+              "column": 7
+            },
+            {
+              "title": "should automatically reconnect after network interruption",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b28cb3a06e5e15c44e99-7588138dbd95bb07f70d",
+              "file": "reconnect-presence-e2e.spec.js",
+              "line": 84,
+              "column": 7
+            },
+            {
+              "title": "should show exponential backoff during reconnection attempts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b28cb3a06e5e15c44e99-362f6b01c5e4093de998",
+              "file": "reconnect-presence-e2e.spec.js",
+              "line": 113,
+              "column": 7
+            },
+            {
+              "title": "should restore auction state from server snapshot on reconnect",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b28cb3a06e5e15c44e99-7a23377919eb8724c550",
+              "file": "reconnect-presence-e2e.spec.js",
+              "line": 142,
+              "column": 7
+            },
+            {
+              "title": "should track user presence accurately",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b28cb3a06e5e15c44e99-c58a8f9dcc2abfdafcb8",
+              "file": "reconnect-presence-e2e.spec.js",
+              "line": 174,
+              "column": 7
+            },
+            {
+              "title": "should handle reconnection during active bidding",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b28cb3a06e5e15c44e99-a114174e508e89395dc5",
+              "file": "reconnect-presence-e2e.spec.js",
+              "line": 211,
+              "column": 7
+            },
+            {
+              "title": "should handle heartbeat timeouts gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b28cb3a06e5e15c44e99-96260502a1ba456b5cb8",
+              "file": "reconnect-presence-e2e.spec.js",
+              "line": 249,
+              "column": 7
+            },
+            {
+              "title": "should maintain presence across page refresh",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b28cb3a06e5e15c44e99-bfe6738358187437d027",
+              "file": "reconnect-presence-e2e.spec.js",
+              "line": 280,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Connection Error Scenarios",
+          "file": "reconnect-presence-e2e.spec.js",
+          "line": 302,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should show offline status when max reconnect attempts reached",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b28cb3a06e5e15c44e99-09a1e149a0d2401c08a1",
+              "file": "reconnect-presence-e2e.spec.js",
+              "line": 303,
+              "column": 7
+            },
+            {
+              "title": "should handle authentication failures on reconnect",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b28cb3a06e5e15c44e99-3e4e731c04010e6cb46c",
+              "file": "reconnect-presence-e2e.spec.js",
+              "line": 323,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "roster_and_budget.spec.ts",
+      "file": "roster_and_budget.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Roster and Budget Tests",
+          "file": "roster_and_budget.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "League with 5 club slots shows correct remaining count",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8111f99e995f8edd0e55-9a2b417524cbec6152d6",
+              "file": "roster_and_budget.spec.ts",
+              "line": 28,
+              "column": 7
+            },
+            {
+              "title": "Budget decrements exactly by win price",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8111f99e995f8edd0e55-79a9146ef01e82112699",
+              "file": "roster_and_budget.spec.ts",
+              "line": 67,
+              "column": 7
+            },
+            {
+              "title": "Cannot exceed maximum club slots",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8111f99e995f8edd0e55-e0812b9e16f4749888a7",
+              "file": "roster_and_budget.spec.ts",
+              "line": 100,
+              "column": 7
+            },
+            {
+              "title": "Budget remaining updates in real-time during auction",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8111f99e995f8edd0e55-6a4beaedf30d59b6d527",
+              "file": "roster_and_budget.spec.ts",
+              "line": 150,
+              "column": 7
+            },
+            {
+              "title": "Roster displays accurate club information",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8111f99e995f8edd0e55-352ed62a93ef72d8c971",
+              "file": "roster_and_budget.spec.ts",
+              "line": 187,
+              "column": 7
+            },
+            {
+              "title": "Empty roster shows appropriate message",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8111f99e995f8edd0e55-62654b51901089a2d845",
+              "file": "roster_and_budget.spec.ts",
+              "line": 233,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "scoring_ingest.spec.ts",
+      "file": "scoring_ingest.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Scoring Ingest Tests",
+          "file": "scoring_ingest.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Draw result (2-2) gives each owner +3 points",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "607292c9e12c883d7311-1852c8a4ed114b80918c",
+              "file": "scoring_ingest.spec.ts",
+              "line": 31,
+              "column": 7
+            },
+            {
+              "title": "Re-posting same result does not double score",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "607292c9e12c883d7311-a663fa4d40998344ba5a",
+              "file": "scoring_ingest.spec.ts",
+              "line": 84,
+              "column": 7
+            },
+            {
+              "title": "Win result (1-0) gives winner +4 points",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "607292c9e12c883d7311-868a4eb69226c08655d5",
+              "file": "scoring_ingest.spec.ts",
+              "line": 120,
+              "column": 7
+            },
+            {
+              "title": "Loss result (0-1) gives loser 0 points",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "607292c9e12c883d7311-cb04108685354b2c15cb",
+              "file": "scoring_ingest.spec.ts",
+              "line": 172,
+              "column": 7
+            },
+            {
+              "title": "Leaderboard shows correct ranking after multiple results",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "607292c9e12c883d7311-d048361c46bdf869ba14",
+              "file": "scoring_ingest.spec.ts",
+              "line": 205,
+              "column": 7
+            },
+            {
+              "title": "Invalid match result is rejected",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "607292c9e12c883d7311-680a5fe0eee078b88d96",
+              "file": "scoring_ingest.spec.ts",
+              "line": 254,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "simplified-e2e.spec.js",
+      "file": "simplified-e2e.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "UCL Auction - Core User Flows",
+          "file": "simplified-e2e.spec.js",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "1. Application Loads and Authentication UI Works",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "19f993f10e5b4a8ca2f0-35322f29256bdf07712c",
+              "file": "simplified-e2e.spec.js",
+              "line": 50,
+              "column": 3
+            },
+            {
+              "title": "2. Navigation and Page Structure",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "19f993f10e5b4a8ca2f0-946c476e2f63601cc3db",
+              "file": "simplified-e2e.spec.js",
+              "line": 74,
+              "column": 3
+            },
+            {
+              "title": "3. API Endpoints Accessibility",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "19f993f10e5b4a8ca2f0-e96b40935d48bf874cc3",
+              "file": "simplified-e2e.spec.js",
+              "line": 99,
+              "column": 3
+            },
+            {
+              "title": "4. Competition Profiles Integration",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "19f993f10e5b4a8ca2f0-be42d2dc39d9dd8819b3",
+              "file": "simplified-e2e.spec.js",
+              "line": 121,
+              "column": 3
+            },
+            {
+              "title": "5. Responsive Design and Mobile Compatibility",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "19f993f10e5b4a8ca2f0-52fb8701b2fdaee017d8",
+              "file": "simplified-e2e.spec.js",
+              "line": 154,
+              "column": 3
+            },
+            {
+              "title": "6. Performance and Load Times",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "19f993f10e5b4a8ca2f0-38b4b439ed4cde90071b",
+              "file": "simplified-e2e.spec.js",
+              "line": 188,
+              "column": 3
+            },
+            {
+              "title": "7. Error Handling and Edge Cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "19f993f10e5b4a8ca2f0-e0951a97b33c07cd8c63",
+              "file": "simplified-e2e.spec.js",
+              "line": 213,
+              "column": 3
+            },
+            {
+              "title": "8. Security Headers and Basic Security",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "19f993f10e5b4a8ca2f0-2f9c5c3b3b460fd3c454",
+              "file": "simplified-e2e.spec.js",
+              "line": 239,
+              "column": 3
+            },
+            {
+              "title": "9. Database Integration Verification",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "19f993f10e5b4a8ca2f0-d8670d397203606fefde",
+              "file": "simplified-e2e.spec.js",
+              "line": 265,
+              "column": 3
+            },
+            {
+              "title": "10. Deployment and Environment Verification",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "19f993f10e5b4a8ca2f0-8b57e54cff2d56624266",
+              "file": "simplified-e2e.spec.js",
+              "line": 290,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ucl-auction-e2e.spec.js",
+      "file": "ucl-auction-e2e.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "UCL Auction E2E Test Suite",
+          "file": "ucl-auction-e2e.spec.js",
+          "line": 15,
+          "column": 6,
+          "specs": [
+            {
+              "title": "1. Auth: Magic Link Login Works for Each Test User",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-533fa5b88204fa4a92a0",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 81,
+              "column": 3
+            },
+            {
+              "title": "2. Commissioner Setup: League Created with Settings and Guards",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-8521f07426b91251badc",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 104,
+              "column": 3
+            },
+            {
+              "title": "3. Member Invitations and Join Process",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-a9a835ea209b1b7d1156",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 136,
+              "column": 3
+            },
+            {
+              "title": "4. Auction Start and Nomination Order",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-a7eac21d7ed01fe8db10",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 175,
+              "column": 3
+            },
+            {
+              "title": "5. Real-time Bidding and Anti-snipe",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-d4167c671b4893684b16",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 206,
+              "column": 3
+            },
+            {
+              "title": "6. Budget Guard and Validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-84eab764a5d30e5be581",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 253,
+              "column": 3
+            },
+            {
+              "title": "7. Lot Closure and Ownership Transfer",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-abdea28367ec6717895f",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 288,
+              "column": 3
+            },
+            {
+              "title": "8. Club Slots Cap Enforcement",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-bc878b30a4f1b32e92b5",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 323,
+              "column": 3
+            },
+            {
+              "title": "9. Pause/Resume Auction with Timer Monotonicity",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-4559a0959f8abb155ec2",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 359,
+              "column": 3
+            },
+            {
+              "title": "10. Scoring via API with Idempotency",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-64af0ee0b5401ac8e3a9",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 400,
+              "column": 3
+            },
+            {
+              "title": "11. Leaderboard and Data Consistency",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-61e77fcc49a4b188d3a9",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 458,
+              "column": 3
+            },
+            {
+              "title": "12. Access Control and Security",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "56c4a65f1ee674d19688-ace8e2cc7ec523f9ea64",
+              "file": "ucl-auction-e2e.spec.js",
+              "line": 491,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-26T11:03:10.134Z",
+    "duration": 2183.666,
+    "expected": 0,
+    "skipped": 119,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
