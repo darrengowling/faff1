@@ -1,0 +1,47 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - region "Notifications alt+T"
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - button "Friends of PIFA" [ref=e7] [cursor=pointer]:
+          - img [ref=e9] [cursor=pointer]
+          - generic [ref=e15] [cursor=pointer]: Friends of PIFA
+        - navigation [ref=e16]:
+          - button "Product" [ref=e18] [cursor=pointer]:
+            - generic [ref=e19] [cursor=pointer]: Product
+            - img [ref=e20] [cursor=pointer]
+          - button "How it Works" [ref=e22] [cursor=pointer]
+          - button "Why FoP" [ref=e23] [cursor=pointer]
+          - button "FAQ" [ref=e24] [cursor=pointer]
+        - generic [ref=e25]:
+          - button "Sign In" [ref=e26] [cursor=pointer]
+          - button "Get Started" [ref=e27] [cursor=pointer]
+          - button "Switch to dark mode" [ref=e28] [cursor=pointer]:
+            - generic [ref=e29] [cursor=pointer]:
+              - img
+      - link "Skip to main content" [ref=e30] [cursor=pointer]:
+        - /url: "#main-content"
+    - main [ref=e31]:
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - img [ref=e37]
+            - generic [ref=e42]:
+              - generic [ref=e43]: Friends of PIFA
+              - generic [ref=e44]: Sports gaming with friends. No gambling. All strategy.
+          - heading "Friends of PIFA" [level=3] [ref=e45]
+          - paragraph [ref=e46]: Enter your email to get started
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - generic [ref=e50]: Email
+            - textbox "Email" [ref=e51]: commish@test.local
+          - button "Send Magic Link" [ref=e52] [cursor=pointer]
+  - link "Emergent platform logo Made with Emergent" [ref=e53] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e54] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e55] [cursor=pointer]
+      - paragraph [ref=e56] [cursor=pointer]: Made with Emergent
+```
