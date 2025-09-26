@@ -278,51 +278,95 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </Button>
 
-      {isOpen && selectedLeague && (
+      {isOpen && enabledItems.length > 0 && (
         <div
           className="absolute top-full left-0 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 min-w-64"
           role="menu"
           aria-label="Navigation menu"
         >
-          {enabledItems.map((item, index) => {
+          {visibleItems.map((item, index) => {
             const Icon = item.icon;
-            const isFocused = index === focusedIndex;
+            const isFocused = index === focusedIndex && item.enabled;
             const isLastSelection = item.id === lastSelection;
+            const showItemTooltip = showTooltip?.itemId === item.id;
             
             return (
-              <button
-                key={item.id}
-                onClick={() => handleSelect(item)}
-                onMouseEnter={() => setFocusedIndex(index)}
-                className={`w-full flex items-start space-x-3 px-4 py-3 text-left hover:bg-blue-50 transition-colors ${
-                  isFocused ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
-                } ${isLastSelection ? 'bg-blue-25 border-l-2 border-blue-500' : ''}`}
-                role="menuitem"
-                tabIndex={isFocused ? 0 : -1}
-                aria-describedby={`menu-item-${item.id}-desc`}
-              >
-                <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
-                  isFocused ? 'text-blue-600' : 'text-gray-400'
-                }`} />
-                <div className="flex-1">
-                  <div className="font-medium flex items-center">
-                    {item.label}
-                    {isLastSelection && (
-                      <span className="ml-2 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">
-                        Last visited
-                      </span>
-                    )}
+              <div key={item.id} className="relative">
+                <button
+                  onClick={() => handleSelect(item)}
+                  onMouseEnter={() => handleItemHover(item, index)}
+                  onMouseLeave={handleItemLeave}
+                  disabled={!item.enabled}
+                  className={`w-full flex items-start space-x-3 px-4 py-3 text-left transition-colors ${
+                    item.enabled 
+                      ? `hover:bg-blue-50 cursor-pointer ${isFocused ? 'bg-blue-50 text-blue-700' : 'text-gray-700'}`
+                      : 'text-gray-400 cursor-not-allowed bg-gray-25'
+                  } ${isLastSelection && item.enabled ? 'bg-blue-25 border-l-2 border-blue-500' : ''}`}
+                  role="menuitem"
+                  tabIndex={isFocused ? 0 : -1}
+                  aria-describedby={`menu-item-${item.id}-desc`}
+                  aria-disabled={!item.enabled}
+                >
+                  <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
+                    item.enabled 
+                      ? (isFocused ? 'text-blue-600' : 'text-gray-400')
+                      : 'text-gray-300'
+                  }`} />
+                  <div className="flex-1">
+                    <div className="font-medium flex items-center">
+                      {item.label}
+                      {isLastSelection && item.enabled && (
+                        <span className="ml-2 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">
+                          Last visited
+                        </span>
+                      )}
+                      {!item.enabled && (
+                        <HelpCircle className="w-4 h-4 ml-2 text-gray-400" />
+                      )}
+                    </div>
+                    <div 
+                      id={`menu-item-${item.id}-desc`}
+                      className="text-xs text-gray-500 mt-0.5"
+                    >
+                      {item.enabled ? item.description : (item.tooltip || 'Not available')}
+                    </div>
                   </div>
-                  <div 
-                    id={`menu-item-${item.id}-desc`}
-                    className="text-xs text-gray-500 mt-0.5"
-                  >
-                    {item.description}
+                </button>
+                
+                {/* Tooltip for disabled items */}
+                {showItemTooltip && item.tooltip && (
+                  <div className="absolute left-full top-0 ml-2 z-60 bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap shadow-lg">
+                    {item.tooltip}
+                    <div className="absolute right-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-r-gray-900"></div>
                   </div>
-                </div>
-              </button>
+                )}
+              </div>
             );
           })}
+          
+          {/* Always show create league option if no primary options are available */}
+          {enabledItems.length === 0 && (
+            <div className="px-4 py-6 text-center">
+              <div className="text-gray-500 text-sm mb-3">
+                No league selected. Create or join a league to access navigation options.
+              </div>
+              <Button
+                size="sm"
+                onClick={() => {
+                  setIsOpen(false);
+                  // Trigger create league action
+                  const createButton = document.querySelector('button:has-text("Create League")');
+                  if (createButton) {
+                    createButton.click();
+                  }
+                }}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                <Plus className="w-4 h-4 mr-1" />
+                Create League
+              </Button>
+            </div>
+          )}
         </div>
       )}
 
