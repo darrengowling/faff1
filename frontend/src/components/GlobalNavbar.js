@@ -211,35 +211,17 @@ const GlobalNavbar = () => {
           
           {/* Center - Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-2" role="navigation">
-            {navItems.map((item) => {
-              const isActive = item.type === 'dropdown' 
-                ? activeDropdown === item.id
-                : item.type === 'anchor' 
-                  ? activeSection === item.id
-                  : false;
-
-              if (item.type === 'dropdown') {
-                return (
-                  <DesktopDropdown 
-                    key={item.id} 
-                    item={item} 
-                    isActive={isActive}
-                  />
-                );
-              }
-
-              return (
-                <button
-                  key={item.id}
-                  onClick={item.action}
-                  className={`px-3 py-2 text-sm font-medium transition-colors rounded-md hover:text-blue-600 hover:bg-blue-50 ${
-                    isActive ? 'text-blue-600 bg-blue-50' : 'text-gray-700'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
+            {/* Primary Navigation Links */}
+            <PrimaryNavigation onItemClick={handleNavItemClick} />
+            
+            {/* Product Dropdown */}
+            <ProductDropdownMenu
+              isOpen={productDropdownOpen}
+              onToggle={handleProductDropdownToggle}
+              focusedIndex={focusedIndex}
+              onFocusChange={setFocusedIndex}
+              onKeyDown={handleDropdownKeyDown}
+            />
           </nav>
 
           {/* Right - Auth Actions */}
