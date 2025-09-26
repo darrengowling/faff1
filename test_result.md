@@ -102,7 +102,31 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "League creation form was preventing users from creating tournaments with 2 managers, forcing minimum of 4 managers despite previous changes to allow minimum of 2"
+user_problem_statement: "Complete data-testid integration for all interactive elements and implement comprehensive Playwright test suite for robust end-to-end testing"
+
+  - task: "Complete AuctionRoom data-testid Integration"
+    implemented: false
+    working: false
+    file: "/app/frontend/src/components/AuctionRoom.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Need to add remaining data-testid attributes to AuctionRoom.js: auctionTopBidder (line ~801), yourBudget (line ~929), yourSlotsRemaining (line ~933). Most auction room test IDs are already implemented."
+
+  - task: "Implement Comprehensive Playwright Test Suite"
+    implemented: false
+    working: false
+    file: "/app/tests/e2e/auction.spec.ts, /app/tests/e2e/roster_and_budget.spec.ts, /app/tests/e2e/scoring_ingest.spec.ts, /app/tests/e2e/access_and_gates.spec.ts"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Need to implement comprehensive Playwright test files using TESTIDS constants: auction.spec.ts (anti-snipe, simultaneous bids, safe close), roster_and_budget.spec.ts (club slot management, budget decrement), scoring_ingest.spec.ts (scoring ingestion, leaderboard updates), access_and_gates.spec.ts (auction start gates, route guards)"
 
   - task: "League Creation Minimum Manager Validation Fix"
     implemented: true
