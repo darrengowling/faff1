@@ -64,6 +64,10 @@ export const TESTIDS = {
   homeGotoSettings: 'home-goto-settings',
   createLeagueBtn: 'create-league-btn',
   
+  // Navigation & Breadcrumbs
+  backButton: 'back-button',
+  backToHomeButton: 'back-to-home-button',
+  
   // League creation
   createDialog: 'create-league-dialog',
   createNameInput: 'create-name',
