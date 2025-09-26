@@ -256,9 +256,9 @@ const MyClubs = ({ user, token }) => {
                 onNavigateToAuction={() => navigate(`/auction/${leagueId}`)}
               />
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid={TESTIDS.rosterList}>
                 {owned_clubs.map((club) => (
-                  <Card key={club.club_id} className="hover:shadow-lg transition-shadow">
+                  <Card key={club.club_id} className="hover:shadow-lg transition-shadow" data-testid={TESTIDS.rosterItem}>
                     <CardHeader className="pb-4">
                       <div className="flex items-center justify-between">
                         <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${getClubGradient(club.club_country)} flex items-center justify-center`}>
