@@ -704,6 +704,10 @@ async def pause_auction(
             return {"message": "Auction paused successfully"}
         else:
             raise HTTPException(status_code=400, detail="Failed to pause auction")
+    except HTTPException:
+        raise
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         logger.error(f"Failed to pause auction: {e}")
         raise HTTPException(status_code=500, detail=str(e))
