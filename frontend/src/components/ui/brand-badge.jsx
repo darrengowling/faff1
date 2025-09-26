@@ -126,6 +126,7 @@ export const HeaderBrand = ({ onClick, className, ...props }) => (
     size="md" 
     onClick={onClick}
     className={className}
+    data-testid={TESTIDS.HeaderBrand}
     {...props}
   />
 );
