@@ -11,7 +11,8 @@
     "test:a11y": "playwright test tests/accessibility/a11y-audit.spec.js --reporter=list",
     "test:usability": "playwright test tests/usability/persona-usability.spec.js --reporter=list",
     "test:a11y:headed": "playwright test tests/accessibility/a11y-audit.spec.js --headed",
-    "test:usability:headed": "playwright test tests/usability/persona-usability.spec.js --headed"
+    "test:usability:headed": "playwright test tests/usability/persona-usability.spec.js --headed",
+    "test:core-smoke": "playwright test tests/e2e/core-smoke.spec.ts --reporter=list"
   },
   "keywords": [],
   "author": "",
