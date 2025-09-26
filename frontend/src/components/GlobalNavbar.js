@@ -467,7 +467,7 @@ const GlobalNavbar = () => {
         >
           <div
             ref={mobileDrawerRef}
-            className="bg-white w-full max-w-sm h-full shadow-lg overflow-y-auto"
+            className="bg-theme-surface w-full max-w-sm h-full shadow-lg overflow-y-auto"
             id="mobile-navigation"
             role="navigation"
             aria-label="Mobile navigation menu"
