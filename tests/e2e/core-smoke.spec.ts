@@ -98,7 +98,7 @@ test.describe('Core Smoke Test', () => {
 
     // Step 1: Commissioner login and create league
     console.log('📝 Step 1: Commissioner creates league...');
-    await loginUser(commissionerPage, USERS.commissioner.email);
+    await loginTestOnly(commissionerPage, USERS.commissioner.email);
     
     const leagueData = await createLeague(commissionerPage, LEAGUE_SETTINGS);
     leagueId = leagueData.leagueId;
