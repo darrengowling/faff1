@@ -389,6 +389,9 @@ const SimpleLandingPage = () => {
       
       {/* Bottom padding for sticky CTA on mobile */}
       <div className="h-20 md:hidden" />
+
+      {/* Footer */}
+      <LandingFooter />
     </div>
   );
 };
