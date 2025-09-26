@@ -282,7 +282,7 @@ const MyClubs = ({ user, token }) => {
                       <div className="space-y-3">
                         <div className="flex justify-between items-center">
                           <span className="text-gray-600">Purchase Price</span>
-                          <span className="font-bold text-green-600">
+                          <span className="font-bold text-green-600" data-testid={TESTIDS.rosterItemPrice}>
                             {club.price_paid} credits
                           </span>
                         </div>
