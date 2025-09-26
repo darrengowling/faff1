@@ -151,4 +151,13 @@ export const CompactBrand = ({ className }) => (
   />
 );
 
+export const FooterBrand = ({ className }) => (
+  <BrandBadge 
+    variant="full" 
+    size="sm"
+    showTagline={false}
+    className={className}
+  />
+);
+
 export default BrandBadge;
