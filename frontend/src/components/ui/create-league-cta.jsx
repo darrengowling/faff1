@@ -100,7 +100,7 @@ export const SecondaryCreateLeagueCTA = ({
       variant="outline"
       size="sm"
       className={className}
-      data-testid={TESTIDS.homeCreateLeagueBtn}
+      data-testid={TESTIDS.createLeagueBtn}
       aria-label={
         isLoading 
           ? "Loading leagues data, create league will be available shortly" 
