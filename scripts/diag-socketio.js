@@ -45,6 +45,7 @@ async function testSocketTransport(transport) {
 async function runSocketDiagnostics() {
   console.log('🔌 Socket.IO Diagnostics Starting...');
   console.log(`Backend URL: ${BACKEND_URL}`);
+  console.log(`Socket Path: ${SOCKET_PATH}`);
   console.log(`Transports: ${TRANSPORTS.join(', ')}`);
   console.log('');
   
