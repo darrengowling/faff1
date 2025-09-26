@@ -663,6 +663,10 @@ async def place_bid_http(
             return result
         else:
             raise HTTPException(status_code=400, detail=result["error"])
+    except HTTPException:
+        raise
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         logger.error(f"Failed to place bid: {e}")
         raise HTTPException(status_code=500, detail=str(e))
