@@ -14,13 +14,23 @@ export const TESTIDS = {
   AuthBrand: 'auth-brand',
   MinimalBrand: 'minimal-brand',
   navDropdownProduct: 'nav-dd-product',
-  navDropdownItemAuction: 'nav-dd-auction',
-  navDropdownItemRoster: 'nav-dd-roster',
-  navDropdownItemFixtures: 'nav-dd-fixtures',
-  navDropdownItemLeaderboard: 'nav-dd-leaderboard',
-  navDropdownItemSettings: 'nav-dd-settings',
+  navDdAuction: 'nav-dd-auction',
+  navDdRoster: 'nav-dd-roster',
+  navDdFixtures: 'nav-dd-fixtures',
+  navDdLeaderboard: 'nav-dd-leaderboard',
+  navDdSettings: 'nav-dd-settings',
+  navDropdownItemAuction: 'nav-dd-auction', // Legacy alias
+  navDropdownItemRoster: 'nav-dd-roster', // Legacy alias
+  navDropdownItemFixtures: 'nav-dd-fixtures', // Legacy alias
+  navDropdownItemLeaderboard: 'nav-dd-leaderboard', // Legacy alias
+  navDropdownItemSettings: 'nav-dd-settings', // Legacy alias
   navHamburger: 'nav-hamburger',
   navMobileDrawer: 'nav-mobile-drawer',
+  navMobileItemAuction: 'nav-mobile-item-auction-room',
+  navMobileItemRoster: 'nav-mobile-item-my-roster',
+  navMobileItemFixtures: 'nav-mobile-item-fixtures',
+  navMobileItemLeaderboard: 'nav-mobile-item-leaderboard',
+  navMobileItemSettings: 'nav-mobile-item-league-admin',
   navSignIn: 'nav-sign-in',
   navGetStarted: 'nav-get-started',
   
