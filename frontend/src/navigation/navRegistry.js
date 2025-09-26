@@ -209,7 +209,7 @@ export const footerNavigation = [
 ];
 
 // Authentication Navigation (login/logout actions)
-export const authNavigation: NavigationItem[] = [
+export const authNavigation = [
   {
     id: 'sign-in',
     label: 'Sign In',
