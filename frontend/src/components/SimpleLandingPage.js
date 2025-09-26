@@ -30,7 +30,7 @@ const SimpleLandingPage = () => {
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-theme-text mb-6 leading-tight">
               {t('branding.heroTitle')}
               <span className="text-blue-600 block">{t('branding.heroTitleAccent')}</span>
             </h1>
