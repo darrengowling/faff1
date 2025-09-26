@@ -88,7 +88,8 @@ export const productDropdownNavigation = [
       return !!(appState?.selectedLeague && appState?.isAuthenticated);
     },
     visible: (user, appState) => {
-      return !!(appState?.isAuthenticated);
+      // Only show if user is authenticated AND has a selected league
+      return !!(appState?.selectedLeague && appState?.isAuthenticated);
     }
   },
   {
@@ -101,7 +102,8 @@ export const productDropdownNavigation = [
       return !!(appState?.selectedLeague && appState?.isAuthenticated);
     },
     visible: (user, appState) => {
-      return !!(appState?.isAuthenticated);
+      // Only show if user is authenticated AND has a selected league
+      return !!(appState?.selectedLeague && appState?.isAuthenticated);
     }
   },
   {
@@ -114,7 +116,8 @@ export const productDropdownNavigation = [
       return !!(appState?.selectedLeague && appState?.isAuthenticated);
     },
     visible: (user, appState) => {
-      return !!(appState?.isAuthenticated);
+      // Only show if user is authenticated AND has a selected league
+      return !!(appState?.selectedLeague && appState?.isAuthenticated);
     }
   },
   {
@@ -127,7 +130,8 @@ export const productDropdownNavigation = [
       return !!(appState?.selectedLeague && appState?.isAuthenticated);
     },
     visible: (user, appState) => {
-      return !!(appState?.isAuthenticated);
+      // Only show if user is authenticated AND has a selected league
+      return !!(appState?.selectedLeague && appState?.isAuthenticated);
     }
   },
   {
@@ -145,7 +149,13 @@ export const productDropdownNavigation = [
       );
     },
     visible: (user, appState) => {
-      return !!(appState?.isAuthenticated);
+      // Only show if user is authenticated AND is commissioner of selected league
+      const league = appState?.selectedLeague;
+      return !!(
+        league && 
+        appState?.isAuthenticated && 
+        user?.id === league.commissioner_id
+      );
     }
   }
 ];
