@@ -23,6 +23,7 @@ import DiagnosticPage from './components/DiagnosticPage';
 import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage';
 import SimpleLandingPage from './components/SimpleLandingPage';
+import CreateLeagueWizard from './components/CreateLeagueWizard';
 import { SafeRoute } from './components/routing/RouteGuards';
 import GlobalNavbar from './components/GlobalNavbar';
 import StickyPageNav from './components/StickyPageNav';
