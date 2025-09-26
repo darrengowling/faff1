@@ -118,7 +118,7 @@ export const MobileNav = ({ user, onLogout }) => {
                 </Button>
               );
             })}
-          </nav>
+          </div>
 
           {/* Logout */}
           {user && (
