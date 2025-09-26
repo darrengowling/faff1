@@ -49,8 +49,7 @@ class ComprehensiveBackendTester:
         url = f"{self.api_url}/{endpoint}"
         headers = {'Content-Type': 'application/json'}
         
-        # Use provided token or default commissioner token
-        auth_token = token or self.commissioner_token
+        auth_token = token or self.token
         if auth_token:
             headers['Authorization'] = f'Bearer {auth_token}'
             
@@ -61,6 +60,8 @@ class ComprehensiveBackendTester:
                 response = requests.post(url, json=data, headers=headers, timeout=15)
             elif method == 'PUT':
                 response = requests.put(url, json=data, headers=headers, timeout=15)
+            elif method == 'PATCH':
+                response = requests.patch(url, json=data, headers=headers, timeout=15)
             elif method == 'DELETE':
                 response = requests.delete(url, headers=headers, timeout=15)
             
