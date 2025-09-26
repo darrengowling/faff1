@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { HeaderBrand } from './ui/brand-badge';
+import { IconThemeToggle } from './ui/theme-toggle';
 import { useAuth } from '../App';
 
 const GlobalNavbar = () => {
