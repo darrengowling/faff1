@@ -373,15 +373,46 @@ export const ProductDropdownMenu = ({
 };
 
 // Auth navigation buttons
-export const AuthNavigation = ({ className, variant = 'desktop', onItemClick }) => (
-  <NavigationMenu
-    menuType="globalNavbar"
-    section="auth"
-    variant={variant}
-    className={className}
-    onItemClick={onItemClick}
-  />
-);
+export const AuthNavigation = ({ className, variant = 'desktop', onItemClick }) => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  
+  if (user) {
+    return (
+      <div className={`flex items-center space-x-3 ${className}`}>
+        <span className="text-sm text-gray-600">
+          Welcome, {user.name || user.email}
+        </span>
+        <button
+          onClick={() => navigate('/app')}
+          className="px-3 py-2 text-sm font-medium bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          data-testid={TESTIDS.navDashboard}
+        >
+          Dashboard
+        </button>
+      </div>
+    );
+  }
+  
+  return (
+    <div className={`flex items-center space-x-3 ${className}`}>
+      <button
+        onClick={() => navigate('/login')}
+        className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600"
+        data-testid={TESTIDS.navSignIn}
+      >
+        Sign In
+      </button>
+      <button
+        onClick={() => navigate('/login')}
+        className="px-3 py-2 text-sm font-medium bg-blue-600 text-white rounded-md hover:bg-blue-700"
+        data-testid={TESTIDS.navGetStarted}
+      >
+        Get Started
+      </button>
+    </div>
+  );
+};
 
 // Footer navigation
 export const FooterNavigation = ({ className, onItemClick }) => (
