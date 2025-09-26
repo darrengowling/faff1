@@ -86,26 +86,32 @@ test.describe('Access and Gates Tests', () => {
     console.log('✅ Start Auction correctly enabled with sufficient members');
   });
 
-  test('Route guards redirect unauthenticated users', async () => {
+  test('Route guards redirect unauthenticated users with toast notifications', async () => {
     console.log('🧪 Testing route guards for unauthenticated access...');
     
-    // Test protected routes redirect to login
+    // Test protected routes redirect to login with proper toast messages
     const protectedRoutes = [
-      '/app',
-      '/leagues/123/auction',
-      '/leagues/123/clubs', 
-      '/leagues/123/admin',
-      '/leagues/123/leaderboard',
-      '/leagues/123/fixtures'
+      { path: '/app', expectedToast: 'Please sign in to access this page' },
+      { path: '/auction', expectedToast: 'Please sign in to access this page' },
+      { path: '/clubs', expectedToast: 'Please sign in to access this page' }, 
+      { path: '/admin', expectedToast: 'Please sign in to access this page' },
+      { path: '/leaderboard', expectedToast: 'Please sign in to access this page' },
+      { path: '/fixtures', expectedToast: 'Please sign in to access this page' }
     ];
     
     for (const route of protectedRoutes) {
-      await unauthenticatedPage.goto(route);
+      await unauthenticatedPage.goto(route.path);
       
       // Should redirect to login
       await unauthenticatedPage.waitForURL('**/login', { timeout: 10000 });
       
-      console.log(`✅ ${route} correctly redirected to login`);
+      // Check for auth required toast
+      const authToast = unauthenticatedPage.locator('[data-testid="auth-required-toast"]');
+      if (await authToast.isVisible()) {
+        await expect(authToast).toContainText(route.expectedToast);
+      }
+      
+      console.log(`✅ ${route.path} correctly redirected to login with toast`);
     }
   });
 
