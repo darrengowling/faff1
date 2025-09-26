@@ -26,7 +26,7 @@ export const EmptyState = ({
   };
 
   return (
-    <Card className={`${className}`}>
+    <Card className={`${className}`} data-testid={TESTIDS.emptyState}>
       <CardContent className={`text-center ${sizeClasses[variant]}`}>
         {Icon && (
           <Icon className={`${iconSizes[variant]} text-gray-400 mx-auto mb-4`} aria-hidden="true" />
