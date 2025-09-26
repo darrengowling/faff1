@@ -323,7 +323,7 @@ const Leaderboard = ({ user, token }) => {
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
-                          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-gray-200">
+                          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-gray-200" data-testid={TESTIDS.leaderboardPosition}>
                             {getPositionIcon(manager.position)}
                           </div>
                           <div>
