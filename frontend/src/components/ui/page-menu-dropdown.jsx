@@ -372,8 +372,15 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
 
       {/* Screen reader status */}
       <div className="sr-only" aria-live="polite" aria-atomic="true">
-        {isOpen ? `Navigation menu opened with ${enabledItems.length} options` : ''}
+        {isOpen ? `Navigation menu opened with ${enabledItems.length} enabled options and ${visibleItems.length - enabledItems.length} disabled options` : ''}
       </div>
+      
+      {/* Tooltip container for screen readers */}
+      {showTooltip && (
+        <div className="sr-only" aria-live="polite">
+          {showTooltip.text}
+        </div>
+      )}
     </div>
   );
 };
