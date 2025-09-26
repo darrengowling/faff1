@@ -234,6 +234,65 @@ async def get_me(current_user: UserResponse = Depends(get_current_user)):
     """Get current user info"""
     return current_user
 
+# Test-only login endpoint (DO NOT USE IN PRODUCTION)
+@api_router.post("/auth/test-login")
+async def test_login(request: dict):
+    """
+    TEST-ONLY LOGIN ENDPOINT
+    Creates session token for testing purposes without magic link verification.
+    WARNING: Only enabled when ALLOW_TEST_LOGIN=true environment variable is set.
+    """
+    # Check if test login is allowed
+    allow_test_login = os.getenv("ALLOW_TEST_LOGIN", "false").lower() == "true"
+    
+    if not allow_test_login:
+        logger.warning("⚠️  TEST LOGIN ATTEMPTED BUT DISABLED - /auth/test-login endpoint called but ALLOW_TEST_LOGIN=false")
+        raise HTTPException(
+            status_code=403, 
+            detail="Test login endpoint is disabled. Set ALLOW_TEST_LOGIN=true to enable."
+        )
+    
+    # Log warning about test login usage
+    logger.warning("🧪 TEST LOGIN USED - /auth/test-login endpoint called for email: %s", request.get('email', 'unknown'))
+    
+    # Validate request
+    email = request.get('email')
+    if not email:
+        raise HTTPException(status_code=400, detail="Email is required")
+    
+    # Check if user exists, if not create them
+    user = await db.users.find_one({"email": email})
+    
+    if not user:
+        # Create new user for testing
+        new_user = User(
+            email=email,
+            display_name=email.split('@')[0],  # Default display name
+            verified=True  # Auto-verify for test users
+        )
+        user_dict = new_user.dict(by_alias=True)
+        await db.users.insert_one(user_dict)
+        user = user_dict
+        logger.info("🧪 TEST USER CREATED: %s", email)
+    
+    # Create access token
+    access_token = create_access_token(data={"sub": user["_id"]})
+    
+    # Create user response
+    user_response = UserResponse(
+        id=user["_id"],
+        email=user["email"],
+        display_name=user["display_name"],
+        verified=True,
+        created_at=user["created_at"]
+    )
+    
+    return {
+        "access_token": access_token,
+        "user": user_response,
+        "message": "Test login successful (TEST MODE ONLY)"
+    }
+
 # User Routes
 @api_router.get("/users/{user_id}", response_model=UserResponse)
 async def get_user(user_id: str, current_user: UserResponse = Depends(get_current_verified_user)):
