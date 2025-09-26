@@ -739,6 +739,36 @@ const AuctionRoom = ({ user, token }) => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Main Auction Area */}
           <div className="lg:col-span-3 space-y-6">
+            {/* Auction Status Header */}
+            <div className="flex justify-between items-center bg-gray-800 border border-gray-700 rounded-lg p-4">
+              <div className="flex items-center space-x-4">
+                <Badge 
+                  variant="outline" 
+                  className="text-green-400 border-green-400"
+                  data-testid={TESTIDS.auctionStatus}
+                >
+                  {auctionStatus === 'live' ? 'LIVE AUCTION' : auctionStatus.toUpperCase()}
+                </Badge>
+                <div className="text-gray-300">
+                  <span className="text-sm text-gray-400">Lot</span>
+                  <span className="ml-2 text-lg font-bold" data-testid={TESTIDS.lotNumber}>
+                    {auctionState?.lots?.findIndex(lot => lot._id === currentLot?._id) + 1 || 1}
+                    <span className="text-gray-400"> / {auctionState?.lots?.length || 0}</span>
+                  </span>
+                </div>
+              </div>
+              {isCommissioner && (
+                <Button 
+                  size="sm"
+                  variant="outline"
+                  data-testid={TESTIDS.nextLotButton}
+                  className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white"
+                >
+                  Next Lot →
+                </Button>
+              )}
+            </div>
+
             {/* Current Lot */}
             {currentLot ? (
               <Card className="bg-gray-800 border-gray-700">
