@@ -159,4 +159,12 @@ export const CompactBrand = ({ className }) => (
   />
 );
 
+export const MinimalBrand = ({ className }) => (
+  <BrandBadge 
+    variant="compact" 
+    size="sm" 
+    className={className}
+  />
+);
+
 export default BrandBadge;
