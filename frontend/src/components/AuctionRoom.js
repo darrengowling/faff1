@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { getBrandName } from '../brand';
 import { TESTIDS } from '../testids.js';
+import { EnhancedBreadcrumb } from './ui/enhanced-breadcrumb';
 
 // Import UX components
 import { EmptyState, AuctionNotStartedEmptyState, LoadingEmptyState } from './ui/empty-state';
