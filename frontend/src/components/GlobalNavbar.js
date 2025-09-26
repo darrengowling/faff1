@@ -266,6 +266,7 @@ const GlobalNavbar = () => {
             role="navigation"
             aria-label="Mobile navigation menu"
             onClick={(e) => e.stopPropagation()}
+            data-testid={TESTIDS.navMobileDrawer}
           >
             {/* Mobile Navigation Items */}
             <div className="py-4">
