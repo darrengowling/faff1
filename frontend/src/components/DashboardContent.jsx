@@ -242,7 +242,7 @@ const DashboardContent = ({
           <h2 className="text-xl font-semibold text-theme-text">
             All Leagues ({leagues.length})
           </h2>
-          <Button onClick={onCreateLeague}>
+          <Button onClick={onCreateLeague} data-testid={TESTIDS.createLeagueBtn}>
             <Plus className="w-4 h-4 mr-2" />
             Create League
           </Button>
