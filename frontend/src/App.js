@@ -255,6 +255,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                data-testid={TESTIDS.emailInput}
               />
             </div>
             <Button
