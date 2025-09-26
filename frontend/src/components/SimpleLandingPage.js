@@ -21,7 +21,7 @@ const SimpleLandingPage = () => {
   return (
     <div className="min-h-screen bg-theme-surface">
       {/* Hero Section */}
-      <section id="home" className="pt-16 bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen flex items-center">
+      <section id="home" className="pt-16 bg-gradient-to-br from-blue-50 via-theme-surface to-indigo-50 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <div className="text-center">
             {/* Brand Logo */}
