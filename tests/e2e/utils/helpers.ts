@@ -16,11 +16,11 @@ export async function login(page: Page, email: string): Promise<void> {
   await page.goto('/login');
   await page.waitForLoadState('networkidle');
   
-  // Fill email and submit magic link form
+  // Fill email and submit magic link form using test IDs
   await page.locator(`[data-testid="${TESTIDS.emailInput}"]`).fill(email);
   await page.locator(`[data-testid="${TESTIDS.magicLinkSubmit}"]`).click();
   
-  // Wait for magic link sent confirmation and click login button
+  // Wait for magic link sent confirmation and click login button using test ID
   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).waitFor({ state: 'visible', timeout: 10000 });
   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).click();
   
