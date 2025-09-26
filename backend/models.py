@@ -112,6 +112,9 @@ class InvitationCreate(BaseModel):
     league_id: str
     email: EmailStr
 
+class InvitationEmailRequest(BaseModel):
+    email: EmailStr
+
 class InvitationResponse(BaseModel):
     id: str
     league_id: str
