@@ -352,6 +352,9 @@ const EnhancedHomeScreen = ({
           )}
         </div>
       </main>
+
+      {/* Footer */}
+      <InAppFooter />
     </div>
   );
 };
