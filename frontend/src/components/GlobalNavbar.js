@@ -266,51 +266,17 @@ const GlobalNavbar = () => {
           >
             {/* Mobile Navigation Items */}
             <div className="py-4">
-              {navItems.map((item) => (
-                <MobileNestedItem key={item.id} item={item} />
-              ))}
+              <MobileNavigation onItemClick={handleNavItemClick} />
               
               {/* Mobile Auth Actions */}
               <div className="border-t border-gray-200 mt-4 pt-4 px-4 space-y-3">
-                {user ? (
-                  <div className="space-y-3">
-                    <div className="text-sm text-gray-600 px-0">
-                      Welcome, {user.name || user.email}
-                    </div>
-                    <Button 
-                      variant="outline" 
-                      className="w-full"
-                      onClick={() => {
-                        navigate('/dashboard');
-                        setMobileMenuOpen(false);
-                      }}
-                    >
-                      Dashboard
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="space-y-3">
-                    <Button 
-                      variant="ghost" 
-                      className="w-full"
-                      onClick={() => {
-                        navigate('/login');
-                        setMobileMenuOpen(false);
-                      }}
-                    >
-                      Sign In
-                    </Button>
-                    <Button 
-                      className="w-full"
-                      onClick={() => {
-                        navigate('/login');
-                        setMobileMenuOpen(false);
-                      }}
-                    >
-                      Get Started
-                    </Button>
-                  </div>
-                )}
+                <AuthNavigation 
+                  variant="mobile" 
+                  onItemClick={(item) => {
+                    handleNavItemClick(item);
+                    setMobileMenuOpen(false);
+                  }} 
+                />
                 
                 {/* Mobile Theme Toggle */}
                 <div className="flex items-center justify-between px-0">
