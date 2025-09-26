@@ -64,6 +64,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "lint": "eslint src --ext .js,.jsx",
+    "lint:ssr-safety": "eslint src --ext .js,.jsx --rule 'ssr-safety/no-window-at-module-scope: error'",
     "db:migrate:config": "node ../scripts/db-migrate-config.js",
     "diag:socketio": "node scripts/diag-socketio.mjs",
     "reset:db": "node ../scripts/reset-db.js",
