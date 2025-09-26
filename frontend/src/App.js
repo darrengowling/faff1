@@ -586,6 +586,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                 value={formData.name}
                 onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                 required
+                data-testid={TESTIDS.createNameInput}
               />
             </div>
             <div className="space-y-2">
