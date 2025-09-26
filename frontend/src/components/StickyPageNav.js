@@ -192,6 +192,7 @@ const StickyPageNav = () => {
                 role="tab"
                 aria-selected={activeSection === section.id}
                 aria-controls={section.id}
+                data-testid={section.testId}
               >
                 <span className="flex items-center space-x-2">
                   <span className="text-base" role="img" aria-hidden="true">
