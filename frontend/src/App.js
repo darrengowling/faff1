@@ -998,15 +998,25 @@ const LeagueManagement = ({ league, onBack }) => {
                           {invitation.status}
                         </Badge>
                       </div>
-                      {invitation.status === 'pending' && (
+                      <div className="flex space-x-2">
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => handleResendInvitation(invitation.id)}
+                          onClick={() => navigator.clipboard.writeText(`${window.location.origin}/join/${league._id}`)}
+                          data-testid={TESTIDS.inviteCopyButton}
                         >
-                          <RefreshCw className="w-3 h-3" />
+                          <Copy className="w-3 h-3" />
                         </Button>
-                      )}
+                        {invitation.status === 'pending' && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => handleResendInvitation(invitation.id)}
+                          >
+                            <RefreshCw className="w-3 h-3" />
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   ))
                 )}
