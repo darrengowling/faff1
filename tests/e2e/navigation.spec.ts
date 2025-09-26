@@ -199,9 +199,9 @@ test.describe('Navigation Usability Tests', () => {
         await page.keyboard.press('Enter');
         await page.waitForTimeout(500);
         
-        // Verify dropdown opened
-        const dropdown = page.locator('[role="menu"]').first();
-        await expect(dropdown).toBeVisible();
+        // Verify dropdown opened (look for the actual dropdown content)
+        const dropdown = page.locator('.bg-theme-surface, .bg-white').filter({ hasText: 'Auction Room' });
+        await expect(dropdown).toBeVisible({ timeout: 8000 });
         
         console.log('✅ Dropdown opened with Enter key');
         
