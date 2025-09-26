@@ -223,16 +223,16 @@ const MyClubs = ({ user, token }) => {
             
             {/* Additional stats grid */}
             <div className="grid grid-cols-2 gap-4 mt-6">
-              <div className="text-center p-4 bg-green-50 rounded-lg">
+              <div className="text-center p-4 bg-green-50 rounded-lg" data-testid={TESTIDS.budgetDisplay}>
                 <Wallet className="w-6 h-6 text-green-600 mx-auto mb-2" aria-hidden="true" />
-                <div className="text-2xl font-bold text-green-600">
+                <div className="text-2xl font-bold text-green-600" data-testid={TESTIDS.budgetRemaining}>
                   {budget_info.budget_remaining}
                 </div>
                 <div className="text-sm text-gray-600">{t('tooltips.remaining')}</div>
               </div>
-              <div className="text-center p-4 bg-orange-50 rounded-lg">
+              <div className="text-center p-4 bg-orange-50 rounded-lg" data-testid={TESTIDS.slotsDisplay}>
                 <Star className="w-6 h-6 text-orange-600 mx-auto mb-2" aria-hidden="true" />
-                <div className="text-2xl font-bold text-orange-600">
+                <div className="text-2xl font-bold text-orange-600" data-testid={TESTIDS.slotsRemaining}>
                   {rosterSummary ? rosterSummary.remaining : '—'}
                 </div>
                 <div className="text-sm text-gray-600">{t('myClubs.slotsAvailable')}</div>
