@@ -1355,7 +1355,7 @@ const RootRoute = () => {
   
   // If user is logged in, redirect to dashboard (/app)
   if (user) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/app" replace />;
   }
   
   // If user is not logged in, show landing page
