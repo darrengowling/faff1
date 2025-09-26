@@ -8,6 +8,7 @@
 const io = require('socket.io-client');
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+const SOCKET_PATH = process.env.NEXT_PUBLIC_SOCKET_PATH || '/api/socketio';
 const TRANSPORTS = (process.env.NEXT_PUBLIC_SOCKET_TRANSPORTS || 'polling,websocket').split(',');
 
 async function testSocketTransport(transport) {
@@ -15,6 +16,7 @@ async function testSocketTransport(transport) {
     const startTime = Date.now();
     
     const socket = io(BACKEND_URL, {
+      path: SOCKET_PATH,
       transports: [transport],
       timeout: 10000,
       forceNew: true
