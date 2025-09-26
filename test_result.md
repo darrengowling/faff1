@@ -333,6 +333,18 @@ backend:
         agent: "testing"
         comment: "✅ MOBILE UX OPTIMIZATIONS TESTING COMPLETE - Overall Score: 80/100. SUCCESSES: 1) Mobile CSS loaded successfully with 33 mobile-specific rules including media queries for max-width 768px, pointer: coarse, and landscape orientation, 2) Input fields are mobile-optimized with 16px font size preventing iOS zoom, 3) Viewport meta tag properly configured, 4) Responsive layout works across all tested viewports (iPhone SE, iPad, Desktop), 5) Magic link authentication flow works on mobile, 6) Mobile-optimizations.css file properly integrated into build system. MINOR ISSUES: 1) Touch target compliance at 0% - main 'Send Magic Link' button is 293x36px (needs 44x44px minimum), 2) Limited accessibility features (only 1 ARIA attribute found), 3) Help components (AuctionMechanicsHelp, BiddingTips, BudgetConstraintHelp) not visible in login page but are integrated in source code for auction pages. The mobile optimizations are working well with proper CSS media queries, responsive design, and mobile-friendly inputs. The main issue is button sizing which can be addressed with CSS updates."
 
+  - task: "Core Smoke Test Authentication Fix"
+    implemented: true
+    working: true
+    file: "/app/tests/e2e/core-smoke.spec.ts"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Fixed authentication issues in core-smoke test: 1) Updated loginUser function to use proper magic link authentication flow, 2) Replaced fake token authentication with working pattern from league-settings-regression.spec.js, 3) Added proper wait for '🚀 Login Now' button in development mode, 4) Fixed URL expectations to use /app instead of /dashboard, 5) Test now uses the same authentication pattern as other working tests"
+
 frontend:
   - task: "Navigation Registry Implementation"
     implemented: true
