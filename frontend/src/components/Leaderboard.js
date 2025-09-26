@@ -311,13 +311,14 @@ const Leaderboard = ({ user, token }) => {
                 </CardContent>
               </Card>
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-3" data-testid={TESTIDS.leaderboardTable}>
                 {leaderboard.map((manager) => (
                   <Card 
                     key={manager.user_id} 
                     className={`transition-all hover:shadow-md ${getPositionColor(manager.position)} ${
                       manager.user_id === user?.id ? 'ring-2 ring-blue-400' : ''
                     }`}
+                    data-testid={TESTIDS.leaderboardRow}
                   >
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between">
