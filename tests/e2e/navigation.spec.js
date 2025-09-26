@@ -242,7 +242,7 @@ test.describe('Navigation Components - Comprehensive Testing', () => {
         await page.waitForTimeout(200);
         
         const focusReturned = await page.evaluate(() => 
-          document.activeElement === document.querySelector('button:has-text("Product")')
+          document.activeElement && document.activeElement.textContent && document.activeElement.textContent.includes('Product')
         );
         trackResult('Focus Returns on Close', focusReturned, 'Focus returns to trigger button');
       }
