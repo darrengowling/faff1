@@ -227,6 +227,8 @@ test.describe('Core Smoke Test', () => {
 // Helper Functions
 
 async function loginUser(page: Page, email: string): Promise<void> {
+  const helpers = new TestHelpers(page);
+  
   // Navigate to login if not already there
   if (!page.url().includes('/login')) {
     await page.goto('/login');
@@ -234,12 +236,8 @@ async function loginUser(page: Page, email: string): Promise<void> {
   
   await page.waitForLoadState('networkidle');
   
-  // Enter email and submit
-  await page.fill('input[type="email"]', email);
-  await page.click('button:has-text("Send Magic Link")');
-  
-  // In development mode, magic link should be auto-verified
-  await page.waitForURL('**/dashboard', { timeout: 10000 });
+  // Use test helpers for authentication
+  await helpers.loginUser(email);
 }
 
 async function createLeague(page: Page, settings: typeof LEAGUE_SETTINGS): Promise<{ leagueId: string }> {
