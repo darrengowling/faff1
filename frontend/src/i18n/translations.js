@@ -100,6 +100,25 @@ export const translations = {
     }
   },
 
+  // Footer content
+  footer: {
+    manifesto: "We stand for integrity, fairness, and the joy of the game",
+    disclaimer: "No gambling. No wagering. Pure sports strategy.",
+    copyright: "© {{year}} {{brandName}}. All rights reserved.",
+    madeWith: "Made with ❤️ for football fans",
+    links: {
+      terms: "Terms of Service",
+      privacy: "Privacy Policy", 
+      contact: "Contact Us",
+      about: "About Us"
+    },
+    legal: {
+      noWagering: "This platform does not involve any form of gambling, betting, or wagering.",
+      forFun: "Designed for entertainment and friendly competition only.",
+      ageRestriction: "Must be 13+ to use this service."
+    }
+  },
+
   // Common/Generic terms
   common: {
     loading: "Loading...",
