@@ -236,10 +236,10 @@ export const authNavigation = [
 
 // Utility functions for menu generation
 export const getVisibleItems = (
-  items: NavigationItem[],
-  user?: User | null,
-  appState?: AppState
-): NavigationItem[] => {
+  items,
+  user,
+  appState
+) => {
   return items.filter(item => item.visible(user, appState));
 };
 
