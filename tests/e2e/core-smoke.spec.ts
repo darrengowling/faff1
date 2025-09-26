@@ -10,9 +10,9 @@ import { test, expect, BrowserContext, Page } from '@playwright/test';
 // Test configuration
 const TEST_TIMEOUT = 90000; // 90 seconds max
 const USERS = {
-  commissioner: { email: 'commish@test.local', name: 'Commissioner' },
-  alice: { email: 'alice@test.local', name: 'Alice' },
-  bob: { email: 'bob@test.local', name: 'Bob' }
+  commissioner: { email: 'commish@example.com', name: 'Commissioner' },
+  alice: { email: 'alice@example.com', name: 'Alice' },
+  bob: { email: 'bob@example.com', name: 'Bob' }
 };
 
 const LEAGUE_SETTINGS = {
