@@ -90,24 +90,7 @@ const Footer = ({ variant = 'default', className = '' }) => {
           <div className="lg:col-span-1">
             <h3 className="font-semibold text-gray-900 mb-4">Legal & Support</h3>
             <div className="space-y-2">
-              {[
-                { key: 'terms', label: t('footer.links.terms') },
-                { key: 'privacy', label: t('footer.links.privacy') },
-                { key: 'contact', label: t('footer.links.contact') },
-                { key: 'about', label: t('footer.links.about') }
-              ].map((link) => (
-                <button
-                  key={link.key}
-                  onClick={() => handleLegalClick(link.label)}
-                  className="block text-sm text-gray-600 hover:text-blue-600 transition-colors text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-1 py-0.5"
-                  aria-label={`Navigate to ${link.label}`}
-                >
-                  <span className="flex items-center space-x-1">
-                    <span>{link.label}</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </span>
-                </button>
-              ))}
+              <FooterNavigation className="space-y-2" />
             </div>
           </div>
         </div>
