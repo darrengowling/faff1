@@ -426,7 +426,7 @@ const InvitationAccept = () => {
             </div>
             <Button
               className="mt-4"
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate('/app')}
             >
               Go to Dashboard
             </Button>
