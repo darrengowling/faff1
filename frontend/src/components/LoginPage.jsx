@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
@@ -6,16 +6,12 @@ import { Button } from './ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Separator } from './ui/separator';
 import { TESTIDS } from '../testids';
-import { ArrowLeft, Mail, CheckCircle, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Mail, CheckCircle, AlertCircle, Home } from 'lucide-react';
+import { getSearchParam } from '../utils/safeBrowser';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
-
-// Check if running in test mode to disable animations
-const isTestMode = process.env.NODE_ENV === 'test' || 
-                   process.env.REACT_APP_PLAYWRIGHT_TEST === 'true' ||
-                   window.location.search.includes('playwright=true');
 
 const LoginPage = () => {
   const { t } = useTranslation();
