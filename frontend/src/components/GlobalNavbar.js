@@ -173,144 +173,23 @@ const GlobalNavbar = () => {
     }
   }, [mobileMenuOpen]);
 
-  // Desktop Dropdown Component
-  const DesktopDropdown = ({ item, isActive }) => {
-    const dropdownItems = item.items || [];
-    
-    return (
-      <div className="relative group">
-        <button
-          onClick={() => setActiveDropdown(isActive ? null : item.id)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              setActiveDropdown(isActive ? null : item.id);
-              setFocusedIndex(0);
-            }
-          }}
-          className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-colors rounded-md hover:text-blue-600 hover:bg-blue-50 ${
-            isActive ? 'text-blue-600 bg-blue-50' : 'text-gray-700'
-          }`}
-          aria-expanded={isActive}
-          aria-haspopup="true"
-          id={`dropdown-trigger-${item.id}`}
-          aria-controls={`dropdown-menu-${item.id}`}
-        >
-          <span>{item.label}</span>
-          <ChevronDown className={`w-4 h-4 transition-transform ${isActive ? 'rotate-180' : ''}`} />
-        </button>
-
-        {isActive && (
-          <div
-            ref={dropdownRef}
-            className="absolute top-full left-0 mt-1 w-64 bg-theme-surface rounded-lg shadow-lg border border-theme-surface-border py-2 z-[60]"
-            role="menu"
-            aria-labelledby={`dropdown-trigger-${item.id}`}
-            id={`dropdown-menu-${item.id}`}
-            onKeyDown={(e) => handleDropdownKeyDown(e, dropdownItems)}
-          >
-            {dropdownItems.map((dropdownItem, index) => (
-              <button
-                key={dropdownItem.id}
-                onClick={() => {
-                  dropdownItem.action();
-                  setActiveDropdown(null);
-                  setFocusedIndex(-1);
-                }}
-                className={`w-full flex items-start space-x-3 px-4 py-3 text-left hover:bg-theme-surface-tertiary transition-colors ${
-                  index === focusedIndex ? 'bg-theme-surface-tertiary text-theme-primary' : 'text-theme-text'
-                }`}
-                role="menuitem"
-                tabIndex={index === focusedIndex ? 0 : -1}
-                onMouseEnter={() => setFocusedIndex(index)}
-              >
-                <dropdownItem.icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
-                  index === focusedIndex ? 'text-blue-600' : 'text-gray-400'
-                }`} />
-                <div>
-                  <div className="font-medium">{dropdownItem.label}</div>
-                  <div className="text-xs text-gray-500 mt-0.5">{dropdownItem.description}</div>
-                </div>
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-    );
-  };
-
-  // Mobile Nested Menu Item Component
-  const MobileNestedItem = ({ item, depth = 0 }) => {
-    const [expanded, setExpanded] = useState(false);
-    const hasChildren = item.items && item.items.length > 0;
-    const paddingLeft = depth * 16 + 16;
-
-    if (hasChildren) {
-      return (
-        <div>
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className={`w-full flex items-center justify-between px-4 py-3 text-left font-medium transition-colors hover:bg-gray-50`}
-            style={{ paddingLeft }}
-            aria-expanded={expanded}
-            aria-controls={`mobile-submenu-${item.id}`}
-          >
-            <span className="text-gray-900">{item.label}</span>
-            <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform ${expanded ? 'rotate-90' : ''}`} />
-          </button>
-          
-          {expanded && (
-            <div id={`mobile-submenu-${item.id}`} className="bg-gray-50">
-              {item.items.map((subItem) => (
-                <MobileNestedItem 
-                  key={subItem.id} 
-                  item={subItem} 
-                  depth={depth + 1}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      );
-    }
-
-    return (
-      <button
-        onClick={() => {
-          item.action();
-          setMobileMenuOpen(false);
-        }}
-        className="w-full flex items-center space-x-3 px-4 py-3 text-left transition-colors hover:bg-gray-50"
-        style={{ paddingLeft }}
-      >
-        {item.icon && <item.icon className="w-5 h-5 text-gray-400" />}
-        <div>
-          <div className="font-medium text-gray-900">{item.label}</div>
-          {item.description && (
-            <div className="text-sm text-gray-500">{item.description}</div>
-          )}
-        </div>
-      </button>
-    );
-  };
-
   // Close dropdown when clicking outside or pressing escape
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setActiveDropdown(null);
+        setProductDropdownOpen(false);
         setFocusedIndex(-1);
       }
     };
 
     const handleGlobalKeyDown = (event) => {
-      if (event.key === 'Escape' && activeDropdown) {
-        setActiveDropdown(null);
+      if (event.key === 'Escape' && productDropdownOpen) {
+        setProductDropdownOpen(false);
         setFocusedIndex(-1);
       }
     };
 
-    if (activeDropdown) {
+    if (productDropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleGlobalKeyDown);
       return () => {
@@ -318,7 +197,7 @@ const GlobalNavbar = () => {
         document.removeEventListener('keydown', handleGlobalKeyDown);
       };
     }
-  }, [activeDropdown]);
+  }, [productDropdownOpen]);
 
   return (
     <header className="fixed top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">
