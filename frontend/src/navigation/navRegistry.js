@@ -254,9 +254,9 @@ export const getEnabledItems = (
 };
 
 export const buildHref = (
-  item: NavigationItem,
-  appState?: AppState
-): string => {
+  item,
+  appState
+) => {
   const { href } = item;
   
   // Handle dynamic league-based URLs
