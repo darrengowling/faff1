@@ -1,0 +1,276 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - region "Notifications alt+T"
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - button "Friends of PIFA" [ref=e7] [cursor=pointer]:
+          - img [ref=e9] [cursor=pointer]
+          - generic [ref=e15] [cursor=pointer]: Friends of PIFA
+        - button "Toggle navigation menu" [expanded] [ref=e16] [cursor=pointer]:
+          - img [ref=e17] [cursor=pointer]
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - button [active] [ref=e22] [cursor=pointer]:
+            - img [ref=e23] [cursor=pointer]
+            - generic [ref=e28] [cursor=pointer]: How it Works
+          - button [ref=e29] [cursor=pointer]:
+            - img [ref=e30] [cursor=pointer]
+            - generic [ref=e34] [cursor=pointer]: Why FoP
+          - button [ref=e35] [cursor=pointer]:
+            - img [ref=e36] [cursor=pointer]
+            - generic [ref=e40] [cursor=pointer]: FAQ
+          - button [ref=e42] [cursor=pointer]:
+            - generic [ref=e44] [cursor=pointer]: Product
+            - img [ref=e45] [cursor=pointer]
+          - button [ref=e47] [cursor=pointer]:
+            - generic [ref=e50] [cursor=pointer]: Sign In
+          - button [ref=e51] [cursor=pointer]:
+            - generic [ref=e54] [cursor=pointer]: Get Started
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - button [ref=e57] [cursor=pointer]: Sign In
+            - button [ref=e58] [cursor=pointer]: Get Started
+          - generic [ref=e59]:
+            - generic [ref=e60]: Theme
+            - button [ref=e61] [cursor=pointer]:
+              - generic [ref=e62] [cursor=pointer]:
+                - img
+      - link "Skip to main content" [ref=e63] [cursor=pointer]:
+        - /url: "#main-content"
+    - navigation "Page sections navigation" [ref=e64]:
+      - generic [ref=e68]:
+        - tab "Home" [selected] [ref=e69] [cursor=pointer]:
+          - generic [ref=e70] [cursor=pointer]:
+            - img [ref=e71] [cursor=pointer]: 🏠
+            - generic [ref=e72] [cursor=pointer]: Home
+        - tab "How" [ref=e73] [cursor=pointer]:
+          - generic [ref=e74] [cursor=pointer]:
+            - img [ref=e75] [cursor=pointer]: ⚙️
+            - generic [ref=e76] [cursor=pointer]: How
+        - tab "Why" [ref=e77] [cursor=pointer]:
+          - generic [ref=e78] [cursor=pointer]:
+            - img [ref=e79] [cursor=pointer]: 💡
+            - generic [ref=e80] [cursor=pointer]: Why
+        - tab "Features" [ref=e81] [cursor=pointer]:
+          - generic [ref=e82] [cursor=pointer]:
+            - img [ref=e83] [cursor=pointer]: 🚀
+            - generic [ref=e84] [cursor=pointer]: Features
+        - tab "Fair" [ref=e85] [cursor=pointer]:
+          - generic [ref=e86] [cursor=pointer]:
+            - img [ref=e87] [cursor=pointer]: 🛡️
+            - generic [ref=e88] [cursor=pointer]: Fair
+        - tab "FAQ" [ref=e89] [cursor=pointer]:
+          - generic [ref=e90] [cursor=pointer]:
+            - img [ref=e91] [cursor=pointer]: ❓
+            - generic [ref=e92] [cursor=pointer]: FAQ
+      - progressbar "Section progress" [ref=e93]
+      - generic [ref=e94]: "Currently viewing: Home"
+    - main [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e99]:
+          - generic [ref=e101]:
+            - img [ref=e103]
+            - generic [ref=e109]: Friends of PIFA
+          - heading "Football Auctions with Friends" [level=1] [ref=e110]:
+            - text: Football Auctions
+            - generic [ref=e111]: with Friends
+          - paragraph [ref=e112]: No bets. No chance. Just you, the game, and bragging rights.
+          - paragraph [ref=e113]: Create private football leagues, auction your dream teams, and compete for glory. Strategy meets friendship in the ultimate fantasy experience.
+          - generic [ref=e114]:
+            - button "Create a League" [ref=e115] [cursor=pointer]:
+              - img
+              - text: Create a League
+            - button "Join with an Invite" [ref=e116] [cursor=pointer]:
+              - img
+              - text: Join with an Invite
+        - generic [ref=e118]:
+          - generic [ref=e119]:
+            - heading "How It Works" [level=2] [ref=e120]
+            - paragraph [ref=e121]: Three simple steps to start your football auction adventure
+          - generic [ref=e122]:
+            - generic [ref=e123]:
+              - img [ref=e125]
+              - generic [ref=e130]: Step 1
+              - heading "Create League" [level=3] [ref=e131]
+              - paragraph [ref=e132]: Invite 2-8 friends to your private league. Set your budget, club slots, and competition format.
+            - generic [ref=e133]:
+              - img [ref=e135]
+              - generic [ref=e141]: Step 2
+              - heading "Live Auction" [level=3] [ref=e142]
+              - paragraph [ref=e143]: Bid on your favorite football clubs in real-time. Anti-snipe protection ensures fair competition.
+            - generic [ref=e144]:
+              - img [ref=e146]
+              - generic [ref=e152]: Step 3
+              - heading "Score from Results" [level=3] [ref=e153]
+              - paragraph [ref=e154]: Earn points from real match results. Goals, wins, and draws translate to leaderboard success.
+        - generic [ref=e156]:
+          - generic [ref=e157]:
+            - heading "Why Friends of PIFA" [level=2] [ref=e158]
+            - paragraph [ref=e159]: Fair, social, and skill-based. The way football competition should be.
+          - generic [ref=e160]:
+            - generic [ref=e162]:
+              - img [ref=e163]
+              - heading "No Gambling, All Strategy" [level=3] [ref=e165]
+              - paragraph [ref=e166]: Pure skill-based competition with zero wagering. Your football knowledge and tactical decisions determine success.
+            - generic [ref=e168]:
+              - img [ref=e169]
+              - heading "The Social Arena" [level=3] [ref=e174]
+              - paragraph [ref=e175]: Where skill beats luck. Compete with friends in a fair environment built for strategy and friendly rivalry.
+            - generic [ref=e177]:
+              - img [ref=e178]
+              - heading "Built for Friends" [level=3] [ref=e180]
+              - paragraph [ref=e181]: Private leagues create the perfect space for banter, competition, and shared football passion.
+        - generic [ref=e183]:
+          - generic [ref=e184]:
+            - heading "Powerful Features" [level=2] [ref=e185]
+            - paragraph [ref=e186]: Everything you need for the perfect football auction experience
+          - generic [ref=e187]:
+            - generic [ref=e188]:
+              - img [ref=e191]
+              - generic [ref=e196]:
+                - heading "Private Leagues (2–8 Players)" [level=3] [ref=e197]
+                - paragraph [ref=e198]: Perfect size for friend groups with customizable league settings
+            - generic [ref=e199]:
+              - img [ref=e202]
+              - generic [ref=e206]:
+                - heading "Configurable Slots & Budgets" [level=3] [ref=e207]
+                - paragraph [ref=e208]: Tailor your league with flexible team sizes and spending limits
+            - generic [ref=e209]:
+              - img [ref=e212]
+              - generic [ref=e215]:
+                - heading "Anti-Snipe Auction" [level=3] [ref=e216]
+                - paragraph [ref=e217]: Fair bidding with automatic timer extensions for last-second bids
+            - generic [ref=e218]:
+              - img [ref=e221]
+              - generic [ref=e223]:
+                - heading "Real-Time Scoring" [level=3] [ref=e224]
+                - paragraph [ref=e225]: Compete with friends in real-time
+            - generic [ref=e226]:
+              - img [ref=e229]
+              - generic [ref=e232]:
+                - heading "Dynamic Leaderboards" [level=3] [ref=e233]
+                - paragraph [ref=e234]: Track performance across matchdays with detailed statistics
+            - generic [ref=e235]:
+              - img [ref=e238]
+              - generic [ref=e240]:
+                - heading "League Chat & Banter" [level=3] [ref=e241]
+                - paragraph [ref=e242]: Built-in communication for trash talk and strategy discussions
+        - generic [ref=e244]:
+          - generic [ref=e245]:
+            - heading "Fair Play & Transparency" [level=2] [ref=e246]
+            - paragraph [ref=e247]: Fair play by design. Built on principles of fairness and transparency. No hidden mechanics, just pure football strategy.
+          - generic [ref=e248]:
+            - generic [ref=e249]:
+              - generic [ref=e250]:
+                - img [ref=e252]
+                - generic [ref=e254]:
+                  - heading "No Wagering" [level=3] [ref=e255]
+                  - paragraph [ref=e256]: Zero gambling. Play for pride, bragging rights, and the love of the game.
+              - generic [ref=e257]:
+                - img [ref=e259]
+                - generic [ref=e261]:
+                  - heading "Points from Performance" [level=3] [ref=e262]
+                  - paragraph [ref=e263]: Your clubs earn points based on real match results. Goals, wins, and draws count.
+              - generic [ref=e264]:
+                - img [ref=e266]
+                - generic [ref=e268]:
+                  - heading "Transparent scoring" [level=3] [ref=e269]
+                  - paragraph [ref=e270]: Clear auction mechanics and scoring rules. Everyone knows how it works.
+              - generic [ref=e271]:
+                - img [ref=e273]
+                - generic [ref=e275]:
+                  - heading "Private & Secure" [level=3] [ref=e276]
+                  - paragraph [ref=e277]: Your leagues are private to your group. No public rankings or external pressure.
+            - generic [ref=e278]:
+              - img [ref=e280]
+              - heading "Complete Transparency" [level=3] [ref=e283]
+              - paragraph [ref=e284]: Every bid, every point, every result is visible to all league members. Fairness through complete openness.
+        - generic [ref=e286]:
+          - generic [ref=e287]:
+            - heading "Frequently Asked Questions" [level=2] [ref=e288]
+            - paragraph [ref=e289]: Everything you need to know about Friends of PIFA
+          - generic [ref=e290]:
+            - generic [ref=e291]:
+              - heading "How does scoring work?" [level=3] [ref=e293]
+              - paragraph [ref=e295]: "Your clubs earn points based on real match results: +1 for each goal scored, +3 for wins, +1 for draws."
+            - generic [ref=e296]:
+              - heading "What happens if I miss the auction?" [level=3] [ref=e298]
+              - paragraph [ref=e300]: Auctions are scheduled by your league commissioner. If you miss it, you can still join future auctions or trade with other managers.
+            - generic [ref=e301]:
+              - heading "Can I create multiple leagues?" [level=3] [ref=e303]
+              - paragraph [ref=e305]: Yes! You can create and participate in multiple leagues with different friend groups.
+            - generic [ref=e306]:
+              - heading "Is there any cost to play?" [level=3] [ref=e308]
+              - paragraph [ref=e310]: Friends of PIFA is free to play. No hidden fees, no premium features - just pure football fun.
+            - generic [ref=e311]:
+              - heading "How do invites work?" [level=3] [ref=e313]
+              - paragraph [ref=e315]: League commissioners can send email invites to friends. Recipients just click the link to join the league.
+            - generic [ref=e316]:
+              - heading "What competitions are supported?" [level=3] [ref=e318]
+              - paragraph [ref=e320]: We support major European competitions with plans to expand to more leagues and tournaments.
+        - generic [ref=e322]:
+          - heading "Ready to Start Your League?" [level=2] [ref=e323]
+          - paragraph [ref=e324]: Join thousands of football fans competing in the fairest, most fun auction platform.
+          - button "Create Your League Now" [ref=e326] [cursor=pointer]:
+            - img
+            - text: Create Your League Now
+        - button "Get Started Free" [ref=e328] [cursor=pointer]:
+          - img
+          - text: Get Started Free
+        - generic [ref=e330]:
+          - generic [ref=e332]:
+            - generic [ref=e333]:
+              - generic [ref=e334]:
+                - img [ref=e336]
+                - generic [ref=e341]:
+                  - generic [ref=e342]: Friends of PIFA
+                  - generic [ref=e343]: Sports gaming with friends. No gambling. All strategy.
+              - paragraph [ref=e344]: Join the social sports arena where skill beats luck.
+              - generic [ref=e345]:
+                - img [ref=e346]
+                - generic [ref=e348]: We stand for integrity, fairness, and the joy of the game
+            - generic [ref=e349]:
+              - heading "Fair Play Commitment" [level=3] [ref=e350]
+              - generic [ref=e351]:
+                - generic [ref=e353]:
+                  - img [ref=e354]
+                  - generic [ref=e360]:
+                    - paragraph [ref=e361]: No gambling. No wagering. Pure sports strategy.
+                    - paragraph [ref=e362]: This platform does not involve any form of gambling, betting, or wagering.
+                - generic [ref=e363]:
+                  - img [ref=e364]
+                  - generic [ref=e369]: Designed for entertainment and friendly competition only.
+                - generic [ref=e370]: Must be 13+ to use this service.
+            - generic [ref=e371]:
+              - heading "Legal & Support" [level=3] [ref=e372]
+              - generic [ref=e374]:
+                - button "Navigate to Terms of Service" [ref=e375] [cursor=pointer]:
+                  - generic [ref=e377] [cursor=pointer]:
+                    - generic [ref=e378] [cursor=pointer]: Terms of Service
+                    - img [ref=e379] [cursor=pointer]
+                - button "Navigate to Privacy Policy" [ref=e383] [cursor=pointer]:
+                  - generic [ref=e385] [cursor=pointer]:
+                    - generic [ref=e386] [cursor=pointer]: Privacy Policy
+                    - img [ref=e387] [cursor=pointer]
+                - button "Navigate to Contact Us" [ref=e391] [cursor=pointer]:
+                  - generic [ref=e393] [cursor=pointer]:
+                    - generic [ref=e394] [cursor=pointer]: Contact Us
+                    - img [ref=e395] [cursor=pointer]
+                - button "Navigate to About Us" [ref=e399] [cursor=pointer]:
+                  - generic [ref=e401] [cursor=pointer]:
+                    - generic [ref=e402] [cursor=pointer]: About Us
+                    - img [ref=e403] [cursor=pointer]
+          - generic [ref=e409]:
+            - generic [ref=e411]: © 2025 Friends of PIFA. All rights reserved.
+            - generic [ref=e412]:
+              - generic [ref=e413]: 100% Free to Play
+              - generic [ref=e414]: No Real Money
+  - link "Emergent platform logo Made with Emergent" [ref=e415] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e416] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e417] [cursor=pointer]
+      - paragraph [ref=e418] [cursor=pointer]: Made with Emergent
+```
