@@ -344,7 +344,7 @@ const Leaderboard = ({ user, token }) => {
                             {/* Total Points */}
                             <div className="text-center">
                               <ScoringTooltip>
-                                <div className="text-2xl font-bold text-green-600 cursor-help">
+                                <div className="text-2xl font-bold text-green-600 cursor-help" data-testid={TESTIDS.leaderboardPoints}>
                                   {manager.total_points}
                                 </div>
                               </ScoringTooltip>
