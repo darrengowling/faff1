@@ -33,23 +33,32 @@
       - link "Skip to main content" [ref=e48] [cursor=pointer]:
         - /url: "#main-content"
     - main [ref=e49]:
-      - generic [ref=e51]:
-        - generic [ref=e52]:
-          - generic [ref=e53]:
-            - img [ref=e55]
+      - generic [ref=e50]:
+        - generic [ref=e53]:
+          - button "Back to Home" [ref=e55] [cursor=pointer]:
+            - img
+            - text: Back to Home
+          - heading "Friends of PIFA" [level=1] [ref=e57]
+        - main [ref=e58]:
+          - generic [ref=e59]:
             - generic [ref=e60]:
-              - generic [ref=e61]: Friends of PIFA
-              - generic [ref=e62]: Sports gaming with friends. No gambling. All strategy.
-          - heading "Friends of PIFA" [level=3] [ref=e63]
-          - paragraph [ref=e64]: Enter your email to get started
-        - generic [ref=e66]:
-          - generic [ref=e67]:
-            - generic [ref=e68]: Email
-            - textbox "Email" [ref=e69]: commissioner@scoring.test
-          - button "Send Magic Link" [ref=e70] [cursor=pointer]
-  - link "Emergent platform logo Made with Emergent" [ref=e71] [cursor=pointer]:
+              - img [ref=e61]
+              - heading "Sign In" [level=2] [ref=e64]
+              - paragraph [ref=e65]: Enter your email to receive a magic link for secure access
+            - generic [ref=e66]:
+              - heading "Magic Link Authentication" [level=3] [ref=e68]
+              - generic [ref=e70]:
+                - generic [ref=e71]:
+                  - generic [ref=e72]: Email Address
+                  - textbox "Email Address" [ref=e73]
+                - button "Send Magic Link" [disabled]:
+                  - generic:
+                    - img
+                    - generic: Send Magic Link
+            - paragraph [ref=e75]: No password required. We'll send you a secure link to sign in.
+  - link "Emergent platform logo Made with Emergent" [ref=e76] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e72] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e73] [cursor=pointer]
-      - paragraph [ref=e74] [cursor=pointer]: Made with Emergent
+    - generic [ref=e77] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e78] [cursor=pointer]
+      - paragraph [ref=e79] [cursor=pointer]: Made with Emergent
 ```

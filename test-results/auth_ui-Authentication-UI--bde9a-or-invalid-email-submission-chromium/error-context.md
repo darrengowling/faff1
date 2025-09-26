@@ -33,34 +33,32 @@
       - link "Skip to main content" [ref=e48] [cursor=pointer]:
         - /url: "#main-content"
     - main [ref=e49]:
-      - generic [ref=e51]:
-        - generic [ref=e52]:
-          - img [ref=e54]
-          - heading "404" [level=1] [ref=e56]
-          - heading "Page Not Found" [level=2] [ref=e57]
-          - paragraph [ref=e58]: The page you're looking for doesn't exist or has been moved. Let's get you back to your football auctions!
-        - generic [ref=e59]:
-          - generic [ref=e60]:
-            - img [ref=e62]
-            - generic [ref=e68]: Friends of PIFA
-          - paragraph [ref=e69]: Sports gaming with friends. No gambling. All strategy.
-        - generic [ref=e72] [cursor=pointer]:
-          - img [ref=e74] [cursor=pointer]
-          - heading "Get Started" [level=3] [ref=e77] [cursor=pointer]
-          - paragraph [ref=e78] [cursor=pointer]: Learn about Friends of PIFA
-          - button "Get Started" [ref=e79] [cursor=pointer]:
-            - generic [ref=e80] [cursor=pointer]:
-              - generic [ref=e81] [cursor=pointer]: Get Started
-              - img
-        - generic [ref=e82]:
-          - paragraph [ref=e83]: Still having trouble? Try refreshing the page or check your URL.
-          - generic [ref=e84]:
-            - button "Refresh Page" [ref=e85] [cursor=pointer]
-            - generic [ref=e86]: •
-            - button "Go Back" [ref=e87] [cursor=pointer]
-  - link "Emergent platform logo Made with Emergent" [ref=e88] [cursor=pointer]:
+      - generic [ref=e50]:
+        - generic [ref=e53]:
+          - button "Back to Home" [ref=e55] [cursor=pointer]:
+            - img
+            - text: Back to Home
+          - heading "Friends of PIFA" [level=1] [ref=e57]
+        - main [ref=e58]:
+          - generic [ref=e59]:
+            - generic [ref=e60]:
+              - img [ref=e61]
+              - heading "Sign In" [level=2] [ref=e64]
+              - paragraph [ref=e65]: Enter your email to receive a magic link for secure access
+            - generic [ref=e66]:
+              - heading "Magic Link Authentication" [level=3] [ref=e68]
+              - generic [ref=e70]:
+                - generic [ref=e71]:
+                  - generic [ref=e72]: Email Address
+                  - textbox "Email Address" [ref=e73]: invalid-email
+                - button "Send Magic Link" [disabled]:
+                  - generic:
+                    - img
+                    - generic: Send Magic Link
+            - paragraph [ref=e75]: No password required. We'll send you a secure link to sign in.
+  - link "Emergent platform logo Made with Emergent" [ref=e76] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e89] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e90] [cursor=pointer]
-      - paragraph [ref=e91] [cursor=pointer]: Made with Emergent
+    - generic [ref=e77] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e78] [cursor=pointer]
+      - paragraph [ref=e79] [cursor=pointer]: Made with Emergent
 ```
