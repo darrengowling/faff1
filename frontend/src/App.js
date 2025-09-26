@@ -389,7 +389,7 @@ const InvitationAccept = () => {
         setLeague(response.data);
         toast.success(t('leagueManagement.joinedSuccessfully', { league: response.data.name }));
         setTimeout(() => {
-          navigate('/dashboard');
+          navigate('/app');
         }, 2000);
       } catch (error) {
         setError(error.response?.data?.detail || t('leagueManagement.failedToAcceptInvitation'));
