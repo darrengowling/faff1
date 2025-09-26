@@ -269,6 +269,7 @@ const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
         aria-haspopup="menu"
         aria-label={enabledItems.length > 0 ? "Navigate to available sections" : "Create or join a league to access navigation"}
         disabled={enabledItems.length === 0}
+        data-testid={TESTIDS.homeGotoDropdown}
       >
         <div className="flex items-center space-x-2">
           <Navigation className="w-4 h-4 text-blue-600" />
