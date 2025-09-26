@@ -239,7 +239,7 @@ export const BudgetStatus = ({
             </div>
           ) : (
             <>
-              <span className="font-medium">{clubsOwned}/{clubsMax}</span>
+              <span className="font-medium" data-testid={TESTIDS.slotsUsed}>{clubsOwned}/{clubsMax}</span>
               {slotsRemaining > 0 && (
                 <Badge variant="outline" className="text-xs">
                   {slotsRemaining} available
