@@ -860,6 +860,7 @@ const AuctionRoom = ({ user, token }) => {
                           variant="outline"
                           onClick={() => handleQuickBid(1)}
                           className="border-gray-600 text-gray-300 touch-target flex-1"
+                          data-testid={TESTIDS.bidPlus1}
                         >
                           +1
                         </Button>
@@ -868,6 +869,7 @@ const AuctionRoom = ({ user, token }) => {
                           variant="outline"
                           onClick={() => handleQuickBid(5)}
                           className="border-gray-600 text-gray-300 touch-target flex-1"
+                          data-testid={TESTIDS.bidPlus5}
                         >
                           +5
                         </Button>
@@ -876,6 +878,7 @@ const AuctionRoom = ({ user, token }) => {
                           variant="outline"
                           onClick={() => handleQuickBid(10)}
                           className="border-gray-600 text-gray-300 touch-target flex-1"
+                          data-testid={TESTIDS.bidPlus10}
                         >
                           +10
                         </Button>
