@@ -149,6 +149,7 @@ const DesktopDropdown = ({
         } ${className}`}
         aria-expanded={isOpen}
         aria-haspopup="true"
+        data-testid={TESTIDS.navDropdownProduct}
       >
         <span>{label}</span>
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
