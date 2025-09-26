@@ -72,18 +72,30 @@ export default {
         functionDepth++;
       },
 
-      // Track exiting function/class scopes  
-      "FunctionDeclaration:exit, FunctionExpression:exit, ArrowFunctionExpression:exit"() {
+      // Track exiting function/class scopes
+      "FunctionDeclaration:exit"() {
+        functionDepth--;
+      },
+      "FunctionExpression:exit"() {
+        functionDepth--;
+      },
+      "ArrowFunctionExpression:exit"() {
         functionDepth--;
       },
 
       // Track entering block scopes
-      "BlockStatement, ClassBody"() {
+      "BlockStatement"() {
+        scopeDepth++;
+      },
+      "ClassBody"() {
         scopeDepth++;
       },
 
       // Track exiting block scopes
-      "BlockStatement:exit, ClassBody:exit"() {
+      "BlockStatement:exit"() {
+        scopeDepth--;
+      },
+      "ClassBody:exit"() {
         scopeDepth--;
       },
 
