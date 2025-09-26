@@ -864,7 +864,7 @@ metadata:
 
 test_plan:
   current_focus: 
-    - "Theme System Testing Complete"
+    - "AppLayout Implementation and 404 Page Testing"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
