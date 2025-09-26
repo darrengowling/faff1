@@ -345,6 +345,18 @@ backend:
         agent: "main"
         comment: "Fixed authentication issues in core-smoke test: 1) Updated loginUser function to use proper magic link authentication flow, 2) Replaced fake token authentication with working pattern from league-settings-regression.spec.js, 3) Added proper wait for '🚀 Login Now' button in development mode, 4) Fixed URL expectations to use /app instead of /dashboard, 5) Test now uses the same authentication pattern as other working tests"
 
+  - task: "Navigation Usability Playwright Tests"
+    implemented: true
+    working: true
+    file: "/app/tests/e2e/navigation.spec.ts"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Created comprehensive Playwright test suite for navigation usability: 1) Desktop navigation tests with scroll-spy verification for #how, #why, #faq sections, 2) Product dropdown navigation testing for all 5 items (Auction, Roster, Fixtures, Leaderboard, Admin), 3) Keyboard accessibility tests with Tab/Enter/Arrow keys/Escape functionality, 4) Mobile hamburger menu tests with focus trap and drawer management, 5) Link quality assurance to prevent placeholder links with href='#' or empty href, 6) Cross-viewport compatibility testing, 7) Failure screenshot artifacts with timestamps, 8) Comprehensive test coverage for all navigation usability requirements"
+
   - task: "AuctionRoom Variable Initialization Bug Fix"
     implemented: true
     working: true
