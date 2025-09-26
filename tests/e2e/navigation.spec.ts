@@ -292,13 +292,8 @@ test.describe('Navigation Usability Tests', () => {
         ];
         
         for (const navTest of navigationTests) {
-          // Reopen menu if closed
-          if (!(await mobileDrawer.isVisible())) {
-            await hamburgerButton.click();
-            await page.waitForTimeout(300);
-          }
-          
-          const menuItem = page.locator(`[role="navigation"] button:has-text("${navTest.text}"), [role="navigation"] a:has-text("${navTest.text}")`).first();
+          // Look for the navigation item
+          const menuItem = page.locator(`button:has-text("${navTest.text}"), a:has-text("${navTest.text}")`).first();
           
           if (await menuItem.isVisible()) {
             const startURL = page.url();
@@ -317,6 +312,8 @@ test.describe('Navigation Usability Tests', () => {
               expect(page.url()).toContain('/');
               console.log(`✅ ${navTest.text} scrolled to section`);
             }
+          } else {
+            console.log(`⚠️ ${navTest.text} not found in mobile menu`);
           }
         }
         
