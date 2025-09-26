@@ -636,6 +636,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                   max="500"
                   value={formData.settings.budget_per_manager}
                   onChange={(e) => updateSettings('budget_per_manager', e.target.value)}
+                  data-testid={TESTIDS.createBudgetInput}
                 />
               </div>
               <div className="space-y-2">
