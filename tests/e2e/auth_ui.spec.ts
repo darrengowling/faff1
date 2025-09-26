@@ -183,6 +183,37 @@ test.describe('Authentication UI Tests', () => {
 });
 
 test.describe('Authentication UI Integration', () => {
+  test('Form submission works using only testids', async ({ page }) => {
+    // Navigate to login page
+    await page.goto('/login');
+    await page.waitForLoadState('networkidle');
+    
+    // Fill form using testids only
+    const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
+    const submitBtn = page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`);
+    
+    await emailInput.fill('test-submission@example.com');
+    
+    // Verify submit button becomes enabled
+    await expect(submitBtn).not.toBeDisabled();
+    
+    // Submit form
+    await submitBtn.click();
+    
+    // Should either show success message or navigate
+    const successMsg = page.locator(`[data-testid="${TESTIDS.authSuccess}"]`);
+    const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
+    
+    // Wait for either success message or navigation
+    await Promise.race([
+      successMsg.waitFor({ state: 'visible', timeout: 10000 }),
+      page.waitForURL('**/auth/verify', { timeout: 10000 }),
+      page.waitForURL('**/app', { timeout: 10000 })
+    ]);
+    
+    console.log('✅ Form submission completed successfully using testids');
+  });
+
   test('Complete auth flow using UI login mode', async ({ page }) => {
     // Start at login page
     await page.goto('/login');
