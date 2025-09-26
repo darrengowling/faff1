@@ -15,7 +15,7 @@ import {
   getEnabledItems, 
   buildHref,
   menuConfigs 
-} from '../../navigation/navRegistry.ts';
+} from '../../navigation/navRegistry.js';
 import { useAuth } from '../../App';
 
 /**
