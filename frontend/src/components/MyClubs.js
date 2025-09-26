@@ -349,7 +349,7 @@ const MyClubs = ({ user, token }) => {
                                     {fixture.away_club?.short_name}
                                   </span>
                                 </div>
-                                <p className="text-sm font-medium">{fixture.away_club?.name}</p>
+                                <p className="text-sm font-medium" data-testid={TESTIDS.fixtureAwayTeam}>{fixture.away_club?.name}</p>
                                 {fixture.is_away && (
                                   <Badge variant="default" className="mt-1 text-xs">
                                     Your Club
