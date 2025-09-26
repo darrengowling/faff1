@@ -23,7 +23,7 @@ if [ $? -eq 0 ]; then
     fi
     echo ""
     echo "🔗 Next Steps:"
-    echo "1. Visit: https://pifa-friends.preview.emergentagent.com"
+    echo "1. Visit: https://friends-of-pifa.preview.emergentagent.com"
     echo "2. Use magic-link login with any demo email:"
     echo "   - commissioner@demo.com (Commissioner access)"
     echo "   - alice.manager@demo.com (Manager)"
