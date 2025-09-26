@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { TESTIDS } from '../../frontend/src/testids.js';
+import { login } from './utils/login';
 
 const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'https://friends-pifa.preview.emergentagent.com';
 
