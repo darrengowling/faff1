@@ -23,6 +23,13 @@ const LoginPage = () => {
   const [success, setSuccess] = useState('');
   const [magicLink, setMagicLink] = useState('');
 
+  // Compute test mode safely inside component (SSR-compatible)
+  const isTestMode = useMemo(() => {
+    if (process.env.NODE_ENV === 'test') return true;
+    if (process.env.REACT_APP_PLAYWRIGHT_TEST === 'true') return true;
+    return getSearchParam('playwright') === 'true';
+  }, []);
+
   // Email validation
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
