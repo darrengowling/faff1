@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { getBrandName } from '../brand';
+import { TESTIDS } from '../testids';
 
 // Import UX components
 import { EmptyState, AuctionNotStartedEmptyState, LoadingEmptyState } from './ui/empty-state';
