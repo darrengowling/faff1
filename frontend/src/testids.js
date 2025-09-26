@@ -176,7 +176,7 @@ const LEGACY_TESTIDS = {
   submitButton: 'submit-button',
   backButton: 'back-button',
   
-} // End of TESTIDS object
+} // End of LEGACY_TESTIDS object
 
 // Utility function to get test ID selector
 export const getTestId = (testId) => `[data-testid="${TESTIDS[testId]}"]`;
