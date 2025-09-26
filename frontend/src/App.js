@@ -471,10 +471,11 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
     const fetchCompetitionProfiles = async () => {
       try {
         const response = await axios.get(`${API}/competition-profiles`);
-        setCompetitionProfiles(response.data);
+        setCompetitionProfiles(response.data.profiles || []);
       } catch (error) {
         console.error('Failed to fetch competition profiles:', error);
         toast.error('Failed to load competition templates');
+        setCompetitionProfiles([]); // Ensure it stays an array on error
       }
     };
 
