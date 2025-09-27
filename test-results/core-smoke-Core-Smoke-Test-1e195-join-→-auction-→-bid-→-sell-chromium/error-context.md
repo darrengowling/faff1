@@ -1,237 +1,146 @@
 # Page snapshot
 
 ```yaml
-- generic:
-  - generic:
-    - generic:
-      - region "Notifications alt+T"
-      - banner:
-        - generic:
-          - generic:
-            - button:
-              - generic:
-                - img
-              - generic:
-                - generic: Friends of PIFA
-            - generic:
-              - button:
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - region "Notifications alt+T"
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - button "Friends of PIFA" [ref=e7] [cursor=pointer]:
+          - img [ref=e9] [cursor=pointer]
+          - generic [ref=e15] [cursor=pointer]: Friends of PIFA
+        - navigation
+        - generic [ref=e16]:
+          - button "New League" [ref=e17] [cursor=pointer]:
+            - img
+            - text: New League
+          - generic [ref=e18]:
+            - generic [ref=e19]: Welcome, commish@example.com
+            - button "Dashboard" [ref=e20] [cursor=pointer]
+          - button "Switch to dark mode" [ref=e21] [cursor=pointer]:
+            - generic [ref=e22] [cursor=pointer]:
+              - img
+      - link "Skip to main content" [ref=e23] [cursor=pointer]:
+        - /url: "#main-content"
+    - main [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e28]:
+            - button "Friends of PIFA" [ref=e29] [cursor=pointer]:
+              - img [ref=e31] [cursor=pointer]
+              - generic [ref=e37] [cursor=pointer]: Friends of PIFA
+            - navigation
+            - generic [ref=e38]:
+              - button "New League" [ref=e39] [cursor=pointer]:
                 - img
                 - text: New League
-              - generic:
-                - generic: Welcome, commish@example.com
-                - button: Dashboard
-              - button:
-                - generic:
+              - generic [ref=e40]:
+                - generic [ref=e41]: Welcome, commish@example.com
+                - button "Dashboard" [ref=e42] [cursor=pointer]
+              - button "Switch to dark mode" [ref=e43] [cursor=pointer]:
+                - generic [ref=e44] [cursor=pointer]:
                   - img
-        - link:
-          - /url: "#main-content"
-          - text: Skip to main content
-      - main:
-        - generic:
-          - generic:
-            - generic:
-              - generic:
-                - button:
-                  - generic:
-                    - img
-                  - generic:
-                    - generic: Friends of PIFA
-                - generic:
-                  - button:
-                    - img
-                    - text: New League
-                  - generic:
-                    - generic: Welcome, commish@example.com
-                    - button: Dashboard
-                  - button:
-                    - generic:
+          - link "Skip to main content" [ref=e45] [cursor=pointer]:
+            - /url: "#main-content"
+        - generic [ref=e48]:
+          - generic [ref=e51]: Dashboard
+          - generic [ref=e54]: commish
+        - main [ref=e55]:
+          - generic [ref=e56]:
+            - generic [ref=e59]:
+              - generic [ref=e60]: Quick Navigation
+              - button "Navigate to available sections" [ref=e62] [cursor=pointer]:
+                - generic [ref=e63] [cursor=pointer]:
+                  - img
+                  - generic [ref=e64] [cursor=pointer]: Go to...
+                - img
+            - generic [ref=e66]:
+              - heading "Quick Actions" [level=2] [ref=e67]
+              - generic [ref=e68]:
+                - generic [ref=e71] [cursor=pointer]:
+                  - img [ref=e73] [cursor=pointer]
+                  - generic [ref=e74] [cursor=pointer]:
+                    - heading "Create a League" [level=3] [ref=e75] [cursor=pointer]
+                    - paragraph [ref=e76] [cursor=pointer]: Start a new football auction with friends
+                  - button "Create Now" [ref=e77] [cursor=pointer]:
+                    - generic [ref=e78] [cursor=pointer]:
+                      - generic [ref=e79] [cursor=pointer]: Create Now
                       - img
-            - link:
-              - /url: "#main-content"
-              - text: Skip to main content
-          - generic:
-            - generic:
-              - generic:
-                - generic:
-                  - generic:
-                    - generic: Dashboard
-                - generic:
-                  - generic:
-                    - generic: commish
-          - main:
-            - generic:
-              - generic:
-                - generic:
-                  - generic:
-                    - generic: Quick Navigation
-                    - generic:
-                      - button:
-                        - generic:
-                          - img
-                          - generic: Go to...
-                        - img
-              - generic:
-                - heading [level=2]: Quick Actions
-                - generic:
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - img
-                        - generic:
-                          - heading [level=3]: Create a League
-                          - paragraph: Start a new football auction with friends
-                        - button:
-                          - generic:
-                            - generic: Create Now
-                            - img
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - img
-                        - generic:
-                          - heading [level=3]: Join via Invite
-                          - paragraph: Enter with an invitation code or link
-                        - button:
-                          - generic:
-                            - generic: Join League
-                            - img
-              - generic:
-                - generic:
-                  - generic:
-                    - heading [level=2]: All Leagues (0)
-                  - button:
-                    - img
-                    - text: Create League
-                - generic:
-                  - generic:
-                    - img
-                    - heading [level=3]: No Leagues Yet
-                    - paragraph: Create your first league to start auctioning football clubs!
-                    - button:
+                - generic [ref=e82] [cursor=pointer]:
+                  - img [ref=e84] [cursor=pointer]
+                  - generic [ref=e87] [cursor=pointer]:
+                    - heading "Join via Invite" [level=3] [ref=e88] [cursor=pointer]
+                    - paragraph [ref=e89] [cursor=pointer]: Enter with an invitation code or link
+                  - button "Join League" [ref=e90] [cursor=pointer]:
+                    - generic [ref=e91] [cursor=pointer]:
+                      - generic [ref=e92] [cursor=pointer]: Join League
                       - img
-                      - text: Create League
-          - generic:
-            - generic:
-              - generic:
-                - generic:
-                  - generic:
-                    - generic:
-                      - img
-                    - generic:
-                      - generic: Friends of PIFA
-                      - generic: Sports gaming with friends. No gambling. All strategy.
-                  - paragraph: Join the social sports arena where skill beats luck.
-                  - generic:
-                    - img
-                    - generic: We stand for integrity, fairness, and the joy of the game
-                - generic:
-                  - heading [level=3]: Fair Play Commitment
-                  - generic:
-                    - generic:
-                      - generic:
-                        - img
-                        - generic:
-                          - paragraph: No gambling. No wagering. Pure sports strategy.
-                          - paragraph: This platform does not involve any form of gambling, betting, or wagering.
-                    - generic:
-                      - img
-                      - generic: Designed for entertainment and friendly competition only.
-                    - generic: Must be 13+ to use this service.
-                - generic:
-                  - heading [level=3]: Legal & Support
-                  - generic:
-                    - generic:
-                      - button:
-                        - generic:
-                          - generic:
-                            - generic: Terms of Service
-                            - img
-                      - button:
-                        - generic:
-                          - generic:
-                            - generic: Privacy Policy
-                            - img
-                      - button:
-                        - generic:
-                          - generic:
-                            - generic: Contact Us
-                            - img
-                      - button:
-                        - generic:
-                          - generic:
-                            - generic: About Us
-                            - img
-            - generic:
-              - generic:
-                - generic:
-                  - generic:
-                    - generic: © 2025 Friends of PIFA. All rights reserved.
-                  - generic:
-                    - generic: 100% Free to Play
-                    - generic: No Real Money
-          - button:
-            - img
-  - link:
+            - generic [ref=e93]:
+              - generic [ref=e94]:
+                - heading "All Leagues (0)" [level=2] [ref=e96]
+                - button "Create a new league" [ref=e97] [cursor=pointer]:
+                  - img
+                  - text: Create League
+              - generic [ref=e99]:
+                - img [ref=e100]
+                - heading "No Leagues Yet" [level=3] [ref=e106]
+                - paragraph [ref=e107]: Create your first league to start auctioning football clubs!
+                - button "Create League" [ref=e108] [cursor=pointer]:
+                  - img
+                  - text: Create League
+        - generic [ref=e109]:
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - generic [ref=e113]:
+                - img [ref=e115]
+                - generic [ref=e120]:
+                  - generic [ref=e121]: Friends of PIFA
+                  - generic [ref=e122]: Sports gaming with friends. No gambling. All strategy.
+              - paragraph [ref=e123]: Join the social sports arena where skill beats luck.
+              - generic [ref=e124]:
+                - img [ref=e125]
+                - generic [ref=e127]: We stand for integrity, fairness, and the joy of the game
+            - generic [ref=e128]:
+              - heading "Fair Play Commitment" [level=3] [ref=e129]
+              - generic [ref=e130]:
+                - generic [ref=e132]:
+                  - img [ref=e133]
+                  - generic [ref=e139]:
+                    - paragraph [ref=e140]: No gambling. No wagering. Pure sports strategy.
+                    - paragraph [ref=e141]: This platform does not involve any form of gambling, betting, or wagering.
+                - generic [ref=e142]:
+                  - img [ref=e143]
+                  - generic [ref=e148]: Designed for entertainment and friendly competition only.
+                - generic [ref=e149]: Must be 13+ to use this service.
+            - generic [ref=e150]:
+              - heading "Legal & Support" [level=3] [ref=e151]
+              - generic [ref=e153]:
+                - button "Navigate to Terms of Service" [ref=e154] [cursor=pointer]:
+                  - generic [ref=e156] [cursor=pointer]:
+                    - generic [ref=e157] [cursor=pointer]: Terms of Service
+                    - img [ref=e158] [cursor=pointer]
+                - button "Navigate to Privacy Policy" [ref=e162] [cursor=pointer]:
+                  - generic [ref=e164] [cursor=pointer]:
+                    - generic [ref=e165] [cursor=pointer]: Privacy Policy
+                    - img [ref=e166] [cursor=pointer]
+                - button "Navigate to Contact Us" [ref=e170] [cursor=pointer]:
+                  - generic [ref=e172] [cursor=pointer]:
+                    - generic [ref=e173] [cursor=pointer]: Contact Us
+                    - img [ref=e174] [cursor=pointer]
+                - button "Navigate to About Us" [ref=e178] [cursor=pointer]:
+                  - generic [ref=e180] [cursor=pointer]:
+                    - generic [ref=e181] [cursor=pointer]: About Us
+                    - img [ref=e182] [cursor=pointer]
+          - generic [ref=e188]:
+            - generic [ref=e190]: © 2025 Friends of PIFA. All rights reserved.
+            - generic [ref=e191]:
+              - generic [ref=e192]: 100% Free to Play
+              - generic [ref=e193]: No Real Money
+        - button "Back to top" [ref=e194] [cursor=pointer]:
+          - img [ref=e195] [cursor=pointer]
+  - link "Emergent platform logo Made with Emergent" [ref=e197] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic:
-      - img
-      - paragraph: Made with Emergent
-  - dialog "Create New League" [ref=e2]:
-    - heading "Create New League" [level=2] [ref=e4]
-    - generic [ref=e5]:
-      - generic [ref=e6]:
-        - generic [ref=e7]:
-          - generic [ref=e8]: League Name
-          - textbox "League Name" [active] [ref=e9]
-        - generic [ref=e10]:
-          - generic [ref=e11]: Season
-          - textbox "Season" [ref=e12]: 2025-26
-        - generic [ref=e13]:
-          - generic [ref=e14]: Competition Template
-          - combobox "Competition Template" [ref=e15]:
-            - option "UEFA Champions League (UCL) - 5 slots" [selected]
-            - option "UEFA Europa League (UEL) - 5 slots"
-            - option "Custom Competition (CUSTOM) - 5 slots"
-          - paragraph [ref=e16]: Choose a template to set default values. You can customize them below.
-      - generic [ref=e17]:
-        - heading "League Settings" [level=4] [ref=e18]
-        - generic [ref=e19]:
-          - generic [ref=e20]:
-            - generic [ref=e21]: Budget per Manager
-            - spinbutton "Budget per Manager" [ref=e22]: "100"
-          - generic [ref=e23]:
-            - generic [ref=e24]: Club Slots per Manager
-            - spinbutton "Club Slots per Manager" [ref=e25]: "5"
-          - generic [ref=e26]:
-            - generic [ref=e27]: Min Bid Increment
-            - spinbutton "Min Bid Increment" [ref=e28]: "1"
-          - generic [ref=e29]:
-            - generic [ref=e30]: Bid Timer (seconds)
-            - spinbutton "Bid Timer (seconds)" [ref=e31]: "60"
-          - generic [ref=e32]:
-            - generic [ref=e33]: Min Managers
-            - spinbutton "Min Managers" [ref=e34]: "2"
-          - generic [ref=e35]:
-            - generic [ref=e36]: Max Managers
-            - spinbutton "Max Managers" [ref=e37]: "8"
-      - generic [ref=e38]:
-        - heading "Scoring Rules" [level=4] [ref=e39]
-        - generic [ref=e40]:
-          - generic [ref=e41]:
-            - generic [ref=e42]: Points per Goal
-            - spinbutton "Points per Goal" [ref=e43]: "1"
-          - generic [ref=e44]:
-            - generic [ref=e45]: Points per Win
-            - spinbutton "Points per Win" [ref=e46]: "3"
-          - generic [ref=e47]:
-            - generic [ref=e48]: Points per Draw
-            - spinbutton "Points per Draw" [ref=e49]: "1"
-      - generic [ref=e50]:
-        - button "Cancel" [ref=e51] [cursor=pointer]
-        - button "Create League" [ref=e52] [cursor=pointer]
-    - button "Close" [ref=e53] [cursor=pointer]:
-      - img [ref=e54] [cursor=pointer]
-      - generic [ref=e57] [cursor=pointer]: Close
+    - generic [ref=e198] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e199] [cursor=pointer]
+      - paragraph [ref=e200] [cursor=pointer]: Made with Emergent
 ```
