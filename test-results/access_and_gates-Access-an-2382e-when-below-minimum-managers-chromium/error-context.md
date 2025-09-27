@@ -1,0 +1,52 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - region "Notifications alt+T"
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - button "Friends of PIFA" [ref=e7] [cursor=pointer]:
+          - img [ref=e9] [cursor=pointer]
+          - generic [ref=e15] [cursor=pointer]: Friends of PIFA
+        - navigation
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - button "Sign In" [ref=e18] [cursor=pointer]
+            - button "Get Started" [ref=e19] [cursor=pointer]
+          - button "Switch to dark mode" [ref=e20] [cursor=pointer]:
+            - generic [ref=e21] [cursor=pointer]:
+              - img
+      - link "Skip to main content" [ref=e22] [cursor=pointer]:
+        - /url: "#main-content"
+    - main [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e27]:
+          - button "Back to Home" [ref=e29] [cursor=pointer]:
+            - img
+            - text: Back to Home
+          - heading "Friends of PIFA" [level=1] [ref=e31]
+          - button "Home" [ref=e33] [cursor=pointer]
+        - main [ref=e34]:
+          - generic [ref=e35]:
+            - generic [ref=e36]:
+              - img [ref=e37]
+              - heading "Sign In" [level=2] [ref=e40]
+              - paragraph [ref=e41]: Enter your email to receive a magic link for secure access
+            - generic [ref=e42]:
+              - heading "Magic Link Authentication" [level=3] [ref=e44]
+              - generic [ref=e46]:
+                - generic [ref=e47]:
+                  - generic [ref=e48]: Email Address
+                  - textbox "Email Address" [active] [ref=e49]: commissioner@gate.test
+                - button "Send Magic Link" [ref=e50] [cursor=pointer]:
+                  - generic [ref=e51] [cursor=pointer]:
+                    - img
+                    - generic [ref=e52] [cursor=pointer]: Send Magic Link
+            - paragraph [ref=e54]: No password required. We'll send you a secure link to sign in.
+  - link "Emergent platform logo Made with Emergent" [ref=e55] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e56] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e57] [cursor=pointer]
+      - paragraph [ref=e58] [cursor=pointer]: Made with Emergent
+```
