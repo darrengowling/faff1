@@ -20,6 +20,7 @@ import {
   MobileNavigation,
   MobileMenuButton 
 } from './navigation/EnhancedNavigationMenu';
+import { AuthNavigation } from './navigation/NavigationMenu';
 import { TESTIDS } from '../testids.js';
 
 const GlobalNavbar = () => {
