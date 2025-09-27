@@ -51,6 +51,27 @@ export interface LeagueSettings {
   maxManagers: number;
 }
 
+/**
+ * Click Create League button from multiple possible entry points
+ * Tries both dashboard and navigation buttons
+ */
+export async function clickCreateLeague(page: Page): Promise<void> {
+  const btns = [
+    page.getByTestId('create-league-btn'),
+    page.getByTestId('nav-create-league-btn')
+  ];
+  
+  for (const b of btns) {
+    try {
+      await b.waitFor({ state: 'visible', timeout: 1000 });
+      await b.click();
+      return;
+    } catch {}
+  }
+  
+  throw new Error('Create League CTA not found');
+}
+
 export async function createLeague(page: Page, settings: LeagueSettings): Promise<string> {
   console.log(`🏆 Creating league: ${settings.name}`);
   
