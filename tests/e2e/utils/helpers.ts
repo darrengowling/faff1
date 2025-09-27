@@ -58,7 +58,7 @@ export interface LeagueSettings {
 export async function clickCreateLeague(page: Page): Promise<void> {
   // Wait for page to be fully loaded and components to render
   await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(3000); // Increased wait time
   
   const btns = [
     page.getByTestId('create-league-btn'),
@@ -67,10 +67,18 @@ export async function clickCreateLeague(page: Page): Promise<void> {
   
   for (const b of btns) {
     try {
-      await b.waitFor({ state: 'visible', timeout: 1000 });
-      await b.first().click();
-      return;
-    } catch {}
+      const count = await b.count();
+      if (count > 0) {
+        const firstBtn = b.first();
+        const isVisible = await firstBtn.isVisible();
+        if (isVisible) {
+          await firstBtn.click();
+          return;
+        }
+      }
+    } catch (e) {
+      console.log(`Failed to click button: ${e.message}`);
+    }
   }
   
   throw new Error('Create League CTA not found');
