@@ -274,6 +274,14 @@ async def test_login(request: dict):
         await db.users.insert_one(user_dict)
         user = user_dict
         logger.info("🧪 TEST USER CREATED: %s", email)
+    else:
+        # Update existing user to be verified for testing
+        await db.users.update_one(
+            {"_id": user["_id"]}, 
+            {"$set": {"verified": True}}
+        )
+        user["verified"] = True  # Update local user object
+        logger.info("🧪 TEST USER VERIFIED: %s", email)
     
     # Create access token
     access_token = create_access_token(data={"sub": user["_id"]})
