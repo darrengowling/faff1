@@ -212,16 +212,14 @@ const GlobalNavbar = () => {
           
           {/* Center - Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-2" role="navigation">
-            {/* Primary Navigation Links */}
-            <PrimaryNavigation onItemClick={handleNavItemClick} />
-            
             {/* Product Dropdown */}
             <ProductDropdownMenu
               isOpen={productDropdownOpen}
               onToggle={handleProductDropdownToggle}
-              focusedIndex={focusedIndex}
-              onFocusChange={setFocusedIndex}
-              onKeyDown={handleDropdownKeyDown}
+              onClose={() => {
+                setProductDropdownOpen(false);
+                setFocusedIndex(-1);
+              }}
             />
           </nav>
 
