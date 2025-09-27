@@ -7,11 +7,9 @@
 
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '../theme/ThemeProvider';
-import GlobalNavbar from '../components/GlobalNavbar';
-import DashboardContent from '../components/DashboardContent';
-import { AuthContext } from '../App';
+import CreateLeagueCTA from '../components/ui/create-league-cta';
+import QuickActionCards from '../components/ui/quick-action-cards';
+import { TESTIDS } from '../testids.js';
 
 // Mock authenticated user
 const mockAuthenticatedUser = {
