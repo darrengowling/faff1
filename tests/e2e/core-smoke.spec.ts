@@ -235,14 +235,14 @@ async function createLeague(page: Page, settings: typeof LEAGUE_SETTINGS): Promi
   await clickCreateLeague(page);
   await page.waitForSelector('[role="dialog"], .modal', { timeout: 5000 });
   
-  // Fill league form using testids
-  await page.fill(`[data-testid="${TESTIDS.createLeagueWizardName}"]`, settings.name);
-  await page.fill(`[data-testid="${TESTIDS.createLeagueWizardBudget}"]`, settings.budgetPerManager.toString());
-  await page.fill(`[data-testid="${TESTIDS.createLeagueWizardSlots}"]`, settings.clubSlots.toString());
-  await page.fill(`[data-testid="${TESTIDS.createLeagueWizardMin}"]`, settings.leagueSize.min.toString());
+  // Fill league form using testids (simplified for demo)
+  await page.fill(`[data-testid="create-name"]`, settings.name);
+  await page.fill(`[data-testid="create-budget"]`, settings.budgetPerManager.toString());
+  await page.fill(`[data-testid="create-slots"]`, settings.clubSlots.toString());
+  await page.fill(`[data-testid="create-min"]`, settings.leagueSize.min.toString());
   
   // Submit form
-  await page.click(`[data-testid="${TESTIDS.createLeagueWizardSubmit}"]`);
+  await page.click(`[data-testid="create-submit"]`);
   
   // Wait for redirect to league admin page
   await page.waitForURL('**/admin/**', { timeout: 10000 });
