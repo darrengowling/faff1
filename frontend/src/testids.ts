@@ -75,6 +75,7 @@ export const TESTIDS = {
   createLeagueBtn: 'create-league-btn', // Legacy alias for homeCreateLeagueBtn
   
   // Navigation & Breadcrumbs
+  breadcrumbHome: 'breadcrumb-home',
   backButton: 'back-button',
   backToHomeButton: 'back-to-home-button',
 
