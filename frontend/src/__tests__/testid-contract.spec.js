@@ -141,6 +141,14 @@ describe('TestID Contract Tests', () => {
     });
   });
 
+  describe('Breadcrumb Navigation TestIDs', () => {
+    it('should have breadcrumb-home testid constant defined', () => {
+      // Verify that breadcrumb-home testid is available 
+      expect(TESTIDS.breadcrumbHome).toBeDefined();
+      expect(TESTIDS.breadcrumbHome).toBe('breadcrumb-home');
+    });
+  });
+
   describe('Error Boundaries', () => {
     it('should fail gracefully if testids are missing', () => {
       // This test ensures that if testids are removed, the contract test fails
