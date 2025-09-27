@@ -286,12 +286,12 @@ async def test_login(request: dict):
     # Create access token
     access_token = create_access_token(data={"sub": user["_id"]})
     
-    # Create user response
+    # Create user response (user["verified"] is now guaranteed to be True)
     user_response = UserResponse(
         id=user["_id"],
         email=user["email"],
         display_name=user["display_name"],
-        verified=True,
+        verified=user["verified"],  # Use actual database value (now True)
         created_at=user["created_at"]
     )
     
