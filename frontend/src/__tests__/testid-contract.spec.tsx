@@ -11,48 +11,12 @@ import CreateLeagueCTA from '../components/ui/create-league-cta';
 import QuickActionCards from '../components/ui/quick-action-cards';
 import { TESTIDS } from '../testids.js';
 
-// Mock authenticated user
-const mockAuthenticatedUser = {
-  id: 'test-user-123',
-  email: 'test@example.com',
-  display_name: 'Test User',
-  verified: true,
-  created_at: '2025-01-01T00:00:00.000Z'
+// Mock functions for component props
+const mockHandlers = {
+  onCreateLeague: jest.fn(),
+  onJoinViaInvite: jest.fn(),
+  onResumeAuction: jest.fn(),
 };
-
-// Mock auth context with authenticated user
-const mockAuthContext = {
-  user: mockAuthenticatedUser,
-  login: jest.fn(),
-  logout: jest.fn(),
-  loading: false
-};
-
-// Mock leagues data for dashboard
-const mockLeagues = [
-  {
-    id: 'league-1',
-    name: 'Test League',
-    commissioner_id: 'test-user-123',
-    status: 'ready',
-    member_count: 2,
-    settings: {
-      budget_per_manager: 100,
-      club_slots_per_manager: 5
-    }
-  }
-];
-
-// Test wrapper with all required providers
-const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <BrowserRouter>
-    <ThemeProvider>
-      <AuthContext.Provider value={mockAuthContext}>
-        {children}
-      </AuthContext.Provider>
-    </ThemeProvider>
-  </BrowserRouter>
-);
 
 describe('TestID Contract Tests', () => {
   beforeEach(() => {
