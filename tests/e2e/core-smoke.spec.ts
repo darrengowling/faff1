@@ -230,32 +230,18 @@ test.describe('Core Smoke Test', () => {
 async function createLeague(page: Page, settings: typeof LEAGUE_SETTINGS): Promise<{ leagueId: string }> {
   console.log(`🏟️ Creating league: ${settings.name}`);
   
-  // Click create league button from dashboard
-  await page.click(`[data-testid="${TESTIDS.createLeagueBtn}"]`);
+  // Click create league button from any available entry point 
+  await clickCreateLeague(page);
   await page.waitForSelector('[role="dialog"], .modal', { timeout: 5000 });
   
-  // Fill league form
-  await page.fill('input[name="name"]', settings.name);
-  await page.fill('input[name="season"]', '2025-26');
-  
-  // Set competition profile (try UCL first, then custom)
-  const profileSelect = page.locator('select[name="competition_profile_id"]');
-  if (await profileSelect.isVisible()) {
-    await profileSelect.selectOption({ label: /UCL|Champions League/i });
-  }
-  
-  // Set budget
-  await page.fill('input[name="budget_per_manager"]', settings.budgetPerManager.toString());
-  
-  // Set club slots  
-  await page.fill('input[name="club_slots_per_manager"]', settings.clubSlots.toString());
-  
-  // Set league size
-  await page.fill('input[name="min_managers"]', settings.leagueSize.min.toString());
-  await page.fill('input[name="max_managers"]', settings.leagueSize.max.toString());
+  // Fill league form using testids
+  await page.fill(`[data-testid="create-name"]`, settings.name);
+  await page.fill(`[data-testid="create-budget"]`, settings.budgetPerManager.toString());
+  await page.fill(`[data-testid="create-slots"]`, settings.clubSlots.toString());
+  await page.fill(`[data-testid="create-min"]`, settings.leagueSize.min.toString());
   
   // Submit form
-  await page.click(`[data-testid="${TESTIDS.createSubmit}"]`);
+  await page.click(`[data-testid="create-submit"]`);
   
   // Wait for redirect to league admin page
   await page.waitForURL('**/admin/**', { timeout: 10000 });
