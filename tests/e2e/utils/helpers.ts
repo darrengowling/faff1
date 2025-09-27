@@ -56,6 +56,10 @@ export interface LeagueSettings {
  * Tries both dashboard and navigation buttons
  */
 export async function clickCreateLeague(page: Page): Promise<void> {
+  // Wait for page to be fully loaded and components to render
+  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(2000);
+  
   const btns = [
     page.getByTestId('create-league-btn'),
     page.getByTestId('nav-create-league-btn')
