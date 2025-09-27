@@ -56,50 +56,17 @@ export interface LeagueSettings {
  * Tries both dashboard and navigation buttons
  */
 export async function clickCreateLeague(page: Page): Promise<void> {
-  console.log('🔍 Looking for Create League buttons...');
-  
-  // Wait for page to be fully loaded
-  await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(2000);
-  
   const btns = [
-    { selector: page.getByTestId('create-league-btn'), name: 'dashboard' },
-    { selector: page.getByTestId('nav-create-league-btn'), name: 'navigation' }
+    page.getByTestId('create-league-btn'),
+    page.getByTestId('nav-create-league-btn')
   ];
   
-  for (const { selector, name } of btns) {
+  for (const b of btns) {
     try {
-      console.log(`🔍 Trying ${name} Create League button...`);
-      const count = await selector.count();
-      console.log(`  Found ${count} ${name} buttons`);
-      
-      if (count > 0) {
-        const firstBtn = selector.first();
-        const isVisible = await firstBtn.isVisible();
-        console.log(`  First ${name} button visible: ${isVisible}`);
-        
-        if (isVisible) {
-          await firstBtn.click();
-          console.log(`✅ Clicked ${name} Create League button`);
-          return;
-        }
-      }
-    } catch (e) {
-      console.log(`❌ Failed to click ${name} Create League button: ${e.message}`);
-    }
-  }
-  
-  // Debug: Check what's actually on the page
-  console.log('🔍 Debugging page state...');
-  const allCreateElements = page.locator('[data-testid*="create"]');
-  const createCount = await allCreateElements.count();
-  console.log(`Found ${createCount} elements with 'create' in testid`);
-  
-  for (let i = 0; i < Math.min(createCount, 5); i++) {
-    const element = allCreateElements.nth(i);
-    const testid = await element.getAttribute('data-testid');
-    const visible = await element.isVisible();
-    console.log(`  Element ${i+1}: data-testid='${testid}' visible=${visible}`);
+      await b.waitFor({ state: 'visible', timeout: 1000 });
+      await b.first().click();
+      return;
+    } catch {}
   }
   
   throw new Error('Create League CTA not found');
