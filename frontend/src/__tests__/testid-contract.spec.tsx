@@ -66,7 +66,7 @@ describe('TestID Contract Tests', () => {
       // Assert join via invite button exists
       const joinViaInviteBtn = screen.getByTestId(TESTIDS.joinViaInviteBtn);
       expect(joinViaInviteBtn).toBeInTheDocument();
-      expect(joinViaInviteBtn).toHaveTextContent(/join via invite/i);
+      expect(joinViaInviteBtn).toHaveTextContent(/join league/i);
     });
   });
 
