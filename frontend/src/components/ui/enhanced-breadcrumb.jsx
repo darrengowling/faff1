@@ -91,6 +91,27 @@ const generateBreadcrumbs = (pathname, selectedLeague) => {
         });
         break;
         
+      case 'leagues':
+        // Check if this is the leagues/new path for Create League wizard
+        if (segments[index + 1] === 'new') {
+          breadcrumbs.push({
+            label: 'New League',
+            href: path + '/new',
+            testid: 'breadcrumb-new-league'
+          });
+        } else {
+          breadcrumbs.push({
+            label: 'Leagues',
+            href: path,
+            testid: 'breadcrumb-leagues'
+          });
+        }
+        break;
+        
+      case 'new':
+        // Skip 'new' segment as it's handled by 'leagues' case above
+        break;
+        
       case 'login':
         breadcrumbs.splice(0); // Clear all for login page
         breadcrumbs.push({
