@@ -63,8 +63,8 @@ export async function clickCreateLeague(page: Page): Promise<void> {
   
   for (const b of btns) {
     try {
-      await b.waitFor({ state: 'visible', timeout: 1000 });
-      await b.click();
+      await b.waitFor({ state: 'visible', timeout: 3000 });
+      await b.first().click();
       return;
     } catch {}
   }
