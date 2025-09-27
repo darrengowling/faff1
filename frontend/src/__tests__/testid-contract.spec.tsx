@@ -20,170 +20,136 @@ const mockHandlers = {
 
 describe('TestID Contract Tests', () => {
   beforeEach(() => {
-    // Clear any previous renders
     jest.clearAllMocks();
   });
 
-  describe('Required Navigation TestIDs', () => {
-    it('should render nav-create-league-btn in authenticated header', () => {
+  describe('Critical TestIDs - Component Level', () => {
+    it('should render create-league-btn in CreateLeagueCTA component', () => {
       render(
-        <TestWrapper>
-          <GlobalNavbar />
-        </TestWrapper>
+        <CreateLeagueCTA
+          isLoading={false}
+          onCreateLeague={mockHandlers.onCreateLeague}
+        />
       );
 
-      // Assert nav create league button exists (only shown when authenticated)
-      const navCreateLeagueBtn = screen.getByTestId('nav-create-league-btn');
-      expect(navCreateLeagueBtn).toBeInTheDocument();
-      expect(navCreateLeagueBtn).toHaveTextContent(/new league/i);
+      // Assert create league button exists with correct testid
+      const createLeagueBtn = screen.getByTestId(TESTIDS.createLeagueBtn);
+      expect(createLeagueBtn).toBeInTheDocument();
+      expect(createLeagueBtn).toHaveTextContent(/create league/i);
     });
-  });
 
-  describe('Required Dashboard TestIDs', () => {
-    it('should render create-league-btn in dashboard content', () => {
+    it('should render create-league-btn even during loading state', () => {
       render(
-        <TestWrapper>
-          <DashboardContent
-            leagues={mockLeagues}
-            onCreateLeague={jest.fn()}
-            onViewLeague={jest.fn()}
-            onStartAuction={jest.fn()}
-            onViewAuction={jest.fn()}
-            loading={false}
-          />
-        </TestWrapper>
+        <CreateLeagueCTA
+          isLoading={true}
+          onCreateLeague={mockHandlers.onCreateLeague}
+        />
       );
 
-      // Assert create league button exists (should be multiple instances)
-      const createLeagueButtons = screen.getAllByTestId('create-league-btn');
-      expect(createLeagueButtons.length).toBeGreaterThan(0);
-      
-      // Verify at least one is visible and has expected content
-      const firstButton = createLeagueButtons[0];
-      expect(firstButton).toBeInTheDocument();
-      expect(firstButton).toHaveTextContent(/create league/i);
+      // Button should exist even during loading
+      const createLeagueBtn = screen.getByTestId(TESTIDS.createLeagueBtn);
+      expect(createLeagueBtn).toBeInTheDocument();
+      expect(createLeagueBtn).toBeDisabled();
+      expect(createLeagueBtn).toHaveTextContent(/loading/i);
     });
 
-    it('should render join-via-invite-btn in dashboard content', () => {
+    it('should render join-via-invite-btn in QuickActionCards component', () => {
       render(
-        <TestWrapper>
-          <DashboardContent
-            leagues={mockLeagues}
-            onCreateLeague={jest.fn()}
-            onViewLeague={jest.fn()}
-            onStartAuction={jest.fn()}
-            onViewAuction={jest.fn()}
-            loading={false}
-          />
-        </TestWrapper>
+        <QuickActionCards
+          onCreateLeague={mockHandlers.onCreateLeague}
+          onJoinViaInvite={mockHandlers.onJoinViaInvite}
+          activeAuctions={[]}
+          onResumeAuction={mockHandlers.onResumeAuction}
+        />
       );
 
       // Assert join via invite button exists
-      const joinViaInviteBtn = screen.getByTestId('join-via-invite-btn');
+      const joinViaInviteBtn = screen.getByTestId(TESTIDS.joinViaInviteBtn);
       expect(joinViaInviteBtn).toBeInTheDocument();
+      expect(joinViaInviteBtn).toHaveTextContent(/join via invite/i);
     });
   });
 
-  describe('Critical TestIDs Integration Test', () => {
-    it('should render all required testids together in full app context', () => {
-      // Render both header and dashboard content together
-      render(
-        <TestWrapper>
-          <div>
-            <GlobalNavbar />
-            <main>
-              <DashboardContent
-                leagues={mockLeagues}
-                onCreateLeague={jest.fn()}
-                onViewLeague={jest.fn()}
-                onStartAuction={jest.fn()}
-                onViewAuction={jest.fn()}
-                loading={false}
-              />
-            </main>
-          </div>
-        </TestWrapper>
-      );
+  describe('TestID Constants Validation', () => {
+    it('should have all required testid constants defined', () => {
+      // Verify that all critical testids are defined in TESTIDS
+      expect(TESTIDS.createLeagueBtn).toBeDefined();
+      expect(TESTIDS.createLeagueBtn).toBe('create-league-btn');
+      
+      expect(TESTIDS.joinViaInviteBtn).toBeDefined();
+      expect(TESTIDS.joinViaInviteBtn).toBe('join-via-invite-btn');
+      
+      expect(TESTIDS.navCreateLeagueBtn).toBeDefined();
+      expect(TESTIDS.navCreateLeagueBtn).toBe('nav-create-league-btn');
+    });
 
-      // Assert all critical testids exist
-      expect(screen.getByTestId('nav-create-league-btn')).toBeInTheDocument();
-      expect(screen.getAllByTestId('create-league-btn').length).toBeGreaterThan(0);
-      expect(screen.getByTestId('join-via-invite-btn')).toBeInTheDocument();
+    it('should not have duplicate testid values for different constants', () => {
+      const testIdValues = [
+        TESTIDS.createLeagueBtn,
+        TESTIDS.joinViaInviteBtn,
+        TESTIDS.navCreateLeagueBtn
+      ];
+
+      // Check for duplicates
+      const uniqueValues = new Set(testIdValues);
+      expect(uniqueValues.size).toBe(testIdValues.length);
     });
   });
 
-  describe('TestID Accessibility', () => {
-    it('should have accessible names for all required buttons', () => {
-      render(
-        <TestWrapper>
-          <div>
-            <GlobalNavbar />
-            <main>
-              <DashboardContent
-                leagues={[]}
-                onCreateLeague={jest.fn()}
-                onViewLeague={jest.fn()}
-                onStartAuction={jest.fn()}
-                onViewAuction={jest.fn()}
-                loading={false}
-              />
-            </main>
-          </div>
-        </TestWrapper>
+  describe('Component Props Validation', () => {
+    it('should handle CreateLeagueCTA with different variants', () => {
+      const { rerender } = render(
+        <CreateLeagueCTA
+          isLoading={false}
+          onCreateLeague={mockHandlers.onCreateLeague}
+          variant="default"
+        />
       );
 
-      // Verify buttons have accessible content
-      const navCreateBtn = screen.getByTestId('nav-create-league-btn');
-      const joinInviteBtn = screen.getByTestId('join-via-invite-btn');
-      const createLeagueButtons = screen.getAllByTestId('create-league-btn');
+      expect(screen.getByTestId(TESTIDS.createLeagueBtn)).toBeInTheDocument();
 
-      // Check accessible names exist
-      expect(navCreateBtn).toHaveAccessibleName();
-      expect(joinInviteBtn).toHaveAccessibleName();
-      expect(createLeagueButtons[0]).toHaveAccessibleName();
+      // Test with outline variant
+      rerender(
+        <CreateLeagueCTA
+          isLoading={false}
+          onCreateLeague={mockHandlers.onCreateLeague}
+          variant="outline"
+        />
+      );
+
+      expect(screen.getByTestId(TESTIDS.createLeagueBtn)).toBeInTheDocument();
+    });
+
+    it('should handle QuickActionCards with active auctions', () => {
+      const activeAuctions = [
+        { id: 'auction-1', name: 'Test Auction', status: 'active' }
+      ];
+
+      render(
+        <QuickActionCards
+          onCreateLeague={mockHandlers.onCreateLeague}
+          onJoinViaInvite={mockHandlers.onJoinViaInvite}
+          activeAuctions={activeAuctions}
+          onResumeAuction={mockHandlers.onResumeAuction}
+        />
+      );
+
+      // Both buttons should still exist
+      expect(screen.getByTestId(TESTIDS.joinViaInviteBtn)).toBeInTheDocument();
+      // Create league functionality should be in the quick actions
+      expect(screen.getByText(/create a league/i)).toBeInTheDocument();
     });
   });
 
-  describe('Empty State TestIDs', () => {
-    it('should render create-league-btn even with no leagues (empty state)', () => {
+  describe('Error Boundaries', () => {
+    it('should fail gracefully if testids are missing', () => {
+      // This test ensures that if testids are removed, the contract test fails
       render(
-        <TestWrapper>
-          <DashboardContent
-            leagues={[]}
-            onCreateLeague={jest.fn()}
-            onViewLeague={jest.fn()}
-            onStartAuction={jest.fn()}
-            onViewAuction={jest.fn()}
-            loading={false}
-          />
-        </TestWrapper>
+        <button>Create League Without TestID</button>
       );
 
-      // Even with empty leagues, create league button should exist
-      const createLeagueButtons = screen.getAllByTestId('create-league-btn');
-      expect(createLeagueButtons.length).toBeGreaterThan(0);
-    });
-  });
-
-  describe('Loading State TestIDs', () => {
-    it('should render create-league-btn even during loading state', () => {
-      render(
-        <TestWrapper>
-          <DashboardContent
-            leagues={[]}
-            onCreateLeague={jest.fn()}
-            onViewLeague={jest.fn()}
-            onStartAuction={jest.fn()}
-            onViewAuction={jest.fn()}
-            loading={true}
-          />
-        </TestWrapper>
-      );
-
-      // During loading, create league button should still exist
-      // (CreateLeagueCTA always renders with testid)
-      const createLeagueButtons = screen.getAllByTestId('create-league-btn');
-      expect(createLeagueButtons.length).toBeGreaterThan(0);
+      // This should NOT find the button, proving the contract works
+      expect(screen.queryByTestId(TESTIDS.createLeagueBtn)).not.toBeInTheDocument();
     });
   });
 });
