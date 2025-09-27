@@ -67,6 +67,7 @@ const LEGACY_TESTIDS = {
   createLeagueBtn: 'create-league-btn',
   
   // Navigation & Breadcrumbs
+  breadcrumbHome: 'breadcrumb-home',
   backButton: 'back-button',
   backToHomeButton: 'back-to-home-button',
   
