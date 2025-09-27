@@ -586,6 +586,19 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-testid={TESTIDS.createDialog}>
         <DialogHeader>
+          {/* Breadcrumb Navigation */}
+          <div className="flex items-center space-x-2 text-sm text-gray-500 mb-2">
+            <button
+              type="button"
+              onClick={() => onOpenChange(false)}
+              className="text-blue-600 hover:text-blue-800 hover:underline"
+              data-testid="breadcrumb-home"
+            >
+              Home
+            </button>
+            <span>/</span>
+            <span className="text-gray-900 font-medium">New League</span>
+          </div>
           <DialogTitle>{t('leagueCreation.createNewLeague')}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-6">
