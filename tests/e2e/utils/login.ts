@@ -6,7 +6,7 @@
 import { Page } from '@playwright/test';
 import { TESTIDS } from '../../../frontend/src/testids.js';
 
-const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'https://friends-pifa.preview.emergentagent.com';
+const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'https://pifa-friends-1.preview.emergentagent.com';
 
 export interface LoginOptions {
   mode?: 'test' | 'ui';

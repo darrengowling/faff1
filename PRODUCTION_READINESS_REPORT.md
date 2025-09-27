@@ -58,7 +58,7 @@ sed -i 's|/api/socketio|/api/socket.io|g' backend/.env
 ## 🔍 HANDSHAKE GATE RESULTS
 
 **Socket.IO Diagnostics:** ❌ FAILED  
-**Backend URL:** https://friends-pifa.preview.emergentagent.com  
+**Backend URL:** https://pifa-friends-1.preview.emergentagent.com  
 **Transports Tested:** polling, websocket  
 
 ```

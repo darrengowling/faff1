@@ -28,7 +28,7 @@ export default defineConfig({
   // Global test configuration
   use: {
     // Base URL from environment
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'https://friends-pifa.preview.emergentagent.com',
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'https://pifa-friends-1.preview.emergentagent.com',
     
     // Browser context
     headless: true, // Always run headless in container

@@ -424,7 +424,7 @@ const AuctionRoom = ({ user, token }) => {
                      process.env.NEXT_PUBLIC_API_URL ||
                      (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_PUBLIC_API_URL) ||
                      process.env.REACT_APP_API_ORIGIN ||
-                     'https://friends-pifa.preview.emergentagent.com';
+                     'https://pifa-friends-1.preview.emergentagent.com';
                        
       const path = (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_SOCKET_PATH) ||
                    process.env.NEXT_PUBLIC_SOCKET_PATH ||
