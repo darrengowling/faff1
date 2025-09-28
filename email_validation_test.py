@@ -182,18 +182,27 @@ class EmailValidationTester:
             expected_status=400
         )
         
+        # Handle different response formats
+        detail = data.get('detail', {})
+        if isinstance(detail, dict):
+            error_code = detail.get('code', 'None')
+            has_message = 'message' in detail
+        else:
+            error_code = 'None'
+            has_message = False
+        
         valid_error_response = (
             success and
             status == 400 and
-            isinstance(data.get('detail'), dict) and
-            data['detail'].get('code') == 'INVALID_EMAIL' and
-            'message' in data['detail']
+            isinstance(detail, dict) and
+            error_code == 'INVALID_EMAIL' and
+            has_message
         )
         
         return self.log_test(
             "Magic Link - Invalid Email",
             valid_error_response,
-            f"Status: {status}, Error code: {data.get('detail', {}).get('code', 'None')}"
+            f"Status: {status}, Error code: {error_code}, Response: {data}"
         )
 
     def test_magic_link_endpoint_no_email(self):
