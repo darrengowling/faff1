@@ -79,7 +79,7 @@ export const CompactRules = ({ leagueSettings, loading = false, className = "" }
                    t('rules.max', { max: leagueSize.max });
   
   return (
-    <span className={`text-xs text-gray-600 font-mono ${className}`}>
+    <span className={`text-xs text-gray-600 font-mono ${className}`} data-testid="rules-badge">
       {rulesText}
     </span>
   );
