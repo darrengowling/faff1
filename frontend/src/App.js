@@ -596,13 +596,13 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
       const response = await axios.post(`${API}/leagues`, formData);
       
       if (response.status === 201) {
-        // Close the dialog and navigate (both)
-        onOpenChange(false); // This should set data-state="closed"
-        
-        // Set success marker for tests
+        // Set success marker for tests BEFORE closing dialog
         setJustCreatedId(response.data.leagueId);
         
-        // Navigate to lobby after a brief delay
+        // Close the dialog first
+        onOpenChange(false); // This should set data-state="closed"
+        
+        // Navigate to lobby in a microtask (after dialog close completes)
         setTimeout(() => {
           window.location.href = `/app/leagues/${response.data.leagueId}/lobby`;
         }, 0);
