@@ -46,12 +46,12 @@ const LEGACY_TESTIDS = {
   inPageTabFair: 'tab-fair',
   inPageTabFaq: 'tab-faq',
   
-  // Authentication
-  emailInput: 'auth-email-input',
-  magicLinkSubmit: 'auth-magic-link-submit',
-  loginNowButton: 'auth-login-now-button',
+  // Authentication (Legacy - use auth* versions instead)
+  emailInput: 'auth-email-input', // Legacy: use authEmailInput instead
+  magicLinkSubmit: 'auth-magic-link-submit', // Legacy: use authSubmitBtn instead
+  loginNowButton: 'auth-login-now-button', // Legacy: use dev-magic-link-btn directly
   
-  // Authentication Page (/login)
+  // Authentication Page (/login) - Current
   authEmailInput: 'auth-email-input',
   authSubmitBtn: 'auth-submit-btn',
   authError: 'auth-error',
