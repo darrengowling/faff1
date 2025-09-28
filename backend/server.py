@@ -401,6 +401,10 @@ async def test_login(request: dict, response: Response):
             max_age=3600     # 1 hour
         )
         
+        # Structured logging: session step (success)
+        if TEST_MODE:
+            logger.info(f"🧪 AUTH.TESTLOGIN: {{'requestId': '{request_id}', 'step': 'session', 'email': '{email}', 'userId': '{user_doc['_id']}'}}")
+        
         # Return structured success response
         return {
             "ok": True,
