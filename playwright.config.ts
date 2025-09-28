@@ -55,7 +55,7 @@ export default defineConfig({
   
   // Expect timeout
   expect: {
-    timeout: 10000,
+    timeout: 6000, // 6s unified expect timeout
   },
   
   // Global setup and teardown
