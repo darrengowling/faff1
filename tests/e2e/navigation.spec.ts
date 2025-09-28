@@ -6,6 +6,7 @@
 
 import { test, expect } from '@playwright/test';
 import { TESTIDS } from '../../frontend/src/testids';
+import { ensureClickable } from './utils/ensureClickable';
 
 test.describe('Navigation Tests', () => {
   
