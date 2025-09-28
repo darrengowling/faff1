@@ -134,6 +134,10 @@ logger = logging.getLogger(__name__)
 async def startup_event():
     """Initialize all systems on startup"""
     await initialize_database()
+    
+    # Initialize scoring database indexes for data integrity
+    await initialize_scoring_indexes()
+    
     initialize_auction_engine(sio)  # Initialize with Socket.IO server
     
     # Start scoring worker in background
