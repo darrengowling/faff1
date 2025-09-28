@@ -38,7 +38,7 @@
               - generic [ref=e46]:
                 - generic [ref=e47]:
                   - generic [ref=e48]: Email Address
-                  - textbox "Email Address" [active] [ref=e49]: commissioner@auction-gate.test
+                  - textbox "Email Address" [active] [ref=e49]: commissioner@test.com
                 - alert [ref=e50]:
                   - img [ref=e51]
                   - generic [ref=e53]: Server error. Please try again in a moment.
