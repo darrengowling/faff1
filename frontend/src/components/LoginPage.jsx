@@ -105,19 +105,28 @@ const LoginPage = () => {
     } catch (err) {
       console.error('Magic link request failed:', err);
       
-      // Create concise error messages based on response
+      // Handle structured error responses from backend
       let errorMessage = 'Unable to send magic link. Please try again.';
       
       if (err.response?.status === 400) {
-        errorMessage = 'Invalid email address format';
+        const errorData = err.response.data.detail;
+        if (typeof errorData === 'object' && errorData.code === 'INVALID_EMAIL') {
+          errorMessage = errorData.message || 'Please enter a valid email.';
+        } else if (typeof errorData === 'string') {
+          errorMessage = errorData.length < 80 ? errorData : 'Invalid email address format';
+        } else {
+          errorMessage = 'Please enter a valid email.';
+        }
       } else if (err.response?.status === 429) {
         errorMessage = 'Too many requests. Please wait a moment and try again.';
       } else if (err.response?.status >= 500) {
         errorMessage = 'Server error. Please try again in a moment.';
       } else if (err.response?.data?.detail) {
         // Use server message if it's concise
-        const serverMsg = err.response.data.detail;
-        if (serverMsg.length < 80) {
+        const serverMsg = typeof err.response.data.detail === 'string' 
+          ? err.response.data.detail 
+          : err.response.data.detail.message;
+        if (serverMsg && serverMsg.length < 80) {
           errorMessage = serverMsg;
         }
       }
