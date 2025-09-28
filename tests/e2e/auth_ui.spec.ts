@@ -65,19 +65,19 @@ test.describe('Authentication UI Tests', () => {
   test('Shows error for invalid email submission', async ({ page }) => {
     const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
     const submitBtn = page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`);
-    const errorElement = page.locator(`[data-testid="${TESTIDS.authError}"]`);
-
-    // Try to submit with empty email
-    await emailInput.fill('');
-    await emailInput.blur(); // Trigger validation
     
-    // Enter invalid email and try to submit
-    await emailInput.fill('invalid-email');
-    await submitBtn.click({ force: true }); // Force click even if disabled
+    // Fill with invalid email format
+    await emailInput.fill('not-an-email');
     
-    // Error should be visible
+    // Click submit button
+    await submitBtn.click();
+    
+    // Error should be visible with proper attributes
+    const errorElement = page.getByTestId('auth-error');
     await expect(errorElement).toBeVisible();
-    await expect(errorElement).toContainText('valid email address');
+    await expect(errorElement).toHaveAttribute('role', 'alert');
+    await expect(errorElement).toHaveAttribute('aria-live', 'assertive');
+    await expect(errorElement).toContainText('Please enter a valid email.');
   });
 
   test('Successfully submits valid email and shows success', async ({ page }) => {
