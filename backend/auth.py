@@ -28,7 +28,7 @@ SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '')
 FROM_EMAIL = os.environ.get('FROM_EMAIL', 'noreply@uclauction.com')
 
 # Security
-security = HTTPBearer()
+security = HTTPBearer(auto_error=False)  # Make optional for cookie fallback
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
