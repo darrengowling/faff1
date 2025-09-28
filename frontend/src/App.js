@@ -1810,6 +1810,15 @@ function App() {
                   </AppShell>
                 </SafeRoute>
               } />
+              
+              {/* League Lobby Route */}
+              <Route path="/app/leagues/:id/lobby" element={
+                <SafeRoute path="/app/leagues/:id/lobby" authRequired={true}>
+                  <AppShell showBackButton={true} pageTitle="League Lobby">
+                    <LeagueLobby />
+                  </AppShell>
+                </SafeRoute>
+              } />
               {/* Utility routes without specific shell */}
               <Route path="/diag" element={<DiagnosticPage />} />
               
