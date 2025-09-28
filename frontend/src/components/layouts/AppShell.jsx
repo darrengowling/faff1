@@ -235,6 +235,8 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
           className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 drawer-backdrop"
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
+          data-testid="nav-mobile-drawer"
+          data-state={mobileMenuOpen ? 'open' : 'closed'}
           style={{ 
             paddingTop: '64px',
             display: mobileMenuOpen ? 'block' : 'none',
@@ -247,8 +249,6 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
             role="navigation"
             aria-label="Mobile navigation menu"
             onClick={(e) => e.stopPropagation()}
-            data-testid="nav-mobile-drawer"
-            data-state={mobileMenuOpen ? 'open' : 'closed'}
             style={{ pointerEvents: 'auto' }}
           >
               <div className="p-4">
