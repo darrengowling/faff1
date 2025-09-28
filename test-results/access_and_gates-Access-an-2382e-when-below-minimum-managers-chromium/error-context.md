@@ -1301,10 +1301,10 @@
             - spinbutton "Bid Timer (seconds)" [ref=e35]: "60"
           - generic [ref=e36]:
             - generic [ref=e37]: Min Managers
-            - spinbutton "Min Managers" [ref=e38]: "23"
+            - spinbutton "Min Managers" [ref=e38]: "3"
           - generic [ref=e39]:
             - generic [ref=e40]: Max Managers
-            - spinbutton "Max Managers" [ref=e41]: "8"
+            - spinbutton "Max Managers" [ref=e41]: "6"
       - generic [ref=e42]:
         - heading "Scoring Rules" [level=4] [ref=e43]
         - generic [ref=e44]:
