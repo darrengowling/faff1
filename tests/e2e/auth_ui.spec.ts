@@ -367,21 +367,25 @@ test.describe('Authentication UI Integration', () => {
     // Submit form
     await submitBtn.click();
     
-    // Button should be disabled during loading (briefly)
-    const wasDisabled = await Promise.race([
-      submitBtn.waitFor({ state: 'disabled', timeout: 1000 }).then(() => true),
-      page.waitForTimeout(1000).then(() => false)
-    ]);
+    // Wait for explicit loading state instead of guessing with timing
+    const loadingForm = page.locator(`[data-testid="${TESTIDS.authLoading}"]`);
+    await expect(loadingForm).toBeVisible();
     
-    if (wasDisabled) {
-      console.log('✅ Submit button disabled during loading');
-      
-      // Should show loading text
-      const loadingText = await submitBtn.textContent();
-      expect(loadingText).toContain('Sending');
-    } else {
-      console.log('ℹ️  Loading state too fast to catch or request completed immediately');
-    }
+    console.log('✅ Loading state appeared with explicit testid');
+    
+    // Form should have aria-busy="true"
+    await expect(loadingForm).toHaveAttribute('aria-busy', 'true');
+    
+    // Button should be disabled during loading
+    await expect(submitBtn).toBeDisabled();
+    
+    // Should show loading text
+    await expect(submitBtn).toContainText('Sending Magic Link');
+    
+    // Wait for loading to disappear instead of arbitrary timeout
+    await expect(loadingForm).not.toBeAttached();
+    
+    console.log('✅ Loading completed and testid removed');
   });
 
   test('Error display has proper accessibility attributes', async ({ page }) => {
