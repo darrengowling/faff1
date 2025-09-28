@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { TESTIDS } from '../../frontend/src/testids.ts';
-const { 
+import { 
   checkLandingCTAsClickable, 
   checkAnchorScrolling,
   safeClickWithOverlayDetection 
-} = require('./utils/overlay-detector.ts');
+} from './utils/overlay-detector.ts';
 const { ensureClickable } = require('./utils/ensureClickable.ts');
 
 /**
