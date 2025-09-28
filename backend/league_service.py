@@ -328,7 +328,7 @@ class LeagueService:
                 raise ValueError(size_error)
             
             # Check if user is already a member
-            existing_membership = await db.memberships.find_one({
+            existing_membership = await db.league_memberships.find_one({
                 "league_id": invitation["league_id"],
                 "user_id": user_id
             })
