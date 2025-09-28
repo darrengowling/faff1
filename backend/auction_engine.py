@@ -239,7 +239,7 @@ class AuctionEngine:
         """Timer for individual lot with going once/twice states"""
         try:
             # Wait until 6 seconds before end
-            wait_time = (timer_ends_at - datetime.now(timezone.utc)).total_seconds() - 6
+            wait_time = (timer_ends_at - now()).total_seconds() - 6
             if wait_time > 0:
                 await asyncio.sleep(wait_time)
             
