@@ -304,70 +304,118 @@ async def get_me(current_user: UserResponse = Depends(get_current_user)):
 
 # Test-only login endpoint (DO NOT USE IN PRODUCTION)
 @api_router.post("/auth/test-login")
-async def test_login(request: dict):
+async def test_login(request: dict, response: Response):
     """
-    TEST-ONLY LOGIN ENDPOINT
-    Creates session token for testing purposes without magic link verification.
-    WARNING: Only enabled when ALLOW_TEST_LOGIN=true environment variable is set.
+    TEST-ONLY LOGIN ENDPOINT - Idempotent and gated by TEST_MODE
+    Creates verified user + session for testing without magic link verification.
+    Returns 404 if ALLOW_TEST_LOGIN=false, 400 for invalid email, 500 only for unexpected errors.
     """
-    # Check if test login is allowed
-    allow_test_login = os.getenv("ALLOW_TEST_LOGIN", "false").lower() == "true"
+    import uuid
+    import traceback
     
-    if not allow_test_login:
-        logger.warning("⚠️  TEST LOGIN ATTEMPTED BUT DISABLED - /auth/test-login endpoint called but ALLOW_TEST_LOGIN=false")
+    request_id = str(uuid.uuid4())[:8]
+    
+    try:
+        # Gate with ALLOW_TEST_LOGIN flag (default false in prod)
+        allow_test_login = os.getenv("ALLOW_TEST_LOGIN", "false").lower() == "true"
+        
+        if not allow_test_login:
+            logger.warning(f"[{request_id}] Test login attempted but ALLOW_TEST_LOGIN=false")
+            raise HTTPException(
+                status_code=404, 
+                detail="Test login endpoint not found"
+            )
+        
+        # Validate email with shared validator
+        email = request.get('email', '').strip()
+        if not email:
+            logger.warning(f"[{request_id}] Test login - missing email")
+            raise HTTPException(
+                status_code=400,
+                detail={
+                    "code": "INVALID_EMAIL",
+                    "message": "Email is required"
+                }
+            )
+        
+        # Import and use shared email validator
+        from email_validator import EmailValidator
+        if not EmailValidator.is_valid_email(email):
+            logger.warning(f"[{request_id}] Test login - invalid email format: {email}")
+            raise HTTPException(
+                status_code=400,
+                detail={
+                    "code": "INVALID_EMAIL", 
+                    "message": "Please enter a valid email address"
+                }
+            )
+        
+        # Log test login usage (with warning)
+        logger.warning(f"[{request_id}] 🧪 TEST LOGIN USED - endpoint called for email: {email}")
+        
+        # IDEMPOTENT FLOW: Upsert user (verified=true) → create session → set cookie
+        
+        # Check if user exists
+        existing_user = await db.users.find_one({"email": email})
+        
+        if existing_user:
+            # Update existing user to be verified (idempotent)
+            await db.users.update_one(
+                {"_id": existing_user["_id"]}, 
+                {"$set": {"verified": True}}
+            )
+            user_doc = {**existing_user, "verified": True}
+            logger.info(f"[{request_id}] 🧪 TEST USER VERIFIED: {email}")
+        else:
+            # Create new verified user
+            new_user = User(
+                email=email,
+                display_name=email.split('@')[0],
+                verified=True  # Auto-verify for test users
+            )
+            user_dict = new_user.dict(by_alias=True)
+            await db.users.insert_one(user_dict)
+            user_doc = user_dict
+            logger.info(f"[{request_id}] 🧪 TEST USER CREATED: {email}")
+        
+        # Create session token
+        access_token = create_access_token(data={"sub": user_doc["_id"]})
+        
+        # Set HTTP-only session cookie with proper settings for tests
+        response.set_cookie(
+            key="access_token",
+            value=access_token,
+            httponly=True,
+            samesite="lax",  # Required for cross-origin test requests
+            secure=False,    # Allow non-HTTPS for local testing
+            max_age=3600     # 1 hour
+        )
+        
+        # Return structured success response
+        return {
+            "ok": True,
+            "userId": user_doc["_id"],
+            "email": email,
+            "message": "Test login successful (TEST MODE ONLY)"
+        }
+        
+    except HTTPException:
+        # Re-raise known HTTP errors (400, 404) as-is
+        raise
+        
+    except Exception as e:
+        # Log unexpected errors and return structured 500 response
+        logger.error(f"[{request_id}] Test login unexpected error for {email}: {str(e)}")
+        logger.error(f"[{request_id}] Traceback: {traceback.format_exc()}")
+        
         raise HTTPException(
-            status_code=403, 
-            detail="Test login endpoint is disabled. Set ALLOW_TEST_LOGIN=true to enable."
+            status_code=500,
+            detail={
+                "code": "INTERNAL",
+                "requestId": request_id,
+                "message": "Unexpected error during test login"
+            }
         )
-    
-    # Log warning about test login usage
-    logger.warning("🧪 TEST LOGIN USED - /auth/test-login endpoint called for email: %s", request.get('email', 'unknown'))
-    
-    # Validate request
-    email = request.get('email')
-    if not email:
-        raise HTTPException(status_code=400, detail="Email is required")
-    
-    # Check if user exists, if not create them
-    user = await db.users.find_one({"email": email})
-    
-    if not user:
-        # Create new user for testing
-        new_user = User(
-            email=email,
-            display_name=email.split('@')[0],  # Default display name
-            verified=True  # Auto-verify for test users
-        )
-        user_dict = new_user.dict(by_alias=True)
-        await db.users.insert_one(user_dict)
-        user = user_dict
-        logger.info("🧪 TEST USER CREATED: %s", email)
-    else:
-        # Update existing user to be verified for testing
-        await db.users.update_one(
-            {"_id": user["_id"]}, 
-            {"$set": {"verified": True}}
-        )
-        user["verified"] = True  # Update local user object
-        logger.info("🧪 TEST USER VERIFIED: %s", email)
-    
-    # Create access token
-    access_token = create_access_token(data={"sub": user["_id"]})
-    
-    # Create user response (user["verified"] is now guaranteed to be True)
-    user_response = UserResponse(
-        id=user["_id"],
-        email=user["email"],
-        display_name=user["display_name"],
-        verified=user["verified"],  # Use actual database value (now True)
-        created_at=user["created_at"]
-    )
-    
-    return {
-        "access_token": access_token,
-        "user": user_response,
-        "message": "Test login successful (TEST MODE ONLY)"
-    }
 
 # Test-only time control endpoints (TEST_MODE only)
 @api_router.post("/test/time/set")
