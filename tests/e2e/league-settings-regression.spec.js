@@ -4,6 +4,7 @@
  */
 
 const { test, expect } = require('@playwright/test');
+const { TESTIDS } = require('../../frontend/src/testids.js');
 
 test.describe('League Settings Regression Tests', () => {
   let page;
