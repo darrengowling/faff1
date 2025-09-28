@@ -236,14 +236,31 @@ async function createLeague(page: Page, settings: typeof LEAGUE_SETTINGS): Promi
   await clickCreateLeague(page);
   await page.waitForSelector('[role="dialog"], .modal', { timeout: 5000 });
   
-  // Fill league form using testids (simplified for demo)
-  await page.fill(`[data-testid="create-name"]`, settings.name);
-  await page.fill(`[data-testid="create-budget"]`, settings.budgetPerManager.toString());
-  await page.fill(`[data-testid="create-slots"]`, settings.clubSlots.toString());
-  await page.fill(`[data-testid="create-min"]`, settings.leagueSize.min.toString());
+  // Fill league form using testids with clickability checks
+  console.log('📝 Filling form fields with overlay protection...');
   
-  // Submit form
-  await page.click(`[data-testid="create-submit"]`);
+  const nameInput = page.getByTestId('create-name');
+  await ensureClickable(nameInput);
+  await nameInput.fill(settings.name);
+  
+  const budgetInput = page.getByTestId('create-budget');
+  await ensureClickable(budgetInput);
+  await budgetInput.fill(settings.budgetPerManager.toString());
+  
+  const slotsInput = page.getByTestId('create-slots');
+  await ensureClickable(slotsInput);
+  await slotsInput.fill(settings.clubSlots.toString());
+  
+  const minInput = page.getByTestId('create-min');
+  await ensureClickable(minInput);
+  await minInput.fill(settings.leagueSize.min.toString());
+  
+  console.log('✅ All form fields filled successfully');
+  
+  // Submit form with overlay protection
+  console.log('🎯 Submitting form with overlay protection...');
+  const submitBtn = page.getByTestId('create-submit');
+  await clickWhenReady(submitBtn, { timeout: 5000 });
   
   // Wait for redirect to league admin page
   await page.waitForURL('**/admin/**', { timeout: 10000 });
