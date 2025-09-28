@@ -114,9 +114,13 @@ test.describe('Core Smoke Test', () => {
   test('Complete auction flow: create → invite → join → auction → bid → sell', async () => {
     console.log('🚀 Starting core smoke test...');
 
-    // Step 1: Commissioner creates league (already authenticated via storage state)
+    // Step 1: Commissioner login and create league
     console.log('📝 Step 1: Commissioner creates league...');
-    await commissionerPage.goto('/app'); // Navigate to dashboard
+    await commissionerPage.goto('/');
+    await commissionerPage.waitForLoadState('networkidle');
+    
+    // Find Create League CTA using testid
+    await clickCreateLeague(commissionerPage);
     
     leagueId = await createLeague(commissionerPage, LEAGUE_SETTINGS);
     
