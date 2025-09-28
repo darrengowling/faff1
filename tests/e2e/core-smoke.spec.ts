@@ -28,9 +28,9 @@ import { TESTIDS } from '../../frontend/src/testids.js';
 // Test configuration
 const TEST_TIMEOUT = 90000; // 90 seconds max
 const USERS = {
-  commissioner: { email: getUserEmail('commissioner'), name: 'Commissioner' },
-  alice: { email: getUserEmail('alice'), name: 'Alice' },
-  bob: { email: getUserEmail('bob'), name: 'Bob' }
+  commissioner: { email: 'commish@example.com', name: 'Commissioner' },
+  alice: { email: 'alice@example.com', name: 'Alice' },
+  bob: { email: 'bob@example.com', name: 'Bob' }
 };
 
 const LEAGUE_SETTINGS = {
