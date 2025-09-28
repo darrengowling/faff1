@@ -8,6 +8,7 @@ import { Separator } from './ui/separator';
 import { TESTIDS } from '../testids';
 import { ArrowLeft, Mail, CheckCircle, AlertCircle, Home } from 'lucide-react';
 import { getSearchParam } from '../utils/safeBrowser.ts';
+import EmailValidator from '../utils/emailValidator';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
