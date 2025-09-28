@@ -6,6 +6,7 @@
 import { test, expect, Browser, Page } from '@playwright/test';
 import { TESTIDS } from '../../frontend/src/testids.js';
 import { login, createLeague } from './utils/helpers';
+import { setFormValue } from './utils/form';
 
 test.describe('Access and Gates Tests', () => {
   let commissionerPage: Page;
