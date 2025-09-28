@@ -70,9 +70,9 @@ class StructuredLoggingTester:
     def get_backend_logs(self, lines=50):
         """Get recent backend logs from supervisor"""
         try:
-            # Get backend logs from supervisor
+            # Get backend logs from supervisor - structured logs are in err.log
             result = subprocess.run(
-                ['tail', '-n', str(lines), '/var/log/supervisor/backend.out.log'],
+                ['tail', '-n', str(lines), '/var/log/supervisor/backend.err.log'],
                 capture_output=True,
                 text=True,
                 timeout=10
@@ -83,7 +83,7 @@ class StructuredLoggingTester:
             else:
                 # Try alternative log location
                 result = subprocess.run(
-                    ['tail', '-n', str(lines), '/var/log/supervisor/backend.log'],
+                    ['tail', '-n', str(lines), '/var/log/supervisor/backend.out.log'],
                     capture_output=True,
                     text=True,
                     timeout=10
