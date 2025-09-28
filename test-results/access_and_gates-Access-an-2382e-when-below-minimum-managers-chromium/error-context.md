@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic:
+- generic [active]:
   - generic:
     - generic:
       - region "Notifications alt+T"
@@ -18,7 +18,7 @@
                 - img
                 - text: New League
               - generic:
-                - generic: Welcome, commish@example.com
+                - generic: Welcome, commissioner@example.com
                 - button: Dashboard
               - button:
                 - generic:
@@ -41,7 +41,7 @@
                     - img
                     - text: New League
                   - generic:
-                    - generic: Welcome, commish@example.com
+                    - generic: Welcome, commissioner@example.com
                     - button: Dashboard
                   - button:
                     - generic:
@@ -57,7 +57,7 @@
                     - generic: Dashboard
                 - generic:
                   - generic:
-                    - generic: commish
+                    - generic: commissioner
           - main:
             - generic:
               - generic:
@@ -111,7 +111,7 @@
               - generic:
                 - generic:
                   - generic:
-                    - heading [level=2]: All Leagues (19)
+                    - heading [level=2]: All Leagues (36)
                   - button:
                     - img
                     - text: Create League
@@ -120,7 +120,37 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: Roster Capacity Test 023031
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 200 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "5"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: League Size Test 023228
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -150,7 +180,7 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: Test League Default Min 193254
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -180,7 +210,187 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Test League
+                          - heading [level=3]: League Size Test 022856
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Gate Test League
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Auction Start Test 022857
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Scoring Rules Test 020247
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Elite UCL League 2025-26
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Auction Setup Test 020246
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Default Profile League 202455
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -210,7 +420,7 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: League Size Test 023032
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -240,7 +450,337 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Test League
+                          - heading [level=3]: Profile Test League 202408
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Roster Capacity Test 022856
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 200 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "5"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Custom Settings League 020147
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 150 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "4"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Roster Capacity Test 023228
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 200 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "5"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Gate Test League
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Default Settings Test 023033
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Gate Test League
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Admin Test League 202638
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "6"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Default Settings Test 022857
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Gate Test League
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Settings Validation Test 020246
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Profile Test League 202455
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -270,7 +810,37 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: Test League Flow
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "5"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Gate Test League
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -300,7 +870,7 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: Default Profile League 202408
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -330,7 +900,7 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: Default Settings Test 023229
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -360,7 +930,7 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Test League Navigation
+                          - heading [level=3]: Backward Compatibility Test 020147
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -380,7 +950,7 @@
                           - generic:
                             - img
                             - text: Budget
-                          - generic: 120 credits
+                          - generic: 150 credits
                         - generic:
                           - generic:
                             - img
@@ -390,7 +960,7 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Test League Navigation
+                          - heading [level=3]: Admin Test League 202603
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -410,77 +980,17 @@
                           - generic:
                             - img
                             - text: Budget
-                          - generic: 120 credits
+                          - generic: 100 credits
                         - generic:
                           - generic:
                             - img
                             - text: Club Slots
-                          - generic: "4"
+                          - generic: "5"
                   - generic:
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Test League Navigation
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 120 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "4"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Test League Navigation
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 120 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "4"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: Test League Min 6 193254
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -510,7 +1020,7 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: Auto-Default League 020147
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -540,7 +1050,7 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: Auction Start Test 023032
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -570,7 +1080,37 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: Test League 1759022673
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "5"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Auction Start Test 023229
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -600,7 +1140,7 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: Test League Min 2 193254
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -630,37 +1170,7 @@
                     - generic:
                       - generic:
                         - generic:
-                          - heading [level=3]: Core Smoke League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Core Smoke League
+                          - heading [level=3]: Gate Test League
                           - paragraph:
                             - img
                             - text: 2025-26
@@ -755,7 +1265,7 @@
   - dialog "Create New League" [ref=e2]:
     - generic [ref=e3]:
       - generic [ref=e4]:
-        - button "Home" [active] [ref=e5] [cursor=pointer]
+        - button "Home" [ref=e5] [cursor=pointer]
         - generic [ref=e6]: /
         - generic [ref=e7]: New League
       - heading "Create New League" [level=2] [ref=e8]
@@ -763,7 +1273,7 @@
       - generic [ref=e10]:
         - generic [ref=e11]:
           - generic [ref=e12]: League Name
-          - textbox "League Name" [ref=e13]
+          - textbox "League Name" [ref=e13]: Gate Test League
         - generic [ref=e14]:
           - generic [ref=e15]: Season
           - textbox "Season" [ref=e16]: 2025-26
@@ -782,7 +1292,7 @@
             - spinbutton "Budget per Manager (£)" [ref=e26]: "100"
           - generic [ref=e27]:
             - generic [ref=e28]: Club Slots per Manager
-            - spinbutton "Club Slots per Manager" [ref=e29]: "5"
+            - spinbutton "Club Slots per Manager" [ref=e29]: "3"
           - generic [ref=e30]:
             - generic [ref=e31]: Min Bid Increment
             - spinbutton "Min Bid Increment" [ref=e32]: "1"
@@ -791,7 +1301,7 @@
             - spinbutton "Bid Timer (seconds)" [ref=e35]: "60"
           - generic [ref=e36]:
             - generic [ref=e37]: Min Managers
-            - spinbutton "Min Managers" [ref=e38]: "2"
+            - spinbutton "Min Managers" [ref=e38]: "23"
           - generic [ref=e39]:
             - generic [ref=e40]: Max Managers
             - spinbutton "Max Managers" [ref=e41]: "8"
