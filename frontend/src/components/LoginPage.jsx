@@ -202,16 +202,28 @@ const LoginPage = () => {
                     Email Address
                   </label>
                   <input
+                    ref={emailInputRef}
                     type="email"
                     id="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:cursor-not-allowed"
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      // Clear error when user starts typing
+                      if (error) {
+                        setError('');
+                      }
+                    }}
+                    className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 disabled:bg-gray-50 disabled:cursor-not-allowed ${
+                      error 
+                        ? 'border-red-500 focus:ring-red-500 focus:border-red-500' 
+                        : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+                    }`}
                     placeholder="your.email@example.com"
                     disabled={loading}
                     data-testid={TESTIDS.authEmailInput}
                     autoComplete="email"
                     required
+                    aria-describedby={error ? "email-error" : undefined}
                   />
                 </div>
 
