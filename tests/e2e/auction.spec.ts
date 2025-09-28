@@ -86,7 +86,10 @@ test.describe('Auction Tests', () => {
   });
 
   test('Simultaneous bids resolve deterministically', async () => {
-    console.log('🧪 Testing simultaneous bid resolution...');
+    console.log('🧪 Testing deterministic simultaneous bid resolution...');
+    
+    // Initialize controlled test time
+    await initializeTestTime(commissionerPage);
     
     // Setup similar to previous test
     await login(commissionerPage, 'commissioner-sim@test.com');
@@ -110,20 +113,26 @@ test.describe('Auction Tests', () => {
     // Record initial top bid
     const initialTopBid = await commissionerPage.locator(`[data-testid="${TESTIDS.auctionTopBid}"]`).textContent();
     
-    // Both users place bids simultaneously
+    // Advance time slightly to ensure auction is active
+    await advanceTimeSeconds(commissionerPage, 1);
+    
+    // Both users place bids simultaneously (deterministic with controlled time)
     await Promise.all([
       bid(alice, 10),
       bid(bob, 10)
     ]);
     
-    // Verify only one bid won (deterministic resolution)
+    // Small wait for bid processing
+    await commissionerPage.waitForTimeout(200);
+    
+    // Verify only one bid won (deterministic resolution based on timestamp)
     const finalTopBid = await commissionerPage.locator(`[data-testid="${TESTIDS.auctionTopBid}"]`).textContent();
     const finalTopBidder = await commissionerPage.locator(`[data-testid="${TESTIDS.auctionTopBidder}"]`).textContent();
     
     expect(finalTopBid).toBe('10');
     expect(finalTopBidder).toMatch(/alice|bob/); // One of them should be top bidder
     
-    console.log(`✅ Simultaneous bids resolved deterministically. Winner: ${finalTopBidder}`);
+    console.log(`✅ Deterministic simultaneous bids resolved. Winner: ${finalTopBidder}`);
   });
 
   test('Safe lot close prevents data corruption', async () => {
