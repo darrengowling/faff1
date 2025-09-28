@@ -39,7 +39,7 @@ code {
 @layer base {
   :root {
         /* Layout constants */
-        --header-h: 4rem; /* 64px */
+        --header-h: 64px;
         
         --background: 0 0% 100%;
         --foreground: 0 0% 3.9%;
