@@ -35,25 +35,6 @@ const LandingPage = () => {
     { id: 'faq', label: 'FAQ' },
   ];
 
-  // Scroll spy functionality
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = navSections.map(section => document.getElementById(section.id));
-      const scrollPosition = window.scrollY + 100;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navSections[i].id);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   // Smooth scroll to section
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
