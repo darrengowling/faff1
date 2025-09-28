@@ -90,8 +90,9 @@ class LinkLinter {
 
   async getFilesToScan() {
     const allFiles = [];
+    const scanPatterns = getScanPatterns();
 
-    for (const pattern of SCAN_PATTERNS) {
+    for (const pattern of scanPatterns) {
       const files = glob.sync(pattern, {
         ignore: EXCLUDE_PATTERNS,
         cwd: process.cwd()
