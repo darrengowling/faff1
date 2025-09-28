@@ -429,17 +429,19 @@ async def create_test_auction(request: dict):
         }
         await db.users.insert_one(commissioner_data)
     
-    # Create league data model
+    # Create league data model (use valid timer values for model validation)
     league_create = LeagueCreate(
         name=settings["name"],
         season="2025-26",
         settings=LeagueSettings(
-            club_slots=settings["clubSlots"],
             budget_per_manager=settings["budgetPerManager"],
-            min_managers=settings["minManagers"],
-            max_managers=settings["maxManagers"],
-            bid_timer_seconds=BID_TIMER_SECONDS,
-            anti_snipe_seconds=ANTI_SNIPE_SECONDS
+            club_slots_per_manager=settings["clubSlots"],
+            bid_timer_seconds=max(30, BID_TIMER_SECONDS),  # Ensure minimum 30 for validation
+            anti_snipe_seconds=ANTI_SNIPE_SECONDS,
+            league_size=LeagueSize(
+                min=settings["minManagers"],
+                max=settings["maxManagers"]
+            )
         )
     )
     
