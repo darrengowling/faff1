@@ -21,6 +21,9 @@ export async function login(page: Page, email: string): Promise<void> {
   await page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`).fill(email);
   await page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`).click();
   
+  // Wait for success message to appear (indicates backend processing complete)
+  await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
+  
   // Check if dev magic link button appears (conditional in development mode)
   const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
   if (await devMagicBtn.isVisible()) {
