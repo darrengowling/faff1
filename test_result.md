@@ -318,15 +318,18 @@ backend:
 frontend:
   - task: "Deterministic and Testable Anchor Navigation Implementation"
     implemented: true
-    working: true
+    working: false
     file: "/app/frontend/src/hooks/useScrollSpy.js, /app/frontend/src/components/LandingPage.js, /app/tests/e2e/navigation.spec.ts"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "✅ ANCHOR NAVIGATION IMPLEMENTATION COMPLETED: 1) Added stable IDs & testids (#home/#how/#why/#features/#safety/#faq with data-testid='section-*'), 2) Added .anchor-section{scroll-margin-top:var(--header-h)} CSS class to all sections, 3) Implemented useScrollSpy({threshold:0.5}) hook with history.replaceState for hash updates and 100ms debouncing, 4) Updated scrollToSection function to immediately update hash on navigation clicks, 5) Updated tests to use getByTestId('section-*') and expect(page).toHaveURL(/#section$/) patterns, 6) Added robust section detection with retry mechanism for late-mounted components. Infrastructure is complete and ready for testing."
+      - working: false
+        agent: "testing"
+        comment: "❌ ANCHOR NAVIGATION PARTIALLY WORKING: Comprehensive testing reveals critical issues with hash URL updates. FINDINGS: 1) ✅ INFRASTRUCTURE CORRECT - All sections found with correct testids (section-home, section-how, section-why, section-features, section-safety, section-faq), CSS .anchor-section classes implemented on all 6 sections, navigation tabs exist with proper onclick handlers, 2) ❌ HASH UPDATES ON CLICKS FAILING - Navigation tab clicks (tab-how, tab-why, tab-faq) do not update URL hash from #home to target sections, tabs are clickable and scroll sections into view but hash remains stuck at #home, 3) ❌ SCROLL SPY INCONSISTENT - Manual scrolling sometimes updates hash (saw #how, #why updates) but behavior is unreliable and doesn't consistently trigger on 50% visibility threshold, 4) ✅ MANUAL FUNCTION CALLS WORK - Direct scrollToSection() function calls successfully update hash and scroll correctly, suggesting React event binding issues rather than function logic problems. ROOT CAUSE: Navigation tab onClick handlers are not properly calling scrollToSection function despite having onclick attributes. This appears to be a React event binding or component lifecycle issue preventing the click events from executing the hash update logic."
 
   - task: "Fix Frontend Compilation Issues with AppShell/MarketingShell Import Paths"
     implemented: true
