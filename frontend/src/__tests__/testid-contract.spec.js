@@ -149,6 +149,30 @@ describe('TestID Contract Tests', () => {
     });
   });
 
+  describe('Create League Error TestIDs', () => {
+    it('should have all error testid constants defined', () => {
+      // Verify error testids for form validation
+      expect(TESTIDS.createErrorName).toBe('create-error-name');
+      expect(TESTIDS.createErrorBudget).toBe('create-error-budget');
+      expect(TESTIDS.createErrorSlots).toBe('create-error-slots');
+      expect(TESTIDS.createErrorMin).toBe('create-error-min');
+    });
+
+    it('should have consistent naming pattern for error testids', () => {
+      const errorTestids = [
+        TESTIDS.createErrorName,
+        TESTIDS.createErrorBudget,
+        TESTIDS.createErrorSlots,
+        TESTIDS.createErrorMin
+      ];
+
+      errorTestids.forEach(testid => {
+        expect(testid).toMatch(/^create-error-/);
+        expect(testid).not.toContain('undefined');
+      });
+    });
+  });
+
   describe('Error Boundaries', () => {
     it('should fail gracefully if testids are missing', () => {
       // This test ensures that if testids are removed, the contract test fails
