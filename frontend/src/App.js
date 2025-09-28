@@ -994,7 +994,6 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
         </form>
       </DialogContent>
     </Dialog>
-    </>
   );
 };
 
