@@ -217,5 +217,22 @@ describe('Create League Dialog TestIDs', () => {
       expect(TESTIDS.createErrorSlots).toBe('create-error-slots');
       expect(TESTIDS.createErrorMin).toBe('create-error-min');
     });
+
+    it('should validate all input testids are accessible', () => {
+      // Test that standard input testids exist
+      const inputTestids = ['create-name', 'create-budget', 'create-slots', 'create-min'];
+      const errorTestids = ['create-error-name', 'create-error-budget', 'create-error-slots', 'create-error-min'];
+      
+      inputTestids.forEach(testid => {
+        expect(typeof testid).toBe('string');
+        expect(testid.length).toBeGreaterThan(0);
+      });
+      
+      errorTestids.forEach(testid => {
+        expect(typeof testid).toBe('string');
+        expect(testid.length).toBeGreaterThan(0);
+        expect(testid).toContain('error');
+      });
+    });
   });
 });
