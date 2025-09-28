@@ -170,6 +170,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "✅ EMAIL VALIDATION FIX VERIFIED - 100% SUCCESS: Comprehensive testing confirms the AttributeError: module 'email_validator' has no attribute 'EmailNotValidError' has been completely eliminated. CRITICAL FIXES VERIFIED: 1) Email-validator version 2.1.1 properly installed and working, 2) Backend startup shows proper email validation status with version info, 3) /auth/test-login endpoint handles invalid emails with structured 400 responses (code: INVALID_EMAIL), 4) /auth/magic-link endpoint uses Pydantic validation (422 responses) preventing AttributeError, 5) No 500 errors occur for any invalid email inputs, 6) Structured logging shows proper email validation flow. TESTING RESULTS: 10/10 tests passed (100% success rate). The email validation system is robust and production-ready with proper error handling throughout."
+      - working: true
+        agent: "testing"
+        comment: "✅ EMAIL VALIDATION FIX RE-VERIFIED - COMPREHENSIVE VALIDATION COMPLETE: Executed focused testing of the specific auth_ui.spec.ts 'Shows error for invalid email submission' test case as requested in review. CRITICAL VALIDATION RESULTS: 1) auth_ui.spec.ts test now passes 100% (2/2 tests passed on both desktop and mobile), 2) Frontend properly displays error message 'Please enter a valid email.' with correct role='alert' and aria-live='assertive' attributes, 3) Backend returns proper 422 status code for invalid emails (not 500), 4) Valid email flow works correctly with 200 status and magic link generation, 5) Form remains interactive after errors, 6) No AttributeError exceptions occur anywhere in the flow. BACKEND VALIDATION: Direct API testing confirms /api/auth/magic-link returns 422 for 'invalid-email' and 200 for 'test@example.com'. The email validation fix is completely working and production-ready."
 
   - task: "Backend API Authentication Flow"
     implemented: true
