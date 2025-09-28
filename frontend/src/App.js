@@ -486,6 +486,9 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [justCreatedId, setJustCreatedId] = useState(null);
 
   // Validation functions
   const validateForm = () => {
