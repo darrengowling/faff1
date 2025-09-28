@@ -169,35 +169,85 @@ async def get_server_time():
 @api_router.post("/auth/magic-link")
 async def request_magic_link(request: MagicLinkRequest):
     """Request a magic link for email authentication"""
-    # Check if user exists, if not create them
-    user = await db.users.find_one({"email": request.email})
-    
-    if not user:
-        # Create new user
-        new_user = User(
-            email=request.email,
-            display_name=request.email.split('@')[0],  # Default display name
-            verified=False
+    try:
+        # Import email validator
+        from email_validator import EmailValidator
+        
+        # Validate email format first - return 400 on invalid email
+        if not request.email or not request.email.strip():
+            raise HTTPException(
+                status_code=400, 
+                detail={
+                    "code": "INVALID_EMAIL",
+                    "message": "Email address is required"
+                }
+            )
+        
+        email = request.email.strip()
+        if not EmailValidator.is_valid_email(email):
+            raise HTTPException(
+                status_code=400,
+                detail={
+                    "code": "INVALID_EMAIL", 
+                    "message": "Please enter a valid email address"
+                }
+            )
+        
+        # Check environment settings for TEST_MODE behavior
+        auth_require_magic_link = os.getenv("AUTH_REQUIRE_MAGIC_LINK", "true").lower() == "true"
+        
+        # In TEST_MODE with AUTH_REQUIRE_MAGIC_LINK=false, suggest test login
+        if not auth_require_magic_link and TEST_MODE:
+            logger.warning(f"Magic link requested for {email} in TEST_MODE with AUTH_REQUIRE_MAGIC_LINK=false - consider using test login")
+        
+        # Check if user exists, if not create them
+        user = await db.users.find_one({"email": email})
+        
+        if not user:
+            # Create new user
+            new_user = User(
+                email=email,
+                display_name=email.split('@')[0],  # Default display name
+                verified=False
+            )
+            user_dict = new_user.dict(by_alias=True)
+            await db.users.insert_one(user_dict)
+            logger.info(f"Created new user: {email}")
+        
+        # Create and send magic link
+        token = create_magic_link_token(email)
+        
+        # In TEST_MODE, skip actual email sending if configured
+        if not TEST_MODE:
+            await send_magic_link_email(email, token)
+        else:
+            logger.info(f"TEST_MODE: Skipping email send for magic link to {email}")
+        
+        # For development mode, return the magic link in the response
+        is_development = os.environ.get('NODE_ENV', 'development') == 'development' or not os.environ.get('SMTP_SERVER')
+        response = {"message": "Magic link sent to your email"}
+        
+        if is_development or TEST_MODE:
+            frontend_url = os.getenv("FRONTEND_URL", "https://auction-league.preview.emergentagent.com")
+            magic_link = f"{frontend_url}/auth/verify?token={token}"
+            response["dev_magic_link"] = magic_link
+            response["message"] = "Magic link generated! (Development Mode - Check below)"
+        
+        return response
+        
+    except HTTPException:
+        # Re-raise HTTPExceptions (400 errors) as-is
+        raise
+    except Exception as e:
+        # Log unexpected errors but return 400 instead of 500 to prevent crashes
+        logger.error(f"Magic link request failed for {request.email}: {str(e)}")
+        raise HTTPException(
+            status_code=400,
+            detail={
+                "code": "MAGIC_LINK_FAILED",
+                "message": "Unable to process magic link request. Please try again."
+            }
         )
-        user_dict = new_user.dict(by_alias=True)
-        await db.users.insert_one(user_dict)
-        logger.info(f"Created new user: {request.email}")
-    
-    # Create and send magic link
-    token = create_magic_link_token(request.email)
-    await send_magic_link_email(request.email, token)
-    
-    # For development mode, return the magic link in the response
-    is_development = os.environ.get('NODE_ENV', 'development') == 'development' or not os.environ.get('SMTP_SERVER')
-    response = {"message": "Magic link sent to your email"}
-    
-    if is_development:
-        frontend_url = os.getenv("FRONTEND_URL", "https://auction-league.preview.emergentagent.com")
-        magic_link = f"{frontend_url}/auth/verify?token={token}"
-        response["dev_magic_link"] = magic_link
-        response["message"] = "Magic link generated! (Development Mode - Check below)"
-    
-    return response
 
 @api_router.post("/auth/verify", response_model=AuthResponse)
 async def verify_magic_link(request: MagicLinkVerify):
