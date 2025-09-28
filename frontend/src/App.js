@@ -1732,12 +1732,16 @@ function App() {
                   </AppShell>
                 </SafeRoute>
               } />
+              {/* Utility routes without specific shell */}
               <Route path="/diag" element={<DiagnosticPage />} />
-              <Route path="/" element={<RootRoute />} />
+              
               {/* 404 - Catch all unmatched routes */}
-              <Route path="*" element={<NotFoundPage />} />
-              </Routes>
-            </main>
+              <Route path="*" element={
+                <MarketingShell>
+                  <NotFoundPage />
+                </MarketingShell>
+              } />
+            </Routes>
           </div>
         </Router>
       </AuthProvider>
