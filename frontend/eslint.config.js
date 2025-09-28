@@ -1,6 +1,6 @@
 const ssrSafetyRules = require('./eslint-rules/index.js');
 
-export default [
+module.exports = [
   {
     files: ['**/*.{js,jsx}'],
     plugins: {
