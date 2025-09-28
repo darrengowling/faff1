@@ -289,14 +289,18 @@ class EmailValidationTester:
             expected_status=400
         )
         
-        proper_structure = (
-            success and
-            status == 400 and
-            isinstance(data.get('detail'), dict) and
-            'code' in data['detail'] and
-            'message' in data['detail'] and
-            data['detail']['code'] == 'INVALID_EMAIL'
-        )
+        # Handle different response formats
+        detail = data.get('detail', {})
+        if isinstance(detail, dict):
+            proper_structure = (
+                success and
+                status == 400 and
+                'code' in detail and
+                'message' in detail and
+                detail['code'] == 'INVALID_EMAIL'
+            )
+        else:
+            proper_structure = False
         
         # Test with test-login endpoint
         success2, status2, data2 = self.make_request(
@@ -306,14 +310,18 @@ class EmailValidationTester:
             expected_status=400
         )
         
-        proper_structure2 = (
-            success2 and
-            status2 == 400 and
-            isinstance(data2.get('detail'), dict) and
-            'code' in data2['detail'] and
-            'message' in data2['detail'] and
-            data2['detail']['code'] == 'INVALID_EMAIL'
-        )
+        # Handle different response formats
+        detail2 = data2.get('detail', {})
+        if isinstance(detail2, dict):
+            proper_structure2 = (
+                success2 and
+                status2 == 400 and
+                'code' in detail2 and
+                'message' in detail2 and
+                detail2['code'] == 'INVALID_EMAIL'
+            )
+        else:
+            proper_structure2 = False
         
         return self.log_test(
             "Structured Error Responses",
