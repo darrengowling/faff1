@@ -429,8 +429,7 @@ async def test_login(request: dict, response: Response):
             httponly=True,
             samesite="lax",  # Required for cross-origin test requests
             secure=True,     # Use HTTPS for production domain
-            max_age=3600,    # 1 hour
-            domain=".preview.emergentagent.com"  # Set domain for cookie sharing
+            max_age=3600     # 1 hour
         )
         
         # Structured logging: session step (success)
