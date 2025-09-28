@@ -600,6 +600,8 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
     setSubmitting(true);
     setSubmitError(''); // Clear previous errors
     setErrors({}); // Clear field errors
+    
+    debugLog('submitting', `starting league creation: "${formData.name}"`);
 
     try {
       const response = await axios.post(`${API}/leagues`, formData);
