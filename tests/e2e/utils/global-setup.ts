@@ -13,11 +13,17 @@ async function globalSetup(config: FullConfig) {
   // Pre-check: Verify TESTIDS can be imported
   console.log('🔍 Pre-check: Verifying TESTIDS import...');
   try {
-    const { TESTIDS } = await import('../../../frontend/src/testids.ts');
+    const testidsModule = await import('../../../frontend/src/testids.ts');
+    const TESTIDS = testidsModule.TESTIDS || testidsModule.default;
+    
+    if (!TESTIDS || typeof TESTIDS !== 'object') {
+      throw new Error('TESTIDS is not an object or is missing');
+    }
+    
     const testidCount = Object.keys(TESTIDS).length;
     
-    if (!TESTIDS || testidCount === 0) {
-      throw new Error('TESTIDS is empty or missing');
+    if (testidCount === 0) {
+      throw new Error('TESTIDS is empty');
     }
     
     console.log(`✅ TESTIDS imported successfully: ${testidCount} testids available`);
