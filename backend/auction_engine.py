@@ -445,20 +445,27 @@ class AuctionEngine:
             if not lot:
                 return {"success": False, "error": "Lot not found"}
             
-            # Anti-snipe logic with server-authoritative timing
-            now = datetime.now(timezone.utc)
+            # Anti-snipe logic with server-authoritative timing (deterministic in test mode)
+            current_time = now()  # Use time provider for deterministic testing
             if lot.get("timer_ends_at"):
                 end_time = lot["timer_ends_at"]
                 if isinstance(end_time, str):
                     end_time = datetime.fromisoformat(end_time.replace('Z', '+00:00'))
                 
-                seconds_remaining = (end_time - now).total_seconds()
+                seconds_remaining = (end_time - current_time).total_seconds()
                 # Use auction-specific anti-snipe seconds from settings
                 anti_snipe_threshold = auction_data["settings"]["anti_snipe_seconds"]
                 
                 if seconds_remaining < anti_snipe_threshold:
-                    # GUARDRAIL 3: Server-authoritative timer extension (only forward)
-                    new_end_time = now + timedelta(seconds=anti_snipe_threshold + 3)
+                    # GUARDRAIL 3: Server-authoritative timer extension (deterministic)
+                    # Extend to now + (threshold * 2) for deterministic behavior
+                    extension_seconds = anti_snipe_threshold * 2
+                    new_end_time = current_time + timedelta(seconds=extension_seconds)
+                    
+                    # Log the extension event for deterministic testing
+                    logger.info(f"🕐 ANTI-SNIPE EXTEND: lot_id={lot_id}, threshold={anti_snipe_threshold}s, "
+                               f"remaining={seconds_remaining:.1f}s, extended_by={extension_seconds}s, "
+                               f"new_end={new_end_time.isoformat()}")
                     timer_valid, timer_error = await AdminService.validate_timer_monotonicity(
                         auction_id, new_end_time
                     )
