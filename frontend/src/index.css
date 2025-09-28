@@ -171,4 +171,9 @@ code {
   html {
     scroll-padding-top: var(--header-h);
   }
+  
+  /* Anchor sections with consistent scroll margin */
+  .anchor-section {
+    scroll-margin-top: var(--header-h);
+  }
 }
