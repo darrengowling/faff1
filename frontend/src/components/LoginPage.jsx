@@ -76,7 +76,7 @@ const LoginPage = () => {
     try {
       // Add small delay in test mode to make loading state more testable
       if (isTestMode && email.includes('loading-test')) {
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 500));
       }
       
       const response = await axios.post(`${API}/auth/magic-link`, {
