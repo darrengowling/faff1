@@ -49,7 +49,15 @@ const LoginPage = () => {
     
     // Validate email
     if (!email || !isValidEmail(email)) {
-      setError('Please enter a valid email address');
+      const errorMsg = !email ? 'Email is required' : 'Please enter a valid email address';
+      setError(errorMsg);
+      
+      // Keep focus on email input for better UX
+      setTimeout(() => {
+        if (emailInputRef.current) {
+          emailInputRef.current.focus();
+        }
+      }, 100);
       return;
     }
 
@@ -86,8 +94,34 @@ const LoginPage = () => {
 
     } catch (err) {
       console.error('Magic link request failed:', err);
-      const errorMessage = err.response?.data?.detail || 'Failed to send magic link. Please try again.';
+      
+      // Create concise error messages based on response
+      let errorMessage = 'Unable to send magic link. Please try again.';
+      
+      if (err.response?.status === 400) {
+        errorMessage = 'Invalid email address format';
+      } else if (err.response?.status === 429) {
+        errorMessage = 'Too many requests. Please wait a moment and try again.';
+      } else if (err.response?.status >= 500) {
+        errorMessage = 'Server error. Please try again in a moment.';
+      } else if (err.response?.data?.detail) {
+        // Use server message if it's concise
+        const serverMsg = err.response.data.detail;
+        if (serverMsg.length < 80) {
+          errorMessage = serverMsg;
+        }
+      }
+      
       setError(errorMessage);
+      
+      // Keep focus on email input for immediate retry
+      setTimeout(() => {
+        if (emailInputRef.current) {
+          emailInputRef.current.focus();
+          emailInputRef.current.select(); // Select text for easy correction
+        }
+      }, 100);
+      
     } finally {
       setLoading(false);
     }
