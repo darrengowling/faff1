@@ -339,7 +339,7 @@ export async function captureDebugInfo(page: Page, testName: string): Promise<vo
 }
 
 /**
- * Core smoke test specific helpers
+ * Core smoke test specific helpers - using placeBid instead of bid
  */
 export async function expectLobbyState(page: Page, expectedState: string): Promise<void> {
   console.log(`🔍 Expecting lobby state: ${expectedState}`);
@@ -350,21 +350,21 @@ export async function expectLobbyState(page: Page, expectedState: string): Promi
   console.log(`✅ Lobby state verified: ${expectedState}`);
 }
 
-export async function nominateFirstAsset(page: Page): Promise<string> {
-  console.log('🎯 Nominating first asset...');
+export async function placeBid(page: Page, amount: number): Promise<void> {
+  console.log(`💰 Placing bid: ${amount}`);
   
-  // Click nominate button - try different possible selectors
-  const nominateButton = page.locator(`[data-testid="${TESTIDS.nominateBtn}"], button:has-text("Nominate")`).first();
-  await nominateButton.click();
+  // Use bid input or quick bid buttons
+  if (amount <= 10) {
+    // Use quick bid buttons for small amounts
+    const bidButton = amount === 1 ? TESTIDS.bidPlus1 : amount === 5 ? TESTIDS.bidPlus5 : TESTIDS.bidPlus10;
+    await page.locator(`[data-testid="${bidButton}"]`).click();
+  } else {
+    // Use manual input for larger amounts
+    await page.locator(`[data-testid="${TESTIDS.bidInput}"]`).fill(amount.toString());
+    await page.locator(`[data-testid="${TESTIDS.bidSubmit}"]`).click();
+  }
   
-  // Wait for asset to be nominated and get club name
-  const assetNameElement = page.locator(`[data-testid="${TESTIDS.auctionAssetName}"]`);
-  await assetNameElement.waitFor({ state: 'visible', timeout: 10000 });
-  
-  const clubName = await assetNameElement.textContent();
-  console.log(`✅ Nominated asset: ${clubName}`);
-  
-  return clubName || 'Unknown Club';
+  console.log(`✅ Bid placed: ${amount}`);
 }
 
 export async function expectTopBid(page: Page, expectedBid: string): Promise<void> {
