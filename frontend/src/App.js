@@ -1122,10 +1122,16 @@ const LeagueManagement = ({ league, onBack }) => {
           </div>
           
           {/* Rules Badge */}
-          <div className="mb-4" data-testid={TESTIDS.rulesBadge}>
-            <div className="inline-flex items-center px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-sm">
-              Slots: {league.settings?.roster_size || 'N/A'} · Budget: ${league.settings?.budget || 'N/A'} · Min: {leagueStatus.min_members} · Max: {leagueStatus.max_members}
-            </div>
+          <div className="mb-4">
+            <CompactRules 
+              leagueSettings={{
+                clubSlots: league.settings?.roster_size,
+                budgetPerManager: league.settings?.budget,
+                leagueSize: { min: leagueStatus.min_members, max: leagueStatus.max_members }
+              }}
+              loading={false}
+              className=""
+            />
           </div>
         </div>
       )}
