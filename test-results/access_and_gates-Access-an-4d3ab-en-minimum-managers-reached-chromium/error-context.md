@@ -111,7 +111,7 @@
               - generic:
                 - generic:
                   - generic:
-                    - heading [level=2]: All Leagues (26)
+                    - heading [level=2]: All Leagues (27)
                   - button:
                     - img
                     - text: Create League
@@ -630,6 +630,36 @@
                     - generic:
                       - generic:
                         - generic:
+                          - heading [level=3]: Gate Test League 1759083229782
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
                           - heading [level=3]: Core Smoke League
                           - paragraph:
                             - img
@@ -1017,11 +1047,10 @@
           - generic [ref=e51]:
             - generic [ref=e52]: Points per Draw
             - spinbutton "Points per Draw" [ref=e53]: "1"
-      - alert [ref=e54]: "Server error: Internal error"
-      - generic [ref=e55]:
-        - button "Cancel" [ref=e56] [cursor=pointer]
-        - button "Create League" [ref=e57] [cursor=pointer]
-    - button "Close" [ref=e58] [cursor=pointer]:
-      - img [ref=e59] [cursor=pointer]
-      - generic [ref=e62] [cursor=pointer]: Close
+      - generic [ref=e54]:
+        - button "Cancel" [ref=e55] [cursor=pointer]
+        - button "Create League" [ref=e56] [cursor=pointer]
+    - button "Close" [ref=e57] [cursor=pointer]:
+      - img [ref=e58] [cursor=pointer]
+      - generic [ref=e61] [cursor=pointer]: Close
 ```
