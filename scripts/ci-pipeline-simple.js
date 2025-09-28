@@ -254,6 +254,16 @@ class SimpleCIPipeline {
 
       if (!phase2) return this.generateReport();
 
+      // Phase 3: Overlay Linting
+      const phase3 = this.runPhase(
+        'lint-overlays',
+        'CI=true npm run lint:overlays',
+        'Pointer-events overlay linting',
+        15000
+      );
+
+      if (!phase3) return this.generateReport();
+
       // Phase 3: Create Form Pre-Gate Verification
       const phase3 = this.runPhase(
         'verify-create-form',
