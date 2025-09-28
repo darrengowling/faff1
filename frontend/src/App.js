@@ -1112,7 +1112,7 @@ const LeagueManagement = ({ league, onBack }) => {
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
             <div className="text-lg font-semibold" data-testid={TESTIDS.lobbyJoined}>
-              {leagueStatus.member_count}/{leagueStatus.max_members}
+              <span data-testid={TESTIDS.lobbyJoinedCount}>{leagueStatus.member_count}</span>/{leagueStatus.max_members}
             </div>
             <div className={`px-3 py-1 rounded-full text-sm font-medium ${
               leagueStatus.is_ready ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
