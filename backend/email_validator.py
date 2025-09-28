@@ -131,10 +131,15 @@ class EmailValidator:
             if len(tld) < 2 or not tld.isalpha():
                 return False
             
-            # Check for invalid characters in local part
-            allowed_local_chars = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&*+-/=?^_`{|}~.')
+            # Check for invalid characters in local part (add apostrophe for RFC compliance)
+            allowed_local_chars = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&\'*+-/=?^_`{|}~.')
             if not all(c in allowed_local_chars for c in local_part):
                 return False
+            
+            # Check domain label lengths
+            for label in labels:
+                if len(label) > 63:  # RFC 1035 limit
+                    return False
             
             return True
             
