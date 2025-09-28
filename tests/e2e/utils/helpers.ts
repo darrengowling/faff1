@@ -28,7 +28,8 @@ export async function login(page: Page, email: string): Promise<void> {
   await expect(submitBtn).toBeEnabled({ timeout: 5000 });
   console.log(`Submit button enabled for email: ${email}`);
   
-  await submitBtn.click();
+  // Use safe click to detect any UI interception
+  await safeClick(page, submitBtn);
   
   // Wait for success message to appear (indicates backend processing complete)
   await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
