@@ -23,6 +23,36 @@
                 - img
       - main [ref=e26]:
         - generic [ref=e27]:
+          - navigation "Page sections navigation":
+            - generic:
+              - generic:
+                - generic:
+                  - tab "Home" [selected]:
+                    - generic:
+                      - img: 🏠
+                      - generic: Home
+                  - tab "How it Works":
+                    - generic:
+                      - img: ⚙️
+                      - generic: How it Works
+                  - tab "Why FoP":
+                    - generic:
+                      - img: 💡
+                      - generic: Why FoP
+                  - tab "Features":
+                    - generic:
+                      - img: 🚀
+                      - generic: Features
+                  - tab "Fair Play":
+                    - generic:
+                      - img: 🛡️
+                      - generic: Fair Play
+                  - tab "FAQ":
+                    - generic:
+                      - img: ❓
+                      - generic: FAQ
+            - progressbar "Section progress"
+            - generic: "Currently viewing: Home"
           - generic [ref=e30]:
             - generic [ref=e32]:
               - img [ref=e34]
