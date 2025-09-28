@@ -502,6 +502,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [createSuccess, setCreateSuccess] = useState(false);
   const [justCreatedId, setJustCreatedId] = useState(null);
 
   // Validation functions
