@@ -10,44 +10,11 @@ import { login as loginUtility } from './login';
 import { TESTIDS } from '../../../frontend/src/testids.js';
 
 /**
- * Authentication helpers
+ * Authentication helpers - defaults to test login for stability
  */
-export async function login(page: Page, email: string): Promise<void> {
-  console.log(`🔐 Logging in user: ${email}`);
-  
-  // Navigate to login page
-  await page.goto('/login');
-  await page.waitForLoadState('networkidle');
-  
-  // Fill email and submit magic link form using test IDs
-  const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
-  const submitBtn = page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`);
-  
-  await emailInput.fill(email);
-  
-  // Wait for button to be enabled (my validation might be disabling it)
-  await expect(submitBtn).toBeEnabled({ timeout: 5000 });
-  console.log(`Submit button enabled for email: ${email}`);
-  
-  // Use safe click to detect any UI interception
-  await safeClick(page, submitBtn);
-  
-  // Wait for success message to appear (indicates backend processing complete)
-  await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
-  
-  // Check if dev magic link button appears (conditional in development mode)
-  const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
-  if (await devMagicBtn.isVisible()) {
-    console.log('Dev magic link button found, using safe click...');
-    await safeClick(page, devMagicBtn);
-  } else {
-    // In test mode, should automatically redirect - wait for it
-    console.log('Waiting for automatic redirect...');
-  }
-  
-  // Wait for successful login redirect (either manual click or automatic)
-  await page.waitForURL(url => url.pathname === '/auth/verify' || url.pathname === '/dashboard', { timeout: 15000 });
-  console.log(`✅ User logged in: ${email}`);
+export async function login(page: Page, email: string, mode: 'test' | 'ui' = 'test'): Promise<void> {
+  // Use the centralized login utility with default test mode for CI stability
+  await loginUtility(page, email, { mode });
 }
 
 /**
