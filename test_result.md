@@ -374,7 +374,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Final Comprehensive Backend Validation Complete - 100% Success Rate"
+    - "Fix Frontend Compilation Issues with AppShell/MarketingShell Import Paths"
+    - "UI Login Timeout Resolution"
+    - "Loading State Test Fix in auth_ui.spec.ts"
   stuck_tasks: []
   test_all: true
   test_priority: "production_readiness_validated"
