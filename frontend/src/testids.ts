@@ -127,9 +127,7 @@ export const TESTIDS = {
   // Leaderboard
   leaderboardTable: 'leaderboard-table',
   leaderboardManager: 'leaderboard-manager',
-  leaderboardGoals: 'leaderboard-goals',
-  leaderboardWins: 'leaderboard-wins', 
-  leaderboardDraws: 'leaderboard-draws',
+  // Note: leaderboardGoals, leaderboardWins, leaderboardDraws removed as they're not implemented in current scoring system
 
   // Admin Dashboard
   adminSettings: 'admin-settings',
