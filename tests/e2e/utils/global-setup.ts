@@ -1,4 +1,5 @@
-import { FullConfig } from '@playwright/test';
+import { FullConfig, chromium } from '@playwright/test';
+import { login } from './login';
 
 async function globalSetup(config: FullConfig) {
   console.log('🧪 Global E2E Test Setup Starting...');
@@ -25,6 +26,54 @@ async function globalSetup(config: FullConfig) {
     throw error;
   }
   
+  // Create authenticated storage states for test users
+  console.log('🔐 Creating authenticated storage states...');
+  const testUsers = [
+    { email: 'commish@test.local', filename: 'commissioner-state.json' },
+    { email: 'alice@test.local', filename: 'alice-state.json' },
+    { email: 'bob@test.local', filename: 'bob-state.json' }
+  ];
+  
+  const browser = await chromium.launch();
+  
+  for (const user of testUsers) {
+    try {
+      console.log(`🔑 Authenticating ${user.email}...`);
+      const context = await browser.newContext({ baseURL });
+      const page = await context.newPage();
+      
+      // Perform test login
+      await login(page, user.email, { mode: 'test' });
+      
+      // Verify authentication by checking for user state
+      try {
+        await page.goto('/app');
+        await page.waitForTimeout(2000); // Give time for auth to settle
+        
+        // Check if we're authenticated (not redirected to login)
+        const currentUrl = page.url();
+        if (currentUrl.includes('/login')) {
+          throw new Error(`Authentication failed for ${user.email} - redirected to login`);
+        }
+        
+        console.log(`✅ ${user.email} authenticated successfully`);
+      } catch (authError) {
+        console.warn(`⚠️ Auth verification failed for ${user.email}: ${authError.message}`);
+        // Continue anyway - storage state may still be useful
+      }
+      
+      // Save storage state
+      await context.storageState({ path: `test-results/${user.filename}` });
+      console.log(`💾 Storage state saved: test-results/${user.filename}`);
+      
+      await context.close();
+    } catch (error) {
+      console.error(`❌ Failed to create storage state for ${user.email}:`, error);
+      // Continue with other users - don't fail the entire setup
+    }
+  }
+  
+  await browser.close();
   console.log('🎉 Global setup completed successfully!');
 }
 
