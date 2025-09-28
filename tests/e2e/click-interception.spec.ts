@@ -39,10 +39,10 @@ test.describe('Click Interception Prevention', () => {
     console.log('🔍 Testing form field clicks...');
     
     const formFields = [
-      { testid: 'create-name', label: 'League Name' },
-      { testid: 'create-budget', label: 'Budget' },
-      { testid: 'create-slots', label: 'Club Slots' },
-      { testid: 'create-min', label: 'Min Managers' }
+      { testid: 'create-name', label: 'League Name', value: 'Test League' },
+      { testid: 'create-budget', label: 'Budget', value: '150' },
+      { testid: 'create-slots', label: 'Club Slots', value: '6' },
+      { testid: 'create-min', label: 'Min Managers', value: '3' }
     ];
     
     for (const field of formFields) {
@@ -55,9 +55,10 @@ test.describe('Click Interception Prevention', () => {
       await input.click({ timeout: 3000 });
       await expect(input).toBeFocused({ timeout: 2000 });
       
-      // Type some text to ensure interaction works
-      await input.fill('test');
-      await expect(input).toHaveValue('test');
+      // Clear and type appropriate value
+      await input.fill('');
+      await input.fill(field.value);
+      await expect(input).toHaveValue(field.value);
       
       console.log(`  ✅ ${field.label} field interactive`);
     }
