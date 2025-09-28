@@ -884,7 +884,12 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
             >
               Cancel
             </Button>
-            <Button type="submit" className="flex-1" disabled={loading} data-testid={TESTIDS.createSubmit}>
+            <Button 
+              type="submit" 
+              className="flex-1" 
+              disabled={loading || Object.keys(errors).length > 0} 
+              data-testid="create-submit"
+            >
               {loading ? 'Creating...' : 'Create League'}
             </Button>
           </div>
