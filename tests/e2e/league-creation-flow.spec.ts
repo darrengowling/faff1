@@ -12,7 +12,7 @@ import { test, expect, Page } from '@playwright/test';
 import { login } from './utils/login';
 import { fillCreateLeague } from './utils/league';
 import { clickCreateLeague, awaitCreatedAndInLobby } from './utils/helpers';
-import { TESTIDS } from '../../frontend/src/testids.js';
+import { TESTIDS } from '../../frontend/src/testids.ts';
 
 const TEST_TIMEOUT = 30000; // 30 seconds
 const LEAGUE_SETTINGS = {
