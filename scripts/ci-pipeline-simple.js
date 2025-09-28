@@ -244,8 +244,18 @@ class SimpleCIPipeline {
       
       if (!phase1) return this.generateReport();
 
-      // Phase 2: Skip hanging contract test for now - use direct Jest
+      // Phase 2: Create Form Pre-Gate Verification
       const phase2 = this.runPhase(
+        'verify-create-form',
+        'chmod +x scripts/verify-create-form.sh && scripts/verify-create-form.sh',
+        'Create League form accessibility pre-gate',
+        45000
+      );
+
+      if (!phase2) return this.generateReport();
+
+      // Phase 3: Frontend Contract Tests 
+      const phase3 = this.runPhase(
         'test:contract',
         'cd frontend && npx jest --config=jest.config.js --testPathPattern=".*contract\\.spec\\.(js|jsx|ts|tsx)$" --passWithNoTests --forceExit --maxWorkers=1',
         'Frontend contract tests (direct)',
