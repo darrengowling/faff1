@@ -316,10 +316,16 @@ async def test_login(request: dict, response: Response):
     request_id = str(uuid.uuid4())[:8]
     
     try:
+        # Structured logging: begin step
+        if TEST_MODE:
+            logger.info(f"🧪 AUTH.TESTLOGIN: {{'requestId': '{request_id}', 'step': 'begin'}}")
+            
         # Gate with ALLOW_TEST_LOGIN flag (default false in prod)
         allow_test_login = os.getenv("ALLOW_TEST_LOGIN", "false").lower() == "true"
         
         if not allow_test_login:
+            if TEST_MODE:
+                logger.info(f"🧪 AUTH.TESTLOGIN: {{'requestId': '{request_id}', 'step': 'error', 'code': 'ENDPOINT_DISABLED'}}")
             logger.warning(f"[{request_id}] Test login attempted but ALLOW_TEST_LOGIN=false")
             raise HTTPException(
                 status_code=404, 
