@@ -341,6 +341,7 @@ test.describe('Landing Page - Comprehensive Testing', () => {
       // Open mobile menu
       const mobileMenuBtn = page.getByTestId('nav-hamburger');
       if (await mobileMenuBtn.isVisible()) {
+        await ensureClickable(mobileMenuBtn);
         await safeClickWithOverlayDetection(page, mobileMenuBtn, { logDetails: true });
         await page.waitForTimeout(500);
         
