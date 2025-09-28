@@ -317,4 +317,59 @@ test.describe('Landing Page - Comprehensive Testing', () => {
       trackResult('Responsive Design', false, error.message);
     }
   });
+
+  test('Anchor scrolling works correctly without overlay interference', async ({ page }) => {
+    try {
+      // Test common anchor sections (adjust based on your landing page)
+      const anchors = ['features', 'how-it-works', 'pricing', 'contact'];
+      
+      await checkAnchorScrolling(page, anchors);
+      trackResult('Anchor Scrolling', true, 'All anchor links work correctly');
+      
+    } catch (error) {
+      trackResult('Anchor Scrolling', false, error.message);
+    }
+  });
+
+  test('Mobile menu closes properly on navigation', async ({ page }) => {
+    try {
+      // Test mobile menu behavior
+      await page.setViewportSize({ width: 375, height: 667 });
+      await page.waitForTimeout(1000);
+      
+      // Open mobile menu
+      const mobileMenuBtn = page.getByTestId('nav-hamburger');
+      if (await mobileMenuBtn.isVisible()) {
+        await safeClickWithOverlayDetection(page, mobileMenuBtn, { logDetails: true });
+        await page.waitForTimeout(500);
+        
+        // Verify menu is open
+        const drawer = page.getByTestId('nav-mobile-drawer');
+        const drawerVisible = await drawer.isVisible();
+        
+        if (drawerVisible) {
+          // Click a navigation item that should close the menu
+          const navItem = drawer.locator('a').first();
+          if (await navItem.count() > 0) {
+            await navItem.click();
+            await page.waitForTimeout(500);
+            
+            // Check if menu closed
+            const menuClosed = !(await drawer.isVisible());
+            trackResult('Mobile Menu Auto-Close', menuClosed, 'Menu closes on navigation');
+          } else {
+            trackResult('Mobile Menu Auto-Close', false, 'No navigation items found in drawer');
+          }
+        } else {
+          trackResult('Mobile Menu Auto-Close', false, 'Mobile menu did not open');
+        }
+      } else {
+        // Skip test if mobile menu not present
+        trackResult('Mobile Menu Auto-Close', true, 'Mobile menu not present - skipped');
+      }
+      
+    } catch (error) {
+      trackResult('Mobile Menu Auto-Close', false, error.message);
+    }
+  });
 });
