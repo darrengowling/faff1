@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
 import { TESTIDS } from '../../frontend/src/testids.ts';
 const { 
   checkLandingCTAsClickable, 
