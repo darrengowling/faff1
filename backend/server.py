@@ -493,8 +493,8 @@ async def test_login(request: dict, response: Response):
 if TEST_MODE:
     @api_router.get("/test/league/{league_id}/ready")
     async def check_league_ready(league_id: str):
-    """Test-only endpoint to check if league lobby is ready to render"""
-    try:
+        """Test-only endpoint to check if league lobby is ready to render"""
+        try:
         # Check if league exists
         league = await db.leagues.find_one({"_id": league_id})
         if not league:
