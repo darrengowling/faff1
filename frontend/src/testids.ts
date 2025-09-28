@@ -77,6 +77,14 @@ export const TESTIDS = {
   inPageTabFair: 'tab-fair',
   inPageTabFaq: 'tab-faq',
   
+  // Landing Page Sections
+  sectionHome: 'section-home',
+  sectionHow: 'section-how', 
+  sectionWhy: 'section-why',
+  sectionFeatures: 'section-features',
+  sectionSafety: 'section-safety',
+  sectionFaq: 'section-faq',
+  
   // Branding
   AuthBrand: 'auth-brand',
   HeaderBrand: 'header-brand',
