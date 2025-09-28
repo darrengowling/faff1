@@ -1,0 +1,66 @@
+{"version":8,"type":"context-options","origin":"library","browserName":"","options":{},"platform":"linux","wallTime":1759022693119,"monotonicTime":277193.72,"sdkLanguage":"javascript","contextId":"request-context@e9b34a53ab3103b607596affcd7cc20f","title":"api-regression-validation.spec.js:71 › API Regression Validation › API Endpoints Health Check"}
+{"type":"before","callId":"call@318","startTime":277196.129,"class":"APIRequestContext","method":"fetch","params":{"url":"https://pifa-auction.preview.emergentagent.com/api/health","method":"GET","timeout":10000},"stepId":"pw:api@21","beforeSnapshot":"before@call@318"}
+{"type":"log","callId":"call@318","time":277197.017,"message":"→ GET https://pifa-auction.preview.emergentagent.com/api/health"}
+{"type":"log","callId":"call@318","time":277197.053,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@318","time":277197.06,"message":"  accept: */*"}
+{"type":"log","callId":"call@318","time":277197.065,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@318","time":277282.78,"message":"← 200 OK"}
+{"type":"log","callId":"call@318","time":277282.798,"message":"  content-length: 320"}
+{"type":"log","callId":"call@318","time":277282.805,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@318","time":277282.811,"message":"  date: Sun, 28 Sep 2025 01:24:52 GMT"}
+{"type":"log","callId":"call@318","time":277282.816,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@318","time":277282.821,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@318","time":277282.825,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@318","endTime":277282.985,"result":{"response":{"url":"https://pifa-auction.preview.emergentagent.com/api/health","status":200,"statusText":"OK","headers":[{"name":"Content-Length","value":"320"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Sun, 28 Sep 2025 01:24:52 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"d13d6b277214536ce8c84eb0b199af3a"}},"afterSnapshot":"after@call@318"}
+{"type":"before","callId":"call@321","startTime":277287.372,"class":"APIRequestContext","method":"fetch","params":{"url":"https://pifa-auction.preview.emergentagent.com/api/competition-profiles","method":"GET","timeout":10000},"stepId":"pw:api@24","beforeSnapshot":"before@call@321"}
+{"type":"log","callId":"call@321","time":277288.219,"message":"→ GET https://pifa-auction.preview.emergentagent.com/api/competition-profiles"}
+{"type":"log","callId":"call@321","time":277288.238,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@321","time":277288.244,"message":"  accept: */*"}
+{"type":"log","callId":"call@321","time":277288.248,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@321","time":277299.017,"message":"← 200 OK"}
+{"type":"log","callId":"call@321","time":277299.045,"message":"  content-length: 1048"}
+{"type":"log","callId":"call@321","time":277299.054,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@321","time":277299.059,"message":"  date: Sun, 28 Sep 2025 01:24:52 GMT"}
+{"type":"log","callId":"call@321","time":277299.064,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@321","time":277299.068,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@321","time":277299.072,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@321","endTime":277299.217,"result":{"response":{"url":"https://pifa-auction.preview.emergentagent.com/api/competition-profiles","status":200,"statusText":"OK","headers":[{"name":"Content-Length","value":"1048"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Sun, 28 Sep 2025 01:24:52 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"02eca743442aa18e6b69f57b7dab78ae"}},"afterSnapshot":"after@call@321"}
+{"type":"before","callId":"call@324","startTime":277303.8,"class":"APIRequestContext","method":"fetch","params":{"url":"https://pifa-auction.preview.emergentagent.com/api/clubs","method":"GET","timeout":10000},"stepId":"pw:api@27","beforeSnapshot":"before@call@324"}
+{"type":"log","callId":"call@324","time":277382.611,"message":"→ GET https://pifa-auction.preview.emergentagent.com/api/clubs"}
+{"type":"log","callId":"call@324","time":277382.637,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@324","time":277382.644,"message":"  accept: */*"}
+{"type":"log","callId":"call@324","time":277382.647,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@324","time":277395.313,"message":"← 200 OK"}
+{"type":"log","callId":"call@324","time":277395.341,"message":"  content-length: 3561"}
+{"type":"log","callId":"call@324","time":277395.348,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@324","time":277395.352,"message":"  date: Sun, 28 Sep 2025 01:24:52 GMT"}
+{"type":"log","callId":"call@324","time":277395.356,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@324","time":277395.36,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@324","time":277395.364,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@324","endTime":277396.503,"result":{"response":{"url":"https://pifa-auction.preview.emergentagent.com/api/clubs","status":200,"statusText":"OK","headers":[{"name":"Content-Length","value":"3561"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Sun, 28 Sep 2025 01:24:52 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"12d61d3ac11f1861807cb26a43d486ad"}},"afterSnapshot":"after@call@324"}
+{"type":"before","callId":"call@327","startTime":277400.881,"class":"APIRequestContext","method":"fetch","params":{"url":"https://pifa-auction.preview.emergentagent.com/api/timez","method":"GET","timeout":10000},"stepId":"pw:api@30","beforeSnapshot":"before@call@327"}
+{"type":"log","callId":"call@327","time":277401.891,"message":"→ GET https://pifa-auction.preview.emergentagent.com/api/timez"}
+{"type":"log","callId":"call@327","time":277401.911,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@327","time":277401.917,"message":"  accept: */*"}
+{"type":"log","callId":"call@327","time":277401.921,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@327","time":277409.879,"message":"← 200 OK"}
+{"type":"log","callId":"call@327","time":277409.893,"message":"  content-length: 42"}
+{"type":"log","callId":"call@327","time":277409.898,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@327","time":277409.903,"message":"  date: Sun, 28 Sep 2025 01:24:52 GMT"}
+{"type":"log","callId":"call@327","time":277409.907,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@327","time":277409.911,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@327","time":277409.915,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@327","endTime":277410.069,"result":{"response":{"url":"https://pifa-auction.preview.emergentagent.com/api/timez","status":200,"statusText":"OK","headers":[{"name":"Content-Length","value":"42"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Sun, 28 Sep 2025 01:24:52 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"2ff4bdf068612e5fe18a04f0b1484204"}},"afterSnapshot":"after@call@327"}
+{"type":"before","callId":"call@330","startTime":277486.874,"class":"APIRequestContext","method":"fetch","params":{"url":"https://pifa-auction.preview.emergentagent.com/api/socket-diag","method":"GET","timeout":10000},"stepId":"pw:api@33","beforeSnapshot":"before@call@330"}
+{"type":"log","callId":"call@330","time":277487.717,"message":"→ GET https://pifa-auction.preview.emergentagent.com/api/socket-diag"}
+{"type":"log","callId":"call@330","time":277487.739,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@330","time":277487.746,"message":"  accept: */*"}
+{"type":"log","callId":"call@330","time":277487.75,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@330","time":277495.49,"message":"← 200 OK"}
+{"type":"log","callId":"call@330","time":277495.504,"message":"  content-length: 75"}
+{"type":"log","callId":"call@330","time":277495.509,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@330","time":277495.513,"message":"  date: Sun, 28 Sep 2025 01:24:52 GMT"}
+{"type":"log","callId":"call@330","time":277495.518,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@330","time":277495.522,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@330","time":277495.526,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@330","endTime":277495.682,"result":{"response":{"url":"https://pifa-auction.preview.emergentagent.com/api/socket-diag","status":200,"statusText":"OK","headers":[{"name":"Content-Length","value":"75"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Sun, 28 Sep 2025 01:24:52 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"cdc30dfd66b4ccffca6f65ac77220fb3"}},"afterSnapshot":"after@call@330"}
