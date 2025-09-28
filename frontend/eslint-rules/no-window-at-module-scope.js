@@ -122,6 +122,11 @@ export default {
           return;
         }
 
+        // Skip if this is the object of a MemberExpression (let MemberExpression handle it)
+        if (node.parent.type === 'MemberExpression' && node.parent.object === node) {
+          return;
+        }
+
         // Skip if this is in a typeof check (allowed pattern)
         if (node.parent.type === 'UnaryExpression' && node.parent.operator === 'typeof') {
           return;
