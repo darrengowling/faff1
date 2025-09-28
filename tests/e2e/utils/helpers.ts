@@ -127,8 +127,8 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
   // Wait a moment for the league list to update
   await page.waitForTimeout(2000);
   
-  // Verify the league appears in the dashboard
-  const leagueVisible = await page.locator(`text="${settings.name}"`).isVisible();
+  // Verify the league appears in the dashboard (use first occurrence to avoid strict mode violation)
+  const leagueVisible = await page.locator(`text="${settings.name}"`).first().isVisible();
   if (!leagueVisible) {
     throw new Error(`League "${settings.name}" was not found in the dashboard after creation`);
   }
