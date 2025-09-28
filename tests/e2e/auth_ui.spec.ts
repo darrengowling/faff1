@@ -69,8 +69,8 @@ test.describe('Authentication UI Tests', () => {
     // Fill with invalid email format
     await emailInput.fill('not-an-email');
     
-    // Click submit button
-    await submitBtn.click();
+    // Force click submit button even if disabled (to test client-side validation)
+    await submitBtn.click({ force: true });
     
     // Error should be visible with proper attributes
     const errorElement = page.getByTestId('auth-error');
