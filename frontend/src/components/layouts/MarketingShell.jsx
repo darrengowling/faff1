@@ -143,14 +143,13 @@ const MarketingShell = ({ children }) => {
 
         {/* Mobile Drawer - Always rendered */}
         <div 
-          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 drawer-backdrop"
+          className={`md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 drawer-backdrop ${mobileMenuOpen ? 'block' : 'hidden'}`}
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
           data-testid="nav-mobile-drawer"
           data-state={mobileMenuOpen ? 'open' : 'closed'}
           style={{ 
             paddingTop: '64px',
-            display: mobileMenuOpen ? 'block' : 'none',
             pointerEvents: mobileMenuOpen ? 'auto' : 'none'
           }}
         >
