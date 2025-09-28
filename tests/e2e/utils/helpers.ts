@@ -336,6 +336,8 @@ export async function captureDebugInfo(page: Page, testName: string): Promise<vo
     url: page.url(),
     logs: logs.slice(-10) // Last 10 logs
   });
+}
+
 /**
  * Core smoke test specific helpers
  */
