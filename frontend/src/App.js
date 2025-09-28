@@ -1742,7 +1742,6 @@ function App() {
                 </MarketingShell>
               } />
             </Routes>
-          </div>
         </Router>
       </AuthProvider>
     </ThemeProvider>
