@@ -297,7 +297,12 @@ const CreateLeagueWizard = () => {
                   <option value={5}>5 coins</option>
                 </select>
                 {errors.minBid && (
-                  <p className="mt-1 text-sm text-red-600">{errors.minBid}</p>
+                  <p 
+                    className="mt-1 text-sm text-red-600" 
+                    data-testid="create-error-min"
+                  >
+                    {errors.minBid}
+                  </p>
                 )}
                 <p className="mt-1 text-sm text-gray-500">
                   Minimum amount for each bid
