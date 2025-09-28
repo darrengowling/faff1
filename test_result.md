@@ -327,6 +327,8 @@ test_plan:
 
 agent_communication:
   - agent: "main"
+    message: "✅ ESLINT RULE FIX COMPLETED: Fixed duplication issue in 'no-window-at-module-scope' ESLint rule in /app/frontend/eslint-rules/no-window-at-module-scope.js. Rule now correctly detects browser globals at module scope without duplicate violations. Added package.json 'type: module' to resolve ESLint config warnings. Testing confirms rule properly catches window, document, navigator usage violations while allowing safe patterns like typeof checks and function-scoped usage."
+  - agent: "main"
     message: "✅ CSS HEADER INTERCEPTION FIXES COMPLETED: Added requested CSS rules to /app/frontend/src/index.css - 1) Updated main padding rule to include fallback: 'main { padding-top: var(--header-h, 64px) }', 2) Added header overlay prevention rule: 'header *[data-overlay] { pointer-events: none }'. These rules prevent UI interception issues and ensure proper main content spacing below the fixed header."
   - agent: "main"
     message: "🎉 CRITICAL DATA-TESTID MISMATCH RESOLVED: ✅ Fixed undefined PrimaryNavigation component in GlobalNavbar.js causing React crash, ✅ Fixed test-only login endpoint to properly verify users in database (not just response), ✅ Create League button with data-testid='create-league-btn' now found and clickable by E2E tests, ✅ Dashboard renders correctly after authentication, ✅ Core smoke test progresses past Create League button click to form filling stage. The main issue blocking E2E tests has been completely resolved."
