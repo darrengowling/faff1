@@ -122,8 +122,12 @@ export const TESTIDS = {
   bidSubmit: 'bid-submit',
   
   // Dashboard Actions  
-  startAuctionBtn: 'start-auction-btn',
+  startAuctionBtn: 'start-auction',
   joinAuctionBtn: 'join-auction-btn',
+  
+  // Lobby & Auction Info
+  lobbyJoined: 'lobby-joined',
+  rulesBadge: 'rules-badge',
 
   // League List & Management
   leagueList: 'league-list',
