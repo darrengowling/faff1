@@ -8,7 +8,7 @@
  * @author Friends of PIFA Development Team
  */
 
-export default {
+module.exports = {
   meta: {
     type: "problem",
     docs: {
