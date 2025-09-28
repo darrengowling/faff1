@@ -52,17 +52,18 @@ const LoginPage = () => {
     setSuccess('');
     setMagicLink('');
     
-    // Validate email
-    if (!email || !isValidEmail(email)) {
-      const errorMsg = !email ? 'Email is required' : 'Please enter a valid email address';
+    // Validate email using shared validator
+    if (!email.trim() || !isValidEmail(email.trim())) {
+      const errorMsg = !email.trim() ? 'Email is required' : 'Please enter a valid email.';
       setError(errorMsg);
       
-      // Keep focus on email input for better UX
+      // Keep focus on email input for better UX - immediate in TEST_MODE
+      const focusDelay = isTestMode ? 0 : 100;
       setTimeout(() => {
         if (emailInputRef.current) {
           emailInputRef.current.focus();
         }
-      }, 100);
+      }, focusDelay);
       return;
     }
 
