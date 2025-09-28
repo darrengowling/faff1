@@ -137,6 +137,34 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Email validation startup check
+def check_email_validation():
+    """Startup check for email validation functionality"""
+    from utils.email_validation import get_email_validator_info, is_valid_email
+    
+    info = get_email_validator_info()
+    logger.info(f"Email validation status: {info}")
+    
+    if not info['has_email_validator']:
+        logger.warning("⚠️ email-validator package not available, using fallback regex validation")
+    else:
+        logger.info(f"✅ email-validator package available, version: {info.get('email_validator_version', 'unknown')}")
+    
+    # Test validation to ensure it works
+    try:
+        valid, msg = is_valid_email("test@example.com")
+        if not valid:
+            logger.error(f"❌ Email validation test failed: {msg}")
+            raise RuntimeError("Email validation self-test failed")
+        else:
+            logger.info("✅ Email validation self-test passed")
+    except Exception as e:
+        logger.error(f"❌ Email validation check failed: {e}")
+        raise RuntimeError(f"Email validation startup check failed: {e}")
+
+# Run email validation check
+check_email_validation()
+
 # Startup event to initialize database, auction engine, and scoring worker
 @fastapi_app.on_event("startup")
 async def startup_event():
