@@ -146,8 +146,23 @@ const MarketingShell = ({ children }) => {
                   </button>
                 </div>
 
-                {/* Mobile Auth Navigation */}
-                <AuthNavigation variant="mobile" />
+                {/* Mobile Navigation Items */}
+                <div className="py-4">
+                  <MobileNavigation onItemClick={(item) => {
+                    setMobileMenuOpen(false);
+                  }} />
+                  
+                  {/* Mobile Auth Actions */}
+                  <div className="border-t border-gray-200 mt-4 pt-4 space-y-3">
+                    <AuthNavigation variant="mobile" />
+                    
+                    {/* Mobile Theme Toggle */}
+                    <div className="flex items-center justify-between px-0">
+                      <span className="text-sm text-gray-600">Theme</span>
+                      <IconThemeToggle />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
