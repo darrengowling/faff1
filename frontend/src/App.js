@@ -754,7 +754,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
           {/* Loading indicator for tests */}
           {submitting && (
             <div 
-              data-testid="create-loading" 
+              data-testid={TESTIDS.createLoading} 
               aria-hidden="true"
               className="sr-only"
             >
