@@ -457,6 +457,18 @@ export async function awaitCreatedAndInLobby(page: Page): Promise<string> {
     
     console.log('✅ Success marker or lobby URL detected');
     
+    // Check if dialog is present and assert it's closed
+    const dialogElement = page.locator('[role="dialog"]');
+    const dialogCount = await dialogElement.count();
+    if (dialogCount > 0) {
+      const dialogState = await dialogElement.getAttribute('data-state').catch(() => null);
+      if (dialogState !== 'closed') {
+        console.warn(`⚠️ Dialog data-state is '${dialogState}', expected 'closed'`);
+      } else {
+        console.log('✅ Dialog properly closed (data-state="closed")');
+      }
+    }
+    
     // Extract league ID from current URL
     const currentUrl = page.url();
     const leagueIdMatch = currentUrl.match(/\/app\/leagues\/([^\/]+)\/lobby/);
