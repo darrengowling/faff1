@@ -264,8 +264,8 @@ class SimpleCIPipeline {
 
       if (!phase3) return this.generateReport();
 
-      // Phase 3: Frontend Contract Tests 
-      const phase3 = this.runPhase(
+      // Phase 4: Frontend Contract Tests 
+      const phase4 = this.runPhase(
         'test:contract',
         'cd frontend && npx jest --config=jest.config.js --testPathPattern=".*contract\\.spec\\.(js|jsx|ts|tsx)$" --passWithNoTests --forceExit --maxWorkers=1',
         'Frontend contract tests (direct)',
