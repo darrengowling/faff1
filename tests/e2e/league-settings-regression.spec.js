@@ -132,8 +132,9 @@ test.describe('League Settings Regression Tests', () => {
       await page.waitForSelector('.grid.grid-cols-2.md\\:grid-cols-3.lg\\:grid-cols-4.gap-4');
       
       // Look for club slots display in league settings
-      const clubSlotsDisplay = page.locator('.text-lg.font-bold', { hasText: '5' });
+      const clubSlotsDisplay = page.locator(`[data-testid="${TESTIDS.clubSlots}"]`);
       await expect(clubSlotsDisplay.first()).toBeVisible();
+      await expect(clubSlotsDisplay.first()).toContainText('5');
       
       // Check league settings panel shows correct values
       const settingsPanel = page.locator('[data-testid="league-settings"], .space-y-4:has(.text-lg.font-bold)');
