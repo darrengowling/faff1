@@ -200,11 +200,14 @@ const GlobalNavbar = () => {
     }
   }, [productDropdownOpen]);
 
-  // Close dropdowns on route change
+  // Close dropdowns and mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
     setProductDropdownOpen(false);
     setFocusedIndex(-1);
+    
+    // Ensure any persistent overlays are removed
+    document.body.style.overflow = 'unset';
   }, [location.pathname]);
 
   return (
