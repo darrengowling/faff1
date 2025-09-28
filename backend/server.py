@@ -1089,16 +1089,9 @@ async def create_league(
         if TEST_MODE:
             logger.info(f"🧪 LEAGUES.CREATE: {{'requestId': '{request_id}', 'step': 'commit', 'leagueId': '{league_response.id}'}}")
         
-        # Return structured success response
+        # Return only leagueId after transaction commit (as requested)
         response_data = {
-            "leagueId": league_response.id,
-            "settings": {
-                "name": league_response.name,
-                "club_slots_per_manager": league_response.settings.club_slots_per_manager,
-                "budget_per_manager": league_response.settings.budget_per_manager,
-                "min_managers": league_response.settings.league_size.min,
-                "max_managers": league_response.settings.league_size.max
-            }
+            "leagueId": league_response.id
         }
         
         logger.info(f"[{request_id}] {payload_summary} - success leagueId={league_response.id}")
