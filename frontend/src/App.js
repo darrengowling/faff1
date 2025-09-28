@@ -1654,63 +1654,82 @@ function App() {
               
               {/* Auth verification without shell */}
               <Route path="/auth/verify" element={<MagicLinkVerify />} />
+              {/* App Shell Routes (authentication required) */}
               <Route path="/invite" element={
                 <ProtectedRoute>
-                  <InvitationAccept />
+                  <AppShell>
+                    <InvitationAccept />
+                  </AppShell>
                 </ProtectedRoute>
               } />
               <Route path="/auction/:auctionId" element={
                 <SafeRoute path="/auction/:auctionId" authRequired={true} leagueRequired={true}>
-                  <AuctionLayout>
-                    <AuctionRoomWrapper />
-                  </AuctionLayout>
+                  <AppShell showBackButton={true} pageTitle="Auction Room">
+                    <AuctionLayout>
+                      <AuctionRoomWrapper />
+                    </AuctionLayout>
+                  </AppShell>
                 </SafeRoute>
               } />
               <Route path="/clubs" element={
                 <SafeRoute path="/clubs" authRequired={true} leagueRequired={true}>
-                  <RosterLayout>
-                    <MyClubsWrapper />
-                  </RosterLayout>
+                  <AppShell showBackButton={true} pageTitle="My Roster">
+                    <RosterLayout>
+                      <MyClubsWrapper />
+                    </RosterLayout>
+                  </AppShell>
                 </SafeRoute>
               } />
               <Route path="/fixtures" element={
                 <SafeRoute path="/fixtures" authRequired={true} leagueRequired={true}>
-                  <FixturesLayout>
-                    <FixturesWrapper />
-                  </FixturesLayout>
+                  <AppShell showBackButton={true} pageTitle="Fixtures">
+                    <FixturesLayout>
+                      <FixturesWrapper />
+                    </FixturesLayout>
+                  </AppShell>
                 </SafeRoute>
               } />
               <Route path="/leaderboard" element={
                 <SafeRoute path="/leaderboard" authRequired={true} leagueRequired={true}>
-                  <LeaderboardLayout>
-                    <LeaderboardWrapper />
-                  </LeaderboardLayout>
+                  <AppShell showBackButton={true} pageTitle="Leaderboard">
+                    <LeaderboardLayout>
+                      <LeaderboardWrapper />
+                    </LeaderboardLayout>
+                  </AppShell>
                 </SafeRoute>
               } />
               <Route path="/admin" element={
                 <SafeRoute path="/admin" authRequired={true} leagueRequired={true}>
-                  <AdminLayout>
-                    <AdminDashboardWrapper />
-                  </AdminLayout>
+                  <AppShell showBackButton={true} pageTitle="League Settings">
+                    <AdminLayout>
+                      <AdminDashboardWrapper />
+                    </AdminLayout>
+                  </AppShell>
                 </SafeRoute>
               } />
               <Route path="/dashboard" element={
                 <ProtectedRoute>
-                  <DashboardLayout>
-                    <Dashboard />
-                  </DashboardLayout>
+                  <AppShell showBackButton={false} pageTitle="Dashboard">
+                    <DashboardLayout>
+                      <Dashboard />
+                    </DashboardLayout>
+                  </AppShell>
                 </ProtectedRoute>
               } />
               <Route path="/app" element={
                 <ProtectedRoute>
-                  <DashboardLayout>
-                    <Dashboard />
-                  </DashboardLayout>
+                  <AppShell showBackButton={false} pageTitle="Dashboard">
+                    <DashboardLayout>
+                      <Dashboard />
+                    </DashboardLayout>
+                  </AppShell>
                 </ProtectedRoute>
               } />
               <Route path="/app/leagues/new" element={
                 <SafeRoute path="/app/leagues/new" authRequired={true}>
-                  <CreateLeagueWizard />
+                  <AppShell showBackButton={true} pageTitle="Create League">
+                    <CreateLeagueWizard />
+                  </AppShell>
                 </SafeRoute>
               } />
               <Route path="/diag" element={<DiagnosticPage />} />
