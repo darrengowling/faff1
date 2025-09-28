@@ -96,8 +96,10 @@ test.describe('Navigation Tests', () => {
     });
 
     test('Mobile navigation shows only enabled items and navigates correctly', async ({ page }) => {
-      // Open hamburger menu
-      await page.locator(`[data-testid="${TESTIDS.navHamburger}"]`).click();
+      // Ensure hamburger menu is clickable before clicking
+      const hamburgerMenu = page.locator(`[data-testid="${TESTIDS.navHamburger}"]`);
+      await ensureClickable(hamburgerMenu);
+      await hamburgerMenu.click();
       await page.locator(`[data-testid="${TESTIDS.navMobileDrawer}"]`).waitFor({ state: 'visible' });
       
       // Check if navigation items are present using testids
@@ -105,13 +107,17 @@ test.describe('Navigation Tests', () => {
       const itemCount = await mobileItems.count();
       
       if (itemCount > 0) {
-        // Test first available item navigation
+        // Ensure first navigation item is clickable before clicking
         const firstItem = mobileItems.first();
+        await ensureClickable(firstItem);
         await firstItem.click();
+        
+        // Assert drawer closes after navigation
+        await page.waitForTimeout(500); // Allow state change
+        await expect(page.locator(`[data-testid="${TESTIDS.navMobileDrawer}"]`)).toBeHidden();
         
         // Should navigate away from current page (either to section or new page)
         await page.waitForTimeout(1000); // Allow navigation to complete
-        // URL should have changed in some way
       } else {
         // No items shown - verify proper empty state
         const emptyMessage = page.locator(`[data-testid="${TESTIDS.navMobileDrawer}"] >> text="No navigation items available"`);
