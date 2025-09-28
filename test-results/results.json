@@ -111,7 +111,7 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 18794,
+                      "duration": 18904,
                       "errors": [],
                       "stdout": [
                         {
@@ -130,49 +130,34 @@
                           "text": "  2: button.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  3: div.flex.items-center.space-x-2.overflow-x-auto.scrollbar-hide.px-2 (z-index: auto, pointer-events: auto)\n"
+                          "text": "  3: path (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  4: div.md:hidden.flex.items-center.py-3.w-full (z-index: auto, pointer-events: auto)\n"
+                          "text": "  4: svg (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  5: div.flex.items-center.justify-center (z-index: auto, pointer-events: auto)\n"
+                          "text": "  5: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"] (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  6: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)\n"
+                          "text": "  6: div.flex.items-center.justify-between.h-16 (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  7: nav.sticky.top-16.bg-white/95.backdrop-blur-sm.border-b.border-gray-200.z-40.transition-all.duration-300.-translate-y-full.opacity-0 (z-index: 40, pointer-events: auto)\n"
+                          "text": "  7: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  8: path (z-index: auto, pointer-events: auto)\n"
+                          "text": "  8: header.sticky.top-0.w-full.bg-theme-surface/95.backdrop-blur-sm.border-b.border-theme-surface-border.z-40 (z-index: 40, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  9: svg (z-index: auto, pointer-events: auto)\n"
+                          "text": "  9: div.App (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  10: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"] (z-index: auto, pointer-events: auto)\n"
+                          "text": "  10: div#root (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  11: div.flex.items-center.justify-between.h-16 (z-index: auto, pointer-events: auto)\n"
+                          "text": "  11: body.theme-light (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  12: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  13: header.sticky.top-0.w-full.bg-theme-surface/95.backdrop-blur-sm.border-b.border-theme-surface-border.z-40 (z-index: 40, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  14: div.App (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  15: div#root (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  16: body.theme-light (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  17: html (z-index: auto, pointer-events: auto)\n"
+                          "text": "  12: html (z-index: auto, pointer-events: auto)\n"
                         },
                         {
                           "text": "✅ No overlay blocking target: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"]\n"
@@ -187,7 +172,7 @@
                           "text": "📊 Landing Page Test Summary:\n"
                         },
                         {
-                          "text": "⏱️ Duration: 19.00s\n"
+                          "text": "⏱️ Duration: 19.11s\n"
                         },
                         {
                           "text": "✅ Passed: 0\n"
@@ -211,7 +196,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2025-09-28T14:00:45.990Z",
+                      "startTime": "2025-09-28T14:02:22.369Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -240,7 +225,7 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 18872,
+                      "duration": 19093,
                       "errors": [],
                       "stdout": [
                         {
@@ -259,49 +244,34 @@
                           "text": "  2: button.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  3: div.flex.items-center.space-x-2.overflow-x-auto.scrollbar-hide.px-2 (z-index: auto, pointer-events: auto)\n"
+                          "text": "  3: path (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  4: div.md:hidden.flex.items-center.py-3.w-full (z-index: auto, pointer-events: auto)\n"
+                          "text": "  4: svg (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  5: div.flex.items-center.justify-center (z-index: auto, pointer-events: auto)\n"
+                          "text": "  5: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"] (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  6: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)\n"
+                          "text": "  6: div.flex.items-center.justify-between.h-16 (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  7: nav.sticky.top-16.bg-white/95.backdrop-blur-sm.border-b.border-gray-200.z-40.transition-all.duration-300.-translate-y-full.opacity-0 (z-index: 40, pointer-events: auto)\n"
+                          "text": "  7: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  8: path (z-index: auto, pointer-events: auto)\n"
+                          "text": "  8: header.sticky.top-0.w-full.bg-theme-surface/95.backdrop-blur-sm.border-b.border-theme-surface-border.z-40 (z-index: 40, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  9: svg (z-index: auto, pointer-events: auto)\n"
+                          "text": "  9: div.App (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  10: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"] (z-index: auto, pointer-events: auto)\n"
+                          "text": "  10: div#root (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  11: div.flex.items-center.justify-between.h-16 (z-index: auto, pointer-events: auto)\n"
+                          "text": "  11: body.theme-light (z-index: auto, pointer-events: auto)\n"
                         },
                         {
-                          "text": "  12: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  13: header.sticky.top-0.w-full.bg-theme-surface/95.backdrop-blur-sm.border-b.border-theme-surface-border.z-40 (z-index: 40, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  14: div.App (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  15: div#root (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  16: body.theme-light (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  17: html (z-index: auto, pointer-events: auto)\n"
+                          "text": "  12: html (z-index: auto, pointer-events: auto)\n"
                         },
                         {
                           "text": "✅ No overlay blocking target: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"]\n"
@@ -316,7 +286,7 @@
                           "text": "📊 Landing Page Test Summary:\n"
                         },
                         {
-                          "text": "⏱️ Duration: 19.07s\n"
+                          "text": "⏱️ Duration: 19.31s\n"
                         },
                         {
                           "text": "✅ Passed: 0\n"
@@ -340,7 +310,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2025-09-28T14:01:05.777Z",
+                      "startTime": "2025-09-28T14:02:42.262Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -360,8 +330,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-09-28T14:00:44.773Z",
-    "duration": 40145.170000000006,
+    "startTime": "2025-09-28T14:02:21.411Z",
+    "duration": 40241.64,
     "expected": 2,
     "skipped": 0,
     "unexpected": 0,
