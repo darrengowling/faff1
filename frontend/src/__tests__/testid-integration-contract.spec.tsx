@@ -6,12 +6,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { BrowserRouter } from 'react-router-dom';
 import { TESTIDS } from '../testids';
 
-// Mock components for integration testing
-const MockAuthLayout = ({ children }: { children: React.ReactNode }) => (
-  <BrowserRouter>
+// Simple mock components for integration testing (no external deps)
+const MockAuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div>
     <div data-testid={TESTIDS.authEmailInput}>
       <input type="email" placeholder="Email" />
     </div>
@@ -20,7 +19,7 @@ const MockAuthLayout = ({ children }: { children: React.ReactNode }) => (
       Error message
     </div>
     {children}
-  </BrowserRouter>
+  </div>
 );
 
 describe('Integration TestID Contract Tests', () => {
