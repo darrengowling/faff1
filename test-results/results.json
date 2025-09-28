@@ -63,28 +63,51 @@
       "timeout": 120000
     }
   },
-  "suites": [],
-  "errors": [
+  "suites": [
     {
-      "message": "SyntaxError: /app/tests/e2e/utils/helpers.ts: Unexpected token (423:0)\n\n  421 |   console.log(`✅ User presence verified: ${expectedUserCount}`);\n  422 | }\n> 423 | }\n      | ^",
-      "stack": "SyntaxError: /app/tests/e2e/utils/helpers.ts: Unexpected token (423:0)\n\n  421 |   console.log(`✅ User presence verified: ${expectedUserCount}`);\n  422 | }\n> 423 | }\n      | ^\n    at Object.<anonymous> (/app/tests/e2e/core-smoke.spec.ts:10:1)",
-      "location": {
-        "file": "/app/tests/e2e/core-smoke.spec.ts",
-        "line": 423,
-        "column": 0
-      },
-      "snippet": "   at core-smoke.spec.ts:423\n\n"
-    },
-    {
-      "message": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.",
-      "stack": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments."
+      "title": "core-smoke.spec.ts",
+      "file": "core-smoke.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Core Smoke Test",
+          "file": "core-smoke.spec.ts",
+          "line": 43,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Complete auction flow: create → invite → join → auction → bid → sell",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a1185c8c8a119dd4daa6-824956169c2fdc1743ba",
+              "file": "core-smoke.spec.ts",
+              "line": 113,
+              "column": 7
+            }
+          ]
+        }
+      ]
     }
   ],
+  "errors": [],
   "stats": {
-    "startTime": "2025-09-28T04:36:09.933Z",
-    "duration": 144.24200000000008,
+    "startTime": "2025-09-28T04:36:28.849Z",
+    "duration": 317.84899999999993,
     "expected": 0,
-    "skipped": 0,
+    "skipped": 1,
     "unexpected": 0,
     "flaky": 0
   }
