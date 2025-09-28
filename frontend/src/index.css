@@ -160,6 +160,13 @@ code {
     pointer-events: none !important;
   }
   
+  /* Fix hamburger menu button child elements */
+  button[data-testid="nav-hamburger"] svg,
+  button[data-testid="nav-hamburger"] path,
+  button[data-testid="nav-hamburger"] * {
+    pointer-events: none !important;
+  }
+  
   /* Smooth anchor scrolling with header offset */
   html {
     scroll-padding-top: var(--header-h);
