@@ -1265,7 +1265,7 @@
   - dialog "Create New League" [ref=e2]:
     - generic [ref=e3]:
       - generic [ref=e4]:
-        - button "Home" [ref=e5] [cursor=pointer]
+        - button "Home" [active] [ref=e5] [cursor=pointer]
         - generic [ref=e6]: /
         - generic [ref=e7]: New League
       - heading "Create New League" [level=2] [ref=e8]
@@ -1273,7 +1273,7 @@
       - generic [ref=e10]:
         - generic [ref=e11]:
           - generic [ref=e12]: League Name
-          - textbox "League Name" [active] [ref=e13]: Gate Test League
+          - textbox "League Name" [ref=e13]
         - generic [ref=e14]:
           - generic [ref=e15]: Season
           - textbox "Season" [ref=e16]: 2025-26
