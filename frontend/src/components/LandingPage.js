@@ -20,8 +20,10 @@ import { BrandBadge, HeaderBrand } from './ui/brand-badge';
 const LandingPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Use scroll spy hook for deterministic section tracking
+  const { activeSection } = useScrollSpy({ threshold: 0.5 });
 
   // Navigation sections
   const navSections = [
