@@ -6,7 +6,7 @@ import { Button } from './ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Separator } from './ui/separator';
 import { TESTIDS } from '../testids';
-import { ArrowLeft, Mail, CheckCircle, AlertCircle, Home } from 'lucide-react';
+import { ArrowLeft, Mail, CheckCircle, AlertCircle } from 'lucide-react';
 import { getSearchParam } from '../utils/safeBrowser.ts';
 import EmailValidator from '../utils/emailValidator';
 import axios from 'axios';
