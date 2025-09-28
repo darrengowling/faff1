@@ -205,7 +205,7 @@ const LoginPage = () => {
               <CardTitle className="text-xl text-center">Magic Link Authentication</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate={isTestMode}>
                 {/* Email Input */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
