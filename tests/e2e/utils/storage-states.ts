@@ -13,17 +13,17 @@ export interface StorageStateUser {
 
 export const STORAGE_STATE_USERS: Record<string, StorageStateUser> = {
   commissioner: {
-    email: 'commish@test.local',
+    email: 'commish@example.com',
     filename: 'test-results/commissioner-state.json',
     description: 'Commissioner user (can create leagues)'
   },
   alice: {
-    email: 'alice@test.local', 
+    email: 'alice@example.com', 
     filename: 'test-results/alice-state.json',
     description: 'Alice user (regular participant)'
   },
   bob: {
-    email: 'bob@test.local',
+    email: 'bob@example.com',
     filename: 'test-results/bob-state.json', 
     description: 'Bob user (regular participant)'
   }
