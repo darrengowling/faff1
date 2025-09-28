@@ -5,9 +5,9 @@
  * in React applications.
  */
 
-import noWindowAtModuleScope from './no-window-at-module-scope.js';
+const noWindowAtModuleScope = require('./no-window-at-module-scope.js');
 
-export default {
+module.exports = {
   rules: {
     'no-window-at-module-scope': noWindowAtModuleScope,
   },
