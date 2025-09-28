@@ -16,6 +16,9 @@ MAX_RETRIES=3
 TIMEOUT=30
 BASE_URL="${PLAYWRIGHT_BASE_URL:-https://pifa-stability.preview.emergentagent.com}"
 
+# Set environment for Node.js script
+export BASE_URL
+
 # Test script that navigates to dashboard and opens create form
 VERIFY_SCRIPT='
 const { chromium } = require("playwright");
