@@ -105,18 +105,26 @@ code {
     @apply bg-background text-foreground;
     }
   
-  /* Fixed header layout adjustments */
+  /* Header and layout fixes */
+  header.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+  
+  main {
+    padding-top: var(--header-h);
+  }
+  
+  /* Prevent decorative overlays in header from blocking clicks */
+  header [data-overlay],
+  header::before,
+  header::after {
+    pointer-events: none !important;
+  }
+  
+  /* Smooth anchor scrolling with header offset */
   html {
     scroll-padding-top: var(--header-h);
-  }
-  
-  /* Main content offset for fixed header */
-  main {
-    padding-top: var(--header-h, 64px);
-  }
-  
-  /* Prevent header overlay interception */
-  header *[data-overlay] {
-    pointer-events: none;
   }
 }
