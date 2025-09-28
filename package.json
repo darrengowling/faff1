@@ -14,7 +14,7 @@
     "verify-auth-ui": "bash scripts/verify-auth-ui.sh",
     "test:core-e2e": "bash scripts/run-core-e2e.sh",
     "test:extended-e2e": "bash scripts/run-extended-e2e.sh",
-    "ci:pipeline": "node scripts/ci-pipeline.js",
+    "ci:pipeline": "node scripts/ci-pipeline-simple.js",
     "lint:links": "node scripts/lint-links.js",
     "test:e2e": "npm run lint:links && cd frontend && npm run test:contract && cd .. && bash ./scripts/test-env.sh && playwright test",
     "test:core": "npm run test:contract && bash ./scripts/test-env.sh && playwright test tests/e2e/core.smoke.spec.ts",
