@@ -1020,6 +1020,23 @@ const LeagueManagement = ({ league, onBack }) => {
   const [inviteEmail, setInviteEmail] = useState('');
   const [inviteLoading, setInviteLoading] = useState(false);
 
+  const handleStartAuction = async () => {
+    if (!leagueStatus?.is_ready) return;
+    
+    try {
+      const startResponse = await axios.post(`${API}/auction/${league._id}/start`);
+      if (startResponse.status === 200) {
+        toast.success('Auction started successfully! Redirecting...');
+        setTimeout(() => {
+          navigate(`/auction/${league._id}`);
+        }, 1500);
+      }
+    } catch (error) {
+      console.error('Start auction error:', error);
+      toast.error('Failed to start auction. Make sure league is ready.');
+    }
+  };
+
   const isCommissioner = league.commissioner_id === user.id;
 
   useEffect(() => {
