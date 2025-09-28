@@ -954,8 +954,14 @@ async def create_league(
     payload_summary = f"name='{league_data.name}', user={current_user.id}"
     
     try:
+        # Structured logging: begin step
+        if TEST_MODE:
+            logger.info(f"🧪 LEAGUES.CREATE: {{'requestId': '{request_id}', 'step': 'begin', 'name': '{league_data.name}', 'user': '{current_user.id}'}}")
+        
         # Validate input data
         if not league_data.name or len(league_data.name.strip()) < 3:
+            if TEST_MODE:
+                logger.info(f"🧪 LEAGUES.CREATE: {{'requestId': '{request_id}', 'step': 'error', 'code': 'INVALID_NAME'}}")
             logger.warning(f"[{request_id}] {payload_summary} - error.code=INVALID_NAME")
             raise HTTPException(
                 status_code=400, 
@@ -968,6 +974,10 @@ async def create_league(
         
         # Call the transactional service method
         league_response = await LeagueService.create_league_with_setup(league_data, current_user.id)
+        
+        # Structured logging: commit step
+        if TEST_MODE:
+            logger.info(f"🧪 LEAGUES.CREATE: {{'requestId': '{request_id}', 'step': 'commit', 'leagueId': '{league_response.id}'}}")
         
         # Return structured success response
         response_data = {
