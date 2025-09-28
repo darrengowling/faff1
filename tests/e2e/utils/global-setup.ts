@@ -29,9 +29,9 @@ async function globalSetup(config: FullConfig) {
   // Create authenticated storage states for test users
   console.log('🔐 Creating authenticated storage states...');
   const testUsers = [
-    { email: 'commish@test.local', filename: 'commissioner-state.json' },
-    { email: 'alice@test.local', filename: 'alice-state.json' },
-    { email: 'bob@test.local', filename: 'bob-state.json' }
+    { email: 'commish@example.com', filename: 'commissioner-state.json' },
+    { email: 'alice@example.com', filename: 'alice-state.json' },
+    { email: 'bob@example.com', filename: 'bob-state.json' }
   ];
   
   const browser = await chromium.launch();
