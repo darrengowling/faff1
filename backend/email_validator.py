@@ -13,9 +13,9 @@ class EmailValidator:
     """
     
     # Comprehensive email regex pattern
-    # Supports: user+tag@sub.domain.tld, user_name-1@domain.io, etc.
+    # Supports: user+tag@sub.domain.tld, user_name-1@domain.io, user'test@domain.com etc.
     EMAIL_PATTERN = re.compile(
-        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        r'^[a-zA-Z0-9._%+\'-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     )
     
     # More detailed pattern for thorough validation
