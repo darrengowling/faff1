@@ -267,11 +267,22 @@ export const MobileNavigation = ({
   className = '' 
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { appState, user } = useAppState();
   const drawerRef = useRef(null);
   const firstFocusableRef = useRef(null);
   const lastFocusableRef = useRef(null);
   const [focusedIndex, setFocusedIndex] = useState(-1);
+
+  // Close mobile drawer on route change and remove focus trap
+  useEffect(() => {
+    if (isOpen) {
+      onClose();
+      setFocusedIndex(-1);
+      // Remove focus trap by removing event listeners
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [location.pathname, onClose, isOpen]);
 
   // Get all navigation items for mobile
   const visibleItems = getVisibleItems(productDropdownNavigation, user, appState);
