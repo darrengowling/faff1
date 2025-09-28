@@ -613,20 +613,17 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
       const response = await axios.post(`${API}/leagues`, formData);
       
       if (response.status === 201) {
-        // Set success marker for tests BEFORE closing dialog
-        setJustCreatedId(response.data.leagueId);
-        
-        // Store in sessionStorage to persist across navigation
-        sessionStorage.setItem('leagueCreateSuccess', response.data.leagueId);
-        
-        // Close the dialog first
+        // Set success marker first
+        setCreateSuccess(true);
         debugLog('closed', `league created: ${response.data.leagueId}, closing dialog`);
+        
+        // Close the dialog first - never leave in data-state="open" after success
         onOpenChange(false); // This should set data-state="closed"
         
-        // Navigate to lobby in a microtask (after dialog close completes)
+        // Navigate to lobby in a microtask using router.push (after dialog close completes)
         debugLog('navigating', `navigating to lobby: /app/leagues/${response.data.leagueId}/lobby`);
         setTimeout(() => {
-          window.location.href = `/app/leagues/${response.data.leagueId}/lobby`;
+          navigate(`/app/leagues/${response.data.leagueId}/lobby`);
         }, 0);
         
         // Reset form and notify
