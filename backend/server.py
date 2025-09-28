@@ -557,9 +557,12 @@ async def start_test_auction(request: dict):
             detail="League not found"
         )
     
+    # Get commissioner_id from league
+    commissioner_id = league["commissioner_id"]
+    
     # Start auction using auction engine
     auction_engine = get_auction_engine()
-    result = await auction_engine.start_auction(league_id)
+    result = await auction_engine.start_auction(league_id, commissioner_id)
     
     if not result.get("success"):
         raise HTTPException(
