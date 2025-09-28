@@ -7,6 +7,7 @@
 import { test, expect } from '@playwright/test';
 import { TESTIDS } from '../../frontend/src/testids';
 import { ensureClickable } from './utils/ensureClickable';
+import { login, waitForHash } from './utils/helpers';
 
 test.describe('Navigation Tests', () => {
   
