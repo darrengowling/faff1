@@ -928,8 +928,8 @@ async def create_league(
                 "name": league_response.name,
                 "club_slots_per_manager": league_response.settings.club_slots_per_manager,
                 "budget_per_manager": league_response.settings.budget_per_manager,
-                "min_managers": league_response.settings.min_managers,
-                "max_managers": league_response.settings.max_managers
+                "min_managers": league_response.settings.league_size.min,
+                "max_managers": league_response.settings.league_size.max
             }
         }
         
