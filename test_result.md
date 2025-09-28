@@ -316,6 +316,21 @@ backend:
         comment: "Created automated migration script: 1) Systematic component processing for useTranslation import/hook addition, 2) Pattern-based string replacement for common UI text, 3) Generated detailed migration report, 4) Successfully processed 8 components with 100% success rate"
 
 frontend:
+  - task: "Fix Frontend Compilation Issues with AppShell/MarketingShell Import Paths"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/layouts/AppShell.jsx, /app/frontend/src/components/layouts/MarketingShell.jsx"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Frontend compilation failing with 'Can't resolve ../ui/HeaderBrand' import error in new layout components preventing app from starting"
+      - working: true
+        agent: "main"
+        comment: "✅ CRITICAL COMPILATION FIX COMPLETED: Fixed incorrect import paths in AppShell.jsx and MarketingShell.jsx - changed 'import { HeaderBrand } from ../ui/HeaderBrand' to 'import { HeaderBrand } from ../ui/brand-badge'. Frontend now compiles successfully, single-header architecture working correctly across routes (landing page and login page verified), app loading properly with consistent headers."
+
   - task: "Mobile Header/Drawer Click Blocking Fixes"
     implemented: true
     working: true
