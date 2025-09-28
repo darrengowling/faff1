@@ -836,14 +836,16 @@ async def update_profile(
     )
 
 # Enhanced League Routes with Commissioner Controls
-@api_router.post("/leagues", response_model=LeagueResponse)
+@api_router.post("/leagues", response_model=LeagueResponse, status_code=201)
 async def create_league(
     league_data: LeagueCreate,
     current_user: UserResponse = Depends(get_current_verified_user)
 ):
-    """Create a new league with comprehensive setup"""
+    """Create a new league with comprehensive setup - returns 201 on success"""
     try:
-        return await LeagueService.create_league_with_setup(league_data, current_user.id)
+        league_response = await LeagueService.create_league_with_setup(league_data, current_user.id)
+        logger.info(f"League {league_response.id} created successfully for user {current_user.id}")
+        return league_response
     except Exception as e:
         logger.error(f"League creation failed: {e}")
         raise HTTPException(status_code=400, detail=str(e))
