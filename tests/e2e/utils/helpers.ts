@@ -18,8 +18,16 @@ export async function login(page: Page, email: string): Promise<void> {
   await page.waitForLoadState('networkidle');
   
   // Fill email and submit magic link form using test IDs
-  await page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`).fill(email);
-  await page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`).click();
+  const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
+  const submitBtn = page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`);
+  
+  await emailInput.fill(email);
+  
+  // Wait for button to be enabled (my validation might be disabling it)
+  await expect(submitBtn).toBeEnabled({ timeout: 5000 });
+  console.log(`Submit button enabled for email: ${email}`);
+  
+  await submitBtn.click();
   
   // Wait for success message to appear (indicates backend processing complete)
   await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
