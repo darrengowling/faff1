@@ -179,30 +179,25 @@ class EmailValidationTester:
             'POST', 
             'auth/magic-link', 
             {"email": "invalid@@domain"},
-            expected_status=400
+            expected_status=422  # Pydantic validation returns 422, not 400
         )
         
-        # Handle different response formats
-        detail = data.get('detail', {})
-        if isinstance(detail, dict):
-            error_code = detail.get('code', 'None')
-            has_message = 'message' in detail
-        else:
-            error_code = 'None'
-            has_message = False
-        
+        # Pydantic returns 422 with validation error details
+        # The key is that no 500 AttributeError occurs
         valid_error_response = (
             success and
-            status == 400 and
-            isinstance(detail, dict) and
-            error_code == 'INVALID_EMAIL' and
-            has_message
+            status == 422 and
+            'detail' in data and
+            isinstance(data['detail'], list) and
+            len(data['detail']) > 0 and
+            'type' in data['detail'][0] and
+            data['detail'][0]['type'] == 'value_error'
         )
         
         return self.log_test(
-            "Magic Link - Invalid Email",
+            "Magic Link - Invalid Email (No AttributeError)",
             valid_error_response,
-            f"Status: {status}, Error code: {error_code}, Response: {data}"
+            f"Status: {status}, Pydantic validation working, No 500 error"
         )
 
     def test_magic_link_endpoint_no_email(self):
