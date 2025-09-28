@@ -307,6 +307,83 @@ async def test_login(request: dict):
         "message": "Test login successful (TEST MODE ONLY)"
     }
 
+# Test-only time control endpoints (TEST_MODE only)
+@api_router.post("/test/time/set")
+async def set_test_time(request: dict):
+    """
+    TEST-ONLY TIME CONTROL
+    Set the current time for deterministic testing.
+    Only enabled when TEST_MODE=true environment variable is set.
+    """
+    if not is_test_mode():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Time control endpoints only available in TEST_MODE"
+        )
+    
+    if "nowMs" not in request:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing 'nowMs' field"
+        )
+    
+    now_ms = request["nowMs"]
+    if not isinstance(now_ms, int) or now_ms < 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="'nowMs' must be a positive integer"
+        )
+    
+    time_provider.set_time_ms(now_ms)
+    current_time = time_provider.now()
+    
+    logger.info("🕐 TEST TIME SET: %s (%d ms)", current_time.isoformat(), now_ms)
+    
+    return {
+        "message": "Test time set successfully",
+        "currentTimeMs": now_ms,
+        "currentTime": current_time.isoformat()
+    }
+
+@api_router.post("/test/time/advance")
+async def advance_test_time(request: dict):
+    """
+    TEST-ONLY TIME CONTROL
+    Advance the current time by specified milliseconds for deterministic testing.
+    Only enabled when TEST_MODE=true environment variable is set.
+    """
+    if not is_test_mode():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Time control endpoints only available in TEST_MODE"
+        )
+    
+    if "ms" not in request:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing 'ms' field"
+        )
+    
+    delta_ms = request["ms"]
+    if not isinstance(delta_ms, int) or delta_ms < 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="'ms' must be a positive integer"
+        )
+    
+    new_time_ms = time_provider.advance_time_ms(delta_ms)
+    current_time = time_provider.now()
+    
+    logger.info("🕐 TEST TIME ADVANCED: +%d ms -> %s (%d ms)", 
+               delta_ms, current_time.isoformat(), new_time_ms)
+    
+    return {
+        "message": f"Test time advanced by {delta_ms}ms",
+        "currentTimeMs": new_time_ms,
+        "currentTime": current_time.isoformat(),
+        "advancedMs": delta_ms
+    }
+
 # User Routes
 @api_router.get("/users/{user_id}", response_model=UserResponse)
 async def get_user(user_id: str, current_user: UserResponse = Depends(get_current_verified_user)):
