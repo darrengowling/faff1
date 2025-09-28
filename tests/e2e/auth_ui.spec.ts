@@ -63,14 +63,21 @@ test.describe('Authentication UI Tests', () => {
   });
 
   test('Shows error for invalid email submission', async ({ page }) => {
+    // Navigate to login page with playwright test mode parameter
+    await page.goto('/login?playwright=true');
+    await page.waitForLoadState('networkidle');
+    
     const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
     const submitBtn = page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`);
     
     // Fill with invalid email format
     await emailInput.fill('not-an-email');
     
-    // Force click submit button even if disabled (to test client-side validation)
-    await submitBtn.click({ force: true });
+    // In test mode, button should be enabled even for invalid email
+    await expect(submitBtn).toBeEnabled();
+    
+    // Click submit button
+    await submitBtn.click();
     
     // Error should be visible with proper attributes
     const errorElement = page.getByTestId('auth-error');
