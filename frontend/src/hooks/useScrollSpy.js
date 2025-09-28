@@ -68,19 +68,31 @@ const useScrollSpy = ({ threshold = 0.5, debounceMs = 100 } = {}) => {
       rootMargin: `-64px 0px -64px 0px` // Account for header height
     });
 
-    // Observe all anchor sections
-    const anchorSections = document.querySelectorAll('.anchor-section');
-    anchorSections.forEach((section) => {
-      if (section.id) {
-        observer.current.observe(section);
-        sectionsRef.current.set(section.id, {
-          element: section,
-          isVisible: false,
-          intersectionRatio: 0,
-          boundingRect: null
-        });
+    // Observe all anchor sections - retry until sections are found
+    const observeSections = () => {
+      const anchorSections = document.querySelectorAll('.anchor-section');
+      
+      if (anchorSections.length === 0) {
+        // Retry after a short delay if sections aren't found yet
+        setTimeout(observeSections, 100);
+        return;
       }
-    });
+
+      anchorSections.forEach((section) => {
+        if (section.id) {
+          observer.current.observe(section);
+          sectionsRef.current.set(section.id, {
+            element: section,
+            isVisible: false,
+            intersectionRatio: 0,
+            boundingRect: null
+          });
+        }
+      });
+    };
+
+    // Start observing sections
+    observeSections();
 
     return () => {
       if (observer.current) {
