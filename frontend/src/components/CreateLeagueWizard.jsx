@@ -231,7 +231,12 @@ const CreateLeagueWizard = () => {
                   <option value={8}>8 clubs</option>
                 </select>
                 {errors.slots && (
-                  <p className="mt-1 text-sm text-red-600">{errors.slots}</p>
+                  <p 
+                    className="mt-1 text-sm text-red-600" 
+                    data-testid="create-error-slots"
+                  >
+                    {errors.slots}
+                  </p>
                 )}
                 <p className="mt-1 text-sm text-gray-500">
                   How many Champions League clubs each manager can own
