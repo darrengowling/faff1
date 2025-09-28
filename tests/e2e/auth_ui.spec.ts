@@ -85,6 +85,15 @@ test.describe('Authentication UI Tests', () => {
     await expect(errorElement).toHaveAttribute('role', 'alert');
     await expect(errorElement).toHaveAttribute('aria-live', 'assertive');
     await expect(errorElement).toContainText('Please enter a valid email.');
+    
+    // Submit button should re-enable after error (not stuck in loading state)
+    await expect(submitBtn).toBeEnabled();
+    await expect(submitBtn).not.toHaveText(/creating|loading|submitting/i);
+    
+    // Form should remain interactive (email input still enabled)
+    await expect(emailInput).toBeEnabled();
+    
+    console.log('✅ Invalid email error properly displayed with role="alert" and form remains interactive');
   });
 
   test('Successfully submits valid email and shows success', async ({ page }) => {
