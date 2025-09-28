@@ -24,7 +24,7 @@ SCHEMAS = {
             "required": ["_id", "email", "display_name", "created_at", "verified"],
             "properties": {
                 "_id": {"bsonType": "string"},
-                "email": {"bsonType": "string", "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"},
+                "email": {"bsonType": "string", "pattern": "^(?P<local>[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*)@(?P<domain>(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)$"},
                 "display_name": {"bsonType": "string", "minLength": 1, "maxLength": 100},
                 "created_at": {"bsonType": "date"},
                 "verified": {"bsonType": "bool"}
@@ -89,7 +89,7 @@ SCHEMAS = {
                 "_id": {"bsonType": "string"},
                 "league_id": {"bsonType": "string"},
                 "inviter_id": {"bsonType": "string"},
-                "email": {"bsonType": "string", "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"},
+                "email": {"bsonType": "string", "pattern": "^(?P<local>[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*)@(?P<domain>(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)$"},
                 "token": {"bsonType": "string"},
                 "status": {"bsonType": "string", "enum": ["pending", "accepted", "expired"]},
                 "expires_at": {"bsonType": "date"},
