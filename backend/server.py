@@ -413,11 +413,19 @@ async def test_login(request: dict, response: Response):
             "message": "Test login successful (TEST MODE ONLY)"
         }
         
-    except HTTPException:
+    except HTTPException as he:
+        # Structured logging: error step for HTTP exceptions
+        if TEST_MODE:
+            error_code = he.detail.get('code', 'HTTP_ERROR') if isinstance(he.detail, dict) else 'HTTP_ERROR'
+            logger.info(f"🧪 AUTH.TESTLOGIN: {{'requestId': '{request_id}', 'step': 'error', 'code': '{error_code}'}}")
         # Re-raise known HTTP errors (400, 404) as-is
         raise
         
     except Exception as e:
+        # Structured logging: error step for unexpected exceptions
+        if TEST_MODE:
+            logger.info(f"🧪 AUTH.TESTLOGIN: {{'requestId': '{request_id}', 'step': 'error', 'code': 'INTERNAL'}}")
+        
         # Log unexpected errors and return structured 500 response
         logger.error(f"[{request_id}] Test login unexpected error for {email}: {str(e)}")
         logger.error(f"[{request_id}] Traceback: {traceback.format_exc()}")
