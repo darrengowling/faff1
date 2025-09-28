@@ -4,7 +4,7 @@
  */
 
 import { test, expect, Browser, Page } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids.js';
+import { TESTIDS } from '../../frontend/src/testids.ts';
 import { login, createLeague, startAuction, nominateFirstAsset, bid, waitForSoldBadge } from './utils/helpers';
 
 test.describe('Roster and Budget Tests', () => {
