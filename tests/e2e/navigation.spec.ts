@@ -78,8 +78,10 @@ test.describe('Navigation Tests', () => {
     });
 
     test('Mobile hamburger menu works correctly', async ({ page }) => {
-      // Open hamburger menu
-      await page.locator(`[data-testid="${TESTIDS.navHamburger}"]`).click();
+      // Ensure hamburger menu is clickable before clicking
+      const hamburgerMenu = page.locator(`[data-testid="${TESTIDS.navHamburger}"]`);
+      await ensureClickable(hamburgerMenu);
+      await hamburgerMenu.click();
       
       // Verify mobile drawer is visible
       await page.locator(`[data-testid="${TESTIDS.navMobileDrawer}"]`).waitFor({ state: 'visible' });
