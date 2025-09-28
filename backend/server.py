@@ -384,6 +384,325 @@ async def advance_test_time(request: dict):
         "advancedMs": delta_ms
     }
 
+# Test-only auction state management hooks (TEST_MODE only)
+@api_router.post("/test/auction/create")
+async def create_test_auction(request: dict):
+    """
+    TEST-ONLY AUCTION CREATION
+    Creates a league directly without UI interaction for testing.
+    Only enabled when TEST_MODE=true environment variable is set.
+    """
+    if not is_test_mode():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Auction test hooks only available in TEST_MODE"
+        )
+    
+    if "leagueSettings" not in request:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing 'leagueSettings' field"
+        )
+    
+    settings = request["leagueSettings"]
+    required_fields = ["name", "clubSlots", "budgetPerManager", "minManagers", "maxManagers"]
+    for field in required_fields:
+        if field not in settings:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Missing required field: {field}"
+            )
+    
+    # Create league using LeagueService
+    league_service = LeagueService()
+    league_data = {
+        "name": settings["name"],
+        "club_slots": settings["clubSlots"],
+        "budget_per_manager": settings["budgetPerManager"],
+        "min_managers": settings["minManagers"],
+        "max_managers": settings["maxManagers"],
+        "commissioner_id": "test-commissioner-" + str(int(now_ms())),
+        "created_at": now().isoformat(),
+        "status": "draft"
+    }
+    
+    league_id = await league_service.create_league(league_data)
+    
+    logger.info("🧪 TEST LEAGUE CREATED: %s (ID: %s)", settings["name"], league_id)
+    
+    return {
+        "leagueId": league_id,
+        "message": "Test league created successfully",
+        "settings": settings
+    }
+
+@api_router.post("/test/auction/add-member")
+async def add_test_member(request: dict):
+    """
+    TEST-ONLY MEMBER ADDITION
+    Adds and auto-verifies a member to a league for testing.
+    Only enabled when TEST_MODE=true environment variable is set.
+    """
+    if not is_test_mode():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Auction test hooks only available in TEST_MODE"
+        )
+    
+    if "leagueId" not in request or "email" not in request:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing 'leagueId' or 'email' field"
+        )
+    
+    league_id = request["leagueId"]
+    email = request["email"]
+    
+    # Create or verify user
+    user = await db.users.find_one({"email": email})
+    if not user:
+        user_data = {
+            "_id": f"test-user-{email}-{int(now_ms())}",
+            "email": email,
+            "display_name": email.split("@")[0].title(),
+            "verified": True,
+            "created_at": now().isoformat()
+        }
+        await db.users.insert_one(user_data)
+        user = user_data
+        logger.info("🧪 TEST USER CREATED: %s", email)
+    else:
+        # Ensure user is verified for testing
+        await db.users.update_one({"_id": user["_id"]}, {"$set": {"verified": True}})
+        logger.info("🧪 TEST USER VERIFIED: %s", email)
+    
+    # Add user to league
+    league = await db.leagues.find_one({"_id": league_id})
+    if not league:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="League not found"
+        )
+    
+    # Add to league members if not already added
+    members = league.get("members", [])
+    if user["_id"] not in [m.get("user_id") for m in members]:
+        member_data = {
+            "user_id": user["_id"],
+            "email": email,
+            "display_name": user["display_name"],
+            "joined_at": now().isoformat(),
+            "status": "active"
+        }
+        members.append(member_data)
+        
+        await db.leagues.update_one(
+            {"_id": league_id},
+            {"$set": {"members": members}}
+        )
+        logger.info("🧪 TEST MEMBER ADDED: %s to %s", email, league_id)
+    
+    return {
+        "message": f"Test member {email} added to league {league_id}",
+        "userId": user["_id"],
+        "leagueId": league_id
+    }
+
+@api_router.post("/test/auction/start")
+async def start_test_auction(request: dict):
+    """
+    TEST-ONLY AUCTION START
+    Starts an auction directly without UI interaction for testing.
+    Only enabled when TEST_MODE=true environment variable is set.
+    """
+    if not is_test_mode():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Auction test hooks only available in TEST_MODE"
+        )
+    
+    if "leagueId" not in request:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing 'leagueId' field"
+        )
+    
+    league_id = request["leagueId"]
+    
+    # Get league
+    league = await db.leagues.find_one({"_id": league_id})
+    if not league:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="League not found"
+        )
+    
+    # Start auction using auction engine
+    auction_engine = get_auction_engine()
+    result = await auction_engine.start_auction(league_id)
+    
+    if not result.get("success"):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Failed to start auction: {result.get('error', 'Unknown error')}"
+        )
+    
+    logger.info("🧪 TEST AUCTION STARTED: %s", league_id)
+    
+    return {
+        "message": f"Test auction started for league {league_id}",
+        "leagueId": league_id,
+        "auctionId": result.get("auction_id")
+    }
+
+@api_router.post("/test/auction/nominate")
+async def nominate_test_asset(request: dict):
+    """
+    TEST-ONLY ASSET NOMINATION
+    Nominates an asset directly without UI interaction for testing.
+    Only enabled when TEST_MODE=true environment variable is set.
+    """
+    if not is_test_mode():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Auction test hooks only available in TEST_MODE"
+        )
+    
+    if "leagueId" not in request or "extRef" not in request:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing 'leagueId' or 'extRef' field"
+        )
+    
+    league_id = request["leagueId"]
+    ext_ref = request["extRef"]
+    
+    # Get auction engine and nominate asset
+    auction_engine = get_auction_engine()
+    result = await auction_engine.nominate_asset(league_id, ext_ref)
+    
+    if not result.get("success"):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Failed to nominate asset: {result.get('error', 'Unknown error')}"
+        )
+    
+    logger.info("🧪 TEST ASSET NOMINATED: %s in %s", ext_ref, league_id)
+    
+    return {
+        "message": f"Test asset {ext_ref} nominated in league {league_id}",
+        "leagueId": league_id,
+        "extRef": ext_ref
+    }
+
+@api_router.post("/test/auction/bid")
+async def place_test_bid(request: dict):
+    """
+    TEST-ONLY BID PLACEMENT
+    Places a bid directly without UI interaction for testing.
+    Only enabled when TEST_MODE=true environment variable is set.
+    """
+    if not is_test_mode():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Auction test hooks only available in TEST_MODE"
+        )
+    
+    required_fields = ["leagueId", "email", "amount"]
+    for field in required_fields:
+        if field not in request:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Missing required field: {field}"
+            )
+    
+    league_id = request["leagueId"]
+    email = request["email"]
+    amount = request["amount"]
+    
+    # Get user
+    user = await db.users.find_one({"email": email})
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+    
+    # Place bid using auction engine
+    auction_engine = get_auction_engine()
+    result = await auction_engine.place_bid(league_id, user["_id"], amount)
+    
+    if not result.get("success"):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Failed to place bid: {result.get('error', 'Unknown error')}"
+        )
+    
+    logger.info("🧪 TEST BID PLACED: %s bid %d in %s", email, amount, league_id)
+    
+    return {
+        "message": f"Test bid of {amount} placed by {email} in league {league_id}",
+        "leagueId": league_id,
+        "email": email,
+        "amount": amount,
+        "bidId": result.get("bid_id")
+    }
+
+# Test-only socket management hooks (TEST_MODE only)
+@api_router.post("/test/sockets/drop")
+async def drop_test_socket(request: dict):
+    """
+    TEST-ONLY SOCKET DISCONNECTION
+    Force disconnects a user's socket for reconnection testing.
+    Only enabled when TEST_MODE=true environment variable is set.
+    """
+    if not is_test_mode():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Socket test hooks only available in TEST_MODE"
+        )
+    
+    if "email" not in request:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing 'email' field"
+        )
+    
+    email = request["email"]
+    
+    # Get user
+    user = await db.users.find_one({"email": email})
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+    
+    # Find and disconnect user's socket
+    user_id = user["_id"]
+    disconnected_count = 0
+    
+    # Access socket.io server to find and disconnect user sessions
+    for sid, session_data in sio.manager.rooms['/'].items():
+        if hasattr(session_data, 'get') and session_data.get('user_id') == user_id:
+            await sio.disconnect(sid)
+            disconnected_count += 1
+    
+    # Alternative approach: emit a disconnect event to force client reconnection
+    await sio.emit('force_disconnect', {
+        'reason': 'test_disconnect',
+        'message': 'Socket disconnected for testing'
+    }, room=f'user_{user_id}')
+    
+    logger.info("🧪 TEST SOCKET DROPPED: %s (%d connections)", email, disconnected_count)
+    
+    return {
+        "message": f"Test socket dropped for user {email}",
+        "email": email,
+        "userId": user_id,
+        "disconnectedConnections": disconnected_count
+    }
+
 # User Routes
 @api_router.get("/users/{user_id}", response_model=UserResponse)
 async def get_user(user_id: str, current_user: UserResponse = Depends(get_current_verified_user)):
