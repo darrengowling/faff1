@@ -723,16 +723,26 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
             <h4 className="font-medium text-gray-900">League Settings</h4>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="budget">Budget per Manager</Label>
+                <Label htmlFor="budget">Budget per Manager (£)</Label>
                 <Input
                   id="budget"
                   type="number"
                   min="50"
                   max="500"
                   value={formData.settings.budget_per_manager}
-                  onChange={(e) => updateSettings('budget_per_manager', e.target.value)}
-                  data-testid={TESTIDS.createBudgetInput}
+                  onChange={(e) => {
+                    updateSettings('budget_per_manager', e.target.value);
+                    clearError('budget');
+                  }}
+                  aria-describedby={errors.budget ? "budget-error" : undefined}
+                  className={errors.budget ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
+                  data-testid="create-budget"
                 />
+                {errors.budget && (
+                  <p id="budget-error" className="text-sm text-red-600" data-testid="create-error-budget">
+                    {errors.budget}
+                  </p>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="slots">Club Slots per Manager</Label>
