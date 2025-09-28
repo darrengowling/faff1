@@ -29,28 +29,42 @@ class LeagueService:
         """
         Create a complete league setup with all related documents using atomic transaction
         """
-        # Use MongoDB client for transaction support
+        # Try to use transactions if supported, otherwise fall back to sequential operations
         from database import client
         
-        async with await client.start_session() as session:
-            try:
+        try:
+            # Attempt to use transactions (requires replica set or sharded cluster)
+            async with await client.start_session() as session:
                 async with session.start_transaction():
-                    # Validate league name uniqueness within transaction
-                    existing_league = await db.leagues.find_one(
-                        {"name": league_data.name.strip(), "commissioner_id": commissioner_id}, 
-                        session=session
-                    )
-                    if existing_league:
-                        raise ValueError(f"League name '{league_data.name.strip()}' already exists for this user")
-                    
-                    # Get default settings from competition profile if no explicit settings provided
-                    if league_data.settings is None:
-                        competition_service = CompetitionService()
-                        default_settings = await competition_service.get_default_settings("ucl")
-                        logger.info(f"Using default settings from UCL competition profile")
-                    else:
-                        default_settings = league_data.settings
-                        logger.info(f"Using explicit settings provided by commissioner")
+                    return await cls._create_league_transactional(league_data, commissioner_id, session)
+        except Exception as tx_error:
+            if "Transaction numbers are only allowed" in str(tx_error) or "IllegalOperation" in str(tx_error):
+                logger.warning(f"MongoDB transactions not supported, falling back to sequential operations: {tx_error}")
+                # Fall back to non-transactional operation 
+                return await cls._create_league_sequential(league_data, commissioner_id)
+            else:
+                # Re-raise other transaction errors
+                raise
+
+    @staticmethod
+    async def _create_league_transactional(league_data: LeagueCreate, commissioner_id: str, session) -> LeagueResponse:
+        """Transactional league creation (requires replica set)"""
+        # Validate league name uniqueness within transaction
+        existing_league = await db.leagues.find_one(
+            {"name": league_data.name.strip(), "commissioner_id": commissioner_id}, 
+            session=session
+        )
+        if existing_league:
+            raise ValueError(f"League name '{league_data.name.strip()}' already exists for this user")
+        
+        # Get default settings from competition profile if no explicit settings provided
+        if league_data.settings is None:
+            competition_service = CompetitionService()
+            default_settings = await competition_service.get_default_settings("ucl")
+            logger.info(f"Using default settings from UCL competition profile")
+        else:
+            default_settings = league_data.settings
+            logger.info(f"Using explicit settings provided by commissioner")
                     
                     # Create league with enhanced settings
                     league = League(
