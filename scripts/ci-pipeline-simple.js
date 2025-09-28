@@ -296,7 +296,7 @@ class SimpleCIPipeline {
         'Authentication UI verification'
       );
 
-      // Phase 7: Core E2E Tests with retries
+      // Phase 8: Core E2E Tests with retries
       this.log('🧪 Starting Core E2E Tests with Flake Detection');
       
       const coreSpecs = [
@@ -309,7 +309,7 @@ class SimpleCIPipeline {
         await this.testSpecWithRetries(spec);
       }
 
-      // Phase 8: Extended E2E Tests (lower priority)
+      // Phase 9: Extended E2E Tests (lower priority)
       this.log('🚀 Starting Extended E2E Tests');
       
       const extendedSpecs = [
