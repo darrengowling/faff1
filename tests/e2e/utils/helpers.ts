@@ -121,8 +121,9 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
   await page.locator(`[data-testid="${TESTIDS.createMinInput}"]`).fill(settings.minManagers.toString());
   await page.locator(`[data-testid="${TESTIDS.createMaxInput}"]`).fill(settings.maxManagers.toString());
   
-  // Submit form
-  await page.locator(`[data-testid="${TESTIDS.createSubmit}"]`).click();
+  // Submit form using safe click
+  const submitBtn = page.locator(`[data-testid="${TESTIDS.createSubmit}"]`);
+  await safeClick(page, submitBtn);
   
   // Wait for dialog to close (indicates success)
   await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'hidden', timeout: 15000 });
