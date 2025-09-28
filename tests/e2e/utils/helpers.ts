@@ -73,7 +73,8 @@ export async function clickCreateLeague(page: Page): Promise<void> {
         const firstBtn = b.first();
         const isVisible = await firstBtn.isVisible();
         if (isVisible) {
-          await firstBtn.click();
+          console.log('🎯 Using ensureClickable for Create League button...');
+          await clickWhenReady(firstBtn, { timeout: 5000 });
           return;
         }
       }
