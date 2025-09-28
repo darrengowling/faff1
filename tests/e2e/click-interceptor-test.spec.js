@@ -61,7 +61,7 @@ test.describe('Click Interceptor Detector Tests', () => {
   });
   
   test('should detect navigation dropdown interception', async ({ page }) => {
-    const { ensureClickable, analyzeClickPoint } = await import('./tests/e2e/utils/click-interceptor-detector.ts');
+    const { ensureClickable, analyzeClickPoint } = await import('./utils/click-interceptor-detector.ts');
     
     console.log('🧪 Testing click interceptor on navigation elements...');
     
