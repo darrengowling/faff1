@@ -181,13 +181,32 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
         <div className="bg-theme-surface border-b border-theme-surface-border shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-14">
-              {/* Left Side - Back Button + Breadcrumb */}
+              {/* Left Side - Back to Home + Breadcrumb */}
               <div className="flex items-center space-x-3">
+                {/* Always show Back to Home link */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigate('/app')}
+                  data-testid="back-to-home-link"
+                  className="flex items-center space-x-1 text-sm text-theme-text-secondary hover:text-theme-text"
+                >
+                  <Home className="w-4 h-4" />
+                  <span>Home</span>
+                </Button>
+                
                 {showBackButton && !isHomePage && (
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => navigate('/app')}
+                    data-testid={TESTIDS.backButton}
+                    className="flex items-center space-x-1"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    <span>Back</span>
+                  </Button>
+                )}}
                     className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
                     data-testid={TESTIDS.backToHomeBtn}
                   >
