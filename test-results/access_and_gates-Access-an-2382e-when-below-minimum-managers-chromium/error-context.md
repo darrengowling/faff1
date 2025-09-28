@@ -1317,10 +1317,11 @@
           - generic [ref=e51]:
             - generic [ref=e52]: Points per Draw
             - spinbutton "Points per Draw" [ref=e53]: "1"
-      - generic [ref=e54]:
-        - button "Cancel" [ref=e55] [cursor=pointer]
-        - button "Create League" [ref=e56] [cursor=pointer]
-    - button "Close" [ref=e57] [cursor=pointer]:
-      - img [ref=e58] [cursor=pointer]
-      - generic [ref=e61] [cursor=pointer]: Close
+      - alert [ref=e54]: "Server error: Internal error"
+      - generic [ref=e55]:
+        - button "Cancel" [ref=e56] [cursor=pointer]
+        - button "Create League" [ref=e57] [cursor=pointer]
+    - button "Close" [ref=e58] [cursor=pointer]:
+      - img [ref=e59] [cursor=pointer]
+      - generic [ref=e62] [cursor=pointer]: Close
 ```
