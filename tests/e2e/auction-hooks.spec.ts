@@ -4,7 +4,7 @@
  */
 
 import { test, expect } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids.js';
+import { TESTIDS } from '../../frontend/src/testids.ts';
 import { initializeTestTime, advanceTimeSeconds, triggerAntiSnipe } from './utils/time-helpers';
 import { 
   createTestLeague, 
