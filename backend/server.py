@@ -893,19 +893,70 @@ async def update_profile(
     )
 
 # Enhanced League Routes with Commissioner Controls
-@api_router.post("/leagues", response_model=LeagueResponse, status_code=201)
+@api_router.post("/leagues", status_code=201)
 async def create_league(
     league_data: LeagueCreate,
     current_user: UserResponse = Depends(get_current_verified_user)
 ):
-    """Create a new league with comprehensive setup - returns 201 on success"""
+    """Create a new league with comprehensive setup - returns 201 { leagueId, settings } on success"""
+    import uuid
+    import traceback
+    
+    request_id = str(uuid.uuid4())[:8]
+    payload_summary = f"name='{league_data.name}', user={current_user.id}"
+    
     try:
+        # Validate input data
+        if not league_data.name or len(league_data.name.strip()) < 3:
+            logger.warning(f"[{request_id}] {payload_summary} - error.code=INVALID_NAME")
+            raise HTTPException(
+                status_code=400, 
+                detail={
+                    "code": "INVALID_NAME",
+                    "field": "name", 
+                    "message": "League name must be at least 3 characters"
+                }
+            )
+        
+        # Call the transactional service method
         league_response = await LeagueService.create_league_with_setup(league_data, current_user.id)
-        logger.info(f"League {league_response.id} created successfully for user {current_user.id}")
-        return league_response
+        
+        # Return structured success response
+        response_data = {
+            "leagueId": league_response.id,
+            "settings": {
+                "name": league_response.name,
+                "club_slots_per_manager": league_response.settings.club_slots_per_manager,
+                "budget_per_manager": league_response.settings.budget_per_manager,
+                "min_managers": league_response.settings.min_managers,
+                "max_managers": league_response.settings.max_managers
+            }
+        }
+        
+        logger.info(f"[{request_id}] {payload_summary} - success leagueId={league_response.id}")
+        return response_data
+        
+    except HTTPException as he:
+        # Re-raise validation errors (400) as-is
+        if isinstance(he.detail, dict) and he.detail.get('code'):
+            logger.warning(f"[{request_id}] {payload_summary} - error.code={he.detail['code']}")
+        else:
+            logger.warning(f"[{request_id}] {payload_summary} - error.code=VALIDATION_ERROR")
+        raise
+        
     except Exception as e:
-        logger.error(f"League creation failed: {e}")
-        raise HTTPException(status_code=400, detail=str(e))
+        # Log and convert unexpected errors to structured 500 response
+        logger.error(f"[{request_id}] {payload_summary} - error.code=INTERNAL - {str(e)}")
+        logger.error(f"[{request_id}] Traceback: {traceback.format_exc()}")
+        
+        raise HTTPException(
+            status_code=500,
+            detail={
+                "code": "INTERNAL",
+                "requestId": request_id,
+                "message": "Internal server error occurred"
+            }
+        )
 
 @api_router.get("/leagues", response_model=List[LeagueResponse])
 async def get_my_leagues(current_user: UserResponse = Depends(get_current_verified_user)):
