@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:contract": "cd frontend && npm run test:contract",
     "lint:links": "node scripts/lint-links.js",
     "test:e2e": "npm run lint:links && cd frontend && npm run test:contract && cd .. && bash ./scripts/test-env.sh && playwright test",
     "test:core": "source ./scripts/test-env.sh && playwright test tests/e2e/core.smoke.spec.ts",
