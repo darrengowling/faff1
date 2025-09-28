@@ -71,6 +71,7 @@ import {
   Play,
   Copy
 } from 'lucide-react';
+import { CompactRules } from './components/ui/rules-badge';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
