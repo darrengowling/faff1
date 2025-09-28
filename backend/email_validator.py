@@ -87,9 +87,57 @@ class EmailValidator:
     @staticmethod
     def _additional_checks(email: str) -> bool:
         """Additional validation checks"""
-        # Use detailed validation for thorough checking
-        is_valid, _ = EmailValidator.validate_email_detailed(email)
-        return is_valid
+        try:
+            # Check for consecutive dots
+            if '..' in email:
+                return False
+            
+            # Check for leading/trailing spaces
+            if email != email.strip():
+                return False
+            
+            local_part, domain_part = email.split('@')
+            
+            # Check for leading/trailing dots in local part
+            if local_part.startswith('.') or local_part.endswith('.'):
+                return False
+            
+            # Check for spaces
+            if ' ' in email:
+                return False
+            
+            # Check domain has valid TLD
+            if '.' not in domain_part:
+                return False
+            
+            # Check for hyphens at start/end of domain labels
+            labels = domain_part.split('.')
+            for label in labels:
+                if label.startswith('-') or label.endswith('-'):
+                    return False
+                if not label:  # Empty label
+                    return False
+            
+            # Check length limits
+            if len(local_part) > 64:
+                return False
+            if len(domain_part) > 253:
+                return False
+            
+            # TLD validation
+            tld = labels[-1]
+            if len(tld) < 2 or not tld.isalpha():
+                return False
+            
+            # Check for invalid characters in local part
+            allowed_local_chars = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&*+-/=?^_`{|}~.')
+            if not all(c in allowed_local_chars for c in local_part):
+                return False
+            
+            return True
+            
+        except (ValueError, IndexError):
+            return False
     
     @staticmethod
     def _validate_local_part(local_part: str) -> Tuple[bool, str]:
