@@ -579,12 +579,20 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate form before submission
+    if (!validateForm()) {
+      return;
+    }
+    
     setLoading(true);
 
     try {
       const response = await axios.post(`${API}/leagues`, formData);
       onLeagueCreated(response.data);
       onOpenChange(false);
+      
+      // Reset form and errors
       setFormData({
         name: '',
         season: '2025-26',
