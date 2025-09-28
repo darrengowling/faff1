@@ -610,6 +610,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
           }
         }
       });
+      setErrors({});
       toast.success(t('leagueCreation.leagueCreatedSuccess'));
     } catch (error) {
       toast.error(t('errors.failedToCreate', { item: 'league' }));
