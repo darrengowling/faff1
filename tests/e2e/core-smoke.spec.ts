@@ -19,7 +19,8 @@ import {
   expectRosterUpdate,
   expectBudgetUnchanged,
   expectClubUniqueness,
-  expectUserPresence
+  expectUserPresence,
+  awaitCreatedAndInLobby
 } from './utils/helpers';
 import { ensureClickable, clickWhenReady } from './utils/ensureClickable';
 import { TESTIDS } from '../../frontend/src/testids.js';
