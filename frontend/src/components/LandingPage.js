@@ -39,6 +39,11 @@ const LandingPage = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
+      // Update hash immediately for immediate feedback
+      if (window.location.hash !== `#${sectionId}`) {
+        window.history.replaceState(null, null, `#${sectionId}`);
+      }
+      // Smooth scroll to section
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     setMobileMenuOpen(false);
