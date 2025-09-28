@@ -163,48 +163,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      {/* Global Header - Always Visible for Navigation */}
-      <header className="bg-white shadow-sm border-b" data-testid="login-header">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Left: Back to Home Navigation */}
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate('/')}
-                className="text-gray-600 hover:text-gray-900 flex items-center"
-                data-testid="back-to-home-link"
-              >
-                <Home className="w-4 h-4 mr-2" />
-                Back to Home
-              </Button>
-            </div>
-            
-            {/* Center: Brand */}
-            <div className="flex items-center">
-              <h1 className="text-lg font-semibold text-gray-900">Friends of PIFA</h1>
-            </div>
-            
-            {/* Right: Additional Navigation (Future) */}
-            <div className="flex items-center space-x-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => navigate('/')}
-                className="text-gray-600 hover:text-gray-900"
-                data-testid="home-nav-button"
-              >
-                Home
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Login Content */}
-      <main className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <Mail className="w-12 h-12 text-blue-600 mx-auto mb-4" />
