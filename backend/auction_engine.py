@@ -11,6 +11,12 @@ from database import db
 from time_provider import now, now_ms, is_test_mode
 import socketio
 
+# Auction timing configuration from environment
+DEFAULT_BID_TIMER = 8 if is_test_mode() else 60
+DEFAULT_ANTI_SNIPE = 3 if is_test_mode() else 30
+BID_TIMER_SECONDS = int(os.getenv("BID_TIMER_SECONDS", str(DEFAULT_BID_TIMER)))
+ANTI_SNIPE_SECONDS = int(os.getenv("ANTI_SNIPE_SECONDS", str(DEFAULT_ANTI_SNIPE)))
+
 logger = logging.getLogger(__name__)
 
 class AuctionState:
