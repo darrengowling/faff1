@@ -5,7 +5,7 @@
  * - Proper ARIA roles and properties
  * - Keyboard navigation (arrows, ESC, Enter, Space)
  * - Focus trap for mobile drawer
- * - No placeholder items or href="#" 
+ * - No placeholder items or empty href attributes 
  * - All data-testid attributes for testing
  */
 
