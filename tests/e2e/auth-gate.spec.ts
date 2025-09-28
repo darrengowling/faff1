@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids.js';
+import { TESTIDS } from '../../frontend/src/testids.ts';
 
 test('PRE-GATE: Auth UI elements validation', async ({ page }) => {
   console.log('🔐 PRE-GATE 2: Checking auth UI elements on /login...');
