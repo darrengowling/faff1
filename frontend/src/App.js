@@ -985,7 +985,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
           {/* Submit error display */}
           {submitError && (
             <div 
-              data-testid="create-error" 
+              data-testid={TESTIDS.createError} 
               role="alert"
               aria-live="assertive"
               className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md text-red-800"
