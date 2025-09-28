@@ -1133,6 +1133,27 @@ const LeagueManagement = ({ league, onBack }) => {
               className=""
             />
           </div>
+          
+          {/* Start Auction Button - Commissioner Only */}
+          {isCommissioner && (
+            <div className="mb-6">
+              <Button
+                onClick={() => leagueStatus?.is_ready ? handleStartAuction() : null}
+                className={`w-full ${leagueStatus?.is_ready 
+                  ? 'bg-green-600 hover:bg-green-700' 
+                  : 'bg-gray-400 cursor-not-allowed'}`}
+                data-testid={TESTIDS.startAuctionBtn}
+                aria-disabled={!leagueStatus?.is_ready}
+                disabled={!leagueStatus?.is_ready}
+                title={!leagueStatus?.is_ready ? 
+                  `Cannot start auction - need minimum ${leagueStatus?.min_members || 2} members (currently ${leagueStatus?.member_count || 0})` : 
+                  'Start the auction now'}
+              >
+                <Play className="w-4 h-4 mr-2" />
+                Start Auction
+              </Button>
+            </div>
+          )}
         </div>
       )}
 
