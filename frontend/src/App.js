@@ -588,37 +588,80 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
       return;
     }
     
-    setLoading(true);
+    setSubmitting(true);
+    setSubmitError(''); // Clear previous errors
+    setErrors({}); // Clear field errors
 
     try {
       const response = await axios.post(`${API}/leagues`, formData);
-      onLeagueCreated(response.data);
-      onOpenChange(false);
       
-      // Reset form and errors
-      setFormData({
-        name: '',
-        season: '2025-26',
-        settings: {
-          budget_per_manager: 100,
-          min_increment: 1,
-          club_slots_per_manager: 5,
-          anti_snipe_seconds: 30,
-          bid_timer_seconds: 60,
-          league_size: { min: 2, max: 8 },
-          scoring_rules: {
-            club_goal: 1,
-            club_win: 3,
-            club_draw: 1
+      if (response.status === 201) {
+        // Close the dialog and navigate (both)
+        onOpenChange(false); // This should set data-state="closed"
+        
+        // Set success marker for tests
+        setJustCreatedId(response.data.leagueId);
+        
+        // Navigate to lobby after a brief delay
+        setTimeout(() => {
+          window.location.href = `/app/leagues/${response.data.leagueId}/lobby`;
+        }, 0);
+        
+        // Reset form and notify
+        setFormData({
+          name: '',
+          season: '2025-26',
+          settings: {
+            budget_per_manager: 100,
+            min_increment: 1,
+            club_slots_per_manager: 5,
+            anti_snipe_seconds: 30,
+            bid_timer_seconds: 60,
+            league_size: { min: 2, max: 8 },
+            scoring_rules: {
+              club_goal: 1,
+              club_win: 3,
+              club_draw: 1
+            }
           }
-        }
-      });
-      setErrors({});
-      toast.success(t('leagueCreation.leagueCreatedSuccess'));
+        });
+        setErrors({});
+        
+        // Call the callback with new data
+        onLeagueCreated && onLeagueCreated(response.data);
+        
+        toast.success(t('leagueCreation.leagueCreatedSuccess'));
+        
+      } else {
+        // Handle non-201 responses
+        const errorMessage = response.data?.message || 'Could not create league';
+        setSubmitError(errorMessage);
+      }
+      
     } catch (error) {
-      toast.error(t('errors.failedToCreate', { item: 'league' }));
+      console.error('League creation error:', error);
+      
+      // Handle structured error responses
+      if (error.response?.status === 400) {
+        const errorData = error.response.data;
+        
+        if (errorData.field) {
+          // Field-specific error
+          setErrors({ [errorData.field]: errorData.message });
+        } else {
+          // General validation error
+          setSubmitError(errorData.message || 'Validation failed');
+        }
+      } else if (error.response?.status === 500) {
+        const errorData = error.response.data;
+        setSubmitError(`Server error${errorData.requestId ? ` (${errorData.requestId})` : ''}: ${errorData.message || 'Internal error'}`);
+      } else {
+        // Network or other errors
+        setSubmitError(error.response?.data?.message || 'Could not create league');
+      }
+      
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
