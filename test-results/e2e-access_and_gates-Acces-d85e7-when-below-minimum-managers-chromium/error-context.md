@@ -1,0 +1,56 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - region "Notifications alt+T"
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - button "Friends of PIFA" [ref=e7] [cursor=pointer]:
+          - img [ref=e9] [cursor=pointer]
+          - generic [ref=e15] [cursor=pointer]: Friends of PIFA
+        - navigation
+        - generic [ref=e16]:
+          - button "New League" [ref=e17] [cursor=pointer]:
+            - img
+            - text: New League
+          - generic [ref=e18]:
+            - generic [ref=e19]: Welcome, commissioner@example.com
+            - button "Dashboard" [ref=e20] [cursor=pointer]
+          - button "Switch to dark mode" [ref=e21] [cursor=pointer]:
+            - generic [ref=e22] [cursor=pointer]:
+              - img
+      - link "Skip to main content" [ref=e23] [cursor=pointer]:
+        - /url: "#main-content"
+    - main [ref=e24]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - img [ref=e29]
+          - heading "404" [level=1] [ref=e31]
+          - heading "Page Not Found" [level=2] [ref=e32]
+          - paragraph [ref=e33]: The page you're looking for doesn't exist or has been moved. Let's get you back to your football auctions!
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - img [ref=e37]
+            - generic [ref=e43]: Friends of PIFA
+          - paragraph [ref=e44]: Sports gaming with friends. No gambling. All strategy.
+        - generic [ref=e47] [cursor=pointer]:
+          - img [ref=e49] [cursor=pointer]
+          - heading "Get Started" [level=3] [ref=e52] [cursor=pointer]
+          - paragraph [ref=e53] [cursor=pointer]: Learn about Friends of PIFA
+          - button "Get Started" [ref=e54] [cursor=pointer]:
+            - generic [ref=e55] [cursor=pointer]:
+              - generic [ref=e56] [cursor=pointer]: Get Started
+              - img
+        - generic [ref=e57]:
+          - paragraph [ref=e58]: Still having trouble? Try refreshing the page or check your URL.
+          - generic [ref=e59]:
+            - button "Refresh Page" [ref=e60] [cursor=pointer]
+            - generic [ref=e61]: •
+            - button "Go Back" [ref=e62] [cursor=pointer]
+  - link "Emergent platform logo Made with Emergent" [ref=e63] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e64] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e65] [cursor=pointer]
+      - paragraph [ref=e66] [cursor=pointer]: Made with Emergent
+```
