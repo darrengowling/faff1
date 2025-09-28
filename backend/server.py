@@ -335,6 +335,8 @@ async def test_login(request: dict, response: Response):
         # Validate email with shared validator
         email = request.get('email', '').strip()
         if not email:
+            if TEST_MODE:
+                logger.info(f"🧪 AUTH.TESTLOGIN: {{'requestId': '{request_id}', 'step': 'error', 'code': 'MISSING_EMAIL'}}")
             logger.warning(f"[{request_id}] Test login - missing email")
             raise HTTPException(
                 status_code=400,
@@ -347,6 +349,8 @@ async def test_login(request: dict, response: Response):
         # Import and use shared email validator
         from email_validator import EmailValidator
         if not EmailValidator.is_valid_email(email):
+            if TEST_MODE:
+                logger.info(f"🧪 AUTH.TESTLOGIN: {{'requestId': '{request_id}', 'step': 'error', 'code': 'INVALID_EMAIL_FORMAT'}}")
             logger.warning(f"[{request_id}] Test login - invalid email format: {email}")
             raise HTTPException(
                 status_code=400,
