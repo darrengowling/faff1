@@ -61,10 +61,10 @@ test.describe('Core Smoke Test', () => {
       process.env.NEXT_PUBLIC_SOCKET_TRANSPORTS = 'polling';
     }
 
-    // Create separate authenticated browser contexts for each user
-    commissionerContext = await createAuthenticatedContext(browser, 'commissioner', baseURL);
-    aliceContext = await createAuthenticatedContext(browser, 'alice', baseURL);
-    bobContext = await createAuthenticatedContext(browser, 'bob', baseURL);
+    // Create separate browser contexts for each user
+    commissionerContext = await browser.newContext();
+    aliceContext = await browser.newContext();
+    bobContext = await browser.newContext();
     
     commissionerPage = await commissionerContext.newPage();
     alicePage = await aliceContext.newPage();
