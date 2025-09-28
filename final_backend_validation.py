@@ -96,8 +96,10 @@ class FinalBackendValidator:
                      f"Status: {status}, User ID: {data.get('userId', 'none')}")
         
         # 2c. Complete auth flow for token
-        if magic_link_working and 'dev_magic_link' in data:
-            magic_link = data['dev_magic_link']
+        # Get fresh magic link for verification
+        success, status, magic_data = self.make_request('POST', 'auth/magic-link', {"email": self.test_email}, token=None)
+        if success and 'dev_magic_link' in magic_data:
+            magic_link = magic_data['dev_magic_link']
             if 'token=' in magic_link:
                 token = magic_link.split('token=')[1]
                 success, status, auth_data = self.make_request('POST', 'auth/verify', {"token": token}, token=None)
