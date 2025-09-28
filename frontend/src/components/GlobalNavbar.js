@@ -277,18 +277,16 @@ const GlobalNavbar = () => {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div 
-          className="md:hidden fixed inset-0 top-16 bg-black bg-opacity-50 z-40"
-          style={{ pointerEvents: 'auto' }}
+          className="md:hidden fixed inset-0 top-16 bg-black bg-opacity-50 z-40 drawer-backdrop"
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
         >
           <div
             ref={mobileDrawerRef}
-            className="bg-theme-surface w-full max-w-sm h-full shadow-lg overflow-y-auto"
+            className="bg-theme-surface w-full max-w-sm h-full shadow-lg overflow-y-auto drawer-panel"
             id="mobile-navigation"
             role="navigation"
             aria-label="Mobile navigation menu"
-            style={{ pointerEvents: 'auto' }}
             onClick={(e) => e.stopPropagation()}
             data-testid={TESTIDS.navMobileDrawer}
           >
