@@ -160,9 +160,19 @@ test.describe('Authentication UI Tests', () => {
     // Click submit and verify loading state
     await submitBtn.click();
     
+    // Wait for loading state to appear
+    const loadingForm = page.locator(`[data-testid="${TESTIDS.authLoading}"]`);
+    await expect(loadingForm).toBeVisible();
+    
+    // Form should have aria-busy="true"
+    await expect(loadingForm).toHaveAttribute('aria-busy', 'true');
+    
     // Button should show loading text and be disabled
     await expect(submitBtn).toContainText('Sending Magic Link');
     await expect(submitBtn).toBeDisabled();
+    
+    // Wait for loading to complete
+    await expect(loadingForm).not.toBeAttached();
   });
 
   test('No dead ends - page always has navigation options', async ({ page }) => {
