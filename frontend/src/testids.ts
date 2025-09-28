@@ -127,6 +127,7 @@ export const TESTIDS = {
   
   // Lobby & Auction Info
   lobbyJoined: 'lobby-joined',
+  lobbyJoinedCount: 'lobby-joined-count',
   rulesBadge: 'rules-badge',
 
   // League List & Management
