@@ -82,12 +82,12 @@ const { chromium } = require("playwright");
     
     if (!createButton) {
       // Take debug screenshot
-      await page.screenshot({ path: \`debug-no-create-button-\${Date.now()}.png\` });
+      await page.screenshot({ path: `debug-no-create-button-${Date.now()}.png` });
       console.log("🔍 Available buttons on page:");
       const allButtons = await page.locator("button").all();
       for (const button of allButtons.slice(0, 5)) {
         const text = await button.textContent();
-        console.log(\`  - Button: "\${text}"\`);
+        console.log(`  - Button: "${text}"`);
       }
       throw new Error("❌ Create League button not found on page");
     }
