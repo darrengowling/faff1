@@ -2,20 +2,20 @@
   "cookies": [
     {
       "name": "access_token",
-      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlOTJkMzM3ZC00MWUxLTQ4NjctYWJiOC0xNTRhYTNhNjM1N2EiLCJleHAiOjE3NTkxNjkxNDV9.cq_kAVBQG2clPVezkiPxzuKLupe2GnWxCrOh1fTRK30",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlOTJkMzM3ZC00MWUxLTQ4NjctYWJiOC0xNTRhYTNhNjM1N2EiLCJleHAiOjE3NTkxNjkyNjZ9.PO_pVuvmBxI9fYW2duJJrHUsTmM4yek4z1AHdNxAPj8",
       "domain": "pifa-stability.preview.emergentagent.com",
       "path": "/",
-      "expires": 1759086345.598,
+      "expires": 1759086466.164,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Lax"
     },
     {
       "name": "ph_phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE_posthog",
-      "value": "%7B%22distinct_id%22%3A%2201999180-8fcd-7734-9c26-af822ad952ee%22%2C%22%24sesid%22%3A%5B1759082747100%2C%2201999180-8fc7-76e1-abc1-fc8dd90e54cf%22%2C1759082745799%5D%7D",
+      "value": "%7B%22distinct_id%22%3A%2201999182-71ad-7217-ae7f-d0e37749f95e%22%2C%22%24sesid%22%3A%5B1759082870704%2C%2201999182-71ab-7967-9943-68bbd5c199a6%22%2C1759082869162%5D%7D",
       "domain": ".emergentagent.com",
       "path": "/",
-      "expires": 1790618747,
+      "expires": 1790618870,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -27,7 +27,7 @@
       "localStorage": [
         {
           "name": "ph_phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE_posthog",
-          "value": "{\"distinct_id\":\"01999180-8fcd-7734-9c26-af822ad952ee\",\"$sesid\":[1759082747100,\"01999180-8fc7-76e1-abc1-fc8dd90e54cf\",1759082745799],\"$initialization_time\":\"2025-09-28T18:05:47.099Z\",\"$configured_session_timeout_ms\":1800000,\"$client_session_props\":{\"sessionId\":\"01999180-8fc7-76e1-abc1-fc8dd90e54cf\",\"props\":{\"r\":\"$direct\",\"u\":\"https://pifa-stability.preview.emergentagent.com/app\"}},\"$device_id\":\"01999180-8fcd-7734-9c26-af822ad952ee\",\"$user_state\":\"anonymous\",\"$session_recording_enabled_server_side\":true,\"$console_log_recording_enabled_server_side\":true,\"$session_recording_network_payload_capture\":{\"capturePerformance\":{\"network_timing\":true,\"web_vitals\":true,\"web_vitals_allowed_metrics\":null}},\"$session_recording_masking\":null,\"$session_recording_canvas_recording\":{},\"$replay_sample_rate\":null,\"$replay_minimum_duration\":null,\"$replay_script_config\":null,\"$autocapture_disabled_server_side\":false,\"$heatmaps_enabled_server_side\":true,\"$web_vitals_enabled_server_side\":true,\"$web_vitals_allowed_metrics\":null,\"$exception_capture_enabled_server_side\":false,\"$error_tracking_suppression_rules\":[],\"$dead_clicks_enabled_server_side\":false,\"$active_feature_flags\":[],\"$enabled_feature_flags\":{},\"$feature_flag_payloads\":{},\"$feature_flag_details\":{},\"$feature_flag_request_id\":\"9c604855-0579-4ed8-9de6-fa9ed884e64e\"}"
+          "value": "{\"distinct_id\":\"01999182-71ad-7217-ae7f-d0e37749f95e\",\"$sesid\":[1759082870704,\"01999182-71ab-7967-9943-68bbd5c199a6\",1759082869162],\"$initialization_time\":\"2025-09-28T18:07:50.704Z\",\"$configured_session_timeout_ms\":1800000,\"$client_session_props\":{\"sessionId\":\"01999182-71ab-7967-9943-68bbd5c199a6\",\"props\":{\"r\":\"$direct\",\"u\":\"https://pifa-stability.preview.emergentagent.com/app\"}},\"$device_id\":\"01999182-71ad-7217-ae7f-d0e37749f95e\",\"$user_state\":\"anonymous\",\"$session_recording_enabled_server_side\":true,\"$console_log_recording_enabled_server_side\":true,\"$session_recording_network_payload_capture\":{\"capturePerformance\":{\"network_timing\":true,\"web_vitals\":true,\"web_vitals_allowed_metrics\":null}},\"$session_recording_masking\":null,\"$session_recording_canvas_recording\":{},\"$replay_sample_rate\":null,\"$replay_minimum_duration\":null,\"$replay_script_config\":null,\"$autocapture_disabled_server_side\":false,\"$heatmaps_enabled_server_side\":true,\"$web_vitals_enabled_server_side\":true,\"$web_vitals_allowed_metrics\":null,\"$exception_capture_enabled_server_side\":false,\"$error_tracking_suppression_rules\":[],\"$dead_clicks_enabled_server_side\":false,\"$active_feature_flags\":[],\"$enabled_feature_flags\":{},\"$feature_flag_payloads\":{},\"$feature_flag_details\":{},\"$feature_flag_request_id\":\"6fdef073-f50e-446a-8d7f-af07c7219827\"}"
         }
       ]
     }
