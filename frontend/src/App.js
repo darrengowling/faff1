@@ -485,6 +485,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
     }
   });
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   // Fetch competition profiles on component mount
   useEffect(() => {
