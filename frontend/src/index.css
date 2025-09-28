@@ -112,6 +112,11 @@ code {
   
   /* Main content offset for fixed header */
   main {
-    padding-top: var(--header-h);
+    padding-top: var(--header-h, 64px);
+  }
+  
+  /* Prevent header overlay interception */
+  header *[data-overlay] {
+    pointer-events: none;
   }
 }
