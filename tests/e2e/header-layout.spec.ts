@@ -37,7 +37,7 @@ test('should have proper header layout without content overlap', async ({ page }
   expect(parseInt(headerStyles.zIndex)).toBe(50);
   
   // Check that main content has proper padding
-  const main = page.locator('main');
+  const main = page.locator('main#main-content');
   if (await main.count() > 0) {
     const mainStyles = await main.evaluate(el => {
       const styles = window.getComputedStyle(el);
