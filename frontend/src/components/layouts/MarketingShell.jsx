@@ -193,9 +193,8 @@ const MarketingShell = ({ children }) => {
                   </div>
                 </div>
               </div>
-            </div>
           </div>
-        )}
+        </div>
       </header>
 
       {/* Main Content with proper padding for header */}
