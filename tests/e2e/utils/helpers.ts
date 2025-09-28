@@ -108,40 +108,50 @@ export async function clickCreateLeague(page: Page): Promise<void> {
 export async function createLeague(page: Page, settings: LeagueSettings): Promise<string> {
   console.log(`🏆 Creating league: ${settings.name}`);
   
-  // Open create league dialog from dashboard
-  // Look for Create League button on dashboard
+  // Navigate to create league page (assuming current navigation goes there)
   const createBtn = page.locator('button').filter({ hasText: /create.*league/i }).first();
   await safeClick(page, createBtn);
-  await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'visible' });
   
-  // Fill form fields
-  await page.locator(`[data-testid="${TESTIDS.createNameInput}"]`).fill(settings.name);
-  await page.locator(`[data-testid="${TESTIDS.createSlotsInput}"]`).fill(settings.clubSlots.toString());
-  await page.locator(`[data-testid="${TESTIDS.createBudgetInput}"]`).fill(settings.budgetPerManager.toString());
-  await page.locator(`[data-testid="${TESTIDS.createMinInput}"]`).fill(settings.minManagers.toString());
-  await page.locator(`[data-testid="${TESTIDS.createMaxInput}"]`).fill(settings.maxManagers.toString());
+  // Wait for create league form to load
+  await page.locator(`[data-testid="${TESTIDS.createLeagueWizardName}"]`).waitFor({ state: 'visible', timeout: 10000 });
+  
+  // Fill form fields using the CreateLeagueWizard testids
+  await page.locator(`[data-testid="${TESTIDS.createLeagueWizardName}"]`).fill(settings.name);
+  await page.locator(`[data-testid="${TESTIDS.createLeagueWizardSlots}"]`).selectOption(settings.clubSlots.toString());
+  await page.locator(`[data-testid="${TESTIDS.createLeagueWizardBudget}"]`).selectOption(settings.budgetPerManager.toString());
+  await page.locator(`[data-testid="${TESTIDS.createLeagueWizardMin}"]`).selectOption(settings.minManagers.toString());
+  
+  console.log('📝 Form filled, submitting...');
   
   // Submit form using safe click
   const submitBtn = page.locator(`[data-testid="${TESTIDS.createSubmit}"]`);
   await safeClick(page, submitBtn);
   
-  // Wait for dialog to close (indicates success)
-  await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'hidden', timeout: 15000 });
+  console.log('⏳ Waiting for league creation success...');
   
-  // Wait a moment for the league list to update
-  await page.waitForTimeout(2000);
-  
-  // Verify the league appears in the dashboard (use first occurrence to avoid strict mode violation)
-  const leagueVisible = await page.locator(`text="${settings.name}"`).first().isVisible();
-  if (!leagueVisible) {
-    throw new Error(`League "${settings.name}" was not found in the dashboard after creation`);
+  // Wait for success marker OR URL change to lobby (deterministic indicators)
+  try {
+    // Option 1: Wait for success marker
+    await page.getByTestId('create-success').waitFor({ state: 'visible', timeout: 15000 });
+    console.log('✅ Success marker detected');
+  } catch (successError) {
+    // Option 2: Wait for URL change to lobby
+    console.log('Success marker not found, checking URL...');
+    await page.waitForURL('**/lobby', { timeout: 10000 });
+    console.log('✅ URL changed to lobby');
   }
   
-  // For now, return a placeholder ID since we don't navigate to a league-specific URL
-  // In a real implementation, we'd need to extract the league ID from the API response or DOM
-  const leagueId = `created-${Date.now()}`;
+  // Extract league ID from URL
+  const currentUrl = page.url();
+  const leagueIdMatch = currentUrl.match(/\/leagues\/([^\/]+)\/lobby/);
   
+  if (!leagueIdMatch) {
+    throw new Error(`Could not extract league ID from URL: ${currentUrl}`);
+  }
+  
+  const leagueId = leagueIdMatch[1];
   console.log(`✅ League created: ${settings.name} (ID: ${leagueId})`);
+  
   return leagueId;
 }
 
