@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic [ref=e1]:
+- generic [active] [ref=e1]:
   - generic [ref=e3]:
     - region "Notifications alt+T"
     - banner [ref=e4]:
@@ -38,18 +38,15 @@
               - generic [ref=e46]:
                 - generic [ref=e47]:
                   - generic [ref=e48]: Email Address
-                  - textbox "Email Address" [active] [ref=e49]: playwright-test@example.com
-                - alert [ref=e50]:
-                  - img [ref=e51]
-                  - generic [ref=e53]: Server error. Please try again in a moment.
-                - button "Send Magic Link" [ref=e54] [cursor=pointer]:
-                  - generic [ref=e55] [cursor=pointer]:
+                  - textbox "Email Address" [ref=e49]
+                - button "Send Magic Link" [disabled]:
+                  - generic:
                     - img
-                    - generic [ref=e56] [cursor=pointer]: Send Magic Link
-            - paragraph [ref=e58]: No password required. We'll send you a secure link to sign in.
-  - link "Emergent platform logo Made with Emergent" [ref=e59] [cursor=pointer]:
+                    - generic: Send Magic Link
+            - paragraph [ref=e51]: No password required. We'll send you a secure link to sign in.
+  - link "Emergent platform logo Made with Emergent" [ref=e52] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e60] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e61] [cursor=pointer]
-      - paragraph [ref=e62] [cursor=pointer]: Made with Emergent
+    - generic [ref=e53] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e54] [cursor=pointer]
+      - paragraph [ref=e55] [cursor=pointer]: Made with Emergent
 ```
