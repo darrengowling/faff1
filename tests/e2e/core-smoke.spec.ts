@@ -56,15 +56,15 @@ test.describe('Core Smoke Test', () => {
   test.setTimeout(TEST_TIMEOUT);
 
   // Set socket transport to polling for CI environments
-  test.beforeAll(async ({ browser }) => {
+  test.beforeAll(async ({ browser, baseURL }) => {
     if (process.env.CI) {
       process.env.NEXT_PUBLIC_SOCKET_TRANSPORTS = 'polling';
     }
 
-    // Create separate browser contexts for each user
-    commissionerContext = await browser.newContext();
-    aliceContext = await browser.newContext();
-    bobContext = await browser.newContext();
+    // Create separate authenticated browser contexts for each user
+    commissionerContext = await createAuthenticatedContext(browser, 'commissioner', baseURL);
+    aliceContext = await createAuthenticatedContext(browser, 'alice', baseURL);
+    bobContext = await createAuthenticatedContext(browser, 'bob', baseURL);
     
     commissionerPage = await commissionerContext.newPage();
     alicePage = await aliceContext.newPage();
