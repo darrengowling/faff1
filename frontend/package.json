@@ -66,6 +66,7 @@
     "test": "craco test",
     "test:contract": "craco test --testPathPattern=testid-contract --watchAll=false --passWithNoTests",
     "lint": "eslint src --ext .js,.jsx",
+    "lint:links": "node ../scripts/lint-links.js",
     "lint:ssr-safety": "eslint src --ext .js,.jsx --rule 'ssr-safety/no-window-at-module-scope: error'",
     "db:migrate:config": "node ../scripts/db-migrate-config.js",
     "diag:socketio": "node scripts/diag-socketio.mjs",
