@@ -275,6 +275,7 @@ const GlobalNavbar = () => {
       {mobileMenuOpen && (
         <div 
           className="md:hidden fixed inset-0 top-16 bg-black bg-opacity-50 z-40"
+          style={{ pointerEvents: 'auto' }}
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
         >
@@ -284,6 +285,7 @@ const GlobalNavbar = () => {
             id="mobile-navigation"
             role="navigation"
             aria-label="Mobile navigation menu"
+            style={{ pointerEvents: 'auto' }}
             onClick={(e) => e.stopPropagation()}
             data-testid={TESTIDS.navMobileDrawer}
           >
