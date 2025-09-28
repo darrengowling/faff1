@@ -37,8 +37,8 @@ export async function login(page: Page, email: string): Promise<void> {
   // Check if dev magic link button appears (conditional in development mode)
   const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
   if (await devMagicBtn.isVisible()) {
-    console.log('Dev magic link button found, clicking...');
-    await devMagicBtn.click();
+    console.log('Dev magic link button found, using safe click...');
+    await safeClick(page, devMagicBtn);
   } else {
     // In test mode, should automatically redirect - wait for it
     console.log('Waiting for automatic redirect...');
