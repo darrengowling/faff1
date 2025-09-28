@@ -5,7 +5,7 @@
  */
 
 import { test, expect } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids';
+import { TESTIDS } from '../../frontend/src/testids.ts';
 import { ensureClickable } from './utils/ensureClickable';
 import { login, waitForHash } from './utils/helpers';
 
