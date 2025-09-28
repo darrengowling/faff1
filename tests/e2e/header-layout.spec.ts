@@ -18,8 +18,8 @@ test('should have proper header layout without content overlap', async ({ page }
   // Take screenshot to verify layout
   await page.screenshot({ path: 'header-layout-test.png', fullPage: true });
   
-  // Check that header has correct positioning
-  const header = page.locator('header');
+  // Check that global header has correct positioning
+  const header = page.locator('header.sticky').first();
   await expect(header).toBeVisible();
   
   const headerStyles = await header.evaluate(el => {
