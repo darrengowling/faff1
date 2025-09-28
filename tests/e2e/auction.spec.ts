@@ -31,9 +31,12 @@ test.describe('Auction Tests', () => {
   });
 
   test('Anti-snipe extends timer when bid placed in final seconds', async () => {
-    console.log('🧪 Testing anti-snipe timer extension...');
+    console.log('🧪 Testing deterministic anti-snipe timer extension...');
     
-    // Setup auction with short timer (8 seconds as per test env)
+    // Initialize controlled test time
+    await initializeTestTime(commissionerPage);
+    
+    // Setup auction with controlled timer (8 seconds as per test env)
     await login(commissionerPage, 'commissioner@test.com');
     leagueId = await createLeague(commissionerPage, {
       name: 'Anti-Snipe Test League',
@@ -61,30 +64,25 @@ test.describe('Auction Tests', () => {
     // Nominate asset
     const assetName = await nominateFirstAsset(commissionerPage);
     
-    // Wait for timer to be < 3 seconds (anti-snipe threshold)
+    // Wait for timer to appear
     const timer = commissionerPage.locator(`[data-testid="${TESTIDS.auctionTimer}"]`);
     await timer.waitFor({ state: 'visible' });
     
-    // Wait until timer shows 2 seconds or less
-    await commissionerPage.waitForFunction(() => {
-      const timerElement = document.querySelector(`[data-testid="${TESTIDS.auctionTimer}"]`);
-      const timeText = timerElement?.textContent || '';
-      const seconds = parseInt(timeText.split(':')[1] || '0');
-      return seconds <= 2;
-    }, { timeout: 10000 });
+    // Deterministically advance time to just before anti-snipe threshold (3s)
+    // Advance to 5.5 seconds (2.5s remaining, triggers anti-snipe)
+    await advanceTimeSeconds(commissionerPage, 5.5);
+    await commissionerPage.waitForTimeout(100); // Brief wait for UI update
     
-    // Place bid in final seconds
+    // Place bid in final seconds to trigger anti-snipe
     await bid(alice, 5);
     
-    // Verify timer extended (should be more than 2 seconds now)
-    await commissionerPage.waitForFunction(() => {
-      const timerElement = document.querySelector(`[data-testid="${TESTIDS.auctionTimer}"]`);
-      const timeText = timerElement?.textContent || '';
-      const seconds = parseInt(timeText.split(':')[1] || '0');
-      return seconds > 2;
-    }, { timeout: 5000 });
+    // Small wait for anti-snipe logic to process
+    await commissionerPage.waitForTimeout(200);
     
-    console.log('✅ Anti-snipe timer extension working');
+    // Verify timer was extended deterministically (should show 6 seconds = threshold * 2)
+    await expect(timer).toContainText('6', { timeout: 2000 });
+    
+    console.log('✅ Deterministic anti-snipe timer extension working');
   });
 
   test('Simultaneous bids resolve deterministically', async () => {
