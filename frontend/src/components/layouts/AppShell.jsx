@@ -238,22 +238,27 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
           </div>
         </div>
 
-        {/* Mobile Drawer */}
-        {mobileMenuOpen && (
-          <div 
-            className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 drawer-backdrop"
-            onClick={() => setMobileMenuOpen(false)}
-            aria-hidden="true"
-            style={{ paddingTop: '64px' }} // Account for header height
+        {/* Mobile Drawer - Always rendered */}
+        <div 
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 drawer-backdrop"
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+          style={{ 
+            paddingTop: '64px',
+            display: mobileMenuOpen ? 'block' : 'none',
+            pointerEvents: mobileMenuOpen ? 'auto' : 'none'
+          }}
+        >
+          <div
+            className="bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel"
+            id="mobile-navigation"
+            role="navigation"
+            aria-label="Mobile navigation menu"
+            onClick={(e) => e.stopPropagation()}
+            data-testid="nav-mobile-drawer"
+            data-state={mobileMenuOpen ? 'open' : 'closed'}
+            style={{ pointerEvents: 'auto' }}
           >
-            <div
-              className="bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel"
-              id="mobile-navigation"
-              role="navigation"
-              aria-label="Mobile navigation menu"
-              onClick={(e) => e.stopPropagation()}
-              data-testid={TESTIDS.navMobileDrawer}
-            >
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
                   <span className="text-lg font-semibold text-gray-900">Menu</span>
