@@ -720,19 +720,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
   }, [open]);
 
   return (
-    <>
-      {/* Success marker - render until route changes */}
-      {createSuccess && (
-        <div 
-          data-testid="create-success" 
-          className="sr-only" 
-          aria-hidden="true"
-        >
-          League creation successful
-        </div>
-      )}
-      
-      <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-testid={TESTIDS.createDialog}>
         <DialogHeader>
           {/* Breadcrumb Navigation */}
