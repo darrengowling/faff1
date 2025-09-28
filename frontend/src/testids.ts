@@ -44,6 +44,7 @@ export const TESTIDS = {
   authSubmitBtn: 'auth-submit-btn',
   authError: 'auth-error',
   authSuccess: 'auth-success',
+  authLoading: 'auth-loading',
   
   // Navigation
   navBrand: 'nav-brand',
