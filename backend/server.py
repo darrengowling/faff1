@@ -75,10 +75,17 @@ async def join_auction(sid, data):
 # Create FastAPI app
 fastapi_app = FastAPI(title="Friends of PIFA API", version="1.0.0")
 
-# Add CORS middleware
+# Add CORS middleware - more permissive in TEST_MODE
+cors_origins = [FRONTEND_ORIGIN]
+if TEST_MODE:
+    # In test mode, allow additional origins for flexibility
+    cors_origins.extend(["http://localhost:3000", "https://auction-league.preview.emergentagent.com"])
+    # Remove duplicates
+    cors_origins = list(set(cors_origins))
+
 fastapi_app.add_middleware(
     CORSMiddleware,
-    allow_origins=[FRONTEND_ORIGIN],
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
