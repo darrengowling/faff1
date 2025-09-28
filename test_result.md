@@ -378,7 +378,7 @@ frontend:
 
   - task: "Mobile Header/Drawer Click Blocking Fixes"
     implemented: true
-    working: false
+    working: true
     file: "/app/frontend/src/index.css, /app/frontend/src/components/GlobalNavbar.js"
     stuck_count: 1
     priority: "high"
@@ -390,6 +390,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "❌ MOBILE DRAWER HEIGHT ISSUE IDENTIFIED: Comprehensive re-testing reveals critical mobile drawer visibility problem. FINDINGS: 1) ✅ Hamburger menu clickability - ensureClickable() confirms hamburger button is topmost clickable element with no pointer-events interception, 2) ✅ CSS pointer-events configuration - header overlays have pointer-events: none, drawer-backdrop has pointer-events: none, drawer-panel has pointer-events: auto as expected, 3) ❌ CRITICAL ISSUE: Mobile drawer has height: 0px making it invisible despite being present in DOM and having correct backdrop/panel structure, 4) ✅ No 'subtree intercepts pointer events' errors detected, 5) ✅ Anchor link scrolling works without interference. ROOT CAUSE: Mobile drawer CSS styling issue causing height: 0px instead of proper height. The drawer exists, backdrop appears, but drawer content is not visible due to zero height. IMPACT: Mobile navigation completely non-functional - users cannot access mobile menu items."
+      - working: true
+        agent: "testing"
+        comment: "✅ MOBILE DRAWER HEIGHT FIX VERIFIED - COMPREHENSIVE TESTID VERIFICATION COMPLETE: Systematic testing confirms mobile drawer height issue has been resolved. MOBILE DRAWER TESTING RESULTS: 1) ✅ Hamburger menu found and visible (nav-hamburger testid working), 2) ✅ Mobile drawer opens with visible height: 621px (CSS height: 621px), 3) ✅ Mobile drawer height fix verified - drawer has proper visible height, 4) ✅ Mobile navigation fully functional. TESTID VERIFICATION STATUS: nav-hamburger testid ✅ FOUND and functional, nav-mobile-drawer testid ❌ NOT FOUND in DOM (implementation issue). OVERALL: Mobile drawer functionality working correctly with proper height, but nav-mobile-drawer testid needs to be added to the mobile drawer component for complete testid coverage."
 
   - task: "League Creation Form Validation Fix"
     implemented: true
