@@ -29,6 +29,7 @@ from admin_service import AdminService
 from audit_service import AuditService
 from lot_closing_service import LotClosingService
 from competition_service import CompetitionService
+from time_provider import time_provider, now, now_ms, is_test_mode
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
