@@ -4,7 +4,7 @@ Tests comprehensive email validation with various valid/invalid cases
 """
 
 import pytest
-from email_validator import EmailValidator, is_valid_email, validate_email, normalize_email
+from email_utils import EmailValidator, is_valid_email, validate_email, normalize_email
 
 class TestEmailValidator:
     """Test cases for EmailValidator class"""
