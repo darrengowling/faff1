@@ -490,8 +490,9 @@ async def test_login(request: dict, response: Response):
         )
 
 # Test-only endpoints (TEST_MODE only)
-@api_router.get("/test/league/{league_id}/ready")
-async def check_league_ready(league_id: str):
+if TEST_MODE:
+    @api_router.get("/test/league/{league_id}/ready")
+    async def check_league_ready(league_id: str):
     """Test-only endpoint to check if league lobby is ready to render"""
     try:
         # Check if league exists
