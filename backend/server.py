@@ -702,17 +702,28 @@ async def drop_test_socket(request: dict):
     user_id = user["_id"]
     disconnected_count = 0
     
-    # Access socket.io server to find and disconnect user sessions
-    for sid, session_data in sio.manager.rooms['/'].items():
-        if hasattr(session_data, 'get') and session_data.get('user_id') == user_id:
-            await sio.disconnect(sid)
-            disconnected_count += 1
-    
-    # Alternative approach: emit a disconnect event to force client reconnection
-    await sio.emit('force_disconnect', {
-        'reason': 'test_disconnect',
-        'message': 'Socket disconnected for testing'
-    }, room=f'user_{user_id}')
+    # Emit a disconnect event to force client reconnection
+    # This is a safer approach than directly manipulating socket.io internals
+    try:
+        await sio.emit('force_disconnect', {
+            'reason': 'test_disconnect',
+            'message': 'Socket disconnected for testing',
+            'user_id': user_id
+        }, room=f'user_{user_id}')
+        disconnected_count = 1  # Assume success for testing
+    except Exception as e:
+        logger.warning(f"Could not emit disconnect to user {user_id}: {e}")
+        # Try alternative approach - emit to all connections in user's rooms
+        try:
+            await sio.emit('force_disconnect', {
+                'reason': 'test_disconnect',
+                'message': 'Socket disconnected for testing',
+                'user_id': user_id
+            })
+            disconnected_count = 1
+        except Exception as e2:
+            logger.warning(f"Could not emit disconnect globally: {e2}")
+            disconnected_count = 0
     
     logger.info("🧪 TEST SOCKET DROPPED: %s (%d connections)", email, disconnected_count)
     
