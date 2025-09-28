@@ -233,14 +233,15 @@ const LoginPage = () => {
                   />
                 </div>
 
-                {/* Error Message */}
+                {/* Error Message - Block level, always visible when error state exists */}
                 {error && (
                   <div 
                     id="email-error"
-                    className="flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md"
+                    className="flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md block w-full"
                     data-testid={TESTIDS.authError}
                     role="alert"
-                    aria-live="polite"
+                    aria-live="assertive"
+                    style={{ display: 'flex', visibility: 'visible' }}
                   >
                     <AlertCircle className="w-4 h-4 flex-shrink-0" />
                     <span className="text-sm font-medium">{error}</span>
