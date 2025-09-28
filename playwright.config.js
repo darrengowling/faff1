@@ -55,7 +55,7 @@ module.exports = defineConfig({
   ],
 
   /* Global setup and teardown */
-  globalSetup: require.resolve('./tests/e2e/global-setup.js'),
+  globalSetup: require.resolve('./tests/e2e/utils/global-setup.ts'),
   globalTeardown: require.resolve('./tests/e2e/global-teardown.js'),
 
   /* Run your local dev server before starting the tests */
