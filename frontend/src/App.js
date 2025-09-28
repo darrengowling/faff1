@@ -919,6 +919,27 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
             </div>
           </div>
 
+          {/* Success marker for tests */}
+          {justCreatedId && (
+            <div 
+              data-testid="create-success" 
+              className="mb-4 p-3 bg-green-50 border border-green-200 rounded-md text-green-800 text-center"
+            >
+              League created successfully! Redirecting to lobby...
+            </div>
+          )}
+
+          {/* Submit error display */}
+          {submitError && (
+            <div 
+              data-testid="create-submit-error" 
+              role="alert"
+              className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md text-red-800"
+            >
+              {submitError}
+            </div>
+          )}
+
           {/* Action Buttons */}
           <div className="flex space-x-2 pt-4">
             <Button
@@ -933,10 +954,10 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
             <Button 
               type="submit" 
               className="flex-1" 
-              disabled={loading || Object.keys(errors).length > 0} 
+              disabled={submitting || loading || Object.keys(errors).length > 0} 
               data-testid="create-submit"
             >
-              {loading ? 'Creating...' : 'Create League'}
+              {submitting ? 'Creating...' : 'Create League'}
             </Button>
           </div>
         </form>
