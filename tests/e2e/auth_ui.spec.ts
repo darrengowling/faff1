@@ -45,9 +45,13 @@ test.describe('Authentication UI Tests', () => {
     // Initially disabled when empty
     await expect(submitBtn).toBeDisabled();
 
-    // Still disabled for invalid email
+    // Still disabled for invalid email formats
     await emailInput.fill('invalid-email');
     await expect(submitBtn).toBeDisabled();
+    
+    // Should be enabled for valid email
+    await emailInput.fill('user@example.com');
+    await expect(submitBtn).toBeEnabled();
 
     // Still disabled for incomplete email
     await emailInput.fill('test@');
