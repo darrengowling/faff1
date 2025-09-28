@@ -7,6 +7,7 @@
 import { test, expect } from '@playwright/test';
 import { login } from './utils/login';
 import { clickCreateLeague } from './utils/helpers';
+import { ensureClickable } from './utils/ensureClickable';
 
 test.describe('Menu Collapse on Navigation', () => {
   test('should close dropdown on route change and not interfere with form', async ({ page }) => {
