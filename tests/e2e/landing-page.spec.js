@@ -1,4 +1,9 @@
 const { test, expect } = require('@playwright/test');
+const { 
+  checkLandingCTAsClickable, 
+  checkAnchorScrolling,
+  safeClickWithOverlayDetection 
+} = require('./utils/overlay-detector.ts');
 
 /**
  * Landing Page Comprehensive Tests
