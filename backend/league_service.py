@@ -248,7 +248,7 @@ class LeagueService:
             
             existing_member = await db.users.find_one({"email": email})
             if existing_member:
-                existing_membership = await db.memberships.find_one({
+                existing_membership = await db.league_memberships.find_one({
                     "league_id": league_id,
                     "user_id": existing_member["_id"]
                 })
