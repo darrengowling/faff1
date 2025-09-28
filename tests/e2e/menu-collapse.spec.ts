@@ -81,7 +81,8 @@ test.describe('Menu Collapse on Navigation', () => {
       const input = page.getByTestId(field.testid);
       await expect(input).toBeVisible();
       
-      // Click and interact without overlay interference
+      // Use ensureClickable to verify no overlay interference
+      await ensureClickable(input);
       await input.click({ timeout: 3000 });
       await expect(input).toBeFocused({ timeout: 2000 });
       
