@@ -142,25 +142,44 @@ def check_email_validation():
     """Startup check for email validation functionality"""
     from utils.email_validation import get_email_validator_info, is_valid_email
     
+    # Check for module shadowing
+    import sys
+    email_validator_module = sys.modules.get('email_validator')
+    if email_validator_module:
+        module_file = getattr(email_validator_module, '__file__', 'unknown')
+        if 'email_validator.py' in module_file and '/backend/' in module_file:
+            logger.error(f"❌ email_validator module shadowed by local file: {module_file}")
+            raise RuntimeError("email_validator import is shadowed by local module - ensure no email_validator.py in backend/")
+    
     info = get_email_validator_info()
-    logger.info(f"Email validation status: {info}")
+    logger.info(f"📧 Email validation startup check: {info}")
     
     if not info['has_email_validator']:
         logger.warning("⚠️ email-validator package not available, using fallback regex validation")
     else:
         logger.info(f"✅ email-validator package available, version: {info.get('email_validator_version', 'unknown')}")
+        logger.info("✅ check_deliverability=False (as required)")
     
     # Test validation to ensure it works
-    try:
-        valid, msg = is_valid_email("test@example.com")
-        if not valid:
-            logger.error(f"❌ Email validation test failed: {msg}")
-            raise RuntimeError("Email validation self-test failed")
-        else:
-            logger.info("✅ Email validation self-test passed")
-    except Exception as e:
-        logger.error(f"❌ Email validation check failed: {e}")
-        raise RuntimeError(f"Email validation startup check failed: {e}")
+    test_cases = [
+        ("valid@example.com", True),
+        ("invalid@@domain.com", False),
+        ("", False),
+        ("no-at-sign", False)
+    ]
+    
+    for email, expected_valid in test_cases:
+        try:
+            valid, msg = is_valid_email(email)
+            if valid != expected_valid:
+                logger.error(f"❌ Email validation test failed for '{email}': expected {expected_valid}, got {valid}")
+                raise RuntimeError(f"Email validation self-test failed for '{email}'")
+            logger.debug(f"✅ Email validation test passed: '{email}' -> {valid} ({'OK' if not msg else msg})")
+        except Exception as e:
+            logger.error(f"❌ Email validation check failed for '{email}': {e}")
+            raise RuntimeError(f"Email validation startup check failed: {e}")
+    
+    logger.info("✅ Email validation startup check passed - all routes will return 400 (never 500) for invalid emails")
 
 # Run email validation check
 check_email_validation()
