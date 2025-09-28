@@ -105,8 +105,8 @@ def test_atomic_league_creation():
             "budget_per_manager": 100,
             "min_increment": 1,
             "club_slots_per_manager": 5,
-            "anti_snipe_seconds": 3,
-            "bid_timer_seconds": 8,
+            "anti_snipe_seconds": 30,
+            "bid_timer_seconds": 60,
             "league_size": {
                 "min": 2,
                 "max": 4
