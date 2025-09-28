@@ -1310,8 +1310,30 @@ async def get_auction_state(
 # Scoring and Results Routes
 @api_router.post("/ingest/final_result")
 async def ingest_final_result(result_data: ResultIngestCreate):
-    """Ingest final match result for scoring"""
+    """
+    Ingest final match result for scoring (idempotent)
+    Returns 200 with idempotent:true on duplicate submissions
+    """
     try:
+        # Check if result already exists (idempotent check)
+        existing_result = await db.result_ingest.find_one({
+            "league_id": result_data.league_id,
+            "match_id": result_data.match_id
+        })
+        
+        if existing_result:
+            # Return idempotent response for duplicate
+            logger.info(f"🔄 Idempotent result ingest: match {result_data.match_id} in league {result_data.league_id} already exists")
+            return {
+                "success": True,
+                "message": "Result already ingested",
+                "idempotent": True,
+                "created": False,
+                "match_id": result_data.match_id,
+                "league_id": result_data.league_id
+            }
+        
+        # Process new result
         result = await ScoringService.ingest_result(
             league_id=result_data.league_id,
             match_id=result_data.match_id,
@@ -1325,9 +1347,14 @@ async def ingest_final_result(result_data: ResultIngestCreate):
         )
         
         if result["success"]:
+            # Add idempotent field to indicate this was a new ingestion
+            result["idempotent"] = False
             return result
         else:
             raise HTTPException(status_code=400, detail=result["message"])
+            
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Failed to ingest result: {e}")
         raise HTTPException(status_code=500, detail=str(e))
