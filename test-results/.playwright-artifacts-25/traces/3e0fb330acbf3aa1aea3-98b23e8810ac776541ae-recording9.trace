@@ -221,3 +221,234 @@
 {"type":"log","callId":"call@389","time":594612.301,"message":"  done scrolling"}
 {"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
 {"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[11,8]],"viewport":{"width":1920,"height":1080},"timestamp":594616.338,"wallTime":1759024964255,"collectionTime":2.600000023841858,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":594617.71,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":594617.728,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":594617.733,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@389","time":595118.999,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":595127.563,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":595127.582,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@389","time":595128.173,"message":"  done scrolling"}
+{"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[12,8]],"viewport":{"width":1920,"height":1080},"timestamp":595132.392,"wallTime":1759024964771,"collectionTime":2.600000023841858,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":595133.714,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":595133.73,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":595133.735,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@389","time":595635.422,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":595643.946,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":595643.965,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@389","time":595645.119,"message":"  done scrolling"}
+{"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[13,8]],"viewport":{"width":1920,"height":1080},"timestamp":595649.484,"wallTime":1759024965288,"collectionTime":2.600000023841858,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":595651.591,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":595651.608,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":595651.619,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@389","time":596153.167,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":596160.655,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":596160.675,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@389","time":596161.764,"message":"  done scrolling"}
+{"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[14,8]],"viewport":{"width":1920,"height":1080},"timestamp":596165.958,"wallTime":1759024965805,"collectionTime":2.5999999046325684,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":596168.211,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":596168.233,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":596168.261,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@389","time":596669.792,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":596677.385,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":596677.405,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@389","time":596678.524,"message":"  done scrolling"}
+{"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[15,8]],"viewport":{"width":1920,"height":1080},"timestamp":596682.698,"wallTime":1759024966321,"collectionTime":2.600000023841858,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":596684.07,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":596684.087,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":596684.093,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@389","time":597185.337,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":597194.256,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":597194.281,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@389","time":597194.818,"message":"  done scrolling"}
+{"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[16,8]],"viewport":{"width":1920,"height":1080},"timestamp":597199.174,"wallTime":1759024966838,"collectionTime":2.700000047683716,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":597200.509,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":597200.533,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":597200.539,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@389","time":597702.133,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":597710.755,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":597710.774,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@389","time":597711.785,"message":"  done scrolling"}
+{"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[17,8]],"viewport":{"width":1920,"height":1080},"timestamp":597716.238,"wallTime":1759024967355,"collectionTime":2.899999976158142,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":597717.532,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":597717.552,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":597717.558,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@389","time":598218.851,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":598227.437,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":598227.457,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@389","time":598228.563,"message":"  done scrolling"}
+{"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[18,8]],"viewport":{"width":1920,"height":1080},"timestamp":598232.895,"wallTime":1759024967872,"collectionTime":2.8000000715255737,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":598234.087,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":598234.104,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":598234.109,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@389","time":598735.537,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":598743.905,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":598743.924,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@389","time":598745.072,"message":"  done scrolling"}
+{"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[19,8]],"viewport":{"width":1920,"height":1080},"timestamp":598749.556,"wallTime":1759024968388,"collectionTime":2.899999976158142,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":598750.862,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":598750.879,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":598750.884,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@389","time":599252.123,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":599260.739,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":599260.757,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@389","time":599261.371,"message":"  done scrolling"}
+{"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[20,8]],"viewport":{"width":1920,"height":1080},"timestamp":599265.94,"wallTime":1759024968905,"collectionTime":2.899999976158142,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":599267.275,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":599267.297,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":599267.303,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@389","time":599768.688,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":599777.325,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":599777.354,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@389","time":599778.385,"message":"  done scrolling"}
+{"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[21,8]],"viewport":{"width":1920,"height":1080},"timestamp":599784.026,"wallTime":1759024969423,"collectionTime":2.799999952316284,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":599785.347,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":599785.364,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":599785.369,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@389","time":600286.668,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":600293.886,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@389","time":600293.904,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@389","time":600294.998,"message":"  done scrolling"}
+{"type":"input","callId":"call@389","point":{"x":783,"y":32},"inputSnapshot":"input@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"input@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[22,8]],"viewport":{"width":1920,"height":1080},"timestamp":600299.777,"wallTime":1759024969938,"collectionTime":2.899999976158142,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@389","time":600301.1,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@389","time":600301.125,"message":"retrying click action"}
+{"type":"log","callId":"call@389","time":600301.131,"message":"  waiting 500ms"}
+{"type":"after","callId":"call@389","endTime":600636.4,"error":{"message":"Timeout 10000ms exceeded.","stack":"TimeoutError: Timeout 10000ms exceeded.\n    at ProgressController.run (/app/node_modules/playwright-core/lib/server/progress.js:68:28)\n    at FrameDispatcher._runCommand (/app/node_modules/playwright-core/lib/server/dispatchers/dispatcher.js:95:31)\n    at DispatcherConnection.dispatch (/app/node_modules/playwright-core/lib/server/dispatchers/dispatcher.js:329:39)","name":"TimeoutError"},"point":{"x":783,"y":32},"afterSnapshot":"after@call@389"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@389","snapshotName":"after@call@389","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[23,8]],"viewport":{"width":1920,"height":1080},"timestamp":600640.732,"wallTime":1759024970279,"collectionTime":3.100000023841858,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"before","callId":"call@391","startTime":600648.494,"class":"Frame","method":"evaluateExpression","params":{"expression":"() => window.pageYOffset","isFunction":true,"arg":{"value":{"v":"undefined"},"handles":[]}},"stepId":"pw:api@39","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","beforeSnapshot":"before@call@391"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@391","snapshotName":"before@call@391","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[24,8]],"viewport":{"width":1920,"height":1080},"timestamp":600652.396,"wallTime":1759024970291,"collectionTime":2.9000000953674316,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"after","callId":"call@391","endTime":600653.479,"result":{"value":{"n":0}},"afterSnapshot":"after@call@391"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@391","snapshotName":"after@call@391","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[25,8]],"viewport":{"width":1920,"height":1080},"timestamp":600656.977,"wallTime":1759024970296,"collectionTime":2.6999999284744263,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"before","callId":"call@393","startTime":600658.985,"class":"Frame","method":"isVisible","params":{"selector":"a[href=\"#why\"], button:has-text(\"Why FoP\") >> nth=0","strict":true},"stepId":"pw:api@40","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","beforeSnapshot":"before@call@393"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@393","snapshotName":"before@call@393","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[26,8]],"viewport":{"width":1920,"height":1080},"timestamp":600662.66,"wallTime":1759024970301,"collectionTime":2.700000047683716,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@393","time":600663.208,"message":"  checking visibility of locator('a[href=\"#why\"], button:has-text(\"Why FoP\")').first()"}
+{"type":"after","callId":"call@393","endTime":600666.132,"result":{"value":true},"afterSnapshot":"after@call@393"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@393","snapshotName":"after@call@393","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[27,8]],"viewport":{"width":1920,"height":1080},"timestamp":600669.903,"wallTime":1759024970308,"collectionTime":2.600000023841858,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"before","callId":"call@395","startTime":600671.965,"class":"Frame","method":"click","params":{"selector":"a[href=\"#why\"], button:has-text(\"Why FoP\") >> nth=0","strict":true,"timeout":10000},"stepId":"pw:api@41","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","beforeSnapshot":"before@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"before@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[28,8]],"viewport":{"width":1920,"height":1080},"timestamp":600675.55,"wallTime":1759024970314,"collectionTime":2.6999999284744263,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":600675.981,"message":"waiting for locator('a[href=\"#why\"], button:has-text(\"Why FoP\")').first()"}
+{"type":"log","callId":"call@395","time":600679.787,"message":"  locator resolved to <button role=\"tab\" tabindex=\"0\" data-section=\"why\" aria-controls=\"why\" aria-selected=\"false\" data-testid=\"tab-why\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button>"}
+{"type":"log","callId":"call@395","time":600681.078,"message":"attempting click action"}
+{"type":"log","callId":"call@395","time":600681.12,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":600694.099,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":600694.113,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":600694.936,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":["HTML",{"lang":"en","style":"--color-primary: #2563eb; --color-primary-light: #3b82f6; --color-primary-dark: #1d4ed8; --color-primary-contrast: #ffffff; --color-surface-primary: #ffffff; --color-surface-secondary: #fafafa; --color-surface-tertiary: #f5f5f5; --color-surface-border: #e5e5e5; --color-surface-overlay: rgba(0, 0, 0, 0.1); --color-text-primary: #171717; --color-text-secondary: #525252; --color-text-tertiary: #737373; --color-text-inverse: #ffffff; --color-text-disabled: #a3a3a3; --color-success: #16a34a; --color-success-light: #dcfce7; --color-success-dark: #15803d; --color-success-contrast: #ffffff; --color-warning: #d97706; --color-warning-light: #fef3c7; --color-warning-dark: #b45309; --color-warning-contrast: #ffffff; --color-error: #dc2626; --color-error-light: #fee2e2; --color-error-dark: #b91c1c; --color-error-contrast: #ffffff;"},[[54,85]],[[54,86]],["BODY",{"class":"theme-light"},[[54,87]],[[54,88]],["DIV",{"id":"root"},["DIV",{"class":"App"},[[54,89]],[[37,9]],["NAV",{"class":"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0","role":"navigation","aria-label":"Page sections navigation"},["DIV",{"class":"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"},["DIV",{"class":"flex items-center justify-center"},["DIV",{"class":"hidden md:flex items-center space-x-1 py-3"},[[37,10]],[[29,0]],["BUTTON",{"__playwright_target__":"call@395","data-section":"why","class":"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50","tabindex":"0","role":"tab","aria-selected":"false","aria-controls":"why","data-testid":"tab-why"},[[54,137]]],[[54,144]],[[54,150]],[[54,156]]],[[37,16]]]],[[37,19]],[[37,21]]],[[54,653]]]],[[54,656]],[[54,657]],[[54,667]],[[54,668]],[[54,669]]]],"viewport":{"width":1920,"height":1080},"timestamp":600699.331,"wallTime":1759024970338,"collectionTime":2.600000023841858,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":600700.767,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":600700.785,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":600700.815,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":600727.436,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":600727.457,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":600728.546,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[1,8]],"viewport":{"width":1920,"height":1080},"timestamp":600734.928,"wallTime":1759024970373,"collectionTime":2.700000047683716,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":600736.695,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":600736.719,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":600736.725,"message":"  waiting 20ms"}
+{"type":"log","callId":"call@395","time":600771.181,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":600777.278,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":600777.299,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":600778.305,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[2,8]],"viewport":{"width":1920,"height":1080},"timestamp":600782.412,"wallTime":1759024970421,"collectionTime":2.5999999046325684,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":600783.672,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":600783.689,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":600783.694,"message":"  waiting 100ms"}
+{"type":"log","callId":"call@395","time":600884.829,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":600893.969,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":600893.988,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":600894.956,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[3,8]],"viewport":{"width":1920,"height":1080},"timestamp":600899.162,"wallTime":1759024970538,"collectionTime":2.799999952316284,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":600900.458,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":600900.474,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":600900.479,"message":"  waiting 100ms"}
+{"type":"log","callId":"call@395","time":601002.123,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":601010.617,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":601010.646,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":601011.178,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[4,8]],"viewport":{"width":1920,"height":1080},"timestamp":601015.262,"wallTime":1759024970654,"collectionTime":2.600000023841858,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":601016.57,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":601016.587,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":601016.592,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@395","time":601517.828,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":601527.131,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":601527.15,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":601528.162,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[5,8]],"viewport":{"width":1920,"height":1080},"timestamp":601532.453,"wallTime":1759024971171,"collectionTime":2.5999999046325684,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":601533.86,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":601533.876,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":601533.885,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@395","time":602035.172,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":602043.768,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":602043.789,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":602044.783,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[6,8]],"viewport":{"width":1920,"height":1080},"timestamp":602048.916,"wallTime":1759024971688,"collectionTime":2.5,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":602050.225,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":602050.26,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":602050.267,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@395","time":602551.571,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":602560.474,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":602560.496,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":602561.586,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[7,8]],"viewport":{"width":1920,"height":1080},"timestamp":602565.935,"wallTime":1759024972205,"collectionTime":2.600000023841858,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":602567.417,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":602567.435,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":602567.44,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@395","time":603068.866,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":603077.427,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":603077.446,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":603078.031,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[8,8]],"viewport":{"width":1920,"height":1080},"timestamp":603082.273,"wallTime":1759024972721,"collectionTime":2.5,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":603083.657,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":603083.68,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":603083.686,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@395","time":603585.087,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":603593.854,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":603593.875,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":603594.992,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[9,8]],"viewport":{"width":1920,"height":1080},"timestamp":603599.026,"wallTime":1759024973238,"collectionTime":2.600000023841858,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":603600.352,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":603600.377,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":603600.383,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@395","time":604101.791,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":604110.432,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":604110.453,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":604111.482,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[10,8]],"viewport":{"width":1920,"height":1080},"timestamp":604115.471,"wallTime":1759024973754,"collectionTime":2.5,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":604116.768,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":604116.793,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":604116.798,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@395","time":604618.273,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":604627.024,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":604627.044,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":604629.234,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[11,8]],"viewport":{"width":1920,"height":1080},"timestamp":604633.377,"wallTime":1759024974272,"collectionTime":2.600000023841858,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@395","time":604634.572,"message":"  <div class=\"flex items-center justify-between h-16\">…</div> from <header class=\"sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50\">…</header> subtree intercepts pointer events"}
+{"type":"log","callId":"call@395","time":604634.589,"message":"retrying click action"}
+{"type":"log","callId":"call@395","time":604634.594,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@395","time":605135.853,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":605143.738,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@395","time":605143.754,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@395","time":605144.313,"message":"  done scrolling"}
+{"type":"input","callId":"call@395","point":{"x":920.5,"y":32},"inputSnapshot":"input@call@395"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@395","snapshotName":"input@call@395","pageId":"page@c10429b6f7a0692f9165cdcd3e5d921b","frameId":"frame@a5ac0a7f6a6083c638369bacfd848184","frameUrl":"https://pifa-auction.preview.emergentagent.com/#home","doctype":"html","html":[[12,8]],"viewport":{"width":1920,"height":1080},"timestamp":605148.232,"wallTime":1759024974787,"collectionTime":2.5,"resourceOverrides":[],"isMainFrame":true}}
