@@ -58,7 +58,7 @@ class EmailValidationTester:
         """Check backend logs for email validation startup messages"""
         try:
             result = subprocess.run(
-                ["tail", "-n", "50", "/var/log/supervisor/backend.out.log"],
+                ["grep", "-i", "email.validation\\|email-validator", "/var/log/supervisor/backend.err.log"],
                 capture_output=True,
                 text=True,
                 timeout=10
@@ -68,7 +68,7 @@ class EmailValidationTester:
             
             # Check for email validation startup messages
             has_email_validator_check = "Email validation status:" in logs
-            has_version_info = "email-validator" in logs and "version" in logs
+            has_version_info = "version: 2.1.1" in logs or "version 2.1.1" in logs
             has_self_test = "Email validation self-test passed" in logs
             
             return self.log_test(
