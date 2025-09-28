@@ -419,7 +419,7 @@ class LeagueService:
                 {"$sort": {"joined_at": 1}}  # Commissioner first
             ]
             
-            members = await db.memberships.aggregate(pipeline).to_list(length=None)
+            members = await db.league_memberships.aggregate(pipeline).to_list(length=None)
             
             return [
                 LeagueMemberResponse(
