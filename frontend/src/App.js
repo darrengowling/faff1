@@ -599,6 +599,9 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
         // Set success marker for tests BEFORE closing dialog
         setJustCreatedId(response.data.leagueId);
         
+        // Store in sessionStorage to persist across navigation
+        sessionStorage.setItem('leagueCreateSuccess', response.data.leagueId);
+        
         // Close the dialog first
         onOpenChange(false); // This should set data-state="closed"
         
