@@ -750,7 +750,17 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
           </div>
           <DialogTitle>{t('leagueCreation.createNewLeague')}</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6" aria-busy={submitting}>
+          {/* Loading indicator for tests */}
+          {submitting && (
+            <div 
+              data-testid="create-loading" 
+              aria-hidden="true"
+              className="sr-only"
+            >
+              Creating league...
+            </div>
+          )}
           {/* Basic Info */}
           <div className="space-y-4">
             <div className="space-y-2">
