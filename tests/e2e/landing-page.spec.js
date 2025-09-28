@@ -4,6 +4,7 @@ const {
   checkAnchorScrolling,
   safeClickWithOverlayDetection 
 } = require('./utils/overlay-detector.ts');
+const { ensureClickable } = require('./utils/ensureClickable.ts');
 
 /**
  * Landing Page Comprehensive Tests
