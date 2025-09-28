@@ -8,7 +8,7 @@
  */
 
 import { test, expect } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids.js';
+import { TESTIDS } from '../../frontend/src/testids.ts';
 
 test.describe('Header Contract Tests', () => {
   const routes = [
