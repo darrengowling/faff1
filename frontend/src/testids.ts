@@ -11,12 +11,22 @@ export const TESTIDS = {
   navCreateLeagueBtn: 'nav-create-league-btn', // header "+ New League" button
   joinViaInviteBtn: 'join-via-invite-btn',
 
-  // Create League Wizard
+  // Create League Wizard  
   createLeagueWizardName: 'create-name',
-  createLeagueWizardSlots: 'create-slots',
+  createLeagueWizardSlots: 'create-slots', 
   createLeagueWizardBudget: 'create-budget',
   createLeagueWizardMin: 'create-min',
   createLeagueWizardSubmit: 'create-submit',
+  
+  // League creation (Dialog)
+  createDialog: 'create-league-dialog',
+  createNameInput: 'create-name',
+  createSlotsInput: 'create-slots',
+  createBudgetInput: 'create-budget',
+  createMinInput: 'create-min',
+  createMaxInput: 'create-max',
+  createSubmit: 'create-submit',
+  createCancel: 'create-cancel',
   
   // Create League Error States
   createErrorName: 'create-error-name',
