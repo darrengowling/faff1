@@ -47,159 +47,205 @@
           - generic [ref=e54]: commish
         - main [ref=e55]:
           - generic [ref=e56]:
-            - generic [ref=e59]:
-              - generic [ref=e60]: Quick Navigation
-              - button "Navigate to available sections" [ref=e62] [cursor=pointer]:
-                - generic [ref=e63] [cursor=pointer]:
+            - generic [ref=e58]:
+              - generic [ref=e59]:
+                - generic [ref=e60]: Active League
+                - generic [ref=e61]:
+                  - button "Switch league" [ref=e62] [cursor=pointer]:
+                    - generic [ref=e63] [cursor=pointer]:
+                      - generic [ref=e64] [cursor=pointer]:
+                        - img
+                      - generic [ref=e65] [cursor=pointer]:
+                        - generic [ref=e66] [cursor=pointer]: Core Smoke League
+                        - generic [ref=e67] [cursor=pointer]:
+                          - generic [ref=e68] [cursor=pointer]: 1 members
+                          - generic [ref=e69] [cursor=pointer]:
+                            - img
+                            - text: Commissioner
+                    - img
+                  - generic [ref=e70]: "Currently selected: Core Smoke League (Commissioner)"
+              - generic [ref=e71]:
+                - generic [ref=e72]: Quick Navigation
+                - button "Navigate to available sections" [ref=e74] [cursor=pointer]:
+                  - generic [ref=e75] [cursor=pointer]:
+                    - img
+                    - generic [ref=e76] [cursor=pointer]: Go to...
                   - img
-                  - generic [ref=e64] [cursor=pointer]: Go to...
-                - img
-            - generic [ref=e66]:
-              - heading "Quick Actions" [level=2] [ref=e67]
-              - generic [ref=e68]:
-                - generic [ref=e71] [cursor=pointer]:
-                  - img [ref=e73] [cursor=pointer]
-                  - generic [ref=e74] [cursor=pointer]:
-                    - heading "Create a League" [level=3] [ref=e75] [cursor=pointer]
-                    - paragraph [ref=e76] [cursor=pointer]: Start a new football auction with friends
-                  - button "Create Now" [ref=e77] [cursor=pointer]:
-                    - generic [ref=e78] [cursor=pointer]:
-                      - generic [ref=e79] [cursor=pointer]: Create Now
+            - generic [ref=e78]:
+              - heading "Quick Actions" [level=2] [ref=e79]
+              - generic [ref=e80]:
+                - generic [ref=e83] [cursor=pointer]:
+                  - img [ref=e85] [cursor=pointer]
+                  - generic [ref=e86] [cursor=pointer]:
+                    - heading "Create a League" [level=3] [ref=e87] [cursor=pointer]
+                    - paragraph [ref=e88] [cursor=pointer]: Start a new football auction with friends
+                  - button "Create Now" [ref=e89] [cursor=pointer]:
+                    - generic [ref=e90] [cursor=pointer]:
+                      - generic [ref=e91] [cursor=pointer]: Create Now
                       - img
-                - generic [ref=e82] [cursor=pointer]:
-                  - img [ref=e84] [cursor=pointer]
-                  - generic [ref=e87] [cursor=pointer]:
-                    - heading "Join via Invite" [level=3] [ref=e88] [cursor=pointer]
-                    - paragraph [ref=e89] [cursor=pointer]: Enter with an invitation code or link
-                  - button "Join League" [ref=e90] [cursor=pointer]:
-                    - generic [ref=e91] [cursor=pointer]:
-                      - generic [ref=e92] [cursor=pointer]: Join League
+                - generic [ref=e94] [cursor=pointer]:
+                  - img [ref=e96] [cursor=pointer]
+                  - generic [ref=e99] [cursor=pointer]:
+                    - heading "Join via Invite" [level=3] [ref=e100] [cursor=pointer]
+                    - paragraph [ref=e101] [cursor=pointer]: Enter with an invitation code or link
+                  - button "Join League" [ref=e102] [cursor=pointer]:
+                    - generic [ref=e103] [cursor=pointer]:
+                      - generic [ref=e104] [cursor=pointer]: Join League
                       - img
-            - generic [ref=e93]:
-              - generic [ref=e94]:
-                - heading "Current League" [level=2] [ref=e95]
-                - button "Manage League" [ref=e96] [cursor=pointer]:
+            - generic [ref=e105]:
+              - generic [ref=e106]:
+                - heading "Current League" [level=2] [ref=e107]
+                - button "Manage League" [ref=e108] [cursor=pointer]:
                   - img
                   - text: Manage League
-              - generic [ref=e97]:
-                - generic [ref=e99]:
-                  - generic [ref=e100]:
-                    - heading "Core Smoke League" [level=3] [ref=e101]
-                    - paragraph [ref=e102]:
-                      - img [ref=e103]
+              - generic [ref=e109]:
+                - generic [ref=e111]:
+                  - generic [ref=e112]:
+                    - heading "Core Smoke League" [level=3] [ref=e113]
+                    - paragraph [ref=e114]:
+                      - img [ref=e115]
                       - text: 2025-26
-                  - generic [ref=e105]:
-                    - generic [ref=e106]:
-                      - img [ref=e107]
+                  - generic [ref=e117]:
+                    - generic [ref=e118]:
+                      - img [ref=e119]
                       - text: Commissioner
-                    - generic [ref=e109]: setup
-                - generic [ref=e110]:
-                  - generic [ref=e111]:
-                    - generic [ref=e112]:
-                      - generic [ref=e113]:
-                        - img [ref=e114]
+                    - generic [ref=e121]: setup
+                - generic [ref=e122]:
+                  - generic [ref=e123]:
+                    - generic [ref=e124]:
+                      - generic [ref=e125]:
+                        - img [ref=e126]
                         - text: Members
-                      - generic [ref=e119]: "1"
-                    - generic [ref=e120]:
-                      - generic [ref=e121]:
-                        - img [ref=e122]
+                      - generic [ref=e131]: "1"
+                    - generic [ref=e132]:
+                      - generic [ref=e133]:
+                        - img [ref=e134]
                         - text: Budget
-                      - generic [ref=e124]: 100 credits
-                    - generic [ref=e125]:
-                      - generic [ref=e126]:
-                        - img [ref=e127]
+                      - generic [ref=e136]: 100 credits
+                    - generic [ref=e137]:
+                      - generic [ref=e138]:
+                        - img [ref=e139]
                         - text: Club Slots
-                      - generic [ref=e131]: "3"
-                  - button "Manage League" [ref=e133] [cursor=pointer]:
+                      - generic [ref=e143]: "3"
+                  - button "Manage League" [ref=e145] [cursor=pointer]:
                     - img
                     - text: Manage League
-            - generic [ref=e134]:
-              - generic [ref=e135]:
-                - heading "All Leagues (1)" [level=2] [ref=e137]
-                - button "Create a new league" [ref=e138] [cursor=pointer]:
+            - generic [ref=e146]:
+              - generic [ref=e147]:
+                - heading "All Leagues (2)" [level=2] [ref=e149]
+                - button "Create a new league" [ref=e150] [cursor=pointer]:
                   - img
                   - text: Create League
-              - generic [ref=e140] [cursor=pointer]:
-                - generic [ref=e142] [cursor=pointer]:
-                  - generic [ref=e143] [cursor=pointer]:
-                    - heading "Core Smoke League" [level=3] [ref=e144] [cursor=pointer]
-                    - paragraph [ref=e145] [cursor=pointer]:
-                      - img [ref=e146] [cursor=pointer]
-                      - text: 2025-26
-                  - generic [ref=e148] [cursor=pointer]:
-                    - generic [ref=e149] [cursor=pointer]:
-                      - img [ref=e150] [cursor=pointer]
-                      - text: Commissioner
-                    - generic [ref=e152] [cursor=pointer]: setup
-                - generic [ref=e154] [cursor=pointer]:
-                  - generic [ref=e155] [cursor=pointer]:
-                    - generic [ref=e156] [cursor=pointer]:
-                      - img [ref=e157] [cursor=pointer]
-                      - text: Members
-                    - generic [ref=e162] [cursor=pointer]: "1"
-                  - generic [ref=e163] [cursor=pointer]:
-                    - generic [ref=e164] [cursor=pointer]:
-                      - img [ref=e165] [cursor=pointer]
-                      - text: Budget
-                    - generic [ref=e167] [cursor=pointer]: 100 credits
-                  - generic [ref=e168] [cursor=pointer]:
-                    - generic [ref=e169] [cursor=pointer]:
-                      - img [ref=e170] [cursor=pointer]
-                      - text: Club Slots
-                    - generic [ref=e174] [cursor=pointer]: "3"
-        - generic [ref=e175]:
-          - generic [ref=e177]:
-            - generic [ref=e178]:
-              - generic [ref=e179]:
-                - img [ref=e181]
-                - generic [ref=e186]:
-                  - generic [ref=e187]: Friends of PIFA
-                  - generic [ref=e188]: Sports gaming with friends. No gambling. All strategy.
-              - paragraph [ref=e189]: Join the social sports arena where skill beats luck.
-              - generic [ref=e190]:
-                - img [ref=e191]
-                - generic [ref=e193]: We stand for integrity, fairness, and the joy of the game
-            - generic [ref=e194]:
-              - heading "Fair Play Commitment" [level=3] [ref=e195]
-              - generic [ref=e196]:
-                - generic [ref=e198]:
-                  - img [ref=e199]
-                  - generic [ref=e205]:
-                    - paragraph [ref=e206]: No gambling. No wagering. Pure sports strategy.
-                    - paragraph [ref=e207]: This platform does not involve any form of gambling, betting, or wagering.
-                - generic [ref=e208]:
-                  - img [ref=e209]
-                  - generic [ref=e214]: Designed for entertainment and friendly competition only.
-                - generic [ref=e215]: Must be 13+ to use this service.
-            - generic [ref=e216]:
-              - heading "Legal & Support" [level=3] [ref=e217]
-              - generic [ref=e219]:
-                - button "Navigate to Terms of Service" [ref=e220] [cursor=pointer]:
-                  - generic [ref=e222] [cursor=pointer]:
-                    - generic [ref=e223] [cursor=pointer]: Terms of Service
-                    - img [ref=e224] [cursor=pointer]
-                - button "Navigate to Privacy Policy" [ref=e228] [cursor=pointer]:
-                  - generic [ref=e230] [cursor=pointer]:
-                    - generic [ref=e231] [cursor=pointer]: Privacy Policy
-                    - img [ref=e232] [cursor=pointer]
-                - button "Navigate to Contact Us" [ref=e236] [cursor=pointer]:
-                  - generic [ref=e238] [cursor=pointer]:
-                    - generic [ref=e239] [cursor=pointer]: Contact Us
-                    - img [ref=e240] [cursor=pointer]
-                - button "Navigate to About Us" [ref=e244] [cursor=pointer]:
-                  - generic [ref=e246] [cursor=pointer]:
-                    - generic [ref=e247] [cursor=pointer]: About Us
-                    - img [ref=e248] [cursor=pointer]
-          - generic [ref=e254]:
-            - generic [ref=e256]: © 2025 Friends of PIFA. All rights reserved.
-            - generic [ref=e257]:
-              - generic [ref=e258]: 100% Free to Play
-              - generic [ref=e259]: No Real Money
-        - button "Back to top" [ref=e260] [cursor=pointer]:
-          - img [ref=e261] [cursor=pointer]
-  - link "Emergent platform logo Made with Emergent" [ref=e263] [cursor=pointer]:
+              - generic [ref=e151]:
+                - generic [ref=e152] [cursor=pointer]:
+                  - generic [ref=e154] [cursor=pointer]:
+                    - generic [ref=e155] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e156] [cursor=pointer]
+                      - paragraph [ref=e157] [cursor=pointer]:
+                        - img [ref=e158] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e160] [cursor=pointer]:
+                      - generic [ref=e161] [cursor=pointer]:
+                        - img [ref=e162] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e164] [cursor=pointer]: setup
+                  - generic [ref=e166] [cursor=pointer]:
+                    - generic [ref=e167] [cursor=pointer]:
+                      - generic [ref=e168] [cursor=pointer]:
+                        - img [ref=e169] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e174] [cursor=pointer]: "1"
+                    - generic [ref=e175] [cursor=pointer]:
+                      - generic [ref=e176] [cursor=pointer]:
+                        - img [ref=e177] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e179] [cursor=pointer]: 100 credits
+                    - generic [ref=e180] [cursor=pointer]:
+                      - generic [ref=e181] [cursor=pointer]:
+                        - img [ref=e182] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e186] [cursor=pointer]: "3"
+                - generic [ref=e187] [cursor=pointer]:
+                  - generic [ref=e189] [cursor=pointer]:
+                    - generic [ref=e190] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e191] [cursor=pointer]
+                      - paragraph [ref=e192] [cursor=pointer]:
+                        - img [ref=e193] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e195] [cursor=pointer]:
+                      - generic [ref=e196] [cursor=pointer]:
+                        - img [ref=e197] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e199] [cursor=pointer]: setup
+                  - generic [ref=e201] [cursor=pointer]:
+                    - generic [ref=e202] [cursor=pointer]:
+                      - generic [ref=e203] [cursor=pointer]:
+                        - img [ref=e204] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e209] [cursor=pointer]: "1"
+                    - generic [ref=e210] [cursor=pointer]:
+                      - generic [ref=e211] [cursor=pointer]:
+                        - img [ref=e212] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e214] [cursor=pointer]: 100 credits
+                    - generic [ref=e215] [cursor=pointer]:
+                      - generic [ref=e216] [cursor=pointer]:
+                        - img [ref=e217] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e221] [cursor=pointer]: "3"
+        - generic [ref=e222]:
+          - generic [ref=e224]:
+            - generic [ref=e225]:
+              - generic [ref=e226]:
+                - img [ref=e228]
+                - generic [ref=e233]:
+                  - generic [ref=e234]: Friends of PIFA
+                  - generic [ref=e235]: Sports gaming with friends. No gambling. All strategy.
+              - paragraph [ref=e236]: Join the social sports arena where skill beats luck.
+              - generic [ref=e237]:
+                - img [ref=e238]
+                - generic [ref=e240]: We stand for integrity, fairness, and the joy of the game
+            - generic [ref=e241]:
+              - heading "Fair Play Commitment" [level=3] [ref=e242]
+              - generic [ref=e243]:
+                - generic [ref=e245]:
+                  - img [ref=e246]
+                  - generic [ref=e252]:
+                    - paragraph [ref=e253]: No gambling. No wagering. Pure sports strategy.
+                    - paragraph [ref=e254]: This platform does not involve any form of gambling, betting, or wagering.
+                - generic [ref=e255]:
+                  - img [ref=e256]
+                  - generic [ref=e261]: Designed for entertainment and friendly competition only.
+                - generic [ref=e262]: Must be 13+ to use this service.
+            - generic [ref=e263]:
+              - heading "Legal & Support" [level=3] [ref=e264]
+              - generic [ref=e266]:
+                - button "Navigate to Terms of Service" [ref=e267] [cursor=pointer]:
+                  - generic [ref=e269] [cursor=pointer]:
+                    - generic [ref=e270] [cursor=pointer]: Terms of Service
+                    - img [ref=e271] [cursor=pointer]
+                - button "Navigate to Privacy Policy" [ref=e275] [cursor=pointer]:
+                  - generic [ref=e277] [cursor=pointer]:
+                    - generic [ref=e278] [cursor=pointer]: Privacy Policy
+                    - img [ref=e279] [cursor=pointer]
+                - button "Navigate to Contact Us" [ref=e283] [cursor=pointer]:
+                  - generic [ref=e285] [cursor=pointer]:
+                    - generic [ref=e286] [cursor=pointer]: Contact Us
+                    - img [ref=e287] [cursor=pointer]
+                - button "Navigate to About Us" [ref=e291] [cursor=pointer]:
+                  - generic [ref=e293] [cursor=pointer]:
+                    - generic [ref=e294] [cursor=pointer]: About Us
+                    - img [ref=e295] [cursor=pointer]
+          - generic [ref=e301]:
+            - generic [ref=e303]: © 2025 Friends of PIFA. All rights reserved.
+            - generic [ref=e304]:
+              - generic [ref=e305]: 100% Free to Play
+              - generic [ref=e306]: No Real Money
+        - button "Back to top" [ref=e307] [cursor=pointer]:
+          - img [ref=e308] [cursor=pointer]
+  - link "Emergent platform logo Made with Emergent" [ref=e310] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e264] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e265] [cursor=pointer]
-      - paragraph [ref=e266] [cursor=pointer]: Made with Emergent
+    - generic [ref=e311] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e312] [cursor=pointer]
+      - paragraph [ref=e313] [cursor=pointer]: Made with Emergent
 ```
