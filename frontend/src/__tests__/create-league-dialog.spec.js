@@ -158,14 +158,8 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
   );
 };
 
-// Test wrapper
-const TestWrapper = ({ children }) => (
-  <BrowserRouter>
-    <ThemeProvider>
-      {children}
-    </ThemeProvider>
-  </BrowserRouter>
-);
+// Test wrapper (simplified)
+const TestWrapper = ({ children }) => <div>{children}</div>;
 
 describe('Create League Dialog TestIDs', () => {
   const mockProps = {
