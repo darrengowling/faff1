@@ -33,10 +33,9 @@ const LoginPage = () => {
     return getSearchParam('playwright') === 'true';
   }, []);
 
-  // Email validation
+  // Email validation using shared utility
   const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    return EmailValidator.isValidEmail(email);
   };
 
   // Check if submit button should be enabled
