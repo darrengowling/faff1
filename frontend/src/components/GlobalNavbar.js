@@ -208,6 +208,14 @@ const GlobalNavbar = () => {
     
     // Ensure any persistent overlays are removed
     document.body.style.overflow = 'unset';
+    
+    // Remove any full-screen elements with pointer-events that might persist
+    const persistentOverlays = document.querySelectorAll('.drawer-backdrop, [data-persistent-overlay]');
+    persistentOverlays.forEach(overlay => {
+      if (overlay.style.pointerEvents === 'auto' || overlay.classList.contains('drawer-backdrop')) {
+        overlay.remove();
+      }
+    });
   }, [location.pathname]);
 
   return (
