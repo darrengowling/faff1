@@ -34,7 +34,7 @@ test.describe('Access and Gates Tests', () => {
     // Create league with min 3 managers
     await login(commissionerPage, 'commissioner@example.com');
     const leagueId = await createLeague(commissionerPage, {
-      name: 'Gate Test League',
+      name: `Gate Test League ${Date.now()}`,
       clubSlots: 3,
       budgetPerManager: 100,
       minManagers: 3,
