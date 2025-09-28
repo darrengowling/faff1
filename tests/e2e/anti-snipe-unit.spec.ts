@@ -14,7 +14,7 @@ test.describe('Anti-Snipe Logic Unit Tests', () => {
     await initializeTestTime(page);
     
     // Test that time endpoints respond correctly
-    const response = await page.request.post('https://pifa-auction.preview.emergentagent.com/api/test/time/advance', {
+    const response = await page.request.post('https://auction-league.preview.emergentagent.com/api/test/time/advance', {
       data: { ms: 1000 }
     });
     
@@ -33,7 +33,7 @@ test.describe('Anti-Snipe Logic Unit Tests', () => {
     
     // Set baseline
     const startTime = new Date('2025-01-01T10:00:00.000Z').getTime();
-    await page.request.post('https://pifa-auction.preview.emergentagent.com/api/test/time/set', {
+    await page.request.post('https://auction-league.preview.emergentagent.com/api/test/time/set', {
       data: { nowMs: startTime }
     });
     
@@ -45,7 +45,7 @@ test.describe('Anti-Snipe Logic Unit Tests', () => {
     ];
     
     for (const interval of intervals) {
-      const response = await page.request.post('https://pifa-auction.preview.emergentagent.com/api/test/time/advance', {
+      const response = await page.request.post('https://auction-league.preview.emergentagent.com/api/test/time/advance', {
         data: { ms: interval.advance }
       });
       
@@ -62,7 +62,7 @@ test.describe('Anti-Snipe Logic Unit Tests', () => {
     console.log('🧪 Testing deterministic socket reconnect behavior...');
     
     // Navigate to a page that uses sockets (diagnostic page)
-    await page.goto('https://pifa-auction.preview.emergentagent.com/diagnostics');
+    await page.goto('https://auction-league.preview.emergentagent.com/diagnostics');
     
     // Check that TEST_MODE environment affects reconnect behavior
     const reconnectLogic = await page.evaluate(() => {
@@ -110,7 +110,7 @@ test.describe('Anti-Snipe Logic Unit Tests', () => {
     console.log('🧪 Testing anti-snipe configuration...');
     
     // Check that backend is using correct environment values
-    const healthResponse = await page.request.get('https://pifa-auction.preview.emergentagent.com/api/health');
+    const healthResponse = await page.request.get('https://auction-league.preview.emergentagent.com/api/health');
     expect(healthResponse.ok()).toBeTruthy();
     
     // The anti-snipe logic should use ANTI_SNIPE_SECONDS=3 from environment
@@ -120,14 +120,14 @@ test.describe('Anti-Snipe Logic Unit Tests', () => {
     // Simulate conditions that would trigger anti-snipe
     // In a real auction, a bid within 3 seconds would extend by threshold * 2 = 6 seconds
     const baseTime = new Date('2025-01-01T12:00:00.000Z').getTime();
-    await page.request.post('https://pifa-auction.preview.emergentagent.com/api/test/time/set', {
+    await page.request.post('https://auction-league.preview.emergentagent.com/api/test/time/set', {
       data: { nowMs: baseTime }
     });
     
     // Advance to simulation of 2.5 seconds remaining (within 3-second threshold)
     await advanceTimeSeconds(page, 5.5); // If timer was 8 seconds, now 2.5 remain
     
-    const currentTime = await page.request.post('https://pifa-auction.preview.emergentagent.com/api/test/time/advance', {
+    const currentTime = await page.request.post('https://auction-league.preview.emergentagent.com/api/test/time/advance', {
       data: { ms: 0 }
     });
     

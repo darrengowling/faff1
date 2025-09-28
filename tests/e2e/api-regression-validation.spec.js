@@ -6,7 +6,7 @@
 const { test, expect } = require('@playwright/test');
 
 test.describe('API Regression Validation', () => {
-  const baseUrl = 'https://pifa-auction.preview.emergentagent.com';
+  const baseUrl = 'https://auction-league.preview.emergentagent.com';
   
   test('UCL Competition Profile - Min=2, Slots=5 Validation', async ({ request }) => {
     // Test competition profiles endpoint

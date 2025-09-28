@@ -6,7 +6,7 @@
 import { test, expect } from '@playwright/test';
 import { initializeTestTime } from './utils/time-helpers';
 
-const BACKEND_URL = 'https://pifa-auction.preview.emergentagent.com';
+const BACKEND_URL = 'https://auction-league.preview.emergentagent.com';
 
 test.describe('Hooks Unit Tests', () => {
   

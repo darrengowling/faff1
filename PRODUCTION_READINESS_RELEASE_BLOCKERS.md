@@ -10,7 +10,7 @@
 ### Socket.IO Diagnostics Results
 ```
 🔌 Socket.IO Diagnostics Starting...
-Backend URL: https://pifa-auction.preview.emergentagent.com
+Backend URL: https://auction-league.preview.emergentagent.com
 Socket Path: /api/socketio
 Transports: polling, websocket
 
