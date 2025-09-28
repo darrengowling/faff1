@@ -207,7 +207,7 @@ async def request_magic_link(request: MagicLinkRequest):
     """Request a magic link for email authentication"""
     try:
         # Import email validator
-        from email_validator import EmailValidator
+        from utils.email_validation import is_valid_email
         
         # Validate email format first - return 400 on invalid email
         if not request.email or not request.email.strip():
@@ -220,7 +220,8 @@ async def request_magic_link(request: MagicLinkRequest):
             )
         
         email = request.email.strip()
-        if not EmailValidator.is_valid_email(email):
+        is_valid, error_msg = is_valid_email(email)
+        if not is_valid:
             raise HTTPException(
                 status_code=400,
                 detail={
