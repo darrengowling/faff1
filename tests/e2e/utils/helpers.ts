@@ -9,7 +9,7 @@ import { safeClick } from './click-interceptor-detector';
 import { safeClickWithOverlayDetection } from './overlay-detector';
 import { login as loginUtility } from './login';
 import { fillCreateLeague } from './league';
-import { TESTIDS } from '../../../frontend/src/testids.js';
+import { TESTIDS } from '../../../frontend/src/testids.ts';
 
 /**
  * Wait for URL hash to change to specific value
