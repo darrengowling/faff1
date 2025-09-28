@@ -1,1 +1,0 @@
-{"id":"ucl","competition":"UEFA Champions League","short_name":"UCL","defaults":{"club_slots":5,"budget_per_manager":100,"league_size":{"min":2,"max":8},"min_increment":1,"anti_snipe_seconds":30,"bid_timer_seconds":60,"scoring_rules":{"club_goal":1,"club_win":3,"club_draw":1}},"description":"Standard UEFA Champions League configuration"}
