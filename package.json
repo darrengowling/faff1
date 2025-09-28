@@ -16,6 +16,7 @@
     "test:extended-e2e": "bash scripts/run-extended-e2e.sh",
     "ci:pipeline": "node scripts/ci-pipeline-simple.js",
     "lint:links": "node scripts/lint-links.js",
+    "lint:overlays": "node scripts/lint-overlays.js",
     "test:e2e": "npm run lint:links && cd frontend && npm run test:contract && cd .. && bash ./scripts/test-env.sh && playwright test",
     "test:core": "npm run test:contract && bash ./scripts/test-env.sh && playwright test tests/e2e/core.smoke.spec.ts",
     "test:e2e:headed": "npm run test:contract && bash ./scripts/test-env.sh && playwright test --headed",
