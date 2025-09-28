@@ -35,6 +35,14 @@ class LeagueService:
         async with await client.start_session() as session:
             try:
                 async with session.start_transaction():
+                    # Validate league name uniqueness within transaction
+                    existing_league = await db.leagues.find_one(
+                        {"name": league_data.name.strip(), "commissioner_id": commissioner_id}, 
+                        session=session
+                    )
+                    if existing_league:
+                        raise ValueError(f"League name '{league_data.name.strip()}' already exists for this user")
+                    
                     # Get default settings from competition profile if no explicit settings provided
                     if league_data.settings is None:
                         competition_service = CompetitionService()
