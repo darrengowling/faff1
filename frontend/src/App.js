@@ -1106,13 +1106,36 @@ const LeagueManagement = ({ league, onBack }) => {
         </div>
       </div>
 
-      {/* League Status */}
+      {/* Join Count Display */}
       {leagueStatus && (
-        <Card data-testid="lobby-joined">
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <div className="text-lg font-semibold" data-testid={TESTIDS.lobbyJoined}>
+              {leagueStatus.member_count}/{leagueStatus.max_members}
+            </div>
+            <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+              leagueStatus.is_ready ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+            }`}>
+              {leagueStatus.is_ready ? 'Ready to Start' : `Need ${leagueStatus.min_members - leagueStatus.member_count} more`}
+            </div>
+          </div>
+          
+          {/* Rules Badge */}
+          <div className="mb-4" data-testid={TESTIDS.rulesBadge}>
+            <div className="inline-flex items-center px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-sm">
+              Slots: {league.settings?.roster_size || 'N/A'} · Budget: ${league.settings?.budget || 'N/A'} · Min: {leagueStatus.min_members} · Max: {leagueStatus.max_members}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* League Status Details (keep existing card for more details) */}
+      {leagueStatus && (
+        <Card className="mb-6">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Shield className="w-5 h-5" />
-              <span>League Status</span>
+              <span>League Status Details</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
