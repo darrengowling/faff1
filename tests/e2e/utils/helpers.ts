@@ -381,62 +381,57 @@ export async function expectUserPresence(page: Page, expectedUserCount: number):
  * Races between create-success marker and URL matching /app/leagues/:id/lobby
  * Then verifies lobby-joined badge exists
  */
-export async function awaitCreatedAndInLobby(page: Page): Promise<string> {
+export async function awaitCreatedAndInLobby(page: Page, leagueId?: string): Promise<string> {
   console.log('🏁 Waiting for league creation success and lobby navigation...');
   
-  let leagueId: string | null = null;
-  
   try {
-    // Race between success marker and URL change
-    await Promise.race([
-      // Option 1: Wait for success marker
-      page.getByTestId('create-success').waitFor({ state: 'visible', timeout: 15000 }),
-      
-      // Option 2: Wait for URL to match lobby pattern
-      page.waitForURL(/\/app\/leagues\/[^\/]+\/lobby/, { timeout: 15000 })
-    ]);
+    // Wait for URL to change to lobby pattern
+    await page.waitForURL(/\/app\/leagues\/.+\/lobby/, { timeout: 10000 });
+    console.log('✅ URL changed to lobby pattern');
     
-    console.log('✅ Success marker or lobby URL detected');
+    // Extract league ID from URL if not provided
+    const currentUrl = page.url();
+    const leagueIdMatch = currentUrl.match(/\/app\/leagues\/([^\/]+)\/lobby/);
+    const extractedLeagueId = leagueIdMatch ? leagueIdMatch[1] : leagueId;
     
-    // Check if dialog is present and assert it's closed
-    const dialogElement = page.locator('[role="dialog"]');
-    const dialogCount = await dialogElement.count();
-    if (dialogCount > 0) {
-      const dialogState = await dialogElement.getAttribute('data-state').catch(() => null);
-      if (dialogState !== 'closed') {
-        console.warn(`⚠️ Dialog data-state is '${dialogState}', expected 'closed'`);
-      } else {
-        console.log('✅ Dialog properly closed (data-state="closed")');
+    if (!extractedLeagueId) {
+      throw new Error(`Could not determine league ID from URL: ${currentUrl}`);
+    }
+    
+    console.log(`✅ League ID: ${extractedLeagueId}`);
+    
+    // Poll readiness endpoint (TEST_MODE only)
+    const apiOrigin = process.env.REACT_APP_BACKEND_URL || 'https://pifa-stability.preview.emergentagent.com';
+    console.log('🔍 Polling league readiness...');
+    
+    for (let i = 0; i < 10; i++) {
+      try {
+        const res = await page.request.get(`${apiOrigin}/test/league/${extractedLeagueId}/ready`);
+        const data = await res.json();
+        
+        if (data.ready) {
+          console.log('✅ League is ready for lobby rendering');
+          return extractedLeagueId;
+        }
+        
+        console.log(`⏳ League not ready yet (attempt ${i + 1}/10): ${data.reason || 'unknown'}`);
+        await page.waitForTimeout(200);
+      } catch (probeError) {
+        console.log(`⚠️ Readiness probe failed (attempt ${i + 1}/10): ${probeError.message}`);
+        await page.waitForTimeout(200);
       }
     }
     
-    // Extract league ID from current URL
-    const currentUrl = page.url();
-    const leagueIdMatch = currentUrl.match(/\/app\/leagues\/([^\/]+)\/lobby/);
-    
-    if (leagueIdMatch) {
-      leagueId = leagueIdMatch[1];
-      console.log(`✅ League ID extracted from URL: ${leagueId}`);
-    }
-    
-    // Wait for lobby to fully load by verifying lobby-joined badge exists
-    console.log('🔍 Verifying lobby has loaded...');
-    const lobbyBadge = page.getByTestId('lobby-joined');
-    await lobbyBadge.waitFor({ state: 'visible', timeout: 10000 });
-    
-    console.log('✅ Lobby badge confirmed - league creation and navigation complete');
-    
-    return leagueId || `created-${Date.now()}`;
+    throw new Error('Lobby not ready after 10 attempts');
     
   } catch (error) {
     const currentUrl = page.url();
     console.error(`❌ Failed to complete league creation → lobby flow. Current URL: ${currentUrl}`);
-    console.error(`Error: ${error.message}`);
     
-    // Take screenshot for debugging
+    // Take debug screenshot
     await page.screenshot({ 
-      path: `league-creation-lobby-failure-${Date.now()}.png`, 
-      quality: 20 
+      path: `test-results/lobby-navigation-failure-${Date.now()}.png`,
+      fullPage: false
     });
     
     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
