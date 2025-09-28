@@ -1,0 +1,27 @@
+{"version":8,"type":"context-options","origin":"library","browserName":"","options":{},"platform":"linux","wallTime":1759025375854,"monotonicTime":1006215.418,"sdkLanguage":"javascript","contextId":"request-context@2e255f84223c6c2242a2223378c43d59","title":"simplified-e2e.spec.js:99 › UCL Auction - Core User Flows › 3. API Endpoints Accessibility"}
+{"type":"before","callId":"call@105","startTime":1006217.776,"class":"APIRequestContext","method":"fetch","params":{"url":"https://pifa-auction.preview.emergentagent.com/api/competition-profiles","method":"GET","timeout":10000},"stepId":"pw:api@21","beforeSnapshot":"before@call@105"}
+{"type":"log","callId":"call@105","time":1006218.935,"message":"→ GET https://pifa-auction.preview.emergentagent.com/api/competition-profiles"}
+{"type":"log","callId":"call@105","time":1006218.956,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@105","time":1006218.962,"message":"  accept: */*"}
+{"type":"log","callId":"call@105","time":1006218.966,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@105","time":1006299.479,"message":"← 200 OK"}
+{"type":"log","callId":"call@105","time":1006299.526,"message":"  content-length: 1048"}
+{"type":"log","callId":"call@105","time":1006299.532,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@105","time":1006299.537,"message":"  date: Sun, 28 Sep 2025 02:09:35 GMT"}
+{"type":"log","callId":"call@105","time":1006299.541,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@105","time":1006299.545,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@105","time":1006299.549,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@105","endTime":1006299.71,"result":{"response":{"url":"https://pifa-auction.preview.emergentagent.com/api/competition-profiles","status":200,"statusText":"OK","headers":[{"name":"Content-Length","value":"1048"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Sun, 28 Sep 2025 02:09:35 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"af2c076d623bb7c171c09847e0d3af0f"}},"afterSnapshot":"after@call@105"}
+{"type":"before","callId":"call@107","startTime":1006301.509,"class":"APIRequestContext","method":"fetch","params":{"url":"https://pifa-auction.preview.emergentagent.com/api","method":"GET","timeout":10000},"stepId":"pw:api@22","beforeSnapshot":"before@call@107"}
+{"type":"log","callId":"call@107","time":1006302.028,"message":"→ GET https://pifa-auction.preview.emergentagent.com/api"}
+{"type":"log","callId":"call@107","time":1006302.044,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@107","time":1006302.049,"message":"  accept: */*"}
+{"type":"log","callId":"call@107","time":1006302.053,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@107","time":1006350.98,"message":"← 404 Not Found"}
+{"type":"log","callId":"call@107","time":1006350.995,"message":"  content-length: 22"}
+{"type":"log","callId":"call@107","time":1006351.001,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@107","time":1006351.017,"message":"  date: Sun, 28 Sep 2025 02:09:35 GMT"}
+{"type":"log","callId":"call@107","time":1006351.023,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@107","time":1006351.027,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@107","time":1006351.031,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@107","endTime":1006351.19,"result":{"response":{"url":"https://pifa-auction.preview.emergentagent.com/api","status":404,"statusText":"Not Found","headers":[{"name":"Content-Length","value":"22"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Sun, 28 Sep 2025 02:09:35 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"603749f900f13045de78ceb379a92b7a"}},"afterSnapshot":"after@call@107"}

@@ -1,0 +1,14 @@
+{"version":8,"type":"context-options","origin":"library","browserName":"","options":{},"platform":"linux","wallTime":1759025386619,"monotonicTime":1016980.298,"sdkLanguage":"javascript","contextId":"request-context@077b3c5825eeec07069828b110770ba8","title":"simplified-e2e.spec.js:265 › UCL Auction - Core User Flows › 9. Database Integration Verification"}
+{"type":"before","callId":"call@255","startTime":1016983.118,"class":"APIRequestContext","method":"fetch","params":{"url":"https://pifa-auction.preview.emergentagent.com/api/competition-profiles","method":"GET","timeout":10000},"stepId":"pw:api@21","beforeSnapshot":"before@call@255"}
+{"type":"log","callId":"call@255","time":1016983.891,"message":"→ GET https://pifa-auction.preview.emergentagent.com/api/competition-profiles"}
+{"type":"log","callId":"call@255","time":1016983.908,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@255","time":1016983.915,"message":"  accept: */*"}
+{"type":"log","callId":"call@255","time":1016983.919,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@255","time":1016995.458,"message":"← 200 OK"}
+{"type":"log","callId":"call@255","time":1016995.47,"message":"  content-length: 1048"}
+{"type":"log","callId":"call@255","time":1016995.476,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@255","time":1016995.481,"message":"  date: Sun, 28 Sep 2025 02:09:46 GMT"}
+{"type":"log","callId":"call@255","time":1016995.488,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@255","time":1016995.492,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@255","time":1016995.497,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@255","endTime":1016995.608,"result":{"response":{"url":"https://pifa-auction.preview.emergentagent.com/api/competition-profiles","status":200,"statusText":"OK","headers":[{"name":"Content-Length","value":"1048"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Sun, 28 Sep 2025 02:09:46 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"49874a67d058fd710ae071b96b9441e4"}},"afterSnapshot":"after@call@255"}
