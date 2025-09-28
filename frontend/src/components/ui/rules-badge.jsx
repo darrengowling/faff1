@@ -36,7 +36,7 @@ export const RulesBadge = ({ leagueSettings, loading = false, className = "" }) 
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Badge variant="outline" className={`text-xs bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 cursor-help ${className}`}>
+          <Badge variant="outline" className={`text-xs bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 cursor-help ${className}`} data-testid="rules-badge">
             <Info className="w-3 h-3 mr-1" />
             {t('rules.rules')}
           </Badge>
