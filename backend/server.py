@@ -744,6 +744,53 @@ async def drop_test_socket(request: dict):
         "disconnectedConnections": disconnected_count
     }
 
+# Test-only scoring management hooks (TEST_MODE only)
+@api_router.post("/test/scoring/reset")
+async def reset_test_scoring(request: dict):
+    """
+    TEST-ONLY SCORING RESET
+    Clears weeklyPoints and settlements for a specific league for testing.
+    Only enabled when TEST_MODE=true environment variable is set.
+    """
+    if not is_test_mode():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Scoring test hooks only available in TEST_MODE"
+        )
+    
+    if "leagueId" not in request:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing 'leagueId' field"
+        )
+    
+    league_id = request["leagueId"]
+    
+    # Clear weeklyPoints for the league
+    weekly_points_result = await db.weeklyPoints.delete_many({"league_id": league_id})
+    
+    # Clear settlements for the league
+    settlements_result = await db.settlements.delete_many({"league_id": league_id})
+    
+    # Clear result_ingest for the league
+    result_ingest_result = await db.result_ingest.delete_many({"league_id": league_id})
+    
+    logger.info("🧪 TEST SCORING RESET: %s (weeklyPoints: %d, settlements: %d, result_ingest: %d)", 
+               league_id, 
+               weekly_points_result.deleted_count,
+               settlements_result.deleted_count,
+               result_ingest_result.deleted_count)
+    
+    return {
+        "message": f"Test scoring data cleared for league {league_id}",
+        "leagueId": league_id,
+        "deletedCounts": {
+            "weeklyPoints": weekly_points_result.deleted_count,
+            "settlements": settlements_result.deleted_count,
+            "resultIngest": result_ingest_result.deleted_count
+        }
+    }
+
 # User Routes
 @api_router.get("/users/{user_id}", response_model=UserResponse)
 async def get_user(user_id: str, current_user: UserResponse = Depends(get_current_verified_user)):
