@@ -8,6 +8,7 @@
 import { test, expect, BrowserContext, Page } from '@playwright/test';
 import { login } from './utils/login';
 import { clickCreateLeague } from './utils/helpers';
+import { ensureClickable, clickWhenReady } from './utils/ensureClickable';
 import { TESTIDS } from '../../frontend/src/testids.js';
 
 // Test configuration
