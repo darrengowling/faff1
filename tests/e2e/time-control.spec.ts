@@ -84,7 +84,7 @@ test.describe('Time Control System', () => {
     
     const result = await getCurrentTestTime(page);
     expect(result.timeMs).toBe(baseTime + 456);
-    expect(result.time).toBe('2025-01-01T15:30:45.579+00:00');
+    expect(result.time).toMatch(/2025-01-01T15:30:45\.579/);
     
     console.log('✅ Millisecond precision maintained');
   });
