@@ -100,8 +100,7 @@ const { chromium } = require("playwright");
     
     // Take screenshot for debugging
     await page.screenshot({ 
-      path: `create-form-verification-failure-${Date.now()}.png`,
-      quality: 20 
+      path: `create-form-verification-failure-${Date.now()}.png`
     });
     
     process.exit(1);
