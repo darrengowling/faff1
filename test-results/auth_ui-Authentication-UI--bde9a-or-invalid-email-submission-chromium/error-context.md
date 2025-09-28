@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic [active] [ref=e1]:
+- generic [ref=e1]:
   - generic [ref=e3]:
     - region "Notifications alt+T"
     - banner [ref=e4]:
@@ -38,7 +38,7 @@
               - generic [ref=e46]:
                 - generic [ref=e47]:
                   - generic [ref=e48]: Email Address
-                  - textbox "Email Address" [ref=e49]: invalid-email
+                  - textbox "Email Address" [active] [ref=e49]: not-an-email
                 - button "Send Magic Link" [disabled]:
                   - generic:
                     - img
