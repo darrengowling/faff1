@@ -1,0 +1,176 @@
+{
+  "config": {
+    "configFile": "/app/playwright.config.ts",
+    "rootDir": "/app/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/app/tests/e2e/utils/global-setup.ts",
+    "globalTeardown": "/app/tests/e2e/utils/global-teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "port": 3000,
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "auth-gate.spec.ts",
+      "file": "auth-gate.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "PRE-GATE: Auth UI elements validation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 12756,
+                  "error": {
+                    "message": "Error: page.screenshot: options.quality is unsupported for the png screenshots",
+                    "stack": "Error: page.screenshot: options.quality is unsupported for the png screenshots\n    at /app/tests/e2e/auth-gate.spec.ts:21:16",
+                    "location": {
+                      "file": "/app/tests/e2e/auth-gate.spec.ts",
+                      "column": 16,
+                      "line": 21
+                    },
+                    "snippet": "  19 |   } catch (error) {\n  20 |     console.error('❌ PRE-GATE 2 FAILED: Required auth elements missing');\n> 21 |     await page.screenshot({ path: 'auth-gate-failure.png', quality: 20 });\n     |                ^\n  22 |     throw new Error('PRE-GATE FAILURE: Authentication UI elements not found - cannot proceed with regression suite');\n  23 |   }\n  24 | });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/app/tests/e2e/auth-gate.spec.ts",
+                        "column": 16,
+                        "line": 21
+                      },
+                      "message": "Error: page.screenshot: options.quality is unsupported for the png screenshots\n\n  19 |   } catch (error) {\n  20 |     console.error('❌ PRE-GATE 2 FAILED: Required auth elements missing');\n> 21 |     await page.screenshot({ path: 'auth-gate-failure.png', quality: 20 });\n     |                ^\n  22 |     throw new Error('PRE-GATE FAILURE: Authentication UI elements not found - cannot proceed with regression suite');\n  23 |   }\n  24 | });\n    at /app/tests/e2e/auth-gate.spec.ts:21:16"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "🔐 PRE-GATE 2: Checking auth UI elements on /login...\n"
+                    }
+                  ],
+                  "stderr": [
+                    {
+                      "text": "❌ PRE-GATE 2 FAILED: Required auth elements missing\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "startTime": "2025-09-28T03:41:53.601Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/app/test-results/auth-gate-PRE-GATE-Auth-UI-elements-validation-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/app/test-results/auth-gate-PRE-GATE-Auth-UI-elements-validation-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/app/test-results/auth-gate-PRE-GATE-Auth-UI-elements-validation-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/app/test-results/auth-gate-PRE-GATE-Auth-UI-elements-validation-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/app/tests/e2e/auth-gate.spec.ts",
+                    "column": 16,
+                    "line": 21
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "f73b7337032a8bc54306-bdb799c820788666f93c",
+          "file": "auth-gate.spec.ts",
+          "line": 4,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-28T03:41:52.604Z",
+    "duration": 14039.494999999999,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}
