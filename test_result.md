@@ -159,6 +159,18 @@ user_problem_statement: "Complete data-testid integration for all interactive el
         comment: "✅ LEAGUE CREATION VALIDATION FIX VERIFIED - Working perfectly with Min=2 managers support. CRITICAL VALIDATION FIX VERIFIED: HTML min attribute correctly set to '2' (not '4'), form accepts minimum value of 2 managers as required, form field functionality tested (Min=2, Max=4 league creation successful), complete form submission working (POST /api/leagues - Status 200), league created successfully with Min=2 managers, success toast displayed ('League created successfully!'), dashboard integration verified (created league appears with correct settings). The league creation validation fix resolves the issue where users were prevented from creating tournaments with 2 managers. Test Results: 100% Success Rate (6/6 tests passed)."
 
 backend:
+  - task: "Email Validation Fix for Auth Endpoints"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py, /app/backend/utils/email_validation.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ EMAIL VALIDATION FIX VERIFIED - 100% SUCCESS: Comprehensive testing confirms the AttributeError: module 'email_validator' has no attribute 'EmailNotValidError' has been completely eliminated. CRITICAL FIXES VERIFIED: 1) Email-validator version 2.1.1 properly installed and working, 2) Backend startup shows proper email validation status with version info, 3) /auth/test-login endpoint handles invalid emails with structured 400 responses (code: INVALID_EMAIL), 4) /auth/magic-link endpoint uses Pydantic validation (422 responses) preventing AttributeError, 5) No 500 errors occur for any invalid email inputs, 6) Structured logging shows proper email validation flow. TESTING RESULTS: 10/10 tests passed (100% success rate). The email validation system is robust and production-ready with proper error handling throughout."
+
   - task: "Backend API Authentication Flow"
     implemented: true
     working: true
