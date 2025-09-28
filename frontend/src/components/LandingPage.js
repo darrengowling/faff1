@@ -269,7 +269,7 @@ const LandingPage = () => {
     ];
 
     return (
-      <section id="why" className="py-20 bg-gray-50">
+      <section id="why" className="anchor-section py-20 bg-gray-50" data-testid="section-why">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
