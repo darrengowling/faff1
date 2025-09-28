@@ -255,14 +255,20 @@ const LoginPage = () => {
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  disabled={loading || !email || !isValidEmail(email)}
-                  className={`w-full ${isTestMode ? '' : 'transition-all duration-200'}`}
+                  disabled={loading || !email.trim()}
+                  className={`w-full ${
+                    loading 
+                      ? 'bg-blue-400 cursor-not-allowed' 
+                      : error 
+                        ? 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500' 
+                        : 'bg-blue-600 hover:bg-blue-700'
+                  } ${isTestMode ? '' : 'transition-all duration-200'}`}
                   data-testid={TESTIDS.authSubmitBtn}
                 >
                   {loading ? (
                     <div className="flex items-center justify-center space-x-2">
                       <div className={`w-4 h-4 border-2 border-white border-t-transparent rounded-full ${isTestMode ? '' : 'animate-spin'}`}></div>
-                      <span>Sending Magic Link...</span>
+                      <span>Sending...</span>
                     </div>
                   ) : (
                     <div className="flex items-center justify-center space-x-2">
