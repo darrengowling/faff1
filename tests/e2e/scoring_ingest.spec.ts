@@ -5,7 +5,7 @@
  */
 
 import { test, expect, Browser, Page } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids.js';
+import { TESTIDS } from '../../frontend/src/testids.ts';
 import { createTestLeague, addTestMember } from './utils/auction-helpers';
 import { initializeTestTime } from './utils/time-helpers';
 
