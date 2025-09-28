@@ -219,14 +219,17 @@ test.describe('Landing Page - Comprehensive Testing', () => {
 
   test('CTAs route to create/join flows correctly', async ({ page }) => {
     try {
-      // Test hero CTA buttons
+      // First check all CTAs are clickable (no overlay blocking)
+      await checkLandingCTAsClickable(page);
+      
+      // Test hero CTA buttons with overlay detection
       const createLeagueBtn = page.getByRole('button', { name: /create a league/i }).first();
       const joinInviteBtn = page.getByRole('button', { name: /join with an invite/i }).first();
 
-      // Test Create League button
+      // Test Create League button with safe click
       let createRouteWorks = false;
       try {
-        await createLeagueBtn.click();
+        await safeClickWithOverlayDetection(page, createLeagueBtn, { logDetails: true });
         await page.waitForURL('**/login', { timeout: 5000 });
         createRouteWorks = true;
         await page.goBack();
@@ -237,10 +240,10 @@ test.describe('Landing Page - Comprehensive Testing', () => {
 
       trackResult('Create League CTA Routing', createRouteWorks, 'Routes to /login');
 
-      // Test Join Invite button
+      // Test Join Invite button with safe click
       let joinRouteWorks = false;
       try {
-        await joinInviteBtn.click();
+        await safeClickWithOverlayDetection(page, joinInviteBtn, { logDetails: true });
         await page.waitForURL('**/login', { timeout: 5000 });
         joinRouteWorks = true;
         await page.goBack();
