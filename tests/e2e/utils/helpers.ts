@@ -420,4 +420,3 @@ export async function expectUserPresence(page: Page, expectedUserCount: number):
   
   console.log(`✅ User presence verified: ${expectedUserCount}`);
 }
-}
