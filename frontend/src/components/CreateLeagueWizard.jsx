@@ -79,29 +79,63 @@ const CreateLeagueWizard = () => {
     e.preventDefault();
     
     if (!validateForm()) {
-      toast.error('Please fix the errors below');
       return;
     }
 
     setLoading(true);
+    setErrors({}); // Clear previous errors
+    setSuccess(false);
 
     try {
       const response = await axios.post(`${API}/leagues`, {
         name: formData.name.trim(),
-        club_slots: parseInt(formData.slots),
-        budget: parseInt(formData.budget),
-        min_bid: parseInt(formData.minBid)
+        settings: {
+          club_slots_per_manager: parseInt(formData.slots),
+          budget_per_manager: parseInt(formData.budget),
+          min_increment: parseInt(formData.minBid),
+          max_managers: 8,
+          min_managers: 2
+        }
       });
 
-      toast.success('League created successfully!');
-      
-      // Navigate to the new league
-      navigate(`/app`);
+      // Check for 201 status code
+      if (response.status === 201 && response.data.id) {
+        const leagueId = response.data.id;
+        console.log(`League created successfully: ${leagueId}`);
+        
+        // Set success state for test detection
+        setSuccess(true);
+        
+        // Navigate to lobby immediately
+        navigate(`/app/leagues/${leagueId}/lobby`);
+        
+      } else {
+        throw new Error('Invalid response from server');
+      }
       
     } catch (error) {
       console.error('League creation failed:', error);
-      const errorMessage = error.response?.data?.detail || 'Failed to create league. Please try again.';
-      toast.error(errorMessage);
+      
+      // Set specific field errors based on response
+      const newErrors = {};
+      const errorDetail = error.response?.data?.detail || 'Failed to create league. Please try again.';
+      
+      // Parse error and set specific field errors
+      if (errorDetail.toLowerCase().includes('name')) {
+        newErrors.name = 'League name is invalid or already exists';
+      } else if (errorDetail.toLowerCase().includes('slot')) {
+        newErrors.slots = 'Invalid number of club slots';
+      } else if (errorDetail.toLowerCase().includes('budget')) {
+        newErrors.budget = 'Invalid budget amount';
+      } else if (errorDetail.toLowerCase().includes('min')) {
+        newErrors.minBid = 'Invalid minimum bid amount';
+      } else {
+        // General error - show in name field as fallback
+        newErrors.name = errorDetail;
+      }
+      
+      setErrors(newErrors);
+      
     } finally {
       setLoading(false);
     }
