@@ -316,6 +316,18 @@ backend:
         comment: "Created automated migration script: 1) Systematic component processing for useTranslation import/hook addition, 2) Pattern-based string replacement for common UI text, 3) Generated detailed migration report, 4) Successfully processed 8 components with 100% success rate"
 
 frontend:
+  - task: "Deterministic and Testable Anchor Navigation Implementation"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/hooks/useScrollSpy.js, /app/frontend/src/components/LandingPage.js, /app/tests/e2e/navigation.spec.ts"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "✅ ANCHOR NAVIGATION IMPLEMENTATION COMPLETED: 1) Added stable IDs & testids (#home/#how/#why/#features/#safety/#faq with data-testid='section-*'), 2) Added .anchor-section{scroll-margin-top:var(--header-h)} CSS class to all sections, 3) Implemented useScrollSpy({threshold:0.5}) hook with history.replaceState for hash updates and 100ms debouncing, 4) Updated scrollToSection function to immediately update hash on navigation clicks, 5) Updated tests to use getByTestId('section-*') and expect(page).toHaveURL(/#section$/) patterns, 6) Added robust section detection with retry mechanism for late-mounted components. Infrastructure is complete and ready for testing."
+
   - task: "Fix Frontend Compilation Issues with AppShell/MarketingShell Import Paths"
     implemented: true
     working: true
