@@ -90,67 +90,28 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 12756,
+                  "duration": 7,
                   "error": {
-                    "message": "Error: page.screenshot: options.quality is unsupported for the png screenshots",
-                    "stack": "Error: page.screenshot: options.quality is unsupported for the png screenshots\n    at /app/tests/e2e/auth-gate.spec.ts:21:16",
-                    "location": {
-                      "file": "/app/tests/e2e/auth-gate.spec.ts",
-                      "column": 16,
-                      "line": 21
-                    },
-                    "snippet": "  19 |   } catch (error) {\n  20 |     console.error('❌ PRE-GATE 2 FAILED: Required auth elements missing');\n> 21 |     await page.screenshot({ path: 'auth-gate-failure.png', quality: 20 });\n     |                ^\n  22 |     throw new Error('PRE-GATE FAILURE: Authentication UI elements not found - cannot proceed with regression suite');\n  23 |   }\n  24 | });"
+                    "message": "Error: browserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n╔════════════════════════════════════════════════════════════════════════════════════════════════╗\n║ Looks like you launched a headed browser without having a XServer running.                     ║\n║ Set either 'headless: true' or use 'xvfb-run <your-playwright-app>' before running Playwright. ║\n║                                                                                                ║\n║ <3 Playwright Team                                                                             ║\n╚════════════════════════════════════════════════════════════════════════════════════════════════╝\nCall log:\n\u001b[2m  - <launching> /pw-browsers/chromium-1187/chrome-linux/chrome --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-p3mj19 --remote-debugging-pipe --no-startup-window\u001b[22m\n\u001b[2m  - <launched> pid=1851\u001b[22m\n\u001b[2m  - [pid=1851][err] [1851:1865:0928/034214.977334:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\u001b[22m\n\u001b[2m  - [pid=1851][err] [1851:1851:0928/034214.985770:ERROR:ui/ozone/platform/x11/ozone_platform_x11.cc:249] Missing X server or $DISPLAY\u001b[22m\n\u001b[2m  - [pid=1851][err] [1851:1851:0928/034214.985802:ERROR:ui/aura/env.cc:257] The platform failed to initialize.  Exiting.\u001b[22m\n\u001b[2m  - [pid=1851] <gracefully close start>\u001b[22m\n\u001b[2m  - [pid=1851] <kill>\u001b[22m\n\u001b[2m  - [pid=1851] <will force kill>\u001b[22m\n\u001b[2m  - [pid=1851] <process did exit: exitCode=1, signal=null>\u001b[22m\n\u001b[2m  - [pid=1851] starting temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=1851] finished temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=1851] <gracefully close end>\u001b[22m\n",
+                    "stack": "Error: browserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n╔════════════════════════════════════════════════════════════════════════════════════════════════╗\n║ Looks like you launched a headed browser without having a XServer running.                     ║\n║ Set either 'headless: true' or use 'xvfb-run <your-playwright-app>' before running Playwright. ║\n║                                                                                                ║\n║ <3 Playwright Team                                                                             ║\n╚════════════════════════════════════════════════════════════════════════════════════════════════╝\nCall log:\n\u001b[2m  - <launching> /pw-browsers/chromium-1187/chrome-linux/chrome --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-p3mj19 --remote-debugging-pipe --no-startup-window\u001b[22m\n\u001b[2m  - <launched> pid=1851\u001b[22m\n\u001b[2m  - [pid=1851][err] [1851:1865:0928/034214.977334:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\u001b[22m\n\u001b[2m  - [pid=1851][err] [1851:1851:0928/034214.985770:ERROR:ui/ozone/platform/x11/ozone_platform_x11.cc:249] Missing X server or $DISPLAY\u001b[22m\n\u001b[2m  - [pid=1851][err] [1851:1851:0928/034214.985802:ERROR:ui/aura/env.cc:257] The platform failed to initialize.  Exiting.\u001b[22m\n\u001b[2m  - [pid=1851] <gracefully close start>\u001b[22m\n\u001b[2m  - [pid=1851] <kill>\u001b[22m\n\u001b[2m  - [pid=1851] <will force kill>\u001b[22m\n\u001b[2m  - [pid=1851] <process did exit: exitCode=1, signal=null>\u001b[22m\n\u001b[2m  - [pid=1851] starting temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=1851] finished temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=1851] <gracefully close end>\u001b[22m\n"
                   },
                   "errors": [
                     {
-                      "location": {
-                        "file": "/app/tests/e2e/auth-gate.spec.ts",
-                        "column": 16,
-                        "line": 21
-                      },
-                      "message": "Error: page.screenshot: options.quality is unsupported for the png screenshots\n\n  19 |   } catch (error) {\n  20 |     console.error('❌ PRE-GATE 2 FAILED: Required auth elements missing');\n> 21 |     await page.screenshot({ path: 'auth-gate-failure.png', quality: 20 });\n     |                ^\n  22 |     throw new Error('PRE-GATE FAILURE: Authentication UI elements not found - cannot proceed with regression suite');\n  23 |   }\n  24 | });\n    at /app/tests/e2e/auth-gate.spec.ts:21:16"
+                      "message": "Error: browserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n╔════════════════════════════════════════════════════════════════════════════════════════════════╗\n║ Looks like you launched a headed browser without having a XServer running.                     ║\n║ Set either 'headless: true' or use 'xvfb-run <your-playwright-app>' before running Playwright. ║\n║                                                                                                ║\n║ <3 Playwright Team                                                                             ║\n╚════════════════════════════════════════════════════════════════════════════════════════════════╝\nCall log:\n\u001b[2m  - <launching> /pw-browsers/chromium-1187/chrome-linux/chrome --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-p3mj19 --remote-debugging-pipe --no-startup-window\u001b[22m\n\u001b[2m  - <launched> pid=1851\u001b[22m\n\u001b[2m  - [pid=1851][err] [1851:1865:0928/034214.977334:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory\u001b[22m\n\u001b[2m  - [pid=1851][err] [1851:1851:0928/034214.985770:ERROR:ui/ozone/platform/x11/ozone_platform_x11.cc:249] Missing X server or $DISPLAY\u001b[22m\n\u001b[2m  - [pid=1851][err] [1851:1851:0928/034214.985802:ERROR:ui/aura/env.cc:257] The platform failed to initialize.  Exiting.\u001b[22m\n\u001b[2m  - [pid=1851] <gracefully close start>\u001b[22m\n\u001b[2m  - [pid=1851] <kill>\u001b[22m\n\u001b[2m  - [pid=1851] <will force kill>\u001b[22m\n\u001b[2m  - [pid=1851] <process did exit: exitCode=1, signal=null>\u001b[22m\n\u001b[2m  - [pid=1851] starting temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=1851] finished temporary directories cleanup\u001b[22m\n\u001b[2m  - [pid=1851] <gracefully close end>\u001b[22m\n"
                     }
                   ],
-                  "stdout": [
-                    {
-                      "text": "🔐 PRE-GATE 2: Checking auth UI elements on /login...\n"
-                    }
-                  ],
-                  "stderr": [
-                    {
-                      "text": "❌ PRE-GATE 2 FAILED: Required auth elements missing\n"
-                    }
-                  ],
+                  "stdout": [],
+                  "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-09-28T03:41:53.601Z",
+                  "startTime": "2025-09-28T03:42:14.455Z",
                   "annotations": [],
                   "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "/app/test-results/auth-gate-PRE-GATE-Auth-UI-elements-validation-chromium/test-failed-1.png"
-                    },
-                    {
-                      "name": "video",
-                      "contentType": "video/webm",
-                      "path": "/app/test-results/auth-gate-PRE-GATE-Auth-UI-elements-validation-chromium/video.webm"
-                    },
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "/app/test-results/auth-gate-PRE-GATE-Auth-UI-elements-validation-chromium/error-context.md"
-                    },
                     {
                       "name": "trace",
                       "contentType": "application/zip",
                       "path": "/app/test-results/auth-gate-PRE-GATE-Auth-UI-elements-validation-chromium/trace.zip"
                     }
-                  ],
-                  "errorLocation": {
-                    "file": "/app/tests/e2e/auth-gate.spec.ts",
-                    "column": 16,
-                    "line": 21
-                  }
+                  ]
                 }
               ],
               "status": "unexpected"
@@ -166,8 +127,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-09-28T03:41:52.604Z",
-    "duration": 14039.494999999999,
+    "startTime": "2025-09-28T03:42:13.632Z",
+    "duration": 1455.1100000000001,
     "expected": 0,
     "skipped": 0,
     "unexpected": 1,
