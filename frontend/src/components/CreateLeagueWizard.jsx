@@ -32,6 +32,7 @@ const CreateLeagueWizard = () => {
   
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [success, setSuccess] = useState(false);
 
   // Update form field
   const updateField = (field, value) => {
