@@ -6,8 +6,8 @@
 
 export class EmailValidator {
   // Comprehensive email regex pattern
-  // Supports: user+tag@sub.domain.tld, user_name-1@domain.io, etc.
-  static EMAIL_PATTERN = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  // Supports: user+tag@sub.domain.tld, user_name-1@domain.io, user'test@domain.com etc.
+  static EMAIL_PATTERN = /^[a-zA-Z0-9._%+'-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   /**
    * Validate email address with comprehensive rules
