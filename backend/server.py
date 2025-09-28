@@ -448,6 +448,12 @@ async def create_test_auction(request: dict):
     league_response = await league_service.create_league_with_setup(league_create, commissioner_id)
     league_id = league_response.id
     
+    # For testing, automatically set league to ready status
+    await db.leagues.update_one(
+        {"_id": league_id},
+        {"$set": {"status": "ready"}}
+    )
+    
     logger.info("🧪 TEST LEAGUE CREATED: %s (ID: %s)", settings["name"], league_id)
     
     return {
