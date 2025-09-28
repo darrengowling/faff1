@@ -4,7 +4,7 @@
  */
 
 import { Page } from '@playwright/test';
-import { TESTIDS } from '../../../frontend/src/testids.js';
+import { TESTIDS } from '../../../frontend/src/testids.ts';
 
 const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'https://league-creator-1.preview.emergentagent.com';
 const INTERNAL_API_URL = 'http://localhost:8001'; // Direct backend access for test-login
