@@ -15,7 +15,7 @@ import { Button } from '../ui/button';
 import { InAppFooter } from '../ui/footer';
 import { getBrandName } from '../../brand';
 import { useAuth } from '../../App';
-import { HeaderBrand } from '../ui/HeaderBrand';
+import { HeaderBrand } from '../ui/brand-badge';
 import { ProductDropdownMenu } from '../navigation/ProductDropdownMenu';
 import { AuthNavigation } from '../navigation/AuthNavigation';
 import { IconThemeToggle } from '../ui/theme-toggle';
