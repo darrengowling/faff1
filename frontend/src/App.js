@@ -89,7 +89,8 @@ const AuthProvider = ({ children }) => {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       fetchUser();
     } else {
-      setLoading(false);
+      // Even without a localStorage token, try to fetch user (for cookie-based auth)
+      fetchUser();
     }
   }, [token]);
 
