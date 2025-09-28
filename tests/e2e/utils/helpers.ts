@@ -488,4 +488,3 @@ export async function awaitCreatedAndInLobby(page: Page): Promise<string> {
     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
   }
 }
-}
