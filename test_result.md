@@ -330,7 +330,7 @@ backend:
 frontend:
   - task: "Complete Lobby Joined Count and Rules Badge Testids Implementation"
     implemented: true
-    working: false
+    working: "NA"
     file: "/app/frontend/src/App.js, /app/frontend/src/components/ui/rules-badge.jsx"
     stuck_count: 1
     priority: "high"
@@ -345,6 +345,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "❌ COMPREHENSIVE TESTID VERIFICATION FAILED: Systematic DOM verification confirms critical league management testids are NOT ACCESSIBLE through current UI flow. AUTHENTICATION BARRIER: Unable to access dashboard due to magic link token expiration (400 status on /api/auth/verify), preventing full league management testid verification. TESTIDS STATUS: 1) start-auction, lobby-joined, lobby-joined-count, rules-badge testids exist in LeagueManagement component code but cannot be reached through UI navigation, 2) Authentication testids partially working (auth-email-input ✅, auth-submit-btn ✅, auth-loading ❌, auth-error ❌), 3) Landing page testids working perfectly (all 8 section testids found), 4) Navigation testids found but click events blocked by pointer-events interception. ROOT CAUSE: LeagueManagement component requires selectedLeague state but dashboard doesn't provide accessible league selection mechanism. URGENT: Fix authentication flow and league selection navigation to make league management testids accessible for verification."
+      - working: "NA"
+        agent: "testing"
+        comment: "ℹ️ LOBBY TESTIDS STATUS - PARTIAL IMPLEMENTATION: Final verification shows league creation → lobby navigation is working, but lobby page shows 'Failed to load league. Please try again.' error message instead of full lobby interface. CURRENT STATE: ✅ League creation successful (league ID: 717e51d4-caae-46ef-8000-8e8b2c50b7f7), ✅ Navigation to /app/leagues/{id}/lobby working, ❌ Lobby page shows error due to 403 authentication issues when fetching league details. TESTIDS IMPACT: Cannot verify lobby-joined-count, rules-badge, or start-auction testids because lobby page fails to load league data (403 errors on /api/leagues/{id}). The testids are implemented in code but lobby functionality is blocked by authentication/authorization issues. This is a backend API access issue, not a frontend testid implementation issue."
 
   - task: "Deterministic Submit → Navigate Flow Implementation"
     implemented: true
