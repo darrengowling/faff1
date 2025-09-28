@@ -7,3 +7,5 @@
 {"type":"log","callId":"call@70","time":5854.383,"message":"waiting for fonts to load..."}
 {"type":"log","callId":"call@70","time":5855.521,"message":"fonts loaded"}
 {"type":"screencast-frame","pageId":"page@4a10dfd5b9b56a3396c035c07cb6d5c5","sha1":"page@4a10dfd5b9b56a3396c035c07cb6d5c5-1759034202408.jpeg","width":1280,"height":720,"timestamp":6055.838,"frameSwapWallTime":1759034202392.718}
+{"type":"after","callId":"call@70","endTime":6169.714,"result":{"binary":"<Buffer>"},"afterSnapshot":"after@call@70"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@70","snapshotName":"after@call@70","pageId":"page@4a10dfd5b9b56a3396c035c07cb6d5c5","frameId":"frame@1356ef9cdba28a18c8d21e440f8c61d0","frameUrl":"about:blank","html":[[1,3]],"viewport":{"width":1280,"height":720},"timestamp":6172.076,"wallTime":1759034202523,"collectionTime":0.2999997138977051,"resourceOverrides":[],"isMainFrame":true}}
