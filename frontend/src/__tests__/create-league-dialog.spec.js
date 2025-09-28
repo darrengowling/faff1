@@ -1,11 +1,11 @@
 /**
- * Create League Dialog Unit Test
+ * Create League Dialog TestIDs Unit Test
  * 
- * Tests that all required testids render correctly and form validation works
+ * Simple test to validate that all required testids render correctly
  */
 
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { TESTIDS } from '../testids.js';
 
 // Extract CreateLeagueDialog component for testing
