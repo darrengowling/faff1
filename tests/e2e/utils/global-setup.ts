@@ -10,6 +10,27 @@ async function globalSetup(config: FullConfig) {
   process.env.NEXT_PUBLIC_SOCKET_TRANSPORTS = 'polling,websocket';
   process.env.DISABLE_ANIMATIONS = 'true';
   
+  // Pre-check: Verify TESTIDS can be imported
+  console.log('🔍 Pre-check: Verifying TESTIDS import...');
+  try {
+    const { TESTIDS } = await import('../../../frontend/src/testids.ts');
+    const testidCount = Object.keys(TESTIDS).length;
+    
+    if (!TESTIDS || testidCount === 0) {
+      throw new Error('TESTIDS is empty or missing');
+    }
+    
+    console.log(`✅ TESTIDS imported successfully: ${testidCount} testids available`);
+    
+    // Log first few testids for verification
+    const firstFew = Object.keys(TESTIDS).slice(0, 5);
+    console.log(`   Sample testids: ${firstFew.join(', ')}...`);
+    
+  } catch (error) {
+    console.error('❌ TESTIDS import failed:', error);
+    throw new Error(`TESTIDS import failed: ${error.message}`);
+  }
+  
   // Check if application is accessible
   const baseURL = config.projects[0].use?.baseURL || 'http://localhost:3000';
   
