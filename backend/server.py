@@ -495,38 +495,38 @@ if TEST_MODE:
     async def check_league_ready(league_id: str):
         """Test-only endpoint to check if league lobby is ready to render"""
         try:
-        # Check if league exists
-        league = await db.leagues.find_one({"_id": league_id})
-        if not league:
-            return {"ready": False, "reason": "league_not_found"}
-        
-        # Check if commissioner membership exists
-        commissioner_membership = await db.league_memberships.find_one({
-            "league_id": league_id,
-            "user_id": league["commissioner_id"]
-        })
-        if not commissioner_membership:
-            return {"ready": False, "reason": "commissioner_membership_missing"}
-        
-        # Check if roster exists for commissioner
-        commissioner_roster = await db.rosters.find_one({
-            "league_id": league_id,
-            "user_id": league["commissioner_id"]
-        })
-        if not commissioner_roster:
-            return {"ready": False, "reason": "commissioner_roster_missing"}
-        
-        # Check if scoring rules exist
-        scoring_rules = await db.scoring_rules.find_one({"league_id": league_id})
-        if not scoring_rules:
-            return {"ready": False, "reason": "scoring_rules_missing"}
-        
-        # All requirements met
-        return {"ready": True}
-        
-    except Exception as e:
-        logger.error(f"Error checking league readiness: {e}")
-        return {"ready": False, "reason": "error", "error": str(e)}
+            # Check if league exists
+            league = await db.leagues.find_one({"_id": league_id})
+            if not league:
+                return {"ready": False, "reason": "league_not_found"}
+            
+            # Check if commissioner membership exists
+            commissioner_membership = await db.league_memberships.find_one({
+                "league_id": league_id,
+                "user_id": league["commissioner_id"]
+            })
+            if not commissioner_membership:
+                return {"ready": False, "reason": "commissioner_membership_missing"}
+            
+            # Check if roster exists for commissioner
+            commissioner_roster = await db.rosters.find_one({
+                "league_id": league_id,
+                "user_id": league["commissioner_id"]
+            })
+            if not commissioner_roster:
+                return {"ready": False, "reason": "commissioner_roster_missing"}
+            
+            # Check if scoring rules exist
+            scoring_rules = await db.scoring_rules.find_one({"league_id": league_id})
+            if not scoring_rules:
+                return {"ready": False, "reason": "scoring_rules_missing"}
+            
+            # All requirements met
+            return {"ready": True}
+            
+        except Exception as e:
+            logger.error(f"Error checking league readiness: {e}")
+            return {"ready": False, "reason": "error", "error": str(e)}
 
 @api_router.post("/test/time/set")
 async def set_test_time(request: dict):
