@@ -425,7 +425,7 @@ async def create_test_auction(request: dict):
             "email": f"commissioner-{int(now_ms())}@test.local",
             "display_name": "Test Commissioner",
             "verified": True,
-            "created_at": now().isoformat()
+            "created_at": now()
         }
         await db.users.insert_one(commissioner_data)
     
@@ -484,7 +484,7 @@ async def add_test_member(request: dict):
             "email": email,
             "display_name": email.split("@")[0].title(),
             "verified": True,
-            "created_at": now().isoformat()
+            "created_at": now()
         }
         await db.users.insert_one(user_data)
         user = user_data
