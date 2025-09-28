@@ -1021,7 +1021,77 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
 };
 
 // League Management Component
-const LeagueManagement = ({ league, onBack }) => {
+const LeagueLobby = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [league, setLeague] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchLeague = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`${API}/leagues/${id}`);
+        setLeague(response.data);
+      } catch (err) {
+        console.error('Failed to fetch league:', err);
+        setError('Failed to load league. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchLeague();
+    }
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-64">
+        <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-red-600">{error}</p>
+        <Button 
+          onClick={() => navigate('/app')} 
+          variant="outline" 
+          className="mt-4"
+        >
+          Back to Dashboard
+        </Button>
+      </div>
+    );
+  }
+
+  if (!league) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-gray-600">League not found.</p>
+        <Button 
+          onClick={() => navigate('/app')} 
+          variant="outline" 
+          className="mt-4"
+        >
+          Back to Dashboard
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <LeagueManagement 
+      league={league} 
+      onBack={() => navigate('/app')} 
+    />
+  );
+};
   const { user } = useAuth();
   const navigate = useNavigate();
   const [members, setMembers] = useState([]);
