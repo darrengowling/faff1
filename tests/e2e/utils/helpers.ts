@@ -437,3 +437,24 @@ export async function awaitCreatedAndInLobby(page: Page, leagueId?: string): Pro
     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
   }
 }
+
+/**
+ * Missing helper functions for core-smoke test
+ */
+export async function expectAuctionState(page: Page, clubName: string): Promise<void> {
+  console.log(`🔍 Expecting auction state for: ${clubName}`);
+  
+  // Wait for the club name to appear in auction
+  await expect(page.locator(`[data-testid="${TESTIDS.auctionAssetName}"]`)).toContainText(clubName, { timeout: 10000 });
+  
+  console.log(`✅ Auction state verified for: ${clubName}`);
+}
+
+export async function expectLotSold(page: Page, clubName: string): Promise<void> {
+  console.log(`🔍 Expecting lot sold for: ${clubName}`);
+  
+  // Wait for SOLD badge or status to appear
+  await page.locator(`[data-testid="${TESTIDS.soldBadge}"]`).waitFor({ state: 'visible', timeout: 15000 });
+  
+  console.log(`✅ Lot sold verified for: ${clubName}`);
+}
