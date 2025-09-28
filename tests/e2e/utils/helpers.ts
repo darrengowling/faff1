@@ -18,14 +18,11 @@ export async function login(page: Page, email: string, mode: 'test' | 'ui' = 'te
 }
 
 /**
- * Test-only login helper that bypasses UI authentication
- * Only works when ALLOW_TEST_LOGIN=true is set on the backend
- * @deprecated Use login() from utils/login.ts instead
+ * UI-based login helper for testing the actual authentication flow
+ * Use this for testing the login page UI specifically
  */
-export async function loginTestOnly(page: Page, email: string): Promise<void> {
-  // Delegate to the new login utility
-  const { login } = await import('./login');
-  await login(page, email, { mode: 'test' });
+export async function loginUI(page: Page, email: string): Promise<void> {
+  await loginUtility(page, email, { mode: 'ui' });
 }
 
 /**
