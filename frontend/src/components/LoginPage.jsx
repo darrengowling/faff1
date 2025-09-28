@@ -224,8 +224,17 @@ const LoginPage = () => {
                 className="space-y-6" 
                 noValidate={isTestMode}
                 aria-busy={loading}
-                data-testid={loading ? TESTIDS.authLoading : undefined}
               >
+                {/* Loading indicator for tests */}
+                {loading && (
+                  <div 
+                    data-testid={TESTIDS.authLoading} 
+                    aria-hidden="true"
+                    className="sr-only"
+                  >
+                    Loading...
+                  </div>
+                )}
                 {/* Email Input */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
