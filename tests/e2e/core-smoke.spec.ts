@@ -136,16 +136,14 @@ test.describe('Core Smoke Test', () => {
     // Step 3: Alice and Bob join via invite links
     console.log('👥 Step 3: Alice and Bob join league...');
     
-    // Alice joins
+    // Alice joins (already authenticated via storage state)
     await alicePage.goto(inviteLinks[0]);
     await alicePage.waitForLoadState('networkidle');
-    await login(alicePage, USERS.alice.email, { mode: 'test' });
     await expectLobbyState(alicePage, '2/3'); // Commissioner + Alice
     
-    // Bob joins  
+    // Bob joins (already authenticated via storage state)
     await bobPage.goto(inviteLinks[0]);
     await bobPage.waitForLoadState('networkidle');
-    await login(bobPage, USERS.bob.email, { mode: 'test' });
     await expectLobbyState(bobPage, '3/3'); // All joined
     
     console.log('✅ All users joined lobby');
