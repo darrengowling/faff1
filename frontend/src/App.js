@@ -1551,6 +1551,42 @@ const RootRoute = () => {
   return <SimpleLandingPage />;
 };
 
+// Global League Creation Success Marker Component
+const LeagueCreateSuccessMarker = () => {
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [leagueId, setLeagueId] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check for league creation success in sessionStorage
+    const successLeagueId = sessionStorage.getItem('leagueCreateSuccess');
+    if (successLeagueId) {
+      setLeagueId(successLeagueId);
+      setShowSuccess(true);
+      
+      // Clear the success marker when we reach the lobby page
+      if (location.pathname.includes('/lobby')) {
+        sessionStorage.removeItem('leagueCreateSuccess');
+        // Keep showing for a brief moment to allow tests to detect it
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 500);
+      }
+    }
+  }, [location.pathname]);
+
+  if (!showSuccess || !leagueId) return null;
+
+  return (
+    <div 
+      data-testid="create-success" 
+      className="fixed top-16 left-1/2 transform -translate-x-1/2 z-50 bg-green-50 border border-green-200 rounded-md px-4 py-2 text-green-800 shadow-lg"
+    >
+      League created successfully! Redirecting to lobby...
+    </div>
+  );
+};
+
 // Main App Component
 function App() {
   return (
