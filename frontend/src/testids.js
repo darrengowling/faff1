@@ -137,9 +137,7 @@ const LEGACY_TESTIDS = {
   leaderboardPosition: 'leaderboard-position',
   leaderboardManager: 'leaderboard-manager',
   leaderboardPoints: 'leaderboard-points',
-  leaderboardGoals: 'leaderboard-goals',
-  leaderboardWins: 'leaderboard-wins',
-  leaderboardDraws: 'leaderboard-draws',
+  // Note: leaderboardGoals, leaderboardWins, leaderboardDraws removed as they're not implemented in current scoring system
   
   // Fixtures
   fixturesTable: 'fixtures-table',
