@@ -1,5 +1,5 @@
-const { test, expect } = require('@playwright/test');
-const { TESTIDS } = require('../../frontend/src/testids.ts');
+import { test, expect } from '@playwright/test';
+import { TESTIDS } from '../../frontend/src/testids.ts';
 
 /**
  * Navigation Component Tests
