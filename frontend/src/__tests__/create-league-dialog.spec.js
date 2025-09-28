@@ -6,40 +6,7 @@
 
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '../theme/ThemeProvider';
 import { TESTIDS } from '../testids.js';
-
-// Mock dependencies
-jest.mock('axios');
-jest.mock('../hooks/use-toast', () => ({
-  useToast: () => ({
-    toast: {
-      success: jest.fn(),
-      error: jest.fn()
-    }
-  })
-}));
-
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key) => key
-  })
-}));
-
-// Mock auth context
-const mockAuthContext = {
-  user: { id: 'test-user', email: 'test@example.com' },
-  loading: false
-};
-
-jest.mock('../App', () => {
-  const originalModule = jest.requireActual('../App');
-  return {
-    ...originalModule,
-    useAuth: () => mockAuthContext
-  };
-});
 
 // Extract CreateLeagueDialog component for testing
 const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
