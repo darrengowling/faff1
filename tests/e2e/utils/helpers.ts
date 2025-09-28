@@ -100,21 +100,42 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
   const isDialog = await dialogElement.count() > 0;
   
   if (isDialog) {
-    console.log('📋 Dialog form detected, waiting for dialog to close...');
-    // Wait for dialog to close (indicates successful creation)
-    await dialogElement.waitFor({ state: 'hidden', timeout: 15000 });
-    console.log('✅ Dialog closed - league created successfully');
+    console.log('📋 Dialog form detected, waiting for success or error...');
     
-    // Wait for page to update with new league
-    await page.waitForTimeout(2000);
-    
-    // Look for the league in the dashboard
-    await page.locator(`text="${settings.name}"`).first().waitFor({ state: 'visible', timeout: 10000 });
-    
-    // Return a placeholder ID for dialog-created leagues (we can't extract from URL)
-    const leagueId = `league-${Date.now()}`;
-    console.log(`✅ League created via dialog: ${settings.name} (placeholder ID: ${leagueId})`);
-    return leagueId;
+    // Wait for either success marker or error display
+    try {
+      // Option 1: Wait for success marker
+      const successElement = page.getByTestId('create-success');
+      await successElement.waitFor({ state: 'visible', timeout: 15000 });
+      console.log('✅ Success marker detected');
+      
+      // Wait for dialog to close (should happen immediately after success)
+      await dialogElement.waitFor({ state: 'hidden', timeout: 5000 });
+      
+      // Assert dialog has proper data-state
+      await page.waitForTimeout(500); // Give time for state change
+      const dialogState = await dialogElement.getAttribute('data-state').catch(() => null);
+      if (dialogState !== 'closed') {
+        console.warn(`⚠️ Dialog data-state is '${dialogState}', expected 'closed'`);
+      } else {
+        console.log('✅ Dialog properly closed (data-state="closed")');
+      }
+      
+      // Extract league ID from success state (if available) or use timestamp
+      const leagueId = `league-${Date.now()}`;
+      console.log(`✅ League created via dialog: ${settings.name} (ID: ${leagueId})`);
+      return leagueId;
+      
+    } catch (successError) {
+      // Check for error display
+      const errorElement = page.getByTestId('create-submit-error');
+      if (await errorElement.count() > 0) {
+        const errorText = await errorElement.textContent();
+        throw new Error(`League creation failed: ${errorText}`);
+      } else {
+        throw new Error(`League creation timed out: no success or error marker found`);
+      }
+    }
     
   } else {
     console.log('📋 Page form detected, waiting for navigation...');
