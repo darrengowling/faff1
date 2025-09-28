@@ -316,6 +316,18 @@ backend:
         comment: "Created automated migration script: 1) Systematic component processing for useTranslation import/hook addition, 2) Pattern-based string replacement for common UI text, 3) Generated detailed migration report, 4) Successfully processed 8 components with 100% success rate"
 
 frontend:
+  - task: "Complete Lobby Joined Count and Rules Badge Testids Implementation"
+    implemented: false
+    working: false
+    file: "/app/frontend/src/App.js, /app/frontend/src/components/ui/rules-badge.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "❌ MISSING TESTIDS IDENTIFIED: Testing reveals that lobby-joined and lobby-joined-count testids are not found in the current league management interface (App.js LeagueManagement component), and rules-badge testid is not found on lobby pages. The implementation exists in App.js lines 1114-1115 and 1126-1135 but may not be rendering in the league management interface. Need to verify testids are properly applied to: 1) lobby-joined display showing '{joined}/{max}' format, 2) lobby-joined-count for the specific count number, 3) rules-badge on both lobby and auction pages showing 'Slots: X · Budget: Y · Min: Z · Max: W' format."
+
   - task: "Deterministic Submit → Navigate Flow Implementation"
     implemented: true
     working: true
