@@ -87,28 +87,9 @@ class EmailValidator:
     @staticmethod
     def _additional_checks(email: str) -> bool:
         """Additional validation checks"""
-        # Check for consecutive dots
-        if '..' in email:
-            return False
-        
-        # Check for leading/trailing dots in local part
-        local_part = email.split('@')[0]
-        if local_part.startswith('.') or local_part.endswith('.'):
-            return False
-        
-        # Check domain has valid TLD
-        domain_part = email.split('@')[1]
-        if '.' not in domain_part:
-            return False
-        
-        parts = domain_part.split('.')
-        tld = parts[-1]
-        
-        # TLD must be at least 2 characters and contain only letters
-        if len(tld) < 2 or not tld.isalpha():
-            return False
-        
-        return True
+        # Use detailed validation for thorough checking
+        is_valid, _ = EmailValidator.validate_email_detailed(email)
+        return is_valid
     
     @staticmethod
     def _validate_local_part(local_part: str) -> Tuple[bool, str]:
