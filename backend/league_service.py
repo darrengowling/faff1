@@ -343,7 +343,7 @@ class LeagueService:
                 status=MembershipStatus.ACTIVE
             )
             membership_dict = membership.dict(by_alias=True)
-            await db.memberships.insert_one(membership_dict)
+            await db.league_memberships.insert_one(membership_dict)
             
             # Create roster for new member
             roster = Roster(
