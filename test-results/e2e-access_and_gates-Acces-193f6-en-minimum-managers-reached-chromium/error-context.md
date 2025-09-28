@@ -129,7 +129,7 @@
               - generic:
                 - generic:
                   - generic:
-                    - heading [level=2]: All Leagues (34)
+                    - heading [level=2]: All Leagues (35)
                   - button:
                     - img
                     - text: Create League
@@ -554,6 +554,36 @@
                             - img
                             - text: Club Slots
                           - generic: "2"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Gate Test League 1759093299842
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
                   - generic:
                     - generic:
                       - generic:

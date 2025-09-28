@@ -3,60 +3,64 @@
 ```yaml
 - generic [active] [ref=e1]:
   - generic [ref=e2]:
-    - region "Notifications alt+T"
-    - generic [ref=e3]:
-      - banner [ref=e4]:
-        - generic [ref=e6]:
-          - button "Friends of PIFA" [ref=e7] [cursor=pointer]:
-            - img [ref=e9] [cursor=pointer]
-            - generic [ref=e15] [cursor=pointer]: Friends of PIFA
-          - navigation [ref=e16]:
-            - button "Product" [ref=e18] [cursor=pointer]:
-              - generic [ref=e19] [cursor=pointer]: Product
+    - region "Notifications alt+T":
+      - list:
+        - listitem [ref=e3]:
+          - img [ref=e5]
+          - generic [ref=e8]: League created successfully!
+    - generic [ref=e9]:
+      - banner [ref=e10]:
+        - generic [ref=e12]:
+          - button "Friends of PIFA" [ref=e13] [cursor=pointer]:
+            - img [ref=e15] [cursor=pointer]
+            - generic [ref=e21] [cursor=pointer]: Friends of PIFA
+          - navigation [ref=e22]:
+            - button "Product" [ref=e24] [cursor=pointer]:
+              - generic [ref=e25] [cursor=pointer]: Product
               - img
-          - generic [ref=e20]:
-            - button "Create League" [ref=e21] [cursor=pointer]:
+          - generic [ref=e26]:
+            - button "Create League" [ref=e27] [cursor=pointer]:
               - img
-              - generic [ref=e22] [cursor=pointer]: Create League
-            - generic [ref=e23]:
-              - generic [ref=e24]:
-                - img [ref=e25]
-                - generic [ref=e28]: commish@example.com
-              - button "Sign Out" [ref=e29] [cursor=pointer]:
+              - generic [ref=e28] [cursor=pointer]: Create League
+            - generic [ref=e29]:
+              - generic [ref=e30]:
+                - img [ref=e31]
+                - generic [ref=e34]: commish@example.com
+              - button "Sign Out" [ref=e35] [cursor=pointer]:
                 - img
-                - generic [ref=e30] [cursor=pointer]: Sign Out
-            - button "Switch to dark mode" [ref=e31] [cursor=pointer]:
-              - generic [ref=e32] [cursor=pointer]:
+                - generic [ref=e36] [cursor=pointer]: Sign Out
+            - button "Switch to dark mode" [ref=e37] [cursor=pointer]:
+              - generic [ref=e38] [cursor=pointer]:
                 - img
-      - main [ref=e33]:
-        - generic [ref=e35]:
-          - generic [ref=e36]:
-            - img [ref=e38]
-            - heading "404" [level=1] [ref=e40]
-            - heading "Page Not Found" [level=2] [ref=e41]
-            - paragraph [ref=e42]: The page you're looking for doesn't exist or has been moved. Let's get you back to your football auctions!
-          - generic [ref=e43]:
-            - generic [ref=e44]:
-              - img [ref=e46]
-              - generic [ref=e52]: Friends of PIFA
-            - paragraph [ref=e53]: Sports gaming with friends. No gambling. All strategy.
-          - generic [ref=e56] [cursor=pointer]:
-            - img [ref=e58] [cursor=pointer]
-            - heading "Get Started" [level=3] [ref=e61] [cursor=pointer]
-            - paragraph [ref=e62] [cursor=pointer]: Learn about Friends of PIFA
-            - button "Get Started" [ref=e63] [cursor=pointer]:
-              - generic [ref=e64] [cursor=pointer]:
-                - generic [ref=e65] [cursor=pointer]: Get Started
+      - main [ref=e39]:
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - img [ref=e44]
+            - heading "404" [level=1] [ref=e46]
+            - heading "Page Not Found" [level=2] [ref=e47]
+            - paragraph [ref=e48]: The page you're looking for doesn't exist or has been moved. Let's get you back to your football auctions!
+          - generic [ref=e49]:
+            - generic [ref=e50]:
+              - img [ref=e52]
+              - generic [ref=e58]: Friends of PIFA
+            - paragraph [ref=e59]: Sports gaming with friends. No gambling. All strategy.
+          - generic [ref=e62] [cursor=pointer]:
+            - img [ref=e64] [cursor=pointer]
+            - heading "Get Started" [level=3] [ref=e67] [cursor=pointer]
+            - paragraph [ref=e68] [cursor=pointer]: Learn about Friends of PIFA
+            - button "Get Started" [ref=e69] [cursor=pointer]:
+              - generic [ref=e70] [cursor=pointer]:
+                - generic [ref=e71] [cursor=pointer]: Get Started
                 - img
-          - generic [ref=e66]:
-            - paragraph [ref=e67]: Still having trouble? Try refreshing the page or check your URL.
-            - generic [ref=e68]:
-              - button "Refresh Page" [ref=e69] [cursor=pointer]
-              - generic [ref=e70]: •
-              - button "Go Back" [ref=e71] [cursor=pointer]
-  - link "Emergent platform logo Made with Emergent" [ref=e72] [cursor=pointer]:
+          - generic [ref=e72]:
+            - paragraph [ref=e73]: Still having trouble? Try refreshing the page or check your URL.
+            - generic [ref=e74]:
+              - button "Refresh Page" [ref=e75] [cursor=pointer]
+              - generic [ref=e76]: •
+              - button "Go Back" [ref=e77] [cursor=pointer]
+  - link "Emergent platform logo Made with Emergent" [ref=e78] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e73] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e74] [cursor=pointer]
-      - paragraph [ref=e75] [cursor=pointer]: Made with Emergent
+    - generic [ref=e79] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e80] [cursor=pointer]
+      - paragraph [ref=e81] [cursor=pointer]: Made with Emergent
 ```
