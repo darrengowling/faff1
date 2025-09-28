@@ -137,14 +137,26 @@ code {
     pointer-events: none !important;
   }
   
-  nav[aria-label="Page sections navigation"] button,
-  nav[aria-label="Page sections navigation"] [role="tab"] {
+  /* Only allow pointer events on buttons when they are actually visible and needed */
+  nav[aria-label="Page sections navigation"]:not(.-translate-y-full) button,
+  nav[aria-label="Page sections navigation"]:not(.-translate-y-full) [role="tab"] {
     pointer-events: auto !important;
   }
   
-  /* Ensure all child elements of navigation buttons allow pointer events */
+  /* Ensure all child elements of navigation buttons don't interfere */
   nav[aria-label="Page sections navigation"] button *,
   nav[aria-label="Page sections navigation"] [role="tab"] * {
+    pointer-events: none !important;
+  }
+  
+  /* When sticky nav is hidden (translated up), ensure no pointer events at all */
+  nav[aria-label="Page sections navigation"].-translate-y-full {
+    pointer-events: none !important;
+  }
+  
+  nav[aria-label="Page sections navigation"].-translate-y-full button,
+  nav[aria-label="Page sections navigation"].-translate-y-full [role="tab"],
+  nav[aria-label="Page sections navigation"].-translate-y-full * {
     pointer-events: none !important;
   }
   
