@@ -668,12 +668,21 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
               <Label htmlFor="name">{t('leagueCreation.leagueName')}</Label>
               <Input
                 id="name"
-                placeholder={t('leagueCreation.leagueNamePlaceholder')}
                 value={formData.name}
-                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                onChange={(e) => {
+                  setFormData(prev => ({ ...prev, name: e.target.value }));
+                  clearError('name');
+                }}
                 required
-                data-testid={TESTIDS.createNameInput}
+                aria-describedby={errors.name ? "name-error" : undefined}
+                className={errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
+                data-testid="create-name"
               />
+              {errors.name && (
+                <p id="name-error" className="text-sm text-red-600" data-testid="create-error-name">
+                  {errors.name}
+                </p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="season">{t('dashboard.season')}</Label>
