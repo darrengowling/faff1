@@ -66,14 +66,14 @@
   "suites": [],
   "errors": [
     {
-      "message": "SyntaxError: /app/tests/e2e/utils/helpers.ts: 'import' and 'export' may only appear at the top level. (342:0)\n\n  340 |  * Core smoke test specific helpers\n  341 |  */\n> 342 | export async function expectLobbyState(page: Page, expectedState: string): Promise<void> {\n      | ^\n  343 |   console.log(`🔍 Expecting lobby state: ${expectedState}`);\n  344 |   \n  345 |   // Wait for lobby member count indicator",
-      "stack": "SyntaxError: /app/tests/e2e/utils/helpers.ts: 'import' and 'export' may only appear at the top level. (342:0)\n\n  340 |  * Core smoke test specific helpers\n  341 |  */\n> 342 | export async function expectLobbyState(page: Page, expectedState: string): Promise<void> {\n      | ^\n  343 |   console.log(`🔍 Expecting lobby state: ${expectedState}`);\n  344 |   \n  345 |   // Wait for lobby member count indicator\n    at Object.<anonymous> (/app/tests/e2e/core-smoke.spec.ts:10:1)",
+      "message": "SyntaxError: /app/tests/e2e/utils/helpers.ts: Identifier 'nominateFirstAsset' has already been declared. (353:22)\n\n  351 | }\n  352 |\n> 353 | export async function nominateFirstAsset(page: Page): Promise<string> {\n      |                       ^\n  354 |   console.log('🎯 Nominating first asset...');\n  355 |   \n  356 |   // Click nominate button - try different possible selectors",
+      "stack": "SyntaxError: /app/tests/e2e/utils/helpers.ts: Identifier 'nominateFirstAsset' has already been declared. (353:22)\n\n  351 | }\n  352 |\n> 353 | export async function nominateFirstAsset(page: Page): Promise<string> {\n      |                       ^\n  354 |   console.log('🎯 Nominating first asset...');\n  355 |   \n  356 |   // Click nominate button - try different possible selectors\n    at Object.<anonymous> (/app/tests/e2e/core-smoke.spec.ts:10:1)",
       "location": {
         "file": "/app/tests/e2e/core-smoke.spec.ts",
-        "line": 342,
-        "column": 0
+        "line": 353,
+        "column": 22
       },
-      "snippet": "   at core-smoke.spec.ts:342\n\n"
+      "snippet": "   at core-smoke.spec.ts:353\n\n"
     },
     {
       "message": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.",
@@ -81,8 +81,8 @@
     }
   ],
   "stats": {
-    "startTime": "2025-09-28T04:34:51.814Z",
-    "duration": 259.9459999999999,
+    "startTime": "2025-09-28T04:35:21.005Z",
+    "duration": 137.399,
     "expected": 0,
     "skipped": 0,
     "unexpected": 0,
