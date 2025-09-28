@@ -27,88 +27,104 @@ class LeagueService:
         commissioner_id: str
     ) -> LeagueResponse:
         """
-        Create a complete league setup with all related documents
+        Create a complete league setup with all related documents using atomic transaction
         """
-        try:
-            # Get default settings from competition profile if no explicit settings provided
-            if league_data.settings is None:
-                competition_service = CompetitionService()
-                default_settings = await competition_service.get_default_settings("ucl")
-                logger.info(f"Using default settings from UCL competition profile")
-            else:
-                default_settings = league_data.settings
-                logger.info(f"Using explicit settings provided by commissioner")
-            
-            # Create league with enhanced settings
-            league = League(
-                name=league_data.name,
-                season=league_data.season or "2025-26",
-                commissioner_id=commissioner_id,
-                settings=default_settings,
-                status="setup",
-                member_count=1
-            )
-            league_dict = league.dict(by_alias=True)
-            await db.leagues.insert_one(league_dict)
-            
-            # Create commissioner membership
-            membership = Membership(
-                league_id=league.id,
-                user_id=commissioner_id,
-                role=MembershipRole.COMMISSIONER,
-                status=MembershipStatus.ACTIVE
-            )
-            membership_dict = membership.dict(by_alias=True)
-            await db.memberships.insert_one(membership_dict)
-            
-            # Create default auction document with test overrides if needed
-            auction = Auction(
-                id=league.id,  # Use league_id as auction_id for simplicity
-                league_id=league.id,
-                budget_per_manager=league.settings.budget_per_manager,
-                min_increment=league.settings.min_increment,
-                anti_snipe_seconds=TEST_ANTI_SNIPE_SECONDS if IS_TEST_MODE else league.settings.anti_snipe_seconds,
-                bid_timer_seconds=TEST_BID_TIMER_SECONDS if IS_TEST_MODE else league.settings.bid_timer_seconds
-            )
-            auction_dict = auction.dict(by_alias=True)
-            await db.auctions.insert_one(auction_dict)
-            
-            # Create scoring rules from league settings
-            scoring_rules = ScoringRules(
-                league_id=league.id,
-                rules=league.settings.scoring_rules
-            )
-            scoring_dict = scoring_rules.dict(by_alias=True)
-            await db.scoring_rules.insert_one(scoring_dict)
-            
-            # Create commissioner roster
-            roster = Roster(
-                league_id=league.id,
-                user_id=commissioner_id,
-                budget_start=league.settings.budget_per_manager,
-                budget_remaining=league.settings.budget_per_manager,
-                club_slots=league.settings.club_slots_per_manager
-            )
-            roster_dict = roster.dict(by_alias=True)
-            await db.rosters.insert_one(roster_dict)
-            
-            logger.info(f"Created complete league setup {league.id} by user {commissioner_id}")
-            
-            return LeagueResponse(
-                id=league.id,
-                name=league.name,
-                competition=league.competition,
-                season=league.season,
-                commissioner_id=league.commissioner_id,
-                settings=league.settings,
-                status=league.status,
-                member_count=league.member_count,
-                created_at=league.created_at
-            )
-            
-        except Exception as e:
-            logger.error(f"Failed to create league: {e}")
-            raise
+        # Use MongoDB client for transaction support
+        from database import client
+        
+        async with await client.start_session() as session:
+            try:
+                async with session.start_transaction():
+                    # Get default settings from competition profile if no explicit settings provided
+                    if league_data.settings is None:
+                        competition_service = CompetitionService()
+                        default_settings = await competition_service.get_default_settings("ucl")
+                        logger.info(f"Using default settings from UCL competition profile")
+                    else:
+                        default_settings = league_data.settings
+                        logger.info(f"Using explicit settings provided by commissioner")
+                    
+                    # Create league with enhanced settings
+                    league = League(
+                        name=league_data.name,
+                        season=league_data.season or "2025-26",
+                        commissioner_id=commissioner_id,
+                        settings=default_settings,
+                        status="setup",
+                        member_count=1
+                    )
+                    league_dict = league.dict(by_alias=True)
+                    
+                    # All operations within the transaction
+                    await db.leagues.insert_one(league_dict, session=session)
+                    
+                    # Create commissioner membership
+                    membership = Membership(
+                        league_id=league.id,
+                        user_id=commissioner_id,
+                        role=MembershipRole.COMMISSIONER,
+                        status=MembershipStatus.ACTIVE
+                    )
+                    membership_dict = membership.dict(by_alias=True)
+                    await db.memberships.insert_one(membership_dict, session=session)
+                    
+                    # Create default auction document with test overrides if needed
+                    auction = Auction(
+                        id=league.id,  # Use league_id as auction_id for simplicity
+                        league_id=league.id,
+                        budget_per_manager=league.settings.budget_per_manager,
+                        min_increment=league.settings.min_increment,
+                        anti_snipe_seconds=TEST_ANTI_SNIPE_SECONDS if IS_TEST_MODE else league.settings.anti_snipe_seconds,
+                        bid_timer_seconds=TEST_BID_TIMER_SECONDS if IS_TEST_MODE else league.settings.bid_timer_seconds
+                    )
+                    auction_dict = auction.dict(by_alias=True)
+                    await db.auctions.insert_one(auction_dict, session=session)
+                    
+                    # Create scoring rules from league settings
+                    scoring_rules = ScoringRules(
+                        league_id=league.id,
+                        rules=league.settings.scoring_rules
+                    )
+                    scoring_dict = scoring_rules.dict(by_alias=True)
+                    await db.scoring_rules.insert_one(scoring_dict, session=session)
+                    
+                    # Create commissioner roster
+                    roster = Roster(
+                        league_id=league.id,
+                        user_id=commissioner_id,
+                        budget_start=league.settings.budget_per_manager,
+                        budget_remaining=league.settings.budget_per_manager,
+                        club_slots=league.settings.club_slots_per_manager
+                    )
+                    roster_dict = roster.dict(by_alias=True)
+                    await db.rosters.insert_one(roster_dict, session=session)
+                    
+                    # In TEST_MODE, skip heavy operations like email notifications
+                    if not IS_TEST_MODE:
+                        # Any additional setup operations that should be skipped in test mode
+                        # (currently none, but placeholder for future email/notification setup)
+                        pass
+                    
+                    logger.info(f"Created complete league setup {league.id} by user {commissioner_id} (TEST_MODE: {IS_TEST_MODE})")
+                    
+                    # Transaction will auto-commit here if no exceptions
+                    
+                    return LeagueResponse(
+                        id=league.id,
+                        name=league.name,
+                        competition=league.competition,
+                        season=league.season,
+                        commissioner_id=league.commissioner_id,
+                        settings=league.settings,
+                        status=league.status,
+                        member_count=league.member_count,
+                        created_at=league.created_at
+                    )
+                    
+            except Exception as e:
+                # Transaction will auto-rollback on exception
+                logger.error(f"Failed to create league in transaction: {e}")
+                raise
 
     @staticmethod
     async def invite_manager(
