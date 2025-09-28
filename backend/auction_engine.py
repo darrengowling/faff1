@@ -61,7 +61,7 @@ class AuctionEngine:
         """Send server time every 2 seconds for client synchronization"""
         try:
             while auction_id in self.active_auctions:
-                server_now = datetime.now(timezone.utc)
+                server_now = now()  # Use time provider
                 
                 # Get current lot timer info if exists
                 current_lot = None
