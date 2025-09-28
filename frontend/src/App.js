@@ -614,9 +614,11 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
         sessionStorage.setItem('leagueCreateSuccess', response.data.leagueId);
         
         // Close the dialog first
+        debugLog('closed', `league created: ${response.data.leagueId}, closing dialog`);
         onOpenChange(false); // This should set data-state="closed"
         
         // Navigate to lobby in a microtask (after dialog close completes)
+        debugLog('navigating', `navigating to lobby: /app/leagues/${response.data.leagueId}/lobby`);
         setTimeout(() => {
           window.location.href = `/app/leagues/${response.data.leagueId}/lobby`;
         }, 0);
