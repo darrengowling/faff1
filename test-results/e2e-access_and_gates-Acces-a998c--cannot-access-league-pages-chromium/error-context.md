@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic:
+- generic [active]:
   - generic:
     - region "Notifications alt+T"
     - generic:
@@ -13,8 +13,25 @@
                 - img
               - generic:
                 - generic: Friends of PIFA
-            - button:
-              - img
+            - navigation:
+              - generic:
+                - button:
+                  - generic: Product
+                  - img
+            - generic:
+              - button:
+                - img
+                - generic: Create League
+              - generic:
+                - generic:
+                  - img
+                  - generic: commish@example.com
+                - button:
+                  - img
+                  - generic: Sign Out
+              - button:
+                - generic:
+                  - img
         - generic:
           - generic:
             - generic:
@@ -37,8 +54,16 @@
                     - img
                   - generic:
                     - generic: Friends of PIFA
-                - button:
-                  - img
+                - generic:
+                  - button:
+                    - img
+                    - text: New League
+                  - generic:
+                    - generic: Welcome, commish@example.com
+                    - button: Dashboard
+                  - button:
+                    - generic:
+                      - img
             - link:
               - /url: "#main-content"
               - text: Skip to main content
@@ -47,9 +72,10 @@
               - generic:
                 - generic:
                   - generic:
-                    - generic:
-                      - img
-                    - heading [level=1]: Friends of PIFA
+                    - generic: Dashboard
+                - generic:
+                  - generic:
+                    - generic: commish
           - main:
             - generic:
               - generic:
@@ -103,7 +129,7 @@
               - generic:
                 - generic:
                   - generic:
-                    - heading [level=2]: All Leagues (32)
+                    - heading [level=2]: All Leagues (34)
                   - button:
                     - img
                     - text: Create League
@@ -283,6 +309,36 @@
                             - img
                             - text: Budget
                           - generic: 200 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "5"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=3]: Start Auction Test League
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
                         - generic:
                           - generic:
                             - img
@@ -1012,6 +1068,36 @@
                     - generic:
                       - generic:
                         - generic:
+                          - heading [level=3]: Gate Test League 1759093177718
+                          - paragraph:
+                            - img
+                            - text: 2025-26
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Commissioner
+                          - generic: setup
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Members
+                          - generic: "1"
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Budget
+                          - generic: 100 credits
+                        - generic:
+                          - generic:
+                            - img
+                            - text: Club Slots
+                          - generic: "3"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
                           - heading [level=3]: Core Smoke League
                           - paragraph:
                             - img
@@ -1196,7 +1282,7 @@
   - dialog "Create New League" [ref=e2]:
     - generic [ref=e3]:
       - generic [ref=e4]:
-        - button "Home" [active] [ref=e5] [cursor=pointer]
+        - button "Home" [ref=e5] [cursor=pointer]
         - generic [ref=e6]: /
         - generic [ref=e7]: New League
       - heading "Create New League" [level=2] [ref=e8]
@@ -1204,7 +1290,7 @@
       - generic [ref=e10]:
         - generic [ref=e11]:
           - generic [ref=e12]: League Name
-          - textbox "League Name" [ref=e13]
+          - textbox "League Name" [ref=e13]: Private League
         - generic [ref=e14]:
           - generic [ref=e15]: Season
           - textbox "Season" [ref=e16]: 2025-26
@@ -1223,7 +1309,7 @@
             - spinbutton "Budget per Manager (£)" [ref=e26]: "100"
           - generic [ref=e27]:
             - generic [ref=e28]: Club Slots per Manager
-            - spinbutton "Club Slots per Manager" [ref=e29]: "5"
+            - spinbutton "Club Slots per Manager" [ref=e29]: "3"
           - generic [ref=e30]:
             - generic [ref=e31]: Min Bid Increment
             - spinbutton "Min Bid Increment" [ref=e32]: "1"
@@ -1235,7 +1321,7 @@
             - spinbutton "Min Managers" [ref=e38]: "2"
           - generic [ref=e39]:
             - generic [ref=e40]: Max Managers
-            - spinbutton "Max Managers" [ref=e41]: "8"
+            - spinbutton "Max Managers" [ref=e41]: "4"
       - generic [ref=e42]:
         - heading "Scoring Rules" [level=4] [ref=e43]
         - generic [ref=e44]:
@@ -1248,10 +1334,11 @@
           - generic [ref=e51]:
             - generic [ref=e52]: Points per Draw
             - spinbutton "Points per Draw" [ref=e53]: "1"
-      - generic [ref=e54]:
-        - button "Cancel" [ref=e55] [cursor=pointer]
-        - button "Create League" [ref=e56] [cursor=pointer]
-    - button "Close" [ref=e57] [cursor=pointer]:
-      - img [ref=e58] [cursor=pointer]
-      - generic [ref=e61] [cursor=pointer]: Close
+      - alert [ref=e54]: "Server error: Internal error"
+      - generic [ref=e55]:
+        - button "Cancel" [ref=e56] [cursor=pointer]
+        - button "Create League" [ref=e57] [cursor=pointer]
+    - button "Close" [ref=e58] [cursor=pointer]:
+      - img [ref=e59] [cursor=pointer]
+      - generic [ref=e62] [cursor=pointer]: Close
 ```
