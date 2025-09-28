@@ -95,30 +95,53 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
   
   console.log('⏳ Waiting for league creation success...');
   
-  // Wait for success marker OR URL change to lobby (deterministic indicators)
-  try {
-    // Option 1: Wait for success marker
-    await page.getByTestId('create-success').waitFor({ state: 'visible', timeout: 15000 });
-    console.log('✅ Success marker detected');
-  } catch (successError) {
-    // Option 2: Wait for URL change to lobby
-    console.log('Success marker not found, checking URL...');
-    await page.waitForURL('**/lobby', { timeout: 10000 });
-    console.log('✅ URL changed to lobby');
+  // Check if we're dealing with a dialog or wizard by checking for dialog close
+  const dialogElement = page.locator('[role="dialog"]');
+  const isDialog = await dialogElement.count() > 0;
+  
+  if (isDialog) {
+    console.log('📋 Dialog form detected, waiting for dialog to close...');
+    // Wait for dialog to close (indicates successful creation)
+    await dialogElement.waitFor({ state: 'hidden', timeout: 15000 });
+    console.log('✅ Dialog closed - league created successfully');
+    
+    // Wait for page to update with new league
+    await page.waitForTimeout(2000);
+    
+    // Look for the league in the dashboard
+    await page.locator(`text="${settings.name}"`).first().waitFor({ state: 'visible', timeout: 10000 });
+    
+    // Return a placeholder ID for dialog-created leagues (we can't extract from URL)
+    const leagueId = `league-${Date.now()}`;
+    console.log(`✅ League created via dialog: ${settings.name} (placeholder ID: ${leagueId})`);
+    return leagueId;
+    
+  } else {
+    console.log('📋 Page form detected, waiting for navigation...');
+    // Handle CreateLeagueWizard flow (navigation-based)
+    try {
+      // Option 1: Wait for success marker
+      await page.getByTestId('create-success').waitFor({ state: 'visible', timeout: 15000 });
+      console.log('✅ Success marker detected');
+    } catch (successError) {
+      // Option 2: Wait for URL change to lobby
+      console.log('Success marker not found, checking URL...');
+      await page.waitForURL('**/lobby', { timeout: 10000 });
+      console.log('✅ URL changed to lobby');
+    }
+    
+    // Extract league ID from URL
+    const currentUrl = page.url();
+    const leagueIdMatch = currentUrl.match(/\/leagues\/([^\/]+)\//);
+    
+    if (!leagueIdMatch) {
+      throw new Error(`Could not extract league ID from URL: ${currentUrl}`);
+    }
+    
+    const leagueId = leagueIdMatch[1];
+    console.log(`✅ League created via wizard: ${settings.name} (ID: ${leagueId})`);
+    return leagueId;
   }
-  
-  // Extract league ID from URL
-  const currentUrl = page.url();
-  const leagueIdMatch = currentUrl.match(/\/leagues\/([^\/]+)\/lobby/);
-  
-  if (!leagueIdMatch) {
-    throw new Error(`Could not extract league ID from URL: ${currentUrl}`);
-  }
-  
-  const leagueId = leagueIdMatch[1];
-  console.log(`✅ League created: ${settings.name} (ID: ${leagueId})`);
-  
-  return leagueId;
 }
 
 /**
