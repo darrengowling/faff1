@@ -244,15 +244,25 @@ class SimpleCIPipeline {
       
       if (!phase1) return this.generateReport();
 
-      // Phase 2: Create Form Pre-Gate Verification
+      // Phase 2: Email Import Guard
       const phase2 = this.runPhase(
+        'check-email-imports',
+        'chmod +x scripts/check-email-imports.sh && scripts/check-email-imports.sh',
+        'Email validation import guard',
+        10000
+      );
+
+      if (!phase2) return this.generateReport();
+
+      // Phase 3: Create Form Pre-Gate Verification
+      const phase3 = this.runPhase(
         'verify-create-form',
         'chmod +x scripts/verify-create-form.sh && scripts/verify-create-form.sh',
         'Create League form accessibility pre-gate',
         45000
       );
 
-      if (!phase2) return this.generateReport();
+      if (!phase3) return this.generateReport();
 
       // Phase 3: Frontend Contract Tests 
       const phase3 = this.runPhase(
