@@ -1559,6 +1559,10 @@ function App() {
         <Router>
           <div className="App">
             <Toaster />
+            
+            {/* Global League Creation Success Marker */}
+            <LeagueCreateSuccessMarker />
+            
             {/* Global Navigation */}
             <GlobalNavbar />
             
