@@ -18,6 +18,7 @@ import { useAuth } from '../../App';
 import { HeaderBrand } from '../ui/brand-badge';
 import { ProductDropdownMenu } from '../navigation/ProductDropdownMenu';
 import { AuthNavigation } from '../navigation/AuthNavigation';
+import { MobileNavigation } from '../navigation/NavigationMenu';
 import { IconThemeToggle } from '../ui/theme-toggle';
 import { TESTIDS } from '../../testids';
 
