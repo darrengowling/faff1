@@ -35,11 +35,23 @@ const PATTERNS = [
   }
 ];
 
-// File patterns to scan
-const SCAN_PATTERNS = [
-  'frontend/src/**/*.{js,jsx,ts,tsx}',
-  'frontend/public/**/*.html'
-];
+// File patterns to scan (relative to project root)
+const getScanPatterns = () => {
+  // Check if we're in the frontend directory or root
+  const isInFrontend = process.cwd().includes('/frontend');
+  
+  if (isInFrontend) {
+    return [
+      'src/**/*.{js,jsx,ts,tsx}',
+      'public/**/*.html'
+    ];
+  } else {
+    return [
+      'frontend/src/**/*.{js,jsx,ts,tsx}',
+      'frontend/public/**/*.html'
+    ];
+  }
+};
 
 // Files to exclude
 const EXCLUDE_PATTERNS = [
