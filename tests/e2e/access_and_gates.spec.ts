@@ -4,7 +4,7 @@
  */
 
 import { test, expect, Browser, Page } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids.js';
+import { TESTIDS } from '../../frontend/src/testids.ts';
 import { login, createLeague } from './utils/helpers';
 import { setFormValue } from './utils/form';
 
