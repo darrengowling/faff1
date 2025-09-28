@@ -74,9 +74,8 @@ export async function clickCreateLeague(page: Page): Promise<void> {
 export async function createLeague(page: Page, settings: LeagueSettings): Promise<string> {
   console.log(`🏆 Creating league: ${settings.name}`);
   
-  // Navigate to create league page (assuming current navigation goes there)
-  const createBtn = page.locator('button').filter({ hasText: /create.*league/i }).first();
-  await safeClick(page, createBtn);
+  // Click Create League CTA using proper testid selectors
+  await clickCreateLeague(page);
   
   // Use the new type-aware form helper to fill the league creation form
   await fillCreateLeague(page, {
@@ -90,14 +89,14 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
   console.log('📝 Form filled, submitting...');
   
   // Submit form using safe click
-  const submitBtn = page.locator(`[data-testid="${TESTIDS.createSubmit}"]`);
-  await safeClick(page, submitBtn);
+  const submitBtn = page.getByTestId(TESTIDS.createSubmit);
+  await ensureClickable(submitBtn);
+  await submitBtn.click();
   
   console.log('⏳ Waiting for league creation success...');
   
-  // Check if we're dealing with a dialog or wizard by checking for dialog close
-  const dialogElement = page.locator('[role="dialog"]');
-  const isDialog = await dialogElement.count() > 0;
+  // Post-submit contract: await either create-success or /lobby URL, and check dialog closed
+  return await awaitCreatedAndInLobby(page);
   
   if (isDialog) {
     console.log('📋 Dialog form detected, waiting for dialog to close and navigation...');
