@@ -59,6 +59,13 @@ async function loginTestOnlyInternal(page: Page, email: string, timeout: number)
       return;
     }
     
+    if (response.status() === 502) {
+      // Bad Gateway - likely proxy/routing issue, fallback to UI login
+      console.log(`🔄 Test login unreachable (502), falling back to UI login for: ${email}`);
+      await loginUI(page, email, timeout);
+      return;
+    }
+    
     if (response.status() === 400) {
       // Invalid email - assert auth-error and bail with clear message
       try {
