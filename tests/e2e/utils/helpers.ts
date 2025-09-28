@@ -110,7 +110,8 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
   
   // Open create league dialog from dashboard
   // Look for Create League button on dashboard
-  await page.locator('button').filter({ hasText: /create.*league/i }).first().click();
+  const createBtn = page.locator('button').filter({ hasText: /create.*league/i }).first();
+  await safeClick(page, createBtn);
   await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'visible' });
   
   // Fill form fields
