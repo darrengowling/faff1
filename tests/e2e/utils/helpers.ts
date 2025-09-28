@@ -145,7 +145,7 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
       await page.getByTestId('create-success').waitFor({ state: 'visible', timeout: 15000 });
       console.log('✅ Success marker detected');
     } catch (successError) {
-      // Option 2: Wait for URL change to lobby
+      // Option 2: Wait for URL change to lobby  
       console.log('Success marker not found, checking URL...');
       await page.waitForURL('**/lobby', { timeout: 10000 });
       console.log('✅ URL changed to lobby');
