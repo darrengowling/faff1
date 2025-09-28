@@ -78,14 +78,14 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
   const createBtn = page.locator('button').filter({ hasText: /create.*league/i }).first();
   await safeClick(page, createBtn);
   
-  // Wait for create league form to load
-  await page.locator(`[data-testid="${TESTIDS.createLeagueWizardName}"]`).waitFor({ state: 'visible', timeout: 10000 });
-  
-  // Fill form fields using the CreateLeagueWizard testids
-  await page.locator(`[data-testid="${TESTIDS.createLeagueWizardName}"]`).fill(settings.name);
-  await page.locator(`[data-testid="${TESTIDS.createLeagueWizardSlots}"]`).selectOption(settings.clubSlots.toString());
-  await page.locator(`[data-testid="${TESTIDS.createLeagueWizardBudget}"]`).selectOption(settings.budgetPerManager.toString());
-  await page.locator(`[data-testid="${TESTIDS.createLeagueWizardMin}"]`).selectOption(settings.minManagers.toString());
+  // Use the new type-aware form helper to fill the league creation form
+  await fillCreateLeague(page, {
+    name: settings.name,
+    slots: settings.clubSlots,
+    budget: settings.budgetPerManager,
+    min: settings.minManagers,
+    max: settings.maxManagers
+  });
   
   console.log('📝 Form filled, submitting...');
   
