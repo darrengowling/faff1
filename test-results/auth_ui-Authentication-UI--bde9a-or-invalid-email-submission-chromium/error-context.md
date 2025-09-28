@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic [ref=e1]:
+- generic [active] [ref=e1]:
   - generic [ref=e3]:
     - region "Notifications alt+T"
     - banner [ref=e4]:
@@ -38,15 +38,15 @@
               - generic [ref=e46]:
                 - generic [ref=e47]:
                   - generic [ref=e48]: Email Address
-                  - textbox "Email Address" [active] [ref=e49]: invalid-email
-                - button "Send Magic Link" [ref=e50] [cursor=pointer]:
-                  - generic [ref=e51] [cursor=pointer]:
+                  - textbox "Email Address" [ref=e49]: invalid-email
+                - button "Send Magic Link" [disabled]:
+                  - generic:
                     - img
-                    - generic [ref=e52] [cursor=pointer]: Send Magic Link
-            - paragraph [ref=e54]: No password required. We'll send you a secure link to sign in.
-  - link "Emergent platform logo Made with Emergent" [ref=e55] [cursor=pointer]:
+                    - generic: Send Magic Link
+            - paragraph [ref=e51]: No password required. We'll send you a secure link to sign in.
+  - link "Emergent platform logo Made with Emergent" [ref=e52] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e56] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e57] [cursor=pointer]
-      - paragraph [ref=e58] [cursor=pointer]: Made with Emergent
+    - generic [ref=e53] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e54] [cursor=pointer]
+      - paragraph [ref=e55] [cursor=pointer]: Made with Emergent
 ```
