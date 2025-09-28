@@ -318,7 +318,7 @@ class EmailValidationTester:
         """Test that email-validator version 2.1.1 is being used"""
         try:
             result = subprocess.run(
-                ["tail", "-n", "100", "/var/log/supervisor/backend.out.log"],
+                ["grep", "-i", "email.validation\\|email-validator", "/var/log/supervisor/backend.err.log"],
                 capture_output=True,
                 text=True,
                 timeout=10
