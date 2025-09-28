@@ -1,4 +1,4 @@
-import ssrSafetyRules from './eslint-rules/index.js';
+const ssrSafetyRules = require('./eslint-rules/index.js');
 
 export default [
   {
