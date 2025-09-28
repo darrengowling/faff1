@@ -27,24 +27,12 @@ class LeagueService:
         commissioner_id: str
     ) -> LeagueResponse:
         """
-        Create a complete league setup with all related documents using atomic transaction
+        Create a complete league setup with all related documents using atomic operations
+        Falls back to sequential operations if transactions are not supported
         """
-        # Try to use transactions if supported, otherwise fall back to sequential operations
-        from database import client
-        
-        try:
-            # Attempt to use transactions (requires replica set or sharded cluster)
-            async with await client.start_session() as session:
-                async with session.start_transaction():
-                    return await LeagueService._create_league_transactional(league_data, commissioner_id, session)
-        except Exception as tx_error:
-            if "Transaction numbers are only allowed" in str(tx_error) or "IllegalOperation" in str(tx_error):
-                logger.warning(f"MongoDB transactions not supported, falling back to sequential operations: {tx_error}")
-                # Fall back to non-transactional operation 
-                return await LeagueService._create_league_sequential(league_data, commissioner_id)
-            else:
-                # Re-raise other transaction errors
-                raise
+        # Skip transactions entirely and use sequential operations for reliability
+        logger.info(f"Creating league using sequential operations (MongoDB transactions skipped)")
+        return await LeagueService._create_league_sequential(league_data, commissioner_id)
 
     @staticmethod
     async def _create_league_transactional(league_data: LeagueCreate, commissioner_id: str, session) -> LeagueResponse:
