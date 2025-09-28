@@ -22,6 +22,9 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [magicLink, setMagicLink] = useState('');
+  
+  // Ref for keeping focus on email input during errors
+  const emailInputRef = React.useRef(null);
 
   // Compute test mode safely inside component (SSR-compatible)
   const isTestMode = useMemo(() => {
