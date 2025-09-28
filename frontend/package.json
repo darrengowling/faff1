@@ -64,7 +64,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "test:contract": "jest --config=jest.config.js --testPathPattern=testid-contract --passWithNoTests --verbose",
+    "test:contract": "jest --config=jest.config.js --testPathPattern='.*contract\\.spec\\.(js|jsx|ts|tsx)$' --passWithNoTests --verbose",
     "lint": "eslint src --ext .js,.jsx",
     "lint:links": "node ../scripts/lint-links.js",
     "lint:ssr-safety": "eslint src --ext .js,.jsx --rule 'ssr-safety/no-window-at-module-scope: error'",
