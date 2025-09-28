@@ -41,8 +41,8 @@ async function loginTestOnlyInternal(page: Page, email: string, timeout: number)
   
   try {
     // Call the test-only login endpoint with failOnStatusCode: false
-    // Use internal API URL for direct backend access (bypasses proxy restrictions)
-    const response = await page.request.post(`${INTERNAL_API_URL}/api/auth/test-login`, {
+    // Use BASE_URL which routes through the proxy correctly
+    const response = await page.request.post(`${BASE_URL}/api/auth/test-login`, {
       data: { email },
       timeout,
       failOnStatusCode: false  // Don't throw on HTTP error status
