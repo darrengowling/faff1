@@ -317,16 +317,19 @@ backend:
 
 frontend:
   - task: "Complete Lobby Joined Count and Rules Badge Testids Implementation"
-    implemented: false
+    implemented: true
     working: false
     file: "/app/frontend/src/App.js, /app/frontend/src/components/ui/rules-badge.jsx"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "testing"
         comment: "❌ MISSING TESTIDS IDENTIFIED: Testing reveals that lobby-joined and lobby-joined-count testids are not found in the current league management interface (App.js LeagueManagement component), and rules-badge testid is not found on lobby pages. The implementation exists in App.js lines 1114-1115 and 1126-1135 but may not be rendering in the league management interface. Need to verify testids are properly applied to: 1) lobby-joined display showing '{joined}/{max}' format, 2) lobby-joined-count for the specific count number, 3) rules-badge on both lobby and auction pages showing 'Slots: X · Budget: Y · Min: Z · Max: W' format."
+      - working: false
+        agent: "testing"
+        comment: "❌ TESTIDS NOT ACCESSIBLE: Comprehensive testing confirms that all required testids (start-auction, lobby-joined, lobby-joined-count, rules-badge) are implemented in the LeagueManagement component (App.js lines 1131-1152) but are not accessible through the current UI flow. ISSUE IDENTIFIED: The LeagueManagement component only renders when selectedLeague state is set, but the dashboard interface doesn't provide a way to select/manage individual leagues. The 'Manage League' button that should trigger onViewLeague(selectedLeague) is not visible because no league is selected in the dropdown. IMPLEMENTATION STATUS: Code is correct but UI navigation to LeagueManagement component is broken. Need to fix league selection flow or provide alternative navigation to league management interface."
 
   - task: "Deterministic Submit → Navigate Flow Implementation"
     implemented: true
