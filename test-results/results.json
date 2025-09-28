@@ -129,37 +129,78 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 1,
+                      "duration": 4837,
                       "error": {
-                        "message": "Error: Error reading storage state from test-results/commissioner-state.json:\nENOENT: no such file or directory, open 'test-results/commissioner-state.json'",
-                        "stack": "Error: Error reading storage state from test-results/commissioner-state.json:\nENOENT: no such file or directory, open 'test-results/commissioner-state.json'\n    at createAuthenticatedContext (/app/tests/e2e/utils/storage-states.ts:47:10)\n    at /app/tests/e2e/core-smoke.spec.ts:65:27",
+                        "message": "Error: Create League CTA not found",
+                        "stack": "Error: Create League CTA not found\n    at clickCreateLeague (/app/tests/e2e/utils/helpers.ts:72:9)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:79:3)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16",
                         "location": {
-                          "file": "/app/tests/e2e/utils/storage-states.ts",
-                          "column": 10,
-                          "line": 47
+                          "file": "/app/tests/e2e/utils/helpers.ts",
+                          "column": 9,
+                          "line": 72
                         },
-                        "snippet": "   at utils/storage-states.ts:47\n\n  45 |   console.log(`🔐 Creating authenticated context for ${user.description}`);\n  46 |   \n> 47 |   return await browser.newContext({\n     |          ^\n  48 |     storageState: user.filename,\n  49 |     baseURL\n  50 |   });"
+                        "snippet": "   at utils/helpers.ts:72\n\n  70 |   }\n  71 |   \n> 72 |   throw new Error('Create League CTA not found');\n     |         ^\n  73 | }\n  74 |\n  75 | export async function createLeague(page: Page, settings: LeagueSettings): Promise<string> {"
                       },
                       "errors": [
                         {
                           "location": {
-                            "file": "/app/tests/e2e/utils/storage-states.ts",
-                            "column": 10,
-                            "line": 47
+                            "file": "/app/tests/e2e/utils/helpers.ts",
+                            "column": 9,
+                            "line": 72
                           },
-                          "message": "Error: Error reading storage state from test-results/commissioner-state.json:\nENOENT: no such file or directory, open 'test-results/commissioner-state.json'\n\n   at utils/storage-states.ts:47\n\n  45 |   console.log(`🔐 Creating authenticated context for ${user.description}`);\n  46 |   \n> 47 |   return await browser.newContext({\n     |          ^\n  48 |     storageState: user.filename,\n  49 |     baseURL\n  50 |   });\n    at createAuthenticatedContext (/app/tests/e2e/utils/storage-states.ts:47:10)\n    at /app/tests/e2e/core-smoke.spec.ts:65:27"
+                          "message": "Error: Create League CTA not found\n\n   at utils/helpers.ts:72\n\n  70 |   }\n  71 |   \n> 72 |   throw new Error('Create League CTA not found');\n     |         ^\n  73 | }\n  74 |\n  75 | export async function createLeague(page: Page, settings: LeagueSettings): Promise<string> {\n    at clickCreateLeague (/app/tests/e2e/utils/helpers.ts:72:9)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:79:3)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16"
                         }
                       ],
                       "stdout": [
                         {
                           "text": "🔐 Creating authenticated context for Commissioner user (can create leagues)\n"
+                        },
+                        {
+                          "text": "🔐 Creating authenticated context for Alice user (regular participant)\n"
+                        },
+                        {
+                          "text": "🔐 Creating authenticated context for Bob user (regular participant)\n"
+                        },
+                        {
+                          "text": "🚀 Starting core smoke test...\n"
+                        },
+                        {
+                          "text": "📝 Step 1: Commissioner creates league...\n"
+                        },
+                        {
+                          "text": "🏆 Creating league: Core Smoke League\n"
+                        },
+                        {
+                          "text": "Test failed, capturing artifacts...\n"
+                        },
+                        {
+                          "text": "Screenshots saved with timestamp: 2025-09-28T13-31-34-401Z\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-09-28T13:30:49.799Z",
+                      "startTime": "2025-09-28T13:31:29.159Z",
                       "annotations": [],
                       "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-2.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-3.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/error-context.md"
+                        },
                         {
                           "name": "trace",
                           "contentType": "application/zip",
@@ -167,9 +208,9 @@
                         }
                       ],
                       "errorLocation": {
-                        "file": "/app/tests/e2e/utils/storage-states.ts",
-                        "column": 10,
-                        "line": 47
+                        "file": "/app/tests/e2e/utils/helpers.ts",
+                        "column": 9,
+                        "line": 72
                       }
                     }
                   ],
@@ -192,8 +233,8 @@
     }
   ],
   "stats": {
-    "startTime": "2025-09-28T13:30:48.153Z",
-    "duration": 1944.2379999999998,
+    "startTime": "2025-09-28T13:31:17.183Z",
+    "duration": 17917.443,
     "expected": 0,
     "skipped": 0,
     "unexpected": 1,
