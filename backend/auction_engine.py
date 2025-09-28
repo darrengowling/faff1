@@ -207,7 +207,7 @@ class AuctionEngine:
                 return
             
             # Set lot as open with timer
-            timer_ends_at = datetime.now(timezone.utc) + timedelta(
+            timer_ends_at = now() + timedelta(
                 seconds=auction_data["settings"]["bid_timer_seconds"]
             )
             
