@@ -30,32 +30,46 @@ test.describe('Access and Gates Tests', () => {
   });
 
   test('Start Auction disabled when below minimum managers', async () => {
-    console.log('🧪 Testing Start Auction gate with insufficient members...');
+    console.log('🧪 Testing Start Auction gate: disabled at 1 member, enabled at 2...');
     
-    // Create league with min 3 managers
+    // Create league with min 2 managers using type-aware form helper
     await login(commissionerPage, 'commissioner@example.com');
+    
+    // Note: createLeague already uses type-aware setFormValue internally through fillCreateLeague
     const leagueId = await createLeague(commissionerPage, {
       name: `Gate Test League ${Date.now()}`,
       clubSlots: 3,
       budgetPerManager: 100,
-      minManagers: 3,
+      minManagers: 2,  // Set to 2 so we can test both states
       maxManagers: 6
     });
     
-    // With only commissioner (1 member), Start Auction should be disabled
-    const startAuctionBtn = commissionerPage.locator(`[data-testid="${TESTIDS.startAuctionBtn}"]`);
+    console.log('✅ League created with min 2 managers, now testing auction gate states...');
     
-    if (await startAuctionBtn.isVisible()) {
-      await expect(startAuctionBtn).toBeDisabled();
-      
-      // Verify lobby shows insufficient members
-      const joinedCount = commissionerPage.locator(`[data-testid="${TESTIDS.lobbyJoinedCount}"]`);
-      await expect(joinedCount).toContainText('1'); // Only commissioner
-      
-      console.log('✅ Start Auction correctly disabled with insufficient members');
-    } else {
-      console.log('⚠️ Start Auction button not found - may need navigation to league page');
-    }
+    // PHASE 1: With only commissioner (1 member), Start Auction should be DISABLED
+    const startAuctionBtn = commissionerPage.locator(`[data-testid="${TESTIDS.startAuctionBtn}"]`);
+    await expect(startAuctionBtn).toBeVisible({ timeout: 10000 });
+    await expect(startAuctionBtn).toBeDisabled();
+    
+    // Verify lobby shows 1 member
+    const joinedCount = commissionerPage.locator(`[data-testid="${TESTIDS.lobbyJoinedCount}"]`);
+    await expect(joinedCount).toContainText('1'); // Only commissioner
+    
+    console.log('✅ Start Auction correctly disabled with 1 member (below minimum 2)');
+    
+    // PHASE 2: Add a member to reach minimum, Start Auction should become ENABLED
+    // Simulate member joining (this would normally happen through invite flow)
+    // For this gate test, we can use the test helper to add a member directly
+    await memberPage.goto(commissionerPage.url()); // Use same league
+    await login(memberPage, 'member@example.com');
+    
+    // Wait for member count to update
+    await expect(joinedCount).toContainText('2', { timeout: 10000 }); // Commissioner + member
+    
+    // Now Start Auction should be enabled
+    await expect(startAuctionBtn).toBeEnabled();
+    
+    console.log('✅ Start Auction correctly enabled with 2 members (meets minimum)');
   });
 
   test('Start Auction enabled when minimum managers reached', async () => {
