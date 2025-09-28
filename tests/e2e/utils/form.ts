@@ -20,8 +20,10 @@ export async function setFormValue(page: Page, testId: string, value: string | n
   } else {
     // Handle generic input (including type="number", type="text", etc.)
     await el.focus();
-    await el.fill(''); // Clear existing value
-    await el.type(String(value)); // Type new value
+    
+    // For input fields, use fill() which is more reliable than type()
+    await el.fill(String(value));
+    
     await el.blur(); // Trigger any onChange events
     
     // Verify the value was set correctly
