@@ -39,6 +39,11 @@ const LoginPage = () => {
     return emailRegex.test(email);
   };
 
+  // Check if submit button should be enabled
+  const isSubmitEnabled = () => {
+    return !loading && email.trim() && isValidEmail(email.trim());
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
