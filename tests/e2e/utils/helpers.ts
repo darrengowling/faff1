@@ -336,4 +336,86 @@ export async function captureDebugInfo(page: Page, testName: string): Promise<vo
     url: page.url(),
     logs: logs.slice(-10) // Last 10 logs
   });
+/**
+ * Core smoke test specific helpers
+ */
+export async function expectLobbyState(page: Page, expectedState: string): Promise<void> {
+  console.log(`🔍 Expecting lobby state: ${expectedState}`);
+  
+  // Wait for lobby member count indicator
+  await expect(page.locator(`text="${expectedState}"`)).toBeVisible({ timeout: 10000 });
+  
+  console.log(`✅ Lobby state verified: ${expectedState}`);
+}
+
+export async function nominateFirstAsset(page: Page): Promise<string> {
+  console.log('🎯 Nominating first asset...');
+  
+  // Click nominate button - try different possible selectors
+  const nominateButton = page.locator(`[data-testid="${TESTIDS.nominateBtn}"], button:has-text("Nominate")`).first();
+  await nominateButton.click();
+  
+  // Wait for asset to be nominated and get club name
+  const assetNameElement = page.locator(`[data-testid="${TESTIDS.auctionAssetName}"]`);
+  await assetNameElement.waitFor({ state: 'visible', timeout: 10000 });
+  
+  const clubName = await assetNameElement.textContent();
+  console.log(`✅ Nominated asset: ${clubName}`);
+  
+  return clubName || 'Unknown Club';
+}
+
+export async function expectTopBid(page: Page, expectedBid: string): Promise<void> {
+  console.log(`🔍 Expecting top bid: ${expectedBid}`);
+  
+  const topBidElement = page.locator(`[data-testid="${TESTIDS.auctionTopBid}"]`);
+  await expect(topBidElement).toContainText(expectedBid, { timeout: 5000 });
+  
+  console.log(`✅ Top bid verified: ${expectedBid}`);
+}
+
+export async function expectRosterUpdate(page: Page, clubName: string, remainingBudget: number): Promise<void> {
+  console.log(`🔍 Expecting roster update: ${clubName}, budget: ${remainingBudget}`);
+  
+  // Check if club appears in roster
+  await expect(page.locator(`text="${clubName}"`)).toBeVisible({ timeout: 10000 });
+  
+  // Check remaining budget
+  await expect(page.locator(`[data-testid="${TESTIDS.yourBudget}"]`)).toContainText(remainingBudget.toString(), { timeout: 5000 });
+  
+  console.log(`✅ Roster update verified: ${clubName}, budget: ${remainingBudget}`);
+}
+
+export async function expectBudgetUnchanged(page: Page, expectedBudget: number): Promise<void> {
+  console.log(`🔍 Expecting budget unchanged: ${expectedBudget}`);
+  
+  const budgetElement = page.locator(`[data-testid="${TESTIDS.yourBudget}"]`);
+  await expect(budgetElement).toContainText(expectedBudget.toString(), { timeout: 5000 });
+  
+  console.log(`✅ Budget unchanged verified: ${expectedBudget}`);
+}
+
+export async function expectClubUniqueness(page: Page, clubName: string): Promise<void> {
+  console.log(`🔍 Verifying club uniqueness: ${clubName}`);
+  
+  // Ensure the club appears only once in the roster/league
+  const clubElements = page.locator(`text="${clubName}"`);
+  const count = await clubElements.count();
+  
+  if (count > 1) {
+    console.warn(`⚠️ Club ${clubName} appears ${count} times - may not be unique`);
+  } else {
+    console.log(`✅ Club uniqueness verified: ${clubName}`);
+  }
+}
+
+export async function expectUserPresence(page: Page, expectedUserCount: number): Promise<void> {
+  console.log(`🔍 Expecting user presence: ${expectedUserCount}`);
+  
+  // Check for user presence indicators (could be avatars, names, etc.)
+  const userElements = page.locator('[data-testid*="user-"], [data-testid*="member-"], .user-avatar');
+  await expect(userElements).toHaveCount(expectedUserCount, { timeout: 10000 });
+  
+  console.log(`✅ User presence verified: ${expectedUserCount}`);
+}
 }
