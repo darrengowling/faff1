@@ -233,3 +233,26 @@
 {"type":"log","callId":"call@430","time":745822.342,"message":"  done scrolling"}
 {"type":"input","callId":"call@430","point":{"x":15.5,"y":71},"inputSnapshot":"input@call@430"}
 {"type":"frame-snapshot","snapshot":{"callId":"call@430","snapshotName":"input@call@430","pageId":"page@9a1c5dab1e6e00bba71834dae5be9427","frameId":"frame@09d109d44359429586fff0581e4d19bb","frameUrl":"https://pifa-auction.preview.emergentagent.com/","doctype":"html","html":[[20,5]],"viewport":{"width":1920,"height":1080},"timestamp":745829.116,"wallTime":1759025115468,"collectionTime":4,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@430","time":745831.195,"message":"  <div class=\"App\">…</div> intercepts pointer events"}
+{"type":"log","callId":"call@430","time":745831.216,"message":"retrying click action"}
+{"type":"log","callId":"call@430","time":745831.223,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@430","time":746332.504,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@430","time":746338.028,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@430","time":746338.052,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@430","time":746339.055,"message":"  done scrolling"}
+{"type":"input","callId":"call@430","point":{"x":15.5,"y":71},"inputSnapshot":"input@call@430"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@430","snapshotName":"input@call@430","pageId":"page@9a1c5dab1e6e00bba71834dae5be9427","frameId":"frame@09d109d44359429586fff0581e4d19bb","frameUrl":"https://pifa-auction.preview.emergentagent.com/","doctype":"html","html":[[21,5]],"viewport":{"width":1920,"height":1080},"timestamp":746344.297,"wallTime":1759025115983,"collectionTime":3.8000000715255737,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@430","time":746345.483,"message":"  <div class=\"App\">…</div> intercepts pointer events"}
+{"type":"log","callId":"call@430","time":746345.503,"message":"retrying click action"}
+{"type":"log","callId":"call@430","time":746345.512,"message":"  waiting 500ms"}
+{"type":"log","callId":"call@430","time":746846.817,"message":"  waiting for element to be visible, enabled and stable"}
+{"type":"log","callId":"call@430","time":746854.779,"message":"  element is visible, enabled and stable"}
+{"type":"log","callId":"call@430","time":746854.801,"message":"  scrolling into view if needed"}
+{"type":"log","callId":"call@430","time":746855.96,"message":"  done scrolling"}
+{"type":"input","callId":"call@430","point":{"x":15.5,"y":71},"inputSnapshot":"input@call@430"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@430","snapshotName":"input@call@430","pageId":"page@9a1c5dab1e6e00bba71834dae5be9427","frameId":"frame@09d109d44359429586fff0581e4d19bb","frameUrl":"https://pifa-auction.preview.emergentagent.com/","doctype":"html","html":[[22,5]],"viewport":{"width":1920,"height":1080},"timestamp":746861.517,"wallTime":1759025116500,"collectionTime":3.899999976158142,"resourceOverrides":[],"isMainFrame":true}}
+{"type":"log","callId":"call@430","time":746862.785,"message":"  <div class=\"App\">…</div> intercepts pointer events"}
+{"type":"log","callId":"call@430","time":746862.807,"message":"retrying click action"}
+{"type":"log","callId":"call@430","time":746862.814,"message":"  waiting 500ms"}
+{"type":"after","callId":"call@430","endTime":747217.402,"error":{"message":"Timeout 10000ms exceeded.","stack":"TimeoutError: Timeout 10000ms exceeded.\n    at ProgressController.run (/app/node_modules/playwright-core/lib/server/progress.js:68:28)\n    at FrameDispatcher._runCommand (/app/node_modules/playwright-core/lib/server/dispatchers/dispatcher.js:95:31)\n    at DispatcherConnection.dispatch (/app/node_modules/playwright-core/lib/server/dispatchers/dispatcher.js:329:39)","name":"TimeoutError"},"point":{"x":15.5,"y":71},"afterSnapshot":"after@call@430"}
+{"type":"frame-snapshot","snapshot":{"callId":"call@430","snapshotName":"after@call@430","pageId":"page@9a1c5dab1e6e00bba71834dae5be9427","frameId":"frame@09d109d44359429586fff0581e4d19bb","frameUrl":"https://pifa-auction.preview.emergentagent.com/","doctype":"html","html":[[23,5]],"viewport":{"width":1920,"height":1080},"timestamp":747222.935,"wallTime":1759025116861,"collectionTime":4,"resourceOverrides":[],"isMainFrame":true}}
