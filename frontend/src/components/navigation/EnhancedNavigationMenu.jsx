@@ -80,10 +80,19 @@ export const ProductDropdownMenu = ({
   className = ''
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { appState, user } = useAppState();
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
   const [focusedIndex, setFocusedIndex] = useState(-1);
+
+  // Close dropdown on route change
+  useEffect(() => {
+    if (isOpen) {
+      onClose();
+      setFocusedIndex(-1);
+    }
+  }, [location.pathname, onClose, isOpen]);
   
   // Get only visible items (enabled items are automatically navigable)
   const visibleItems = getVisibleItems(productDropdownNavigation, user, appState);
