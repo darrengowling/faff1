@@ -181,7 +181,7 @@ async def request_magic_link(request: MagicLinkRequest):
     response = {"message": "Magic link sent to your email"}
     
     if is_development:
-        frontend_url = os.getenv("FRONTEND_URL", "https://pifa-friends-1.preview.emergentagent.com")
+        frontend_url = os.getenv("FRONTEND_URL", "https://pifa-auction.preview.emergentagent.com")
         magic_link = f"{frontend_url}/auth/verify?token={token}"
         response["dev_magic_link"] = magic_link
         response["message"] = "Magic link generated! (Development Mode - Check below)"

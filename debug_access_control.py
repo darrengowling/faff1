@@ -7,7 +7,7 @@ import requests
 import json
 
 def test_unauthorized_access():
-    base_url = "https://pifa-friends-1.preview.emergentagent.com"
+    base_url = "https://pifa-auction.preview.emergentagent.com"
     api_url = f"{base_url}/api"
     test_league_id = "2d221d74-ecfa-45fc-b388-4d8671b5637b"
     

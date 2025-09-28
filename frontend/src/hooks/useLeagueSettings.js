@@ -25,7 +25,7 @@ export const useLeagueSettings = (leagueId) => {
       const token = localStorage.getItem('token');
       const apiUrl = process.env.REACT_APP_BACKEND_URL || 
                     process.env.NEXT_PUBLIC_API_URL ||
-                    'https://pifa-friends-1.preview.emergentagent.com';
+                    'https://pifa-auction.preview.emergentagent.com';
 
       const response = await fetch(`${apiUrl}/api/leagues/${leagueId}/settings`, {
         method: 'GET',

@@ -13,7 +13,7 @@ import time
 import uuid
 
 class ComprehensiveBackendTester:
-    def __init__(self, base_url="https://pifa-friends-1.preview.emergentagent.com"):
+    def __init__(self, base_url="https://pifa-auction.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.token = None

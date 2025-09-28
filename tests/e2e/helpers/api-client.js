@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 class APIClient {
-  constructor(baseURL = 'https://pifa-friends-1.preview.emergentagent.com/api') {
+  constructor(baseURL = 'https://pifa-auction.preview.emergentagent.com/api') {
     this.baseURL = baseURL;
     this.defaultHeaders = {
       'Content-Type': 'application/json'

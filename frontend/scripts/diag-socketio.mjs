@@ -11,7 +11,7 @@ import fetch from 'node-fetch';
 const API_ORIGIN = process.env.NEXT_PUBLIC_API_URL || 
                    process.env.VITE_PUBLIC_API_URL || 
                    process.env.REACT_APP_API_ORIGIN || 
-                   'https://pifa-friends-1.preview.emergentagent.com';
+                   'https://pifa-auction.preview.emergentagent.com';
 
 const SOCKET_PATH = process.env.NEXT_PUBLIC_SOCKET_PATH || 
                    process.env.VITE_SOCKET_PATH || 

@@ -10,7 +10,7 @@ from datetime import datetime
 
 class CompetitionProfileTester:
     def __init__(self):
-        self.base_url = "https://pifa-friends-1.preview.emergentagent.com"
+        self.base_url = "https://pifa-auction.preview.emergentagent.com"
         self.api_url = f"{self.base_url}/api"
         self.access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODc4MzY3Zi05YmQzLTQ2NGQtODQ2YS1jZTQyYjYzZGI1MWYiLCJleHAiOjE3NTg2NzkyNjB9.ebAyqnx0FJ_sknhqY2sIB7FgD3tXHj6ZjSBTNfulBxY"
         self.tests_run = 0
