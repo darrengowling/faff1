@@ -6,7 +6,6 @@
  */
 
 import { test, expect, BrowserContext, Page } from '@playwright/test';
-import { login } from './utils/login';
 import { 
   clickCreateLeague, 
   createLeague, 
@@ -23,14 +22,15 @@ import {
   awaitCreatedAndInLobby
 } from './utils/helpers';
 import { ensureClickable, clickWhenReady } from './utils/ensureClickable';
+import { createAuthenticatedContext, getUserEmail } from './utils/storage-states';
 import { TESTIDS } from '../../frontend/src/testids.js';
 
 // Test configuration
 const TEST_TIMEOUT = 90000; // 90 seconds max
 const USERS = {
-  commissioner: { email: 'commish@example.com', name: 'Commissioner' },
-  alice: { email: 'alice@example.com', name: 'Alice' },
-  bob: { email: 'bob@example.com', name: 'Bob' }
+  commissioner: { email: getUserEmail('commissioner'), name: 'Commissioner' },
+  alice: { email: getUserEmail('alice'), name: 'Alice' },
+  bob: { email: getUserEmail('bob'), name: 'Bob' }
 };
 
 const LEAGUE_SETTINGS = {
