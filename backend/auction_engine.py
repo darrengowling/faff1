@@ -133,8 +133,8 @@ class AuctionEngine:
                 "nomination_order": auction["nomination_order"],
                 "settings": {
                     "min_increment": auction["min_increment"],
-                    "bid_timer_seconds": auction["bid_timer_seconds"],
-                    "anti_snipe_seconds": 3,
+                    "bid_timer_seconds": auction.get("bid_timer_seconds", BID_TIMER_SECONDS),
+                    "anti_snipe_seconds": auction.get("anti_snipe_seconds", ANTI_SNIPE_SECONDS),
                     "budget_per_manager": auction["budget_per_manager"]
                 }
             }
