@@ -123,6 +123,15 @@ code {
     pointer-events: none !important;
   }
   
+  /* Mobile drawer pointer events */
+  .drawer-backdrop {
+    pointer-events: none !important;
+  }
+  
+  .drawer-panel {
+    pointer-events: auto;
+  }
+  
   /* Prevent sticky navigation from blocking header interactions */
   nav[aria-label="Page sections navigation"] {
     pointer-events: none;
