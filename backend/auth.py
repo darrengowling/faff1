@@ -79,16 +79,27 @@ async def send_magic_link_email(email: str, token: str):
     print(f"   {magic_link}\n")
     return
 
-async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> UserResponse:
-    """Get current authenticated user"""
+async def get_current_user(request: Request, credentials: HTTPAuthorizationCredentials = Depends(security)) -> UserResponse:
+    """Get current authenticated user from Bearer token or cookie"""
     credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
+        status_code=status.HTTP_403_UNAUTHORIZED,
+        detail="Not authenticated",
     )
     
+    token = None
+    
+    # Try to get token from Authorization header first
+    if credentials:
+        token = credentials.credentials
+    else:
+        # Fallback to cookie for test-login compatibility
+        token = request.cookies.get("access_token")
+    
+    if not token:
+        raise credentials_exception
+    
     try:
-        payload = jwt.decode(credentials.credentials, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         user_id: str = payload.get("sub")
         if user_id is None:
             raise credentials_exception
