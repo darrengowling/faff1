@@ -487,6 +487,56 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
+  // Validation functions
+  const validateForm = () => {
+    const newErrors = {};
+    
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = 'League name is required';
+    } else if (formData.name.trim().length < 3) {
+      newErrors.name = 'League name must be at least 3 characters';
+    }
+    
+    // Budget validation
+    const budget = parseInt(formData.settings.budget_per_manager);
+    if (isNaN(budget) || budget < 50) {
+      newErrors.budget = 'Budget must be at least £50';
+    } else if (budget > 500) {
+      newErrors.budget = 'Budget cannot exceed £500';
+    }
+    
+    // Slots validation
+    const slots = parseInt(formData.settings.club_slots_per_manager);
+    if (isNaN(slots) || slots < 1) {
+      newErrors.slots = 'Must have at least 1 club slot';
+    } else if (slots > 10) {
+      newErrors.slots = 'Cannot exceed 10 club slots';
+    }
+    
+    // Min managers validation
+    const minManagers = parseInt(formData.settings.league_size?.min || 2);
+    if (isNaN(minManagers) || minManagers < 2) {
+      newErrors.min = 'Must have at least 2 managers';
+    } else if (minManagers > 8) {
+      newErrors.min = 'Cannot exceed 8 managers';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Clear specific error when user starts typing
+  const clearError = (field) => {
+    if (errors[field]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+  };
+
   // Fetch competition profiles on component mount
   useEffect(() => {
     const fetchCompetitionProfiles = async () => {
