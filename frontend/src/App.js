@@ -467,6 +467,15 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
   const { t } = useTranslation();
   const [competitionProfiles, setCompetitionProfiles] = useState([]);
   const [selectedProfile, setSelectedProfile] = useState('ucl');
+  
+  // Debug logging for dev mode
+  const isDevMode = process.env.REACT_APP_TEST_MODE === 'true';
+  const debugLog = (state, details = '') => {
+    if (isDevMode) {
+      console.log(`🧪 CREATE-DIALOG: ${state}${details ? ` - ${details}` : ''}`);
+    }
+  };
+  
   const [formData, setFormData] = useState({
     name: '',
     season: '2025-26',
