@@ -439,4 +439,58 @@ export async function expectUserPresence(page: Page, expectedUserCount: number):
   await expect(userElements).toHaveCount(expectedUserCount, { timeout: 10000 });
   
   console.log(`✅ User presence verified: ${expectedUserCount}`);
+/**
+ * Wait for league creation success and navigation to lobby
+ * Races between create-success marker and URL matching /app/leagues/:id/lobby
+ * Then verifies lobby-joined badge exists
+ */
+export async function awaitCreatedAndInLobby(page: Page): Promise<string> {
+  console.log('🏁 Waiting for league creation success and lobby navigation...');
+  
+  let leagueId: string | null = null;
+  
+  try {
+    // Race between success marker and URL change
+    await Promise.race([
+      // Option 1: Wait for success marker
+      page.getByTestId('create-success').waitFor({ state: 'visible', timeout: 15000 }),
+      
+      // Option 2: Wait for URL to match lobby pattern
+      page.waitForURL(/\/app\/leagues\/[^\/]+\/lobby/, { timeout: 15000 })
+    ]);
+    
+    console.log('✅ Success marker or lobby URL detected');
+    
+    // Extract league ID from current URL
+    const currentUrl = page.url();
+    const leagueIdMatch = currentUrl.match(/\/app\/leagues\/([^\/]+)\/lobby/);
+    
+    if (leagueIdMatch) {
+      leagueId = leagueIdMatch[1];
+      console.log(`✅ League ID extracted from URL: ${leagueId}`);
+    }
+    
+    // Wait for lobby to fully load by verifying lobby-joined badge exists
+    console.log('🔍 Verifying lobby has loaded...');
+    const lobbyBadge = page.getByTestId('lobby-joined');
+    await lobbyBadge.waitFor({ state: 'visible', timeout: 10000 });
+    
+    console.log('✅ Lobby badge confirmed - league creation and navigation complete');
+    
+    return leagueId || `created-${Date.now()}`;
+    
+  } catch (error) {
+    const currentUrl = page.url();
+    console.error(`❌ Failed to complete league creation → lobby flow. Current URL: ${currentUrl}`);
+    console.error(`Error: ${error.message}`);
+    
+    // Take screenshot for debugging
+    await page.screenshot({ 
+      path: `league-creation-lobby-failure-${Date.now()}.png`, 
+      quality: 20 
+    });
+    
+    throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+  }
+}
 }
