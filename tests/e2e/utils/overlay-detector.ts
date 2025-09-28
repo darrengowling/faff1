@@ -58,7 +58,7 @@ export async function detectOverlay(
         const styles = window.getComputedStyle(el);
         const selector = el.tagName.toLowerCase() + 
           (el.id ? `#${el.id}` : '') + 
-          (el.className ? `.${el.className.split(' ').join('.')}` : '') +
+          (el.className && typeof el.className === 'string' ? `.${el.className.split(' ').join('.')}` : '') +
           (el.getAttribute('data-testid') ? `[data-testid="${el.getAttribute('data-testid')}"]` : '');
         
         return {
