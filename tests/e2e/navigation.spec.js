@@ -164,9 +164,18 @@ test.describe('Navigation Components - Comprehensive Testing', () => {
 
         if (drawerOpened) {
           // Test navigation items in mobile drawer
-          const navItems = page.locator('a, button').filter({ hasText: /sign in|get started|dashboard|product/i });
-          const itemCount = await navItems.count();
-          trackResult('Mobile Navigation Items', itemCount > 0, `${itemCount} navigation items found`);
+          const navItems = [
+            page.locator(`[data-testid="${TESTIDS.navSignIn}"]`),
+            page.locator(`[data-testid="${TESTIDS.navCreateLeagueBtn}"]`),
+            page.locator(`[data-testid="${TESTIDS.navDropdownProduct}"]`)
+          ];
+          
+          let visibleItemCount = 0;
+          for (const item of navItems) {
+            if (await item.isVisible()) visibleItemCount++;
+          }
+          
+          trackResult('Mobile Navigation Items', visibleItemCount > 0, `${visibleItemCount} navigation items found`);
 
           // Test closing mobile drawer
           let drawerCloses = false;
