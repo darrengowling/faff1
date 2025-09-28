@@ -14,7 +14,7 @@ echo "🧪 PRE-GATE: Verifying Create League form accessibility and testids..."
 # Configuration
 MAX_RETRIES=3
 TIMEOUT=30
-BASE_URL="${PLAYWRIGHT_BASE_URL:-https://auction-league.preview.emergentagent.com}"
+BASE_URL="${PLAYWRIGHT_BASE_URL:-https://pifa-stability.preview.emergentagent.com}"
 
 # Test script that navigates to dashboard and opens create form
 VERIFY_SCRIPT='

@@ -81,7 +81,7 @@ test.describe('Auction Hooks Integration Tests', () => {
     await runTestAuctionFlow(page, leagueId, 'alice@snipe.test', 'CHELSEA');
     
     // Navigate to auction UI to verify state
-    await page.goto(`https://auction-league.preview.emergentagent.com/auction/${leagueId}`);
+    await page.goto(`https://pifa-stability.preview.emergentagent.com/auction/${leagueId}`);
     
     // Wait for auction UI to load
     await page.waitForTimeout(1000);
@@ -133,7 +133,7 @@ test.describe('Auction Hooks Integration Tests', () => {
     await verifyDeterministicReconnection(page, 'alice@reconnect.test');
     
     // Test reconnection during auction activity
-    await page.goto(`https://auction-league.preview.emergentagent.com/auction/${leagueId}`);
+    await page.goto(`https://pifa-stability.preview.emergentagent.com/auction/${leagueId}`);
     await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(1000);
     
@@ -211,7 +211,7 @@ test.describe('Auction Hooks Integration Tests', () => {
     );
     
     // Navigate to auction UI
-    await page.goto(`https://auction-league.preview.emergentagent.com/auction/${leagueId}`);
+    await page.goto(`https://pifa-stability.preview.emergentagent.com/auction/${leagueId}`);
     await page.waitForLoadState('domcontentloaded');
     
     // Verify key UI elements are present

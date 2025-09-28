@@ -6,7 +6,7 @@
 import { Page } from '@playwright/test';
 import { TESTIDS } from '../../../frontend/src/testids.js';
 
-const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'https://auction-league.preview.emergentagent.com';
+const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'https://pifa-stability.preview.emergentagent.com';
 const INTERNAL_API_URL = 'http://localhost:8001'; // Direct backend access for test-login
 
 export interface LoginOptions {
