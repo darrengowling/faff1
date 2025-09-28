@@ -27,8 +27,8 @@ class SimpleCIPipeline {
   runPhase(name, command, description, timeout = 60000) {
     this.log(`🚀 Starting ${name}: ${description}`);
     
+    const startTime = Date.now();
     try {
-      const startTime = Date.now();
       execSync(command, { 
         cwd: '/app', 
         stdio: 'pipe', 
