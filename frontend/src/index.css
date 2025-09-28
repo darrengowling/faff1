@@ -104,4 +104,14 @@ code {
   body {
     @apply bg-background text-foreground;
     }
+  
+  /* Fixed header layout adjustments */
+  html {
+    scroll-padding-top: var(--header-h);
+  }
+  
+  /* Main content offset for fixed header */
+  main {
+    padding-top: var(--header-h);
+  }
 }
