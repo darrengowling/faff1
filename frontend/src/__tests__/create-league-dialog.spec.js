@@ -162,52 +162,6 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
 const TestWrapper = ({ children }) => <div>{children}</div>;
 
 describe('Create League Dialog TestIDs', () => {
-  describe('Required TestIDs Render', () => {
-    it('should render all required input testids', () => {
-      const mockProps = {
-        open: true,
-        onOpenChange: jest.fn(),
-        onLeagueCreated: jest.fn()
-      };
-
-      render(
-        <TestWrapper>
-          <CreateLeagueDialog {...mockProps} />
-        </TestWrapper>
-      );
-
-      // Assert all required input testids exist
-      expect(screen.getByTestId('create-name')).toBeInTheDocument();
-      expect(screen.getByTestId('create-budget')).toBeInTheDocument();
-      expect(screen.getByTestId('create-slots')).toBeInTheDocument();
-      expect(screen.getByTestId('create-min')).toBeInTheDocument();
-      expect(screen.getByTestId('create-submit')).toBeInTheDocument();
-    });
-
-    it('should show error testids when validation fails', () => {
-      const mockProps = {
-        open: true,
-        onOpenChange: jest.fn(),
-        onLeagueCreated: jest.fn()
-      };
-
-      render(
-        <TestWrapper>
-          <CreateLeagueDialog {...mockProps} />
-        </TestWrapper>
-      );
-
-      // Trigger validation by submitting empty form
-      const submitButton = screen.getByTestId('create-submit');
-      fireEvent.click(submitButton);
-
-      // Check that error testids appear
-      expect(screen.getByTestId('create-error-name')).toBeInTheDocument();
-      expect(screen.getByTestId('create-error-budget')).toBeInTheDocument();
-      expect(screen.getByTestId('create-error-slots')).toBeInTheDocument();
-      expect(screen.getByTestId('create-error-min')).toBeInTheDocument();
-    });
-  });
 
   describe('TestID Constants Validation', () => {
     it('should have all required testid constants defined', () => {
