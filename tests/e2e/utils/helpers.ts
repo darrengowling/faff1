@@ -100,17 +100,12 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
   const isDialog = await dialogElement.count() > 0;
   
   if (isDialog) {
-    console.log('📋 Dialog form detected, waiting for success or error...');
+    console.log('📋 Dialog form detected, waiting for dialog to close and navigation...');
     
-    // Wait for either success marker or error display
     try {
-      // Option 1: Wait for success marker
-      const successElement = page.getByTestId('create-success');
-      await successElement.waitFor({ state: 'visible', timeout: 15000 });
-      console.log('✅ Success marker detected');
-      
-      // Wait for dialog to close (should happen immediately after success)
-      await dialogElement.waitFor({ state: 'hidden', timeout: 5000 });
+      // Wait for dialog to close first (indicates form submission succeeded)
+      await dialogElement.waitFor({ state: 'hidden', timeout: 15000 });
+      console.log('✅ Dialog closed');
       
       // Assert dialog has proper data-state
       await page.waitForTimeout(500); // Give time for state change
@@ -121,19 +116,19 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
         console.log('✅ Dialog properly closed (data-state="closed")');
       }
       
-      // Extract league ID from success state (if available) or use timestamp
-      const leagueId = `league-${Date.now()}`;
+      // Use the new helper to wait for creation success and lobby navigation
+      const leagueId = await awaitCreatedAndInLobby(page);
       console.log(`✅ League created via dialog: ${settings.name} (ID: ${leagueId})`);
       return leagueId;
       
-    } catch (successError) {
+    } catch (dialogError) {
       // Check for error display
       const errorElement = page.getByTestId('create-submit-error');
       if (await errorElement.count() > 0) {
         const errorText = await errorElement.textContent();
         throw new Error(`League creation failed: ${errorText}`);
       } else {
-        throw new Error(`League creation timed out: no success or error marker found`);
+        throw new Error(`League creation failed: ${dialogError.message}`);
       }
     }
     
