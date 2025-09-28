@@ -758,7 +758,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                   }}
                   aria-describedby={errors.slots ? "slots-error" : undefined}
                   className={errors.slots ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
-                  data-testid="create-slots"
+                  data-testid="create-slots-input"
                 />
                 {errors.slots && (
                   <p id="slots-error" className="text-sm text-red-600" data-testid="create-error-slots">
