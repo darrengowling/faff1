@@ -260,7 +260,7 @@ const LoginPage = () => {
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  disabled={loading || !email.trim()}
+                  disabled={!isSubmitEnabled()}
                   className={`w-full ${
                     loading 
                       ? 'bg-blue-400 cursor-not-allowed' 
@@ -273,7 +273,7 @@ const LoginPage = () => {
                   {loading ? (
                     <div className="flex items-center justify-center space-x-2">
                       <div className={`w-4 h-4 border-2 border-white border-t-transparent rounded-full ${isTestMode ? '' : 'animate-spin'}`}></div>
-                      <span>Sending...</span>
+                      <span>Sending Magic Link</span>
                     </div>
                   ) : (
                     <div className="flex items-center justify-center space-x-2">
