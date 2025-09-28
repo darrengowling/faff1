@@ -88,7 +88,7 @@ OK
 **Output:**
 ```
 🧪 Starting API Contract Regression Tests
-Target API: https://pifa-stability.preview.emergentagent.com/api
+Target API: https://league-creator-1.preview.emergentagent.com/api
 ============================================================
 ✅ Competition Profiles API Contract - PASSED UCL profile: slots=5, min=2, max=8, budget=100
 ✅ Roster Summary API Contract Structure - PASSED Validated 4 response structures. Issues: None
@@ -116,7 +116,7 @@ Success rate: 100.0%
 **Output:**
 ```
 🚀 Global E2E Test Setup Starting...
-✅ Application accessible at: https://pifa-stability.preview.emergentagent.com (Status: 200)
+✅ Application accessible at: https://league-creator-1.preview.emergentagent.com (Status: 200)
 🎉 Global setup completed successfully!
 
 Running 14 tests using 1 worker

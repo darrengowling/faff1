@@ -3,7 +3,7 @@ async function globalSetup(config) {
   console.log('🚀 Global E2E Test Setup Starting...');
   
   // Check if application is accessible using built-in fetch
-  const baseURL = config?.use?.baseURL || 'https://pifa-stability.preview.emergentagent.com';
+  const baseURL = config?.use?.baseURL || 'https://league-creator-1.preview.emergentagent.com';
   
   try {
     const response = await fetch(baseURL, { 

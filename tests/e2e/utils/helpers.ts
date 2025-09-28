@@ -401,7 +401,7 @@ export async function awaitCreatedAndInLobby(page: Page, leagueId?: string): Pro
     console.log(`✅ League ID: ${extractedLeagueId}`);
     
     // Poll readiness endpoint (TEST_MODE only)
-    const apiOrigin = process.env.REACT_APP_BACKEND_URL || 'https://pifa-stability.preview.emergentagent.com';
+    const apiOrigin = process.env.REACT_APP_BACKEND_URL || 'https://league-creator-1.preview.emergentagent.com';
     console.log('🔍 Polling league readiness...');
     
     for (let i = 0; i < 10; i++) {

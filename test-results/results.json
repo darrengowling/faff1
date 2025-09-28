@@ -76,7 +76,7 @@
     "workers": 1,
     "webServer": {
       "command": "echo \"Using existing preview server\"",
-      "url": "https://pifa-stability.preview.emergentagent.com",
+      "url": "https://league-creator-1.preview.emergentagent.com",
       "reuseExistingServer": true,
       "timeout": 5000
     }

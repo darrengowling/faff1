@@ -13,7 +13,7 @@ import time
 import uuid
 
 class SettingsEnforcementTester:
-    def __init__(self, base_url="https://pifa-stability.preview.emergentagent.com"):
+    def __init__(self, base_url="https://league-creator-1.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.commissioner_token = None
