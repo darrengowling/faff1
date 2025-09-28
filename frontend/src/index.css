@@ -123,6 +123,16 @@ code {
     pointer-events: none !important;
   }
   
+  /* Prevent sticky navigation from blocking header interactions */
+  nav[aria-label="Page sections navigation"] {
+    pointer-events: none;
+  }
+  
+  nav[aria-label="Page sections navigation"] button,
+  nav[aria-label="Page sections navigation"] [role="tab"] {
+    pointer-events: auto;
+  }
+  
   /* Smooth anchor scrolling with header offset */
   html {
     scroll-padding-top: var(--header-h);
