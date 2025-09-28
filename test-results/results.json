@@ -1,0 +1,1017 @@
+{
+  "config": {
+    "configFile": "/app/playwright.config.js",
+    "rootDir": "/app/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/app/tests/e2e/global-setup.js",
+    "globalTeardown": "/app/tests/e2e/global-teardown.js",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": {
+      "command": "echo \"Using existing preview server\"",
+      "url": "https://pifa-stability.preview.emergentagent.com",
+      "reuseExistingServer": true,
+      "timeout": 5000
+    }
+  },
+  "suites": [
+    {
+      "title": "e2e/navigation.spec.ts",
+      "file": "e2e/navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Navigation Tests",
+          "file": "e2e/navigation.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Desktop Navigation",
+              "file": "e2e/navigation.spec.ts",
+              "line": 18,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Landing page anchor navigation works correctly",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 3482,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:53:39.225Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-b13978a89e0cea57e839",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 23,
+                  "column": 9
+                },
+                {
+                  "title": "Product dropdown shows only enabled items and navigates correctly",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 1778,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:53:42.854Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-0c2bd4617a3eb87aee56",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 49,
+                  "column": 9
+                },
+                {
+                  "title": "Landing page anchor navigation works correctly",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "Mobile Chrome",
+                      "projectName": "Mobile Chrome",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 4339,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:54:15.536Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-febf322a1955b29c6a43",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 23,
+                  "column": 9
+                },
+                {
+                  "title": "Product dropdown shows only enabled items and navigates correctly",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "Mobile Chrome",
+                      "projectName": "Mobile Chrome",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 3226,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:54:20.059Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-11abe9335fc4c9f907ab",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 49,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Mobile Navigation",
+              "file": "e2e/navigation.spec.ts",
+              "line": 75,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Mobile hamburger menu works correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 2003,
+                          "error": {
+                            "message": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (354.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n",
+                            "stack": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (354.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n\n    at ensureClickable (/app/tests/e2e/utils/ensureClickable.ts:163:17)\n    at /app/tests/e2e/navigation.spec.ts:83:7",
+                            "location": {
+                              "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                              "column": 17,
+                              "line": 163
+                            },
+                            "snippet": "   at e2e/utils/ensureClickable.ts:163\n\n  161 |   \n  162 |   // Create detailed error\n> 163 |   const error = new Error(`Element not clickable - intercepted by overlay element`) as ClickabilityError;\n      |                 ^\n  164 |   error.targetSelector = await getSelector(locator);\n  165 |   error.interceptingElement = {\n  166 |     tagName: topmostElement.tagName,"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                                "column": 17,
+                                "line": 163
+                              },
+                              "message": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (354.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n\n\n   at e2e/utils/ensureClickable.ts:163\n\n  161 |   \n  162 |   // Create detailed error\n> 163 |   const error = new Error(`Element not clickable - intercepted by overlay element`) as ClickabilityError;\n      |                 ^\n  164 |   error.targetSelector = await getSelector(locator);\n  165 |   error.interceptingElement = {\n  166 |     tagName: topmostElement.tagName,\n    at ensureClickable (/app/tests/e2e/utils/ensureClickable.ts:163:17)\n    at /app/tests/e2e/navigation.spec.ts:83:7"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🎯 Checking clickability at coordinates (354.0, 32.0)\n"
+                            },
+                            {
+                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "🔍 Topmost: SPAN\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:53:44.652Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-chromium/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                            "column": 17,
+                            "line": 163
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-f042a0c934f903d2f1d3",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 80,
+                  "column": 9
+                },
+                {
+                  "title": "Mobile navigation shows only enabled items and navigates correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 2055,
+                          "error": {
+                            "message": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (354.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n",
+                            "stack": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (354.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n\n    at ensureClickable (/app/tests/e2e/utils/ensureClickable.ts:163:17)\n    at /app/tests/e2e/navigation.spec.ts:101:7",
+                            "location": {
+                              "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                              "column": 17,
+                              "line": 163
+                            },
+                            "snippet": "   at e2e/utils/ensureClickable.ts:163\n\n  161 |   \n  162 |   // Create detailed error\n> 163 |   const error = new Error(`Element not clickable - intercepted by overlay element`) as ClickabilityError;\n      |                 ^\n  164 |   error.targetSelector = await getSelector(locator);\n  165 |   error.interceptingElement = {\n  166 |     tagName: topmostElement.tagName,"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                                "column": 17,
+                                "line": 163
+                              },
+                              "message": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (354.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n\n\n   at e2e/utils/ensureClickable.ts:163\n\n  161 |   \n  162 |   // Create detailed error\n> 163 |   const error = new Error(`Element not clickable - intercepted by overlay element`) as ClickabilityError;\n      |                 ^\n  164 |   error.targetSelector = await getSelector(locator);\n  165 |   error.interceptingElement = {\n  166 |     tagName: topmostElement.tagName,\n    at ensureClickable (/app/tests/e2e/utils/ensureClickable.ts:163:17)\n    at /app/tests/e2e/navigation.spec.ts:101:7"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🎯 Checking clickability at coordinates (354.0, 32.0)\n"
+                            },
+                            {
+                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "🔍 Topmost: SPAN\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:53:47.408Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-chromium/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                            "column": 17,
+                            "line": 163
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-9303494655dea747f7ed",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 98,
+                  "column": 9
+                },
+                {
+                  "title": "Mobile hamburger menu works correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "Mobile Chrome",
+                      "projectName": "Mobile Chrome",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 2457,
+                          "error": {
+                            "message": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (352.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n",
+                            "stack": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (352.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n\n    at ensureClickable (/app/tests/e2e/utils/ensureClickable.ts:163:17)\n    at /app/tests/e2e/navigation.spec.ts:83:7",
+                            "location": {
+                              "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                              "column": 17,
+                              "line": 163
+                            },
+                            "snippet": "   at e2e/utils/ensureClickable.ts:163\n\n  161 |   \n  162 |   // Create detailed error\n> 163 |   const error = new Error(`Element not clickable - intercepted by overlay element`) as ClickabilityError;\n      |                 ^\n  164 |   error.targetSelector = await getSelector(locator);\n  165 |   error.interceptingElement = {\n  166 |     tagName: topmostElement.tagName,"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                                "column": 17,
+                                "line": 163
+                              },
+                              "message": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (352.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n\n\n   at e2e/utils/ensureClickable.ts:163\n\n  161 |   \n  162 |   // Create detailed error\n> 163 |   const error = new Error(`Element not clickable - intercepted by overlay element`) as ClickabilityError;\n      |                 ^\n  164 |   error.targetSelector = await getSelector(locator);\n  165 |   error.interceptingElement = {\n  166 |     tagName: topmostElement.tagName,\n    at ensureClickable (/app/tests/e2e/utils/ensureClickable.ts:163:17)\n    at /app/tests/e2e/navigation.spec.ts:83:7"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🎯 Checking clickability at coordinates (352.0, 32.0)\n"
+                            },
+                            {
+                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "🔍 Topmost: SPAN\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:54:23.311Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-Mobile-Chrome/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-Mobile-Chrome/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-Mobile-Chrome/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                            "column": 17,
+                            "line": 163
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-493a38a3545c35c91231",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 80,
+                  "column": 9
+                },
+                {
+                  "title": "Mobile navigation shows only enabled items and navigates correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "Mobile Chrome",
+                      "projectName": "Mobile Chrome",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 2334,
+                          "error": {
+                            "message": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (352.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n",
+                            "stack": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (352.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n\n    at ensureClickable (/app/tests/e2e/utils/ensureClickable.ts:163:17)\n    at /app/tests/e2e/navigation.spec.ts:101:7",
+                            "location": {
+                              "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                              "column": 17,
+                              "line": 163
+                            },
+                            "snippet": "   at e2e/utils/ensureClickable.ts:163\n\n  161 |   \n  162 |   // Create detailed error\n> 163 |   const error = new Error(`Element not clickable - intercepted by overlay element`) as ClickabilityError;\n      |                 ^\n  164 |   error.targetSelector = await getSelector(locator);\n  165 |   error.interceptingElement = {\n  166 |     tagName: topmostElement.tagName,"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                                "column": 17,
+                                "line": 163
+                              },
+                              "message": "Error: ❌ ELEMENT NOT CLICKABLE - OVERLAY DETECTED\n\n🎯 Target Element:\n   BUTTON [data-testid=\"nav-hamburger\"]\n   Text: \"\"\n   Coordinates: (352.0, 32.0)\n\n🚫 Intercepting Element:\n   SPAN.sm:hidden\n   Z-Index: auto\n   Position: static\n   Pointer Events: auto\n   Opacity: 1\n\n📋 All Elements at Click Point:\n   1. SPAN.sm:hidden (z: auto) ← TOPMOST\n   2. SPAN.flex.items-center.space-x-1.5 (z: auto)\n   3. BUTTON.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z: auto)\n   4. path (z: auto)\n   5. svg.lucide.lucide-menu.w-6.h-6 (z: auto)\n\n\n   at e2e/utils/ensureClickable.ts:163\n\n  161 |   \n  162 |   // Create detailed error\n> 163 |   const error = new Error(`Element not clickable - intercepted by overlay element`) as ClickabilityError;\n      |                 ^\n  164 |   error.targetSelector = await getSelector(locator);\n  165 |   error.interceptingElement = {\n  166 |     tagName: topmostElement.tagName,\n    at ensureClickable (/app/tests/e2e/utils/ensureClickable.ts:163:17)\n    at /app/tests/e2e/navigation.spec.ts:101:7"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🎯 Checking clickability at coordinates (352.0, 32.0)\n"
+                            },
+                            {
+                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "🔍 Topmost: SPAN\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:54:26.511Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-Mobile-Chrome/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-Mobile-Chrome/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-Mobile-Chrome/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/utils/ensureClickable.ts",
+                            "column": 17,
+                            "line": 163
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-caeeed78ae453f8390d9",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 98,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "No Dead Ends & 404 Recovery",
+              "file": "e2e/navigation.spec.ts",
+              "line": 129,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "All navigation links have valid destinations and no href=\"#\"",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 2171,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:53:50.350Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-11294c73f33b0361e347",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 130,
+                  "column": 9
+                },
+                {
+                  "title": "404 page shows and allows navigation back",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 2420,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:53:52.674Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-c869b9f8dc04b7e86a1c",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 151,
+                  "column": 9
+                },
+                {
+                  "title": "All navigation links have valid destinations and no href=\"#\"",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "Mobile Chrome",
+                      "projectName": "Mobile Chrome",
+                      "results": [
+                        {
+                          "workerIndex": 5,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 17546,
+                          "error": {
+                            "message": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-brand\"]')\u001b[22m\n\u001b[2m    - locator resolved to <div tabindex=\"0\" role=\"button\" data-testid=\"nav-brand\" class=\"flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity cursor-pointer hover:opacity-80 transition-opacity\">…</div>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Home</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Home</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    29 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span class=\"sm:hidden\">Home</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+                            "stack": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-brand\"]')\u001b[22m\n\u001b[2m    - locator resolved to <div tabindex=\"0\" role=\"button\" data-testid=\"nav-brand\" class=\"flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity cursor-pointer hover:opacity-80 transition-opacity\">…</div>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Home</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Home</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    29 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span class=\"sm:hidden\">Home</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:132:65",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 65,
+                              "line": 132
+                            },
+                            "snippet": "  130 |     test('All navigation links have valid destinations and no href=\"#\"', async ({ page }) => {\n  131 |       // Test brand logo navigation using testid\n> 132 |       await page.locator(`[data-testid=\"${TESTIDS.navBrand}\"]`).click();\n      |                                                                 ^\n  133 |       await expect(page).toHaveURL(/\\/$|#home$/); // Allow both / and /#home\n  134 |       \n  135 |       // Test sign in button using testid"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 65,
+                                "line": 132
+                              },
+                              "message": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-brand\"]')\u001b[22m\n\u001b[2m    - locator resolved to <div tabindex=\"0\" role=\"button\" data-testid=\"nav-brand\" class=\"flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity cursor-pointer hover:opacity-80 transition-opacity\">…</div>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Home</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Home</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    29 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span class=\"sm:hidden\">Home</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n  130 |     test('All navigation links have valid destinations and no href=\"#\"', async ({ page }) => {\n  131 |       // Test brand logo navigation using testid\n> 132 |       await page.locator(`[data-testid=\"${TESTIDS.navBrand}\"]`).click();\n      |                                                                 ^\n  133 |       await expect(page).toHaveURL(/\\/$|#home$/); // Allow both / and /#home\n  134 |       \n  135 |       // Test sign in button using testid\n    at /app/tests/e2e/navigation.spec.ts:132:65"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:54:29.769Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/e2e-navigation-Navigation--5e367-d-destinations-and-no-href--Mobile-Chrome/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/e2e-navigation-Navigation--5e367-d-destinations-and-no-href--Mobile-Chrome/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/e2e-navigation-Navigation--5e367-d-destinations-and-no-href--Mobile-Chrome/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 65,
+                            "line": 132
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-4c4bb04da312ba35c3fb",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 130,
+                  "column": 9
+                },
+                {
+                  "title": "404 page shows and allows navigation back",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "Mobile Chrome",
+                      "projectName": "Mobile Chrome",
+                      "results": [
+                        {
+                          "workerIndex": 6,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 2522,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:54:48.235Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-7dc00a1d39508a06ddc6",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 151,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Go to... Menu on /app",
+              "file": "e2e/navigation.spec.ts",
+              "line": 165,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Go to dropdown shows appropriate options",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 1914,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:53:55.116Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-e0fb7cff03cfdba3da09",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 166,
+                  "column": 9
+                },
+                {
+                  "title": "Go to dropdown shows appropriate options",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "Mobile Chrome",
+                      "projectName": "Mobile Chrome",
+                      "results": [
+                        {
+                          "workerIndex": 6,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 1932,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:54:50.906Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-2d763cbf0137403bc85d",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 166,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Keyboard Navigation",
+              "file": "e2e/navigation.spec.ts",
+              "line": 178,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Keyboard navigation works with proper ARIA and focus management",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 17743,
+                          "error": {
+                            "message": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-hamburger\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-expanded=\"false\" data-testid=\"nav-hamburger\" aria-controls=\"mobile-navigation\" aria-label=\"Toggle navigation menu\" class=\"md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    29 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+                            "stack": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-hamburger\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-expanded=\"false\" data-testid=\"nav-hamburger\" aria-controls=\"mobile-navigation\" aria-label=\"Toggle navigation menu\" class=\"md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    29 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:213:23",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 23,
+                              "line": 213
+                            },
+                            "snippet": "  211 |       const hamburger = page.locator(`[data-testid=\"${TESTIDS.navHamburger}\"]`);\n  212 |       await hamburger.focus();\n> 213 |       await hamburger.click();\n      |                       ^\n  214 |       \n  215 |       const mobileDrawer = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`);\n  216 |       await expect(mobileDrawer).toBeVisible();"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 23,
+                                "line": 213
+                              },
+                              "message": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-hamburger\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-expanded=\"false\" data-testid=\"nav-hamburger\" aria-controls=\"mobile-navigation\" aria-label=\"Toggle navigation menu\" class=\"md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    29 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n  211 |       const hamburger = page.locator(`[data-testid=\"${TESTIDS.navHamburger}\"]`);\n  212 |       await hamburger.focus();\n> 213 |       await hamburger.click();\n      |                       ^\n  214 |       \n  215 |       const mobileDrawer = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`);\n  216 |       await expect(mobileDrawer).toBeVisible();\n    at /app/tests/e2e/navigation.spec.ts:213:23"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:53:57.048Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-chromium/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 23,
+                            "line": 213
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-84cee1eca0ffd539f4a5",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 179,
+                  "column": 9
+                },
+                {
+                  "title": "Keyboard navigation works with proper ARIA and focus management",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "Mobile Chrome",
+                      "projectName": "Mobile Chrome",
+                      "results": [
+                        {
+                          "workerIndex": 6,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 17849,
+                          "error": {
+                            "message": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-hamburger\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-expanded=\"false\" data-testid=\"nav-hamburger\" aria-controls=\"mobile-navigation\" aria-label=\"Toggle navigation menu\" class=\"md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    29 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+                            "stack": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-hamburger\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-expanded=\"false\" data-testid=\"nav-hamburger\" aria-controls=\"mobile-navigation\" aria-label=\"Toggle navigation menu\" class=\"md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    29 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:213:23",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 23,
+                              "line": 213
+                            },
+                            "snippet": "  211 |       const hamburger = page.locator(`[data-testid=\"${TESTIDS.navHamburger}\"]`);\n  212 |       await hamburger.focus();\n> 213 |       await hamburger.click();\n      |                       ^\n  214 |       \n  215 |       const mobileDrawer = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`);\n  216 |       await expect(mobileDrawer).toBeVisible();"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 23,
+                                "line": 213
+                              },
+                              "message": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-hamburger\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button aria-expanded=\"false\" data-testid=\"nav-hamburger\" aria-controls=\"mobile-navigation\" aria-label=\"Toggle navigation menu\" class=\"md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    29 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span class=\"sm:hidden\">Features</span> from <nav role=\"navigation\" aria-label=\"Page sections navigation\" class=\"sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0\">…</nav> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n  211 |       const hamburger = page.locator(`[data-testid=\"${TESTIDS.navHamburger}\"]`);\n  212 |       await hamburger.focus();\n> 213 |       await hamburger.click();\n      |                       ^\n  214 |       \n  215 |       const mobileDrawer = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`);\n  216 |       await expect(mobileDrawer).toBeVisible();\n    at /app/tests/e2e/navigation.spec.ts:213:23"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-28T16:54:52.872Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-Mobile-Chrome/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-Mobile-Chrome/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-Mobile-Chrome/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 23,
+                            "line": 213
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3e99b8f6c3cad4665a83-90cdb6f8e334e90e28cd",
+                  "file": "e2e/navigation.spec.ts",
+                  "line": 179,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-28T16:53:37.967Z",
+    "duration": 92834.625,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 7,
+    "flaky": 0
+  }
+}
