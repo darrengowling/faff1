@@ -114,9 +114,9 @@ test.describe('Core Smoke Test', () => {
   test('Complete auction flow: create → invite → join → auction → bid → sell', async () => {
     console.log('🚀 Starting core smoke test...');
 
-    // Step 1: Commissioner login and create league
+    // Step 1: Commissioner creates league (already authenticated via storage state)
     console.log('📝 Step 1: Commissioner creates league...');
-    await login(commissionerPage, USERS.commissioner.email, { mode: 'test' });
+    await commissionerPage.goto('/app'); // Navigate to dashboard
     
     leagueId = await createLeague(commissionerPage, LEAGUE_SETTINGS);
     
