@@ -162,7 +162,7 @@ class LeagueService:
                 status=MembershipStatus.ACTIVE
             )
             membership_dict = membership.dict(by_alias=True)
-            await db.memberships.insert_one(membership_dict)
+            await db.league_memberships.insert_one(membership_dict)
             
             # Create default auction document with test overrides if needed
             auction = Auction(
