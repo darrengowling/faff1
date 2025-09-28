@@ -995,6 +995,11 @@ async def create_league(
         return response_data
         
     except HTTPException as he:
+        # Structured logging: error step for HTTP exceptions
+        if TEST_MODE:
+            error_code = he.detail.get('code', 'VALIDATION_ERROR') if isinstance(he.detail, dict) else 'VALIDATION_ERROR'
+            logger.info(f"🧪 LEAGUES.CREATE: {{'requestId': '{request_id}', 'step': 'error', 'code': '{error_code}'}}")
+        
         # Re-raise validation errors (400) as-is
         if isinstance(he.detail, dict) and he.detail.get('code'):
             logger.warning(f"[{request_id}] {payload_summary} - error.code={he.detail['code']}")
@@ -1003,6 +1008,10 @@ async def create_league(
         raise
         
     except Exception as e:
+        # Structured logging: error step for unexpected exceptions
+        if TEST_MODE:
+            logger.info(f"🧪 LEAGUES.CREATE: {{'requestId': '{request_id}', 'step': 'error', 'code': 'INTERNAL'}}")
+        
         # Log and convert unexpected errors to structured 500 response
         logger.error(f"[{request_id}] {payload_summary} - error.code=INTERNAL - {str(e)}")
         logger.error(f"[{request_id}] Traceback: {traceback.format_exc()}")
