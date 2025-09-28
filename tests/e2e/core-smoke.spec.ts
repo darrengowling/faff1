@@ -23,7 +23,8 @@ const LEAGUE_SETTINGS = {
   name: 'Core Smoke League',
   clubSlots: 3,
   budgetPerManager: 100,
-  leagueSize: { min: 2, max: 8 }
+  minManagers: 2,
+  maxManagers: 8
 };
 
 test.describe('Core Smoke Test', () => {
