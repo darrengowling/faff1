@@ -406,7 +406,16 @@ const AuctionRoom = ({ user, token }) => {
 
   // Connection management functions
   const getReconnectDelay = (attempts) => {
-    // Exponential backoff: 1s → 2s → 4s → 8s → 10s (max)
+    // Check if in test mode for deterministic reconnect behavior
+    const isTestMode = process.env.REACT_APP_TEST_MODE === 'true' || 
+                      process.env.NODE_ENV === 'test';
+    
+    if (isTestMode) {
+      // In test mode: cap backoff to 200ms and disable jitter for deterministic testing
+      return Math.min(200, 50 * (attempts + 1)); // 50ms, 100ms, 150ms, 200ms
+    }
+    
+    // Production: Exponential backoff with jitter: 1s → 2s → 4s → 8s → 10s (max)
     const delay = Math.min(1000 * Math.pow(2, attempts), 10000);
     return delay + Math.random() * 1000; // Add jitter
   };
