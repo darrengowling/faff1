@@ -189,6 +189,7 @@ const StickyPageNav = () => {
                     ? 'bg-blue-100 text-blue-700 shadow-sm'
                     : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
                 }`}
+                style={{ pointerEvents: 'auto' }}
                 tabIndex={0}
                 role="tab"
                 aria-selected={activeSection === section.id}
