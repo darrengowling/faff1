@@ -1,0 +1,35 @@
+{
+  "cookies": [
+    {
+      "name": "access_token",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMTkxMTBkNi00NGRiLTQ4MWEtOTVmOS1hZjBjZjU0ZDU0NjciLCJleHAiOjE3NTkxODMzMjV9.0tg_U4ooTwMcrz_rzU7PYNQJa7cA2iu_lNcXZLysKRk",
+      "domain": "league-creator-1.preview.emergentagent.com",
+      "path": "/",
+      "expires": 1759100525.475,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ph_phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE_posthog",
+      "value": "%7B%22distinct_id%22%3A%2201999258-ee12-7ab9-a75d-3710be797248%22%2C%22%24sesid%22%3A%5B1759096926934%2C%2201999258-ee0f-7f65-b547-2842d5401f05%22%2C1759096925710%5D%7D",
+      "domain": ".emergentagent.com",
+      "path": "/",
+      "expires": 1790632927,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://league-creator-1.preview.emergentagent.com",
+      "localStorage": [
+        {
+          "name": "ph_phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE_posthog",
+          "value": "{\"distinct_id\":\"01999258-ee12-7ab9-a75d-3710be797248\",\"$sesid\":[1759096926934,\"01999258-ee0f-7f65-b547-2842d5401f05\",1759096925710],\"$initialization_time\":\"2025-09-28T22:02:06.933Z\",\"$configured_session_timeout_ms\":1800000,\"$client_session_props\":{\"sessionId\":\"01999258-ee0f-7f65-b547-2842d5401f05\",\"props\":{\"r\":\"$direct\",\"u\":\"https://league-creator-1.preview.emergentagent.com/app\"}},\"$device_id\":\"01999258-ee12-7ab9-a75d-3710be797248\",\"$user_state\":\"anonymous\",\"$session_recording_enabled_server_side\":true,\"$console_log_recording_enabled_server_side\":true,\"$session_recording_network_payload_capture\":{\"capturePerformance\":{\"network_timing\":true,\"web_vitals\":true,\"web_vitals_allowed_metrics\":null}},\"$session_recording_masking\":null,\"$session_recording_canvas_recording\":{},\"$replay_sample_rate\":null,\"$replay_minimum_duration\":null,\"$replay_script_config\":null,\"$autocapture_disabled_server_side\":false,\"$heatmaps_enabled_server_side\":true,\"$web_vitals_enabled_server_side\":true,\"$web_vitals_allowed_metrics\":null,\"$exception_capture_enabled_server_side\":false,\"$error_tracking_suppression_rules\":[],\"$dead_clicks_enabled_server_side\":false,\"$active_feature_flags\":[],\"$enabled_feature_flags\":{},\"$feature_flag_payloads\":{},\"$feature_flag_details\":{},\"$feature_flag_request_id\":\"413be62c-007b-4352-ab8c-99d00fb8c5df\"}"
+        }
+      ]
+    }
+  ]
+}
