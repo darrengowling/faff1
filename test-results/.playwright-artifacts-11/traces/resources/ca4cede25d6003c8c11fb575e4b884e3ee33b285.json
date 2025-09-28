@@ -1,1 +1,0 @@
-{"status":"healthy","timestamp":"2025-09-28T01:24:53.129060+00:00","version":"1.0.0","environment":"development","database":{"connected":true,"collections_count":18,"missing_collections":[]},"system":{"cpu_percent":13.9,"memory_percent":18.9,"disk_percent":21.4},"services":{"websocket":true,"email":false,"auth":false}}
