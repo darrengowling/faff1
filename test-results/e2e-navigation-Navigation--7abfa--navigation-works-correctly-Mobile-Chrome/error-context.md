@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic [ref=e1]:
+- generic [active] [ref=e1]:
   - generic [ref=e2]:
     - region "Notifications alt+T"
     - generic [ref=e3]:
@@ -27,11 +27,11 @@
             - generic:
               - generic:
                 - generic:
-                  - tab "Home" [active]:
+                  - tab "Home" [selected]:
                     - generic:
                       - img: 🏠
                       - generic: Home
-                  - tab "How it Works" [selected]:
+                  - tab "How it Works":
                     - generic:
                       - img: ⚙️
                       - generic: How it Works
@@ -52,7 +52,7 @@
                       - img: ❓
                       - generic: FAQ
             - progressbar "Section progress"
-            - generic: "Currently viewing: How it Works"
+            - generic: "Currently viewing: Home"
           - generic [ref=e30]:
             - generic [ref=e32]:
               - img [ref=e34]
