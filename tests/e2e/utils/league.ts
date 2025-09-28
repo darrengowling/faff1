@@ -17,35 +17,64 @@ export interface CreateLeagueFormData {
 
 /**
  * Fill the Create League form using type-aware field setters
- * Works with both input and select elements automatically
+ * Works with both the CreateLeagueDialog (dashboard) and CreateLeagueWizard (page) forms
  */
 export async function fillCreateLeague(page: Page, data: CreateLeagueFormData): Promise<void> {
   console.log(`📋 Filling Create League form: ${data.name}`);
   
-  // Wait for form fields to be ready
-  const requiredFields = [
-    TESTIDS.createLeagueWizardName || 'create-name',
-    TESTIDS.createLeagueWizardSlots || 'create-slots', 
-    TESTIDS.createLeagueWizardBudget || 'create-budget',
-    TESTIDS.createLeagueWizardMin || 'create-min'
-  ];
+  // Try to detect which form we're dealing with by checking for specific testids
+  const dialogSlotsField = page.getByTestId('create-slots-input');
+  const wizardSlotsField = page.getByTestId('create-slots');
   
-  await waitForFormReady(page, requiredFields);
+  let isDialog = false;
+  let isWizard = false;
+  
+  // Check which form is present (with timeout to avoid hanging)
+  try {
+    await dialogSlotsField.waitFor({ state: 'visible', timeout: 3000 });
+    isDialog = true;
+    console.log('📋 Detected CreateLeagueDialog (modal) form');
+  } catch {
+    try {
+      await wizardSlotsField.waitFor({ state: 'visible', timeout: 3000 });
+      isWizard = true;
+      console.log('📋 Detected CreateLeagueWizard (page) form');
+    } catch {
+      throw new Error('No Create League form detected - neither dialog nor wizard form found');
+    }
+  }
+  
+  // Use appropriate testids based on detected form
+  const testIds = isDialog ? {
+    name: 'create-name',
+    slots: 'create-slots-input',
+    budget: 'create-budget',
+    min: 'create-min',
+    max: 'create-max'
+  } : {
+    name: TESTIDS.createLeagueWizardName || 'create-name',
+    slots: TESTIDS.createLeagueWizardSlots || 'create-slots',
+    budget: TESTIDS.createLeagueWizardBudget || 'create-budget',
+    min: TESTIDS.createLeagueWizardMin || 'create-min',
+    max: TESTIDS.createLeagueWizardMax || 'create-max'
+  };
+  
+  console.log(`📝 Using ${isDialog ? 'dialog' : 'wizard'} testids:`, testIds);
   
   // Fill form fields using appropriate methods
   console.log('📝 Filling league name...');
-  await page.getByTestId(TESTIDS.createLeagueWizardName || 'create-name').fill(data.name);
+  await page.getByTestId(testIds.name).fill(data.name);
   
   console.log('📝 Filling form fields with type-aware setters...');
-  await setFormValue(page, TESTIDS.createLeagueWizardSlots || 'create-slots', data.slots);
-  await setFormValue(page, TESTIDS.createLeagueWizardBudget || 'create-budget', data.budget);
-  await setFormValue(page, TESTIDS.createLeagueWizardMin || 'create-min', data.min);
+  await setFormValue(page, testIds.slots, data.slots);
+  await setFormValue(page, testIds.budget, data.budget);
+  await setFormValue(page, testIds.min, data.min);
   
   // Fill max managers if provided and field exists
   if (data.max !== undefined) {
-    const maxField = page.getByTestId(TESTIDS.createLeagueWizardMax || 'create-max');
+    const maxField = page.getByTestId(testIds.max);
     if (await maxField.count() > 0) {
-      await setFormValue(page, TESTIDS.createLeagueWizardMax || 'create-max', data.max);
+      await setFormValue(page, testIds.max, data.max);
     }
   }
   
