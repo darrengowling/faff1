@@ -90,7 +90,7 @@ test.describe('Hooks Unit Tests', () => {
     console.log(`League for start test: ${league.leagueId}`);
     
     // Add required members
-    const members = ['alice@start.test', 'bob@start.test'];
+    const members = ['alice@example.com', 'bob@example.com'];
     for (const email of members) {
       const memberResponse = await page.request.post(`${BACKEND_URL}/api/test/auction/add-member`, {
         data: {

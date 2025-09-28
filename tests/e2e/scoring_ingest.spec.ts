@@ -40,8 +40,8 @@ test.describe('Scoring Ingest Tests', () => {
     });
     
     // Add test members
-    await addTestMember(commissionerPage, leagueId, 'owner1@scoring.test');
-    await addTestMember(commissionerPage, leagueId, 'owner2@scoring.test');
+    await addTestMember(commissionerPage, leagueId, 'owner1@example.com');
+    await addTestMember(commissionerPage, leagueId, 'owner2@example.com');
     
     console.log(`✅ League setup complete: ${leagueId}`);
     

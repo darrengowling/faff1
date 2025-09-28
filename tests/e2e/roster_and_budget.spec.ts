@@ -29,7 +29,7 @@ test.describe('Roster and Budget Tests', () => {
     console.log('🧪 Testing club slots tracking...');
     
     // Create league with 5 club slots
-    await login(commissionerPage, 'commissioner@slots.test');
+    await login(commissionerPage, 'commissioner@example.com');
     leagueId = await createLeague(commissionerPage, {
       name: 'Five Slots League',
       clubSlots: 5,
@@ -38,7 +38,7 @@ test.describe('Roster and Budget Tests', () => {
       maxManagers: 4
     });
     
-    await login(alicePage, 'alice@slots.test');
+    await login(alicePage, 'alice@example.com');
     
     // Join and start auction
     await startAuction(commissionerPage);
@@ -67,7 +67,7 @@ test.describe('Roster and Budget Tests', () => {
   test('Budget decrements exactly by win price', async () => {
     console.log('🧪 Testing budget tracking...');
     
-    await login(commissionerPage, 'commissioner@budget.test');
+    await login(commissionerPage, 'commissioner@example.com');
     leagueId = await createLeague(commissionerPage, {
       name: 'Budget Test League',
       clubSlots: 3,
@@ -76,7 +76,7 @@ test.describe('Roster and Budget Tests', () => {
       maxManagers: 4
     });
     
-    await login(alicePage, 'alice@budget.test');
+    await login(alicePage, 'alice@example.com');
     
     await startAuction(commissionerPage);
     await alicePage.goto(commissionerPage.url());
@@ -100,7 +100,7 @@ test.describe('Roster and Budget Tests', () => {
   test('Cannot exceed maximum club slots', async () => {
     console.log('🧪 Testing slot limit enforcement...');
     
-    await login(commissionerPage, 'commissioner@limit.test');
+    await login(commissionerPage, 'commissioner@example.com');
     leagueId = await createLeague(commissionerPage, {
       name: 'Slot Limit League',
       clubSlots: 2, // Only 2 slots allowed
@@ -109,7 +109,7 @@ test.describe('Roster and Budget Tests', () => {
       maxManagers: 4
     });
     
-    await login(alicePage, 'alice@limit.test');
+    await login(alicePage, 'alice@example.com');
     
     await startAuction(commissionerPage);
     await alicePage.goto(commissionerPage.url());
@@ -150,7 +150,7 @@ test.describe('Roster and Budget Tests', () => {
   test('Budget remaining updates in real-time during auction', async () => {
     console.log('🧪 Testing real-time budget updates...');
     
-    await login(commissionerPage, 'commissioner@realtime.test');
+    await login(commissionerPage, 'commissioner@example.com');
     leagueId = await createLeague(commissionerPage, {
       name: 'Real-time Budget League',
       clubSlots: 5,
@@ -159,7 +159,7 @@ test.describe('Roster and Budget Tests', () => {
       maxManagers: 4
     });
     
-    await login(alicePage, 'alice@realtime.test');
+    await login(alicePage, 'alice@example.com');
     
     await startAuction(commissionerPage);
     await alicePage.goto(commissionerPage.url());
@@ -187,7 +187,7 @@ test.describe('Roster and Budget Tests', () => {
   test('Roster displays accurate club information', async () => {
     console.log('🧪 Testing roster display accuracy...');
     
-    await login(commissionerPage, 'commissioner@roster.test');
+    await login(commissionerPage, 'commissioner@example.com');
     leagueId = await createLeague(commissionerPage, {
       name: 'Roster Display League',
       clubSlots: 3,
@@ -196,7 +196,7 @@ test.describe('Roster and Budget Tests', () => {
       maxManagers: 4
     });
     
-    await login(alicePage, 'alice@roster.test');
+    await login(alicePage, 'alice@example.com');
     
     await startAuction(commissionerPage);
     await alicePage.goto(commissionerPage.url());
@@ -233,7 +233,7 @@ test.describe('Roster and Budget Tests', () => {
   test('Empty roster shows appropriate message', async () => {
     console.log('🧪 Testing empty roster state...');
     
-    await login(alicePage, 'alice@empty.test');
+    await login(alicePage, 'alice@example.com');
     
     // Navigate to roster without winning any assets
     await alicePage.goto('/app');

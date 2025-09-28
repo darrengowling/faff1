@@ -39,19 +39,19 @@ test.describe('Auction Hooks Integration Tests', () => {
         minManagers: 2,
         maxManagers: 4
       },
-      ['alice@hooks.test', 'bob@hooks.test', 'charlie@hooks.test']
+      ['alice@example.com', 'bob@example.com', 'charlie@example.com']
     );
     
     console.log(`✅ Auction setup complete: League ${leagueId}, Auction ${auctionId}`);
     
     // Run basic auction flow
-    await runTestAuctionFlow(page, leagueId, 'alice@hooks.test', 'MAN_CITY');
+    await runTestAuctionFlow(page, leagueId, 'alice@example.com', 'MAN_CITY');
     
     // Test bidding sequence
     const bidIds = await simulateBiddingSequence(page, leagueId, [
-      { email: 'alice@hooks.test', amount: 5 },
-      { email: 'bob@hooks.test', amount: 10 },
-      { email: 'charlie@hooks.test', amount: 15 }
+      { email: 'alice@example.com', amount: 5 },
+      { email: 'bob@example.com', amount: 10 },
+      { email: 'charlie@example.com', amount: 15 }
     ]);
     
     expect(bidIds).toHaveLength(3);
@@ -74,11 +74,11 @@ test.describe('Auction Hooks Integration Tests', () => {
         minManagers: 2,
         maxManagers: 3
       },
-      ['alice@snipe.test', 'bob@snipe.test']
+      ['alice@example.com', 'bob@example.com']
     );
     
     // Start auction and nominate asset
-    await runTestAuctionFlow(page, leagueId, 'alice@snipe.test', 'CHELSEA');
+    await runTestAuctionFlow(page, leagueId, 'alice@example.com', 'CHELSEA');
     
     // Navigate to auction UI to verify state
     await page.goto(`https://pifa-stability.preview.emergentagent.com/auction/${leagueId}`);
@@ -91,7 +91,7 @@ test.describe('Auction Hooks Integration Tests', () => {
     await advanceTimeSeconds(page, 5.5);
     
     // Place bid to trigger anti-snipe
-    await placeTestBid(page, leagueId, 'bob@snipe.test', 10);
+    await placeTestBid(page, leagueId, 'bob@example.com', 10);
     
     // Small wait for anti-snipe processing
     await page.waitForTimeout(200);
@@ -126,11 +126,11 @@ test.describe('Auction Hooks Integration Tests', () => {
         minManagers: 2,
         maxManagers: 3
       },
-      ['alice@reconnect.test', 'bob@reconnect.test']
+      ['alice@example.com', 'bob@example.com']
     );
     
     // Test deterministic reconnection behavior
-    await verifyDeterministicReconnection(page, 'alice@reconnect.test');
+    await verifyDeterministicReconnection(page, 'alice@example.com');
     
     // Test reconnection during auction activity
     await page.goto(`https://pifa-stability.preview.emergentagent.com/auction/${leagueId}`);
@@ -138,7 +138,7 @@ test.describe('Auction Hooks Integration Tests', () => {
     await page.waitForTimeout(1000);
     
     // Test socket reconnection
-    await testSocketReconnection(page, 'alice@reconnect.test', 200);
+    await testSocketReconnection(page, 'alice@example.com', 200);
     
     console.log('✅ Socket reconnection with hooks successful');
   });
@@ -159,11 +159,11 @@ test.describe('Auction Hooks Integration Tests', () => {
         minManagers: 2,
         maxManagers: 4
       },
-      ['alice@race.test', 'bob@race.test', 'charlie@race.test']
+      ['alice@example.com', 'bob@example.com', 'charlie@example.com']
     );
     
     // Start auction flow
-    await runTestAuctionFlow(page, leagueId, 'alice@race.test', 'LIVERPOOL');
+    await runTestAuctionFlow(page, leagueId, 'alice@example.com', 'LIVERPOOL');
     
     // Advance time to stable auction state
     await advanceTimeSeconds(page, 2);
@@ -171,9 +171,9 @@ test.describe('Auction Hooks Integration Tests', () => {
     // Place simultaneous bids using hooks (deterministic timing)
     const startTime = Date.now();
     const bidPromises = [
-      placeTestBid(page, leagueId, 'alice@race.test', 15),
-      placeTestBid(page, leagueId, 'bob@race.test', 15),
-      placeTestBid(page, leagueId, 'charlie@race.test', 15)
+      placeTestBid(page, leagueId, 'alice@example.com', 15),
+      placeTestBid(page, leagueId, 'bob@example.com', 15),
+      placeTestBid(page, leagueId, 'charlie@example.com', 15)
     ];
     
     const bidResults = await Promise.allSettled(bidPromises);
@@ -207,7 +207,7 @@ test.describe('Auction Hooks Integration Tests', () => {
         minManagers: 2,
         maxManagers: 3
       },
-      ['alice@ui.test', 'bob@ui.test']
+      ['alice@example.com', 'bob@example.com']
     );
     
     // Navigate to auction UI

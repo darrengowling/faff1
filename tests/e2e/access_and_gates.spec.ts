@@ -76,7 +76,7 @@ test.describe('Access and Gates Tests', () => {
     console.log('🧪 Testing Start Auction gate with sufficient members...');
     
     // Create league with min 2 managers  
-    await login(commissionerPage, 'commissioner@sufficient.test');
+    await login(commissionerPage, 'commissioner@example.com');
     const leagueId = await createLeague(commissionerPage, {
       name: 'Sufficient Members League',
       clubSlots: 3,
@@ -86,7 +86,7 @@ test.describe('Access and Gates Tests', () => {
     });
     
     // Add second member
-    await login(memberPage, 'member@sufficient.test');
+    await login(memberPage, 'member@example.com');
     // Simulate joining league (in real test would use invite flow)
     await memberPage.goto(`/leagues/${leagueId}/join`);
     
@@ -133,7 +133,7 @@ test.describe('Access and Gates Tests', () => {
   test('Non-existent league routes show 404 or redirect safely', async () => {
     console.log('🧪 Testing non-existent league access...');
     
-    await login(memberPage, 'member@404.test');
+    await login(memberPage, 'member@example.com');
     
     // Try to access non-existent league
     await memberPage.goto('/leagues/nonexistent-league-id/auction');
@@ -155,7 +155,7 @@ test.describe('Access and Gates Tests', () => {
     console.log('🧪 Testing league member access permissions...');
     
     // Create league and add member
-    await login(commissionerPage, 'commissioner@member-access.test');
+    await login(commissionerPage, 'commissioner@example.com');
     const leagueId = await createLeague(commissionerPage, {
       name: 'Member Access League',
       clubSlots: 3,
@@ -165,7 +165,7 @@ test.describe('Access and Gates Tests', () => {
     });
     
     // Member joins league
-    await login(memberPage, 'member@member-access.test');
+    await login(memberPage, 'member@example.com');
     await memberPage.goto(`/leagues/${leagueId}/join`);
     
     // Member should be able to access league pages
@@ -192,7 +192,7 @@ test.describe('Access and Gates Tests', () => {
     console.log('🧪 Testing non-member access restrictions...');
     
     // Create private league 
-    await login(commissionerPage, 'commissioner@private.test');
+    await login(commissionerPage, 'commissioner@example.com');
     const privateLeagueId = await createLeague(commissionerPage, {
       name: 'Private League',
       clubSlots: 3,
@@ -202,7 +202,7 @@ test.describe('Access and Gates Tests', () => {
     });
     
     // Different user (not a member) tries to access
-    await login(memberPage, 'outsider@private.test');
+    await login(memberPage, 'outsider@example.com');
     
     // Should be blocked from accessing league pages
     await memberPage.goto(`/leagues/${privateLeagueId}/clubs`);
@@ -220,7 +220,7 @@ test.describe('Access and Gates Tests', () => {
   test('Commissioner has admin access, members do not', async () => {
     console.log('🧪 Testing admin access permissions...');
     
-    await login(commissionerPage, 'commissioner@admin.test');
+    await login(commissionerPage, 'commissioner@example.com');
     const leagueId = await createLeague(commissionerPage, {
       name: 'Admin Access League',
       clubSlots: 3,
@@ -239,7 +239,7 @@ test.describe('Access and Gates Tests', () => {
     }
     
     // Regular member should not access admin
-    await login(memberPage, 'member@admin.test');
+    await login(memberPage, 'member@example.com');
     await memberPage.goto(`/leagues/${leagueId}/join`);
     
     // Try to access admin page
@@ -258,7 +258,7 @@ test.describe('Access and Gates Tests', () => {
   test('Auction access requires active auction', async () => {
     console.log('🧪 Testing auction access gates...');
     
-    await login(commissionerPage, 'commissioner@auction-gate.test');
+    await login(commissionerPage, 'commissioner@example.com');
     const leagueId = await createLeague(commissionerPage, {
       name: 'Auction Gate League',
       clubSlots: 3,
@@ -289,7 +289,7 @@ test.describe('Access and Gates Tests', () => {
     console.log('🧪 Testing league-specific route redirects...');
     
     // Test authenticated user accessing league routes without an active league
-    await login(memberPage, 'member@no-league.test');
+    await login(memberPage, 'member@example.com');
     
     const leagueRoutes = [
       { path: '/auction', expectedRedirect: '/app', expectedReason: 'Join a league first to access the auction room' },
@@ -318,7 +318,7 @@ test.describe('Access and Gates Tests', () => {
   test('Breadcrumb navigation appears on all app pages', async () => {
     console.log('🧪 Testing breadcrumb navigation...');
     
-    await login(commissionerPage, 'commissioner@breadcrumb.test');
+    await login(commissionerPage, 'commissioner@example.com');
     
     // Test breadcrumbs appear on various pages
     const pagesWithBreadcrumbs = ['/auction', '/clubs', '/fixtures', '/leaderboard'];
@@ -344,7 +344,7 @@ test.describe('Access and Gates Tests', () => {
   test('No dead-end pages - all pages provide navigation options', async () => {
     console.log('🧪 Testing for dead-end pages...');
     
-    await login(memberPage, 'member@dead-end.test');
+    await login(memberPage, 'member@example.com');
     
     // Test that every page has some form of navigation
     const testPages = ['/app', '/login', '/auction', '/clubs'];
