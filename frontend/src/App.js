@@ -1632,8 +1632,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <Router>
-          <div className="App">
-            <Toaster />
+          <Toaster />
             
             {/* Global League Creation Success Marker */}
             <LeagueCreateSuccessMarker />
