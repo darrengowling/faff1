@@ -34,10 +34,15 @@ from time_provider import time_provider, now, now_ms, is_test_mode
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# Test environment overrides for deterministic testing
-TEST_BID_TIMER_SECONDS = int(os.getenv("BID_TIMER_SECONDS", "60"))
-TEST_ANTI_SNIPE_SECONDS = int(os.getenv("ANTI_SNIPE_SECONDS", "30"))
-IS_TEST_MODE = os.getenv("PLAYWRIGHT_TEST") == "true"
+# Test environment overrides for deterministic testing  
+TEST_MODE = os.getenv("TEST_MODE", "false").lower() == "true"
+DEFAULT_BID_TIMER = 8 if TEST_MODE else 60
+DEFAULT_ANTI_SNIPE = 3 if TEST_MODE else 30
+BID_TIMER_SECONDS = int(os.getenv("BID_TIMER_SECONDS", str(DEFAULT_BID_TIMER)))
+ANTI_SNIPE_SECONDS = int(os.getenv("ANTI_SNIPE_SECONDS", str(DEFAULT_ANTI_SNIPE)))
+
+# Legacy compatibility
+IS_TEST_MODE = os.getenv("PLAYWRIGHT_TEST") == "true" or TEST_MODE
 
 # Socket.IO ASGI wrapper configuration
 FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:3000")
