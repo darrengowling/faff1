@@ -225,8 +225,8 @@ async def request_magic_link(request: MagicLinkRequest):
             raise HTTPException(
                 status_code=400,
                 detail={
-                    "code": "INVALID_EMAIL", 
-                    "message": "Please enter a valid email address"
+                    "code": "INVALID_EMAIL",
+                    "message": error_msg or "Please enter a valid email address"
                 }
             )
         
