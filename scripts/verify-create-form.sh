@@ -62,16 +62,37 @@ const { chromium } = require("playwright");
     await createButton.click();
     await page.waitForTimeout(2000); // Allow form to render
     
-    // Required testids for create form
-    const requiredTestIds = [
-      "create-name",
-      "create-slots-input", 
-      "create-budget",
-      "create-min", 
-      "create-submit"
-    ];
+    // Detect which form type (Dialog vs Wizard) by checking for specific testids
+    console.log("🔍 Detecting form type...");
+    const dialogForm = await page.getByTestId("create-league-dialog").count() > 0;
+    const wizardForm = await page.getByTestId("create-name").count() > 0;
     
-    console.log("🔍 Verifying all required testids are present...");
+    let requiredTestIds = [];
+    let formType = "";
+    
+    if (dialogForm) {
+      formType = "Dialog";
+      requiredTestIds = [
+        "create-name",
+        "create-slots-input", 
+        "create-budget",
+        "create-min", 
+        "create-submit"
+      ];
+    } else if (wizardForm) {
+      formType = "Wizard";
+      requiredTestIds = [
+        "create-name",
+        "create-slots", 
+        "create-budget",
+        "create-min", 
+        "create-submit"
+      ];
+    } else {
+      throw new Error("❌ Neither Dialog nor Wizard create form detected");
+    }
+    
+    console.log(`🎯 Detected ${formType} form, verifying testids...`);
     const missingTestIds = [];
     
     for (const testid of requiredTestIds) {
