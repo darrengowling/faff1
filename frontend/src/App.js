@@ -1069,7 +1069,7 @@ const LeagueManagement = ({ league, onBack }) => {
 
       {/* League Status */}
       {leagueStatus && (
-        <Card>
+        <Card data-testid="lobby-joined">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Shield className="w-5 h-5" />
