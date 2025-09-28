@@ -796,12 +796,22 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                   min="2"
                   max="8"
                   value={formData.settings.league_size?.min || 2}
-                  onChange={(e) => updateSettings('league_size', { 
-                    ...formData.settings.league_size, 
-                    min: parseInt(e.target.value) || 2 
-                  })}
-                  data-testid={TESTIDS.createMinInput}
+                  onChange={(e) => {
+                    updateSettings('league_size', { 
+                      ...formData.settings.league_size, 
+                      min: parseInt(e.target.value) || 2 
+                    });
+                    clearError('min');
+                  }}
+                  aria-describedby={errors.min ? "min-error" : undefined}
+                  className={errors.min ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
+                  data-testid="create-min"
                 />
+                {errors.min && (
+                  <p id="min-error" className="text-sm text-red-600" data-testid="create-error-min">
+                    {errors.min}
+                  </p>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="maxManagers">Max Managers</Label>
