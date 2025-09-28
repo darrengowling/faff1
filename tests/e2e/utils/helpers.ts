@@ -434,6 +434,8 @@ export async function expectUserPresence(page: Page, expectedUserCount: number):
   await expect(userElements).toHaveCount(expectedUserCount, { timeout: 10000 });
   
   console.log(`✅ User presence verified: ${expectedUserCount}`);
+}
+
 /**
  * Wait for league creation success and navigation to lobby
  * Races between create-success marker and URL matching /app/leagues/:id/lobby
