@@ -264,7 +264,12 @@ const CreateLeagueWizard = () => {
                   <option value={200}>200 coins</option>
                 </select>
                 {errors.budget && (
-                  <p className="mt-1 text-sm text-red-600">{errors.budget}</p>
+                  <p 
+                    className="mt-1 text-sm text-red-600" 
+                    data-testid="create-error-budget"
+                  >
+                    {errors.budget}
+                  </p>
                 )}
                 <p className="mt-1 text-sm text-gray-500">
                   Virtual currency for the auction
