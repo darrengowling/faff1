@@ -655,6 +655,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
       }
       
     } catch (error) {
+      debugLog('error', `league creation failed: ${error.message}`);
       console.error('League creation error:', error);
       
       // Handle structured error responses
