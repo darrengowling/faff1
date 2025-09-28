@@ -4,7 +4,7 @@
  */
 
 import { Page, expect } from '@playwright/test';
-import { TESTIDS } from '../../../frontend/src/testids';
+import { TESTIDS } from '../../../frontend/src/testids.ts';
 
 export class TestHelpers {
   constructor(private page: Page) {}
