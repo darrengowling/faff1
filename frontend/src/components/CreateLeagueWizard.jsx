@@ -161,13 +161,23 @@ const CreateLeagueWizard = () => {
           </p>
         </div>
 
+        {/* Success Marker for Test Detection */}
+        {success && (
+          <div 
+            data-testid="create-success" 
+            className="mb-4 p-4 bg-green-50 border border-green-200 rounded-md text-green-800 text-center"
+          >
+            League created successfully! Redirecting to lobby...
+          </div>
+        )}
+
         {/* Wizard Form */}
-        <Card className="shadow-lg">
+        <Card className="shadow-lg" style={{ pointerEvents: loading ? 'none' : 'auto' }}>
           <CardHeader>
             <CardTitle className="text-xl">League Configuration</CardTitle>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-8" style={{ pointerEvents: 'auto' }}>
               
               {/* League Name */}
               <div>
