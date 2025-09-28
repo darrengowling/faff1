@@ -26,8 +26,9 @@ const { chromium } = require("playwright");
   const page = await context.newPage();
   
   try {
-    console.log("🔍 Navigating to application...");
-    await page.goto(process.env.BASE_URL);
+    const baseUrl = process.env.BASE_URL || "https://pifa-stability.preview.emergentagent.com";
+    console.log(`🔍 Navigating to application: ${baseUrl}`);
+    await page.goto(baseUrl);
     await page.waitForLoadState("networkidle", { timeout: 30000 });
     
     // Find and click Create League button (may be in various locations)
