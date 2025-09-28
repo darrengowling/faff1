@@ -752,9 +752,19 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                   min="1"
                   max="10"
                   value={formData.settings.club_slots_per_manager}
-                  onChange={(e) => updateSettings('club_slots_per_manager', e.target.value)}
-                  data-testid={TESTIDS.createSlotsInput}
+                  onChange={(e) => {
+                    updateSettings('club_slots_per_manager', e.target.value);
+                    clearError('slots');
+                  }}
+                  aria-describedby={errors.slots ? "slots-error" : undefined}
+                  className={errors.slots ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
+                  data-testid="create-slots"
                 />
+                {errors.slots && (
+                  <p id="slots-error" className="text-sm text-red-600" data-testid="create-error-slots">
+                    {errors.slots}
+                  </p>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="minIncrement">Min Bid Increment</Label>
