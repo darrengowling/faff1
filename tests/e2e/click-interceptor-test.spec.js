@@ -11,7 +11,7 @@ test.describe('Click Interceptor Detector Tests', () => {
   
   test('should detect header overlay interception on login page', async ({ page }) => {
     // Import our utility
-    const { ensureClickable, safeClick, analyzeClickPoint } = await import('./tests/e2e/utils/click-interceptor-detector.ts');
+    const { ensureClickable, safeClick, analyzeClickPoint } = await import('./utils/click-interceptor-detector.ts');
     
     console.log('🧪 Testing click interceptor detector on /login page...');
     
