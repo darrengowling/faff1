@@ -198,7 +198,12 @@ const CreateLeagueWizard = () => {
                   required
                 />
                 {errors.name && (
-                  <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+                  <p 
+                    className="mt-1 text-sm text-red-600" 
+                    data-testid="create-error-name"
+                  >
+                    {errors.name}
+                  </p>
                 )}
               </div>
 
