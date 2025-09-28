@@ -289,9 +289,8 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                   </div>
                 </div>
               </div>
-            </div>
           </div>
-        )}
+        </div>
       </header>
 
       {/* Main Content */}
