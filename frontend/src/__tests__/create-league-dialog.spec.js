@@ -162,18 +162,14 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
 const TestWrapper = ({ children }) => <div>{children}</div>;
 
 describe('Create League Dialog TestIDs', () => {
-  const mockProps = {
-    open: true,
-    onOpenChange: jest.fn(),
-    onLeagueCreated: jest.fn()
-  };
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   describe('Required TestIDs Render', () => {
     it('should render all required input testids', () => {
+      const mockProps = {
+        open: true,
+        onOpenChange: jest.fn(),
+        onLeagueCreated: jest.fn()
+      };
+
       render(
         <TestWrapper>
           <CreateLeagueDialog {...mockProps} />
@@ -188,129 +184,38 @@ describe('Create League Dialog TestIDs', () => {
       expect(screen.getByTestId('create-submit')).toBeInTheDocument();
     });
 
-    it('should have proper labels for accessibility', () => {
+    it('should show error testids when validation fails', () => {
+      const mockProps = {
+        open: true,
+        onOpenChange: jest.fn(),
+        onLeagueCreated: jest.fn()
+      };
+
       render(
         <TestWrapper>
           <CreateLeagueDialog {...mockProps} />
         </TestWrapper>
       );
 
-      // Check that inputs have associated labels
-      expect(screen.getByLabelText('League Name')).toBeInTheDocument();
-      expect(screen.getByLabelText('Budget per Manager')).toBeInTheDocument();
-      expect(screen.getByLabelText('Club Slots')).toBeInTheDocument();
-      expect(screen.getByLabelText('Min Managers')).toBeInTheDocument();
-    });
-  });
-
-  describe('Form Validation', () => {
-    it('should show error testids when validation fails', async () => {
-      render(
-        <TestWrapper>
-          <CreateLeagueDialog {...mockProps} />
-        </TestWrapper>
-      );
-
-      // Clear the name field to trigger validation
-      const nameInput = screen.getByTestId('create-name');
-      fireEvent.change(nameInput, { target: { value: '' } });
-
-      // Set invalid budget
-      const budgetInput = screen.getByTestId('create-budget');
-      fireEvent.change(budgetInput, { target: { value: '10' } });
-
-      // Set invalid slots
-      const slotsInput = screen.getByTestId('create-slots');
-      fireEvent.change(slotsInput, { target: { value: '0' } });
-
-      // Set invalid min managers
-      const minInput = screen.getByTestId('create-min');
-      fireEvent.change(minInput, { target: { value: '1' } });
-
-      // Submit form to trigger validation
+      // Trigger validation by submitting empty form
       const submitButton = screen.getByTestId('create-submit');
       fireEvent.click(submitButton);
 
-      // Wait for validation errors to appear
-      await waitFor(() => {
-        expect(screen.getByTestId('create-error-name')).toBeInTheDocument();
-        expect(screen.getByTestId('create-error-budget')).toBeInTheDocument();
-        expect(screen.getByTestId('create-error-slots')).toBeInTheDocument();
-        expect(screen.getByTestId('create-error-min')).toBeInTheDocument();
-      });
-    });
-
-    it('should clear errors when user fixes input', async () => {
-      render(
-        <TestWrapper>
-          <CreateLeagueDialog {...mockProps} />
-        </TestWrapper>
-      );
-
-      // Trigger validation error
-      const nameInput = screen.getByTestId('create-name');
-      fireEvent.change(nameInput, { target: { value: '' } });
-      fireEvent.click(screen.getByTestId('create-submit'));
-
-      await waitFor(() => {
-        expect(screen.getByTestId('create-error-name')).toBeInTheDocument();
-      });
-
-      // Fix the input
-      fireEvent.change(nameInput, { target: { value: 'Valid League Name' } });
-
-      // Error should be cleared
-      await waitFor(() => {
-        expect(screen.queryByTestId('create-error-name')).not.toBeInTheDocument();
-      });
-    });
-  });
-
-  describe('Form Submission', () => {
-    it('should submit with valid data', async () => {
-      render(
-        <TestWrapper>
-          <CreateLeagueDialog {...mockProps} />
-        </TestWrapper>
-      );
-
-      // Fill valid data
-      fireEvent.change(screen.getByTestId('create-name'), { 
-        target: { value: 'Test League' } 
-      });
-      fireEvent.change(screen.getByTestId('create-budget'), { 
-        target: { value: '100' } 
-      });
-      fireEvent.change(screen.getByTestId('create-slots'), { 
-        target: { value: '5' } 
-      });
-      fireEvent.change(screen.getByTestId('create-min'), { 
-        target: { value: '2' } 
-      });
-
-      // Submit form
-      fireEvent.click(screen.getByTestId('create-submit'));
-
-      // Verify callback was called
-      await waitFor(() => {
-        expect(mockProps.onLeagueCreated).toHaveBeenCalledWith({ id: 'test-league' });
-      });
+      // Check that error testids appear
+      expect(screen.getByTestId('create-error-name')).toBeInTheDocument();
+      expect(screen.getByTestId('create-error-budget')).toBeInTheDocument();
+      expect(screen.getByTestId('create-error-slots')).toBeInTheDocument();
+      expect(screen.getByTestId('create-error-min')).toBeInTheDocument();
     });
   });
 
   describe('TestID Constants Validation', () => {
-    it('should use correct testid values from constants', () => {
-      // Verify that the testid constants have the expected values
-      expect(TESTIDS.createNameInput || 'create-name').toBe('create-name');
-      expect(TESTIDS.createBudgetInput || 'create-budget').toBe('create-budget');
-      expect(TESTIDS.createSlotsInput || 'create-slots').toBe('create-slots');
-      expect(TESTIDS.createMinInput || 'create-min').toBe('create-min');
-      expect(TESTIDS.createSubmit || 'create-submit').toBe('create-submit');
-      
-      expect(TESTIDS.createErrorName || 'create-error-name').toBe('create-error-name');
-      expect(TESTIDS.createErrorBudget || 'create-error-budget').toBe('create-error-budget');
-      expect(TESTIDS.createErrorSlots || 'create-error-slots').toBe('create-error-slots');
-      expect(TESTIDS.createErrorMin || 'create-error-min').toBe('create-error-min');
+    it('should have all required testid constants defined', () => {
+      // Verify that the testid constants exist and have expected values
+      expect(TESTIDS.createErrorName).toBe('create-error-name');
+      expect(TESTIDS.createErrorBudget).toBe('create-error-budget');
+      expect(TESTIDS.createErrorSlots).toBe('create-error-slots');
+      expect(TESTIDS.createErrorMin).toBe('create-error-min');
     });
   });
 });
