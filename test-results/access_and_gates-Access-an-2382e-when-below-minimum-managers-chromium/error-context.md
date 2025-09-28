@@ -1273,7 +1273,7 @@
       - generic [ref=e10]:
         - generic [ref=e11]:
           - generic [ref=e12]: League Name
-          - textbox "League Name" [ref=e13]: Gate Test League
+          - textbox "League Name" [ref=e13]: Gate Test League 1759036941074
         - generic [ref=e14]:
           - generic [ref=e15]: Season
           - textbox "Season" [ref=e16]: 2025-26
