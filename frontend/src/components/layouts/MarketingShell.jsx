@@ -122,12 +122,13 @@ const MarketingShell = ({ children }) => {
         {/* Mobile Drawer */}
         {mobileMenuOpen && (
           <div 
-            className="md:hidden fixed left-0 right-0 top-16 bottom-0 bg-black bg-opacity-50 z-40 drawer-backdrop"
+            className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 drawer-backdrop"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
+            style={{ paddingTop: '64px' }} // Account for header height
           >
             <div
-              className="bg-theme-surface w-full max-w-sm h-full shadow-lg overflow-y-auto drawer-panel"
+              className="bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel"
               id="mobile-navigation"
               role="navigation"
               aria-label="Mobile navigation menu"
