@@ -14,6 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { BrandBadge } from './ui/brand-badge';
 import { LandingFooter } from './ui/footer';
 import { TESTIDS } from '../testids.js';
+import StickyPageNav from './StickyPageNav';
 
 const SimpleLandingPage = () => {
   const navigate = useNavigate();
