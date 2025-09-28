@@ -62,29 +62,11 @@ export default defineConfig({
   globalSetup: require.resolve('./tests/e2e/utils/global-setup.ts'),
   globalTeardown: require.resolve('./tests/e2e/utils/global-teardown.ts'),
   
-  // Projects for different browsers (only Chromium with storage states)
+  // Projects for different browsers (only Chromium for container environment)
   projects: [
     {
       name: 'chromium',
-      use: { 
-        ...devices['Desktop Chrome'],
-        // Default to commissioner storage state for most tests
-        storageState: 'test-results/commissioner-state.json'
-      },
-    },
-    {
-      name: 'chromium-alice',
-      use: { 
-        ...devices['Desktop Chrome'],
-        storageState: 'test-results/alice-state.json'
-      },
-    },
-    {
-      name: 'chromium-bob',
-      use: { 
-        ...devices['Desktop Chrome'],
-        storageState: 'test-results/bob-state.json'
-      },
+      use: { ...devices['Desktop Chrome'] },
     }
   ],
   
