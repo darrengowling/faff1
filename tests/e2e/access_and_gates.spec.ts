@@ -32,7 +32,7 @@ test.describe('Access and Gates Tests', () => {
     console.log('🧪 Testing Start Auction gate with insufficient members...');
     
     // Create league with min 3 managers
-    await login(commissionerPage, 'commissioner@gate.test');
+    await login(commissionerPage, 'commissioner@example.com');
     const leagueId = await createLeague(commissionerPage, {
       name: 'Gate Test League',
       clubSlots: 3,
