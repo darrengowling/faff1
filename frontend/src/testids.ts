@@ -46,6 +46,10 @@ export const TESTIDS = {
   authSuccess: 'auth-success',
   authLoading: 'auth-loading',
   
+  // Create League Form
+  createLoading: 'create-loading',
+  createError: 'create-error',
+  
   // Navigation
   navBrand: 'nav-brand',
   navSignIn: 'nav-sign-in',
