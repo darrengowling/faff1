@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic [active] [ref=e1]:
+- generic [ref=e1]:
   - generic [ref=e3]:
     - region "Notifications alt+T"
     - banner [ref=e4]:
@@ -23,7 +23,7 @@
       - generic:
         - generic:
           - generic:
-            - tab "Home" [selected]:
+            - tab "Home" [active] [selected]:
               - generic:
                 - img: 🏠
                 - generic: Home
