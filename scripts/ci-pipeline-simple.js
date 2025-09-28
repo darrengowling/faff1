@@ -262,15 +262,15 @@ class SimpleCIPipeline {
         30000
       );
 
-      // Phase 3: Socket Diagnostics
-      const phase3 = this.runPhase(
+      // Phase 4: Socket Diagnostics
+      const phase4 = this.runPhase(
         'diag:socketio',
         'node scripts/diag-socketio.js',
         'Socket.IO runtime diagnostics'
       );
 
-      // Phase 4: Auth UI Verification
-      const phase4 = this.runPhase(
+      // Phase 5: Auth UI Verification
+      const phase5 = this.runPhase(
         'verify-auth-ui', 
         'npx playwright test tests/e2e/auth_ui.spec.ts -g "Login page renders form" --reporter=line',
         'Authentication UI verification'
