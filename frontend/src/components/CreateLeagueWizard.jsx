@@ -284,9 +284,13 @@ const CreateLeagueWizard = () => {
         <div className="mt-6 text-center text-sm text-gray-500">
           <p>
             Need help? Check out our{' '}
-            <a href="#" className="text-blue-600 hover:underline">
+            <button 
+              type="button"
+              onClick={() => window.open('/help/league-setup', '_blank')}
+              className="text-blue-600 hover:underline focus:outline-none"
+            >
               league setup guide
-            </a>
+            </button>
           </p>
         </div>
       </div>
