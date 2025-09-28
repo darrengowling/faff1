@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+const { TESTIDS } = require('../../frontend/src/testids.js');
 const { 
   checkLandingCTAsClickable, 
   checkAnchorScrolling,
