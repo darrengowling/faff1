@@ -6,6 +6,7 @@
 import { Page, expect, Locator } from '@playwright/test';
 import { ensureClickable, clickWhenReady } from './ensureClickable';
 import { safeClick, ensureClickable as checkClickable } from './click-interceptor-detector';
+import { login as loginUtility } from './login';
 import { TESTIDS } from '../../../frontend/src/testids.js';
 
 /**
