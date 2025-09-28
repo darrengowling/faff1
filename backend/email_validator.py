@@ -59,7 +59,9 @@ class EmailValidator:
         if not email or not isinstance(email, str):
             return False, "Email is required"
         
-        email = email.strip()
+        # Check for leading/trailing whitespace before stripping
+        if email != email.strip():
+            return False, "Email cannot have leading or trailing whitespace"
         
         if not email:
             return False, "Email cannot be empty"
