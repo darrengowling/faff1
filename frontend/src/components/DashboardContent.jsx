@@ -210,12 +210,20 @@ const DashboardContent = ({
                   <Eye className="w-4 h-4 mr-2" />
                   Manage League
                 </Button>
-                {selectedLeague.status === 'ready' && selectedLeague.commissioner_id === user.id && (
+                {/* Always show Start Auction button - conditionally disabled */}
+                {selectedLeague.commissioner_id === user.id && (
                   <Button
                     size="sm"
-                    onClick={() => onStartAuction(selectedLeague.id)}
-                    className="bg-green-600 hover:bg-green-700"
+                    onClick={() => selectedLeague.status === 'ready' ? onStartAuction(selectedLeague.id) : null}
+                    className={`${selectedLeague.status === 'ready' 
+                      ? 'bg-green-600 hover:bg-green-700' 
+                      : 'bg-gray-400 cursor-not-allowed'}`}
                     data-testid={TESTIDS.startAuctionBtn}
+                    aria-disabled={selectedLeague.status !== 'ready'}
+                    disabled={selectedLeague.status !== 'ready'}
+                    title={selectedLeague.status !== 'ready' ? 
+                      `Cannot start auction - need minimum ${selectedLeague.min_members || 2} members (currently ${selectedLeague.member_count || 0})` : 
+                      'Start the auction now'}
                   >
                     <Play className="w-4 h-4 mr-1" />
                     Start Auction
