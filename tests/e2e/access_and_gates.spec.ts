@@ -33,7 +33,7 @@ test.describe('Access and Gates Tests', () => {
     console.log('🧪 Testing Start Auction gate: disabled at 1 member, enabled at 2...');
     
     // Create league with min 2 managers using type-aware form helper
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     
     // Note: createLeague already uses type-aware setFormValue internally through fillCreateLeague
     const leagueId = await createLeague(commissionerPage, {
@@ -76,7 +76,7 @@ test.describe('Access and Gates Tests', () => {
     console.log('🧪 Testing Start Auction gate with sufficient members...');
     
     // Create league with min 2 managers  
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     const leagueId = await createLeague(commissionerPage, {
       name: 'Sufficient Members League',
       clubSlots: 3,
@@ -155,7 +155,7 @@ test.describe('Access and Gates Tests', () => {
     console.log('🧪 Testing league member access permissions...');
     
     // Create league and add member
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     const leagueId = await createLeague(commissionerPage, {
       name: 'Member Access League',
       clubSlots: 3,
@@ -192,7 +192,7 @@ test.describe('Access and Gates Tests', () => {
     console.log('🧪 Testing non-member access restrictions...');
     
     // Create private league 
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     const privateLeagueId = await createLeague(commissionerPage, {
       name: 'Private League',
       clubSlots: 3,
@@ -220,7 +220,7 @@ test.describe('Access and Gates Tests', () => {
   test('Commissioner has admin access, members do not', async () => {
     console.log('🧪 Testing admin access permissions...');
     
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     const leagueId = await createLeague(commissionerPage, {
       name: 'Admin Access League',
       clubSlots: 3,
@@ -258,7 +258,7 @@ test.describe('Access and Gates Tests', () => {
   test('Auction access requires active auction', async () => {
     console.log('🧪 Testing auction access gates...');
     
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     const leagueId = await createLeague(commissionerPage, {
       name: 'Auction Gate League',
       clubSlots: 3,
@@ -318,7 +318,7 @@ test.describe('Access and Gates Tests', () => {
   test('Breadcrumb navigation appears on all app pages', async () => {
     console.log('🧪 Testing breadcrumb navigation...');
     
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     
     // Test breadcrumbs appear on various pages
     const pagesWithBreadcrumbs = ['/auction', '/clubs', '/fixtures', '/leaderboard'];

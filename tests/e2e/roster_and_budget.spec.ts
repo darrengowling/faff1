@@ -29,7 +29,7 @@ test.describe('Roster and Budget Tests', () => {
     console.log('🧪 Testing club slots tracking...');
     
     // Create league with 5 club slots
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     leagueId = await createLeague(commissionerPage, {
       name: 'Five Slots League',
       clubSlots: 5,
@@ -67,7 +67,7 @@ test.describe('Roster and Budget Tests', () => {
   test('Budget decrements exactly by win price', async () => {
     console.log('🧪 Testing budget tracking...');
     
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     leagueId = await createLeague(commissionerPage, {
       name: 'Budget Test League',
       clubSlots: 3,
@@ -100,7 +100,7 @@ test.describe('Roster and Budget Tests', () => {
   test('Cannot exceed maximum club slots', async () => {
     console.log('🧪 Testing slot limit enforcement...');
     
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     leagueId = await createLeague(commissionerPage, {
       name: 'Slot Limit League',
       clubSlots: 2, // Only 2 slots allowed
@@ -150,7 +150,7 @@ test.describe('Roster and Budget Tests', () => {
   test('Budget remaining updates in real-time during auction', async () => {
     console.log('🧪 Testing real-time budget updates...');
     
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     leagueId = await createLeague(commissionerPage, {
       name: 'Real-time Budget League',
       clubSlots: 5,
@@ -187,7 +187,7 @@ test.describe('Roster and Budget Tests', () => {
   test('Roster displays accurate club information', async () => {
     console.log('🧪 Testing roster display accuracy...');
     
-    await login(commissionerPage, 'commissioner@example.com');
+    await login(commissionerPage, 'commish@example.com');
     leagueId = await createLeague(commissionerPage, {
       name: 'Roster Display League',
       clubSlots: 3,
