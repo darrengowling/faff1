@@ -1638,16 +1638,21 @@ function App() {
             {/* Global League Creation Success Marker */}
             <LeagueCreateSuccessMarker />
             
-            {/* Global Navigation */}
-            <GlobalNavbar />
-            
-            {/* Sticky Page Navigation - only shows on landing page */}
-            <StickyPageNav />
-            
-            {/* Main Content */}
-            <main id="main-content" className="min-h-screen">
-              <Routes>
-              <Route path="/login" element={<LoginPage />} />
+            {/* Routes with appropriate shells */}
+            <Routes>
+              {/* Marketing Shell Routes (no authentication required) */}
+              <Route path="/login" element={
+                <MarketingShell>
+                  <LoginPage />
+                </MarketingShell>
+              } />
+              <Route path="/" element={
+                <MarketingShell>
+                  <RootRoute />
+                </MarketingShell>
+              } />
+              
+              {/* Auth verification without shell */}
               <Route path="/auth/verify" element={<MagicLinkVerify />} />
               <Route path="/invite" element={
                 <ProtectedRoute>
