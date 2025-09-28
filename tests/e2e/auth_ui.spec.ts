@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids.js';
+import { TESTIDS } from '../../frontend/src/testids.ts';
 import { login } from './utils/login';
 
 test.describe('Authentication UI Tests', () => {
