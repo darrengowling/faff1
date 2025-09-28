@@ -36,12 +36,12 @@ class LeagueService:
             # Attempt to use transactions (requires replica set or sharded cluster)
             async with await client.start_session() as session:
                 async with session.start_transaction():
-                    return await cls._create_league_transactional(league_data, commissioner_id, session)
+                    return await LeagueService._create_league_transactional(league_data, commissioner_id, session)
         except Exception as tx_error:
             if "Transaction numbers are only allowed" in str(tx_error) or "IllegalOperation" in str(tx_error):
                 logger.warning(f"MongoDB transactions not supported, falling back to sequential operations: {tx_error}")
                 # Fall back to non-transactional operation 
-                return await cls._create_league_sequential(league_data, commissioner_id)
+                return await LeagueService._create_league_sequential(league_data, commissioner_id)
             else:
                 # Re-raise other transaction errors
                 raise
