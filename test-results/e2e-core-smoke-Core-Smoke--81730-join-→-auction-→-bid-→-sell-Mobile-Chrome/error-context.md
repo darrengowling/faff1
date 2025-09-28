@@ -1,0 +1,609 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - region "Notifications alt+T"
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - button "Friends of PIFA" [ref=e7] [cursor=pointer]:
+          - img [ref=e9] [cursor=pointer]
+          - generic [ref=e15] [cursor=pointer]: Friends of PIFA
+        - button "Toggle navigation menu" [ref=e16] [cursor=pointer]:
+          - img [ref=e17] [cursor=pointer]
+      - link "Skip to main content" [ref=e18] [cursor=pointer]:
+        - /url: "#main-content"
+    - main [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e23]:
+            - button "Friends of PIFA" [ref=e24] [cursor=pointer]:
+              - img [ref=e26] [cursor=pointer]
+              - generic [ref=e32] [cursor=pointer]: Friends of PIFA
+            - button "Toggle navigation menu" [ref=e33] [cursor=pointer]:
+              - img [ref=e34] [cursor=pointer]
+          - link "Skip to main content" [ref=e35] [cursor=pointer]:
+            - /url: "#main-content"
+        - generic [ref=e40]:
+          - img [ref=e42]
+          - heading "Friends of PIFA" [level=1] [ref=e48]
+        - main [ref=e49]:
+          - generic [ref=e50]:
+            - generic [ref=e52]:
+              - generic [ref=e53]:
+                - generic [ref=e54]: Active League
+                - generic [ref=e55]:
+                  - button "Switch league" [ref=e56] [cursor=pointer]:
+                    - generic [ref=e57] [cursor=pointer]:
+                      - generic [ref=e58] [cursor=pointer]:
+                        - img
+                      - generic [ref=e60] [cursor=pointer]: Select League
+                    - img
+                  - generic [ref=e61]: No league selected
+              - generic [ref=e62]:
+                - generic [ref=e63]: Quick Navigation
+                - button "Navigate to available sections" [ref=e65] [cursor=pointer]:
+                  - generic [ref=e66] [cursor=pointer]:
+                    - img
+                    - generic [ref=e67] [cursor=pointer]: Go to...
+                  - img
+            - generic [ref=e69]:
+              - heading "Quick Actions" [level=2] [ref=e70]
+              - generic [ref=e71]:
+                - generic [ref=e74] [cursor=pointer]:
+                  - img [ref=e76] [cursor=pointer]
+                  - generic [ref=e77] [cursor=pointer]:
+                    - heading "Create a League" [level=3] [ref=e78] [cursor=pointer]
+                    - paragraph [ref=e79] [cursor=pointer]: Start a new football auction with friends
+                  - button "Create Now" [ref=e80] [cursor=pointer]:
+                    - generic [ref=e81] [cursor=pointer]:
+                      - generic [ref=e82] [cursor=pointer]: Create Now
+                      - img
+                - generic [ref=e85] [cursor=pointer]:
+                  - img [ref=e87] [cursor=pointer]
+                  - generic [ref=e90] [cursor=pointer]:
+                    - heading "Join via Invite" [level=3] [ref=e91] [cursor=pointer]
+                    - paragraph [ref=e92] [cursor=pointer]: Enter with an invitation code or link
+                  - button "Join League" [ref=e93] [cursor=pointer]:
+                    - generic [ref=e94] [cursor=pointer]:
+                      - generic [ref=e95] [cursor=pointer]: Join League
+                      - img
+            - generic [ref=e96]:
+              - generic [ref=e97]:
+                - heading "All Leagues (17)" [level=2] [ref=e99]
+                - button "Create a new league" [ref=e100] [cursor=pointer]:
+                  - img
+                  - text: Create League
+              - generic [ref=e101]:
+                - generic [ref=e102] [cursor=pointer]:
+                  - generic [ref=e104] [cursor=pointer]:
+                    - generic [ref=e105] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e106] [cursor=pointer]
+                      - paragraph [ref=e107] [cursor=pointer]:
+                        - img [ref=e108] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e110] [cursor=pointer]:
+                      - generic [ref=e111] [cursor=pointer]:
+                        - img [ref=e112] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e114] [cursor=pointer]: setup
+                  - generic [ref=e116] [cursor=pointer]:
+                    - generic [ref=e117] [cursor=pointer]:
+                      - generic [ref=e118] [cursor=pointer]:
+                        - img [ref=e119] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e124] [cursor=pointer]: "1"
+                    - generic [ref=e125] [cursor=pointer]:
+                      - generic [ref=e126] [cursor=pointer]:
+                        - img [ref=e127] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e129] [cursor=pointer]: 100 credits
+                    - generic [ref=e130] [cursor=pointer]:
+                      - generic [ref=e131] [cursor=pointer]:
+                        - img [ref=e132] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e136] [cursor=pointer]: "3"
+                - generic [ref=e137] [cursor=pointer]:
+                  - generic [ref=e139] [cursor=pointer]:
+                    - generic [ref=e140] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e141] [cursor=pointer]
+                      - paragraph [ref=e142] [cursor=pointer]:
+                        - img [ref=e143] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e145] [cursor=pointer]:
+                      - generic [ref=e146] [cursor=pointer]:
+                        - img [ref=e147] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e149] [cursor=pointer]: setup
+                  - generic [ref=e151] [cursor=pointer]:
+                    - generic [ref=e152] [cursor=pointer]:
+                      - generic [ref=e153] [cursor=pointer]:
+                        - img [ref=e154] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e159] [cursor=pointer]: "1"
+                    - generic [ref=e160] [cursor=pointer]:
+                      - generic [ref=e161] [cursor=pointer]:
+                        - img [ref=e162] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e164] [cursor=pointer]: 100 credits
+                    - generic [ref=e165] [cursor=pointer]:
+                      - generic [ref=e166] [cursor=pointer]:
+                        - img [ref=e167] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e171] [cursor=pointer]: "3"
+                - generic [ref=e172] [cursor=pointer]:
+                  - generic [ref=e174] [cursor=pointer]:
+                    - generic [ref=e175] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e176] [cursor=pointer]
+                      - paragraph [ref=e177] [cursor=pointer]:
+                        - img [ref=e178] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e180] [cursor=pointer]:
+                      - generic [ref=e181] [cursor=pointer]:
+                        - img [ref=e182] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e184] [cursor=pointer]: setup
+                  - generic [ref=e186] [cursor=pointer]:
+                    - generic [ref=e187] [cursor=pointer]:
+                      - generic [ref=e188] [cursor=pointer]:
+                        - img [ref=e189] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e194] [cursor=pointer]: "1"
+                    - generic [ref=e195] [cursor=pointer]:
+                      - generic [ref=e196] [cursor=pointer]:
+                        - img [ref=e197] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e199] [cursor=pointer]: 100 credits
+                    - generic [ref=e200] [cursor=pointer]:
+                      - generic [ref=e201] [cursor=pointer]:
+                        - img [ref=e202] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e206] [cursor=pointer]: "3"
+                - generic [ref=e207] [cursor=pointer]:
+                  - generic [ref=e209] [cursor=pointer]:
+                    - generic [ref=e210] [cursor=pointer]:
+                      - heading "Test League" [level=3] [ref=e211] [cursor=pointer]
+                      - paragraph [ref=e212] [cursor=pointer]:
+                        - img [ref=e213] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e215] [cursor=pointer]:
+                      - generic [ref=e216] [cursor=pointer]:
+                        - img [ref=e217] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e219] [cursor=pointer]: setup
+                  - generic [ref=e221] [cursor=pointer]:
+                    - generic [ref=e222] [cursor=pointer]:
+                      - generic [ref=e223] [cursor=pointer]:
+                        - img [ref=e224] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e229] [cursor=pointer]: "1"
+                    - generic [ref=e230] [cursor=pointer]:
+                      - generic [ref=e231] [cursor=pointer]:
+                        - img [ref=e232] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e234] [cursor=pointer]: 100 credits
+                    - generic [ref=e235] [cursor=pointer]:
+                      - generic [ref=e236] [cursor=pointer]:
+                        - img [ref=e237] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e241] [cursor=pointer]: "5"
+                - generic [ref=e242] [cursor=pointer]:
+                  - generic [ref=e244] [cursor=pointer]:
+                    - generic [ref=e245] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e246] [cursor=pointer]
+                      - paragraph [ref=e247] [cursor=pointer]:
+                        - img [ref=e248] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e250] [cursor=pointer]:
+                      - generic [ref=e251] [cursor=pointer]:
+                        - img [ref=e252] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e254] [cursor=pointer]: setup
+                  - generic [ref=e256] [cursor=pointer]:
+                    - generic [ref=e257] [cursor=pointer]:
+                      - generic [ref=e258] [cursor=pointer]:
+                        - img [ref=e259] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e264] [cursor=pointer]: "1"
+                    - generic [ref=e265] [cursor=pointer]:
+                      - generic [ref=e266] [cursor=pointer]:
+                        - img [ref=e267] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e269] [cursor=pointer]: 100 credits
+                    - generic [ref=e270] [cursor=pointer]:
+                      - generic [ref=e271] [cursor=pointer]:
+                        - img [ref=e272] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e276] [cursor=pointer]: "3"
+                - generic [ref=e277] [cursor=pointer]:
+                  - generic [ref=e279] [cursor=pointer]:
+                    - generic [ref=e280] [cursor=pointer]:
+                      - heading "Test League" [level=3] [ref=e281] [cursor=pointer]
+                      - paragraph [ref=e282] [cursor=pointer]:
+                        - img [ref=e283] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e285] [cursor=pointer]:
+                      - generic [ref=e286] [cursor=pointer]:
+                        - img [ref=e287] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e289] [cursor=pointer]: setup
+                  - generic [ref=e291] [cursor=pointer]:
+                    - generic [ref=e292] [cursor=pointer]:
+                      - generic [ref=e293] [cursor=pointer]:
+                        - img [ref=e294] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e299] [cursor=pointer]: "1"
+                    - generic [ref=e300] [cursor=pointer]:
+                      - generic [ref=e301] [cursor=pointer]:
+                        - img [ref=e302] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e304] [cursor=pointer]: 100 credits
+                    - generic [ref=e305] [cursor=pointer]:
+                      - generic [ref=e306] [cursor=pointer]:
+                        - img [ref=e307] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e311] [cursor=pointer]: "5"
+                - generic [ref=e312] [cursor=pointer]:
+                  - generic [ref=e314] [cursor=pointer]:
+                    - generic [ref=e315] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e316] [cursor=pointer]
+                      - paragraph [ref=e317] [cursor=pointer]:
+                        - img [ref=e318] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e320] [cursor=pointer]:
+                      - generic [ref=e321] [cursor=pointer]:
+                        - img [ref=e322] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e324] [cursor=pointer]: setup
+                  - generic [ref=e326] [cursor=pointer]:
+                    - generic [ref=e327] [cursor=pointer]:
+                      - generic [ref=e328] [cursor=pointer]:
+                        - img [ref=e329] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e334] [cursor=pointer]: "1"
+                    - generic [ref=e335] [cursor=pointer]:
+                      - generic [ref=e336] [cursor=pointer]:
+                        - img [ref=e337] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e339] [cursor=pointer]: 100 credits
+                    - generic [ref=e340] [cursor=pointer]:
+                      - generic [ref=e341] [cursor=pointer]:
+                        - img [ref=e342] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e346] [cursor=pointer]: "3"
+                - generic [ref=e347] [cursor=pointer]:
+                  - generic [ref=e349] [cursor=pointer]:
+                    - generic [ref=e350] [cursor=pointer]:
+                      - heading "Test League Navigation" [level=3] [ref=e351] [cursor=pointer]
+                      - paragraph [ref=e352] [cursor=pointer]:
+                        - img [ref=e353] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e355] [cursor=pointer]:
+                      - generic [ref=e356] [cursor=pointer]:
+                        - img [ref=e357] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e359] [cursor=pointer]: setup
+                  - generic [ref=e361] [cursor=pointer]:
+                    - generic [ref=e362] [cursor=pointer]:
+                      - generic [ref=e363] [cursor=pointer]:
+                        - img [ref=e364] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e369] [cursor=pointer]: "1"
+                    - generic [ref=e370] [cursor=pointer]:
+                      - generic [ref=e371] [cursor=pointer]:
+                        - img [ref=e372] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e374] [cursor=pointer]: 120 credits
+                    - generic [ref=e375] [cursor=pointer]:
+                      - generic [ref=e376] [cursor=pointer]:
+                        - img [ref=e377] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e381] [cursor=pointer]: "4"
+                - generic [ref=e382] [cursor=pointer]:
+                  - generic [ref=e384] [cursor=pointer]:
+                    - generic [ref=e385] [cursor=pointer]:
+                      - heading "Test League Navigation" [level=3] [ref=e386] [cursor=pointer]
+                      - paragraph [ref=e387] [cursor=pointer]:
+                        - img [ref=e388] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e390] [cursor=pointer]:
+                      - generic [ref=e391] [cursor=pointer]:
+                        - img [ref=e392] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e394] [cursor=pointer]: setup
+                  - generic [ref=e396] [cursor=pointer]:
+                    - generic [ref=e397] [cursor=pointer]:
+                      - generic [ref=e398] [cursor=pointer]:
+                        - img [ref=e399] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e404] [cursor=pointer]: "1"
+                    - generic [ref=e405] [cursor=pointer]:
+                      - generic [ref=e406] [cursor=pointer]:
+                        - img [ref=e407] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e409] [cursor=pointer]: 120 credits
+                    - generic [ref=e410] [cursor=pointer]:
+                      - generic [ref=e411] [cursor=pointer]:
+                        - img [ref=e412] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e416] [cursor=pointer]: "4"
+                - generic [ref=e417] [cursor=pointer]:
+                  - generic [ref=e419] [cursor=pointer]:
+                    - generic [ref=e420] [cursor=pointer]:
+                      - heading "Test League Navigation" [level=3] [ref=e421] [cursor=pointer]
+                      - paragraph [ref=e422] [cursor=pointer]:
+                        - img [ref=e423] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e425] [cursor=pointer]:
+                      - generic [ref=e426] [cursor=pointer]:
+                        - img [ref=e427] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e429] [cursor=pointer]: setup
+                  - generic [ref=e431] [cursor=pointer]:
+                    - generic [ref=e432] [cursor=pointer]:
+                      - generic [ref=e433] [cursor=pointer]:
+                        - img [ref=e434] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e439] [cursor=pointer]: "1"
+                    - generic [ref=e440] [cursor=pointer]:
+                      - generic [ref=e441] [cursor=pointer]:
+                        - img [ref=e442] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e444] [cursor=pointer]: 120 credits
+                    - generic [ref=e445] [cursor=pointer]:
+                      - generic [ref=e446] [cursor=pointer]:
+                        - img [ref=e447] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e451] [cursor=pointer]: "4"
+                - generic [ref=e452] [cursor=pointer]:
+                  - generic [ref=e454] [cursor=pointer]:
+                    - generic [ref=e455] [cursor=pointer]:
+                      - heading "Test League Navigation" [level=3] [ref=e456] [cursor=pointer]
+                      - paragraph [ref=e457] [cursor=pointer]:
+                        - img [ref=e458] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e460] [cursor=pointer]:
+                      - generic [ref=e461] [cursor=pointer]:
+                        - img [ref=e462] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e464] [cursor=pointer]: setup
+                  - generic [ref=e466] [cursor=pointer]:
+                    - generic [ref=e467] [cursor=pointer]:
+                      - generic [ref=e468] [cursor=pointer]:
+                        - img [ref=e469] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e474] [cursor=pointer]: "1"
+                    - generic [ref=e475] [cursor=pointer]:
+                      - generic [ref=e476] [cursor=pointer]:
+                        - img [ref=e477] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e479] [cursor=pointer]: 120 credits
+                    - generic [ref=e480] [cursor=pointer]:
+                      - generic [ref=e481] [cursor=pointer]:
+                        - img [ref=e482] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e486] [cursor=pointer]: "4"
+                - generic [ref=e487] [cursor=pointer]:
+                  - generic [ref=e489] [cursor=pointer]:
+                    - generic [ref=e490] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e491] [cursor=pointer]
+                      - paragraph [ref=e492] [cursor=pointer]:
+                        - img [ref=e493] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e495] [cursor=pointer]:
+                      - generic [ref=e496] [cursor=pointer]:
+                        - img [ref=e497] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e499] [cursor=pointer]: setup
+                  - generic [ref=e501] [cursor=pointer]:
+                    - generic [ref=e502] [cursor=pointer]:
+                      - generic [ref=e503] [cursor=pointer]:
+                        - img [ref=e504] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e509] [cursor=pointer]: "1"
+                    - generic [ref=e510] [cursor=pointer]:
+                      - generic [ref=e511] [cursor=pointer]:
+                        - img [ref=e512] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e514] [cursor=pointer]: 100 credits
+                    - generic [ref=e515] [cursor=pointer]:
+                      - generic [ref=e516] [cursor=pointer]:
+                        - img [ref=e517] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e521] [cursor=pointer]: "3"
+                - generic [ref=e522] [cursor=pointer]:
+                  - generic [ref=e524] [cursor=pointer]:
+                    - generic [ref=e525] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e526] [cursor=pointer]
+                      - paragraph [ref=e527] [cursor=pointer]:
+                        - img [ref=e528] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e530] [cursor=pointer]:
+                      - generic [ref=e531] [cursor=pointer]:
+                        - img [ref=e532] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e534] [cursor=pointer]: setup
+                  - generic [ref=e536] [cursor=pointer]:
+                    - generic [ref=e537] [cursor=pointer]:
+                      - generic [ref=e538] [cursor=pointer]:
+                        - img [ref=e539] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e544] [cursor=pointer]: "1"
+                    - generic [ref=e545] [cursor=pointer]:
+                      - generic [ref=e546] [cursor=pointer]:
+                        - img [ref=e547] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e549] [cursor=pointer]: 100 credits
+                    - generic [ref=e550] [cursor=pointer]:
+                      - generic [ref=e551] [cursor=pointer]:
+                        - img [ref=e552] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e556] [cursor=pointer]: "3"
+                - generic [ref=e557] [cursor=pointer]:
+                  - generic [ref=e559] [cursor=pointer]:
+                    - generic [ref=e560] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e561] [cursor=pointer]
+                      - paragraph [ref=e562] [cursor=pointer]:
+                        - img [ref=e563] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e565] [cursor=pointer]:
+                      - generic [ref=e566] [cursor=pointer]:
+                        - img [ref=e567] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e569] [cursor=pointer]: setup
+                  - generic [ref=e571] [cursor=pointer]:
+                    - generic [ref=e572] [cursor=pointer]:
+                      - generic [ref=e573] [cursor=pointer]:
+                        - img [ref=e574] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e579] [cursor=pointer]: "1"
+                    - generic [ref=e580] [cursor=pointer]:
+                      - generic [ref=e581] [cursor=pointer]:
+                        - img [ref=e582] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e584] [cursor=pointer]: 100 credits
+                    - generic [ref=e585] [cursor=pointer]:
+                      - generic [ref=e586] [cursor=pointer]:
+                        - img [ref=e587] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e591] [cursor=pointer]: "3"
+                - generic [ref=e592] [cursor=pointer]:
+                  - generic [ref=e594] [cursor=pointer]:
+                    - generic [ref=e595] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e596] [cursor=pointer]
+                      - paragraph [ref=e597] [cursor=pointer]:
+                        - img [ref=e598] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e600] [cursor=pointer]:
+                      - generic [ref=e601] [cursor=pointer]:
+                        - img [ref=e602] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e604] [cursor=pointer]: setup
+                  - generic [ref=e606] [cursor=pointer]:
+                    - generic [ref=e607] [cursor=pointer]:
+                      - generic [ref=e608] [cursor=pointer]:
+                        - img [ref=e609] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e614] [cursor=pointer]: "1"
+                    - generic [ref=e615] [cursor=pointer]:
+                      - generic [ref=e616] [cursor=pointer]:
+                        - img [ref=e617] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e619] [cursor=pointer]: 100 credits
+                    - generic [ref=e620] [cursor=pointer]:
+                      - generic [ref=e621] [cursor=pointer]:
+                        - img [ref=e622] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e626] [cursor=pointer]: "3"
+                - generic [ref=e627] [cursor=pointer]:
+                  - generic [ref=e629] [cursor=pointer]:
+                    - generic [ref=e630] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e631] [cursor=pointer]
+                      - paragraph [ref=e632] [cursor=pointer]:
+                        - img [ref=e633] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e635] [cursor=pointer]:
+                      - generic [ref=e636] [cursor=pointer]:
+                        - img [ref=e637] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e639] [cursor=pointer]: setup
+                  - generic [ref=e641] [cursor=pointer]:
+                    - generic [ref=e642] [cursor=pointer]:
+                      - generic [ref=e643] [cursor=pointer]:
+                        - img [ref=e644] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e649] [cursor=pointer]: "1"
+                    - generic [ref=e650] [cursor=pointer]:
+                      - generic [ref=e651] [cursor=pointer]:
+                        - img [ref=e652] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e654] [cursor=pointer]: 100 credits
+                    - generic [ref=e655] [cursor=pointer]:
+                      - generic [ref=e656] [cursor=pointer]:
+                        - img [ref=e657] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e661] [cursor=pointer]: "3"
+                - generic [ref=e662] [cursor=pointer]:
+                  - generic [ref=e664] [cursor=pointer]:
+                    - generic [ref=e665] [cursor=pointer]:
+                      - heading "Core Smoke League" [level=3] [ref=e666] [cursor=pointer]
+                      - paragraph [ref=e667] [cursor=pointer]:
+                        - img [ref=e668] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e670] [cursor=pointer]:
+                      - generic [ref=e671] [cursor=pointer]:
+                        - img [ref=e672] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e674] [cursor=pointer]: setup
+                  - generic [ref=e676] [cursor=pointer]:
+                    - generic [ref=e677] [cursor=pointer]:
+                      - generic [ref=e678] [cursor=pointer]:
+                        - img [ref=e679] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e684] [cursor=pointer]: "1"
+                    - generic [ref=e685] [cursor=pointer]:
+                      - generic [ref=e686] [cursor=pointer]:
+                        - img [ref=e687] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e689] [cursor=pointer]: 100 credits
+                    - generic [ref=e690] [cursor=pointer]:
+                      - generic [ref=e691] [cursor=pointer]:
+                        - img [ref=e692] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e696] [cursor=pointer]: "3"
+        - generic [ref=e697]:
+          - generic [ref=e699]:
+            - generic [ref=e700]:
+              - generic [ref=e701]:
+                - img [ref=e703]
+                - generic [ref=e708]:
+                  - generic [ref=e709]: Friends of PIFA
+                  - generic [ref=e710]: Sports gaming with friends. No gambling. All strategy.
+              - paragraph [ref=e711]: Join the social sports arena where skill beats luck.
+              - generic [ref=e712]:
+                - img [ref=e713]
+                - generic [ref=e715]: We stand for integrity, fairness, and the joy of the game
+            - generic [ref=e716]:
+              - heading "Fair Play Commitment" [level=3] [ref=e717]
+              - generic [ref=e718]:
+                - generic [ref=e720]:
+                  - img [ref=e721]
+                  - generic [ref=e727]:
+                    - paragraph [ref=e728]: No gambling. No wagering. Pure sports strategy.
+                    - paragraph [ref=e729]: This platform does not involve any form of gambling, betting, or wagering.
+                - generic [ref=e730]:
+                  - img [ref=e731]
+                  - generic [ref=e736]: Designed for entertainment and friendly competition only.
+                - generic [ref=e737]: Must be 13+ to use this service.
+            - generic [ref=e738]:
+              - heading "Legal & Support" [level=3] [ref=e739]
+              - generic [ref=e741]:
+                - button "Navigate to Terms of Service" [ref=e742] [cursor=pointer]:
+                  - generic [ref=e744] [cursor=pointer]:
+                    - generic [ref=e745] [cursor=pointer]: Terms of Service
+                    - img [ref=e746] [cursor=pointer]
+                - button "Navigate to Privacy Policy" [ref=e750] [cursor=pointer]:
+                  - generic [ref=e752] [cursor=pointer]:
+                    - generic [ref=e753] [cursor=pointer]: Privacy Policy
+                    - img [ref=e754] [cursor=pointer]
+                - button "Navigate to Contact Us" [ref=e758] [cursor=pointer]:
+                  - generic [ref=e760] [cursor=pointer]:
+                    - generic [ref=e761] [cursor=pointer]: Contact Us
+                    - img [ref=e762] [cursor=pointer]
+                - button "Navigate to About Us" [ref=e766] [cursor=pointer]:
+                  - generic [ref=e768] [cursor=pointer]:
+                    - generic [ref=e769] [cursor=pointer]: About Us
+                    - img [ref=e770] [cursor=pointer]
+          - generic [ref=e776]:
+            - generic [ref=e778]: © 2025 Friends of PIFA. All rights reserved.
+            - generic [ref=e779]:
+              - generic [ref=e780]: 100% Free to Play
+              - generic [ref=e781]: No Real Money
+        - button "Back to top" [ref=e782] [cursor=pointer]:
+          - img [ref=e783] [cursor=pointer]
+  - link "Emergent platform logo Made with Emergent" [ref=e785] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e786] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e787] [cursor=pointer]
+      - paragraph [ref=e788] [cursor=pointer]: Made with Emergent
+```
