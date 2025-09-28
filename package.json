@@ -9,6 +9,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:contract": "cd frontend && npm run test:contract",
+    "verify-socket-config": "node scripts/verify-socket-config.mjs",
+    "diag:socketio": "node scripts/diag-socketio.js", 
+    "verify-auth-ui": "bash scripts/verify-auth-ui.sh",
+    "test:core-e2e": "bash scripts/run-core-e2e.sh",
+    "test:extended-e2e": "bash scripts/run-extended-e2e.sh",
+    "ci:pipeline": "node scripts/ci-pipeline.js",
     "lint:links": "node scripts/lint-links.js",
     "test:e2e": "npm run lint:links && cd frontend && npm run test:contract && cd .. && bash ./scripts/test-env.sh && playwright test",
     "test:core": "npm run test:contract && bash ./scripts/test-env.sh && playwright test tests/e2e/core.smoke.spec.ts",
