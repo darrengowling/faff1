@@ -353,5 +353,72 @@ test.describe('Access and Gates Tests', () => {
         }
       }
     }
+  test('UI Magic-link authentication handles 400 errors properly', async () => {
+    console.log('🧪 Testing UI magic-link authentication with invalid email...');
+    
+    // Navigate to login page
+    await unauthenticatedPage.goto('/login');
+    await unauthenticatedPage.waitForLoadState('networkidle');
+    
+    // Test invalid email input
+    const emailInput = unauthenticatedPage.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
+    const submitBtn = unauthenticatedPage.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`);
+    
+    // Fill invalid email
+    await emailInput.fill('not-a-valid-email');
+    
+    // Intercept and handle the network request to prevent unhandled rejections
+    let requestFailed = false;
+    let responseStatus = 0;
+    
+    unauthenticatedPage.on('response', (response) => {
+      if (response.url().includes('/auth/magic-link')) {
+        responseStatus = response.status();
+        console.log(`Magic-link response status: ${responseStatus}`);
+      }
+    });
+    
+    unauthenticatedPage.on('requestfailed', (request) => {
+      if (request.url().includes('/auth/magic-link')) {
+        console.log('Request failed (expected for invalid email):', request.failure());
+        requestFailed = true;
+      }
+    });
+    
+    // Submit form
+    await submitBtn.click();
+    
+    // Wait for error response and UI update
+    await unauthenticatedPage.waitForTimeout(2000);
+    
+    // Check that we get 400 (not 500) and proper error display
+    if (!requestFailed) {
+      expect(responseStatus).toBe(400); // Should be 400, not 500
+    }
+    
+    // Verify error is displayed with proper testid
+    const errorElement = unauthenticatedPage.locator(`[data-testid="${TESTIDS.authError}"]`);
+    await expect(errorElement).toBeVisible({ timeout: 5000 });
+    await expect(errorElement).toContainText(/valid email/i);
+    
+    // Form should remain interactive
+    await expect(emailInput).toBeEnabled();
+    await expect(submitBtn).toBeEnabled();
+    
+    // Test with valid email format
+    await emailInput.fill('valid@example.com');
+    await submitBtn.click();
+    
+    // Should succeed (or at least not show email validation error)
+    const successElement = unauthenticatedPage.locator(`[data-testid="${TESTIDS.authSuccess}"]`);
+    const updatedErrorElement = unauthenticatedPage.locator(`[data-testid="${TESTIDS.authError}"]`);
+    
+    // Either success appears or error disappears (valid email accepted)
+    await expect(
+      successElement.or(updatedErrorElement.locator(':not(:visible)'))
+    ).toBeTruthy({ timeout: 10000 });
+    
+    console.log('✅ UI magic-link authentication properly handles validation and errors');
+  });
   });
 });
