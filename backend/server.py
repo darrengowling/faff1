@@ -415,18 +415,36 @@ async def create_test_auction(request: dict):
     
     # Create league using LeagueService
     league_service = LeagueService()
-    league_data = {
-        "name": settings["name"],
-        "club_slots": settings["clubSlots"],
-        "budget_per_manager": settings["budgetPerManager"],
-        "min_managers": settings["minManagers"],
-        "max_managers": settings["maxManagers"],
-        "commissioner_id": "test-commissioner-" + str(int(now_ms())),
-        "created_at": now().isoformat(),
-        "status": "draft"
-    }
+    commissioner_id = "test-commissioner-" + str(int(now_ms()))
     
-    league_id = await league_service.create_league(league_data)
+    # Create commissioner user if not exists
+    commissioner = await db.users.find_one({"_id": commissioner_id})
+    if not commissioner:
+        commissioner_data = {
+            "_id": commissioner_id,
+            "email": f"commissioner-{int(now_ms())}@test.local",
+            "display_name": "Test Commissioner",
+            "verified": True,
+            "created_at": now().isoformat()
+        }
+        await db.users.insert_one(commissioner_data)
+    
+    # Create league data model
+    league_create = LeagueCreate(
+        name=settings["name"],
+        season="2025-26",
+        settings=LeagueSettings(
+            club_slots=settings["clubSlots"],
+            budget_per_manager=settings["budgetPerManager"],
+            min_managers=settings["minManagers"],
+            max_managers=settings["maxManagers"],
+            bid_timer_seconds=BID_TIMER_SECONDS,
+            anti_snipe_seconds=ANTI_SNIPE_SECONDS
+        )
+    )
+    
+    league_response = await league_service.create_league_with_setup(league_create, commissioner_id)
+    league_id = league_response.id
     
     logger.info("🧪 TEST LEAGUE CREATED: %s (ID: %s)", settings["name"], league_id)
     
