@@ -41,6 +41,10 @@ const LoginPage = () => {
 
   // Check if submit button should be enabled
   const isSubmitEnabled = () => {
+    // In TEST_MODE, allow submission even with invalid email to test error handling
+    if (isTestMode && email.trim()) {
+      return !loading;
+    }
     return !loading && email.trim() && isValidEmail(email.trim());
   };
 
