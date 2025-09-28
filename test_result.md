@@ -336,15 +336,18 @@ frontend:
 
   - task: "Deterministic Submit → Navigate Flow Implementation"
     implemented: true
-    working: true
+    working: false
     file: "/app/backend/server.py, /app/frontend/src/App.js, /app/tests/e2e/utils/helpers.ts"
-    stuck_count: 0
+    stuck_count: 1
     priority: "critical"
     needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "✅ DETERMINISTIC LEAGUE CREATION FLOW COMPLETED: 1) Backend: POST /leagues runs with MongoDB transactions, returns 201 {leagueId} after commit, 2) Backend: TEST_MODE endpoint GET /test/league/:id/ready exists and validates league, memberships, rosters, scoring rules, 3) Frontend: On 201 response calls setOpen(false) then queueMicrotask(() => router.push(/app/leagues/${id}/lobby)), 4) Frontend: Renders transient data-testid='create-success' until URL changes, 5) E2E helper: awaitCreatedAndInLobby() waits for /lobby URL then polls readiness endpoint ≤2s. Dialog reliably closes after success, lobby loads deterministically, core-smoke test should no longer stall."
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL BACKEND ISSUE BLOCKING LEAGUE CREATION: Testing reveals league creation is failing with 500 errors due to MongoDB transaction issues. Backend logs show: 1) 'Transaction numbers are only allowed on a replica set member or mongos' - MongoDB is not configured as replica set but backend tries to use transactions, 2) Duplicate league name errors for test data. ROUTE VERIFICATION: ✅ /app/leagues/:id/lobby route exists and returns 200 (not 404), ✅ Frontend navigation logic appears correct, ❌ Cannot test full flow due to backend league creation failure. IMPACT: The 404 navigation issues mentioned in review are NOT present - the actual issue is backend MongoDB transaction configuration preventing league creation entirely."
 
   - task: "Deterministic and Testable Anchor Navigation Implementation"
     implemented: true
