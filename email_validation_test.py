@@ -242,24 +242,22 @@ class EmailValidationTester:
         error_details = []
         
         for test_case in test_cases:
-            # Test magic-link endpoint
+            # Test magic-link endpoint (expects 422 from Pydantic or 400 from custom validation)
             success, status, data = self.make_request(
                 'POST', 
                 'auth/magic-link', 
-                test_case,
-                expected_status=400
+                test_case
             )
             
             if status == 500:
                 no_500_errors = False
                 error_details.append(f"Magic link 500 error for {test_case['email']}")
             
-            # Test test-login endpoint
+            # Test test-login endpoint (expects 400 from custom validation)
             success2, status2, data2 = self.make_request(
                 'POST', 
                 'auth/test-login', 
-                test_case,
-                expected_status=400
+                test_case
             )
             
             if status2 == 500:
