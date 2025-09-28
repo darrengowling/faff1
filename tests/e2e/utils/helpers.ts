@@ -18,12 +18,12 @@ export async function login(page: Page, email: string): Promise<void> {
   await page.waitForLoadState('networkidle');
   
   // Fill email and submit magic link form using test IDs
-  await page.locator(`[data-testid="${TESTIDS.emailInput}"]`).fill(email);
-  await page.locator(`[data-testid="${TESTIDS.magicLinkSubmit}"]`).click();
+  await page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`).fill(email);
+  await page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`).click();
   
   // Wait for magic link sent confirmation and click login button using test ID
-  await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).waitFor({ state: 'visible', timeout: 10000 });
-  await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).click();
+  await page.locator(`[data-testid="dev-magic-link-btn"]`).waitFor({ state: 'visible', timeout: 10000 });
+  await page.locator(`[data-testid="dev-magic-link-btn"]`).click();
   
   // Wait for successful login redirect
   await page.waitForURL('**/dashboard', { timeout: 15000 });
