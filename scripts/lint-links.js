@@ -20,8 +20,8 @@ const PATTERNS = [
   },
   {
     name: 'Empty navigation array',
-    regex: /(navigation|dropdown|menu)Items?\s*=\s*\[\s*\]|:\s*\[\s*\]/gi,
-    description: 'Found empty navigation/dropdown array'
+    regex: /const\s+(navigation|dropdown|menu)Items?\s*=\s*\[\s*\]/gi,
+    description: 'Found empty navigation/dropdown array constant'
   },
   {
     name: 'TODO navigation',
