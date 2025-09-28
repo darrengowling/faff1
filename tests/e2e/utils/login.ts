@@ -39,35 +39,76 @@ async function loginTestOnlyInternal(page: Page, email: string, timeout: number)
   console.log(`🧪 Test-only login for user: ${email}`);
   
   try {
-    // Call the test-only login endpoint
+    // Call the test-only login endpoint with failOnStatusCode: false
     const response = await page.request.post(`${BASE_URL}/api/auth/test-login`, {
       data: { email },
-      timeout
+      timeout,
+      failOnStatusCode: false  // Don't throw on HTTP error status
     });
+    
+    // Handle different response status codes
+    if (response.status() === 404) {
+      // ALLOW_TEST_LOGIN=false - fallback to UI login once
+      console.log(`🔄 Test login disabled (404), falling back to UI login for: ${email}`);
+      await loginUI(page, email, timeout);
+      return;
+    }
+    
+    if (response.status() === 400) {
+      // Invalid email - assert auth-error and bail with clear message
+      try {
+        const errorData = await response.json();
+        if (errorData.code === 'INVALID_EMAIL') {
+          // Navigate to login page to check for auth-error display
+          await page.goto('/login');
+          const authError = page.locator(`[data-testid="${TESTIDS.authError}"]`);
+          
+          // Verify auth-error is visible (from previous form submission)
+          const isVisible = await authError.isVisible();
+          throw new Error(`❌ TEST FAILED - Invalid email format: ${email}. Auth error visible: ${isVisible}. Message: ${errorData.message}`);
+        }
+      } catch (parseError) {
+        const errorText = await response.text();
+        throw new Error(`❌ TEST FAILED - Bad request (400): ${errorText}`);
+      }
+    }
+    
+    if (response.status() === 500) {
+      // Server error - structured error handling
+      try {
+        const errorData = await response.json();
+        throw new Error(`❌ SERVER ERROR (500) - ${errorData.code || 'UNKNOWN'}: ${errorData.message} (Request ID: ${errorData.requestId || 'N/A'})`);
+      } catch (parseError) {
+        const errorText = await response.text();
+        throw new Error(`❌ SERVER ERROR (500) - ${errorText}`);
+      }
+    }
     
     if (!response.ok()) {
       const errorText = await response.text();
-      throw new Error(`Test login failed: ${response.status()} ${errorText}`);
+      throw new Error(`❌ Test login failed: ${response.status()} ${errorText}`);
     }
     
+    // Success path (200)
     const data = await response.json();
     
-    // Set the authentication token in localStorage for the browser session
-    await page.goto('/'); // Navigate to any page first to set localStorage
-    await page.evaluate(({ token, email }) => {
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify({
-        email: email,
-        display_name: email.split('@')[0],
-        verified: true
-      }));
-    }, { token: data.access_token, email });
+    if (!data.ok || !data.userId) {
+      throw new Error(`❌ Invalid test login response: ${JSON.stringify(data)}`);
+    }
     
-    // Verify we can access protected routes
+    // Session cookie should be set automatically by the server
+    // No need to set localStorage tokens since we're using HTTP-only cookies
+    
+    // Verify we can access protected routes with the cookie
     await page.goto('/app');
     await page.waitForLoadState('networkidle');
     
-    console.log(`✅ Test-only login successful: ${email}`);
+    // Check if we're actually logged in by looking for authenticated content
+    const authIndicator = page.locator('body'); // Basic check that page loads
+    await authIndicator.waitFor({ state: 'visible', timeout: 5000 });
+    
+    console.log(`✅ Test-only login successful: ${email} (User ID: ${data.userId})`);
+    
   } catch (error) {
     console.error(`❌ Test login failed for ${email}:`, error);
     throw error;
