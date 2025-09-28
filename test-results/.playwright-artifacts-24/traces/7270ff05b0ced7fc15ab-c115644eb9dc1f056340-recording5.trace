@@ -1,0 +1,16 @@
+{"version":8,"type":"context-options","origin":"library","browserName":"","options":{},"platform":"linux","wallTime":1759023081922,"monotonicTime":665997.229,"sdkLanguage":"javascript","contextId":"request-context@fa9536391827542b049fc49481bece55","title":"basic-e2e.spec.js:141 › UCL Auction - Basic E2E Validation › 5. PATCH Endpoint Exists"}
+{"type":"before","callId":"call@85","startTime":665999.713,"class":"APIRequestContext","method":"fetch","params":{"url":"/api/leagues/test-id/settings","method":"PATCH","jsonData":"{\"club_slots_per_manager\":4}","timeout":10000},"stepId":"pw:api@21","beforeSnapshot":"before@call@85"}
+{"type":"log","callId":"call@85","time":666000.793,"message":"→ PATCH https://pifa-auction.preview.emergentagent.com/api/leagues/test-id/settings"}
+{"type":"log","callId":"call@85","time":666000.811,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@85","time":666000.817,"message":"  accept: */*"}
+{"type":"log","callId":"call@85","time":666000.821,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@85","time":666000.825,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@85","time":666000.829,"message":"  content-length: 28"}
+{"type":"log","callId":"call@85","time":666011.692,"message":"← 403 Forbidden"}
+{"type":"log","callId":"call@85","time":666011.708,"message":"  content-length: 30"}
+{"type":"log","callId":"call@85","time":666011.714,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@85","time":666011.719,"message":"  date: Sun, 28 Sep 2025 01:31:21 GMT"}
+{"type":"log","callId":"call@85","time":666011.724,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@85","time":666011.728,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@85","time":666011.732,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@85","endTime":666011.867,"result":{"response":{"url":"https://pifa-auction.preview.emergentagent.com/api/leagues/test-id/settings","status":403,"statusText":"Forbidden","headers":[{"name":"Content-Length","value":"30"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Sun, 28 Sep 2025 01:31:21 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"9f2166bc28a291ff90418185c8ada9ef"}},"afterSnapshot":"after@call@85"}
