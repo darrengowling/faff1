@@ -18,6 +18,12 @@ export const TESTIDS = {
   createLeagueWizardMin: 'create-min',
   createLeagueWizardSubmit: 'create-submit',
   
+  // Create League Error States
+  createErrorName: 'create-error-name',
+  createErrorSlots: 'create-error-slots',
+  createErrorBudget: 'create-error-budget',
+  createErrorMin: 'create-error-min',
+  
   // Authentication
   emailInput: 'auth-email-input',
   magicLinkSubmit: 'auth-magic-link-submit',
