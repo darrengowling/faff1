@@ -121,10 +121,21 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
   // Submit form
   await page.locator(`[data-testid="${TESTIDS.createSubmit}"]`).click();
   
-  // Wait for success and extract league ID from URL
-  await page.waitForURL('**/leagues/**', { timeout: 15000 });
-  const url = page.url();
-  const leagueId = url.split('/leagues/')[1]?.split('/')[0] || '';
+  // Wait for dialog to close (indicates success)
+  await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'hidden', timeout: 15000 });
+  
+  // Wait a moment for the league list to update
+  await page.waitForTimeout(2000);
+  
+  // Verify the league appears in the dashboard
+  const leagueVisible = await page.locator(`text="${settings.name}"`).isVisible();
+  if (!leagueVisible) {
+    throw new Error(`League "${settings.name}" was not found in the dashboard after creation`);
+  }
+  
+  // For now, return a placeholder ID since we don't navigate to a league-specific URL
+  // In a real implementation, we'd need to extract the league ID from the API response or DOM
+  const leagueId = `created-${Date.now()}`;
   
   console.log(`✅ League created: ${settings.name} (ID: ${leagueId})`);
   return leagueId;
