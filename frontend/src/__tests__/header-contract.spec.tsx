@@ -6,92 +6,65 @@
  */
 
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import { I18nextProvider } from 'react-i18next';
-import i18n from '../i18n/translations';
-import App from '../App';
+import { render } from '@testing-library/react';
+import AppShell from '../components/layouts/AppShell';
+import MarketingShell from '../components/layouts/MarketingShell';
 
-// Mock components and dependencies to avoid external API calls
-jest.mock('../components/GlobalNavbar', () => {
-  return function MockGlobalNavbar() {
-    return <header data-testid="mock-global-navbar">Mock Global Navbar</header>;
+// Mock dependencies to avoid external API calls
+jest.mock('../components/ui/HeaderBrand', () => {
+  return function MockHeaderBrand() {
+    return <div data-testid="header-brand">Brand</div>;
   };
 });
 
-jest.mock('../components/LoginPage', () => {
-  return function MockLoginPage() {
-    return (
-      <div data-testid="login-page">
-        <header data-testid="login-header">Login Header</header>
-        <form>Login Form</form>
-      </div>
-    );
+jest.mock('../components/navigation/ProductDropdownMenu', () => {
+  return function MockProductDropdownMenu() {
+    return <div data-testid="product-dropdown">Dropdown</div>;
   };
 });
 
-jest.mock('../components/SimpleLandingPage', () => {
-  return function MockLandingPage() {
-    return (
-      <div data-testid="landing-page">
-        <header data-testid="landing-header">Landing Header</header>
-        <main>Landing Content</main>
-      </div>
-    );
+jest.mock('../components/navigation/AuthNavigation', () => {
+  return function MockAuthNavigation() {
+    return <div data-testid="auth-navigation">Auth Nav</div>;
   };
 });
 
-jest.mock('../components/EnhancedHomeScreen', () => {
-  return function MockDashboard() {
-    return (
-      <div data-testid="dashboard">
-        <header data-testid="dashboard-header">Dashboard Header</header>
-        <main>Dashboard Content</main>
-      </div>
-    );
-  };
-});
-
-jest.mock('../components/CreateLeagueWizard', () => {
-  return function MockCreateLeagueWizard() {
-    return (
-      <div data-testid="create-league-wizard">
-        <header data-testid="wizard-header">Create League Header</header>
-        <form>Create League Form</form>
-      </div>
-    );
-  };
-});
-
-// Mock axios to avoid real API calls
-jest.mock('axios', () => ({
-  create: jest.fn(() => ({
-    get: jest.fn(),
-    post: jest.fn(),
-    put: jest.fn(),
-    delete: jest.fn(),
-    interceptors: {
-      request: { use: jest.fn() },
-      response: { use: jest.fn() }
+jest.mock('../components/ui/theme-toggle', () => {
+  return {
+    IconThemeToggle: function MockThemeToggle() {
+      return <div data-testid="theme-toggle">Theme</div>;
     }
-  })),
-  get: jest.fn(),
-  post: jest.fn()
+  };
+});
+
+jest.mock('../components/ui/footer', () => {
+  return {
+    InAppFooter: function MockFooter() {
+      return <footer data-testid="app-footer">Footer</footer>;
+    }
+  };
+});
+
+jest.mock('../App', () => {
+  return {
+    useAuth: () => ({ user: { email: 'test@example.com' } })
+  };
+});
+
+// Mock react-router-dom
+const mockNavigate = jest.fn();
+const mockLocation = { pathname: '/app' };
+jest.mock('react-router-dom', () => ({
+  useNavigate: () => mockNavigate,
+  useLocation: () => mockLocation
 }));
 
-// Test wrapper component
-const TestWrapper = ({ children, initialRoute = '/' }) => {
-  // Set initial route
-  window.history.pushState({}, 'Test page', initialRoute);
-  
-  return (
-    <BrowserRouter>
-      <I18nextProvider i18n={i18n}>
-        {children}
-      </I18nextProvider>
-    </BrowserRouter>
-  );
-};
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key
+  })
+}));
 
 describe('Header Contract Tests', () => {
   beforeEach(() => {
