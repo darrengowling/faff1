@@ -1092,7 +1092,8 @@ const LeagueLobby = () => {
     />
   );
 };
-  const { user } = useAuth();
+
+const LeagueManagement = ({ league, onBack }) => {
   const navigate = useNavigate();
   const [members, setMembers] = useState([]);
   const [invitations, setInvitations] = useState([]);
