@@ -622,9 +622,9 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
         
         // Navigate to lobby in a microtask using router.push (after dialog close completes)
         debugLog('navigating', `navigating to lobby: /app/leagues/${response.data.leagueId}/lobby`);
-        setTimeout(() => {
+        queueMicrotask(() => {
           navigate(`/app/leagues/${response.data.leagueId}/lobby`);
-        }, 0);
+        });
         
         // Reset form and notify
         setFormData({
