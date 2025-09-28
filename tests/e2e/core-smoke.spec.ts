@@ -116,11 +116,7 @@ test.describe('Core Smoke Test', () => {
 
     // Step 1: Commissioner login and create league
     console.log('📝 Step 1: Commissioner creates league...');
-    await commissionerPage.goto('/');
-    await commissionerPage.waitForLoadState('networkidle');
-    
-    // Find Create League CTA using testid
-    await clickCreateLeague(commissionerPage);
+    await login(commissionerPage, USERS.commissioner.email, { mode: 'test' });
     
     leagueId = await createLeague(commissionerPage, LEAGUE_SETTINGS);
     
