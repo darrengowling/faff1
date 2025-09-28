@@ -88,7 +88,7 @@
                       - img
             - generic [ref=e102]:
               - generic [ref=e103]:
-                - heading "All Leagues (4)" [level=2] [ref=e105]
+                - heading "All Leagues (6)" [level=2] [ref=e105]
                 - button "Create a new league" [ref=e106] [cursor=pointer]:
                   - img
                   - text: Create League
@@ -124,7 +124,7 @@
                 - generic [ref=e143] [cursor=pointer]:
                   - generic [ref=e145] [cursor=pointer]:
                     - generic [ref=e146] [cursor=pointer]:
-                      - heading "Anti-Snipe Test League" [level=3] [ref=e147] [cursor=pointer]
+                      - heading "Core E2E Test League" [level=3] [ref=e147] [cursor=pointer]
                       - paragraph [ref=e148] [cursor=pointer]:
                         - img [ref=e149] [cursor=pointer]
                         - text: 2025-26
@@ -180,7 +180,7 @@
                 - generic [ref=e213] [cursor=pointer]:
                   - generic [ref=e215] [cursor=pointer]:
                     - generic [ref=e216] [cursor=pointer]:
-                      - heading "Core E2E Test League" [level=3] [ref=e217] [cursor=pointer]
+                      - heading "Anti-Snipe Test League" [level=3] [ref=e217] [cursor=pointer]
                       - paragraph [ref=e218] [cursor=pointer]:
                         - img [ref=e219] [cursor=pointer]
                         - text: 2025-26
@@ -205,59 +205,115 @@
                         - img [ref=e243] [cursor=pointer]
                         - text: Club Slots
                       - generic [ref=e247] [cursor=pointer]: "3"
-        - generic [ref=e248]:
-          - generic [ref=e250]:
-            - generic [ref=e251]:
-              - generic [ref=e252]:
-                - img [ref=e254]
-                - generic [ref=e259]:
-                  - generic [ref=e260]: Friends of PIFA
-                  - generic [ref=e261]: Sports gaming with friends. No gambling. All strategy.
-              - paragraph [ref=e262]: Join the social sports arena where skill beats luck.
-              - generic [ref=e263]:
-                - img [ref=e264]
-                - generic [ref=e266]: We stand for integrity, fairness, and the joy of the game
-            - generic [ref=e267]:
-              - heading "Fair Play Commitment" [level=3] [ref=e268]
-              - generic [ref=e269]:
-                - generic [ref=e271]:
-                  - img [ref=e272]
-                  - generic [ref=e278]:
-                    - paragraph [ref=e279]: No gambling. No wagering. Pure sports strategy.
-                    - paragraph [ref=e280]: This platform does not involve any form of gambling, betting, or wagering.
-                - generic [ref=e281]:
-                  - img [ref=e282]
-                  - generic [ref=e287]: Designed for entertainment and friendly competition only.
-                - generic [ref=e288]: Must be 13+ to use this service.
-            - generic [ref=e289]:
-              - heading "Legal & Support" [level=3] [ref=e290]
-              - generic [ref=e292]:
-                - button "Navigate to Terms of Service" [ref=e293] [cursor=pointer]:
-                  - generic [ref=e295] [cursor=pointer]:
-                    - generic [ref=e296] [cursor=pointer]: Terms of Service
-                    - img [ref=e297] [cursor=pointer]
-                - button "Navigate to Privacy Policy" [ref=e301] [cursor=pointer]:
-                  - generic [ref=e303] [cursor=pointer]:
-                    - generic [ref=e304] [cursor=pointer]: Privacy Policy
-                    - img [ref=e305] [cursor=pointer]
-                - button "Navigate to Contact Us" [ref=e309] [cursor=pointer]:
-                  - generic [ref=e311] [cursor=pointer]:
-                    - generic [ref=e312] [cursor=pointer]: Contact Us
-                    - img [ref=e313] [cursor=pointer]
-                - button "Navigate to About Us" [ref=e317] [cursor=pointer]:
-                  - generic [ref=e319] [cursor=pointer]:
-                    - generic [ref=e320] [cursor=pointer]: About Us
-                    - img [ref=e321] [cursor=pointer]
-          - generic [ref=e327]:
-            - generic [ref=e329]: © 2025 Friends of PIFA. All rights reserved.
-            - generic [ref=e330]:
-              - generic [ref=e331]: 100% Free to Play
-              - generic [ref=e332]: No Real Money
-        - button "Back to top" [ref=e333] [cursor=pointer]:
-          - img [ref=e334] [cursor=pointer]
-  - link "Emergent platform logo Made with Emergent" [ref=e336] [cursor=pointer]:
+                - generic [ref=e248] [cursor=pointer]:
+                  - generic [ref=e250] [cursor=pointer]:
+                    - generic [ref=e251] [cursor=pointer]:
+                      - heading "Anti-Snipe Test League" [level=3] [ref=e252] [cursor=pointer]
+                      - paragraph [ref=e253] [cursor=pointer]:
+                        - img [ref=e254] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e256] [cursor=pointer]:
+                      - generic [ref=e257] [cursor=pointer]:
+                        - img [ref=e258] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e260] [cursor=pointer]: setup
+                  - generic [ref=e262] [cursor=pointer]:
+                    - generic [ref=e263] [cursor=pointer]:
+                      - generic [ref=e264] [cursor=pointer]:
+                        - img [ref=e265] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e270] [cursor=pointer]: "1"
+                    - generic [ref=e271] [cursor=pointer]:
+                      - generic [ref=e272] [cursor=pointer]:
+                        - img [ref=e273] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e275] [cursor=pointer]: 100 credits
+                    - generic [ref=e276] [cursor=pointer]:
+                      - generic [ref=e277] [cursor=pointer]:
+                        - img [ref=e278] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e282] [cursor=pointer]: "3"
+                - generic [ref=e283] [cursor=pointer]:
+                  - generic [ref=e285] [cursor=pointer]:
+                    - generic [ref=e286] [cursor=pointer]:
+                      - heading "Core E2E Test League" [level=3] [ref=e287] [cursor=pointer]
+                      - paragraph [ref=e288] [cursor=pointer]:
+                        - img [ref=e289] [cursor=pointer]
+                        - text: 2025-26
+                    - generic [ref=e291] [cursor=pointer]:
+                      - generic [ref=e292] [cursor=pointer]:
+                        - img [ref=e293] [cursor=pointer]
+                        - text: Commissioner
+                      - generic [ref=e295] [cursor=pointer]: setup
+                  - generic [ref=e297] [cursor=pointer]:
+                    - generic [ref=e298] [cursor=pointer]:
+                      - generic [ref=e299] [cursor=pointer]:
+                        - img [ref=e300] [cursor=pointer]
+                        - text: Members
+                      - generic [ref=e305] [cursor=pointer]: "1"
+                    - generic [ref=e306] [cursor=pointer]:
+                      - generic [ref=e307] [cursor=pointer]:
+                        - img [ref=e308] [cursor=pointer]
+                        - text: Budget
+                      - generic [ref=e310] [cursor=pointer]: 100 credits
+                    - generic [ref=e311] [cursor=pointer]:
+                      - generic [ref=e312] [cursor=pointer]:
+                        - img [ref=e313] [cursor=pointer]
+                        - text: Club Slots
+                      - generic [ref=e317] [cursor=pointer]: "3"
+        - generic [ref=e318]:
+          - generic [ref=e320]:
+            - generic [ref=e321]:
+              - generic [ref=e322]:
+                - img [ref=e324]
+                - generic [ref=e329]:
+                  - generic [ref=e330]: Friends of PIFA
+                  - generic [ref=e331]: Sports gaming with friends. No gambling. All strategy.
+              - paragraph [ref=e332]: Join the social sports arena where skill beats luck.
+              - generic [ref=e333]:
+                - img [ref=e334]
+                - generic [ref=e336]: We stand for integrity, fairness, and the joy of the game
+            - generic [ref=e337]:
+              - heading "Fair Play Commitment" [level=3] [ref=e338]
+              - generic [ref=e339]:
+                - generic [ref=e341]:
+                  - img [ref=e342]
+                  - generic [ref=e348]:
+                    - paragraph [ref=e349]: No gambling. No wagering. Pure sports strategy.
+                    - paragraph [ref=e350]: This platform does not involve any form of gambling, betting, or wagering.
+                - generic [ref=e351]:
+                  - img [ref=e352]
+                  - generic [ref=e357]: Designed for entertainment and friendly competition only.
+                - generic [ref=e358]: Must be 13+ to use this service.
+            - generic [ref=e359]:
+              - heading "Legal & Support" [level=3] [ref=e360]
+              - generic [ref=e362]:
+                - button "Navigate to Terms of Service" [ref=e363] [cursor=pointer]:
+                  - generic [ref=e365] [cursor=pointer]:
+                    - generic [ref=e366] [cursor=pointer]: Terms of Service
+                    - img [ref=e367] [cursor=pointer]
+                - button "Navigate to Privacy Policy" [ref=e371] [cursor=pointer]:
+                  - generic [ref=e373] [cursor=pointer]:
+                    - generic [ref=e374] [cursor=pointer]: Privacy Policy
+                    - img [ref=e375] [cursor=pointer]
+                - button "Navigate to Contact Us" [ref=e379] [cursor=pointer]:
+                  - generic [ref=e381] [cursor=pointer]:
+                    - generic [ref=e382] [cursor=pointer]: Contact Us
+                    - img [ref=e383] [cursor=pointer]
+                - button "Navigate to About Us" [ref=e387] [cursor=pointer]:
+                  - generic [ref=e389] [cursor=pointer]:
+                    - generic [ref=e390] [cursor=pointer]: About Us
+                    - img [ref=e391] [cursor=pointer]
+          - generic [ref=e397]:
+            - generic [ref=e399]: © 2025 Friends of PIFA. All rights reserved.
+            - generic [ref=e400]:
+              - generic [ref=e401]: 100% Free to Play
+              - generic [ref=e402]: No Real Money
+        - button "Back to top" [ref=e403] [cursor=pointer]:
+          - img [ref=e404] [cursor=pointer]
+  - link "Emergent platform logo Made with Emergent" [ref=e406] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e337] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e338] [cursor=pointer]
-      - paragraph [ref=e339] [cursor=pointer]: Made with Emergent
+    - generic [ref=e407] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e408] [cursor=pointer]
+      - paragraph [ref=e409] [cursor=pointer]: Made with Emergent
 ```
