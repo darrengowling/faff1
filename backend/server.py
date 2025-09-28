@@ -348,10 +348,8 @@ async def test_login(request: dict, response: Response):
             )
         
         # Import and use shared email validator
-        from email_validator import validate_email, EmailNotValidError
-        try:
-            validate_email(email)
-        except EmailNotValidError:
+        from email_validator import EmailValidator
+        if not EmailValidator.is_valid_email(email):
             if TEST_MODE:
                 logger.info(f"🧪 AUTH.TESTLOGIN: {{'requestId': '{request_id}', 'step': 'error', 'code': 'INVALID_EMAIL_FORMAT'}}")
             logger.warning(f"[{request_id}] Test login - invalid email format: {email}")
