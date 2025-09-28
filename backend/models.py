@@ -14,7 +14,7 @@ def utc_now():
 # User Models
 class User(BaseModel):
     id: str = Field(default_factory=generate_uuid, alias="_id")
-    email: EmailStr
+    email: str
     display_name: str
     created_at: datetime = Field(default_factory=utc_now)
     verified: bool = False
