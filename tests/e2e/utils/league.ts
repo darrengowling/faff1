@@ -5,7 +5,7 @@
 
 import { Page } from '@playwright/test';
 import { setFormValue, waitForFormReady } from './form';
-import { TESTIDS } from '../../../frontend/src/testids.js';
+import { TESTIDS } from '../../../frontend/src/testids.ts';
 
 export interface CreateLeagueFormData {
   name: string;
