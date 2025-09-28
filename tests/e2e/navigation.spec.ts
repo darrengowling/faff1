@@ -25,8 +25,8 @@ test.describe('Navigation Tests', () => {
       // Test "How it Works" anchor navigation
       await page.locator(`[data-testid="${TESTIDS.inPageTabHow}"]`).click({ force: true });
       
-      // Verify the URL hash changes
-      await expect(page).toHaveURL(/#how$/);
+      // Wait for hash to change using helper
+      await waitForHash(page, '#how');
       
       // Verify the section is visible using testid
       const howSection = page.getByTestId('section-how');
@@ -34,14 +34,14 @@ test.describe('Navigation Tests', () => {
       
       // Test "Why FoP" anchor navigation
       await page.locator(`[data-testid="${TESTIDS.inPageTabWhy}"]`).click({ force: true });
-      await expect(page).toHaveURL(/#why$/);
+      await waitForHash(page, '#why');
       
       const whySection = page.getByTestId('section-why');
       await expect(whySection).toBeInViewport();
       
       // Test FAQ anchor navigation
       await page.locator(`[data-testid="${TESTIDS.inPageTabFaq}"]`).click({ force: true });
-      await expect(page).toHaveURL(/#faq$/);
+      await waitForHash(page, '#faq');
       
       const faqSection = page.getByTestId('section-faq');
       await expect(faqSection).toBeInViewport();
