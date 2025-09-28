@@ -102,12 +102,12 @@ const { chromium } = require("playwright");
     const dialogForm = await page.getByTestId("create-league-dialog").count() > 0;
     const wizardForm = await page.getByTestId("create-name").count() > 0;
     
-    console.log(\`Debug: dialogForm=\${dialogForm}, wizardForm=\${wizardForm}\`);
+    console.log(`Debug: dialogForm=${dialogForm}, wizardForm=${wizardForm}`);
     console.log("Available testids on page:");
     const allTestids = await page.locator("[data-testid]").all();
     for (const element of allTestids.slice(0, 10)) {
       const testid = await element.getAttribute("data-testid");
-      console.log(\`  - \${testid}\`);
+      console.log(`  - ${testid}`);
     }
     
     let requiredTestIds = [];
