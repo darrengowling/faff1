@@ -230,11 +230,14 @@ const LoginPage = () => {
                 {/* Error Message */}
                 {error && (
                   <div 
-                    className="flex items-center space-x-2 text-red-600 bg-red-50 p-3 rounded-md"
+                    id="email-error"
+                    className="flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md"
                     data-testid={TESTIDS.authError}
+                    role="alert"
+                    aria-live="polite"
                   >
                     <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm">{error}</span>
+                    <span className="text-sm font-medium">{error}</span>
                   </div>
                 )}
 
