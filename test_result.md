@@ -316,6 +316,18 @@ backend:
         comment: "Created automated migration script: 1) Systematic component processing for useTranslation import/hook addition, 2) Pattern-based string replacement for common UI text, 3) Generated detailed migration report, 4) Successfully processed 8 components with 100% success rate"
 
 frontend:
+  - task: "Mobile Header/Drawer Click Blocking Fixes"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/index.css, /app/frontend/src/components/GlobalNavbar.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ MOBILE NAVIGATION CLICK BLOCKING FIXES VERIFIED - 100% SUCCESS: Comprehensive testing confirms all pointer-events interception issues resolved. CRITICAL FIXES: 1) CSS pointer-events configuration - sticky nav has pointer-events: none when hidden, hamburger button child elements have pointer-events: none, header maintains correct z-index: 40, 2) Mobile drawer functionality - drawer opens with proper dimensions (384x145px), backdrop positioning fixed with left-0 right-0 top-16 bottom-0, drawer content visible with navigation items, 3) Clickability verification - hamburger menu now topmost clickable element, ensureClickable() utility confirms no overlay interception, no 'subtree intercepts pointer events' errors detected. TEST RESULTS: Navigation tests show hamburger as topmost clickable element, landing page tests confirm mobile menu opens correctly, all mobile navigation functionality working without pointer-events interference."
+
   - task: "League Creation Form Validation Fix"
     implemented: true
     working: true
