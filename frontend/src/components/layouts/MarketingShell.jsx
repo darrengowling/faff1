@@ -59,12 +59,34 @@ const MarketingShell = ({ children }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Left - Brand */}
-            <HeaderBrand 
-              onClick={() => navigate('/')} 
-              className="cursor-pointer hover:opacity-80 transition-opacity"
-              data-testid={TESTIDS.navBrand}
-            />
+            {/* Left - Brand and Home Button */}
+            <div className="flex items-center space-x-4">
+              <HeaderBrand 
+                onClick={() => navigate('/')} 
+                className="cursor-pointer hover:opacity-80 transition-opacity"
+                data-testid={TESTIDS.navBrand}
+              />
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate('/app')}
+                data-testid="home-nav-button"
+                className="hidden sm:flex items-center space-x-1 text-sm"
+              >
+                <Home className="w-4 h-4" />
+                <span>Home</span>
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate('/app')}
+                data-testid="back-to-home-link"
+                className="flex items-center space-x-1 text-sm text-theme-text-secondary hover:text-theme-text"
+              >
+                <Home className="w-4 h-4" />
+                <span>Back to Home</span>
+              </Button>
+            </div>
             
             {/* Center - Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-2" role="navigation">
