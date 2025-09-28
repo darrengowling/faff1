@@ -80,7 +80,7 @@ class TestEmailValidationShim:
     def test_edge_cases(self):
         """Test edge cases and boundary conditions"""
         edge_cases = [
-            ("user@domain.c", False),    # TLD too short (but this might be valid depending on validator)
+            ("user@domain.", False),     # Trailing dot in domain
             ("a@b.co", True),            # Minimal valid email
             ("test@sub.domain.co.uk", True),  # Multiple subdomains
             ("user+tag+more@domain.com", True),  # Multiple plus signs
