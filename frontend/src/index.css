@@ -134,12 +134,18 @@ code {
   
   /* Prevent sticky navigation from blocking header interactions */
   nav[aria-label="Page sections navigation"] {
-    pointer-events: none;
+    pointer-events: none !important;
   }
   
   nav[aria-label="Page sections navigation"] button,
   nav[aria-label="Page sections navigation"] [role="tab"] {
-    pointer-events: auto;
+    pointer-events: auto !important;
+  }
+  
+  /* Ensure all child elements of navigation buttons allow pointer events */
+  nav[aria-label="Page sections navigation"] button *,
+  nav[aria-label="Page sections navigation"] [role="tab"] * {
+    pointer-events: none !important;
   }
   
   /* Smooth anchor scrolling with header offset */
