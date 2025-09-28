@@ -206,14 +206,6 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                     <ArrowLeft className="w-4 h-4" />
                     <span>Back</span>
                   </Button>
-                )}}
-                    className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-                    data-testid={TESTIDS.backToHomeBtn}
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                    <span className="hidden sm:inline">Back to Dashboard</span>
-                    <span className="sm:hidden">Back</span>
-                  </Button>
                 )}
                 
                 {/* Breadcrumb */}
