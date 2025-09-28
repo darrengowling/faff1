@@ -3,8 +3,8 @@
  * Prevents regressions in critical league settings functionality
  */
 
-const { test, expect } = require('@playwright/test');
-const { TESTIDS } = require('../../frontend/src/testids.ts');
+import { test, expect } from '@playwright/test';
+import { TESTIDS } from '../../frontend/src/testids.ts';
 
 test.describe('League Settings Regression Tests', () => {
   let page;
