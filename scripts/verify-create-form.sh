@@ -34,9 +34,36 @@ const { chromium } = require("playwright");
     await page.goto(baseUrl);
     await page.waitForLoadState("networkidle", { timeout: 30000 });
     
+    // Check if we need authentication first
+    console.log("🔐 Checking authentication status...");
+    const currentUrl = page.url();
+    console.log(`Current URL: ${currentUrl}`);
+    
+    // If we are on login page, do a quick test authentication
+    if (currentUrl.includes("/login") || currentUrl === process.env.BASE_URL + "/") {
+      console.log("🔑 Performing test authentication...");
+      await page.goto(process.env.BASE_URL + "/login?playwright=true");
+      await page.fill("[data-testid=\"auth-email-input\"]", "test@example.com");
+      await page.click("[data-testid=\"auth-submit-btn\"]");
+      await page.waitForTimeout(2000);
+      
+      // Look for dev magic link button
+      const devButton = page.locator("[data-testid=\"dev-magic-link-btn\"]");
+      if (await devButton.count() > 0) {
+        await devButton.click();
+        await page.waitForTimeout(3000);
+      }
+    }
+    
+    // Navigate to app dashboard if not already there
+    console.log("📍 Navigating to dashboard...");
+    await page.goto(process.env.BASE_URL + "/app");
+    await page.waitForLoadState("networkidle", { timeout: 10000 });
+    
     // Find and click Create League button (may be in various locations)
     console.log("🎯 Finding Create League button...");
     const createButtons = [
+      "[data-testid=\"create-league-btn\"]",
       "button:has-text(\"Create League\")",
       "button:has-text(\"Create\")", 
       "[data-testid*=\"create-league\"]",
@@ -54,13 +81,21 @@ const { chromium } = require("playwright");
     }
     
     if (!createButton) {
+      // Take debug screenshot
+      await page.screenshot({ path: \`debug-no-create-button-\${Date.now()}.png\` });
+      console.log("🔍 Available buttons on page:");
+      const allButtons = await page.locator("button").all();
+      for (const button of allButtons.slice(0, 5)) {
+        const text = await button.textContent();
+        console.log(\`  - Button: "\${text}"\`);
+      }
       throw new Error("❌ Create League button not found on page");
     }
     
     // Click to open create form
     console.log("📋 Opening Create League form...");
     await createButton.click();
-    await page.waitForTimeout(2000); // Allow form to render
+    await page.waitForTimeout(3000); // Allow form to render
     
     // Detect which form type (Dialog vs Wizard) by checking for specific testids
     console.log("🔍 Detecting form type...");
