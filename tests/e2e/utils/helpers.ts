@@ -58,8 +58,9 @@ export async function clickCreateLeague(page: Page): Promise<void> {
         const firstBtn = b.first();
         const isVisible = await firstBtn.isVisible();
         if (isVisible) {
-          console.log('🎯 Using safe click for Create League button...');
-          await safeClick(page, firstBtn);
+          console.log('🎯 Using ensureClickable for Create League button...');
+          await ensureClickable(firstBtn);
+          await firstBtn.click();
           return;
         }
       }
