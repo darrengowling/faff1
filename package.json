@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:links": "node scripts/lint-links.js",
-    "test:e2e": "npm run lint:links && bash ./scripts/test-env.sh && playwright test",
+    "test:e2e": "npm run lint:links && cd frontend && npm run test:contract && cd .. && bash ./scripts/test-env.sh && playwright test",
     "test:core": "source ./scripts/test-env.sh && playwright test tests/e2e/core.smoke.spec.ts",
     "test:e2e:headed": "source ./scripts/test-env.sh && playwright test --headed",
     "test:navigation": "source ./scripts/test-env.sh && playwright test tests/e2e/navigation.spec.ts",
