@@ -104,8 +104,7 @@ test.describe('Core Smoke Test', () => {
     console.log('📝 Step 1: Commissioner creates league...');
     await login(commissionerPage, USERS.commissioner.email, { mode: 'test' });
     
-    const leagueData = await createLeague(commissionerPage, LEAGUE_SETTINGS);
-    leagueId = leagueData.leagueId;
+    leagueId = await createLeague(commissionerPage, LEAGUE_SETTINGS);
     
     // Verify league settings displayed correctly
     await expect(commissionerPage.locator('text=Slots: 3')).toBeVisible();
