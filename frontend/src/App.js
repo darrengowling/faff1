@@ -712,6 +712,8 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
   React.useEffect(() => {
     if (open) {
       debugLog('open', 'dialog opened for league creation');
+      // Clear success marker when dialog opens
+      setCreateSuccess(false);
     } else {
       debugLog('closed', 'dialog closed');
     }
