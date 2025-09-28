@@ -4,6 +4,7 @@
  */
 
 import { Page, expect, Locator } from '@playwright/test';
+import { ensureClickable, clickWhenReady } from './ensureClickable';
 import { TESTIDS } from '../../../frontend/src/testids.js';
 
 /**
