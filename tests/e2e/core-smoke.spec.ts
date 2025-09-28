@@ -6,6 +6,7 @@
  */
 
 import { test, expect, BrowserContext, Page } from '@playwright/test';
+import { login } from './utils/login';
 import { 
   clickCreateLeague, 
   createLeague, 
@@ -22,7 +23,6 @@ import {
   awaitCreatedAndInLobby
 } from './utils/helpers';
 import { ensureClickable, clickWhenReady } from './utils/ensureClickable';
-import { createAuthenticatedContext, getUserEmail } from './utils/storage-states';
 import { TESTIDS } from '../../frontend/src/testids.js';
 
 // Test configuration
