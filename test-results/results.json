@@ -66,14 +66,14 @@
   "suites": [],
   "errors": [
     {
-      "message": "SyntaxError: /app/tests/e2e/utils/helpers.ts: Identifier 'nominateFirstAsset' has already been declared. (353:22)\n\n  351 | }\n  352 |\n> 353 | export async function nominateFirstAsset(page: Page): Promise<string> {\n      |                       ^\n  354 |   console.log('🎯 Nominating first asset...');\n  355 |   \n  356 |   // Click nominate button - try different possible selectors",
-      "stack": "SyntaxError: /app/tests/e2e/utils/helpers.ts: Identifier 'nominateFirstAsset' has already been declared. (353:22)\n\n  351 | }\n  352 |\n> 353 | export async function nominateFirstAsset(page: Page): Promise<string> {\n      |                       ^\n  354 |   console.log('🎯 Nominating first asset...');\n  355 |   \n  356 |   // Click nominate button - try different possible selectors\n    at Object.<anonymous> (/app/tests/e2e/core-smoke.spec.ts:10:1)",
+      "message": "SyntaxError: /app/tests/e2e/utils/helpers.ts: Unexpected token (423:0)\n\n  421 |   console.log(`✅ User presence verified: ${expectedUserCount}`);\n  422 | }\n> 423 | }\n      | ^",
+      "stack": "SyntaxError: /app/tests/e2e/utils/helpers.ts: Unexpected token (423:0)\n\n  421 |   console.log(`✅ User presence verified: ${expectedUserCount}`);\n  422 | }\n> 423 | }\n      | ^\n    at Object.<anonymous> (/app/tests/e2e/core-smoke.spec.ts:10:1)",
       "location": {
         "file": "/app/tests/e2e/core-smoke.spec.ts",
-        "line": 353,
-        "column": 22
+        "line": 423,
+        "column": 0
       },
-      "snippet": "   at core-smoke.spec.ts:353\n\n"
+      "snippet": "   at core-smoke.spec.ts:423\n\n"
     },
     {
       "message": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.",
@@ -81,8 +81,8 @@
     }
   ],
   "stats": {
-    "startTime": "2025-09-28T04:35:21.005Z",
-    "duration": 137.399,
+    "startTime": "2025-09-28T04:36:09.933Z",
+    "duration": 144.24200000000008,
     "expected": 0,
     "skipped": 0,
     "unexpected": 0,
