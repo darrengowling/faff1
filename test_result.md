@@ -333,15 +333,18 @@ frontend:
 
   - task: "Mobile Header/Drawer Click Blocking Fixes"
     implemented: true
-    working: true
+    working: false
     file: "/app/frontend/src/index.css, /app/frontend/src/components/GlobalNavbar.js"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
       - working: true
         agent: "testing"
         comment: "✅ MOBILE NAVIGATION CLICK BLOCKING FIXES VERIFIED - 100% SUCCESS: Comprehensive testing confirms all pointer-events interception issues resolved. CRITICAL FIXES: 1) CSS pointer-events configuration - sticky nav has pointer-events: none when hidden, hamburger button child elements have pointer-events: none, header maintains correct z-index: 40, 2) Mobile drawer functionality - drawer opens with proper dimensions (384x145px), backdrop positioning fixed with left-0 right-0 top-16 bottom-0, drawer content visible with navigation items, 3) Clickability verification - hamburger menu now topmost clickable element, ensureClickable() utility confirms no overlay interception, no 'subtree intercepts pointer events' errors detected. TEST RESULTS: Navigation tests show hamburger as topmost clickable element, landing page tests confirm mobile menu opens correctly, all mobile navigation functionality working without pointer-events interference."
+      - working: false
+        agent: "testing"
+        comment: "❌ MOBILE DRAWER HEIGHT ISSUE IDENTIFIED: Comprehensive re-testing reveals critical mobile drawer visibility problem. FINDINGS: 1) ✅ Hamburger menu clickability - ensureClickable() confirms hamburger button is topmost clickable element with no pointer-events interception, 2) ✅ CSS pointer-events configuration - header overlays have pointer-events: none, drawer-backdrop has pointer-events: none, drawer-panel has pointer-events: auto as expected, 3) ❌ CRITICAL ISSUE: Mobile drawer has height: 0px making it invisible despite being present in DOM and having correct backdrop/panel structure, 4) ✅ No 'subtree intercepts pointer events' errors detected, 5) ✅ Anchor link scrolling works without interference. ROOT CAUSE: Mobile drawer CSS styling issue causing height: 0px instead of proper height. The drawer exists, backdrop appears, but drawer content is not visible due to zero height. IMPACT: Mobile navigation completely non-functional - users cannot access mobile menu items."
 
   - task: "League Creation Form Validation Fix"
     implemented: true
