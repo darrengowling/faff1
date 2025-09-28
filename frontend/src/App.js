@@ -700,6 +700,15 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
     }));
   };
 
+  // Debug log when dialog opens/closes
+  React.useEffect(() => {
+    if (open) {
+      debugLog('open', 'dialog opened for league creation');
+    } else {
+      debugLog('closed', 'dialog closed');
+    }
+  }, [open]);
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-testid={TESTIDS.createDialog}>
