@@ -5,7 +5,7 @@
  * identifies UI overlay issues and provides helpful debugging information.
  */
 
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
 
 test.describe('Click Interceptor Detector Tests', () => {
   
