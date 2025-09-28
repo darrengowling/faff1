@@ -215,6 +215,7 @@ const StickyPageNav = () => {
                   data-section={section.id}
                   onClick={() => scrollToSection(section.id)}
                   onKeyDown={(e) => handleKeyDown(e, section.id)}
+                  data-testid={section.testId}
                   className={`flex-shrink-0 px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 whitespace-nowrap ${
                     activeSection === section.id
                       ? 'bg-blue-100 text-blue-700 shadow-sm'
