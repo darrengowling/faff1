@@ -75,6 +75,9 @@ import {
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// Configure axios to send cookies with requests
+axios.defaults.withCredentials = true;
+
 // Create Auth Context
 const AuthContext = createContext();
 
