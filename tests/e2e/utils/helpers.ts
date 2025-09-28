@@ -12,6 +12,27 @@ import { fillCreateLeague } from './league';
 import { TESTIDS } from '../../../frontend/src/testids.js';
 
 /**
+ * Wait for URL hash to change to specific value
+ * Polls window.location.hash for reliable hash-based navigation testing
+ */
+export async function waitForHash(page: Page, expectedHash: string, timeout: number = 6000): Promise<void> {
+  const startTime = Date.now();
+  
+  while (Date.now() - startTime < timeout) {
+    const currentHash = await page.evaluate(() => window.location.hash);
+    
+    if (currentHash === expectedHash) {
+      return;
+    }
+    
+    // Poll every 100ms
+    await page.waitForTimeout(100);
+  }
+  
+  throw new Error(`Timeout waiting for hash "${expectedHash}". Current hash: "${await page.evaluate(() => window.location.hash)}"`);
+}
+
+/**
  * Authentication helpers - defaults to test login for stability
  */
 export async function login(page: Page, email: string, mode: 'test' | 'ui' = 'test'): Promise<void> {
