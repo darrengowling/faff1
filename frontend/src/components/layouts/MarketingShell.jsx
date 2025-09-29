@@ -5,7 +5,7 @@
  * Ensures exactly one <header> element with proper spacing for login form
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Trophy, Home } from 'lucide-react';
 import { Button } from '../ui/button';
