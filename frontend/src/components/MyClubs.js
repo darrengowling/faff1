@@ -231,7 +231,7 @@ const MyClubs = ({ user, token }) => {
                 </div>
                 <div className="text-sm text-gray-600">{t('tooltips.remaining')}</div>
               </div>
-              <div className="text-center p-4 bg-orange-50 rounded-lg" data-testid={TESTIDS.slotsDisplay}>
+              <div className="text-center p-4 bg-orange-50 rounded-lg" data-testid={TESTIDS.yourSlotsRemaining}>
                 <Star className="w-6 h-6 text-orange-600 mx-auto mb-2" aria-hidden="true" />
                 <div className="text-2xl font-bold text-orange-600" data-testid={TESTIDS.slotsRemaining}>
                   {rosterSummary ? rosterSummary.remaining : '—'}
