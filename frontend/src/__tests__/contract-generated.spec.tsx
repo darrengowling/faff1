@@ -164,7 +164,6 @@ describe('Contract Tests: Critical Route TestIDs', () => {
         expect(totalAccountedFor).toBe(requiredTestIds.length);
       });
 
-      // Individual tests for each testid for better granularity
       requiredTestIds.forEach(testId => {
         test(`should be able to render testid "${testId}"`, () => {
           const results = testTestIdAvailability([testId]);
@@ -177,7 +176,6 @@ describe('Contract Tests: Critical Route TestIDs', () => {
           const isPresent = results.passed.includes(testId) || results.hidden.includes(testId);
           expect(isPresent).toBe(true);
         });
-      });
       });
     });
   });
