@@ -56,6 +56,7 @@ export const TESTIDS = {
   appHeader: 'app-header',
   mobileDrawer: 'nav-mobile-drawer',
   navCurrentHash: 'nav-current-hash',
+  navHamburger: 'nav-hamburger',
   
   // Landing page CTAs
   landingCtaCreate: 'cta-create-league',
