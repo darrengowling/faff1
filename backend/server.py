@@ -441,14 +441,15 @@ async def test_login(request: dict, response: Response):
         # Create session token
         access_token = create_access_token(data={"sub": user_doc["_id"]})
         
-        # Set HTTP-only session cookie with proper settings for tests
+        # Set HTTP-only session cookie with extended timeout for TEST_MODE
+        session_max_age = 7200 if TEST_MODE else 3600  # 2 hours in TEST_MODE, 1 hour in production
         response.set_cookie(
             key="access_token",
             value=access_token,
             httponly=True,
             samesite="lax",  # Required for cross-origin test requests
             secure=True,     # Use HTTPS for production domain
-            max_age=3600     # 1 hour
+            max_age=session_max_age
         )
         
         # Structured logging: session step (success)
