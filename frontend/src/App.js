@@ -1246,7 +1246,7 @@ const LeagueManagement = ({ league, onBack }) => {
           {/* Start Auction Button - Commissioner Only */}
           {isCommissioner && (
             <div className="mb-6">
-              <Button
+              <TestableButton
                 onClick={() => leagueStatus?.is_ready ? handleStartAuction() : null}
                 className={`w-full ${leagueStatus?.is_ready 
                   ? 'bg-green-600 hover:bg-green-700' 
@@ -1260,7 +1260,7 @@ const LeagueManagement = ({ league, onBack }) => {
               >
                 <Play className="w-4 h-4 mr-2" />
                 Start Auction
-              </Button>
+              </TestableButton>
             </div>
           )}
         </div>
