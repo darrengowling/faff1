@@ -69,8 +69,8 @@ export async function clickCreateLeague(page: Page): Promise<void> {
   await page.waitForTimeout(3000); // Increased wait time
   
   const btns = [
-    page.getByTestId('create-league-btn'),
-    page.getByTestId('nav-create-league-btn')
+    byId(page, 'createLeagueBtn'),
+    byId(page, 'navCreateLeagueBtn')
   ];
   
   for (const b of btns) {
