@@ -8,7 +8,7 @@ import './styles/mobile-optimizations.css';
 // Initialize i18n
 import './i18n';
 import { useTranslation } from 'react-i18next';
-import { TESTIDS } from './testing/testids';
+import { TESTIDS } from './testids';
 import { ThemeProvider } from './theme/ThemeProvider';
 import { getBrandName } from './brand';
 import { AuthBrand } from './components/ui/brand-badge.jsx';
@@ -792,7 +792,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                 loading={submitting}
                 aria-describedby={errors.name ? "name-error" : undefined}
                 className={errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
-                data-testid={TESTIDS.createName}
+                data-testid={TESTIDS.createNameInput}
               />
               {errors.name && (
                 <p id="name-error" className="text-sm text-red-600" data-testid="create-error-name">
@@ -853,7 +853,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                   loading={submitting}
                   aria-describedby={errors.budget ? "budget-error" : undefined}
                   className={errors.budget ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
-                  data-testid={TESTIDS.createBudget}
+                  data-testid={TESTIDS.createBudgetInput}
                 />
                 {errors.budget && (
                   <p id="budget-error" className="text-sm text-red-600" data-testid="create-error-budget">
@@ -876,7 +876,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                   loading={submitting}
                   aria-describedby={errors.slots ? "slots-error" : undefined}
                   className={errors.slots ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
-                  data-testid={TESTIDS.createSlots}
+                  data-testid={TESTIDS.createSlotsInput}
                 />
                 {errors.slots && (
                   <p id="slots-error" className="text-sm text-red-600" data-testid="create-error-slots">
@@ -923,7 +923,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                   }}
                   aria-describedby={errors.min ? "min-error" : undefined}
                   className={errors.min ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
-                  data-testid={TESTIDS.createMin}
+                  data-testid={TESTIDS.createMinInput}
                 />
                 {errors.min && (
                   <p id="min-error" className="text-sm text-red-600" data-testid="create-error-min">
@@ -1262,7 +1262,7 @@ const LeagueManagement = ({ league, onBack }) => {
                 className={`w-full ${leagueStatus?.is_ready 
                   ? 'bg-green-600 hover:bg-green-700' 
                   : 'bg-gray-400 cursor-not-allowed'}`}
-                data-testid={TESTIDS.startAuction}
+                data-testid={TESTIDS.startAuctionBtn}
                 disabled={!leagueStatus?.is_ready}
                 title={!leagueStatus?.is_ready ? 
                   `Cannot start auction - need minimum ${leagueStatus?.min_members || 2} members (currently ${leagueStatus?.member_count || 0})` : 
@@ -1789,7 +1789,7 @@ const LeagueCreateSuccessMarker = () => {
   return (
     <div 
       data-testid="create-success" 
-      className="fixed top-16 left-1/2 transform -translate-x-1/2 z-50 bg-green-50 border border-green-200 rounded-md px-4 py-2 text-green-800 shadow-lg"
+      className="fixed top-16 left-1/2 transform -translate-x-1/2 z-50 bg-green-100 border border-green-300 text-green-800 px-4 py-2 rounded-md shadow-lg"
     >
       League created successfully! Redirecting to lobby...
     </div>
@@ -1802,129 +1802,32 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <Router>
-          <Toaster />
-            
-            {/* Global League Creation Success Marker */}
+          <div className="App">
+            <Toaster position="top-right" />
             <LeagueCreateSuccessMarker />
-            
-            {/* Routes with centralized auth guards */}
             <Routes>
-              {/* Marketing Shell Routes - Redirect if already authenticated */}
-              <Route path="/login" element={
-                <RedirectIfAuthed>
-                  <MarketingShell>
-                    <LoginPage />
-                  </MarketingShell>
-                </RedirectIfAuthed>
-              } />
-              <Route path="/" element={
-                <RedirectIfAuthed>
-                  <MarketingShell>
-                    <RootRoute />
-                  </MarketingShell>
-                </RedirectIfAuthed>
-              } />
-              
-              {/* Auth verification without shell */}
+              {/* Public Routes */}
+              <Route path="/" element={<RootRoute />} />
+              <Route path="/login" element={<RedirectIfAuthed><LoginPage /></RedirectIfAuthed>} />
               <Route path="/auth/verify" element={<MagicLinkVerify />} />
+              <Route path="/join/:leagueId" element={<InvitationAccept />} />
               
-              {/* App Shell Routes - Require authentication */}
-              <Route path="/invite" element={
-                <RequireAuth>
-                  <AppShell>
-                    <InvitationAccept />
-                  </AppShell>
-                </RequireAuth>
-              } />
-              <Route path="/auction/:auctionId" element={
-                <RequireAuth>
-                  <AppShell showBackButton={true} pageTitle="Auction Room">
-                    <AuctionLayout>
-                      <AuctionRoomWrapper />
-                    </AuctionLayout>
-                  </AppShell>
-                </RequireAuth>
-              } />
-              <Route path="/clubs" element={
-                <RequireAuth>
-                  <AppShell showBackButton={true} pageTitle="My Roster">
-                    <RosterLayout>
-                      <MyClubsWrapper />
-                    </RosterLayout>
-                  </AppShell>
-                </RequireAuth>
-              } />
-              <Route path="/fixtures" element={
-                <RequireAuth>
-                  <AppShell showBackButton={true} pageTitle="Fixtures">
-                    <FixturesLayout>
-                      <FixturesWrapper />
-                    </FixturesLayout>
-                  </AppShell>
-                </RequireAuth>
-              } />
-              <Route path="/leaderboard" element={
-                <RequireAuth>
-                  <AppShell showBackButton={true} pageTitle="Leaderboard">
-                    <LeaderboardLayout>
-                      <LeaderboardWrapper />
-                    </LeaderboardLayout>
-                  </AppShell>
-                </RequireAuth>
-              } />
-              <Route path="/admin" element={
-                <RequireAuth>
-                  <AppShell showBackButton={true} pageTitle="League Settings">
-                    <AdminLayout>
-                      <AdminDashboardWrapper />
-                    </AdminLayout>
-                  </AppShell>
-                </RequireAuth>
-              } />
-              <Route path="/dashboard" element={
-                <RequireAuth>
-                  <AppShell showBackButton={false} pageTitle="Dashboard">
-                    <DashboardLayout>
-                      <Dashboard />
-                    </DashboardLayout>
-                  </AppShell>
-                </RequireAuth>
-              } />
-              <Route path="/app" element={
-                <RequireAuth>
-                  <AppShell showBackButton={false} pageTitle="Dashboard">
-                    <DashboardLayout>
-                      <Dashboard />
-                    </DashboardLayout>
-                  </AppShell>
-                </RequireAuth>
-              } />
-              <Route path="/app/leagues/new" element={
-                <RequireAuth>
-                  <AppShell showBackButton={true} pageTitle="Create League">
-                    <CreateLeagueWizard />
-                  </AppShell>
-                </RequireAuth>
-              } />
+              {/* Protected Routes */}
+              <Route path="/app" element={<RequireAuth><AppShell><Dashboard /></AppShell></RequireAuth>} />
+              <Route path="/app/leagues/new" element={<RequireAuth><AppShell><CreateLeagueWizard /></AppShell></RequireAuth>} />
+              <Route path="/app/leagues/:id/lobby" element={<RequireAuth><AppShell><LeagueLobby /></AppShell></RequireAuth>} />
+              <Route path="/dashboard" element={<RequireAuth><AppShell><Dashboard /></AppShell></RequireAuth>} />
+              <Route path="/clubs/:leagueId" element={<RequireAuth><AppShell><MyClubsWrapper /></AppShell></RequireAuth>} />
+              <Route path="/fixtures/:leagueId" element={<RequireAuth><AppShell><FixturesWrapper /></AppShell></RequireAuth>} />
+              <Route path="/leaderboard/:leagueId" element={<RequireAuth><AppShell><LeaderboardWrapper /></AppShell></RequireAuth>} />
+              <Route path="/admin/:leagueId" element={<RequireAuth><AppShell><AdminDashboardWrapper /></AppShell></RequireAuth>} />
+              <Route path="/auction/:leagueId" element={<RequireAuth><AppShell><AuctionRoomWrapper /></AppShell></RequireAuth>} />
+              <Route path="/diagnostic" element={<RequireAuth><AppShell><DiagnosticPage /></AppShell></RequireAuth>} />
               
-              {/* League Lobby Route */}
-              <Route path="/app/leagues/:id/lobby" element={
-                <RequireAuth>
-                  <AppShell showBackButton={true} pageTitle="League Lobby">
-                    <LeagueLobby />
-                  </AppShell>
-                </RequireAuth>
-              } />
-              {/* Utility routes without specific shell */}
-              <Route path="/diag" element={<DiagnosticPage />} />
-              
-              {/* 404 - Catch all unmatched routes */}
-              <Route path="*" element={
-                <MarketingShell>
-                  <NotFoundPage />
-                </MarketingShell>
-              } />
+              {/* Catch-all route */}
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
+          </div>
         </Router>
       </AuthProvider>
     </ThemeProvider>
