@@ -20,11 +20,11 @@ frontend:
 
   - task: "Complete Lobby Joined Count and Rules Badge Testids Implementation"
     implemented: true
-    working: true
+    working: false
     file: "/app/frontend/src/App.js, /app/frontend/src/components/ui/rules-badge.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "testing"
@@ -44,6 +44,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "✅ AUTHENTICATION SESSION PERSISTENCE FIX SUCCESSFUL - ATOMIC POST-CREATE FLOW NOW WORKING: Identified and resolved the critical authentication session persistence issue that was causing 403 errors in the atomic post-create flow. ROOT CAUSE IDENTIFIED: Database collection name mismatch - league_service.py was writing membership records to 'league_memberships' collection but auth.py was reading from 'memberships' collection, causing league access authorization to fail. FIX APPLIED: Updated auth.py check_league_access() function to use correct collection name 'league_memberships'. COMPREHENSIVE TESTING RESULTS: ✅ POST /api/auth/test-login returns 200 with {ok: true}, ✅ GET /api/auth/me works immediately after test-login (session cookie persistence verified), ✅ POST /api/leagues creates league successfully with 201 status, ✅ GET /api/leagues/{id} works immediately after creation (no more 403 errors), ✅ All lobby API calls now work: league details, members, status, readiness checks, ✅ Session persistence verified through 5 consecutive API calls, ✅ Complete atomic post-create flow functional end-to-end. IMPACT: The lobby loading issue is now resolved - users can access leagues they create without 403 authentication errors. The testids should now be accessible for verification since the lobby can load league data properly. This resolves the stuck task that was blocking lobby testid verification."
+      - working: false
+        agent: "testing"
+        comment: "❌ LOBBY TESTIDS VERIFICATION - JAVASCRIPT ERROR BLOCKING RENDERING: Comprehensive E2E testing confirms authentication session persistence is now WORKING PERFECTLY (✅ test-login: 200, ✅ /auth/me: 200, ✅ league creation: 201, ✅ league access: 200, ✅ lobby loads without 403 errors). However, lobby testids verification reveals CRITICAL JAVASCRIPT ERROR: 'CompactRules is not defined' causing lobby page to fail rendering testids. ROOT CAUSE: CompactRules component is used in App.js line 1231 but not imported - missing import statement 'import { CompactRules } from './components/ui/rules-badge.jsx';'. TESTIDS STATUS: ❌ lobby-joined: NOT FOUND (0/4 testids found), ❌ lobby-joined-count: NOT FOUND, ❌ rules-badge: NOT FOUND, ❌ start-auction: NOT FOUND. IMPACT: Authentication fix is successful and lobby loads, but JavaScript error prevents testid elements from rendering. FIX APPLIED: Added missing CompactRules import to App.js. NEXT: Lobby testids should now be accessible after import fix."
 
   - task: "Fix Frontend Compilation Issues with AppShell/MarketingShell Import Paths"
     implemented: true
