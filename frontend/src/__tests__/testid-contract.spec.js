@@ -9,7 +9,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import CreateLeagueCTA from '../components/ui/create-league-cta';
 import QuickActionCards from '../components/ui/quick-action-cards';
-import { TESTIDS } from '../testids.js';
+import { TESTIDS } from '../testing/testids.ts';
 
 // Mock functions for component props
 const mockHandlers = {
