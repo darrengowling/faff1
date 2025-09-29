@@ -224,7 +224,7 @@ const LoginPage = () => {
                 className="space-y-6" 
                 noValidate={isTestMode}
                 aria-busy={loading}
-                data-testid={loading ? TESTIDS.authLoading : undefined}
+                data-testid="auth-ready"
               >
                 {/* Email Input */}
                 <div>
