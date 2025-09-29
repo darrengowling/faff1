@@ -196,6 +196,9 @@ export const TESTIDS = {
 
   // Missing budget/slots testids
   budgetRemaining: 'budget-remaining',
+  budgetDisplay: 'budget-display',
+  slotsDisplay: 'slots-display', 
+  slotsRemaining: 'slots-remaining',
   yourBudget: 'your-budget',
   yourSlotsRemaining: 'your-slots-remaining',
 
