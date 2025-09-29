@@ -2,8 +2,7 @@
  * Header Contract E2E Tests
  * 
  * Validates that required testids exist on all key routes:
- * - home-nav-button
- * - back-to-home-link  
+ * - back-to-home-link (session-based routing with data-dest attribute)
  * - nav-mobile-drawer (with data-state toggle)
  */
 
