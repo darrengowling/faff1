@@ -38,8 +38,7 @@ async function globalSetup(config: FullConfig) {
     
   } catch (error) {
     console.error('❌ TESTIDS import failed:', error);
-    // Don't throw - just warn, as this is a pre-check
-    console.warn('⚠️ TESTIDS pre-check failed, but continuing with tests...');
+    throw new Error(`TESTIDS import failed: ${error.message}`);
   }
   
   // Check if application is accessible
