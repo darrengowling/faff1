@@ -7,7 +7,7 @@ export const TESTIDS = {
   authLoading: 'auth-loading',
   authError: 'auth-error',
   authSuccess: 'auth-success',
-  backToHome: 'back-to-home-link',
+  backToHome: 'backToHome',
   homeNavButton: 'home-nav-button',
   
   // Legacy auth testids (for backward compatibility)
