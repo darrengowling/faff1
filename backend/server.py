@@ -535,6 +535,42 @@ if TEST_MODE:
             logger.error(f"Error checking league readiness: {e}")
             return {"ready": False, "reason": "error", "error": str(e)}
 
+    @api_router.post("/test/auth/refresh")
+    async def refresh_test_session(response: Response, current_user: UserResponse = Depends(get_current_user)):
+        """
+        TEST-ONLY SESSION REFRESH ENDPOINT
+        Extends the session for the current authenticated user in TEST_MODE
+        Helps prevent session expiry during long test execution runs
+        """
+        if not is_test_mode():
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Session refresh endpoint only available in TEST_MODE"
+            )
+        
+        # Create new token with extended timeout
+        access_token = create_access_token(data={"sub": current_user.id})
+        
+        # Set extended session cookie (2 hours for tests)
+        response.set_cookie(
+            key="access_token",
+            value=access_token,
+            httponly=True,
+            samesite="lax",
+            secure=True,
+            max_age=7200  # 2 hours
+        )
+        
+        logger.info(f"🧪 TEST SESSION REFRESHED: {current_user.email}")
+        
+        return {
+            "ok": True,
+            "message": "Test session refreshed successfully",
+            "userId": current_user.id,
+            "email": current_user.email,
+            "expiresIn": 7200
+        }
+
     @api_router.get("/test/testids/ping")
     async def ping_test_ids():
         """Simple ping endpoint for testing testids routes"""
