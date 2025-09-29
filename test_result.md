@@ -109,12 +109,13 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Sticky Header/Drawer Un-blockable & Deterministic Anchors"
+    - "Complete Lobby Joined Count and Rules Badge Testids Implementation"
     - "navigation.spec.ts Mobile Navigation Testing"
     - "landing-page.spec.js Mobile Landing Page Tests"
-  stuck_tasks: []
+  stuck_tasks: 
+    - "Complete Lobby Joined Count and Rules Badge Testids Implementation"
   test_all: false
-  test_priority: "sticky_header_verification"
+  test_priority: "lobby_testids_verification"
 
 agent_communication:
   - agent: "main"
