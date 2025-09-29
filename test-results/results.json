@@ -69,220 +69,210 @@
   },
   "suites": [
     {
-      "title": "core-smoke.spec.ts",
-      "file": "core-smoke.spec.ts",
+      "title": "navigation.spec.ts",
+      "file": "navigation.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Core Smoke Test",
-          "file": "core-smoke.spec.ts",
-          "line": 44,
+          "title": "Navigation Tests",
+          "file": "navigation.spec.ts",
+          "line": 12,
           "column": 6,
-          "specs": [
+          "specs": [],
+          "suites": [
             {
-              "title": "Complete auction flow: create → invite → join → auction → bid → sell",
-              "ok": false,
-              "tags": [],
-              "tests": [
+              "title": "Mobile Navigation",
+              "file": "navigation.spec.ts",
+              "line": 76,
+              "column": 8,
+              "specs": [
                 {
-                  "timeout": 90000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
+                  "title": "Mobile hamburger menu works correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 17947,
-                      "error": {
-                        "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://magic-league.preview.emergentagent.com/app)",
-                        "stack": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://magic-league.preview.emergentagent.com/app)\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16",
-                        "location": {
-                          "file": "/app/tests/e2e/utils/helpers.ts",
-                          "column": 11,
-                          "line": 458
-                        },
-                        "snippet": "   at utils/helpers.ts:458\n\n  456 |     });\n  457 |     \n> 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  459 |   }\n  460 | }\n  461 |"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/app/tests/e2e/utils/helpers.ts",
-                            "column": 11,
-                            "line": 458
-                          },
-                          "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://magic-league.preview.emergentagent.com/app)\n\n   at utils/helpers.ts:458\n\n  456 |     });\n  457 |     \n> 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  459 |   }\n  460 | }\n  461 |\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16"
-                        }
-                      ],
-                      "stdout": [
-                        {
-                          "text": "🚀 Starting core smoke test...\n"
-                        },
-                        {
-                          "text": "📝 Step 1: Commissioner creates league...\n"
-                        },
-                        {
-                          "text": "🔐 Logging in user: commish@example.com (mode: test)\n"
-                        },
-                        {
-                          "text": "🧪 Test-only login for user: commish@example.com\n"
-                        },
-                        {
-                          "text": "Console error on Commissioner: Failed to load resource: the server responded with a status of 502 ()\n"
-                        },
-                        {
-                          "text": "✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)\n"
-                        },
-                        {
-                          "text": "🏆 Creating league: Core Smoke League\n"
-                        },
-                        {
-                          "text": "🎯 Using safe click with overlay detection for Create League button...\n"
-                        },
-                        {
-                          "text": "🎯 Checking overlay at center point (1167.5, 802)\n"
-                        },
-                        {
-                          "text": "📍 Elements at point (top to bottom):\n"
-                        },
-                        {
-                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid=\"create-league-btn\"]\n"
-                        },
-                        {
-                          "text": "Console error on Commissioner: Each child in a list should have a unique \"key\" prop.%s%s See https://react.dev/link/warning-keys for more information. \n\nCheck the render method of `CreateLeagueDialog`. \n"
-                        },
-                        {
-                          "text": "✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid=\"create-league-btn\"]\n"
-                        },
-                        {
-                          "text": "📋 Filling Create League form: Core Smoke League\n"
-                        },
-                        {
-                          "text": "📋 Detected CreateLeagueDialog (modal) form\n"
-                        },
-                        {
-                          "text": "📝 Using dialog testids: {\n  name: \u001b[32m'create-name'\u001b[39m,\n  slots: \u001b[32m'create-slots-input'\u001b[39m,\n  budget: \u001b[32m'create-budget'\u001b[39m,\n  min: \u001b[32m'create-min'\u001b[39m,\n  max: \u001b[32m'create-max'\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "📝 Filling league name...\n"
-                        },
-                        {
-                          "text": "📝 Filling form fields with type-aware setters...\n"
-                        },
-                        {
-                          "text": "🔧 Setting form value: create-slots-input=3 (tag: input, type: number)\n"
-                        },
-                        {
-                          "text": "✅ Form value set: create-slots-input=3\n"
-                        },
-                        {
-                          "text": "🔧 Setting form value: create-budget=100 (tag: input, type: number)\n"
-                        },
-                        {
-                          "text": "✅ Form value set: create-budget=100\n"
-                        },
-                        {
-                          "text": "🔧 Setting form value: create-min=2 (tag: input, type: number)\n"
-                        },
-                        {
-                          "text": "✅ Form value set: create-min=2\n"
-                        },
-                        {
-                          "text": "🔧 Setting form value: create-max=8 (tag: input, type: number)\n"
-                        },
-                        {
-                          "text": "✅ Form value set: create-max=8\n"
-                        },
-                        {
-                          "text": "✅ Create League form filled successfully: Core Smoke League\n"
-                        },
-                        {
-                          "text": "📝 Form filled, submitting...\n"
-                        },
-                        {
-                          "text": "🎯 Checking clickability at coordinates (798.0, 641.0)\n"
-                        },
-                        {
-                          "text": "🔍 Target: BUTTON[data-testid=\"create-submit\"]\n"
-                        },
-                        {
-                          "text": "🔍 Topmost: BUTTON[data-testid=\"create-submit\"]\n"
-                        },
-                        {
-                          "text": "✅ Element is clickable\n"
-                        },
-                        {
-                          "text": "⏳ Waiting for league creation success...\n"
-                        },
-                        {
-                          "text": "🏁 Waiting for league creation success and lobby navigation...\n"
-                        },
-                        {
-                          "text": "Console error on Commissioner: Failed to load resource: the server responded with a status of 500 ()\n"
-                        },
-                        {
-                          "text": "Console error on Commissioner: League creation error: AxiosError\n"
-                        },
-                        {
-                          "text": "Test failed, capturing artifacts...\n"
-                        },
-                        {
-                          "text": "Screenshots saved with timestamp: 2025-09-29T12-05-30-520Z\n"
-                        }
-                      ],
-                      "stderr": [
-                        {
-                          "text": "❌ Failed to complete league creation → lobby flow. Current URL: https://magic-league.preview.emergentagent.com/app\n"
-                        }
-                      ],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:05:12.857Z",
+                      "timeout": 60000,
                       "annotations": [],
-                      "attachments": [
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
                         {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-3.png"
-                        },
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-2.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/trace.zip"
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 2556,
+                          "error": {
+                            "message": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n",
+                            "stack": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:88:72",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 72,
+                              "line": 88
+                            },
+                            "snippet": "  86 |       \n  87 |       // Verify mobile drawer is visible\n> 88 |       await page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`).waitFor({ state: 'visible' });\n     |                                                                        ^\n  89 |       \n  90 |       // Test navigation items are listed\n  91 |       const navigationItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] button`);"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 72,
+                                "line": 88
+                              },
+                              "message": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n\n\n  86 |       \n  87 |       // Verify mobile drawer is visible\n> 88 |       await page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`).waitFor({ state: 'visible' });\n     |                                                                        ^\n  89 |       \n  90 |       // Test navigation items are listed\n  91 |       const navigationItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] button`);\n    at /app/tests/e2e/navigation.spec.ts:88:72"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🎯 Checking clickability at coordinates (354.0, 32.0)\n"
+                            },
+                            {
+                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "🔍 Topmost: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "✅ Element is clickable\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-29T12:06:06.774Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 72,
+                            "line": 88
+                          }
                         }
                       ],
-                      "errorLocation": {
-                        "file": "/app/tests/e2e/utils/helpers.ts",
-                        "column": 11,
-                        "line": 458
-                      }
+                      "status": "unexpected"
                     }
                   ],
-                  "status": "unexpected"
+                  "id": "5d2868f7d23420c27cca-13ede477cf1247e81029",
+                  "file": "navigation.spec.ts",
+                  "line": 81,
+                  "column": 9
+                },
+                {
+                  "title": "Mobile navigation shows only enabled items and navigates correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 2594,
+                          "error": {
+                            "message": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n",
+                            "stack": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:104:72",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 72,
+                              "line": 104
+                            },
+                            "snippet": "  102 |       await ensureClickable(hamburgerMenu);\n  103 |       await hamburgerMenu.click();\n> 104 |       await page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`).waitFor({ state: 'visible' });\n      |                                                                        ^\n  105 |       \n  106 |       // Check if navigation items are present using testids\n  107 |       const mobileItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] [role=\"menuitem\"]`);"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 72,
+                                "line": 104
+                              },
+                              "message": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n\n\n  102 |       await ensureClickable(hamburgerMenu);\n  103 |       await hamburgerMenu.click();\n> 104 |       await page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`).waitFor({ state: 'visible' });\n      |                                                                        ^\n  105 |       \n  106 |       // Check if navigation items are present using testids\n  107 |       const mobileItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] [role=\"menuitem\"]`);\n    at /app/tests/e2e/navigation.spec.ts:104:72"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🎯 Checking clickability at coordinates (354.0, 32.0)\n"
+                            },
+                            {
+                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "🔍 Topmost: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "✅ Element is clickable\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-29T12:06:10.365Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 72,
+                            "line": 104
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-d9a97c6a0fbeb004a3c1",
+                  "file": "navigation.spec.ts",
+                  "line": 99,
+                  "column": 9
                 }
-              ],
-              "id": "a1185c8c8a119dd4daa6-824956169c2fdc1743ba",
-              "file": "core-smoke.spec.ts",
-              "line": 114,
-              "column": 7
+              ]
             }
           ]
         }
@@ -291,11 +281,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-09-29T12:04:52.021Z",
-    "duration": 40097.681000000004,
+    "startTime": "2025-09-29T12:05:43.694Z",
+    "duration": 29571.044,
     "expected": 0,
     "skipped": 0,
-    "unexpected": 1,
+    "unexpected": 2,
     "flaky": 0
   }
 }
