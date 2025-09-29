@@ -1,1082 +1,224 @@
 # Page snapshot
 
 ```yaml
-- generic:
-  - generic:
-    - region "Notifications alt+T"
-    - generic:
-      - banner:
-        - generic:
-          - generic:
-            - generic:
-              - button:
-                - generic:
-                  - img
-                - generic:
-                  - generic: Friends of PIFA
-              - link:
-                - /url: /app
-                - text: ← Back to Home
-            - navigation:
-              - generic:
-                - button:
-                  - generic: Product
-                  - img
-            - generic:
-              - button:
-                - img
-                - generic: Create League
-              - generic:
-                - generic:
-                  - img
-                  - generic: commish@example.com
-                - button:
-                  - img
-                  - generic: Sign Out
-              - button:
-                - generic:
-                  - img
-        - generic:
-          - generic:
-            - generic:
-              - generic:
-                - button:
-                  - img
-                  - generic: Home
-                - generic:
-                  - img
-                  - img
-                  - generic: Dashboard
-              - generic:
-                - generic:
-                  - text: Welcome,
-                  - generic: commish@example.com
-        - generic: "Mobile drawer state: closed"
-      - main:
-        - generic:
-          - generic:
-            - generic:
-              - generic:
-                - button:
-                  - generic:
-                    - img
-                  - generic:
-                    - generic: Friends of PIFA
-                - generic:
-                  - button:
-                    - img
-                    - text: New League
-                  - generic:
-                    - generic: Welcome, commish@example.com
-                    - button: Dashboard
-                  - button:
-                    - generic:
-                      - img
-            - link:
-              - /url: "#main-content"
-              - text: Skip to main content
-          - generic:
-            - generic:
-              - generic:
-                - generic:
-                  - generic:
-                    - generic: Dashboard
-                - generic:
-                  - generic:
-                    - generic: commish
-          - main:
-            - generic:
-              - generic:
-                - generic:
-                  - generic:
-                    - generic: Active League
-                    - generic:
-                      - button:
-                        - generic:
-                          - generic:
-                            - img
-                          - generic:
-                            - generic: Select League
-                        - img
-                      - generic: No league selected
-                  - generic:
-                    - generic: Quick Navigation
-                    - generic:
-                      - button:
-                        - generic:
-                          - img
-                          - generic: Go to...
-                        - img
-              - generic:
-                - heading [level=2]: Quick Actions
-                - generic:
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - img
-                        - generic:
-                          - heading [level=3]: Create a League
-                          - paragraph: Start a new football auction with friends
-                        - button:
-                          - generic:
-                            - generic: Create Now
-                            - img
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - img
-                        - generic:
-                          - heading [level=3]: Join via Invite
-                          - paragraph: Enter with an invitation code or link
-                        - button:
-                          - generic:
-                            - generic: Join League
-                            - img
-              - generic:
-                - generic:
-                  - generic:
-                    - heading [level=2]: All Leagues (25)
-                  - button:
-                    - img
-                    - text: Create League
-                - generic:
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Private League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Auction Gate League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Test League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "5"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Five Slots League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 200 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "5"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Start Auction Test League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "5"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Budget Test League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Test League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "5"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Admin Access League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Gate Test League 1759097417891
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Gate Test League 1759096967592
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Slot Limit League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 200 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "2"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Gate Test League 1759093299842
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Test League Navigation
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 120 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "4"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Gate Test League 1759083101138
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Gate Test League 1759093328679
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Test League Navigation
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 120 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "4"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Test League Navigation
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 120 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "4"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Sufficient Members League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Test League Navigation
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 120 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "4"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Gate Test League 1759083229782
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Real-time Budget League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 150 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "5"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Member Access League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Gate Test League 1759081772882
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Roster Display League
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 120 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-                  - generic:
-                    - generic:
-                      - generic:
-                        - generic:
-                          - heading [level=3]: Gate Test League 1759093177718
-                          - paragraph:
-                            - img
-                            - text: 2025-26
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Commissioner
-                          - generic: setup
-                    - generic:
-                      - generic:
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Members
-                          - generic: "1"
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Budget
-                          - generic: 100 credits
-                        - generic:
-                          - generic:
-                            - img
-                            - text: Club Slots
-                          - generic: "3"
-          - generic:
-            - generic:
-              - generic:
-                - generic:
-                  - generic:
-                    - generic:
-                      - img
-                    - generic:
-                      - generic: Friends of PIFA
-                      - generic: Sports gaming with friends. No gambling. All strategy.
-                  - paragraph: Join the social sports arena where skill beats luck.
-                  - generic:
-                    - img
-                    - generic: We stand for integrity, fairness, and the joy of the game
-                - generic:
-                  - heading [level=3]: Fair Play Commitment
-                  - generic:
-                    - generic:
-                      - generic:
-                        - img
-                        - generic:
-                          - paragraph: No gambling. No wagering. Pure sports strategy.
-                          - paragraph: This platform does not involve any form of gambling, betting, or wagering.
-                    - generic:
-                      - img
-                      - generic: Designed for entertainment and friendly competition only.
-                    - generic: Must be 13+ to use this service.
-                - generic:
-                  - heading [level=3]: Legal & Support
-                  - generic:
-                    - generic:
-                      - button:
-                        - generic:
-                          - generic:
-                            - generic: Terms of Service
-                            - img
-                      - button:
-                        - generic:
-                          - generic:
-                            - generic: Privacy Policy
-                            - img
-                      - button:
-                        - generic:
-                          - generic:
-                            - generic: Contact Us
-                            - img
-                      - button:
-                        - generic:
-                          - generic:
-                            - generic: About Us
-                            - img
-            - generic:
-              - generic:
-                - generic:
-                  - generic:
-                    - generic: © 2025 Friends of PIFA. All rights reserved.
-                  - generic:
-                    - generic: 100% Free to Play
-                    - generic: No Real Money
-          - button:
-            - img
-      - contentinfo:
-        - generic:
-          - generic:
-            - generic:
-              - generic:
-                - generic:
-                  - img
-                - generic:
-                  - generic: Friends of PIFA
-                  - generic: Sports gaming with friends. No gambling. All strategy.
-              - paragraph: Join the social sports arena where skill beats luck.
-              - generic:
-                - img
-                - generic: We stand for integrity, fairness, and the joy of the game
-            - generic:
-              - heading [level=3]: Fair Play Commitment
-              - generic:
-                - generic:
-                  - generic:
-                    - img
-                    - generic:
-                      - paragraph: No gambling. No wagering. Pure sports strategy.
-                      - paragraph: This platform does not involve any form of gambling, betting, or wagering.
-                - generic:
-                  - img
-                  - generic: Designed for entertainment and friendly competition only.
-                - generic: Must be 13+ to use this service.
-            - generic:
-              - heading [level=3]: Legal & Support
-              - generic:
-                - generic:
-                  - button:
-                    - generic:
-                      - generic:
-                        - generic: Terms of Service
-                        - img
-                  - button:
-                    - generic:
-                      - generic:
-                        - generic: Privacy Policy
-                        - img
-                  - button:
-                    - generic:
-                      - generic:
-                        - generic: Contact Us
-                        - img
-                  - button:
-                    - generic:
-                      - generic:
-                        - generic: About Us
-                        - img
-        - generic:
-          - generic:
-            - generic:
-              - generic:
-                - generic: © 2025 Friends of PIFA. All rights reserved.
-              - generic:
-                - generic: 100% Free to Play
-                - generic: No Real Money
-  - link:
-    - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic:
-      - img
-      - paragraph: Made with Emergent
-  - dialog "Create New League" [active] [ref=e2]:
-    - generic [ref=e3]:
-      - generic [ref=e4]:
-        - button "Home" [ref=e5] [cursor=pointer]
-        - generic [ref=e6]: /
-        - generic [ref=e7]: New League
-      - heading "Create New League" [level=2] [ref=e8]
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T":
+      - list:
+        - listitem [ref=e3]:
+          - img [ref=e5]
+          - generic [ref=e8]: League created successfully!
     - generic [ref=e9]:
-      - generic [ref=e10]:
-        - generic [ref=e11]:
-          - generic [ref=e12]: League Name
-          - textbox "League Name" [ref=e13]: Core Smoke League
-        - generic [ref=e14]:
-          - generic [ref=e15]: Season
-          - textbox "Season" [ref=e16]: 2025-26
-        - generic [ref=e17]:
-          - generic [ref=e18]: Competition Template
-          - combobox "Competition Template" [ref=e19]:
-            - option "UEFA Champions League (UCL) - 5 slots" [selected]
-            - option "UEFA Europa League (UEL) - 5 slots"
-            - option "Custom Competition (CUSTOM) - 5 slots"
-          - paragraph [ref=e20]: Choose a template to set default values. You can customize them below.
-      - generic [ref=e21]:
-        - heading "League Settings" [level=4] [ref=e22]
-        - generic [ref=e23]:
-          - generic [ref=e24]:
-            - generic [ref=e25]: Budget per Manager (£)
-            - spinbutton "Budget per Manager (£)" [ref=e26]: "100"
-          - generic [ref=e27]:
-            - generic [ref=e28]: Club Slots per Manager
-            - spinbutton "Club Slots per Manager" [ref=e29]: "3"
-          - generic [ref=e30]:
-            - generic [ref=e31]: Min Bid Increment
-            - spinbutton "Min Bid Increment" [ref=e32]: "1"
-          - generic [ref=e33]:
-            - generic [ref=e34]: Bid Timer (seconds)
-            - spinbutton "Bid Timer (seconds)" [ref=e35]: "60"
-          - generic [ref=e36]:
-            - generic [ref=e37]: Min Managers
-            - spinbutton "Min Managers" [ref=e38]: "2"
-          - generic [ref=e39]:
-            - generic [ref=e40]: Max Managers
-            - spinbutton "Max Managers" [ref=e41]: "8"
-      - generic [ref=e42]:
-        - heading "Scoring Rules" [level=4] [ref=e43]
-        - generic [ref=e44]:
-          - generic [ref=e45]:
-            - generic [ref=e46]: Points per Goal
-            - spinbutton "Points per Goal" [ref=e47]: "1"
-          - generic [ref=e48]:
-            - generic [ref=e49]: Points per Win
-            - spinbutton "Points per Win" [ref=e50]: "3"
-          - generic [ref=e51]:
-            - generic [ref=e52]: Points per Draw
-            - spinbutton "Points per Draw" [ref=e53]: "1"
-      - alert [ref=e54]: "Server error: Internal error"
-      - generic [ref=e55]:
-        - button "Cancel" [ref=e56] [cursor=pointer]
-        - button "Create League" [ref=e57] [cursor=pointer]
-    - button "Close" [ref=e58] [cursor=pointer]:
-      - img [ref=e59] [cursor=pointer]
-      - generic [ref=e62] [cursor=pointer]: Close
+      - banner [ref=e10]:
+        - generic [ref=e12]:
+          - generic [ref=e13]:
+            - button "Friends of PIFA" [ref=e14] [cursor=pointer]:
+              - img [ref=e16] [cursor=pointer]
+              - generic [ref=e22] [cursor=pointer]: Friends of PIFA
+            - link "Back to Home" [ref=e23] [cursor=pointer]:
+              - /url: /app
+              - text: ← Back to Home
+          - navigation [ref=e24]:
+            - button "Product" [ref=e26] [cursor=pointer]:
+              - generic [ref=e27] [cursor=pointer]: Product
+              - img
+          - generic [ref=e28]:
+            - button "Create League" [ref=e29] [cursor=pointer]:
+              - img
+              - generic [ref=e30] [cursor=pointer]: Create League
+            - generic [ref=e31]:
+              - generic [ref=e32]:
+                - img [ref=e33]
+                - generic [ref=e36]: commish@example.com
+              - button "Sign Out" [ref=e37] [cursor=pointer]:
+                - img
+                - generic [ref=e38] [cursor=pointer]: Sign Out
+            - button "Switch to dark mode" [ref=e39] [cursor=pointer]:
+              - generic [ref=e40] [cursor=pointer]:
+                - img
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - button "Home" [ref=e45] [cursor=pointer]:
+              - img
+              - generic [ref=e46] [cursor=pointer]: Home
+            - button "Back" [ref=e47] [cursor=pointer]:
+              - img
+              - generic [ref=e48] [cursor=pointer]: Back
+            - generic [ref=e49]:
+              - img [ref=e50]
+              - img [ref=e53]
+              - generic [ref=e55]: League Lobby
+          - generic [ref=e57]:
+            - text: Welcome,
+            - generic [ref=e58]: commish@example.com
+        - generic [ref=e59]: "Mobile drawer state: closed"
+      - main [ref=e60]:
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - generic [ref=e63]:
+              - button "← Back" [ref=e64] [cursor=pointer]
+              - generic [ref=e65]:
+                - heading "Core Smoke League" [level=2] [ref=e66]
+                - paragraph [ref=e67]: 2025-26 • UCL
+            - generic [ref=e68]:
+              - generic [ref=e69]: setup
+              - generic [ref=e70]:
+                - img [ref=e71]
+                - text: Commissioner
+          - generic [ref=e73]:
+            - generic [ref=e74]:
+              - generic [ref=e75]:
+                - generic [ref=e76]: "1"
+                - text: /8
+              - generic [ref=e77]: Need 1 more
+            - generic [ref=e79]: "Slots: {slots} · Budget: {budget} · Min: {min} · Max: {max}"
+            - generic [ref=e80]:
+              - button "Start Auction" [disabled]:
+                - img
+                - text: Start Auction
+          - generic [ref=e81]:
+            - heading "League Status Details" [level=3] [ref=e83]:
+              - img [ref=e84]
+              - generic [ref=e86]: League Status Details
+            - generic [ref=e88]:
+              - generic [ref=e89]:
+                - generic [ref=e90]: "1"
+                - generic [ref=e91]: Members
+              - generic [ref=e92]:
+                - generic [ref=e93]: "2"
+                - generic [ref=e94]: Min Required
+              - generic [ref=e95]:
+                - generic [ref=e96]: "8"
+                - generic [ref=e97]: Max Allowed
+              - generic [ref=e98]:
+                - generic [ref=e99]: ✗
+                - generic [ref=e100]: Ready
+          - generic [ref=e101]:
+            - generic [ref=e102]:
+              - heading "Members (1)" [level=3] [ref=e104]:
+                - img [ref=e105]
+                - generic [ref=e110]: Members (1)
+              - generic [ref=e113]:
+                - generic [ref=e114]:
+                  - img [ref=e116]
+                  - generic [ref=e119]:
+                    - generic [ref=e120]: commish
+                    - generic [ref=e121]: commish@example.com
+                - generic [ref=e123]:
+                  - img [ref=e124]
+                  - text: commissioner
+            - generic [ref=e126]:
+              - heading "Invitations" [level=3] [ref=e128]:
+                - img [ref=e129]
+                - generic [ref=e132]: Invitations
+              - generic [ref=e133]:
+                - generic [ref=e134]:
+                  - textbox "manager@example.com" [ref=e135]
+                  - button [ref=e136] [cursor=pointer]:
+                    - img
+                - paragraph [ref=e138]: No invitations sent yet
+          - generic [ref=e139]:
+            - heading "League Settings" [level=3] [ref=e141]:
+              - img [ref=e142]
+              - generic [ref=e145]: League Settings
+            - generic [ref=e146]:
+              - generic [ref=e147]:
+                - generic [ref=e148]:
+                  - img [ref=e149]
+                  - generic [ref=e151]: "100"
+                  - generic [ref=e152]: Budget
+                - generic [ref=e153]:
+                  - img [ref=e154]
+                  - generic [ref=e158]: "3"
+                  - generic [ref=e159]: Club Slots
+                - generic [ref=e160]:
+                  - img [ref=e161]
+                  - generic [ref=e167]: "1"
+                  - generic [ref=e168]: Min Increment
+                - generic [ref=e169]:
+                  - img [ref=e170]
+                  - generic [ref=e173]: 60s
+                  - generic [ref=e174]: Bid Timer
+              - generic [ref=e175]:
+                - heading "Scoring Rules" [level=4] [ref=e176]
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - generic [ref=e179]: "+1"
+                    - generic [ref=e180]: Per Goal
+                  - generic [ref=e181]:
+                    - generic [ref=e182]: "+3"
+                    - generic [ref=e183]: Per Win
+                  - generic [ref=e184]:
+                    - generic [ref=e185]: "+1"
+                    - generic [ref=e186]: Per Draw
+          - generic [ref=e187]:
+            - heading "Quick Access" [level=3] [ref=e189]:
+              - img [ref=e190]
+              - generic [ref=e193]: Quick Access
+            - generic [ref=e195]:
+              - button "My Clubs" [ref=e196] [cursor=pointer]:
+                - img
+                - generic [ref=e197] [cursor=pointer]: My Clubs
+              - button "Fixtures & Results" [ref=e198] [cursor=pointer]:
+                - img
+                - generic [ref=e199] [cursor=pointer]: Fixtures & Results
+              - button "Leaderboard" [ref=e200] [cursor=pointer]:
+                - img
+                - generic [ref=e201] [cursor=pointer]: Leaderboard
+              - button "Admin Panel" [ref=e202] [cursor=pointer]:
+                - img
+                - generic [ref=e203] [cursor=pointer]: Admin Panel
+      - contentinfo [ref=e204]:
+        - generic [ref=e206]:
+          - generic [ref=e207]:
+            - generic [ref=e208]:
+              - img [ref=e210]
+              - generic [ref=e215]:
+                - generic [ref=e216]: Friends of PIFA
+                - generic [ref=e217]: Sports gaming with friends. No gambling. All strategy.
+            - paragraph [ref=e218]: Join the social sports arena where skill beats luck.
+            - generic [ref=e219]:
+              - img [ref=e220]
+              - generic [ref=e222]: We stand for integrity, fairness, and the joy of the game
+          - generic [ref=e223]:
+            - heading "Fair Play Commitment" [level=3] [ref=e224]
+            - generic [ref=e225]:
+              - generic [ref=e227]:
+                - img [ref=e228]
+                - generic [ref=e234]:
+                  - paragraph [ref=e235]: No gambling. No wagering. Pure sports strategy.
+                  - paragraph [ref=e236]: This platform does not involve any form of gambling, betting, or wagering.
+              - generic [ref=e237]:
+                - img [ref=e238]
+                - generic [ref=e243]: Designed for entertainment and friendly competition only.
+              - generic [ref=e244]: Must be 13+ to use this service.
+          - generic [ref=e245]:
+            - heading "Legal & Support" [level=3] [ref=e246]
+            - generic [ref=e248]:
+              - button "Navigate to Terms of Service" [ref=e249] [cursor=pointer]:
+                - generic [ref=e251] [cursor=pointer]:
+                  - generic [ref=e252] [cursor=pointer]: Terms of Service
+                  - img [ref=e253] [cursor=pointer]
+              - button "Navigate to Privacy Policy" [ref=e257] [cursor=pointer]:
+                - generic [ref=e259] [cursor=pointer]:
+                  - generic [ref=e260] [cursor=pointer]: Privacy Policy
+                  - img [ref=e261] [cursor=pointer]
+              - button "Navigate to Contact Us" [ref=e265] [cursor=pointer]:
+                - generic [ref=e267] [cursor=pointer]:
+                  - generic [ref=e268] [cursor=pointer]: Contact Us
+                  - img [ref=e269] [cursor=pointer]
+              - button "Navigate to About Us" [ref=e273] [cursor=pointer]:
+                - generic [ref=e275] [cursor=pointer]:
+                  - generic [ref=e276] [cursor=pointer]: About Us
+                  - img [ref=e277] [cursor=pointer]
+        - generic [ref=e283]:
+          - generic [ref=e285]: © 2025 Friends of PIFA. All rights reserved.
+          - generic [ref=e286]:
+            - generic [ref=e287]: 100% Free to Play
+            - generic [ref=e288]: No Real Money
+  - link "Emergent platform logo Made with Emergent" [ref=e289] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e290] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e291] [cursor=pointer]
+      - paragraph [ref=e292] [cursor=pointer]: Made with Emergent
 ```
