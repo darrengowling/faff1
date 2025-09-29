@@ -49,6 +49,44 @@ code {
     position: relative !important;
 }
 
+/* Mobile Navigation Stability CSS Hardening */
+:root {
+    --header-h: 64px;
+}
+
+header.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+}
+
+main {
+    padding-top: var(--header-h);
+}
+
+header [data-overlay],
+header::before,
+header::after {
+    pointer-events: none !important;
+}
+
+.drawer-backdrop {
+    pointer-events: none !important;
+}
+
+.drawer-panel {
+    pointer-events: auto;
+}
+
+html {
+    scroll-padding-top: var(--header-h);
+}
+
+/* Anchor sections with proper scroll margin */
+.anchor-section {
+    scroll-margin-top: var(--header-h);
+}
+
 /* Disabled state styling for critical elements */
 [data-testid][aria-disabled="true"] {
     opacity: 0.6;
