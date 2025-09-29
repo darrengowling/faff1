@@ -5,7 +5,7 @@
  * Used for runtime validation of critical UI elements for E2E testing.
  */
 
-import { CRITICAL_ROUTE_TESTIDS } from './critical-routes';
+import { CRITICAL_ROUTE_TESTIDS } from './critical-routes.ts';
 
 export interface TestIdVerificationResult {
   present: string[];
