@@ -21,6 +21,7 @@ import { AuthNavigation } from '../navigation/AuthNavigation';
 import { MobileNavigation } from '../navigation/NavigationMenu';
 import { IconThemeToggle } from '../ui/theme-toggle';
 import { TESTIDS } from '../../testids';
+import BackToHomeLink from '../BackToHomeLink';
 
 const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
   const { t } = useTranslation();
