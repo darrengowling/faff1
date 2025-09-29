@@ -57,6 +57,17 @@ const LoginPage = () => {
     }
   }, [user, authLoading]);
 
+  // Pre-gate route verification for TEST_MODE
+  useEffect(() => {
+    if (isTestMode()) {
+      // Run verification after component mounts and renders
+      const timer = setTimeout(() => {
+        runLoginRouteVerification();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   // Redirect if authenticated (but form renders first in TEST_MODE)
   useEffect(() => {
     if (shouldRedirect) {
