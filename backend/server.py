@@ -80,7 +80,7 @@ fastapi_app = FastAPI(title="Friends of PIFA API", version="1.0.0")
 cors_origins = [FRONTEND_ORIGIN]
 if TEST_MODE:
     # In test mode, allow additional origins for flexibility
-    cors_origins.extend(["http://localhost:3000", "https://league-creator-1.preview.emergentagent.com"])
+    cors_origins.extend(["http://localhost:3000", "https://magic-league.preview.emergentagent.com"])
     # Remove duplicates
     cors_origins = list(set(cors_origins))
 
@@ -284,7 +284,7 @@ async def request_magic_link(request: MagicLinkRequest):
         response = {"message": "Magic link sent to your email"}
         
         if is_development or TEST_MODE:
-            frontend_url = os.getenv("FRONTEND_URL", "https://league-creator-1.preview.emergentagent.com")
+            frontend_url = os.getenv("FRONTEND_URL", "https://magic-league.preview.emergentagent.com")
             magic_link = f"{frontend_url}/auth/verify?token={token}"
             response["dev_magic_link"] = magic_link
             response["message"] = "Magic link generated! (Development Mode - Check below)"

@@ -395,8 +395,8 @@ class UCLAuctionSeeder:
         logger.info(f"⚽ Results: {await db.result_ingest.count_documents({'league_id': self.demo_league_id})} processed")
         logger.info("=" * 60)
         logger.info("🔗 Demo URLs:")
-        logger.info("   - Login: https://league-creator-1.preview.emergentagent.com")
-        logger.info(f"   - League: https://league-creator-1.preview.emergentagent.com/dashboard")
+        logger.info("   - Login: https://magic-league.preview.emergentagent.com")
+        logger.info(f"   - League: https://magic-league.preview.emergentagent.com/dashboard")
         logger.info("=" * 60)
 
 async def main():

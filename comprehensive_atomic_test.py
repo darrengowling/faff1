@@ -16,7 +16,7 @@ from datetime import datetime
 def run_comprehensive_atomic_test():
     """Run comprehensive test of atomic league creation fixes"""
     
-    base_url = "https://league-creator-1.preview.emergentagent.com"
+    base_url = "https://magic-league.preview.emergentagent.com"
     api_url = f"{base_url}/api"
     
     print("🧪 COMPREHENSIVE ATOMIC LEAGUE CREATION TEST")

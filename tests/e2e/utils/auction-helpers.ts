@@ -5,7 +5,7 @@
 
 import { Page } from '@playwright/test';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://league-creator-1.preview.emergentagent.com';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://magic-league.preview.emergentagent.com';
 
 export interface LeagueSettings {
   name: string;

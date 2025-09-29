@@ -105,7 +105,7 @@ test.describe('League Creation Deterministic Flow', () => {
     // Step 8: Test the awaitCreatedAndInLobby helper with polling
     console.log('🔍 Step 8: Testing readiness endpoint polling...');
     
-    const apiOrigin = process.env.REACT_APP_BACKEND_URL || 'https://league-creator-1.preview.emergentagent.com';
+    const apiOrigin = process.env.REACT_APP_BACKEND_URL || 'https://magic-league.preview.emergentagent.com';
     
     // Test the readiness endpoint directly
     const readinessResponse = await page.request.get(`${apiOrigin}/api/test/league/${leagueId}/ready`);

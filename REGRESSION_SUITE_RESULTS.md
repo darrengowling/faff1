@@ -10,7 +10,7 @@
 
 #### ✅ PRE-GATE 1: Socket.IO Diagnostics - PASSED
 ```
-Backend URL: https://league-creator-1.preview.emergentagent.com
+Backend URL: https://magic-league.preview.emergentagent.com
 Socket Path: /api/socketio
 Transports: polling, websocket
 
