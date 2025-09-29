@@ -216,7 +216,7 @@ const LoginPage = () => {
               onSubmit={handleSubmit}
               data-testid={TESTIDS.authReady}
               aria-busy={loading}
-              data-testid-loading={loading ? TESTIDS.authLoading : undefined}
+              {...(loading && { 'data-testid': TESTIDS.authLoading })}
               className="space-y-4"
             >
               {/* Render contract: input with authEmailInput testid and required attributes */}
