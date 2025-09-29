@@ -111,7 +111,7 @@ export async function createLeague(page: Page, settings: LeagueSettings): Promis
   console.log('📝 Form filled, submitting...');
   
   // Submit form using safe click
-  const submitBtn = page.getByTestId(TESTIDS.createSubmit);
+  const submitBtn = byId(page, 'createSubmit');
   await ensureClickable(submitBtn);
   await submitBtn.click();
   
