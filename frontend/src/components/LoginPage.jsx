@@ -18,6 +18,7 @@ const API = `${BACKEND_URL}/api`;
 const LoginPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { refreshUser } = useAuth();
   
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
