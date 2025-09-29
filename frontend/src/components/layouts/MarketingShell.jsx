@@ -234,7 +234,7 @@ const MarketingShell = ({ children }) => {
                 </div>
             </div>
           </div>
-        )}
+        </div>
 
         {/* Hidden drawer state tracker for testing - Always present */}
         <div 
