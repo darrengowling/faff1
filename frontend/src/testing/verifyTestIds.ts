@@ -17,12 +17,23 @@ export interface TestIdVerificationResult {
 
 /**
  * Check if an element is visible to the user
+ * Updated to handle stable DOM patterns where critical elements are kept mounted
+ * but hidden via visibility:hidden + aria-hidden="true"
  */
 function isElementVisible(element: Element): boolean {
   if (!element) return false;
   
   // Check if element is in the DOM
   if (!document.body.contains(element)) return false;
+  
+  // Check for explicit hidden attribute
+  if (element.hasAttribute('hidden')) return false;
+  
+  // Check for aria-hidden="true" - these should not count as present
+  if (element.getAttribute('aria-hidden') === 'true') return false;
+  
+  // Check for visually-hidden class (our stable hiding method)
+  if (element.classList.contains('visually-hidden')) return false;
   
   const style = window.getComputedStyle(element);
   
@@ -39,7 +50,31 @@ function isElementVisible(element: Element): boolean {
     return false;
   }
   
+  // Element is present and visible
   return true;
+}
+
+/**
+ * Check if an element is present but intentionally hidden (not counted as "present")
+ * This includes elements that are kept in DOM for stability but are not user-visible
+ */
+function isElementStablyHidden(element: Element): boolean {
+  if (!element) return false;
+  
+  // Check for aria-hidden="true" (stable hiding pattern)
+  if (element.getAttribute('aria-hidden') === 'true') return true;
+  
+  // Check for visually-hidden class (our stable hiding method)
+  if (element.classList.contains('visually-hidden')) return true;
+  
+  // Check for visibility:hidden with stable positioning
+  const style = window.getComputedStyle(element);
+  if (style.visibility === 'hidden' && 
+      (style.position === 'relative' || style.position === 'absolute')) {
+    return true;
+  }
+  
+  return false;
 }
 
 /**
