@@ -240,7 +240,6 @@ const MarketingShell = ({ children }) => {
                 </div>
             </div>
         </div>
-      </div>
 
       {/* Hash navigation marker - always present */}
       <div 
