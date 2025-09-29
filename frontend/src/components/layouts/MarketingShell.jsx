@@ -22,10 +22,28 @@ const MarketingShell = ({ children }) => {
   const location = useLocation();
   const { user } = useAuth();
 
-  // Mobile menu state
+  // Mobile menu state and count tracking
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [mobileItemCount, setMobileItemCount] = React.useState(0);
   const [productDropdownOpen, setProductDropdownOpen] = React.useState(false);
   const [focusedIndex, setFocusedIndex] = React.useState(-1);
+
+  // Count visible mobile menu items
+  React.useEffect(() => {
+    // Count nav items, auth actions, and theme toggle for marketing shell
+    let count = 0;
+    
+    // MobileNavigation items (marketing focused)
+    count += 3; // Features, Pricing, About
+    
+    // Auth actions 
+    count += 2; // Sign In, Get Started
+    
+    // Theme toggle
+    count += 1;
+    
+    setMobileItemCount(count);
+  }, []);
 
   // Handle product dropdown
   const handleProductDropdownToggle = () => {
