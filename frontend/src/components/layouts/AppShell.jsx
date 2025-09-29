@@ -337,6 +337,15 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
         </div>
 
       {/* Always-present drawer testid - removed duplicate */}
+      
+      {/* Hash navigation marker - always present for authenticated pages */}
+      <div 
+        data-testid={TESTIDS.navCurrentHash}
+        className="sr-only"
+        aria-hidden="true"
+      >
+        {location.hash || '#'}
+      </div>
 
       {/* Main Content */}
       <main className="flex-1">
