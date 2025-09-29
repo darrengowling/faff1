@@ -297,7 +297,7 @@ const LoginPage = () => {
                 {/* Submit Button */}
                 <TestableButton
                   type="submit"
-                  disabled={!isSubmitEnabled()}
+                  loading={loading}
                   className={`w-full ${
                     loading 
                       ? 'bg-blue-400 cursor-not-allowed' 
