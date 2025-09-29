@@ -614,8 +614,9 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
       const response = await axios.post(`${API}/leagues`, formData);
       
       if (response.status === 201) {
-        // Set success marker first
+        // Set success markers for UI feedback
         setCreateSuccess(true);
+        setJustCreatedId(response.data.leagueId);
         debugLog('closed', `league created: ${response.data.leagueId}, closing dialog`);
         
         // Close the dialog first - never leave in data-state="open" after success
