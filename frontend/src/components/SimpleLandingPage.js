@@ -75,7 +75,7 @@ const SimpleLandingPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </TestableSection>
 
       {/* How It Works Section */}
       <section id="how" className="anchor-section py-20 bg-theme-surface" data-testid={TESTIDS.sectionHow}>
