@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids.ts';
+import { byId, selectors, waitForId, clickById, isVisibleById } from './utils/selectors.ts';
 import { 
   checkLandingCTAsClickable, 
   checkAnchorScrolling,
