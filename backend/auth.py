@@ -130,7 +130,7 @@ async def get_current_verified_user(current_user: UserResponse = Depends(get_cur
 # Access control helpers
 async def check_league_access(user_id: str, league_id: str) -> Optional[str]:
     """Check if user has access to league and return their role"""
-    membership = await db.memberships.find_one({
+    membership = await db.league_memberships.find_one({
         "league_id": league_id,
         "user_id": user_id
     })
