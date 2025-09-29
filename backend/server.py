@@ -1088,61 +1088,6 @@ async def reset_test_scoring(request: dict):
         }
     }
 
-    @api_router.get("/test/testids/ping")
-    async def ping_test_ids():
-        """Simple ping endpoint for testing"""
-        if not is_test_mode():
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="TestID endpoints only available in TEST_MODE"
-            )
-        return {"ping": "pong", "timestamp": datetime.now(timezone.utc).isoformat()}
-    
-    @api_router.get("/test/testids/verify")
-    async def verify_test_ids(route: str):
-        """
-        TEST-ONLY TESTID VERIFICATION
-        Verify that required testids are present and visible for a given route.
-        Only enabled when TEST_MODE=true environment variable is set.
-        
-        This endpoint would typically be used by headless browsers or E2E testing
-        to verify testid availability before running tests.
-        """
-        logger.info(f"TestID verification endpoint called for route: {route}")
-        
-        if not is_test_mode():
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="TestID verification endpoints only available in TEST_MODE"
-            )
-        
-        # Import the critical route testids mapping
-        try:
-            # This is a placeholder - in a real implementation, you might:
-            # 1. Use a headless browser (Playwright/Puppeteer) to render the route
-            # 2. Query for the testids in the DOM
-            # 3. Return the verification results
-            
-            # For now, return a mock structure that matches the expected format
-            result = {
-                "present": ["mockTestId1", "mockTestId2"],
-                "missing": ["missingTestId1"],
-                "hidden": ["hiddenTestId1"],
-                "route": route,
-                "timestamp": datetime.now(timezone.utc).isoformat(),
-                "note": "This endpoint requires a headless browser implementation to actually verify DOM testids"
-            }
-            
-            logger.info(f"TestID verification completed for route {route}: {len(result['present'])} present, {len(result['missing'])} missing, {len(result['hidden'])} hidden")
-            return result
-            
-        except Exception as e:
-            logger.error(f"Error verifying testids for route {route}: {e}")
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"Failed to verify testids: {str(e)}"
-            )
-
 # User Routes
 @api_router.get("/users/{user_id}", response_model=UserResponse)
 async def get_user(user_id: str, current_user: UserResponse = Depends(get_current_verified_user)):
