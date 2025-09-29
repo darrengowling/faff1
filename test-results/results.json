@@ -1,0 +1,1802 @@
+{
+  "config": {
+    "configFile": "/app/playwright.config.js",
+    "rootDir": "/app/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/app/tests/e2e/utils/global-setup.ts",
+    "globalTeardown": "/app/tests/e2e/global-teardown.js",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": {
+      "command": "echo \"Using existing preview server\"",
+      "url": "https://magic-league.preview.emergentagent.com",
+      "reuseExistingServer": true,
+      "timeout": 5000
+    }
+  },
+  "suites": [
+    {
+      "title": "e2e/auth_ui.spec.ts",
+      "file": "e2e/auth_ui.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Authentication UI Tests",
+          "file": "e2e/auth_ui.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Login page renders form with all required testid elements",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 7075,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"home-nav-button\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"home-nav-button\"]')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"home-nav-button\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"home-nav-button\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:25:67",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 67,
+                          "line": 25
+                        },
+                        "snippet": "  23 |     // Verify navigation elements exist (no dead-ends)\n  24 |     await expect(page.locator('[data-testid=\"back-to-home-link\"]')).toBeVisible();\n> 25 |     await expect(page.locator('[data-testid=\"home-nav-button\"]')).toBeVisible();\n     |                                                                   ^\n  26 |     \n  27 |     // Verify header structure\n  28 |     await expect(page.locator('[data-testid=\"login-header\"]')).toBeVisible();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 67,
+                            "line": 25
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"home-nav-button\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"home-nav-button\"]')\u001b[22m\n\n\n  23 |     // Verify navigation elements exist (no dead-ends)\n  24 |     await expect(page.locator('[data-testid=\"back-to-home-link\"]')).toBeVisible();\n> 25 |     await expect(page.locator('[data-testid=\"home-nav-button\"]')).toBeVisible();\n     |                                                                   ^\n  26 |     \n  27 |     // Verify header structure\n  28 |     await expect(page.locator('[data-testid=\"login-header\"]')).toBeVisible();\n    at /app/tests/e2e/auth_ui.spec.ts:25:67"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:15:29.011Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 67,
+                        "line": 25
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-c920b0f91d2fba420e40",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "Submit button is disabled for invalid email",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1353,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:15:36.999Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-0f1758306e59da654fe7",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 41,
+              "column": 7
+            },
+            {
+              "title": "Shows error for invalid email submission",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1843,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Invalid email error properly displayed with role=\"alert\" and form remains interactive\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:15:38.505Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-38ea5832603498426849",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 65,
+              "column": 7
+            },
+            {
+              "title": "Successfully submits valid email and shows success",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1912,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Browser Console: Failed to load resource: the server responded with a status of 403 ()\n"
+                        },
+                        {
+                          "text": "Browser Console: Failed to fetch user: AxiosError\n"
+                        },
+                        {
+                          "text": "Browser Console: Token expired or invalid, logging out\n"
+                        },
+                        {
+                          "text": "Browser Console: Failed to load resource: the server responded with a status of 403 ()\n"
+                        },
+                        {
+                          "text": "Browser Console: Failed to fetch user: AxiosError\n"
+                        },
+                        {
+                          "text": "Browser Console: Token expired or invalid, logging out\n"
+                        },
+                        {
+                          "text": "Browser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://magic-league.preview.emergentagent.com/aut…msifQ.rNndh7QjfnlEwsdiiuxol8xrbUlBKRdcT6iCHlE13l0}\n"
+                        },
+                        {
+                          "text": "Browser Console: Test mode: false\n"
+                        },
+                        {
+                          "text": "API Response: {\n  message: \u001b[32m'Magic link generated! (Development Mode - Check below)'\u001b[39m,\n  dev_magic_link: \u001b[32m'https://magic-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTExNjY0MSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.rNndh7QjfnlEwsdiiuxol8xrbUlBKRdcT6iCHlE13l0'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "Dev magic link button found, clicking...\n"
+                        },
+                        {
+                          "text": "Browser Console: 🧪 CREATE-DIALOG: closed - dialog closed\n"
+                        },
+                        {
+                          "text": "Browser Console: 🧪 CREATE-DIALOG: closed - dialog closed\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:15:40.370Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-9a820fe44c2c94ebf913",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 99,
+              "column": 7
+            },
+            {
+              "title": "Back to Home navigation works",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6552,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected string: \u001b[32m\"https://magic-league.preview.emergentagent.com/\"\u001b[39m\nReceived string: \u001b[31m\"https://magic-league.preview.emergentagent.com/\u001b[7mlogin?next=%2Fapp\u001b[27m\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://magic-league.preview.emergentagent.com/login?next=%2Fapp\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected string: \u001b[32m\"https://magic-league.preview.emergentagent.com/\"\u001b[39m\nReceived string: \u001b[31m\"https://magic-league.preview.emergentagent.com/\u001b[7mlogin?next=%2Fapp\u001b[27m\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://magic-league.preview.emergentagent.com/login?next=%2Fapp\"\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:150:24",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 24,
+                          "line": 150
+                        },
+                        "snippet": "  148 |     \n  149 |     // Should navigate back to home page\n> 150 |     await expect(page).toHaveURL('/');\n      |                        ^\n  151 |   });\n  152 |\n  153 |   test('Form handles loading state correctly', async ({ page }) => {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 24,
+                            "line": 150
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected string: \u001b[32m\"https://magic-league.preview.emergentagent.com/\"\u001b[39m\nReceived string: \u001b[31m\"https://magic-league.preview.emergentagent.com/\u001b[7mlogin?next=%2Fapp\u001b[27m\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://magic-league.preview.emergentagent.com/login?next=%2Fapp\"\u001b[22m\n\n\n  148 |     \n  149 |     // Should navigate back to home page\n> 150 |     await expect(page).toHaveURL('/');\n      |                        ^\n  151 |   });\n  152 |\n  153 |   test('Form handles loading state correctly', async ({ page }) => {\n    at /app/tests/e2e/auth_ui.spec.ts:150:24"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:15:42.300Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 24,
+                        "line": 150
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-591855f65081c3d76e14",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 143,
+              "column": 7
+            },
+            {
+              "title": "Form handles loading state correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1636,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "ℹ️ Loading state too fast to catch - checking aria-busy changed\n"
+                        },
+                        {
+                          "text": "Final aria-busy state: false\n"
+                        },
+                        {
+                          "text": "Response status: 200\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:15:49.617Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-83ed21e26f4ec1a5fb74",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 153,
+              "column": 7
+            },
+            {
+              "title": "No dead ends - page always has navigation options",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1537,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:15:51.399Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-3d5ef7a83b4035ac8d76",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 198,
+              "column": 7
+            },
+            {
+              "title": "Test mode disables animations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1480,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:15:52.959Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-07ae0bdbcda4a23a53b1",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 216,
+              "column": 7
+            },
+            {
+              "title": "Login page renders form with all required testid elements",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 7013,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"home-nav-button\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"home-nav-button\"]')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"home-nav-button\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"home-nav-button\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:25:67",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 67,
+                          "line": 25
+                        },
+                        "snippet": "  23 |     // Verify navigation elements exist (no dead-ends)\n  24 |     await expect(page.locator('[data-testid=\"back-to-home-link\"]')).toBeVisible();\n> 25 |     await expect(page.locator('[data-testid=\"home-nav-button\"]')).toBeVisible();\n     |                                                                   ^\n  26 |     \n  27 |     // Verify header structure\n  28 |     await expect(page.locator('[data-testid=\"login-header\"]')).toBeVisible();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 67,
+                            "line": 25
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"home-nav-button\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"home-nav-button\"]')\u001b[22m\n\n\n  23 |     // Verify navigation elements exist (no dead-ends)\n  24 |     await expect(page.locator('[data-testid=\"back-to-home-link\"]')).toBeVisible();\n> 25 |     await expect(page.locator('[data-testid=\"home-nav-button\"]')).toBeVisible();\n     |                                                                   ^\n  26 |     \n  27 |     // Verify header structure\n  28 |     await expect(page.locator('[data-testid=\"login-header\"]')).toBeVisible();\n    at /app/tests/e2e/auth_ui.spec.ts:25:67"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:25.942Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 67,
+                        "line": 25
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-cb348bb50575c7eb23fe",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "Submit button is disabled for invalid email",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1453,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:33.891Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-70f32f7e6dc186261ab0",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 41,
+              "column": 7
+            },
+            {
+              "title": "Shows error for invalid email submission",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2094,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Invalid email error properly displayed with role=\"alert\" and form remains interactive\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:35.508Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-6dd54c4755f899af99fe",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 65,
+              "column": 7
+            },
+            {
+              "title": "Successfully submits valid email and shows success",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1726,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Browser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://magic-league.preview.emergentagent.com/aut…msifQ.37xsCV5bm6O9nwmqkQ6SLa5GH-ICezbRi3zksrJ30AI}\n"
+                        },
+                        {
+                          "text": "Browser Console: Test mode: false\n"
+                        },
+                        {
+                          "text": "API Response: {\n  message: \u001b[32m'Magic link generated! (Development Mode - Check below)'\u001b[39m,\n  dev_magic_link: \u001b[32m'https://magic-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTExNjc1OCwidHlwZSI6Im1hZ2ljX2xpbmsifQ.37xsCV5bm6O9nwmqkQ6SLa5GH-ICezbRi3zksrJ30AI'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "Dev magic link button found, clicking...\n"
+                        },
+                        {
+                          "text": "Browser Console: 🧪 CREATE-DIALOG: closed - dialog closed\n"
+                        },
+                        {
+                          "text": "Browser Console: 🧪 CREATE-DIALOG: closed - dialog closed\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:37.631Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-f1c6548b7b5ae5ddef33",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 99,
+              "column": 7
+            },
+            {
+              "title": "Back to Home navigation works",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6513,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected string: \u001b[32m\"https://magic-league.preview.emergentagent.com/\"\u001b[39m\nReceived string: \u001b[31m\"https://magic-league.preview.emergentagent.com/\u001b[7mlogin?next=%2Fapp\u001b[27m\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://magic-league.preview.emergentagent.com/login?next=%2Fapp\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected string: \u001b[32m\"https://magic-league.preview.emergentagent.com/\"\u001b[39m\nReceived string: \u001b[31m\"https://magic-league.preview.emergentagent.com/\u001b[7mlogin?next=%2Fapp\u001b[27m\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://magic-league.preview.emergentagent.com/login?next=%2Fapp\"\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:150:24",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 24,
+                          "line": 150
+                        },
+                        "snippet": "  148 |     \n  149 |     // Should navigate back to home page\n> 150 |     await expect(page).toHaveURL('/');\n      |                        ^\n  151 |   });\n  152 |\n  153 |   test('Form handles loading state correctly', async ({ page }) => {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 24,
+                            "line": 150
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected string: \u001b[32m\"https://magic-league.preview.emergentagent.com/\"\u001b[39m\nReceived string: \u001b[31m\"https://magic-league.preview.emergentagent.com/\u001b[7mlogin?next=%2Fapp\u001b[27m\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://magic-league.preview.emergentagent.com/login?next=%2Fapp\"\u001b[22m\n\n\n  148 |     \n  149 |     // Should navigate back to home page\n> 150 |     await expect(page).toHaveURL('/');\n      |                        ^\n  151 |   });\n  152 |\n  153 |   test('Form handles loading state correctly', async ({ page }) => {\n    at /app/tests/e2e/auth_ui.spec.ts:150:24"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:39.377Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-Mobile-Chrome/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 24,
+                        "line": 150
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-5a54a1b05895cf07d07d",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 143,
+              "column": 7
+            },
+            {
+              "title": "Form handles loading state correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1585,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "ℹ️ Loading state too fast to catch - checking aria-busy changed\n"
+                        },
+                        {
+                          "text": "Final aria-busy state: false\n"
+                        },
+                        {
+                          "text": "Response status: 200\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:46.651Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-5f2725858bbeced689cd",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 153,
+              "column": 7
+            },
+            {
+              "title": "No dead ends - page always has navigation options",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1310,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:48.385Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-15699680882e03473dce",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 198,
+              "column": 7
+            },
+            {
+              "title": "Test mode disables animations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1273,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:49.722Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-2dfd2300d7c29c59ec14",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 216,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Authentication UI Integration",
+          "file": "e2e/auth_ui.spec.ts",
+          "line": 235,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Form submission works using only testids",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1684,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Form submission completed successfully using testids\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:15:54.456Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-32b52ac1d4fcd15b8676",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 236,
+              "column": 7
+            },
+            {
+              "title": "Complete auth flow using UI login mode",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2604,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🔐 Logging in user: ui-integration-test@example.com (mode: ui)\n"
+                        },
+                        {
+                          "text": "🖱️  UI login for user: ui-integration-test@example.com\n"
+                        },
+                        {
+                          "text": "✅ UI login successful: ui-integration-test@example.com\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:15:56.161Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-d9eb18c40e096b18e844",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 267,
+              "column": 7
+            },
+            {
+              "title": "Shows error for empty email with proper UX",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 16511,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:287:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 287
+                        },
+                        "snippet": "  285 |\n  286 |     // Submit with empty email (form validation should prevent this, but test anyway)\n> 287 |     await emailInput.fill('');\n      |                      ^\n  288 |     await expect(submitBtn).toBeDisabled();\n  289 |     \n  290 |     // Add some text then clear it to test error behavior"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 287
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  285 |\n  286 |     // Submit with empty email (form validation should prevent this, but test anyway)\n> 287 |     await emailInput.fill('');\n      |                      ^\n  288 |     await expect(submitBtn).toBeDisabled();\n  289 |     \n  290 |     // Add some text then clear it to test error behavior\n    at /app/tests/e2e/auth_ui.spec.ts:287:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing empty email error handling...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:15:58.782Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-chromium/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 287
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-5ea5842c38c970a359eb",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 279,
+              "column": 7
+            },
+            {
+              "title": "Shows error for invalid email format with concise message",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 16530,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:308:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 308
+                        },
+                        "snippet": "  306 |\n  307 |     // Enter invalid email and try to submit\n> 308 |     await emailInput.fill('invalid-email-format');\n      |                      ^\n  309 |     \n  310 |     // Button should be disabled for invalid email\n  311 |     await expect(submitBtn).toBeDisabled();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 308
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  306 |\n  307 |     // Enter invalid email and try to submit\n> 308 |     await emailInput.fill('invalid-email-format');\n      |                      ^\n  309 |     \n  310 |     // Button should be disabled for invalid email\n  311 |     await expect(submitBtn).toBeDisabled();\n    at /app/tests/e2e/auth_ui.spec.ts:308:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing invalid email error handling...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:16:16.084Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-chromium/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 308
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-182c2febf95bc39b5da6",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 300,
+              "column": 7
+            },
+            {
+              "title": "Error clears when user starts typing",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 16556,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:354:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 354
+                        },
+                        "snippet": "  352 |\n  353 |     // Enter email that might trigger error\n> 354 |     await emailInput.fill('error-test@invaliddomain999.com');\n      |                      ^\n  355 |     await submitBtn.click();\n  356 |     \n  357 |     // Wait a moment for any potential error"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 354
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  352 |\n  353 |     // Enter email that might trigger error\n> 354 |     await emailInput.fill('error-test@invaliddomain999.com');\n      |                      ^\n  355 |     await submitBtn.click();\n  356 |     \n  357 |     // Wait a moment for any potential error\n    at /app/tests/e2e/auth_ui.spec.ts:354:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing error clearing behavior...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:16:33.508Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-chromium/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 354
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-c030f3ca907daae19f94",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 346,
+              "column": 7
+            },
+            {
+              "title": "Submit button states work correctly during loading",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 16592,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:383:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 383
+                        },
+                        "snippet": "  381 |\n  382 |     // Fill valid email\n> 383 |     await emailInput.fill('loading-test@example.com');\n      |                      ^\n  384 |     \n  385 |     // Button should be enabled\n  386 |     await expect(submitBtn).toBeEnabled();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 383
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  381 |\n  382 |     // Fill valid email\n> 383 |     await emailInput.fill('loading-test@example.com');\n      |                      ^\n  384 |     \n  385 |     // Button should be enabled\n  386 |     await expect(submitBtn).toBeEnabled();\n    at /app/tests/e2e/auth_ui.spec.ts:383:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing submit button states...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:16:50.959Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-chromium/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 383
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-6344b8ea0840a3d3af14",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 375,
+              "column": 7
+            },
+            {
+              "title": "Error display has proper accessibility attributes",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 16554,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:441:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 441
+                        },
+                        "snippet": "  439 |\n  440 |     // Try to trigger an error\n> 441 |     await emailInput.fill('accessibility-test@invaliddomain999.com');\n      |                      ^\n  442 |     await submitBtn.click();\n  443 |     await page.waitForTimeout(2000);\n  444 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 441
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  439 |\n  440 |     // Try to trigger an error\n> 441 |     await emailInput.fill('accessibility-test@invaliddomain999.com');\n      |                      ^\n  442 |     await submitBtn.click();\n  443 |     await page.waitForTimeout(2000);\n  444 |\n    at /app/tests/e2e/auth_ui.spec.ts:441:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing error accessibility...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:08.484Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-chromium/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 441
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-34d5a822404bb148cb16",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 433,
+              "column": 7
+            },
+            {
+              "title": "Form submission works using only testids",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1628,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Form submission completed successfully using testids\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:51.017Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-d609f6e2687238148630",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 236,
+              "column": 7
+            },
+            {
+              "title": "Complete auth flow using UI login mode",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2227,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🔐 Logging in user: ui-integration-test@example.com (mode: ui)\n"
+                        },
+                        {
+                          "text": "🖱️  UI login for user: ui-integration-test@example.com\n"
+                        },
+                        {
+                          "text": "✅ UI login successful: ui-integration-test@example.com\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:52.662Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-64bf6d2ac6be85926691",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 267,
+              "column": 7
+            },
+            {
+              "title": "Shows error for empty email with proper UX",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 16250,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:287:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 287
+                        },
+                        "snippet": "  285 |\n  286 |     // Submit with empty email (form validation should prevent this, but test anyway)\n> 287 |     await emailInput.fill('');\n      |                      ^\n  288 |     await expect(submitBtn).toBeDisabled();\n  289 |     \n  290 |     // Add some text then clear it to test error behavior"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 287
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  285 |\n  286 |     // Submit with empty email (form validation should prevent this, but test anyway)\n> 287 |     await emailInput.fill('');\n      |                      ^\n  288 |     await expect(submitBtn).toBeDisabled();\n  289 |     \n  290 |     // Add some text then clear it to test error behavior\n    at /app/tests/e2e/auth_ui.spec.ts:287:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing empty email error handling...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:17:54.907Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-Mobile-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 287
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-29d2c6efbc2f4a2e05b5",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 279,
+              "column": 7
+            },
+            {
+              "title": "Shows error for invalid email format with concise message",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 16261,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:308:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 308
+                        },
+                        "snippet": "  306 |\n  307 |     // Enter invalid email and try to submit\n> 308 |     await emailInput.fill('invalid-email-format');\n      |                      ^\n  309 |     \n  310 |     // Button should be disabled for invalid email\n  311 |     await expect(submitBtn).toBeDisabled();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 308
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  306 |\n  307 |     // Enter invalid email and try to submit\n> 308 |     await emailInput.fill('invalid-email-format');\n      |                      ^\n  309 |     \n  310 |     // Button should be disabled for invalid email\n  311 |     await expect(submitBtn).toBeDisabled();\n    at /app/tests/e2e/auth_ui.spec.ts:308:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing invalid email error handling...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:18:11.924Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-Mobile-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 308
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-6a215b90e1c11f4994d4",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 300,
+              "column": 7
+            },
+            {
+              "title": "Error clears when user starts typing",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 16295,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:354:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 354
+                        },
+                        "snippet": "  352 |\n  353 |     // Enter email that might trigger error\n> 354 |     await emailInput.fill('error-test@invaliddomain999.com');\n      |                      ^\n  355 |     await submitBtn.click();\n  356 |     \n  357 |     // Wait a moment for any potential error"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 354
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  352 |\n  353 |     // Enter email that might trigger error\n> 354 |     await emailInput.fill('error-test@invaliddomain999.com');\n      |                      ^\n  355 |     await submitBtn.click();\n  356 |     \n  357 |     // Wait a moment for any potential error\n    at /app/tests/e2e/auth_ui.spec.ts:354:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing error clearing behavior...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:18:29.195Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-Mobile-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 354
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-d3db2a42a1ddb660d466",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 346,
+              "column": 7
+            },
+            {
+              "title": "Submit button states work correctly during loading",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 16251,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:383:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 383
+                        },
+                        "snippet": "  381 |\n  382 |     // Fill valid email\n> 383 |     await emailInput.fill('loading-test@example.com');\n      |                      ^\n  384 |     \n  385 |     // Button should be enabled\n  386 |     await expect(submitBtn).toBeEnabled();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 383
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  381 |\n  382 |     // Fill valid email\n> 383 |     await emailInput.fill('loading-test@example.com');\n      |                      ^\n  384 |     \n  385 |     // Button should be enabled\n  386 |     await expect(submitBtn).toBeEnabled();\n    at /app/tests/e2e/auth_ui.spec.ts:383:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing submit button states...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:18:46.404Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-Mobile-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 383
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-c36fb441eb71639e705a",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 375,
+              "column": 7
+            },
+            {
+              "title": "Error display has proper accessibility attributes",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 16360,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:441:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 441
+                        },
+                        "snippet": "  439 |\n  440 |     // Try to trigger an error\n> 441 |     await emailInput.fill('accessibility-test@invaliddomain999.com');\n      |                      ^\n  442 |     await submitBtn.click();\n  443 |     await page.waitForTimeout(2000);\n  444 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 441
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  439 |\n  440 |     // Try to trigger an error\n> 441 |     await emailInput.fill('accessibility-test@invaliddomain999.com');\n      |                      ^\n  442 |     await submitBtn.click();\n  443 |     await page.waitForTimeout(2000);\n  444 |\n    at /app/tests/e2e/auth_ui.spec.ts:441:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing error accessibility...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T03:19:03.555Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-Mobile-Chrome/video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 441
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "fdde5b9cc1d2fd966334-73bc52aadaca769d6dcd",
+              "file": "e2e/auth_ui.spec.ts",
+              "line": 433,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-29T03:15:15.068Z",
+    "duration": 245069.81,
+    "expected": 16,
+    "skipped": 0,
+    "unexpected": 14,
+    "flaky": 0
+  }
+}
