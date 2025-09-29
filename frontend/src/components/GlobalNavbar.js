@@ -21,7 +21,7 @@ import {
   MobileMenuButton 
 } from './navigation/EnhancedNavigationMenu';
 import { AuthNavigation } from './navigation/NavigationMenu';
-import { TESTIDS } from '../testids.js';
+import { TESTIDS } from '../testing/testids.ts';
 
 const GlobalNavbar = () => {
   const { t } = useTranslation();
