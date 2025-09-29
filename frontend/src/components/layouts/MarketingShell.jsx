@@ -173,7 +173,7 @@ const MarketingShell = ({ children }) => {
 
       {/* Mobile Drawer - Always present with explicit contract */}
       <div 
-        className="md:hidden fixed inset-0 z-40"
+        className="fixed inset-0 z-40"
         onClick={() => setMobileMenuOpen(false)}
         aria-hidden={!mobileMenuOpen}
         style={{ 
@@ -181,22 +181,18 @@ const MarketingShell = ({ children }) => {
           pointerEvents: mobileMenuOpen ? 'auto' : 'none',
           visibility: mobileMenuOpen ? 'visible' : 'hidden',
           opacity: mobileMenuOpen ? 1 : 0,
-          transition: 'opacity 0.3s ease-in-out'
+          transition: 'opacity 0.3s ease-in-out',
+          display: window.innerWidth >= 768 ? 'none' : 'block' // Hide on desktop but always present in DOM
         }}
       >
-        <div 
-          className="drawer-backdrop absolute inset-0"
-          style={{ 
-            pointerEvents: 'none' // Backdrop visual only
-          }}
-        />
+        {/* Mobile drawer container with stable testids */}
         <div
           className="bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel"
           id="mobile-navigation"
           role="navigation"
           aria-label="Mobile navigation menu"
           onClick={(e) => e.stopPropagation()}
-          data-testid={TESTIDS.mobileDrawer}
+          data-testid="nav-mobile-drawer"
           data-state={mobileMenuOpen ? "open" : "closed"}
           data-count={mobileItemCount}
           style={{ 
