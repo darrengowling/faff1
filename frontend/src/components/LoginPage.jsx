@@ -241,7 +241,7 @@ const LoginPage = () => {
                   <label for="email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email
                   </label>
-                  <input
+                  <TestableInput
                     ref={emailInputRef}
                     type="email"
                     id="email"
