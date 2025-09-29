@@ -69,210 +69,667 @@
   },
   "suites": [
     {
-      "title": "navigation.spec.ts",
-      "file": "navigation.spec.ts",
+      "title": "landing-page.spec.js",
+      "file": "landing-page.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Navigation Tests",
-          "file": "navigation.spec.ts",
-          "line": 12,
+          "title": "Landing Page - Comprehensive Testing",
+          "file": "landing-page.spec.js",
+          "line": 16,
           "column": 6,
-          "specs": [],
-          "suites": [
+          "specs": [
             {
-              "title": "Mobile Navigation",
-              "file": "navigation.spec.ts",
-              "line": 76,
-              "column": 8,
-              "specs": [
+              "title": "Landing page loads correctly with all sections",
+              "ok": true,
+              "tags": [],
+              "tests": [
                 {
-                  "title": "Mobile hamburger menu works correctly",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
                     {
-                      "timeout": 60000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3510,
+                      "errors": [],
+                      "stdout": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 2556,
-                          "error": {
-                            "message": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n",
-                            "stack": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:88:72",
-                            "location": {
-                              "file": "/app/tests/e2e/navigation.spec.ts",
-                              "column": 72,
-                              "line": 88
-                            },
-                            "snippet": "  86 |       \n  87 |       // Verify mobile drawer is visible\n> 88 |       await page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`).waitFor({ state: 'visible' });\n     |                                                                        ^\n  89 |       \n  90 |       // Test navigation items are listed\n  91 |       const navigationItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] button`);"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "/app/tests/e2e/navigation.spec.ts",
-                                "column": 72,
-                                "line": 88
-                              },
-                              "message": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n\n\n  86 |       \n  87 |       // Verify mobile drawer is visible\n> 88 |       await page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`).waitFor({ state: 'visible' });\n     |                                                                        ^\n  89 |       \n  90 |       // Test navigation items are listed\n  91 |       const navigationItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] button`);\n    at /app/tests/e2e/navigation.spec.ts:88:72"
-                            }
-                          ],
-                          "stdout": [
-                            {
-                              "text": "🎯 Checking clickability at coordinates (354.0, 32.0)\n"
-                            },
-                            {
-                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
-                            },
-                            {
-                              "text": "🔍 Topmost: BUTTON[data-testid=\"nav-hamburger\"]\n"
-                            },
-                            {
-                              "text": "✅ Element is clickable\n"
-                            }
-                          ],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-09-29T12:06:06.774Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/test-failed-1.png"
-                            },
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/video.webm"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "/app/tests/e2e/navigation.spec.ts",
-                            "column": 72,
-                            "line": 88
-                          }
+                          "text": "✅ Page Title - PASSED Expected: \"Friends of PIFA — Sports gaming with friends. No gambling, all strategy.\", Got: \"Friends of PIFA — Sports gaming with friends. No gambling, all strategy.\"\n"
+                        },
+                        {
+                          "text": "✅ All Main Sections - PASSED 6 sections visible\n"
+                        },
+                        {
+                          "text": "✅ Hero Section - PASSED Hero title visible\n"
+                        },
+                        {
+                          "text": "✅ Hero CTA Buttons - PASSED Both CTA buttons visible\n"
+                        },
+                        {
+                          "text": "✅ Footer - PASSED Footer visible\n"
                         }
                       ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "5d2868f7d23420c27cca-13ede477cf1247e81029",
-                  "file": "navigation.spec.ts",
-                  "line": 81,
-                  "column": 9
-                },
-                {
-                  "title": "Mobile navigation shows only enabled items and navigates correctly",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 60000,
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:06:43.225Z",
                       "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "chromium",
-                      "projectName": "chromium",
-                      "results": [
-                        {
-                          "workerIndex": 1,
-                          "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 2594,
-                          "error": {
-                            "message": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n",
-                            "stack": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:104:72",
-                            "location": {
-                              "file": "/app/tests/e2e/navigation.spec.ts",
-                              "column": 72,
-                              "line": 104
-                            },
-                            "snippet": "  102 |       await ensureClickable(hamburgerMenu);\n  103 |       await hamburgerMenu.click();\n> 104 |       await page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`).waitFor({ state: 'visible' });\n      |                                                                        ^\n  105 |       \n  106 |       // Check if navigation items are present using testids\n  107 |       const mobileItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] [role=\"menuitem\"]`);"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "/app/tests/e2e/navigation.spec.ts",
-                                "column": 72,
-                                "line": 104
-                              },
-                              "message": "Error: locator.waitFor: Error: strict mode violation: locator('[data-testid=\"nav-mobile-drawer\"]') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]') to be visible\u001b[22m\n\n\n  102 |       await ensureClickable(hamburgerMenu);\n  103 |       await hamburgerMenu.click();\n> 104 |       await page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"]`).waitFor({ state: 'visible' });\n      |                                                                        ^\n  105 |       \n  106 |       // Check if navigation items are present using testids\n  107 |       const mobileItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] [role=\"menuitem\"]`);\n    at /app/tests/e2e/navigation.spec.ts:104:72"
-                            }
-                          ],
-                          "stdout": [
-                            {
-                              "text": "🎯 Checking clickability at coordinates (354.0, 32.0)\n"
-                            },
-                            {
-                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
-                            },
-                            {
-                              "text": "🔍 Topmost: BUTTON[data-testid=\"nav-hamburger\"]\n"
-                            },
-                            {
-                              "text": "✅ Element is clickable\n"
-                            }
-                          ],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-09-29T12:06:10.365Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/test-failed-1.png"
-                            },
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/video.webm"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "/app/tests/e2e/navigation.spec.ts",
-                            "column": 72,
-                            "line": 104
-                          }
-                        }
-                      ],
-                      "status": "unexpected"
+                      "attachments": []
                     }
                   ],
-                  "id": "5d2868f7d23420c27cca-d9a97c6a0fbeb004a3c1",
-                  "file": "navigation.spec.ts",
-                  "line": 99,
-                  "column": 9
+                  "status": "expected"
                 }
-              ]
+              ],
+              "id": "3e0fb330acbf3aa1aea3-950d2067fc9dcc96137b",
+              "file": "landing-page.spec.js",
+              "line": 60,
+              "column": 7
+            },
+            {
+              "title": "Sticky in-page navigation anchors scroll correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 54289,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Sticky Navigation Visibility - PASSED After scrolling past hero\n"
+                        },
+                        {
+                          "text": "Anchor scroll test for #how failed: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#how\"], button:has-text(\"How it Works\")').first()\u001b[22m\n\u001b[2m    - locator resolved to <button role=\"tab\" tabindex=\"0\" data-section=\"how\" aria-controls=\"how\" aria-selected=\"true\" data-testid=\"tab-how\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-100 text-blue-700 shadow-sm\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Anchor scroll test for #why failed: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#why\"], button:has-text(\"Why FoP\")').first()\u001b[22m\n\u001b[2m    - locator resolved to <button role=\"tab\" tabindex=\"0\" data-section=\"why\" aria-controls=\"why\" aria-selected=\"false\" data-testid=\"tab-why\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Anchor scroll test for #features failed: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#features\"], button:has-text(\"Features\")').first()\u001b[22m\n\u001b[2m    - locator resolved to <button role=\"tab\" tabindex=\"0\" aria-selected=\"false\" data-section=\"features\" aria-controls=\"features\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Anchor scroll test for #safety failed: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#safety\"], button:has-text(\"Fair Play\")').first()\u001b[22m\n\u001b[2m    - locator resolved to <button role=\"tab\" tabindex=\"0\" data-section=\"safety\" aria-selected=\"false\" aria-controls=\"safety\" data-testid=\"tab-fair\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "Anchor scroll test for #faq failed: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#faq\"], button:has-text(\"FAQ\")').first()\u001b[22m\n\u001b[2m    - locator resolved to <button role=\"tab\" tabindex=\"0\" data-section=\"faq\" aria-controls=\"faq\" aria-selected=\"false\" data-testid=\"tab-faq\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "✅ Anchor Scrolling - PASSED 1/6 sections scrolled\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:06:46.883Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-98b23e8810ac776541ae",
+              "file": "landing-page.spec.js",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "Scroll-spy updates active section highlighting",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9330,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "❌ Scroll-spy Active Highlighting - FAILED Active section indicators detected\n"
+                        },
+                        {
+                          "text": "✅ Browser Hash Updates - PASSED Hash: #home\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:07:41.195Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-58981c169aa2575ed4b7",
+              "file": "landing-page.spec.js",
+              "line": 178,
+              "column": 7
+            },
+            {
+              "title": "CTAs route to create/join flows correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3125,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🔍 Checking landing page CTAs for overlay issues...\n"
+                        },
+                        {
+                          "text": "⏭️ CTA not found: [data-testid=\"create-league-btn\"]\n"
+                        },
+                        {
+                          "text": "⏭️ CTA not found: [data-testid=\"join-league-btn\"]\n"
+                        },
+                        {
+                          "text": "🎯 Checking CTA: button:has-text(\"Create a League\")\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (824, 916)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"]\n"
+                        },
+                        {
+                          "text": "✅ CTA clickable: button:has-text(\"Create a League\")\n"
+                        },
+                        {
+                          "text": "🎯 Checking CTA: button:has-text(\"Join with an Invite\")\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (1087, 916)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"]\n"
+                        },
+                        {
+                          "text": "✅ CTA clickable: button:has-text(\"Join with an Invite\")\n"
+                        },
+                        {
+                          "text": "✅ All landing page CTAs are clickable\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (824, 916)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"]\n"
+                        },
+                        {
+                          "text": "✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"]\n"
+                        },
+                        {
+                          "text": "✅ Create League CTA Routing - PASSED Routes to /login\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (1087, 850)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"]\n"
+                        },
+                        {
+                          "text": "✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"]\n"
+                        },
+                        {
+                          "text": "✅ Join Invite CTA Routing - PASSED Routes to /login\n"
+                        },
+                        {
+                          "text": "✅ Sticky CTA (Mobile) - PASSED Mobile sticky CTA routes correctly\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:07:50.545Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-322cd155575eb62f4280",
+              "file": "landing-page.spec.js",
+              "line": 222,
+              "column": 7
+            },
+            {
+              "title": "Responsive design and mobile layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3261,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Responsive Design - PASSED 3/3 viewports working\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:07:53.691Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-9b9429a5f5c1114e8018",
+              "file": "landing-page.spec.js",
+              "line": 285,
+              "column": 7
+            },
+            {
+              "title": "Anchor scrolling works correctly without overlay interference",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1898,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🔍 Checking anchor scrolling functionality...\n"
+                        },
+                        {
+                          "text": "📍 Testing anchor: features\n"
+                        },
+                        {
+                          "text": "⏭️ Anchor link not found: #features\n"
+                        },
+                        {
+                          "text": "📍 Testing anchor: how-it-works\n"
+                        },
+                        {
+                          "text": "⏭️ Anchor link not found: #how-it-works\n"
+                        },
+                        {
+                          "text": "📍 Testing anchor: pricing\n"
+                        },
+                        {
+                          "text": "⏭️ Anchor link not found: #pricing\n"
+                        },
+                        {
+                          "text": "📍 Testing anchor: contact\n"
+                        },
+                        {
+                          "text": "⏭️ Anchor link not found: #contact\n"
+                        },
+                        {
+                          "text": "✅ All anchor scrolling tests passed\n"
+                        },
+                        {
+                          "text": "✅ Anchor Scrolling - PASSED All anchor links work correctly\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:07:56.969Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-794c1b2a35ad05d40973",
+              "file": "landing-page.spec.js",
+              "line": 323,
+              "column": 7
+            },
+            {
+              "title": "Mobile menu closes properly on navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3762,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Checking clickability at coordinates (339.0, 32.0)\n"
+                        },
+                        {
+                          "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                        },
+                        {
+                          "text": "🔍 Topmost: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                        },
+                        {
+                          "text": "✅ Element is clickable\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (339, 32)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "  0: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  1: div.flex.items-center.justify-between.h-16 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  2: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  3: header.sticky.top-0.w-full.bg-theme-surface/95.backdrop-blur-sm.border-b.border-theme-surface-border.z-40[data-testid=\"app-header\"] (z-index: 40, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  4: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  5: div#root (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  6: body.theme-light (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  7: html (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"]\n"
+                        },
+                        {
+                          "text": "✅ Click successful on: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"]\n"
+                        },
+                        {
+                          "text": "❌ Mobile Menu Auto-Close - FAILED locator.isVisible: Error: strict mode violation: getByTestId('nav-mobile-drawer') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m    - checking visibility of getByTestId('nav-mobile-drawer')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "\n============================================================\n"
+                        },
+                        {
+                          "text": "📊 Landing Page Test Summary:\n"
+                        },
+                        {
+                          "text": "⏱️ Duration: 79.46s\n"
+                        },
+                        {
+                          "text": "✅ Passed: 13\n"
+                        },
+                        {
+                          "text": "❌ Failed: 2\n"
+                        },
+                        {
+                          "text": "\n🎉 Successful Tests:\n"
+                        },
+                        {
+                          "text": "  - Page Title\n"
+                        },
+                        {
+                          "text": "  - All Main Sections\n"
+                        },
+                        {
+                          "text": "  - Hero Section\n"
+                        },
+                        {
+                          "text": "  - Hero CTA Buttons\n"
+                        },
+                        {
+                          "text": "  - Footer\n"
+                        },
+                        {
+                          "text": "  - Sticky Navigation Visibility\n"
+                        },
+                        {
+                          "text": "  - Anchor Scrolling\n"
+                        },
+                        {
+                          "text": "  - Browser Hash Updates\n"
+                        },
+                        {
+                          "text": "  - Create League CTA Routing\n"
+                        },
+                        {
+                          "text": "  - Join Invite CTA Routing\n"
+                        },
+                        {
+                          "text": "  - Sticky CTA (Mobile)\n"
+                        },
+                        {
+                          "text": "  - Responsive Design\n"
+                        },
+                        {
+                          "text": "  - Anchor Scrolling\n"
+                        },
+                        {
+                          "text": "\n💥 Failed Tests:\n"
+                        },
+                        {
+                          "text": "  - Scroll-spy Active Highlighting: Active section indicators detected\n"
+                        },
+                        {
+                          "text": "  - Mobile Menu Auto-Close: locator.isVisible: Error: strict mode violation: getByTestId('nav-mobile-drawer') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m    - checking visibility of getByTestId('nav-mobile-drawer')\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "============================================================\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:07:58.884Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-a2025b593f9c64ad304e",
+              "file": "landing-page.spec.js",
+              "line": 336,
+              "column": 7
             }
           ]
         }
@@ -281,11 +738,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-09-29T12:05:43.694Z",
-    "duration": 29571.044,
-    "expected": 0,
+    "startTime": "2025-09-29T12:06:24.638Z",
+    "duration": 98111.56599999999,
+    "expected": 7,
     "skipped": 0,
-    "unexpected": 2,
+    "unexpected": 0,
     "flaky": 0
   }
 }
