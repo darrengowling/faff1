@@ -732,7 +732,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
         {/* Success marker - render until route changes */}
         {createSuccess && (
           <div 
-            data-testid="create-success" 
+            data-testid={TESTIDS.createSuccess} 
             className="sr-only" 
             aria-hidden="true"
           >
@@ -981,7 +981,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
           {/* Success marker for tests */}
           {justCreatedId && (
             <div 
-              data-testid="create-success" 
+              data-testid={TESTIDS.createSuccess} 
               className="mb-4 p-3 bg-green-50 border border-green-200 rounded-md text-green-800 text-center"
             >
               League created successfully! Redirecting to lobby...
