@@ -151,11 +151,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "navigation.spec.ts Mobile Navigation Testing"
-    - "landing-page.spec.js Mobile Landing Page Tests"
+    - "Deterministic League Creation and Lobby Navigation Implementation"
   stuck_tasks: []
   test_all: false
-  test_priority: "frontend_testing"
+  test_priority: "deterministic_flow_testing"
 
 agent_communication:
   - agent: "main"
