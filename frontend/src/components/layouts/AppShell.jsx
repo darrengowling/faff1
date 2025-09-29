@@ -258,14 +258,15 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
           Mobile drawer state: {mobileMenuOpen ? 'open' : 'closed'}
         </div>
 
-        {/* Mobile Drawer - Conditional rendering */}
+        {/* Mobile Drawer - Always rendered with data attributes */}
         <div 
-          className={`md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 drawer-backdrop ${mobileMenuOpen ? 'block' : 'hidden'}`}
+          className="md:hidden fixed inset-0 z-40 drawer-backdrop"
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
           style={{ 
             paddingTop: '64px',
-            pointerEvents: mobileMenuOpen ? 'auto' : 'none'
+            display: mobileMenuOpen ? 'block' : 'none',
+            pointerEvents: 'none' // Backdrop never intercepts clicks
           }}
         >
           <div
@@ -274,7 +275,10 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
             role="navigation"
             aria-label="Mobile navigation menu"
             onClick={(e) => e.stopPropagation()}
-            style={{ pointerEvents: 'auto' }}
+            data-testid="nav-mobile-drawer"
+            data-state={mobileMenuOpen ? 'open' : 'closed'}
+            data-count={mobileItemCount}
+            style={{ pointerEvents: 'auto' }} // Panel allows clicks
           >
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
