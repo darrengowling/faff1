@@ -14,21 +14,15 @@ export default function BackToHomeLink({ className = '', onClick }: BackToHomeLi
   const destination = user ? '/app' : '/';
   
   return (
-    <>
-      <Link
-        to={destination}
-        data-testid="back-to-home-link"
-        data-dest={destination}
-        aria-label="Back to Home"
-        className={`inline-flex items-center gap-2 text-sm underline underline-offset-2 ${className}`}
-        onClick={onClick}
-      >
-        ← Back to Home
-      </Link>
-      {/* Compatibility testid for existing tests - same element logically */}
-      <span data-testid="home-nav-button" className="sr-only" aria-hidden="true">
-        Home Navigation Available
-      </span>
-    </>
+    <Link
+      to={destination}
+      data-testid="back-to-home-link"
+      data-dest={destination}
+      aria-label="Back to Home"
+      className={`inline-flex items-center gap-2 text-sm underline underline-offset-2 ${className}`}
+      onClick={onClick}
+    >
+      ← Back to Home
+    </Link>
   );
 }
