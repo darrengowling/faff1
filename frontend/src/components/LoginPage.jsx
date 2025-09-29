@@ -223,7 +223,7 @@ const LoginPage = () => {
                 onSubmit={handleSubmit} 
                 className="space-y-6" 
                 noValidate={isTestMode}
-                aria-busy={loading}
+                aria-busy={loading ? 'true' : 'false'}
                 data-testid="auth-ready"
               >
                 {/* Loading indicator - always present, visible when loading */}
