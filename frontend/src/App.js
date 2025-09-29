@@ -1862,6 +1862,14 @@ function App() {
         <Router>
           <Toaster />
             
+            {/* Global BackToHomeLink - rendered before any auth guards/redirects */}
+            <div className="fixed top-4 left-4 z-50">
+              <BackToHomeLink 
+                data-testid="back-to-home-link"
+                className="text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border"
+              />
+            </div>
+            
             {/* Global League Creation Success Marker */}
             <LeagueCreateSuccessMarker />
             
