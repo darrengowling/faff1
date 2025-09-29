@@ -243,17 +243,6 @@ const MarketingShell = ({ children }) => {
         </div>
       )}
 
-      {/* Hidden drawer state tracker for testing - Always present */}
-      <div 
-          data-testid="nav-mobile-drawer"
-          data-state={mobileMenuOpen ? 'open' : 'closed'}
-          data-count={mobileItemCount}
-          className="sr-only"
-          aria-hidden="true"
-        >
-          Mobile drawer state: {mobileMenuOpen ? 'open' : 'closed'}
-        </div>
-
       {/* Main Content with proper padding for header */}
       <main className="flex-1">
         {children}
