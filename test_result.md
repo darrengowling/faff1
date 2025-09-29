@@ -115,13 +115,11 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Complete Lobby Joined Count and Rules Badge Testids Implementation"
     - "navigation.spec.ts Mobile Navigation Testing"
     - "landing-page.spec.js Mobile Landing Page Tests"
-  stuck_tasks: 
-    - "Complete Lobby Joined Count and Rules Badge Testids Implementation"
+  stuck_tasks: []
   test_all: false
-  test_priority: "lobby_testids_verification"
+  test_priority: "frontend_testing"
 
 agent_communication:
   - agent: "main"
