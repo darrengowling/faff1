@@ -774,7 +774,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="name">{t('leagueCreation.leagueName')}</Label>
-              <Input
+              <TestableInput
                 id="name"
                 value={formData.name}
                 onChange={(e) => {
