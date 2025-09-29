@@ -432,6 +432,9 @@ export async function awaitCreatedAndInLobby(page: Page, leagueId?: string): Pro
         
         if (data.ready) {
           console.log('✅ League is ready for lobby rendering');
+          // Wait for lobby-ready testid to appear
+          await page.waitForSelector('[data-testid="lobby-ready"]', { timeout: 2000 });
+          console.log('✅ lobby-ready testid found');
           return extractedLeagueId;
         }
         
