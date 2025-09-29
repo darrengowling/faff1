@@ -243,7 +243,7 @@ export async function bid(page: Page, amount: number): Promise<void> {
 export async function waitForSoldBadge(page: Page): Promise<void> {
   console.log('⏳ Waiting for lot to be sold...');
   
-  await page.locator(`[data-testid="${TESTIDS.soldBadge}"]`).waitFor({ state: 'visible', timeout: 15000 });
+  await waitForId(page, 'soldBadge', { timeout: 15000 });
   
   console.log('✅ Lot sold successfully');
 }
