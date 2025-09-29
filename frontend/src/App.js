@@ -102,6 +102,11 @@ const AuthProvider = ({ children }) => {
       // Even without a localStorage token, try to fetch user (for cookie-based auth)
       fetchUser();
     }
+    
+    // Set up testID verification in development
+    if (process.env.NODE_ENV === 'development') {
+      setupRouteVerification();
+    }
   }, [token]);
 
   const fetchUser = async () => {
