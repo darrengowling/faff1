@@ -176,6 +176,40 @@ export const TESTIDS = {
   
   // Quick Actions
   quickJoinLeague: 'quick-join-league',
+
+  // Missing auction testids
+  auctionAssetName: 'auction-asset-name',
+  auctionTimer: 'auction-timer', 
+  auctionTopBid: 'auction-top-bid',
+  closeLotButton: 'close-lot-button',
+  nextLotButton: 'next-lot-button',
+  nominateBtn: 'nominate-btn',
+  soldBadge: 'sold-badge',
+  undoButton: 'undo-button',
+
+  // Missing roster testids  
+  rosterEmpty: 'roster-empty',
+  rosterItem: 'roster-item',
+  rosterItemName: 'roster-item-name', 
+  rosterItemPrice: 'roster-item-price',
+  rosterList: 'roster-list',
+
+  // Missing budget/slots testids
+  budgetRemaining: 'budget-remaining',
+  yourBudget: 'your-budget',
+  yourSlotsRemaining: 'your-slots-remaining',
+
+  // Missing invite testids
+  inviteLinkUrl: 'invite-link-url',
+  inviteSubmitButton: 'invite-submit-button', 
+  joinLeagueButton: 'join-league-button',
+
+  // Missing admin testids
+  adminPanel: 'admin-panel',
+
+  // Missing hardcoded testids
+  loginHeader: 'login-header',
+  devMagicLinkBtn: 'dev-magic-link-btn',
 } as const;
 
 // Type for testid values (for TypeScript safety)
