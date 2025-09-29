@@ -184,7 +184,7 @@ export async function startAuction(page: Page): Promise<void> {
   await startButton.click();
   
   // Wait for auction room to load
-  await byId(page, 'auctionRoom').waitFor({ state: 'visible', timeout: 15000 });
+  await waitForId(page, 'auctionRoom', { timeout: 15000 });
   
   console.log('✅ Auction started successfully');
 }
