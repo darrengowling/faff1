@@ -63,7 +63,7 @@ frontend:
   - task: "Loading State Test Fix in auth_ui.spec.ts"
     implemented: true
     working: true
-    file: "/app/frontend/src/pages/LoginPage.jsx"
+    file: "/app/frontend/src/components/LoginPage.jsx"
     stuck_count: 0
     priority: "medium"
     needs_retesting: false
@@ -71,6 +71,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "✅ LOADING STATE IMPLEMENTATION VERIFIED: Authentication loading states are working correctly with proper testids (auth-loading) and accessibility attributes (aria-busy). Form shows 'Sending Magic Link' during submission and handles loading states deterministically."
+      - working: true
+        agent: "testing"
+        comment: "✅ LOGIN PAGE DETERMINISTIC AND TESTABLE FIXES VERIFIED: Comprehensive testing confirms all login page improvements are working correctly. CRITICAL VERIFICATION: ✅ login-header testid found with 'Sign In' text, ✅ Email validation short-circuit working (no API calls for invalid emails), ✅ Error message 'Please enter a valid email.' displayed correctly, ✅ Error element has proper accessibility (role='alert', aria-live='assertive'), ✅ Focus management maintains email input focus after errors, ✅ Submit button re-enabled after validation errors, ✅ Valid emails trigger API calls correctly, ✅ TEST_MODE enables testing of invalid email submissions. The login page is now deterministic, testable, and should pass auth_ui.spec.ts tests successfully."
 
   - task: "Sticky Header/Drawer Un-blockable & Deterministic Anchors"
     implemented: true
