@@ -31,7 +31,7 @@ import CreateLeagueWizard from './components/CreateLeagueWizard';
 import { SafeRoute } from './components/routing/RouteGuards';
 import AppShell from './components/layouts/AppShell';
 import MarketingShell from './components/layouts/MarketingShell';
-import BackToHomeLink from './components/BackToHomeLink';
+import BackToHomeLink from './components/BackToHomeLink.tsx';
 import EnhancedHomeScreen from './components/EnhancedHomeScreen';
 import DashboardContent from './components/DashboardContent';
 import AppLayout, { DashboardLayout, AuctionLayout, AdminLayout, RosterLayout, FixturesLayout, LeaderboardLayout } from './components/layouts/AppLayout';
