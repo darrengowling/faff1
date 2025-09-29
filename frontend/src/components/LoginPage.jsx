@@ -295,7 +295,7 @@ const LoginPage = () => {
                 )}
 
                 {/* Submit Button */}
-                <Button
+                <TestableButton
                   type="submit"
                   disabled={!isSubmitEnabled()}
                   className={`w-full ${
