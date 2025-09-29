@@ -224,10 +224,22 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Mobile Drawer Contract Implementation"
+    - "Comprehensive E2E Testing for 85% Target Pass Rate"
   stuck_tasks: []
   test_all: false
-  test_priority: "mobile_drawer_contract_testing"
+  test_priority: "comprehensive_e2e_testing"
+
+  - task: "Comprehensive E2E Testing for 85% Target Pass Rate"
+    implemented: true
+    working: false
+    file: "/app/frontend/src/testids.ts, /app/frontend/src/components/LandingPage.jsx, /app/frontend/src/components/layouts/MarketingShell.jsx"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "🎯 COMPREHENSIVE E2E TESTING RESULTS - 63.6% PASS RATE (BELOW 85% TARGET): Executed comprehensive testid verification for Friends of PIFA auction platform as requested in review. CRITICAL FINDINGS: ✅ WORKING TESTIDS (21/33 verified): Landing page sections (section-home, section-how, section-why, section-features, section-safety, section-faq) - ALL IMPLEMENTED ✅, Authentication testids (login-header, auth-email-input, auth-submit-btn, auth-ready, auth-loading, back-to-home-link) - FULLY FUNCTIONAL ✅, Navigation testids (nav-brand, nav-sign-in, nav-hamburger, nav-mobile-drawer, nav-current-hash) - ALL WORKING ✅, Mobile drawer functionality (data-state, data-count, escape key, hamburger click) - FULLY OPERATIONAL ✅, League creation dialog (create-dialog, create-name, create-submit) - PARTIALLY WORKING ✅. ❌ CRITICAL GAPS IDENTIFIED (12/33 missing): CTA testids (cta-create-league, cta-join-league) - NOT IMPLEMENTED (buttons exist but lack testids), Navigation item testids (nav-item-home, nav-item-how, nav-item-why, nav-item-features, nav-item-safety, nav-item-faq) - COMPLETELY MISSING from mobile drawer, Auction testids (auction-asset-name, auction-timer, auction-top-bid, close-lot-button, next-lot-button, nominate-btn, sold-badge, undo-button) - NOT ACCESSIBLE (need auction page), Roster testids (roster-empty, roster-item, roster-item-name, roster-item-price, roster-list, budget-remaining, your-budget, your-slots-remaining) - NOT ACCESSIBLE (need roster page), Some admin/invite testids - PARTIALLY MISSING. ENVIRONMENT VARIABLES CONFIRMED: TEST_MODE=true, ALLOW_TEST_LOGIN=true, BID_TIMER_SECONDS=8, ANTI_SNIPE_SECONDS=3, NEXT_PUBLIC_SOCKET_TRANSPORTS=polling,websocket all working correctly. AUTHENTICATION FLOW: Magic link generation working, dev magic link button accessible, but authentication completion has session issues. BACKEND STATUS: 90.9% success rate maintained, no backend issues detected. OVERALL ASSESSMENT: Current pass rate 63.6% is significantly below 85% target. Core functionality (landing page, authentication, navigation, mobile drawer) working excellently, but critical testid gaps prevent achieving target pass rate. Priority fixes needed: 1) Add cta-create-league and cta-join-league testids to landing page buttons, 2) Implement nav-item-* testids in mobile drawer navigation items, 3) Ensure auction/roster testids are accessible when those pages load, 4) Fix authentication session completion for full E2E flow testing."
 
   - task: "Mobile Drawer Contract Implementation"
     implemented: true
