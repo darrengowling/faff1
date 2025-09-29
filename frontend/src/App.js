@@ -1805,6 +1805,57 @@ const LeagueCreateSuccessMarker = () => {
 
 // Main App Component
 function App() {
+  // TEST_MODE: Globally disable animations/transitions to prevent timing issues
+  useEffect(() => {
+    const isTestMode = () => {
+      return (
+        process.env.NODE_ENV === 'test' ||
+        process.env.REACT_APP_PLAYWRIGHT_TEST === 'true' ||
+        process.env.REACT_APP_TEST_MODE === 'true' ||
+        (typeof window !== 'undefined' && window.location.search.includes('playwright=true'))
+      );
+    };
+
+    if (isTestMode()) {
+      console.log('🧪 TEST_MODE: Injecting global animation/transition disablement CSS');
+      
+      // Create and inject TEST_MODE CSS
+      const testModeStyles = document.createElement('style');
+      testModeStyles.id = 'test-mode-styles';
+      testModeStyles.innerHTML = `
+        /* TEST_MODE: Disable animations and transitions globally */
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+        
+        /* TEST_MODE: Disable smooth scrolling */
+        html {
+          scroll-behavior: auto !important;
+        }
+        
+        /* TEST_MODE: Prevent sticky jitter */
+        * {
+          animation-duration: 0s !important;
+          animation-delay: 0s !important;
+          transition-duration: 0s !important;
+          transition-delay: 0s !important;
+        }
+      `;
+      
+      // Inject at the end of head to override other styles
+      document.head.appendChild(testModeStyles);
+      
+      // Cleanup on unmount
+      return () => {
+        const existingStyles = document.getElementById('test-mode-styles');
+        if (existingStyles) {
+          document.head.removeChild(existingStyles);
+        }
+      };
+    }
+  }, []);
+
   return (
     <ThemeProvider>
       <AuthProvider>
