@@ -69,20 +69,20 @@
   },
   "suites": [
     {
-      "title": "landing-page.spec.js",
-      "file": "landing-page.spec.js",
+      "title": "auth_ui.spec.ts",
+      "file": "auth_ui.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Landing Page - Comprehensive Testing",
-          "file": "landing-page.spec.js",
-          "line": 16,
+          "title": "Authentication UI Tests",
+          "file": "auth_ui.spec.ts",
+          "line": 5,
           "column": 6,
           "specs": [
             {
-              "title": "Landing page loads correctly with all sections",
+              "title": "Login page renders form with all required testid elements",
               "ok": true,
               "tags": [],
               "tests": [
@@ -97,28 +97,16 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3510,
+                      "duration": 2077,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "✅ Page Title - PASSED Expected: \"Friends of PIFA — Sports gaming with friends. No gambling, all strategy.\", Got: \"Friends of PIFA — Sports gaming with friends. No gambling, all strategy.\"\n"
-                        },
-                        {
-                          "text": "✅ All Main Sections - PASSED 6 sections visible\n"
-                        },
-                        {
-                          "text": "✅ Hero Section - PASSED Hero title visible\n"
-                        },
-                        {
-                          "text": "✅ Hero CTA Buttons - PASSED Both CTA buttons visible\n"
-                        },
-                        {
-                          "text": "✅ Footer - PASSED Footer visible\n"
+                          "text": "✅ Login form renders correctly with all required testid elements\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-09-29T12:06:43.225Z",
+                      "startTime": "2025-09-29T12:15:20.145Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -126,13 +114,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "3e0fb330acbf3aa1aea3-950d2067fc9dcc96137b",
-              "file": "landing-page.spec.js",
-              "line": 60,
+              "id": "03a6b9075963f640fefd-16a7cbf7c39be55f4930",
+              "file": "auth_ui.spec.ts",
+              "line": 11,
               "column": 7
             },
             {
-              "title": "Sticky in-page navigation anchors scroll correctly",
+              "title": "Submit button is disabled for invalid email",
               "ok": true,
               "tags": [],
               "tests": [
@@ -147,34 +135,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 54289,
+                      "duration": 1596,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Sticky Navigation Visibility - PASSED After scrolling past hero\n"
-                        },
-                        {
-                          "text": "Anchor scroll test for #how failed: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#how\"], button:has-text(\"How it Works\")').first()\u001b[22m\n\u001b[2m    - locator resolved to <button role=\"tab\" tabindex=\"0\" data-section=\"how\" aria-controls=\"how\" aria-selected=\"true\" data-testid=\"tab-how\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-100 text-blue-700 shadow-sm\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n"
-                        },
-                        {
-                          "text": "Anchor scroll test for #why failed: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#why\"], button:has-text(\"Why FoP\")').first()\u001b[22m\n\u001b[2m    - locator resolved to <button role=\"tab\" tabindex=\"0\" data-section=\"why\" aria-controls=\"why\" aria-selected=\"false\" data-testid=\"tab-why\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n"
-                        },
-                        {
-                          "text": "Anchor scroll test for #features failed: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#features\"], button:has-text(\"Features\")').first()\u001b[22m\n\u001b[2m    - locator resolved to <button role=\"tab\" tabindex=\"0\" aria-selected=\"false\" data-section=\"features\" aria-controls=\"features\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n"
-                        },
-                        {
-                          "text": "Anchor scroll test for #safety failed: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#safety\"], button:has-text(\"Fair Play\")').first()\u001b[22m\n\u001b[2m    - locator resolved to <button role=\"tab\" tabindex=\"0\" data-section=\"safety\" aria-selected=\"false\" aria-controls=\"safety\" data-testid=\"tab-fair\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n"
-                        },
-                        {
-                          "text": "Anchor scroll test for #faq failed: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#faq\"], button:has-text(\"FAQ\")').first()\u001b[22m\n\u001b[2m    - locator resolved to <button role=\"tab\" tabindex=\"0\" data-section=\"faq\" aria-controls=\"faq\" aria-selected=\"false\" data-testid=\"tab-faq\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <main class=\"flex-1\">…</main> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n"
-                        },
-                        {
-                          "text": "✅ Anchor Scrolling - PASSED 1/6 sections scrolled\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-09-29T12:06:46.883Z",
+                      "startTime": "2025-09-29T12:15:22.365Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -182,13 +148,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "3e0fb330acbf3aa1aea3-98b23e8810ac776541ae",
-              "file": "landing-page.spec.js",
-              "line": 109,
+              "id": "03a6b9075963f640fefd-fde3573f92da4c9a1833",
+              "file": "auth_ui.spec.ts",
+              "line": 43,
               "column": 7
             },
             {
-              "title": "Scroll-spy updates active section highlighting",
+              "title": "Shows error for invalid email submission",
               "ok": true,
               "tags": [],
               "tests": [
@@ -203,19 +169,16 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 9330,
+                      "duration": 2214,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "❌ Scroll-spy Active Highlighting - FAILED Active section indicators detected\n"
-                        },
-                        {
-                          "text": "✅ Browser Hash Updates - PASSED Hash: #home\n"
+                          "text": "✅ Invalid email error properly displayed with role=\"alert\" and form remains interactive\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-09-29T12:07:41.195Z",
+                      "startTime": "2025-09-29T12:15:23.984Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -223,13 +186,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "3e0fb330acbf3aa1aea3-58981c169aa2575ed4b7",
-              "file": "landing-page.spec.js",
-              "line": 178,
+              "id": "03a6b9075963f640fefd-ec2a5dfc6d4fbdba2635",
+              "file": "auth_ui.spec.ts",
+              "line": 67,
               "column": 7
             },
             {
-              "title": "CTAs route to create/join flows correctly",
+              "title": "Successfully submits valid email and shows success",
               "ok": true,
               "tags": [],
               "tests": [
@@ -244,220 +207,40 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3125,
+                      "duration": 1734,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "🔍 Checking landing page CTAs for overlay issues...\n"
+                          "text": "Browser Console: Failed to fetch user: AxiosError\n"
                         },
                         {
-                          "text": "⏭️ CTA not found: [data-testid=\"create-league-btn\"]\n"
+                          "text": "Browser Console: Token expired or invalid, logging out\n"
                         },
                         {
-                          "text": "⏭️ CTA not found: [data-testid=\"join-league-btn\"]\n"
+                          "text": "Browser Console: Failed to load resource: the server responded with a status of 403 ()\n"
                         },
                         {
-                          "text": "🎯 Checking CTA: button:has-text(\"Create a League\")\n"
+                          "text": "Browser Console: Failed to fetch user: AxiosError\n"
                         },
                         {
-                          "text": "🎯 Checking overlay at center point (824, 916)\n"
+                          "text": "Browser Console: Token expired or invalid, logging out\n"
                         },
                         {
-                          "text": "📍 Elements at point (top to bottom):\n"
+                          "text": "Browser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://magic-league.preview.emergentagent.com/aut…msifQ.e0wSlSy9rODdIqSxksWg-wenSeJvTx2dqxbdF-FkCMQ}\n"
                         },
                         {
-                          "text": "  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"] (z-index: auto, pointer-events: auto)\n"
+                          "text": "Browser Console: Test mode: false\n"
                         },
                         {
-                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
+                          "text": "API Response: {\n  message: \u001b[32m'Magic link generated! (Development Mode - Check below)'\u001b[39m,\n  dev_magic_link: \u001b[32m'https://magic-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE0OTAyNywidHlwZSI6Im1hZ2ljX2xpbmsifQ.e0wSlSy9rODdIqSxksWg-wenSeJvTx2dqxbdF-FkCMQ'\u001b[39m\n}\n"
                         },
                         {
-                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"]\n"
-                        },
-                        {
-                          "text": "✅ CTA clickable: button:has-text(\"Create a League\")\n"
-                        },
-                        {
-                          "text": "🎯 Checking CTA: button:has-text(\"Join with an Invite\")\n"
-                        },
-                        {
-                          "text": "🎯 Checking overlay at center point (1087, 916)\n"
-                        },
-                        {
-                          "text": "📍 Elements at point (top to bottom):\n"
-                        },
-                        {
-                          "text": "  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"] (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"]\n"
-                        },
-                        {
-                          "text": "✅ CTA clickable: button:has-text(\"Join with an Invite\")\n"
-                        },
-                        {
-                          "text": "✅ All landing page CTAs are clickable\n"
-                        },
-                        {
-                          "text": "🎯 Checking overlay at center point (824, 916)\n"
-                        },
-                        {
-                          "text": "📍 Elements at point (top to bottom):\n"
-                        },
-                        {
-                          "text": "  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"] (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"]\n"
-                        },
-                        {
-                          "text": "✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"]\n"
-                        },
-                        {
-                          "text": "✅ Create League CTA Routing - PASSED Routes to /login\n"
-                        },
-                        {
-                          "text": "🎯 Checking overlay at center point (1087, 850)\n"
-                        },
-                        {
-                          "text": "📍 Elements at point (top to bottom):\n"
-                        },
-                        {
-                          "text": "  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"] (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"]\n"
-                        },
-                        {
-                          "text": "✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"]\n"
-                        },
-                        {
-                          "text": "✅ Join Invite CTA Routing - PASSED Routes to /login\n"
-                        },
-                        {
-                          "text": "✅ Sticky CTA (Mobile) - PASSED Mobile sticky CTA routes correctly\n"
+                          "text": "Dev magic link button found, clicking...\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-09-29T12:07:50.545Z",
+                      "startTime": "2025-09-29T12:15:26.227Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -465,13 +248,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "3e0fb330acbf3aa1aea3-322cd155575eb62f4280",
-              "file": "landing-page.spec.js",
-              "line": 222,
+              "id": "03a6b9075963f640fefd-c66a1c63b7b3bd54cd83",
+              "file": "auth_ui.spec.ts",
+              "line": 101,
               "column": 7
             },
             {
-              "title": "Responsive design and mobile layout",
+              "title": "Back to Home navigation works",
               "ok": true,
               "tags": [],
               "tests": [
@@ -486,16 +269,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3261,
+                      "duration": 1580,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Responsive Design - PASSED 3/3 viewports working\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-09-29T12:07:53.691Z",
+                      "startTime": "2025-09-29T12:15:27.982Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -503,13 +282,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "3e0fb330acbf3aa1aea3-9b9429a5f5c1114e8018",
-              "file": "landing-page.spec.js",
-              "line": 285,
+              "id": "03a6b9075963f640fefd-140158d28f89de1d308b",
+              "file": "auth_ui.spec.ts",
+              "line": 145,
               "column": 7
             },
             {
-              "title": "Anchor scrolling works correctly without overlay interference",
+              "title": "Form handles loading state correctly",
               "ok": true,
               "tags": [],
               "tests": [
@@ -524,46 +303,22 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1898,
+                      "duration": 1592,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "🔍 Checking anchor scrolling functionality...\n"
+                          "text": "ℹ️ Loading state too fast to catch - checking aria-busy changed\n"
                         },
                         {
-                          "text": "📍 Testing anchor: features\n"
+                          "text": "Final aria-busy state: false\n"
                         },
                         {
-                          "text": "⏭️ Anchor link not found: #features\n"
-                        },
-                        {
-                          "text": "📍 Testing anchor: how-it-works\n"
-                        },
-                        {
-                          "text": "⏭️ Anchor link not found: #how-it-works\n"
-                        },
-                        {
-                          "text": "📍 Testing anchor: pricing\n"
-                        },
-                        {
-                          "text": "⏭️ Anchor link not found: #pricing\n"
-                        },
-                        {
-                          "text": "📍 Testing anchor: contact\n"
-                        },
-                        {
-                          "text": "⏭️ Anchor link not found: #contact\n"
-                        },
-                        {
-                          "text": "✅ All anchor scrolling tests passed\n"
-                        },
-                        {
-                          "text": "✅ Anchor Scrolling - PASSED All anchor links work correctly\n"
+                          "text": "Response status: 200\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-09-29T12:07:56.969Z",
+                      "startTime": "2025-09-29T12:15:29.578Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -571,13 +326,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "3e0fb330acbf3aa1aea3-794c1b2a35ad05d40973",
-              "file": "landing-page.spec.js",
-              "line": 323,
+              "id": "03a6b9075963f640fefd-96a890925798fac6caad",
+              "file": "auth_ui.spec.ts",
+              "line": 155,
               "column": 7
             },
             {
-              "title": "Mobile menu closes properly on navigation",
+              "title": "No dead ends - page always has navigation options",
               "ok": true,
               "tags": [],
               "tests": [
@@ -592,133 +347,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3762,
+                      "duration": 1411,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎯 Checking clickability at coordinates (339.0, 32.0)\n"
-                        },
-                        {
-                          "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
-                        },
-                        {
-                          "text": "🔍 Topmost: BUTTON[data-testid=\"nav-hamburger\"]\n"
-                        },
-                        {
-                          "text": "✅ Element is clickable\n"
-                        },
-                        {
-                          "text": "🎯 Checking overlay at center point (339, 32)\n"
-                        },
-                        {
-                          "text": "📍 Elements at point (top to bottom):\n"
-                        },
-                        {
-                          "text": "  0: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"] (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  1: div.flex.items-center.justify-between.h-16 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  2: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  3: header.sticky.top-0.w-full.bg-theme-surface/95.backdrop-blur-sm.border-b.border-theme-surface-border.z-40[data-testid=\"app-header\"] (z-index: 40, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  4: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  5: div#root (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  6: body.theme-light (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "  7: html (z-index: auto, pointer-events: auto)\n"
-                        },
-                        {
-                          "text": "✅ No overlay blocking target: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"]\n"
-                        },
-                        {
-                          "text": "✅ Click successful on: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"]\n"
-                        },
-                        {
-                          "text": "❌ Mobile Menu Auto-Close - FAILED locator.isVisible: Error: strict mode violation: getByTestId('nav-mobile-drawer') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m    - checking visibility of getByTestId('nav-mobile-drawer')\u001b[22m\n\n"
-                        },
-                        {
-                          "text": "\n============================================================\n"
-                        },
-                        {
-                          "text": "📊 Landing Page Test Summary:\n"
-                        },
-                        {
-                          "text": "⏱️ Duration: 79.46s\n"
-                        },
-                        {
-                          "text": "✅ Passed: 13\n"
-                        },
-                        {
-                          "text": "❌ Failed: 2\n"
-                        },
-                        {
-                          "text": "\n🎉 Successful Tests:\n"
-                        },
-                        {
-                          "text": "  - Page Title\n"
-                        },
-                        {
-                          "text": "  - All Main Sections\n"
-                        },
-                        {
-                          "text": "  - Hero Section\n"
-                        },
-                        {
-                          "text": "  - Hero CTA Buttons\n"
-                        },
-                        {
-                          "text": "  - Footer\n"
-                        },
-                        {
-                          "text": "  - Sticky Navigation Visibility\n"
-                        },
-                        {
-                          "text": "  - Anchor Scrolling\n"
-                        },
-                        {
-                          "text": "  - Browser Hash Updates\n"
-                        },
-                        {
-                          "text": "  - Create League CTA Routing\n"
-                        },
-                        {
-                          "text": "  - Join Invite CTA Routing\n"
-                        },
-                        {
-                          "text": "  - Sticky CTA (Mobile)\n"
-                        },
-                        {
-                          "text": "  - Responsive Design\n"
-                        },
-                        {
-                          "text": "  - Anchor Scrolling\n"
-                        },
-                        {
-                          "text": "\n💥 Failed Tests:\n"
-                        },
-                        {
-                          "text": "  - Scroll-spy Active Highlighting: Active section indicators detected\n"
-                        },
-                        {
-                          "text": "  - Mobile Menu Auto-Close: locator.isVisible: Error: strict mode violation: getByTestId('nav-mobile-drawer') resolved to 3 elements:\n    1) <div data-count=\"7\" role=\"navigation\" data-state=\"open\" id=\"mobile-navigation\" data-testid=\"nav-mobile-drawer\" aria-label=\"Mobile navigation menu\" class=\"bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel\">…</div> aka getByLabel('Mobile navigation menu')\n    2) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(1)\n    3) <div data-count=\"7\" class=\"sr-only\" data-state=\"open\" aria-hidden=\"true\" data-testid=\"nav-mobile-drawer\">Mobile drawer state: open</div> aka getByTestId('nav-mobile-drawer').nth(2)\n\nCall log:\n\u001b[2m    - checking visibility of getByTestId('nav-mobile-drawer')\u001b[22m\n\n"
-                        },
-                        {
-                          "text": "============================================================\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-09-29T12:07:58.884Z",
+                      "startTime": "2025-09-29T12:15:31.186Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -726,9 +360,523 @@
                   "status": "expected"
                 }
               ],
-              "id": "3e0fb330acbf3aa1aea3-a2025b593f9c64ad304e",
-              "file": "landing-page.spec.js",
-              "line": 336,
+              "id": "03a6b9075963f640fefd-b2e090213d7dd9fc5a44",
+              "file": "auth_ui.spec.ts",
+              "line": 200,
+              "column": 7
+            },
+            {
+              "title": "Test mode disables animations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1429,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:15:32.614Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-8c07875bc5127b233182",
+              "file": "auth_ui.spec.ts",
+              "line": 218,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Authentication UI Integration",
+          "file": "auth_ui.spec.ts",
+          "line": 237,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Form submission works using only testids",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1772,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Form submission completed successfully using testids\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:15:34.060Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-5a0bc8ebc36d0d18578e",
+              "file": "auth_ui.spec.ts",
+              "line": 238,
+              "column": 7
+            },
+            {
+              "title": "Complete auth flow using UI login mode",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2884,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🔐 Logging in user: ui-integration-test@example.com (mode: ui)\n"
+                        },
+                        {
+                          "text": "🖱️  UI login for user: ui-integration-test@example.com\n"
+                        },
+                        {
+                          "text": "✅ UI login successful: ui-integration-test@example.com\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:15:35.848Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-2511f37fb5c022ccca49",
+              "file": "auth_ui.spec.ts",
+              "line": 269,
+              "column": 7
+            },
+            {
+              "title": "Shows error for empty email with proper UX",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11053,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:289:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 289
+                        },
+                        "snippet": "  287 |\n  288 |     // Submit with empty email (form validation should prevent this, but test anyway)\n> 289 |     await emailInput.fill('');\n      |                      ^\n  290 |     await expect(submitBtn).toBeDisabled();\n  291 |     \n  292 |     // Add some text then clear it to test error behavior"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 289
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  287 |\n  288 |     // Submit with empty email (form validation should prevent this, but test anyway)\n> 289 |     await emailInput.fill('');\n      |                      ^\n  290 |     await expect(submitBtn).toBeDisabled();\n  291 |     \n  292 |     // Add some text then clear it to test error behavior\n    at /app/tests/e2e/auth_ui.spec.ts:289:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing empty email error handling...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:15:38.748Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 289
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-8211cb37914dd849d4a7",
+              "file": "auth_ui.spec.ts",
+              "line": 281,
+              "column": 7
+            },
+            {
+              "title": "Shows error for invalid email format with concise message",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11123,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:310:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 310
+                        },
+                        "snippet": "  308 |\n  309 |     // Enter invalid email and try to submit\n> 310 |     await emailInput.fill('invalid-email-format');\n      |                      ^\n  311 |     \n  312 |     // Button should be disabled for invalid email\n  313 |     await expect(submitBtn).toBeDisabled();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 310
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  308 |\n  309 |     // Enter invalid email and try to submit\n> 310 |     await emailInput.fill('invalid-email-format');\n      |                      ^\n  311 |     \n  312 |     // Button should be disabled for invalid email\n  313 |     await expect(submitBtn).toBeDisabled();\n    at /app/tests/e2e/auth_ui.spec.ts:310:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing invalid email error handling...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:15:50.608Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 310
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-ac21712ece11ffeccf88",
+              "file": "auth_ui.spec.ts",
+              "line": 302,
+              "column": 7
+            },
+            {
+              "title": "Error clears when user starts typing",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11098,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:356:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 356
+                        },
+                        "snippet": "  354 |\n  355 |     // Enter email that might trigger error\n> 356 |     await emailInput.fill('error-test@invaliddomain999.com');\n      |                      ^\n  357 |     await submitBtn.click();\n  358 |     \n  359 |     // Wait a moment for any potential error"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 356
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  354 |\n  355 |     // Enter email that might trigger error\n> 356 |     await emailInput.fill('error-test@invaliddomain999.com');\n      |                      ^\n  357 |     await submitBtn.click();\n  358 |     \n  359 |     // Wait a moment for any potential error\n    at /app/tests/e2e/auth_ui.spec.ts:356:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing error clearing behavior...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:16:02.652Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 356
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-c7318167fe6268fc0bef",
+              "file": "auth_ui.spec.ts",
+              "line": 348,
+              "column": 7
+            },
+            {
+              "title": "Submit button states work correctly during loading",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11191,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:385:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 385
+                        },
+                        "snippet": "  383 |\n  384 |     // Fill valid email\n> 385 |     await emailInput.fill('loading-test@example.com');\n      |                      ^\n  386 |     \n  387 |     // Button should be enabled\n  388 |     await expect(submitBtn).toBeEnabled();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 385
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  383 |\n  384 |     // Fill valid email\n> 385 |     await emailInput.fill('loading-test@example.com');\n      |                      ^\n  386 |     \n  387 |     // Button should be enabled\n  388 |     await expect(submitBtn).toBeEnabled();\n    at /app/tests/e2e/auth_ui.spec.ts:385:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing submit button states...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:16:14.665Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 385
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-ef2d4aa0749639d18765",
+              "file": "auth_ui.spec.ts",
+              "line": 377,
+              "column": 7
+            },
+            {
+              "title": "Error display has proper accessibility attributes",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11141,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:443:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 443
+                        },
+                        "snippet": "  441 |\n  442 |     // Try to trigger an error\n> 443 |     await emailInput.fill('accessibility-test@invaliddomain999.com');\n      |                      ^\n  444 |     await submitBtn.click();\n  445 |     await page.waitForTimeout(2000);\n  446 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 443
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  441 |\n  442 |     // Try to trigger an error\n> 443 |     await emailInput.fill('accessibility-test@invaliddomain999.com');\n      |                      ^\n  444 |     await submitBtn.click();\n  445 |     await page.waitForTimeout(2000);\n  446 |\n    at /app/tests/e2e/auth_ui.spec.ts:443:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing error accessibility...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-29T12:16:26.770Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 443
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-4481e3e6a45b0e05d79c",
+              "file": "auth_ui.spec.ts",
+              "line": 435,
               "column": 7
             }
           ]
@@ -738,11 +886,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-09-29T12:06:24.638Z",
-    "duration": 98111.56599999999,
-    "expected": 7,
+    "startTime": "2025-09-29T12:15:07.440Z",
+    "duration": 90697.26999999999,
+    "expected": 10,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 5,
     "flaky": 0
   }
 }
