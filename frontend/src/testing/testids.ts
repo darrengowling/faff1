@@ -27,6 +27,8 @@ export const TESTIDS = {
   createSuccess: 'create-success',
   createLoading: 'create-loading',
   createError: 'create-error',
+  createLeagueBtn: 'create-league-btn',
+  navCreateLeagueBtn: 'nav-create-league-btn',
   
   // Lobby/Auction
   lobbyReady: 'lobby-ready',
