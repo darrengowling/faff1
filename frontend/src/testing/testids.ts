@@ -61,6 +61,14 @@ export const TESTIDS = {
   landingCtaCreate: 'cta-create-league',
   landingCtaJoin: 'cta-join-league',
   
+  // Landing page sections
+  sectionHome: 'section-home',
+  sectionHow: 'section-how', 
+  sectionWhy: 'section-why',
+  sectionFeatures: 'section-features',
+  sectionSafety: 'section-safety',
+  sectionFaq: 'section-faq',
+  
   // Navigation items for mobile drawer
   navItemHome: 'nav-item-home',
   navItemHow: 'nav-item-how',
