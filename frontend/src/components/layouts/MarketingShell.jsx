@@ -34,6 +34,9 @@ const MarketingShell = ({ children }) => {
     // Count nav items, auth actions, and theme toggle for marketing shell
     let count = 0;
     
+    // Back to Home link
+    count += 1;
+    
     // MobileNavigation items (marketing focused)
     count += 3; // Features, Pricing, About
     
