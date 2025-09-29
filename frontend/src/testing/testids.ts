@@ -56,6 +56,18 @@ export const TESTIDS = {
   appHeader: 'app-header',
   mobileDrawer: 'nav-mobile-drawer',
   navCurrentHash: 'nav-current-hash',
+  
+  // Landing page CTAs
+  landingCtaCreate: 'cta-create-league',
+  landingCtaJoin: 'cta-join-league',
+  
+  // Navigation items for mobile drawer
+  navItemHome: 'nav-item-home',
+  navItemHow: 'nav-item-how',
+  navItemWhy: 'nav-item-why',
+  navItemFeatures: 'nav-item-features',
+  navItemSafety: 'nav-item-safety',
+  navItemFaq: 'nav-item-faq',
 } as const;
 
 export type TestIdKey = keyof typeof TESTIDS;
