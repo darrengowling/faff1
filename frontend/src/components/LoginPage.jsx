@@ -220,7 +220,7 @@ const LoginPage = () => {
               <CardTitle className="text-xl text-center" data-testid={TESTIDS.loginHeader}>Magic Link Authentication</CardTitle>
             </CardHeader>
             <CardContent>
-              <form 
+              <TestableForm 
                 onSubmit={handleSubmit} 
                 className="space-y-6" 
                 noValidate={isTestMode}
