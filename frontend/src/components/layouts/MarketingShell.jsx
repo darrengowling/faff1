@@ -12,7 +12,7 @@ import { Button } from '../ui/button';
 import { HeaderBrand } from '../ui/brand-badge';
 import { ProductDropdownMenu } from '../navigation/ProductDropdownMenu';
 import { AuthNavigation } from '../navigation/AuthNavigation';
-import { MobileNavigation } from '../navigation/MobileNavigation';
+import MobileNavigation from '../navigation/MobileNavigation';
 import { IconThemeToggle } from '../ui/theme-toggle';
 import { TESTIDS } from '../../testids';
 import { useAuth } from '../../App';
