@@ -240,7 +240,14 @@ const MarketingShell = ({ children }) => {
         </div>
       </div>
 
-      {/* Always-present drawer testid - removed duplicate */}
+      {/* Hash navigation marker - always present */}
+      <div 
+        data-testid={TESTIDS.navCurrentHash}
+        className="sr-only"
+        aria-hidden="true"
+      >
+        {currentHash}
+      </div>
 
       {/* Main Content with proper padding for header */}
       <main className="flex-1">
