@@ -5,4 +5,4 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronUp, Menu, X } from 'lucide-react';
-import { TESTIDS } from '../testing/testids';
+import { TESTIDS } from '../testids';
