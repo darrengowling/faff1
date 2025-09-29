@@ -1263,7 +1263,6 @@ const LeagueManagement = ({ league, onBack }) => {
                   ? 'bg-green-600 hover:bg-green-700' 
                   : 'bg-gray-400 cursor-not-allowed'}`}
                 data-testid={TESTIDS.startAuction}
-                aria-disabled={!leagueStatus?.is_ready}
                 disabled={!leagueStatus?.is_ready}
                 title={!leagueStatus?.is_ready ? 
                   `Cannot start auction - need minimum ${leagueStatus?.min_members || 2} members (currently ${leagueStatus?.member_count || 0})` : 
