@@ -77,6 +77,9 @@ export const TESTIDS = {
   navItemFeatures: 'nav-item-features',
   navItemSafety: 'nav-item-safety',
   navItemFaq: 'nav-item-faq',
+  
+  // Additional testids for compatibility
+  homeNavButton: 'home-nav-button',
 } as const;
 
 export type TestIdKey = keyof typeof TESTIDS;
