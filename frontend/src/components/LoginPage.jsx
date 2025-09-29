@@ -115,14 +115,19 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      // Add small delay in test mode to make loading state more testable
-      if (isTestMode && emailValue.includes('loading-test')) {
-        await new Promise(resolve => setTimeout(resolve, 500));
-      }
+      // Add minimum loading duration in test mode to make loading state more testable
+      const loadingStartTime = Date.now();
+      const minLoadingDuration = isTestMode ? 800 : 0; // Minimum 800ms in test mode
       
       const response = await axios.post(`${API}/auth/magic-link`, {
         email: emailValue
       });
+
+      // Ensure minimum loading duration for testability
+      const loadingElapsed = Date.now() - loadingStartTime;
+      if (loadingElapsed < minLoadingDuration) {
+        await new Promise(resolve => setTimeout(resolve, minLoadingDuration - loadingElapsed));
+      }
 
       setLoading(false);
       setSuccess('Magic link sent! Check your email or use the link below.');
