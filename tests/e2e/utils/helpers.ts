@@ -270,7 +270,7 @@ export async function verifyBudgetAmount(page: Page, expectedAmount: number): Pr
  * Navigation helpers
  */
 export async function navigateToRoster(page: Page): Promise<void> {
-  await page.locator(`[data-testid="${TESTIDS.navDropdownItemRoster}"]`).click();
+  await clickById(page, 'navDropdownItemRoster');
   await page.waitForURL('**/clubs/**', { timeout: 10000 });
 }
 
