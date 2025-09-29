@@ -17,6 +17,7 @@ import { IconThemeToggle } from '../ui/theme-toggle';
 import { TESTIDS } from '../../testids';
 import { useAuth } from '../../App';
 import BackToHomeLink from '../BackToHomeLink.tsx';
+import useScrollSpy from '../../hooks/useScrollSpy';
 
 const MarketingShell = ({ children }) => {
   const navigate = useNavigate();
