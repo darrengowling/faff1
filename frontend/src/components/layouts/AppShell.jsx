@@ -114,6 +114,20 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
     });
   }, [location.pathname]);
 
+  // Handle Escape key to close mobile menu
+  React.useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [mobileMenuOpen]);
+
   return (
     <div className="min-h-screen bg-theme-surface-secondary flex flex-col">
       {/* Single App Header */}
