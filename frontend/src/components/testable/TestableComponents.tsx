@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Type that enforces data-testid presence
 type MustHaveTestId = { 'data-testid': string };
@@ -38,6 +39,16 @@ export function TestableLink(
   props: JSX.IntrinsicElements['a'] & MustHaveTestId
 ) {
   return <a {...props} />;
+}
+
+/**
+ * TestableRouterLink - React Router Link that must have a data-testid
+ * Used for critical navigation with React Router
+ */
+export function TestableRouterLink(
+  props: React.ComponentProps<typeof Link> & MustHaveTestId
+) {
+  return <Link {...props} />;
 }
 
 /**
