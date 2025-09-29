@@ -1248,7 +1248,7 @@ const LeagueManagement = ({ league, onBack }) => {
                 className={`w-full ${leagueStatus?.is_ready 
                   ? 'bg-green-600 hover:bg-green-700' 
                   : 'bg-gray-400 cursor-not-allowed'}`}
-                data-testid={TESTIDS.startAuctionBtn}
+                data-testid={TESTIDS.startAuction}
                 aria-disabled={!leagueStatus?.is_ready}
                 disabled={!leagueStatus?.is_ready}
                 title={!leagueStatus?.is_ready ? 
