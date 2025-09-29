@@ -39,7 +39,7 @@ class FocusedAuthLeagueTest:
         return success
 
     def make_request(self, method, endpoint, data=None, expected_status=200, token=None):
-        """Make HTTP request with proper headers"""
+        """Make HTTP request with proper headers and session handling"""
         url = f"{self.api_url}/{endpoint}"
         headers = {'Content-Type': 'application/json'}
         
@@ -49,13 +49,13 @@ class FocusedAuthLeagueTest:
             
         try:
             if method == 'GET':
-                response = requests.get(url, headers=headers, timeout=15)
+                response = self.session.get(url, headers=headers, timeout=15)
             elif method == 'POST':
-                response = requests.post(url, json=data, headers=headers, timeout=15)
+                response = self.session.post(url, json=data, headers=headers, timeout=15)
             elif method == 'PUT':
-                response = requests.put(url, json=data, headers=headers, timeout=15)
+                response = self.session.put(url, json=data, headers=headers, timeout=15)
             elif method == 'DELETE':
-                response = requests.delete(url, headers=headers, timeout=15)
+                response = self.session.delete(url, headers=headers, timeout=15)
             
             success = response.status_code == expected_status
             response_data = {}
