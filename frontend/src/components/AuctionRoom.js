@@ -692,7 +692,7 @@ const AuctionRoom = ({ user, token }) => {
               </Button>
               <div className="flex items-center space-x-2">
                 <Trophy className="w-6 h-6 text-yellow-500" />
-                <h1 className="text-xl font-bold">{t('nav.appName', { brandName: getBrandName() })}</h1>
+                <h1 className="text-xl font-bold" data-testid={TESTIDS.auctionTitle}>{t('nav.appName', { brandName: getBrandName() })}</h1>
               </div>
               <Badge variant={connected ? 'default' : 'destructive'}>
                 {connected ? 'LIVE' : 'DISCONNECTED'}
