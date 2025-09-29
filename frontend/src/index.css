@@ -159,6 +159,15 @@ code {
   nav[aria-label="Page sections navigation"].-translate-y-full * {
     pointer-events: none !important;
   }
+
+  /* Mobile drawer pointer events */
+  .drawer-backdrop {
+    pointer-events: none !important;
+  }
+  
+  .drawer-panel {
+    pointer-events: auto !important;
+  }
   
   /* Fix hamburger menu button child elements */
   button[data-testid="nav-hamburger"] svg,
