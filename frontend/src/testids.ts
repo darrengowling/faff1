@@ -130,6 +130,7 @@ export const TESTIDS = {
   joinAuctionBtn: 'join-auction-btn',
   
   // Lobby & Auction Info
+  lobbyReady: 'lobby-ready',
   lobbyJoined: 'lobby-joined',
   lobbyJoinedCount: 'lobby-joined-count',
   rulesBadge: 'rules-badge',
