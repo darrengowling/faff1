@@ -1188,7 +1188,7 @@ const LeagueManagement = ({ league, onBack }) => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" data-testid="lobby-ready">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
