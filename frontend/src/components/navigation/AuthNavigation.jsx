@@ -19,7 +19,7 @@ export const AuthNavigation = ({ variant = 'desktop' }) => {
       <div className="space-y-3">
         {user ? (
           <>
-            <div className="flex items-center space-x-2 p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-center space-x-2 p-3 bg-gray-50 rounded-lg" data-testid={TESTIDS.userMenu}>
               <User className="w-4 h-4 text-gray-600" />
               <span className="text-sm text-gray-700">{user.email}</span>
             </div>
