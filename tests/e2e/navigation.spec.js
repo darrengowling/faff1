@@ -187,14 +187,17 @@ test.describe('Navigation Components - Comprehensive Testing', () => {
               await mobileMenuBtn.click();
             }
             await page.waitForTimeout(500);
-            drawerCloses = !(await mobileDrawer.isVisible());
+            
+            // Check data-state attribute for reliable closing detection
+            const newDataState = await mobileDrawer.getAttribute('data-state');
+            drawerCloses = newDataState === 'closed';
           } catch (error) {
             console.log('Mobile drawer close test failed:', error.message);
           }
 
-          trackResult('Mobile Drawer Closes', drawerCloses, 'Drawer closes correctly');
+          trackResult('Mobile Drawer Closes', drawerCloses, `Drawer data-state="${await mobileDrawer.getAttribute('data-state')}"`);
 
-          // Test theme toggle in mobile menu
+          // Test theme toggle in mobile menu (reopen first)
           await mobileMenuBtn.click(); // Reopen to test theme toggle
           await page.waitForTimeout(500);
           
