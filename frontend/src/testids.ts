@@ -214,6 +214,17 @@ export const TESTIDS = {
   // Missing hardcoded testids
   loginHeader: 'login-header',
   devMagicLinkBtn: 'dev-magic-link-btn',
+  
+  // Auth form testids (consolidated naming)
+  authFormReady: 'auth-ready',
+  backToHome: 'back-to-home-link',
+  
+  // App navigation testids
+  appHeader: 'app-header',
+  homeNavButton: 'home-nav-button',
+  
+  // Mobile drawer testids
+  mobileDrawer: 'nav-mobile-drawer',
 
   // Navigation item testids
   navItemHome: 'nav-item-home',
