@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../App';
 import { TESTIDS } from '../testids';
+import { TestableRouterLink } from './testable/TestableComponents';
 
 interface BackToHomeLinkProps {
   className?: string;
@@ -15,7 +16,7 @@ export default function BackToHomeLink({ className = '', onClick }: BackToHomeLi
   const destination = user ? '/app' : '/';
   
   return (
-    <Link
+    <TestableRouterLink
       to={destination}
       data-testid={TESTIDS.backToHome}
       data-dest={destination}
@@ -24,6 +25,6 @@ export default function BackToHomeLink({ className = '', onClick }: BackToHomeLi
       onClick={onClick}
     >
       ← Back to Home
-    </Link>
+    </TestableRouterLink>
   );
 }
