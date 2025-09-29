@@ -289,17 +289,24 @@ const LoginPage = () => {
                   <span className="text-sm font-medium">{error || 'No error'}</span>
                 </div>
 
-                {/* Success Message - Block element */}
-                {success && (
-                  <div 
-                    className="flex items-center space-x-2 text-green-600 bg-green-50 p-3 rounded-md block w-full"
-                    data-testid={TESTIDS.authSuccess}
-                    style={{ display: 'block' }}
-                  >
-                    <CheckCircle className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm">{success}</span>
-                  </div>
-                )}
+                {/* Success Message - Always present, visible when success exists (Stable DOM Pattern) */}
+                <div 
+                  className={`flex items-center space-x-2 text-green-600 bg-green-50 p-3 rounded-md block w-full ${
+                    success ? 'opacity-100' : 'opacity-0 sr-only'
+                  }`}
+                  data-testid={TESTIDS.authSuccess}
+                  style={{ 
+                    display: 'block',
+                    visibility: success ? 'visible' : 'hidden',
+                    height: success ? 'auto' : '0px',
+                    padding: success ? '12px' : '0px',
+                    margin: success ? undefined : '0px'
+                  }}
+                  aria-hidden={!success}
+                >
+                  <CheckCircle className="w-4 h-4 flex-shrink-0" />
+                  <span className="text-sm">{success || 'No success message'}</span>
+                </div>
 
                 {/* Submit Button */}
                 <TestableButton
