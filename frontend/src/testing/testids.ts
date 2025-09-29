@@ -91,6 +91,28 @@ export const TESTIDS = {
   navItemFeatures: 'nav-item-features',
   navItemSafety: 'nav-item-safety',
   navItemFaq: 'nav-item-faq',
+
+  // Navigation dropdown items
+  navDropdownItemRoster: 'nav-dropdown-item-roster',
+  navDropdownItemLeaderboard: 'nav-dropdown-item-leaderboard',
+  navDropdownItemFixtures: 'nav-dropdown-item-fixtures',
+
+  // Roster/Budget
+  rosterItem: 'roster-item',
+  rosterItemName: 'roster-item-name',
+  rosterItemPrice: 'roster-item-price',
+  rosterList: 'roster-list',
+  rosterEmpty: 'roster-empty',
+  budgetRemaining: 'budget-remaining',
+  yourBudget: 'your-budget',
+  yourSlotsRemaining: 'your-slots-remaining',
+
+  // Join/Invite actions
+  joinLeagueButton: 'join-league-button',
+  joinViaInviteBtn: 'join-via-invite-btn',
+
+  // Admin
+  adminPanel: 'admin-panel',
 } as const;
 
 export type TestIdKey = keyof typeof TESTIDS;
