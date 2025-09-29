@@ -214,7 +214,7 @@ const LoginPage = () => {
             {/* Render contract: form with auth-ready testid, loading state handling */}
             <form 
               onSubmit={handleSubmit}
-              data-testid={`${TESTIDS.authReady}${loading ? ` ${TESTIDS.authLoading}` : ''}`}
+              data-testid={`${TESTIDS.authFormReady}${loading ? ` ${TESTIDS.authLoading}` : ''}`}
               aria-busy={loading}
               className="space-y-4"
             >
