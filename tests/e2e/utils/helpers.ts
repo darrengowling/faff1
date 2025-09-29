@@ -251,7 +251,7 @@ export async function waitForSoldBadge(page: Page): Promise<void> {
 export async function verifyRosterCount(page: Page, expectedCount: number): Promise<void> {
   console.log(`🔍 Verifying roster count: ${expectedCount}`);
   
-  const rosterItems = page.locator(`[data-testid="${TESTIDS.rosterItem}"]`);
+  const rosterItems = byId(page, 'rosterItem');
   await expect(rosterItems).toHaveCount(expectedCount, { timeout: 10000 });
   
   console.log(`✅ Roster count verified: ${expectedCount}`);
