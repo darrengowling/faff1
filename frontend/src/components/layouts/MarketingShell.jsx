@@ -18,6 +18,7 @@ import { TESTIDS } from '../../testids';
 import { useAuth } from '../../App';
 import BackToHomeLink from '../BackToHomeLink.tsx';
 import useScrollSpy from '../../hooks/useScrollSpy';
+import { useHashSpy } from '../../hooks/useHashSpy.js';
 
 const MarketingShell = ({ children }) => {
   const navigate = useNavigate();
