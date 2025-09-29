@@ -177,7 +177,7 @@ describe('Contract Tests: Critical Route TestIDs', () => {
           const isPresent = results.passed.includes(testId) || results.hidden.includes(testId);
           expect(isPresent).toBe(true);
         });
-        });
+      });
       });
     });
   });
