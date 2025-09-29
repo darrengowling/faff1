@@ -12,6 +12,7 @@ import { TESTIDS } from './testids.js';
 import { ThemeProvider } from './theme/ThemeProvider';
 import { getBrandName } from './brand';
 import { AuthBrand } from './components/ui/brand-badge.jsx';
+import { CompactRules } from './components/ui/rules-badge.jsx';
 
 // Import components
 import AuctionRoom from './components/AuctionRoom';
