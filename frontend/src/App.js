@@ -8,7 +8,7 @@ import './styles/mobile-optimizations.css';
 // Initialize i18n
 import './i18n';
 import { useTranslation } from 'react-i18next';
-import { TESTIDS } from './testing/testids';
+import { TESTIDS } from './testids';
 import { ThemeProvider } from './theme/ThemeProvider';
 import { getBrandName } from './brand';
 import { AuthBrand } from './components/ui/brand-badge.jsx';
