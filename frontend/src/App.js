@@ -14,6 +14,9 @@ import { getBrandName } from './brand';
 import { AuthBrand } from './components/ui/brand-badge.jsx';
 import { CompactRules } from './components/ui/rules-badge.jsx';
 
+// Import testing utilities
+import { setupRouteVerification } from './testing/verifyTestIds.ts';
+
 // Import components
 import AuctionRoom from './components/AuctionRoom';
 import MyClubs from './components/MyClubs';
