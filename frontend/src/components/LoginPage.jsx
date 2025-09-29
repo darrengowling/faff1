@@ -61,6 +61,17 @@ const LoginPage = () => {
     setSuccess('');
     setMagicLink('');
 
+    // Email validation - do this BEFORE any loading state
+    if (emailValue && !isValidEmail(emailValue)) {
+      setError('Please enter a valid email.');
+      // Keep focus on email input for better UX
+      const focusDelay = isTestMode ? 0 : 100;
+      setTimeout(() => {
+        emailInputRef.current?.focus();
+      }, focusDelay);
+      return;
+    }
+
     // In TEST_MODE, try /auth/test-login first, fall back to UI on 404
     // Skip test-login for emails specifically meant to test magic link flow
     if (isTestMode && (emailValue.includes('@example.com') || emailValue.includes('test')) && !emailValue.includes('magic-link')) {
