@@ -1,0 +1,200 @@
+INFO:     10.64.129.114:47416 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.130.247:36868 - "GET /api/leagues HTTP/1.1" 200 OK
+
+🔗 Magic Link for playwright-test@example.com:
+   https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTAyNTYwNiwidHlwZSI6Im1hZ2ljX2xpbmsifQ.Ew0s26C4OX97AEwPLB1iaxiTHCAXlP6R8RfgQVlAvaA
+
+INFO:     10.64.129.114:33862 - "POST /api/auth/magic-link HTTP/1.1" 200 OK
+INFO:     10.64.130.247:42254 - "POST /api/auth/verify HTTP/1.1" 200 OK
+INFO:     10.64.129.114:33862 - "POST /api/auth/verify HTTP/1.1" 200 OK
+INFO:     10.64.131.28:55292 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.130.247:42254 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.133.36:59010 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.129.114:33862 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.131.28:55292 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+
+🔗 Magic Link for loading-test@example.com:
+   https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxvYWRpbmctdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTAyNTYxMywidHlwZSI6Im1hZ2ljX2xpbmsifQ.QckVstPMgoK7PnJk47o4DkNYi9V2ZfrAWJk6vQsLJb4
+
+INFO:     10.64.129.114:33876 - "POST /api/auth/magic-link HTTP/1.1" 200 OK
+
+🔗 Magic Link for animation-test@example.com:
+   https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuaW1hdGlvbi10ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzU5MDI1NjMyLCJ0eXBlIjoibWFnaWNfbGluayJ9.GBi4u6fbt3CWCihG7-ricN5Wm-_484Z5Cs0R64fURbE
+
+INFO:     10.64.131.137:56160 - "POST /api/auth/magic-link HTTP/1.1" 200 OK
+
+🔗 Magic Link for test-submission@example.com:
+   https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Qtc3VibWlzc2lvbkBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTAyNTYzNSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.jAvY9MoNNG1bJgP37VS1HzmqH4VwsD96q9BZxs9_Tk0
+
+INFO:     10.64.139.65:40522 - "POST /api/auth/magic-link HTTP/1.1" 200 OK
+
+🔗 Magic Link for ui-integration-test@example.com:
+   https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVpLWludGVncmF0aW9uLXRlc3RAZXhhbXBsZS5jb20iLCJleHAiOjE3NTkwMjU2MzksInR5cGUiOiJtYWdpY19saW5rIn0.ru8VCzQER2MC5WaSeN4Fuz6RDfUfJGpOOJHcfwjx2Eg
+
+INFO:     10.64.128.144:38562 - "POST /api/auth/magic-link HTTP/1.1" 200 OK
+INFO:     10.64.132.230:56860 - "POST /api/auth/verify HTTP/1.1" 200 OK
+INFO:     10.64.131.137:59632 - "POST /api/auth/verify HTTP/1.1" 200 OK
+INFO:     10.64.139.65:40522 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.133.70:57860 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.133.70:57860 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.139.65:40522 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.128.144:38562 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.139.65:36130 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.139.65:36130 - "GET /api/competition-profiles/ucl HTTP/1.1" 200 OK
+INFO:     10.64.128.144:57444 - "PATCH /api/leagues/test-id/settings HTTP/1.1" 403 Forbidden
+INFO:     10.64.128.144:44784 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.128.144:44784 - "POST /api/auth/test-login HTTP/1.1" 200 OK
+INFO:     10.64.133.70:33212 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.133.70:33212 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.132.230:34262 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.138.37:52232 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.138.37:52244 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.133.70:33212 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.133.70:33212 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.133.70:33212 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.132.230:34262 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.138.37:52244 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.138.37:52232 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.138.37:52232 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.132.230:34262 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.131.137:34414 - "POST /api/auth/test-login HTTP/1.1" 200 OK
+INFO:     10.64.139.65:56168 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.131.137:34414 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.128.144:55878 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.139.65:56168 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.128.144:55890 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.128.144:55890 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.131.137:34414 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.139.65:48446 - "POST /api/leagues HTTP/1.1" 200 OK
+
+🔗 Magic Link for commissioner@test.com:
+   https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvbW1pc3Npb25lckB0ZXN0LmNvbSIsImV4cCI6MTc1OTAyNTc4NCwidHlwZSI6Im1hZ2ljX2xpbmsifQ.SXXsOnW1eEnzK7rtrYJFTEVxf4NLlVWMCDYcusyLYTk
+
+INFO:     10.64.139.65:56842 - "POST /api/auth/magic-link HTTP/1.1" 200 OK
+INFO:     10.64.139.65:56842 - "POST /api/auth/verify HTTP/1.1" 200 OK
+INFO:     10.64.131.137:37934 - "POST /api/auth/verify HTTP/1.1" 200 OK
+INFO:     10.64.128.144:43066 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.139.65:56842 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.128.144:43072 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.131.137:37934 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.128.144:43066 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.131.137:37934 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.139.65:56842 - "POST /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.131.137:35472 - "POST /api/auth/test-login HTTP/1.1" 200 OK
+INFO:     10.64.131.28:40298 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.129.114:38836 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.131.28:40298 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.133.36:56536 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.129.114:38836 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.129.114:38836 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.133.36:56536 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.131.28:40298 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.133.36:56536 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.130.247:44290 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.129.114:38836 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.130.247:44290 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.129.114:38836 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+
+🔗 Magic Link for regression-test@example.com:
+   https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZ3Jlc3Npb24tdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTAyNTkzOCwidHlwZSI6Im1hZ2ljX2xpbmsifQ.cfIiUIu8X-VFomOakB9RaqK_e0oQfF8_M1jW9kf4uTM
+
+INFO:     10.64.129.114:52784 - "POST /api/auth/magic-link HTTP/1.1" 200 OK
+INFO:     10.64.130.247:39972 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+
+🔗 Magic Link for slots-test@example.com:
+   https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNsb3RzLXRlc3RAZXhhbXBsZS5jb20iLCJleHAiOjE3NTkwMjU5NTIsInR5cGUiOiJtYWdpY19saW5rIn0.sFwMXlSMjOvK40M7YPLxmkTdEkKjYt84WtsiNGH884E
+
+INFO:     10.64.131.28:43708 - "POST /api/auth/magic-link HTTP/1.1" 200 OK
+INFO:     10.64.132.230:60640 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.138.37:57962 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.132.230:60640 - "GET /api/clubs HTTP/1.1" 200 OK
+INFO:     10.64.133.70:43814 - "GET /api/timez HTTP/1.1" 200 OK
+INFO:     10.64.132.230:60640 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.138.37:57962 - "POST /api/auth/test-login HTTP/1.1" 200 OK
+INFO:     10.64.131.28:47572 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.131.28:47572 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.130.247:58230 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.133.36:43406 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.133.36:43410 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.129.114:38674 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.131.28:47572 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.131.28:47572 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.130.247:58230 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.133.36:43410 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.130.247:35576 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.129.114:38674 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.133.36:52658 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.129.114:56104 - "POST /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.138.37:46776 - "POST /api/auth/test-login HTTP/1.1" 200 OK
+INFO:     10.64.129.114:56104 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.131.28:59176 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.130.247:39856 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.129.114:56104 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.130.247:39868 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.131.28:59176 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.133.36:60404 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.129.114:56104 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.131.28:59176 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.129.114:56104 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.131.28:40224 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.130.247:39868 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.133.70:42992 - "POST /api/auth/test-login HTTP/1.1" 200 OK
+INFO:     10.64.138.37:46358 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.129.114:45594 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.130.247:34708 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.132.230:39590 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.133.36:60660 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.132.230:39590 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.129.114:45594 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.129.114:45594 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.133.36:60660 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.132.230:39590 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.131.28:40240 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.132.230:39590 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.138.37:44410 - "POST /api/auth/magic-link HTTP/1.1" 422 Unprocessable Entity
+INFO:     10.64.130.247:33476 - "POST /api/auth/magic-link HTTP/1.1" 422 Unprocessable Entity
+INFO:     10.64.131.137:50884 - "POST /api/auth/magic-link HTTP/1.1" 422 Unprocessable Entity
+INFO:     10.64.128.144:44272 - "POST /api/auth/magic-link HTTP/1.1" 422 Unprocessable Entity
+INFO:     10.64.133.70:42276 - "POST /api/auth/magic-link HTTP/1.1" 422 Unprocessable Entity
+INFO:     10.64.132.230:37006 - "POST /api/auth/magic-link HTTP/1.1" 422 Unprocessable Entity
+INFO:     10.64.133.70:39278 - "POST /api/auth/magic-link HTTP/1.1" 422 Unprocessable Entity
+INFO:     10.64.133.70:53410 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.133.70:53410 - "GET /api HTTP/1.1" 404 Not Found
+INFO:     10.64.138.37:39112 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.129.114:57454 - "GET /api/nonexistent-endpoint HTTP/1.1" 404 Not Found
+INFO:     10.64.132.230:47198 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.138.37:52236 - "GET /api/competition-profiles HTTP/1.1" 200 OK
+INFO:     10.64.132.230:47198 - "POST /api/auth/test-login HTTP/1.1" 200 OK
+INFO:     10.64.139.65:58436 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.128.144:52070 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.131.137:50624 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.128.144:52078 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.128.144:52070 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.131.137:50634 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.131.137:50634 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.128.144:52070 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.139.65:58436 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.131.137:50634 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.128.144:52070 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.139.65:38476 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.133.70:38198 - "POST /api/auth/test-login HTTP/1.1" 200 OK
+INFO:     10.64.132.230:38144 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.132.230:38144 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.133.70:38198 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.132.230:38144 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.133.70:38204 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.133.70:38218 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.132.230:38144 - "POST /api/auth/test-login HTTP/1.1" 200 OK
+INFO:     10.64.129.114:51574 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.130.247:48814 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.131.28:60198 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.129.114:51574 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.130.247:48814 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.129.114:51584 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.130.247:48814 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.133.36:43724 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     10.64.129.114:51584 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.130.247:48822 - "GET /api/leagues HTTP/1.1" 200 OK
+INFO:     10.64.130.247:48814 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.131.28:60198 - "POST /api/clubs/seed HTTP/1.1" 200 OK
+INFO:     10.64.139.65:53044 - "POST /api/auth/request-magic-link HTTP/1.1" 404 Not Found

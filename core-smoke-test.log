@@ -1,0 +1,177 @@
+🚀 Global E2E Test Setup Starting...
+✅ Application accessible at: https://pifa-league.preview.emergentagent.com (Status: 200)
+🎉 Global setup completed successfully!
+
+Running 2 tests using 1 worker
+
+🚀 Starting core smoke test...
+📝 Step 1: Commissioner creates league...
+🔐 Logging in user: commish@example.com (mode: test)
+🧪 Test-only login for user: commish@example.com
+✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+🏆 Creating league: Core Smoke League
+🎯 Using safe click with overlay detection for Create League button...
+🎯 Checking overlay at center point (1167.5, 802)
+📍 Elements at point (top to bottom):
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+Console error on Commissioner: Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `CreateLeagueDialog`. 
+✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+📋 Filling Create League form: Core Smoke League
+📋 Detected CreateLeagueDialog (modal) form
+📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+📝 Filling league name...
+📝 Filling form fields with type-aware setters...
+🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+✅ Form value set: create-slots-input=3
+🔧 Setting form value: create-budget=100 (tag: input, type: number)
+✅ Form value set: create-budget=100
+🔧 Setting form value: create-min=2 (tag: input, type: number)
+✅ Form value set: create-min=2
+🔧 Setting form value: create-max=8 (tag: input, type: number)
+✅ Form value set: create-max=8
+✅ Create League form filled successfully: Core Smoke League
+📝 Form filled, submitting...
+🎯 Checking clickability at coordinates (798.0, 641.0)
+🔍 Target: BUTTON[data-testid="create-submit"]
+🔍 Topmost: BUTTON[data-testid="create-submit"]
+✅ Element is clickable
+Console error on Commissioner: Failed to load resource: the server responded with a status of 500 ()
+Console error on Commissioner: League creation error: AxiosError
+⏳ Waiting for league creation success...
+🏁 Waiting for league creation success and lobby navigation...
+❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+Test failed, capturing artifacts...
+Screenshots saved with timestamp: 2025-09-28T22-49-37-957Z
+  ✘  1 [chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell (17.0s)
+🚀 Starting core smoke test...
+📝 Step 1: Commissioner creates league...
+🔐 Logging in user: commish@example.com (mode: test)
+🧪 Test-only login for user: commish@example.com
+✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+🏆 Creating league: Core Smoke League
+🎯 Using safe click with overlay detection for Create League button...
+🎯 Checking overlay at center point (293, 1150)
+📍 Elements at point (top to bottom):
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+Console error on Commissioner: Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `CreateLeagueDialog`. 
+✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+📋 Filling Create League form: Core Smoke League
+📋 Detected CreateLeagueDialog (modal) form
+📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+📝 Filling league name...
+📝 Filling form fields with type-aware setters...
+🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+✅ Form value set: create-slots-input=3
+🔧 Setting form value: create-budget=100 (tag: input, type: number)
+✅ Form value set: create-budget=100
+🔧 Setting form value: create-min=2 (tag: input, type: number)
+✅ Form value set: create-min=2
+🔧 Setting form value: create-max=8 (tag: input, type: number)
+✅ Form value set: create-max=8
+✅ Create League form filled successfully: Core Smoke League
+📝 Form filled, submitting...
+🎯 Checking clickability at coordinates (299.8, 661.9)
+🔍 Target: BUTTON[data-testid="create-submit"]
+🔍 Topmost: BUTTON[data-testid="create-submit"]
+✅ Element is clickable
+⏳ Waiting for league creation success...
+🏁 Waiting for league creation success and lobby navigation...
+Console error on Commissioner: Failed to load resource: the server responded with a status of 500 ()
+Console error on Commissioner: League creation error: AxiosError
+❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+Test failed, capturing artifacts...
+Screenshots saved with timestamp: 2025-09-28T22-49-56-946Z
+  ✘  2 [Mobile Chrome] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell (19.5s)
+🧹 Global E2E Test Teardown Starting...
+🎉 Global teardown completed!
+
+
+  1) [chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell 
+
+    Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================ (URL: https://pifa-league.preview.emergentagent.com/app)
+
+       at e2e/utils/helpers.ts:458
+
+      456 |     });
+      457 |     
+    > 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+          |           ^
+      459 |   }
+      460 | }
+      461 |
+        at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)
+        at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)
+        at /app/tests/e2e/core-smoke.spec.ts:121:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/error-context.md
+
+  2) [Mobile Chrome] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell 
+
+    Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================ (URL: https://pifa-league.preview.emergentagent.com/app)
+
+       at e2e/utils/helpers.ts:458
+
+      456 |     });
+      457 |     
+    > 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+          |           ^
+      459 |   }
+      460 | }
+      461 |
+        at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)
+        at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)
+        at /app/tests/e2e/core-smoke.spec.ts:121:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/error-context.md
+
+  2 failed
+    [chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell 
+    [Mobile Chrome] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell 
+
+  Serving HTML report at http://localhost:33161. Press Ctrl+C to quit.

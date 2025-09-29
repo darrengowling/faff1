@@ -1,0 +1,1027 @@
+🧪 Global E2E Test Setup Starting...
+✅ Application accessible at: https://pifa-league.preview.emergentagent.com (Status: 200)
+🔐 Creating authenticated storage states...
+🔑 Authenticating commish@example.com...
+🔐 Logging in user: commish@example.com (mode: test)
+🧪 Test-only login for user: commish@example.com
+✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+✅ commish@example.com authenticated successfully
+💾 Storage state saved: test-results/commissioner-state.json
+🔑 Authenticating alice@example.com...
+🔐 Logging in user: alice@example.com (mode: test)
+🧪 Test-only login for user: alice@example.com
+✅ Test-only login successful: alice@example.com (User ID: 1d870e32-2668-4003-a477-ed01c0b73532)
+✅ alice@example.com authenticated successfully
+💾 Storage state saved: test-results/alice-state.json
+🔑 Authenticating bob@example.com...
+🔐 Logging in user: bob@example.com (mode: test)
+🧪 Test-only login for user: bob@example.com
+✅ Test-only login successful: bob@example.com (User ID: 219110d6-44db-481a-95f9-af0cf54d5467)
+✅ bob@example.com authenticated successfully
+💾 Storage state saved: test-results/bob-state.json
+🎉 Global setup completed successfully!
+
+Running 16 tests using 1 worker
+
+[1A[2K[1/16] [chromium] › tests/e2e/access_and_gates.spec.ts:32:7 › Access and Gates Tests › Start Auction disabled when below minimum managers
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:32:7 › Access and Gates Tests › Start Auction disabled when below minimum managers
+🧪 Testing Start Auction gate: disabled at 1 member, enabled at 2...
+
+[1A[2K🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+
+[1A[2K🏆 Creating league: Gate Test League 1759097417891
+
+[1A[2K🎯 Using safe click with overlay detection for Create League button...
+
+[1A[2K🎯 Checking overlay at center point (1167.5, 802)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K📋 Filling Create League form: Gate Test League 1759097417891
+
+[1A[2K📋 Detected CreateLeagueDialog (modal) form
+
+[1A[2K📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+
+[1A[2K📝 Filling league name...
+
+[1A[2K📝 Filling form fields with type-aware setters...
+
+[1A[2K🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-slots-input=3
+
+[1A[2K🔧 Setting form value: create-budget=100 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-budget=100
+
+[1A[2K🔧 Setting form value: create-min=2 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-min=2
+
+[1A[2K🔧 Setting form value: create-max=6 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-max=6
+
+[1A[2K✅ Create League form filled successfully: Gate Test League 1759097417891
+
+[1A[2K📝 Form filled, submitting...
+
+[1A[2K🎯 Checking clickability at coordinates (798.0, 641.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-submit"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-submit"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K⏳ Waiting for league creation success...
+
+[1A[2K🏁 Waiting for league creation success and lobby navigation...
+
+[1A[2K✅ URL changed to lobby pattern
+
+[1A[2K✅ League ID: 63ef0e82-b0e4-4619-ae9a-4e7258797786
+
+[1A[2K🔍 Polling league readiness...
+
+[1A[2K⚠️ Readiness probe failed (attempt 1/10): Unexpected token '<', "<!doctype "... is not valid JSON
+
+[1A[2K⚠️ Readiness probe failed (attempt 2/10): Unexpected token '<', "<!doctype "... is not valid JSON
+
+[1A[2K⚠️ Readiness probe failed (attempt 3/10): Unexpected token '<', "<!doctype "... is not valid JSON
+
+[1A[2K⚠️ Readiness probe failed (attempt 4/10): Unexpected token '<', "<!doctype "... is not valid JSON
+
+[1A[2K⚠️ Readiness probe failed (attempt 5/10): Unexpected token '<', "<!doctype "... is not valid JSON
+
+[1A[2K⚠️ Readiness probe failed (attempt 6/10): Unexpected token '<', "<!doctype "... is not valid JSON
+
+[1A[2K⚠️ Readiness probe failed (attempt 7/10): Unexpected token '<', "<!doctype "... is not valid JSON
+
+[1A[2K⚠️ Readiness probe failed (attempt 8/10): Unexpected token '<', "<!doctype "... is not valid JSON
+
+[1A[2K⚠️ Readiness probe failed (attempt 9/10): Unexpected token '<', "<!doctype "... is not valid JSON
+
+[1A[2K⚠️ Readiness probe failed (attempt 10/10): Unexpected token '<', "<!doctype "... is not valid JSON
+
+[1A[2K❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app/leagues/63ef0e82-b0e4-4619-ae9a-4e7258797786/lobby
+
+[1A[2K  1) [chromium] › tests/e2e/access_and_gates.spec.ts:32:7 › Access and Gates Tests › Start Auction disabled when below minimum managers 
+
+    Error: League creation → lobby navigation failed: Lobby not ready after 10 attempts (URL: https://pifa-league.preview.emergentagent.com/app/leagues/63ef0e82-b0e4-4619-ae9a-4e7258797786/lobby)
+
+       at utils/helpers.ts:458
+
+      456 |     });
+      457 |     
+    > 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+          |           ^
+      459 |   }
+      460 | }
+      461 |
+        at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)
+        at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)
+        at /app/tests/e2e/access_and_gates.spec.ts:39:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[2/16] [chromium] › tests/e2e/access_and_gates.spec.ts:75:7 › Access and Gates Tests › Start Auction enabled when minimum managers reached
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:75:7 › Access and Gates Tests › Start Auction enabled when minimum managers reached
+🧪 Testing Start Auction gate with sufficient members...
+
+[1A[2K🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+
+[1A[2K🏆 Creating league: Sufficient Members League
+
+[1A[2K🎯 Using safe click with overlay detection for Create League button...
+
+[1A[2K🎯 Checking overlay at center point (1167.5, 802)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K📋 Filling Create League form: Sufficient Members League
+
+[1A[2K📋 Detected CreateLeagueDialog (modal) form
+
+[1A[2K📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+
+[1A[2K📝 Filling league name...
+
+[1A[2K📝 Filling form fields with type-aware setters...
+
+[1A[2K🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-slots-input=3
+
+[1A[2K🔧 Setting form value: create-budget=100 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-budget=100
+
+[1A[2K🔧 Setting form value: create-min=2 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-min=2
+
+[1A[2K🔧 Setting form value: create-max=6 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-max=6
+
+[1A[2K✅ Create League form filled successfully: Sufficient Members League
+
+[1A[2K📝 Form filled, submitting...
+
+[1A[2K🎯 Checking clickability at coordinates (798.0, 641.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-submit"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-submit"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K⏳ Waiting for league creation success...
+
+[1A[2K🏁 Waiting for league creation success and lobby navigation...
+
+[1A[2K❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+
+[1A[2K  2) [chromium] › tests/e2e/access_and_gates.spec.ts:75:7 › Access and Gates Tests › Start Auction enabled when minimum managers reached 
+
+    Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================ (URL: https://pifa-league.preview.emergentagent.com/app)
+
+       at utils/helpers.ts:458
+
+      456 |     });
+      457 |     
+    > 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+          |           ^
+      459 |   }
+      460 | }
+      461 |
+        at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)
+        at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)
+        at /app/tests/e2e/access_and_gates.spec.ts:80:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[3/16] [chromium] › tests/e2e/access_and_gates.spec.ts:104:7 › Access and Gates Tests › Route guards redirect unauthenticated users with toast notifications
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:104:7 › Access and Gates Tests › Route guards redirect unauthenticated users with toast notifications
+🧪 Testing route guards for unauthenticated access...
+
+[1A[2K✅ /app correctly redirected to login with toast
+
+[1A[2K  3) [chromium] › tests/e2e/access_and_gates.spec.ts:104:7 › Access and Gates Tests › Route guards redirect unauthenticated users with toast notifications 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/login" until "load"
+    ============================================================
+
+      119 |       
+      120 |       // Should redirect to login
+    > 121 |       await unauthenticatedPage.waitForURL('**/login', { timeout: 10000 });
+          |                                 ^
+      122 |       
+      123 |       // Check for auth required toast
+      124 |       const authToast = unauthenticatedPage.locator('[data-testid="auth-required-toast"]');
+        at /app/tests/e2e/access_and_gates.spec.ts:121:33
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[4/16] [chromium] › tests/e2e/access_and_gates.spec.ts:133:7 › Access and Gates Tests › Non-existent league routes show 404 or redirect safely
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:133:7 › Access and Gates Tests › Non-existent league routes show 404 or redirect safely
+🧪 Testing non-existent league access...
+
+[1A[2K🔐 Logging in user: member@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: member@example.com
+
+[1A[2K✅ Test-only login successful: member@example.com (User ID: 1dc6dbd4-542d-4337-b35b-08db72ce6007)
+
+[1A[2K  4) [chromium] › tests/e2e/access_and_gates.spec.ts:133:7 › Access and Gates Tests › Non-existent league routes show 404 or redirect safely 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mfalse[39m
+
+      147 |     const hasErrorMessage = await memberPage.locator(`[data-testid="${TESTIDS.errorMessage}"]`).isVisible();
+      148 |     
+    > 149 |     expect(is404 || isDashboard || hasErrorMessage).toBeTruthy();
+          |                                                     ^
+      150 |     
+      151 |     console.log('✅ Non-existent league handled safely');
+      152 |   });
+        at /app/tests/e2e/access_and_gates.spec.ts:149:53
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[5/16] [chromium] › tests/e2e/access_and_gates.spec.ts:154:7 › Access and Gates Tests › League members can access league pages
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:154:7 › Access and Gates Tests › League members can access league pages
+🧪 Testing league member access permissions...
+
+[1A[2K🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+
+[1A[2K🏆 Creating league: Member Access League
+
+[1A[2K🎯 Using safe click with overlay detection for Create League button...
+
+[1A[2K🎯 Checking overlay at center point (1167.5, 802)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K📋 Filling Create League form: Member Access League
+
+[1A[2K📋 Detected CreateLeagueDialog (modal) form
+
+[1A[2K📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+
+[1A[2K📝 Filling league name...
+
+[1A[2K📝 Filling form fields with type-aware setters...
+
+[1A[2K🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-slots-input=3
+
+[1A[2K🔧 Setting form value: create-budget=100 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-budget=100
+
+[1A[2K🔧 Setting form value: create-min=2 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-min=2
+
+[1A[2K🔧 Setting form value: create-max=4 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-max=4
+
+[1A[2K✅ Create League form filled successfully: Member Access League
+
+[1A[2K📝 Form filled, submitting...
+
+[1A[2K🎯 Checking clickability at coordinates (798.0, 641.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-submit"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-submit"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K⏳ Waiting for league creation success...
+
+[1A[2K🏁 Waiting for league creation success and lobby navigation...
+
+[1A[2K❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+
+[1A[2K  5) [chromium] › tests/e2e/access_and_gates.spec.ts:154:7 › Access and Gates Tests › League members can access league pages 
+
+    Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================ (URL: https://pifa-league.preview.emergentagent.com/app)
+
+       at utils/helpers.ts:458
+
+      456 |     });
+      457 |     
+    > 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+          |           ^
+      459 |   }
+      460 | }
+      461 |
+        at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)
+        at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)
+        at /app/tests/e2e/access_and_gates.spec.ts:159:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[6/16] [chromium] › tests/e2e/access_and_gates.spec.ts:191:7 › Access and Gates Tests › Non-league members cannot access league pages
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:191:7 › Access and Gates Tests › Non-league members cannot access league pages
+🧪 Testing non-member access restrictions...
+
+[1A[2K🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+
+[1A[2K🏆 Creating league: Private League
+
+[1A[2K🎯 Using safe click with overlay detection for Create League button...
+
+[1A[2K🎯 Checking overlay at center point (1167.5, 802)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K📋 Filling Create League form: Private League
+
+[1A[2K📋 Detected CreateLeagueDialog (modal) form
+
+[1A[2K📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+
+[1A[2K📝 Filling league name...
+
+[1A[2K📝 Filling form fields with type-aware setters...
+
+[1A[2K🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-slots-input=3
+
+[1A[2K🔧 Setting form value: create-budget=100 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-budget=100
+
+[1A[2K🔧 Setting form value: create-min=2 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-min=2
+
+[1A[2K🔧 Setting form value: create-max=4 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-max=4
+
+[1A[2K✅ Create League form filled successfully: Private League
+
+[1A[2K📝 Form filled, submitting...
+
+[1A[2K🎯 Checking clickability at coordinates (798.0, 641.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-submit"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-submit"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K⏳ Waiting for league creation success...
+
+[1A[2K🏁 Waiting for league creation success and lobby navigation...
+
+[1A[2K❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+
+[1A[2K  6) [chromium] › tests/e2e/access_and_gates.spec.ts:191:7 › Access and Gates Tests › Non-league members cannot access league pages 
+
+    Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================ (URL: https://pifa-league.preview.emergentagent.com/app)
+
+       at utils/helpers.ts:458
+
+      456 |     });
+      457 |     
+    > 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+          |           ^
+      459 |   }
+      460 | }
+      461 |
+        at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)
+        at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)
+        at /app/tests/e2e/access_and_gates.spec.ts:196:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[7/16] [chromium] › tests/e2e/access_and_gates.spec.ts:220:7 › Access and Gates Tests › Commissioner has admin access, members do not
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:220:7 › Access and Gates Tests › Commissioner has admin access, members do not
+🧪 Testing admin access permissions...
+
+[1A[2K🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+
+[1A[2K🏆 Creating league: Admin Access League
+
+[1A[2K🎯 Using safe click with overlay detection for Create League button...
+
+[1A[2K🎯 Checking overlay at center point (1167.5, 802)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K📋 Filling Create League form: Admin Access League
+
+[1A[2K📋 Detected CreateLeagueDialog (modal) form
+
+[1A[2K📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+
+[1A[2K📝 Filling league name...
+
+[1A[2K📝 Filling form fields with type-aware setters...
+
+[1A[2K🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-slots-input=3
+
+[1A[2K🔧 Setting form value: create-budget=100 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-budget=100
+
+[1A[2K🔧 Setting form value: create-min=2 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-min=2
+
+[1A[2K🔧 Setting form value: create-max=4 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-max=4
+
+[1A[2K✅ Create League form filled successfully: Admin Access League
+
+[1A[2K📝 Form filled, submitting...
+
+[1A[2K🎯 Checking clickability at coordinates (798.0, 641.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-submit"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-submit"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K⏳ Waiting for league creation success...
+
+[1A[2K🏁 Waiting for league creation success and lobby navigation...
+
+[1A[2K❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+
+[1A[2K  7) [chromium] › tests/e2e/access_and_gates.spec.ts:220:7 › Access and Gates Tests › Commissioner has admin access, members do not 
+
+    Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================ (URL: https://pifa-league.preview.emergentagent.com/app)
+
+       at utils/helpers.ts:458
+
+      456 |     });
+      457 |     
+    > 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+          |           ^
+      459 |   }
+      460 | }
+      461 |
+        at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)
+        at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)
+        at /app/tests/e2e/access_and_gates.spec.ts:224:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[8/16] [chromium] › tests/e2e/access_and_gates.spec.ts:258:7 › Access and Gates Tests › Auction access requires active auction
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:258:7 › Access and Gates Tests › Auction access requires active auction
+🧪 Testing auction access gates...
+
+[1A[2K🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+
+[1A[2K🏆 Creating league: Auction Gate League
+
+[1A[2K🎯 Using safe click with overlay detection for Create League button...
+
+[1A[2K🎯 Checking overlay at center point (1167.5, 802)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K📋 Filling Create League form: Auction Gate League
+
+[1A[2K📋 Detected CreateLeagueDialog (modal) form
+
+[1A[2K📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+
+[1A[2K📝 Filling league name...
+
+[1A[2K📝 Filling form fields with type-aware setters...
+
+[1A[2K🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-slots-input=3
+
+[1A[2K🔧 Setting form value: create-budget=100 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-budget=100
+
+[1A[2K🔧 Setting form value: create-min=2 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-min=2
+
+[1A[2K🔧 Setting form value: create-max=4 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-max=4
+
+[1A[2K✅ Create League form filled successfully: Auction Gate League
+
+[1A[2K📝 Form filled, submitting...
+
+[1A[2K🎯 Checking clickability at coordinates (798.0, 641.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-submit"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-submit"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K⏳ Waiting for league creation success...
+
+[1A[2K🏁 Waiting for league creation success and lobby navigation...
+
+[1A[2K❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+
+[1A[2K  8) [chromium] › tests/e2e/access_and_gates.spec.ts:258:7 › Access and Gates Tests › Auction access requires active auction 
+
+    Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================ (URL: https://pifa-league.preview.emergentagent.com/app)
+
+       at utils/helpers.ts:458
+
+      456 |     });
+      457 |     
+    > 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+          |           ^
+      459 |   }
+      460 | }
+      461 |
+        at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)
+        at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)
+        at /app/tests/e2e/access_and_gates.spec.ts:262:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[9/16] [chromium] › tests/e2e/access_and_gates.spec.ts:288:7 › Access and Gates Tests › League-specific routes redirect safely with helpful messages
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:288:7 › Access and Gates Tests › League-specific routes redirect safely with helpful messages
+🧪 Testing league-specific route redirects...
+
+[1A[2K🔐 Logging in user: member@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: member@example.com
+
+[1A[2K✅ Test-only login successful: member@example.com (User ID: 1dc6dbd4-542d-4337-b35b-08db72ce6007)
+
+[1A[2K  9) [chromium] › tests/e2e/access_and_gates.spec.ts:288:7 › Access and Gates Tests › League-specific routes redirect safely with helpful messages 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/app" until "load"
+    ============================================================
+
+      304 |       
+      305 |       // Should redirect to /app with helpful toast
+    > 306 |       await memberPage.waitForURL('**/app', { timeout: 10000 });
+          |                        ^
+      307 |       
+      308 |       // Check for redirect reason toast
+      309 |       const redirectToast = memberPage.locator('[data-testid*="redirect-toast"]');
+        at /app/tests/e2e/access_and_gates.spec.ts:306:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[10/16] [chromium] › tests/e2e/access_and_gates.spec.ts:318:7 › Access and Gates Tests › Breadcrumb navigation appears on all app pages
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:318:7 › Access and Gates Tests › Breadcrumb navigation appears on all app pages
+🧪 Testing breadcrumb navigation...
+
+[1A[2K🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+
+[1A[2K[11/16] [chromium] › tests/e2e/access_and_gates.spec.ts:344:7 › Access and Gates Tests › No dead-end pages - all pages provide navigation options
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:344:7 › Access and Gates Tests › No dead-end pages - all pages provide navigation options
+🧪 Testing for dead-end pages...
+
+[1A[2K🔐 Logging in user: member@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: member@example.com
+
+[1A[2K✅ Test-only login successful: member@example.com (User ID: 1dc6dbd4-542d-4337-b35b-08db72ce6007)
+
+[1A[2K  10) [chromium] › tests/e2e/access_and_gates.spec.ts:344:7 › Access and Gates Tests › No dead-end pages - all pages provide navigation options 
+
+    Error: Playwright Test did not expect test() to be called here.
+    Most common reasons include:
+    - You are calling test() in a configuration file.
+    - You are calling test() in a file that is imported by the configuration file.
+    - You have two different versions of @playwright/test. This usually happens
+      when one of the dependencies in your package.json depends on @playwright/test.
+
+      369 |       }
+      370 |     }
+    > 371 |   test('UI Magic-link authentication handles 400 errors properly', async () => {
+          |       ^
+      372 |     console.log('🧪 Testing UI magic-link authentication with invalid email...');
+      373 |     
+      374 |     // Navigate to login page
+        at /app/tests/e2e/access_and_gates.spec.ts:371:7
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9fedc--provide-navigation-options-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9fedc--provide-navigation-options-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9fedc--provide-navigation-options-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-9fedc--provide-navigation-options-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9fedc--provide-navigation-options-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-9fedc--provide-navigation-options-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[12/16] [chromium] › tests/e2e/time-control.spec.ts:10:7 › Time Control System › Time control endpoints work correctly
+[1A[2K[chromium] › tests/e2e/time-control.spec.ts:10:7 › Time Control System › Time control endpoints work correctly
+🧪 Testing basic time control functionality...
+
+[1A[2K🕐 Test time set to: 2025-01-01T12:00:00+00:00 (1735732800000ms)
+
+[1A[2K🕐 Test time advanced by 5000ms to: 2025-01-01T12:00:05+00:00 (1735732805000ms)
+
+[1A[2K✅ Basic time control working correctly
+
+[1A[2K[13/16] [chromium] › tests/e2e/time-control.spec.ts:33:7 › Time Control System › Initialize test time creates consistent baseline
+[1A[2K[chromium] › tests/e2e/time-control.spec.ts:33:7 › Time Control System › Initialize test time creates consistent baseline
+🧪 Testing test time initialization...
+
+[1A[2K🕐 Test time set to: 2025-01-01T12:00:00+00:00 (1735732800000ms)
+
+[1A[2K🕐 Test time initialized to baseline: 2025-01-01T12:00:00.000Z
+
+[1A[2KFirst baseline: 2025-01-01T12:00:00+00:00
+
+[1A[2K🕐 Test time set to: 2025-01-01T12:00:00+00:00 (1735732800000ms)
+
+[1A[2K🕐 Test time initialized to baseline: 2025-01-01T12:00:00.000Z
+
+[1A[2KSecond baseline: 2025-01-01T12:00:00+00:00
+
+[1A[2K✅ Test time initialization is deterministic
+
+[1A[2K[14/16] [chromium] › tests/e2e/time-control.spec.ts:54:7 › Time Control System › Time advancement is deterministic and precise
+[1A[2K[chromium] › tests/e2e/time-control.spec.ts:54:7 › Time Control System › Time advancement is deterministic and precise
+🧪 Testing deterministic time advancement...
+
+[1A[2K🕐 Test time set to: 2025-01-01T10:00:00+00:00 (1735725600000ms)
+
+[1A[2K🕐 Test time advanced by 1500ms to: 2025-01-01T10:00:01.500000+00:00 (1735725601500ms)
+
+[1A[2K🕐 Test time advanced by 2300ms to: 2025-01-01T10:00:03.800000+00:00 (1735725603800ms)
+
+[1A[2K🕐 Test time advanced by 1200ms to: 2025-01-01T10:00:05+00:00 (1735725605000ms)
+
+[1A[2K✅ Time advancement is precise and deterministic
+
+[1A[2K[15/16] [chromium] › tests/e2e/time-control.spec.ts:76:7 › Time Control System › Time control provides millisecond precision
+[1A[2K[chromium] › tests/e2e/time-control.spec.ts:76:7 › Time Control System › Time control provides millisecond precision
+🧪 Testing millisecond precision...
+
+[1A[2K🕐 Test time set to: 2025-01-01T15:30:45.123000+00:00 (1735745445123ms)
+
+[1A[2K🕐 Test time advanced by 456ms to: 2025-01-01T15:30:45.579000+00:00 (1735745445579ms)
+
+[1A[2K✅ Millisecond precision maintained
+
+[1A[2K[16/16] [chromium] › tests/e2e/time-control.spec.ts:92:7 › Time Control System › Multiple time operations are sequential and consistent
+[1A[2K[chromium] › tests/e2e/time-control.spec.ts:92:7 › Time Control System › Multiple time operations are sequential and consistent
+🧪 Testing sequential time operations...
+
+[1A[2K🕐 Test time set to: 2025-01-01T12:00:00+00:00 (1735732800000ms)
+
+[1A[2K🕐 Test time initialized to baseline: 2025-01-01T12:00:00.000Z
+
+[1A[2K🕐 Test time advanced by 1000ms to: 2025-01-01T12:00:01+00:00 (1735732801000ms)
+
+[1A[2KStep: +1000ms -> 2025-01-01T12:00:01+00:00 (1735732801000)
+
+[1A[2K🕐 Test time advanced by 500ms to: 2025-01-01T12:00:01.500000+00:00 (1735732801500ms)
+
+[1A[2KStep: +500ms -> 2025-01-01T12:00:01.500000+00:00 (1735732801500)
+
+[1A[2K🕐 Test time advanced by 2300ms to: 2025-01-01T12:00:03.800000+00:00 (1735732803800ms)
+
+[1A[2KStep: +2300ms -> 2025-01-01T12:00:03.800000+00:00 (1735732803800)
+
+[1A[2K🕐 Test time advanced by 1200ms to: 2025-01-01T12:00:05+00:00 (1735732805000ms)
+
+[1A[2KStep: +1200ms -> 2025-01-01T12:00:05+00:00 (1735732805000)
+
+[1A[2K✅ Sequential operations maintain consistency
+
+🧹 Global E2E Test Teardown Starting...
+🎉 Global teardown completed!
+[1A[2K  10 failed
+    [chromium] › tests/e2e/access_and_gates.spec.ts:32:7 › Access and Gates Tests › Start Auction disabled when below minimum managers 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:75:7 › Access and Gates Tests › Start Auction enabled when minimum managers reached 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:104:7 › Access and Gates Tests › Route guards redirect unauthenticated users with toast notifications 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:133:7 › Access and Gates Tests › Non-existent league routes show 404 or redirect safely 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:154:7 › Access and Gates Tests › League members can access league pages 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:191:7 › Access and Gates Tests › Non-league members cannot access league pages 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:220:7 › Access and Gates Tests › Commissioner has admin access, members do not 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:258:7 › Access and Gates Tests › Auction access requires active auction 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:288:7 › Access and Gates Tests › League-specific routes redirect safely with helpful messages 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:344:7 › Access and Gates Tests › No dead-end pages - all pages provide navigation options 
+  6 passed (2.9m)

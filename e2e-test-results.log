@@ -1,0 +1,699 @@
+🧪 Global E2E Test Setup Starting...
+✅ Application accessible at: https://pifa-league.preview.emergentagent.com (Status: 200)
+🔐 Creating authenticated storage states...
+🔑 Authenticating commish@example.com...
+🔐 Logging in user: commish@example.com (mode: test)
+🧪 Test-only login for user: commish@example.com
+✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+✅ commish@example.com authenticated successfully
+💾 Storage state saved: test-results/commissioner-state.json
+🔑 Authenticating alice@example.com...
+🔐 Logging in user: alice@example.com (mode: test)
+🧪 Test-only login for user: alice@example.com
+✅ Test-only login successful: alice@example.com (User ID: 1d870e32-2668-4003-a477-ed01c0b73532)
+✅ alice@example.com authenticated successfully
+💾 Storage state saved: test-results/alice-state.json
+🔑 Authenticating bob@example.com...
+🔐 Logging in user: bob@example.com (mode: test)
+🧪 Test-only login for user: bob@example.com
+✅ Test-only login successful: bob@example.com (User ID: 219110d6-44db-481a-95f9-af0cf54d5467)
+✅ bob@example.com authenticated successfully
+💾 Storage state saved: test-results/bob-state.json
+🎉 Global setup completed successfully!
+
+Running 31 tests using 1 worker
+
+[1A[2K[1/31] [chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements
+[1A[2K  1) [chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="back-to-home-link"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  6000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 6000ms[22m
+    [2m  - waiting for locator('[data-testid="back-to-home-link"]')[22m
+
+
+      22 |     
+      23 |     // Verify navigation elements exist (no dead-ends)
+    > 24 |     await expect(page.locator('[data-testid="back-to-home-link"]')).toBeVisible();
+         |                                                                     ^
+      25 |     await expect(page.locator('[data-testid="home-nav-button"]')).toBeVisible();
+      26 |     
+      27 |     // Verify header structure
+        at /app/tests/e2e/auth_ui.spec.ts:24:69
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--5d11a-ll-required-testid-elements-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--5d11a-ll-required-testid-elements-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/auth_ui-Authentication-UI--5d11a-ll-required-testid-elements-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--5d11a-ll-required-testid-elements-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--5d11a-ll-required-testid-elements-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[2/31] [chromium] › tests/e2e/auth_ui.spec.ts:41:7 › Authentication UI Tests › Submit button is disabled for invalid email
+[1A[2K[3/31] [chromium] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission
+✅ Invalid email error properly displayed with role="alert" and form remains interactive
+
+[1A[2K[4/31] [chromium] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success
+Browser Console: Failed to load resource: the server responded with a status of 403 ()
+
+[1A[2KBrowser Console: Failed to fetch user: AxiosError
+
+[1A[2KBrowser Console: Token expired or invalid, logging out
+
+[1A[2KBrowser Console: Failed to load resource: the server responded with a status of 403 ()
+
+[1A[2KBrowser Console: Failed to fetch user: AxiosError
+
+[1A[2KBrowser Console: Token expired or invalid, logging out
+
+[1A[2KBrowser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://pifa-league.preview.emergentagent.com…msifQ._iBNBGaZeE5WjzP3nhdrxni1hzxh690DD44kd-xWods}
+
+[1A[2KBrowser Console: Test mode: false
+
+[1A[2KAPI Response: {
+  message: [32m'Magic link generated! (Development Mode - Check below)'[39m,
+  dev_magic_link: [32m'https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTA5ODEzOCwidHlwZSI6Im1hZ2ljX2xpbmsifQ._iBNBGaZeE5WjzP3nhdrxni1hzxh690DD44kd-xWods'[39m
+}
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2KBrowser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+
+[1A[2KBrowser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+
+[1A[2K[5/31] [chromium] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works
+[1A[2K  2) [chromium] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="back-to-home-link"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  6000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 6000ms[22m
+    [2m  - waiting for locator('[data-testid="back-to-home-link"]')[22m
+
+
+      144 |     const backLink = page.locator('[data-testid="back-to-home-link"]');
+      145 |     
+    > 146 |     await expect(backLink).toBeVisible();
+          |                            ^
+      147 |     await backLink.click();
+      148 |     
+      149 |     // Should navigate back to home page
+        at /app/tests/e2e/auth_ui.spec.ts:146:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--8960b-ck-to-Home-navigation-works-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--8960b-ck-to-Home-navigation-works-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/auth_ui-Authentication-UI--8960b-ck-to-Home-navigation-works-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--8960b-ck-to-Home-navigation-works-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--8960b-ck-to-Home-navigation-works-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[6/31] [chromium] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly
+ℹ️ Loading state too fast to catch - checking aria-busy changed
+
+[1A[2KFinal aria-busy state: false
+
+[1A[2KResponse status: 200
+
+[1A[2K[7/31] [chromium] › tests/e2e/auth_ui.spec.ts:198:7 › Authentication UI Tests › No dead ends - page always has navigation options
+[1A[2K  3) [chromium] › tests/e2e/auth_ui.spec.ts:198:7 › Authentication UI Tests › No dead ends - page always has navigation options 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="back-to-home-link"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  6000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 6000ms[22m
+    [2m  - waiting for locator('[data-testid="back-to-home-link"]')[22m
+
+
+      201 |     
+      202 |     // Verify back to home link is always present
+    > 203 |     await expect(page.locator('[data-testid="back-to-home-link"]')).toBeVisible();
+          |                                                                     ^
+      204 |     
+      205 |     // Even after form submission, navigation should still be available
+      206 |     const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
+        at /app/tests/e2e/auth_ui.spec.ts:203:69
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--6e953-ways-has-navigation-options-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--6e953-ways-has-navigation-options-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/auth_ui-Authentication-UI--6e953-ways-has-navigation-options-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--6e953-ways-has-navigation-options-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--6e953-ways-has-navigation-options-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[8/31] [chromium] › tests/e2e/auth_ui.spec.ts:216:7 › Authentication UI Tests › Test mode disables animations
+[1A[2K[9/31] [chromium] › tests/e2e/auth_ui.spec.ts:236:7 › Authentication UI Integration › Form submission works using only testids
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:236:7 › Authentication UI Integration › Form submission works using only testids
+✅ Form submission completed successfully using testids
+
+[1A[2K[10/31] [chromium] › tests/e2e/auth_ui.spec.ts:267:7 › Authentication UI Integration › Complete auth flow using UI login mode
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:267:7 › Authentication UI Integration › Complete auth flow using UI login mode
+🔐 Logging in user: ui-integration-test@example.com (mode: ui)
+
+[1A[2K🖱️  UI login for user: ui-integration-test@example.com
+
+[1A[2K✅ UI login successful: ui-integration-test@example.com
+
+[1A[2K[11/31] [chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX
+🧪 Testing empty email error handling...
+
+[1A[2K  4) [chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX 
+
+    TimeoutError: locator.fill: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      285 |
+      286 |     // Submit with empty email (form validation should prevent this, but test anyway)
+    > 287 |     await emailInput.fill('');
+          |                      ^
+      288 |     await expect(submitBtn).toBeDisabled();
+      289 |     
+      290 |     // Add some text then clear it to test error behavior
+        at /app/tests/e2e/auth_ui.spec.ts:287:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[12/31] [chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+🧪 Testing invalid email error handling...
+
+[1A[2K  5) [chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message 
+
+    TimeoutError: locator.fill: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      306 |
+      307 |     // Enter invalid email and try to submit
+    > 308 |     await emailInput.fill('invalid-email-format');
+          |                      ^
+      309 |     
+      310 |     // Button should be disabled for invalid email
+      311 |     await expect(submitBtn).toBeDisabled();
+        at /app/tests/e2e/auth_ui.spec.ts:308:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[13/31] [chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing
+🧪 Testing error clearing behavior...
+
+[1A[2K  6) [chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing 
+
+    TimeoutError: locator.fill: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      352 |
+      353 |     // Enter email that might trigger error
+    > 354 |     await emailInput.fill('error-test@invaliddomain999.com');
+          |                      ^
+      355 |     await submitBtn.click();
+      356 |     
+      357 |     // Wait a moment for any potential error
+        at /app/tests/e2e/auth_ui.spec.ts:354:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[14/31] [chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading
+🧪 Testing submit button states...
+
+[1A[2K  7) [chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading 
+
+    TimeoutError: locator.fill: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      381 |
+      382 |     // Fill valid email
+    > 383 |     await emailInput.fill('loading-test@example.com');
+          |                      ^
+      384 |     
+      385 |     // Button should be enabled
+      386 |     await expect(submitBtn).toBeEnabled();
+        at /app/tests/e2e/auth_ui.spec.ts:383:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[15/31] [chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes
+🧪 Testing error accessibility...
+
+[1A[2K  8) [chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes 
+
+    TimeoutError: locator.fill: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      439 |
+      440 |     // Try to trigger an error
+    > 441 |     await emailInput.fill('accessibility-test@invaliddomain999.com');
+          |                      ^
+      442 |     await submitBtn.click();
+      443 |     await page.waitForTimeout(2000);
+      444 |
+        at /app/tests/e2e/auth_ui.spec.ts:441:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[16/31] [chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell
+[1A[2K[chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell
+🚀 Starting core smoke test...
+
+[1A[2K📝 Step 1: Commissioner creates league...
+
+[1A[2K🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+
+[1A[2K🏆 Creating league: Core Smoke League
+
+[1A[2K🎯 Using safe click with overlay detection for Create League button...
+
+[1A[2K🎯 Checking overlay at center point (1167.5, 802)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2KConsole error on Commissioner: Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `CreateLeagueDialog`. 
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K📋 Filling Create League form: Core Smoke League
+
+[1A[2K📋 Detected CreateLeagueDialog (modal) form
+
+[1A[2K📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+
+[1A[2K📝 Filling league name...
+
+[1A[2K📝 Filling form fields with type-aware setters...
+
+[1A[2K🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-slots-input=3
+
+[1A[2K🔧 Setting form value: create-budget=100 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-budget=100
+
+[1A[2K🔧 Setting form value: create-min=2 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-min=2
+
+[1A[2K🔧 Setting form value: create-max=8 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-max=8
+
+[1A[2K✅ Create League form filled successfully: Core Smoke League
+
+[1A[2K📝 Form filled, submitting...
+
+[1A[2K🎯 Checking clickability at coordinates (798.0, 641.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-submit"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-submit"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K⏳ Waiting for league creation success...
+
+[1A[2K🏁 Waiting for league creation success and lobby navigation...
+
+[1A[2KConsole error on Commissioner: Failed to load resource: the server responded with a status of 500 ()
+
+[1A[2KConsole error on Commissioner: League creation error: AxiosError
+
+[1A[2K❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+
+[1A[2KTest failed, capturing artifacts...
+
+[1A[2KScreenshots saved with timestamp: 2025-09-28T22-09-04-383Z
+
+[1A[2K  9) [chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell 
+
+    Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================ (URL: https://pifa-league.preview.emergentagent.com/app)
+
+       at utils/helpers.ts:458
+
+      456 |     });
+      457 |     
+    > 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+          |           ^
+      459 |   }
+      460 | }
+      461 |
+        at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)
+        at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)
+        at /app/tests/e2e/core-smoke.spec.ts:121:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[17/31] [chromium] › tests/e2e/landing-page.spec.js:59:3 › Landing Page - Comprehensive Testing › Landing page loads correctly with all sections
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:59:3 › Landing Page - Comprehensive Testing › Landing page loads correctly with all sections
+✅ Page Title - PASSED Expected: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy.", Got: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy."
+
+[1A[2K✅ All Main Sections - PASSED 6 sections visible
+
+[1A[2K✅ Hero Section - PASSED Hero title visible
+
+[1A[2K❌ Landing Page Load - FAILED TESTIDS is not defined
+
+[1A[2K[18/31] [chromium] › tests/e2e/landing-page.spec.js:108:3 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:108:3 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly
+✅ Sticky Navigation Visibility - PASSED After scrolling past hero
+
+[1A[2KAnchor scroll test for #how failed: locator.click: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for locator('a[href="#how"], button:has-text("How it Works")').first()[22m
+[2m    - locator resolved to <button role="tab" tabindex="0" data-section="how" aria-controls="how" aria-selected="true" data-testid="tab-how" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-blue-100 text-blue-700 shadow-sm">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <main class="flex-1">…</main> intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <main class="flex-1">…</main> intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    19 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <main class="flex-1">…</main> intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+
+[1A[2KAnchor scroll test for #why failed: locator.click: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for locator('a[href="#why"], button:has-text("Why FoP")').first()[22m
+[2m    - locator resolved to <button role="tab" tabindex="0" data-section="why" aria-controls="why" aria-selected="false" data-testid="tab-why" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <main class="flex-1">…</main> intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <main class="flex-1">…</main> intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    19 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <main class="flex-1">…</main> intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+
+[1A[2KAnchor scroll test for #features failed: locator.click: Test timeout of 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('a[href="#features"], button:has-text("Features")').first()[22m
+[2m    - locator resolved to <button role="tab" tabindex="0" aria-selected="false" data-section="features" aria-controls="features" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <main class="flex-1">…</main> intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <main class="flex-1">…</main> intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    12 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <main class="flex-1">…</main> intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+
+[1A[2KAnchor scroll test for #safety failed: page.evaluate: Target page, context or browser has been closed
+
+[1A[2KAnchor scroll test for #faq failed: page.evaluate: Target page, context or browser has been closed
+
+[1A[2K✅ Anchor Scrolling - PASSED 1/6 sections scrolled
+
+[1A[2K
+============================================================
+
+[1A[2K📊 Landing Page Test Summary:
+
+[1A[2K⏱️ Duration: 33.37s
+
+[1A[2K✅ Passed: 5
+
+[1A[2K❌ Failed: 1
+
+[1A[2K
+🎉 Successful Tests:
+
+[1A[2K  - Page Title
+
+[1A[2K  - All Main Sections
+
+[1A[2K  - Hero Section
+
+[1A[2K  - Sticky Navigation Visibility
+
+[1A[2K  - Anchor Scrolling
+
+[1A[2K
+💥 Failed Tests:
+
+[1A[2K  - Landing Page Load: TESTIDS is not defined
+
+[1A[2K============================================================
+
+[1A[2K  10) [chromium] › tests/e2e/landing-page.spec.js:108:3 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/landing-page-Landing-Page--cf756-on-anchors-scroll-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/landing-page-Landing-Page--cf756-on-anchors-scroll-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/landing-page-Landing-Page--cf756-on-anchors-scroll-correctly-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/landing-page-Landing-Page--cf756-on-anchors-scroll-correctly-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/landing-page-Landing-Page--cf756-on-anchors-scroll-correctly-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2KTesting stopped early after 10 maximum allowed failures.
+
+🧹 Global E2E Test Teardown Starting...
+🎉 Global teardown completed!
+[1A[2K  10 failed
+    [chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements 
+    [chromium] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works 
+    [chromium] › tests/e2e/auth_ui.spec.ts:198:7 › Authentication UI Tests › No dead ends - page always has navigation options 
+    [chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX 
+    [chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message 
+    [chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing 
+    [chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading 
+    [chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes 
+    [chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell 
+    [chromium] › tests/e2e/landing-page.spec.js:108:3 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly 
+  13 did not run
+  8 passed (2.8m)
+  1 error was not a part of any test, see above for details

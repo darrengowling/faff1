@@ -1,0 +1,634 @@
+🚀 Global E2E Test Setup Starting...
+✅ Application accessible at: https://pifa-league.preview.emergentagent.com (Status: 200)
+🎉 Global setup completed successfully!
+
+Running 62 tests using 1 worker
+
+✅ Login form renders correctly with all required testid elements
+  ✓   1 [chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements (2.1s)
+  ✓   2 [chromium] › tests/e2e/auth_ui.spec.ts:41:7 › Authentication UI Tests › Submit button is disabled for invalid email (1.5s)
+✅ Invalid email error properly displayed with role="alert" and form remains interactive
+  ✓   3 [chromium] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission (13.1s)
+Browser Console: Failed to load resource: the server responded with a status of 403 ()
+Browser Console: Failed to fetch user: AxiosError
+Browser Console: Token expired or invalid, logging out
+Browser Console: Failed to load resource: the server responded with a status of 403 ()
+Browser Console: Failed to fetch user: AxiosError
+Browser Console: Token expired or invalid, logging out
+Browser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://pifa-league.preview.emergentagent.com/a…msifQ.zNYHu6gLIUhto55M8aFzUbl5h810QbHziGm8h6Xk7uE}
+Browser Console: Test mode: false
+API Response: {
+  message: [32m'Magic link generated! (Development Mode - Check below)'[39m,
+  dev_magic_link: [32m'https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTA3Mjk3MCwidHlwZSI6Im1hZ2ljX2xpbmsifQ.zNYHu6gLIUhto55M8aFzUbl5h810QbHziGm8h6Xk7uE'[39m
+}
+Dev magic link button found, clicking...
+Browser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+Browser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+  ✓   4 [chromium] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success (9.7s)
+  ✓   5 [chromium] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works (8.7s)
+  ✘   6 [chromium] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly (6.7s)
+  ✘   7 [chromium] › tests/e2e/auth_ui.spec.ts:168:7 › Authentication UI Tests › No dead ends - page always has navigation options (1.3s)
+  ✓   8 [chromium] › tests/e2e/auth_ui.spec.ts:186:7 › Authentication UI Tests › Test mode disables animations (1.5s)
+✅ Form submission completed successfully using testids
+  ✓   9 [chromium] › tests/e2e/auth_ui.spec.ts:206:7 › Authentication UI Integration › Form submission works using only testids (12.0s)
+🔐 Logging in user: ui-integration-test@example.com (mode: ui)
+🖱️  UI login for user: ui-integration-test@example.com
+✅ UI login successful: ui-integration-test@example.com
+  ✓  10 [chromium] › tests/e2e/auth_ui.spec.ts:237:7 › Authentication UI Integration › Complete auth flow using UI login mode (2.6s)
+🧪 Testing empty email error handling...
+  ✘  11 [chromium] › tests/e2e/auth_ui.spec.ts:249:7 › Authentication UI Integration › Shows error for empty email with proper UX (16.6s)
+🧪 Testing invalid email error handling...
+  ✘  12 [chromium] › tests/e2e/auth_ui.spec.ts:270:7 › Authentication UI Integration › Shows error for invalid email format with concise message (16.6s)
+🧪 Testing error clearing behavior...
+  ✘  13 [chromium] › tests/e2e/auth_ui.spec.ts:316:7 › Authentication UI Integration › Error clears when user starts typing (16.6s)
+🧪 Testing submit button states...
+  ✘  14 [chromium] › tests/e2e/auth_ui.spec.ts:345:7 › Authentication UI Integration › Submit button states work correctly during loading (16.6s)
+🧪 Testing error accessibility...
+  ✘  15 [chromium] › tests/e2e/auth_ui.spec.ts:377:7 › Authentication UI Integration › Error display has proper accessibility attributes (16.6s)
+🚀 Starting core smoke test...
+📝 Step 1: Commissioner creates league...
+🔐 Logging in user: commish@example.com (mode: test)
+🧪 Test-only login for user: commish@example.com
+✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+🏆 Creating league: Core Smoke League
+🎯 Using safe click with overlay detection for Create League button...
+🎯 Checking overlay at center point (1167.5, 745)
+📍 Elements at point (top to bottom):
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+Console error on Commissioner: Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `CreateLeagueDialog`. 
+✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+📋 Filling Create League form: Core Smoke League
+📋 Detected CreateLeagueDialog (modal) form
+📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+📝 Filling league name...
+📝 Filling form fields with type-aware setters...
+🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+✅ Form value set: create-slots-input=3
+🔧 Setting form value: create-budget=100 (tag: input, type: number)
+✅ Form value set: create-budget=100
+🔧 Setting form value: create-min=2 (tag: input, type: number)
+✅ Form value set: create-min=2
+🔧 Setting form value: create-max=8 (tag: input, type: number)
+✅ Form value set: create-max=8
+✅ Create League form filled successfully: Core Smoke League
+📝 Form filled, submitting...
+🎯 Checking clickability at coordinates (798.0, 641.0)
+🔍 Target: BUTTON[data-testid="create-submit"]
+🔍 Topmost: BUTTON[data-testid="create-submit"]
+✅ Element is clickable
+⏳ Waiting for league creation success...
+🏁 Waiting for league creation success and lobby navigation...
+Console error on Commissioner: Failed to load resource: the server responded with a status of 500 ()
+Console error on Commissioner: League creation error: AxiosError
+❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+Error: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation until "load"
+============================================================
+Test failed, capturing artifacts...
+Screenshots saved with timestamp: 2025-09-28T15-10-26-200Z
+  ✘  16 [chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell (29.0s)
+✅ Page Title - PASSED Expected: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy.", Got: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy."
+✅ All Main Sections - PASSED 6 sections visible
+✅ Hero Section - PASSED Hero title visible
+✅ Hero CTA Buttons - PASSED Both CTA buttons visible
+✅ Footer - PASSED Footer visible
+  ✓  17 [chromium] › tests/e2e/landing-page.spec.js:58:3 › Landing Page - Comprehensive Testing › Landing page loads correctly with all sections (2.1s)
+✅ Sticky Navigation Visibility - PASSED After scrolling past hero
+✅ Anchor Scrolling - PASSED 6/6 sections scrolled
+  ✓  18 [chromium] › tests/e2e/landing-page.spec.js:107:3 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly (10.5s)
+❌ Scroll-spy Active Highlighting - FAILED Active section indicators detected
+✅ Browser Hash Updates - PASSED Hash: #home
+  ✓  19 [chromium] › tests/e2e/landing-page.spec.js:176:3 › Landing Page - Comprehensive Testing › Scroll-spy updates active section highlighting (8.8s)
+🔍 Checking landing page CTAs for overlay issues...
+⏭️ CTA not found: [data-testid="create-league-btn"]
+⏭️ CTA not found: [data-testid="join-league-btn"]
+🎯 Checking CTA: button:has-text("Create a League")
+🎯 Checking overlay at center point (824, 916)
+📍 Elements at point (top to bottom):
+  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"] (z-index: auto, pointer-events: auto)
+  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+  2: div.text-center (z-index: auto, pointer-events: auto)
+  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+  4: section#home.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center (z-index: auto, pointer-events: auto)
+  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+  6: main#main-content.min-h-screen (z-index: auto, pointer-events: auto)
+  7: div.App (z-index: auto, pointer-events: auto)
+  8: div#root (z-index: auto, pointer-events: auto)
+  9: body.theme-light (z-index: auto, pointer-events: auto)
+  10: html (z-index: auto, pointer-events: auto)
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+✅ CTA clickable: button:has-text("Create a League")
+🎯 Checking CTA: button:has-text("Join with an Invite")
+🎯 Checking overlay at center point (1087, 916)
+📍 Elements at point (top to bottom):
+  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"] (z-index: auto, pointer-events: auto)
+  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+  2: div.text-center (z-index: auto, pointer-events: auto)
+  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+  4: section#home.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center (z-index: auto, pointer-events: auto)
+  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+  6: main#main-content.min-h-screen (z-index: auto, pointer-events: auto)
+  7: div.App (z-index: auto, pointer-events: auto)
+  8: div#root (z-index: auto, pointer-events: auto)
+  9: body.theme-light (z-index: auto, pointer-events: auto)
+  10: html (z-index: auto, pointer-events: auto)
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+✅ CTA clickable: button:has-text("Join with an Invite")
+✅ All landing page CTAs are clickable
+🎯 Checking overlay at center point (824, 916)
+📍 Elements at point (top to bottom):
+  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"] (z-index: auto, pointer-events: auto)
+  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+  2: div.text-center (z-index: auto, pointer-events: auto)
+  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+  4: section#home.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center (z-index: auto, pointer-events: auto)
+  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+  6: main#main-content.min-h-screen (z-index: auto, pointer-events: auto)
+  7: div.App (z-index: auto, pointer-events: auto)
+  8: div#root (z-index: auto, pointer-events: auto)
+  9: body.theme-light (z-index: auto, pointer-events: auto)
+  10: html (z-index: auto, pointer-events: auto)
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+✅ Create League CTA Routing - PASSED Routes to /login
+🎯 Checking overlay at center point (1087, 916)
+📍 Elements at point (top to bottom):
+  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"] (z-index: auto, pointer-events: auto)
+  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+  2: div.text-center (z-index: auto, pointer-events: auto)
+  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+  4: section#home.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center (z-index: auto, pointer-events: auto)
+  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+  6: main#main-content.min-h-screen (z-index: auto, pointer-events: auto)
+  7: div.App (z-index: auto, pointer-events: auto)
+  8: div#root (z-index: auto, pointer-events: auto)
+  9: body.theme-light (z-index: auto, pointer-events: auto)
+  10: html (z-index: auto, pointer-events: auto)
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+✅ Join Invite CTA Routing - PASSED Routes to /login
+✅ Sticky CTA (Mobile) - PASSED Mobile sticky CTA routes correctly
+  ✓  20 [chromium] › tests/e2e/landing-page.spec.js:220:3 › Landing Page - Comprehensive Testing › CTAs route to create/join flows correctly (2.9s)
+✅ Responsive Design - PASSED 3/3 viewports working
+  ✓  21 [chromium] › tests/e2e/landing-page.spec.js:283:3 › Landing Page - Comprehensive Testing › Responsive design and mobile layout (3.1s)
+🔍 Checking anchor scrolling functionality...
+📍 Testing anchor: features
+⏭️ Anchor link not found: #features
+📍 Testing anchor: how-it-works
+⏭️ Anchor link not found: #how-it-works
+📍 Testing anchor: pricing
+⏭️ Anchor link not found: #pricing
+📍 Testing anchor: contact
+⏭️ Anchor link not found: #contact
+✅ All anchor scrolling tests passed
+✅ Anchor Scrolling - PASSED All anchor links work correctly
+  ✓  22 [chromium] › tests/e2e/landing-page.spec.js:321:3 › Landing Page - Comprehensive Testing › Anchor scrolling works correctly without overlay interference (2.0s)
+🎯 Checking overlay at center point (339, 32)
+📍 Elements at point (top to bottom):
+  0: span.sm:hidden (z-index: auto, pointer-events: auto)
+  1: span.flex.items-center.space-x-1.5 (z-index: auto, pointer-events: auto)
+  2: button.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z-index: auto, pointer-events: auto)
+  3: path (z-index: auto, pointer-events: auto)
+  4: svg (z-index: auto, pointer-events: auto)
+  5: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid="nav-hamburger"] (z-index: auto, pointer-events: auto)
+  6: div.flex.items-center.justify-between.h-16 (z-index: auto, pointer-events: auto)
+  7: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)
+  8: header.sticky.top-0.w-full.bg-theme-surface/95.backdrop-blur-sm.border-b.border-theme-surface-border.z-40 (z-index: 40, pointer-events: auto)
+  9: div.App (z-index: auto, pointer-events: auto)
+  10: div#root (z-index: auto, pointer-events: auto)
+  11: body.theme-light (z-index: auto, pointer-events: auto)
+  12: html (z-index: auto, pointer-events: auto)
+✅ No overlay blocking target: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid="nav-hamburger"]
+❌ Safe click failed: locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for getByTestId('nav-hamburger')[22m
+[2m    - locator resolved to <button aria-expanded="false" data-testid="nav-hamburger" aria-controls="mobile-navigation" aria-label="Toggle navigation menu" class="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    29 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+❌ Mobile Menu Auto-Close - FAILED locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for getByTestId('nav-hamburger')[22m
+[2m    - locator resolved to <button aria-expanded="false" data-testid="nav-hamburger" aria-controls="mobile-navigation" aria-label="Toggle navigation menu" class="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    29 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+
+============================================================
+📊 Landing Page Test Summary:
+⏱️ Duration: 48.63s
+✅ Passed: 13
+❌ Failed: 2
+
+🎉 Successful Tests:
+  - Page Title
+  - All Main Sections
+  - Hero Section
+  - Hero CTA Buttons
+  - Footer
+  - Sticky Navigation Visibility
+  - Anchor Scrolling
+  - Browser Hash Updates
+  - Create League CTA Routing
+  - Join Invite CTA Routing
+  - Sticky CTA (Mobile)
+  - Responsive Design
+  - Anchor Scrolling
+
+💥 Failed Tests:
+  - Scroll-spy Active Highlighting: Active section indicators detected
+  - Mobile Menu Auto-Close: locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for getByTestId('nav-hamburger')[22m
+[2m    - locator resolved to <button aria-expanded="false" data-testid="nav-hamburger" aria-controls="mobile-navigation" aria-label="Toggle navigation menu" class="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    29 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+============================================================
+  ✓  23 [chromium] › tests/e2e/landing-page.spec.js:334:3 › Landing Page - Comprehensive Testing › Mobile menu closes properly on navigation (18.9s)
+  ✓  24 [chromium] › tests/e2e/navigation.spec.ts:22:9 › Navigation Tests › Desktop Navigation › Landing page anchor navigation works correctly (3.6s)
+  ✓  25 [chromium] › tests/e2e/navigation.spec.ts:48:9 › Navigation Tests › Desktop Navigation › Product dropdown shows only enabled items and navigates correctly (2.6s)
+  ✘  26 [chromium] › tests/e2e/navigation.spec.ts:79:9 › Navigation Tests › Mobile Navigation › Mobile hamburger menu works correctly (23.4s)
+  ✘  27 [chromium] › tests/e2e/navigation.spec.ts:95:9 › Navigation Tests › Mobile Navigation › Mobile navigation shows only enabled items and navigates correctly (17.8s)
+  ✓  28 [chromium] › tests/e2e/navigation.spec.ts:121:9 › Navigation Tests › No Dead Ends & 404 Recovery › All navigation links have valid destinations and no href="#" (2.0s)
+  ✓  29 [chromium] › tests/e2e/navigation.spec.ts:142:9 › Navigation Tests › No Dead Ends & 404 Recovery › 404 page shows and allows navigation back (2.3s)
+  ✓  30 [chromium] › tests/e2e/navigation.spec.ts:157:9 › Navigation Tests › Go to... Menu on /app › Go to dropdown shows appropriate options (1.9s)
+  ✘  31 [chromium] › tests/e2e/navigation.spec.ts:170:9 › Navigation Tests › Keyboard Navigation › Keyboard navigation works with proper ARIA and focus management (17.9s)
+✅ Login form renders correctly with all required testid elements
+  ✓  32 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements (3.4s)
+  ✓  33 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:41:7 › Authentication UI Tests › Submit button is disabled for invalid email (1.4s)
+✅ Invalid email error properly displayed with role="alert" and form remains interactive
+  ✓  34 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission (1.8s)
+Browser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://pifa-league.preview.emergentagent.com/a…msifQ.3p506xlCCPPrXZWBBzU1gvwdhOpWhPEHfCEguF2eeyg}
+Browser Console: Test mode: false
+API Response: {
+  message: [32m'Magic link generated! (Development Mode - Check below)'[39m,
+  dev_magic_link: [32m'https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTA3MzI1OCwidHlwZSI6Im1hZ2ljX2xpbmsifQ.3p506xlCCPPrXZWBBzU1gvwdhOpWhPEHfCEguF2eeyg'[39m
+}
+Dev magic link button found, clicking...
+Browser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+Browser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+  ✓  35 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success (1.8s)
+  ✓  36 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works (1.6s)
+  ✘  37 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly (6.6s)
+  ✘  38 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:168:7 › Authentication UI Tests › No dead ends - page always has navigation options (1.4s)
+  ✓  39 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:186:7 › Authentication UI Tests › Test mode disables animations (1.6s)
+✅ Form submission completed successfully using testids
+  ✓  40 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:206:7 › Authentication UI Integration › Form submission works using only testids (1.9s)
+🔐 Logging in user: ui-integration-test@example.com (mode: ui)
+🖱️  UI login for user: ui-integration-test@example.com
+✅ UI login successful: ui-integration-test@example.com
+  ✓  41 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:237:7 › Authentication UI Integration › Complete auth flow using UI login mode (2.2s)
+🧪 Testing empty email error handling...
+  ✘  42 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:249:7 › Authentication UI Integration › Shows error for empty email with proper UX (16.2s)
+🧪 Testing invalid email error handling...
+  ✘  43 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:270:7 › Authentication UI Integration › Shows error for invalid email format with concise message (16.3s)
+🧪 Testing error clearing behavior...
+  ✘  44 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:316:7 › Authentication UI Integration › Error clears when user starts typing (16.3s)
+🧪 Testing submit button states...
+  ✘  45 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:345:7 › Authentication UI Integration › Submit button states work correctly during loading (16.4s)
+🧪 Testing error accessibility...
+  ✘  46 [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:377:7 › Authentication UI Integration › Error display has proper accessibility attributes (16.3s)
+🚀 Starting core smoke test...
+📝 Step 1: Commissioner creates league...
+🔐 Logging in user: commish@example.com (mode: test)
+🧪 Test-only login for user: commish@example.com
+✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+🏆 Creating league: Core Smoke League
+🎯 Using safe click with overlay detection for Create League button...
+🎯 Checking overlay at center point (293, 1093)
+📍 Elements at point (top to bottom):
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+Console error on Commissioner: Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `CreateLeagueDialog`. 
+✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+📋 Filling Create League form: Core Smoke League
+📋 Detected CreateLeagueDialog (modal) form
+📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+📝 Filling league name...
+📝 Filling form fields with type-aware setters...
+🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+✅ Form value set: create-slots-input=3
+🔧 Setting form value: create-budget=100 (tag: input, type: number)
+✅ Form value set: create-budget=100
+🔧 Setting form value: create-min=2 (tag: input, type: number)
+✅ Form value set: create-min=2
+🔧 Setting form value: create-max=8 (tag: input, type: number)
+✅ Form value set: create-max=8
+✅ Create League form filled successfully: Core Smoke League
+📝 Form filled, submitting...
+🎯 Checking clickability at coordinates (284.8, 643.4)
+🔍 Target: BUTTON[data-testid="create-submit"]
+🔍 Topmost: BUTTON[data-testid="create-submit"]
+✅ Element is clickable
+⏳ Waiting for league creation success...
+🏁 Waiting for league creation success and lobby navigation...
+Console error on Commissioner: Failed to load resource: the server responded with a status of 500 ()
+Console error on Commissioner: League creation error: AxiosError
+❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+Error: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation until "load"
+============================================================
+Test failed, capturing artifacts...
+Screenshots saved with timestamp: 2025-09-28T15-14-43-943Z
+  ✘  47 [Mobile Chrome] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell (23.0s)
+✅ Page Title - PASSED Expected: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy.", Got: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy."
+✅ All Main Sections - PASSED 6 sections visible
+✅ Hero Section - PASSED Hero title visible
+✅ Hero CTA Buttons - PASSED Both CTA buttons visible
+✅ Footer - PASSED Footer visible
+  ✓  48 [Mobile Chrome] › tests/e2e/landing-page.spec.js:58:3 › Landing Page - Comprehensive Testing › Landing page loads correctly with all sections (3.7s)
+✅ Sticky Navigation Visibility - PASSED After scrolling past hero
+✅ Anchor Scrolling - PASSED 6/6 sections scrolled
+  ✓  49 [Mobile Chrome] › tests/e2e/landing-page.spec.js:107:3 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly (10.1s)
+❌ Scroll-spy Active Highlighting - FAILED Active section indicators detected
+✅ Browser Hash Updates - PASSED Hash: #home
+  ✓  50 [Mobile Chrome] › tests/e2e/landing-page.spec.js:176:3 › Landing Page - Comprehensive Testing › Scroll-spy updates active section highlighting (10.4s)
+🔍 Checking landing page CTAs for overlay issues...
+⏭️ CTA not found: [data-testid="create-league-btn"]
+⏭️ CTA not found: [data-testid="join-league-btn"]
+🎯 Checking CTA: button:has-text("Create a League")
+🎯 Checking overlay at center point (827, 920)
+📍 Elements at point (top to bottom):
+  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"] (z-index: auto, pointer-events: auto)
+  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+  2: div.text-center (z-index: auto, pointer-events: auto)
+  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+  4: section#home.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center (z-index: auto, pointer-events: auto)
+  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+  6: main#main-content.min-h-screen (z-index: auto, pointer-events: auto)
+  7: div.App (z-index: auto, pointer-events: auto)
+  8: div#root (z-index: auto, pointer-events: auto)
+  9: body.theme-light (z-index: auto, pointer-events: auto)
+  10: html (z-index: auto, pointer-events: auto)
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+✅ CTA clickable: button:has-text("Create a League")
+🎯 Checking CTA: button:has-text("Join with an Invite")
+🎯 Checking overlay at center point (1087, 920)
+📍 Elements at point (top to bottom):
+  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"] (z-index: auto, pointer-events: auto)
+  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+  2: div.text-center (z-index: auto, pointer-events: auto)
+  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+  4: section#home.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center (z-index: auto, pointer-events: auto)
+  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+  6: main#main-content.min-h-screen (z-index: auto, pointer-events: auto)
+  7: div.App (z-index: auto, pointer-events: auto)
+  8: div#root (z-index: auto, pointer-events: auto)
+  9: body.theme-light (z-index: auto, pointer-events: auto)
+  10: html (z-index: auto, pointer-events: auto)
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+✅ CTA clickable: button:has-text("Join with an Invite")
+✅ All landing page CTAs are clickable
+🎯 Checking overlay at center point (827, 920)
+📍 Elements at point (top to bottom):
+  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"] (z-index: auto, pointer-events: auto)
+  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+  2: div.text-center (z-index: auto, pointer-events: auto)
+  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+  4: section#home.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center (z-index: auto, pointer-events: auto)
+  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+  6: main#main-content.min-h-screen (z-index: auto, pointer-events: auto)
+  7: div.App (z-index: auto, pointer-events: auto)
+  8: div#root (z-index: auto, pointer-events: auto)
+  9: body.theme-light (z-index: auto, pointer-events: auto)
+  10: html (z-index: auto, pointer-events: auto)
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+✅ Create League CTA Routing - PASSED Routes to /login
+🎯 Checking overlay at center point (1087, 920)
+📍 Elements at point (top to bottom):
+  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"] (z-index: auto, pointer-events: auto)
+  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+  2: div.text-center (z-index: auto, pointer-events: auto)
+  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+  4: section#home.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center (z-index: auto, pointer-events: auto)
+  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+  6: main#main-content.min-h-screen (z-index: auto, pointer-events: auto)
+  7: div.App (z-index: auto, pointer-events: auto)
+  8: div#root (z-index: auto, pointer-events: auto)
+  9: body.theme-light (z-index: auto, pointer-events: auto)
+  10: html (z-index: auto, pointer-events: auto)
+✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+✅ Join Invite CTA Routing - PASSED Routes to /login
+✅ Sticky CTA (Mobile) - PASSED Mobile sticky CTA routes correctly
+  ✓  51 [Mobile Chrome] › tests/e2e/landing-page.spec.js:220:3 › Landing Page - Comprehensive Testing › CTAs route to create/join flows correctly (3.3s)
+✅ Responsive Design - PASSED 3/3 viewports working
+  ✓  52 [Mobile Chrome] › tests/e2e/landing-page.spec.js:283:3 › Landing Page - Comprehensive Testing › Responsive design and mobile layout (3.3s)
+🔍 Checking anchor scrolling functionality...
+📍 Testing anchor: features
+⏭️ Anchor link not found: #features
+📍 Testing anchor: how-it-works
+⏭️ Anchor link not found: #how-it-works
+📍 Testing anchor: pricing
+⏭️ Anchor link not found: #pricing
+📍 Testing anchor: contact
+⏭️ Anchor link not found: #contact
+✅ All anchor scrolling tests passed
+✅ Anchor Scrolling - PASSED All anchor links work correctly
+  ✓  53 [Mobile Chrome] › tests/e2e/landing-page.spec.js:321:3 › Landing Page - Comprehensive Testing › Anchor scrolling works correctly without overlay interference (3.4s)
+🎯 Checking overlay at center point (337, 32)
+📍 Elements at point (top to bottom):
+  0: span.sm:hidden (z-index: auto, pointer-events: auto)
+  1: span.flex.items-center.space-x-1.5 (z-index: auto, pointer-events: auto)
+  2: button.flex-shrink-0.px-3.py-2.text-xs.font-medium.rounded-lg.transition-all.duration-200.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:ring-offset-2.whitespace-nowrap.text-gray-600.hover:text-blue-600.hover:bg-blue-50 (z-index: auto, pointer-events: auto)
+  3: path (z-index: auto, pointer-events: auto)
+  4: svg (z-index: auto, pointer-events: auto)
+  5: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid="nav-hamburger"] (z-index: auto, pointer-events: auto)
+  6: div.flex.items-center.justify-between.h-16 (z-index: auto, pointer-events: auto)
+  7: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)
+  8: header.sticky.top-0.w-full.bg-theme-surface/95.backdrop-blur-sm.border-b.border-theme-surface-border.z-40 (z-index: 40, pointer-events: auto)
+  9: div.App (z-index: auto, pointer-events: auto)
+  10: div#root (z-index: auto, pointer-events: auto)
+  11: body.theme-light (z-index: auto, pointer-events: auto)
+  12: html (z-index: auto, pointer-events: auto)
+✅ No overlay blocking target: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid="nav-hamburger"]
+❌ Safe click failed: locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for getByTestId('nav-hamburger')[22m
+[2m    - locator resolved to <button aria-expanded="false" data-testid="nav-hamburger" aria-controls="mobile-navigation" aria-label="Toggle navigation menu" class="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    29 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+❌ Mobile Menu Auto-Close - FAILED locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for getByTestId('nav-hamburger')[22m
+[2m    - locator resolved to <button aria-expanded="false" data-testid="nav-hamburger" aria-controls="mobile-navigation" aria-label="Toggle navigation menu" class="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    29 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+
+============================================================
+📊 Landing Page Test Summary:
+⏱️ Duration: 53.08s
+✅ Passed: 13
+❌ Failed: 2
+
+🎉 Successful Tests:
+  - Page Title
+  - All Main Sections
+  - Hero Section
+  - Hero CTA Buttons
+  - Footer
+  - Sticky Navigation Visibility
+  - Anchor Scrolling
+  - Browser Hash Updates
+  - Create League CTA Routing
+  - Join Invite CTA Routing
+  - Sticky CTA (Mobile)
+  - Responsive Design
+  - Anchor Scrolling
+
+💥 Failed Tests:
+  - Scroll-spy Active Highlighting: Active section indicators detected
+  - Mobile Menu Auto-Close: locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for getByTestId('nav-hamburger')[22m
+[2m    - locator resolved to <button aria-expanded="false" data-testid="nav-hamburger" aria-controls="mobile-navigation" aria-label="Toggle navigation menu" class="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    29 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <span class="sm:hidden">Features</span> from <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+============================================================
+  ✓  54 [Mobile Chrome] › tests/e2e/landing-page.spec.js:334:3 › Landing Page - Comprehensive Testing › Mobile menu closes properly on navigation (18.5s)
+  ✓  55 [Mobile Chrome] › tests/e2e/navigation.spec.ts:22:9 › Navigation Tests › Desktop Navigation › Landing page anchor navigation works correctly (4.2s)
+  ✓  56 [Mobile Chrome] › tests/e2e/navigation.spec.ts:48:9 › Navigation Tests › Desktop Navigation › Product dropdown shows only enabled items and navigates correctly (3.2s)
+  ✘  57 [Mobile Chrome] › tests/e2e/navigation.spec.ts:79:9 › Navigation Tests › Mobile Navigation › Mobile hamburger menu works correctly (17.8s)
+  ✘  58 [Mobile Chrome] › tests/e2e/navigation.spec.ts:95:9 › Navigation Tests › Mobile Navigation › Mobile navigation shows only enabled items and navigates correctly (17.8s)

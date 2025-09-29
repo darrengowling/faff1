@@ -1,0 +1,4 @@
+ℹ️ [2025-09-28T03:25:52.723Z] 🚀 Starting CI Pipeline with Flake Detection
+ℹ️ [2025-09-28T03:25:52.725Z] 🚀 Starting verify-socket-config: Socket.IO configuration verification
+✅ [2025-09-28T03:25:54.309Z] ✅ verify-socket-config completed successfully
+ℹ️ [2025-09-28T03:25:54.309Z] 🚀 Starting test:contract: Frontend contract tests

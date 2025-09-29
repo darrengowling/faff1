@@ -1,0 +1,518 @@
+🧪 Global E2E Test Setup Starting...
+🔍 Pre-check: Verifying TESTIDS import...
+✅ TESTIDS imported successfully: 122 testids available
+   Sample testids: homeCreateLeagueBtn, navCreateLeagueBtn, joinViaInviteBtn, createLeagueWizardName, createLeagueWizardSlots...
+✅ Application accessible at: https://pifa-league.preview.emergentagent.com (Status: 200)
+🔐 Creating authenticated storage states...
+🔑 Authenticating commish@example.com...
+🔐 Logging in user: commish@example.com (mode: test)
+🧪 Test-only login for user: commish@example.com
+✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+✅ commish@example.com authenticated successfully
+💾 Storage state saved: test-results/commissioner-state.json
+🔑 Authenticating alice@example.com...
+🔐 Logging in user: alice@example.com (mode: test)
+🧪 Test-only login for user: alice@example.com
+✅ Test-only login successful: alice@example.com (User ID: 1d870e32-2668-4003-a477-ed01c0b73532)
+✅ alice@example.com authenticated successfully
+💾 Storage state saved: test-results/alice-state.json
+🔑 Authenticating bob@example.com...
+🔐 Logging in user: bob@example.com (mode: test)
+🧪 Test-only login for user: bob@example.com
+✅ Test-only login successful: bob@example.com (User ID: 219110d6-44db-481a-95f9-af0cf54d5467)
+✅ bob@example.com authenticated successfully
+💾 Storage state saved: test-results/bob-state.json
+🎉 Global setup completed successfully!
+
+Running 30 tests using 1 worker
+
+[1A[2K[1/30] [chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements
+[1A[2K  1) [chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="home-nav-button"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-testid="home-nav-button"]')[22m
+
+
+      23 |     // Verify navigation elements exist (no dead-ends)
+      24 |     await expect(page.locator('[data-testid="back-to-home-link"]')).toBeVisible();
+    > 25 |     await expect(page.locator('[data-testid="home-nav-button"]')).toBeVisible();
+         |                                                                   ^
+      26 |     
+      27 |     // Verify header structure
+      28 |     await expect(page.locator('[data-testid="login-header"]')).toBeVisible();
+        at /app/tests/e2e/auth_ui.spec.ts:25:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-chromium/error-context.md
+
+
+[1A[2K[2/30] [chromium] › tests/e2e/auth_ui.spec.ts:41:7 › Authentication UI Tests › Submit button is disabled for invalid email
+[1A[2K[3/30] [chromium] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission
+✅ Invalid email error properly displayed with role="alert" and form remains interactive
+
+[1A[2K[4/30] [chromium] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success
+Browser Console: Failed to load resource: the server responded with a status of 403 ()
+
+[1A[2KBrowser Console: Failed to fetch user: AxiosError
+
+[1A[2KBrowser Console: Token expired or invalid, logging out
+
+[1A[2KBrowser Console: Failed to load resource: the server responded with a status of 403 ()
+
+[1A[2KBrowser Console: Failed to fetch user: AxiosError
+
+[1A[2KBrowser Console: Token expired or invalid, logging out
+
+[1A[2KBrowser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://pifa-league.preview.emergentagent.com/aut…msifQ.wB_t7Qz-G3KEaL055CxnPEtnWMTYRDbV6w1kmg9KNlE}
+
+[1A[2KBrowser Console: Test mode: false
+
+[1A[2KAPI Response: {
+  message: [32m'Magic link generated! (Development Mode - Check below)'[39m,
+  dev_magic_link: [32m'https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTExNzg4MSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.wB_t7Qz-G3KEaL055CxnPEtnWMTYRDbV6w1kmg9KNlE'[39m
+}
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2KBrowser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+
+[1A[2KBrowser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+
+[1A[2K[5/30] [chromium] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works
+[1A[2K[6/30] [chromium] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly
+ℹ️ Loading state too fast to catch - checking aria-busy changed
+
+[1A[2KFinal aria-busy state: false
+
+[1A[2KResponse status: 200
+
+[1A[2K[7/30] [chromium] › tests/e2e/auth_ui.spec.ts:198:7 › Authentication UI Tests › No dead ends - page always has navigation options
+[1A[2K[8/30] [chromium] › tests/e2e/auth_ui.spec.ts:216:7 › Authentication UI Tests › Test mode disables animations
+[1A[2K[9/30] [chromium] › tests/e2e/auth_ui.spec.ts:236:7 › Authentication UI Integration › Form submission works using only testids
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:236:7 › Authentication UI Integration › Form submission works using only testids
+✅ Form submission completed successfully using testids
+
+[1A[2K[10/30] [chromium] › tests/e2e/auth_ui.spec.ts:267:7 › Authentication UI Integration › Complete auth flow using UI login mode
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:267:7 › Authentication UI Integration › Complete auth flow using UI login mode
+🔐 Logging in user: ui-integration-test@example.com (mode: ui)
+
+[1A[2K🖱️  UI login for user: ui-integration-test@example.com
+
+[1A[2K✅ UI login successful: ui-integration-test@example.com
+
+[1A[2K[11/30] [chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX
+🧪 Testing empty email error handling...
+
+[1A[2K  2) [chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      285 |
+      286 |     // Submit with empty email (form validation should prevent this, but test anyway)
+    > 287 |     await emailInput.fill('');
+          |                      ^
+      288 |     await expect(submitBtn).toBeDisabled();
+      289 |     
+      290 |     // Add some text then clear it to test error behavior
+        at /app/tests/e2e/auth_ui.spec.ts:287:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[12/30] [chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+🧪 Testing invalid email error handling...
+
+[1A[2K  3) [chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      306 |
+      307 |     // Enter invalid email and try to submit
+    > 308 |     await emailInput.fill('invalid-email-format');
+          |                      ^
+      309 |     
+      310 |     // Button should be disabled for invalid email
+      311 |     await expect(submitBtn).toBeDisabled();
+        at /app/tests/e2e/auth_ui.spec.ts:308:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[13/30] [chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing
+🧪 Testing error clearing behavior...
+
+[1A[2K  4) [chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      352 |
+      353 |     // Enter email that might trigger error
+    > 354 |     await emailInput.fill('error-test@invaliddomain999.com');
+          |                      ^
+      355 |     await submitBtn.click();
+      356 |     
+      357 |     // Wait a moment for any potential error
+        at /app/tests/e2e/auth_ui.spec.ts:354:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[14/30] [chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading
+🧪 Testing submit button states...
+
+[1A[2K  5) [chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      381 |
+      382 |     // Fill valid email
+    > 383 |     await emailInput.fill('loading-test@example.com');
+          |                      ^
+      384 |     
+      385 |     // Button should be enabled
+      386 |     await expect(submitBtn).toBeEnabled();
+        at /app/tests/e2e/auth_ui.spec.ts:383:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[15/30] [chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes
+🧪 Testing error accessibility...
+
+[1A[2K  6) [chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      439 |
+      440 |     // Try to trigger an error
+    > 441 |     await emailInput.fill('accessibility-test@invaliddomain999.com');
+          |                      ^
+      442 |     await submitBtn.click();
+      443 |     await page.waitForTimeout(2000);
+      444 |
+        at /app/tests/e2e/auth_ui.spec.ts:441:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[16/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements
+[1A[2K  7) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="home-nav-button"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-testid="home-nav-button"]')[22m
+
+
+      23 |     // Verify navigation elements exist (no dead-ends)
+      24 |     await expect(page.locator('[data-testid="back-to-home-link"]')).toBeVisible();
+    > 25 |     await expect(page.locator('[data-testid="home-nav-button"]')).toBeVisible();
+         |                                                                   ^
+      26 |     
+      27 |     // Verify header structure
+      28 |     await expect(page.locator('[data-testid="login-header"]')).toBeVisible();
+        at /app/tests/e2e/auth_ui.spec.ts:25:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-Mobile-Chrome/error-context.md
+
+
+[1A[2K[17/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:41:7 › Authentication UI Tests › Submit button is disabled for invalid email
+[1A[2K[18/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission
+✅ Invalid email error properly displayed with role="alert" and form remains interactive
+
+[1A[2K[19/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success
+Browser Console: Failed to load resource: the server responded with a status of 403 ()
+
+[1A[2KBrowser Console: Failed to fetch user: AxiosError
+
+[1A[2KBrowser Console: Token expired or invalid, logging out
+
+[1A[2KBrowser Console: Failed to load resource: the server responded with a status of 403 ()
+
+[1A[2KBrowser Console: Failed to fetch user: AxiosError
+
+[1A[2KBrowser Console: Token expired or invalid, logging out
+
+[1A[2KBrowser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://pifa-league.preview.emergentagent.com/aut…msifQ.bc4ANQuChlSyLjXAqcjK3PomOye1JhX33JHatqVX_vA}
+
+[1A[2KBrowser Console: Test mode: false
+
+[1A[2KAPI Response: {
+  message: [32m'Magic link generated! (Development Mode - Check below)'[39m,
+  dev_magic_link: [32m'https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTExNzk5MCwidHlwZSI6Im1hZ2ljX2xpbmsifQ.bc4ANQuChlSyLjXAqcjK3PomOye1JhX33JHatqVX_vA'[39m
+}
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2KBrowser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+
+[1A[2KBrowser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+
+[1A[2K[20/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works
+[1A[2K[21/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly
+ℹ️ Loading state too fast to catch - checking aria-busy changed
+
+[1A[2KFinal aria-busy state: false
+
+[1A[2KResponse status: 200
+
+[1A[2K[22/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:198:7 › Authentication UI Tests › No dead ends - page always has navigation options
+[1A[2K[23/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:216:7 › Authentication UI Tests › Test mode disables animations
+[1A[2K[24/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:236:7 › Authentication UI Integration › Form submission works using only testids
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:236:7 › Authentication UI Integration › Form submission works using only testids
+✅ Form submission completed successfully using testids
+
+[1A[2K[25/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:267:7 › Authentication UI Integration › Complete auth flow using UI login mode
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:267:7 › Authentication UI Integration › Complete auth flow using UI login mode
+🔐 Logging in user: ui-integration-test@example.com (mode: ui)
+
+[1A[2K🖱️  UI login for user: ui-integration-test@example.com
+
+[1A[2K✅ UI login successful: ui-integration-test@example.com
+
+[1A[2K[26/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX
+🧪 Testing empty email error handling...
+
+[1A[2K  8) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      285 |
+      286 |     // Submit with empty email (form validation should prevent this, but test anyway)
+    > 287 |     await emailInput.fill('');
+          |                      ^
+      288 |     await expect(submitBtn).toBeDisabled();
+      289 |     
+      290 |     // Add some text then clear it to test error behavior
+        at /app/tests/e2e/auth_ui.spec.ts:287:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[27/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+🧪 Testing invalid email error handling...
+
+[1A[2K  9) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      306 |
+      307 |     // Enter invalid email and try to submit
+    > 308 |     await emailInput.fill('invalid-email-format');
+          |                      ^
+      309 |     
+      310 |     // Button should be disabled for invalid email
+      311 |     await expect(submitBtn).toBeDisabled();
+        at /app/tests/e2e/auth_ui.spec.ts:308:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[28/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing
+🧪 Testing error clearing behavior...
+
+[1A[2K  10) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      352 |
+      353 |     // Enter email that might trigger error
+    > 354 |     await emailInput.fill('error-test@invaliddomain999.com');
+          |                      ^
+      355 |     await submitBtn.click();
+      356 |     
+      357 |     // Wait a moment for any potential error
+        at /app/tests/e2e/auth_ui.spec.ts:354:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[29/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading
+🧪 Testing submit button states...
+
+[1A[2K  11) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      381 |
+      382 |     // Fill valid email
+    > 383 |     await emailInput.fill('loading-test@example.com');
+          |                      ^
+      384 |     
+      385 |     // Button should be enabled
+      386 |     await expect(submitBtn).toBeEnabled();
+        at /app/tests/e2e/auth_ui.spec.ts:383:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[30/30] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes
+🧪 Testing error accessibility...
+
+[1A[2K  12) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      439 |
+      440 |     // Try to trigger an error
+    > 441 |     await emailInput.fill('accessibility-test@invaliddomain999.com');
+          |                      ^
+      442 |     await submitBtn.click();
+      443 |     await page.waitForTimeout(2000);
+      444 |
+        at /app/tests/e2e/auth_ui.spec.ts:441:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+🧹 Global E2E Test Teardown Starting...
+🎉 Global teardown completed!
+[1A[2K  12 failed
+    [chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements 
+    [chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX 
+    [chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message 
+    [chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing 
+    [chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading 
+    [chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes 
+  18 passed (3.9m)

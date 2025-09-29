@@ -1,0 +1,2001 @@
+🧪 Global E2E Test Setup Starting...
+✅ Application accessible at: https://pifa-league.preview.emergentagent.com (Status: 200)
+🎉 Global setup completed successfully!
+
+Running 146 tests using 1 worker
+
+[1A[2K[1/146] [chromium] › tests/e2e/access_and_gates.spec.ts:31:7 › Access and Gates Tests › Start Auction disabled when below minimum managers
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:31:7 › Access and Gates Tests › Start Auction disabled when below minimum managers
+🧪 Testing Start Auction gate with insufficient members...
+
+[1A[2K🔐 Logging in user: commissioner@example.com
+
+[1A[2KSubmit button enabled for email: commissioner@example.com
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2K✅ User logged in: commissioner@example.com
+
+[1A[2K🏆 Creating league: Gate Test League
+
+[1A[2K  1) [chromium] › tests/e2e/access_and_gates.spec.ts:31:7 › Access and Gates Tests › Start Auction disabled when below minimum managers 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/leagues/**" until "load"
+    ============================================================
+
+       at utils/helpers.ts:125
+
+      123 |   
+      124 |   // Wait for success and extract league ID from URL
+    > 125 |   await page.waitForURL('**/leagues/**', { timeout: 15000 });
+          |              ^
+      126 |   const url = page.url();
+      127 |   const leagueId = url.split('/leagues/')[1]?.split('/')[0] || '';
+      128 |   
+        at createLeague (/app/tests/e2e/utils/helpers.ts:125:14)
+        at /app/tests/e2e/access_and_gates.spec.ts:36:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[2/146] [chromium] › tests/e2e/access_and_gates.spec.ts:60:7 › Access and Gates Tests › Start Auction enabled when minimum managers reached
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:60:7 › Access and Gates Tests › Start Auction enabled when minimum managers reached
+🧪 Testing Start Auction gate with sufficient members...
+
+[1A[2K🔐 Logging in user: commissioner@sufficient.test
+
+[1A[2KSubmit button enabled for email: commissioner@sufficient.test
+
+[1A[2K  2) [chromium] › tests/e2e/access_and_gates.spec.ts:60:7 › Access and Gates Tests › Start Auction enabled when minimum managers reached 
+
+    TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-success"]') to be visible[22m
+
+
+       at utils/helpers.ts:33
+
+      31 |   
+      32 |   // Wait for success message to appear (indicates backend processing complete)
+    > 33 |   await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
+         |                                                                ^
+      34 |   
+      35 |   // Check if dev magic link button appears (conditional in development mode)
+      36 |   const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
+        at login (/app/tests/e2e/utils/helpers.ts:33:64)
+        at /app/tests/e2e/access_and_gates.spec.ts:64:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[3/146] [chromium] › tests/e2e/access_and_gates.spec.ts:89:7 › Access and Gates Tests › Route guards redirect unauthenticated users with toast notifications
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:89:7 › Access and Gates Tests › Route guards redirect unauthenticated users with toast notifications
+🧪 Testing route guards for unauthenticated access...
+
+[1A[2K✅ /app correctly redirected to login with toast
+
+[1A[2K  3) [chromium] › tests/e2e/access_and_gates.spec.ts:89:7 › Access and Gates Tests › Route guards redirect unauthenticated users with toast notifications 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/login" until "load"
+    ============================================================
+
+      104 |       
+      105 |       // Should redirect to login
+    > 106 |       await unauthenticatedPage.waitForURL('**/login', { timeout: 10000 });
+          |                                 ^
+      107 |       
+      108 |       // Check for auth required toast
+      109 |       const authToast = unauthenticatedPage.locator('[data-testid="auth-required-toast"]');
+        at /app/tests/e2e/access_and_gates.spec.ts:106:33
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[4/146] [chromium] › tests/e2e/access_and_gates.spec.ts:118:7 › Access and Gates Tests › Non-existent league routes show 404 or redirect safely
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:118:7 › Access and Gates Tests › Non-existent league routes show 404 or redirect safely
+🧪 Testing non-existent league access...
+
+[1A[2K🔐 Logging in user: member@404.test
+
+[1A[2KSubmit button enabled for email: member@404.test
+
+[1A[2K  4) [chromium] › tests/e2e/access_and_gates.spec.ts:118:7 › Access and Gates Tests › Non-existent league routes show 404 or redirect safely 
+
+    TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-success"]') to be visible[22m
+
+
+       at utils/helpers.ts:33
+
+      31 |   
+      32 |   // Wait for success message to appear (indicates backend processing complete)
+    > 33 |   await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
+         |                                                                ^
+      34 |   
+      35 |   // Check if dev magic link button appears (conditional in development mode)
+      36 |   const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
+        at login (/app/tests/e2e/utils/helpers.ts:33:64)
+        at /app/tests/e2e/access_and_gates.spec.ts:121:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[5/146] [chromium] › tests/e2e/access_and_gates.spec.ts:139:7 › Access and Gates Tests › League members can access league pages
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:139:7 › Access and Gates Tests › League members can access league pages
+🧪 Testing league member access permissions...
+
+[1A[2K🔐 Logging in user: commissioner@member-access.test
+
+[1A[2KSubmit button enabled for email: commissioner@member-access.test
+
+[1A[2K  5) [chromium] › tests/e2e/access_and_gates.spec.ts:139:7 › Access and Gates Tests › League members can access league pages 
+
+    TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-success"]') to be visible[22m
+
+
+       at utils/helpers.ts:33
+
+      31 |   
+      32 |   // Wait for success message to appear (indicates backend processing complete)
+    > 33 |   await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
+         |                                                                ^
+      34 |   
+      35 |   // Check if dev magic link button appears (conditional in development mode)
+      36 |   const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
+        at login (/app/tests/e2e/utils/helpers.ts:33:64)
+        at /app/tests/e2e/access_and_gates.spec.ts:143:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[6/146] [chromium] › tests/e2e/access_and_gates.spec.ts:176:7 › Access and Gates Tests › Non-league members cannot access league pages
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:176:7 › Access and Gates Tests › Non-league members cannot access league pages
+🧪 Testing non-member access restrictions...
+
+[1A[2K🔐 Logging in user: commissioner@private.test
+
+[1A[2KSubmit button enabled for email: commissioner@private.test
+
+[1A[2K  6) [chromium] › tests/e2e/access_and_gates.spec.ts:176:7 › Access and Gates Tests › Non-league members cannot access league pages 
+
+    TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-success"]') to be visible[22m
+
+
+       at utils/helpers.ts:33
+
+      31 |   
+      32 |   // Wait for success message to appear (indicates backend processing complete)
+    > 33 |   await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
+         |                                                                ^
+      34 |   
+      35 |   // Check if dev magic link button appears (conditional in development mode)
+      36 |   const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
+        at login (/app/tests/e2e/utils/helpers.ts:33:64)
+        at /app/tests/e2e/access_and_gates.spec.ts:180:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[7/146] [chromium] › tests/e2e/access_and_gates.spec.ts:205:7 › Access and Gates Tests › Commissioner has admin access, members do not
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:205:7 › Access and Gates Tests › Commissioner has admin access, members do not
+🧪 Testing admin access permissions...
+
+[1A[2K🔐 Logging in user: commissioner@admin.test
+
+[1A[2KSubmit button enabled for email: commissioner@admin.test
+
+[1A[2K  7) [chromium] › tests/e2e/access_and_gates.spec.ts:205:7 › Access and Gates Tests › Commissioner has admin access, members do not 
+
+    TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-success"]') to be visible[22m
+
+
+       at utils/helpers.ts:33
+
+      31 |   
+      32 |   // Wait for success message to appear (indicates backend processing complete)
+    > 33 |   await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
+         |                                                                ^
+      34 |   
+      35 |   // Check if dev magic link button appears (conditional in development mode)
+      36 |   const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
+        at login (/app/tests/e2e/utils/helpers.ts:33:64)
+        at /app/tests/e2e/access_and_gates.spec.ts:208:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[8/146] [chromium] › tests/e2e/access_and_gates.spec.ts:243:7 › Access and Gates Tests › Auction access requires active auction
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:243:7 › Access and Gates Tests › Auction access requires active auction
+🧪 Testing auction access gates...
+
+[1A[2K🔐 Logging in user: commissioner@auction-gate.test
+
+[1A[2KSubmit button enabled for email: commissioner@auction-gate.test
+
+[1A[2K  8) [chromium] › tests/e2e/access_and_gates.spec.ts:243:7 › Access and Gates Tests › Auction access requires active auction 
+
+    TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-success"]') to be visible[22m
+
+
+       at utils/helpers.ts:33
+
+      31 |   
+      32 |   // Wait for success message to appear (indicates backend processing complete)
+    > 33 |   await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
+         |                                                                ^
+      34 |   
+      35 |   // Check if dev magic link button appears (conditional in development mode)
+      36 |   const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
+        at login (/app/tests/e2e/utils/helpers.ts:33:64)
+        at /app/tests/e2e/access_and_gates.spec.ts:246:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[9/146] [chromium] › tests/e2e/access_and_gates.spec.ts:273:7 › Access and Gates Tests › League-specific routes redirect safely with helpful messages
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:273:7 › Access and Gates Tests › League-specific routes redirect safely with helpful messages
+🧪 Testing league-specific route redirects...
+
+[1A[2K🔐 Logging in user: member@no-league.test
+
+[1A[2KSubmit button enabled for email: member@no-league.test
+
+[1A[2K  9) [chromium] › tests/e2e/access_and_gates.spec.ts:273:7 › Access and Gates Tests › League-specific routes redirect safely with helpful messages 
+
+    TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-success"]') to be visible[22m
+
+
+       at utils/helpers.ts:33
+
+      31 |   
+      32 |   // Wait for success message to appear (indicates backend processing complete)
+    > 33 |   await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
+         |                                                                ^
+      34 |   
+      35 |   // Check if dev magic link button appears (conditional in development mode)
+      36 |   const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
+        at login (/app/tests/e2e/utils/helpers.ts:33:64)
+        at /app/tests/e2e/access_and_gates.spec.ts:277:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[10/146] [chromium] › tests/e2e/access_and_gates.spec.ts:303:7 › Access and Gates Tests › Breadcrumb navigation appears on all app pages
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:303:7 › Access and Gates Tests › Breadcrumb navigation appears on all app pages
+🧪 Testing breadcrumb navigation...
+
+[1A[2K🔐 Logging in user: commissioner@breadcrumb.test
+
+[1A[2KSubmit button enabled for email: commissioner@breadcrumb.test
+
+[1A[2K  10) [chromium] › tests/e2e/access_and_gates.spec.ts:303:7 › Access and Gates Tests › Breadcrumb navigation appears on all app pages 
+
+    TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-success"]') to be visible[22m
+
+
+       at utils/helpers.ts:33
+
+      31 |   
+      32 |   // Wait for success message to appear (indicates backend processing complete)
+    > 33 |   await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
+         |                                                                ^
+      34 |   
+      35 |   // Check if dev magic link button appears (conditional in development mode)
+      36 |   const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
+        at login (/app/tests/e2e/utils/helpers.ts:33:64)
+        at /app/tests/e2e/access_and_gates.spec.ts:306:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[11/146] [chromium] › tests/e2e/access_and_gates.spec.ts:329:7 › Access and Gates Tests › No dead-end pages - all pages provide navigation options
+[1A[2K[chromium] › tests/e2e/access_and_gates.spec.ts:329:7 › Access and Gates Tests › No dead-end pages - all pages provide navigation options
+🧪 Testing for dead-end pages...
+
+[1A[2K🔐 Logging in user: member@dead-end.test
+
+[1A[2KSubmit button enabled for email: member@dead-end.test
+
+[1A[2K  11) [chromium] › tests/e2e/access_and_gates.spec.ts:329:7 › Access and Gates Tests › No dead-end pages - all pages provide navigation options 
+
+    TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-success"]') to be visible[22m
+
+
+       at utils/helpers.ts:33
+
+      31 |   
+      32 |   // Wait for success message to appear (indicates backend processing complete)
+    > 33 |   await page.locator(`[data-testid="${TESTIDS.authSuccess}"]`).waitFor({ state: 'visible', timeout: 10000 });
+         |                                                                ^
+      34 |   
+      35 |   // Check if dev magic link button appears (conditional in development mode)
+      36 |   const devMagicBtn = page.locator('[data-testid="dev-magic-link-btn"]');
+        at login (/app/tests/e2e/utils/helpers.ts:33:64)
+        at /app/tests/e2e/access_and_gates.spec.ts:332:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9fedc--provide-navigation-options-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9fedc--provide-navigation-options-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9fedc--provide-navigation-options-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9fedc--provide-navigation-options-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-9fedc--provide-navigation-options-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[12/146] [chromium] › tests/e2e/accessibility.spec.js:52:3 › Accessibility - Comprehensive Testing › Lighthouse accessibility audit ≥90
+[1A[2K[chromium] › tests/e2e/accessibility.spec.js:52:3 › Accessibility - Comprehensive Testing › Lighthouse accessibility audit ≥90
+✅ Single H1 Heading - PASSED 1 H1 elements found
+
+[1A[2K✅ Proper Heading Hierarchy - PASSED Heading sequence: 1 → 2 → 3 → 3 → 3 → 2 → 3 → 3 → 3 → 2 → 3 → 3 → 3 → 3 → 3 → 3 → 2 → 3 → 3 → 3 → 3 → 3 → 2 → 3 → 3 → 3 → 3 → 3 → 3 → 2 → 3 → 3
+
+[1A[2K✅ Image Alt Text Compliance - PASSED 1/1 images with alt text
+
+[1A[2K✅ Form Label Compliance - PASSED 0/0 form elements properly labeled
+
+[1A[2K✅ Focusable Elements Present - PASSED 27 focusable elements found
+
+[1A[2K✅ Basic Contrast Check - PASSED 0 potential contrast issues detected
+
+[1A[2K✅ Estimated Accessibility Score - PASSED 100% (≥90% required)
+
+[1A[2K[13/146] [chromium] › tests/e2e/accessibility.spec.js:138:3 › Accessibility - Comprehensive Testing › WCAG contrast checks pass
+[1A[2K[chromium] › tests/e2e/accessibility.spec.js:138:3 › Accessibility - Comprehensive Testing › WCAG contrast checks pass
+✅ WCAG Contrast Compliance - PASSED 4/5 elements pass contrast check
+
+[1A[2K[14/146] [chromium] › tests/e2e/accessibility.spec.js:218:3 › Accessibility - Comprehensive Testing › Keyboard navigation completeness
+[1A[2K[chromium] › tests/e2e/accessibility.spec.js:218:3 › Accessibility - Comprehensive Testing › Keyboard navigation completeness
+✅ Keyboard Navigation Elements - PASSED 19 keyboard-accessible elements found
+
+[1A[2K✅ Keyboard Interactions - PASSED 1 keyboard interactions working
+
+[1A[2K✅ Focus Indicators - PASSED Focus indicators are visible
+
+[1A[2K[15/146] [chromium] › tests/e2e/accessibility.spec.js:310:3 › Accessibility - Comprehensive Testing › Screen reader compatibility
+[1A[2K[chromium] › tests/e2e/accessibility.spec.js:310:3 › Accessibility - Comprehensive Testing › Screen reader compatibility
+✅ ARIA Landmarks - PASSED 5 landmarks found
+
+[1A[2K✅ ARIA Labels - PASSED 9 elements with aria-label
+
+[1A[2K✅ ARIA Descriptions - PASSED 0 elements with aria-describedby
+
+[1A[2K✅ Button Accessibility - PASSED 24/24 buttons have accessible names
+
+[1A[2K❌ Screen Reader Compatibility - FAILED locator.count: Unexpected token ")" while parsing css selector "a[aria-label], a:has-text(), a[title]". Did you mean to CSS.escape it?
+
+[1A[2K[16/146] [chromium] › tests/e2e/accessibility.spec.js:360:3 › Accessibility - Comprehensive Testing › Mobile accessibility compliance
+[1A[2K[chromium] › tests/e2e/accessibility.spec.js:360:3 › Accessibility - Comprehensive Testing › Mobile accessibility compliance
+❌ Touch Target Sizes - FAILED 0/26 targets ≥44px
+
+[1A[2K✅ Mobile Menu Accessibility - PASSED Mobile menu aria-label: "Toggle navigation menu"
+
+[1A[2K❌ Mobile Menu Keyboard Access - FAILED Mobile menu opens with keyboard
+
+[1A[2K[17/146] [chromium] › tests/e2e/accessibility.spec.js:420:3 › Accessibility - Comprehensive Testing › Focus trap and modal accessibility
+[1A[2K[chromium] › tests/e2e/accessibility.spec.js:420:3 › Accessibility - Comprehensive Testing › Focus trap and modal accessibility
+❌ Mobile Drawer Focus Elements - FAILED 0 focusable elements in mobile drawer
+
+[1A[2K
+============================================================
+
+[1A[2K📊 Accessibility Test Summary:
+
+[1A[2K⏱️ Duration: 52.80s
+
+[1A[2K✅ Passed: 16
+
+[1A[2K❌ Failed: 4
+
+[1A[2K
+🎉 Successful Tests:
+
+[1A[2K  - Single H1 Heading
+
+[1A[2K  - Proper Heading Hierarchy
+
+[1A[2K  - Image Alt Text Compliance
+
+[1A[2K  - Form Label Compliance
+
+[1A[2K  - Focusable Elements Present
+
+[1A[2K  - Basic Contrast Check
+
+[1A[2K  - Estimated Accessibility Score
+
+[1A[2K  - WCAG Contrast Compliance
+
+[1A[2K  - Keyboard Navigation Elements
+
+[1A[2K  - Keyboard Interactions
+
+[1A[2K  - Focus Indicators
+
+[1A[2K  - ARIA Landmarks
+
+[1A[2K  - ARIA Labels
+
+[1A[2K  - ARIA Descriptions
+
+[1A[2K  - Button Accessibility
+
+[1A[2K  - Mobile Menu Accessibility
+
+[1A[2K
+💥 Failed Tests:
+
+[1A[2K  - Screen Reader Compatibility: locator.count: Unexpected token ")" while parsing css selector "a[aria-label], a:has-text(), a[title]". Did you mean to CSS.escape it?
+
+[1A[2K  - Touch Target Sizes: 0/26 targets ≥44px
+
+[1A[2K  - Mobile Menu Keyboard Access: Mobile menu opens with keyboard
+
+[1A[2K  - Mobile Drawer Focus Elements: 0 focusable elements in mobile drawer
+
+[1A[2K============================================================
+
+[1A[2K[18/146] [chromium] › tests/e2e/api-regression-validation.spec.js:11:3 › API Regression Validation › UCL Competition Profile - Min=2, Slots=5 Validation
+[1A[2K[chromium] › tests/e2e/api-regression-validation.spec.js:11:3 › API Regression Validation › UCL Competition Profile - Min=2, Slots=5 Validation
+✅ UCL Profile Validated - Slots=5, Min=2, Max=8
+
+[1A[2K[19/146] [chromium] › tests/e2e/api-regression-validation.spec.js:33:3 › API Regression Validation › Roster Calculation Logic - Never Negative
+[1A[2K[chromium] › tests/e2e/api-regression-validation.spec.js:33:3 › API Regression Validation › Roster Calculation Logic - Never Negative
+✅ Roster Calculation - remaining = max(0, clubSlots - ownedCount) validated
+
+[1A[2K[20/146] [chromium] › tests/e2e/api-regression-validation.spec.js:52:3 › API Regression Validation › Member Count Gate Logic - Min=2 Validation
+[1A[2K[chromium] › tests/e2e/api-regression-validation.spec.js:52:3 › API Regression Validation › Member Count Gate Logic - Min=2 Validation
+✅ Min=2 Gate Logic - Validated member count requirements
+
+[1A[2K[21/146] [chromium] › tests/e2e/api-regression-validation.spec.js:71:3 › API Regression Validation › API Endpoints Health Check
+[1A[2K[chromium] › tests/e2e/api-regression-validation.spec.js:71:3 › API Regression Validation › API Endpoints Health Check
+✅ Health check - Status 200
+
+[1A[2K✅ Competition profiles - Status 200
+
+[1A[2K✅ Clubs data - Status 200
+
+[1A[2K✅ Time sync - Status 200
+
+[1A[2K✅ Socket diagnostic - Status 200
+
+[1A[2K[22/146] [chromium] › tests/e2e/api-regression-validation.spec.js:92:3 › API Regression Validation › Settings Structure Validation
+[1A[2K[chromium] › tests/e2e/api-regression-validation.spec.js:92:3 › API Regression Validation › Settings Structure Validation
+✅ ucl profile structure validated
+
+[1A[2K✅ europa profile structure validated
+
+[1A[2K✅ custom profile structure validated
+
+[1A[2K[23/146] [chromium] › tests/e2e/api-regression-validation.spec.js:122:3 › API Regression Validation › Calculation Edge Cases - Boundary Validation
+[1A[2K[chromium] › tests/e2e/api-regression-validation.spec.js:122:3 › API Regression Validation › Calculation Edge Cases - Boundary Validation
+✅ Edge Cases - All boundary conditions handle correctly
+
+[1A[2K[24/146] [chromium] › tests/e2e/api-regression-validation.spec.js:144:3 › API Regression Validation › UCL Specific Requirements Validation
+[1A[2K[chromium] › tests/e2e/api-regression-validation.spec.js:144:3 › API Regression Validation › UCL Specific Requirements Validation
+✅ UCL Requirement: Club Slots must be 5
+
+[1A[2K✅ UCL Requirement: Min managers must be 2
+
+[1A[2K✅ UCL Requirement: Max managers must be 8
+
+[1A[2K✅ UCL Requirement: Budget must be positive
+
+[1A[2K✅ UCL Requirement: Min increment must be 1
+
+[1A[2K✅ UCL Requirement: Anti-snipe must be 30s
+
+[1A[2K[25/146] [chromium] › tests/e2e/auction.spec.ts:32:7 › Auction Tests › Anti-snipe extends timer when bid placed in final seconds
+[1A[2K[chromium] › tests/e2e/auction.spec.ts:32:7 › Auction Tests › Anti-snipe extends timer when bid placed in final seconds
+🧪 Testing anti-snipe timer extension...
+
+[1A[2K🔐 Logging in user: commissioner@test.com
+
+[1A[2KSubmit button enabled for email: commissioner@test.com
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2K✅ User logged in: commissioner@test.com
+
+[1A[2K🏆 Creating league: Anti-Snipe Test League
+
+[1A[2K  12) [chromium] › tests/e2e/auction.spec.ts:32:7 › Auction Tests › Anti-snipe extends timer when bid placed in final seconds 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/leagues/**" until "load"
+    ============================================================
+
+       at utils/helpers.ts:125
+
+      123 |   
+      124 |   // Wait for dialog to close (indicates success)
+    > 125 |   await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'hidden', timeout: 15000 });
+          |              ^
+      126 |   
+      127 |   // Wait a moment for the league list to update
+      128 |   await page.waitForTimeout(2000);
+        at createLeague (/app/tests/e2e/utils/helpers.ts:125:14)
+        at /app/tests/e2e/auction.spec.ts:37:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Anti-85b3b-bid-placed-in-final-seconds-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Anti-85b3b-bid-placed-in-final-seconds-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Anti-85b3b-bid-placed-in-final-seconds-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/auction-Auction-Tests-Anti-85b3b-bid-placed-in-final-seconds-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Anti-85b3b-bid-placed-in-final-seconds-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auction-Auction-Tests-Anti-85b3b-bid-placed-in-final-seconds-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[26/146] [chromium] › tests/e2e/auction.spec.ts:89:7 › Auction Tests › Simultaneous bids resolve deterministically
+[1A[2K[chromium] › tests/e2e/auction.spec.ts:89:7 › Auction Tests › Simultaneous bids resolve deterministically
+🧪 Testing simultaneous bid resolution...
+
+[1A[2K🔐 Logging in user: commissioner-sim@test.com
+
+[1A[2KSubmit button enabled for email: commissioner-sim@test.com
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2K✅ User logged in: commissioner-sim@test.com
+
+[1A[2K🏆 Creating league: Simultaneous Bid Test
+
+[1A[2K  13) [chromium] › tests/e2e/auction.spec.ts:89:7 › Auction Tests › Simultaneous bids resolve deterministically 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/leagues/**" until "load"
+    ============================================================
+
+       at utils/helpers.ts:125
+
+      123 |   
+      124 |   // Wait for dialog to close (indicates success)
+    > 125 |   await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'hidden', timeout: 15000 });
+          |              ^
+      126 |   
+      127 |   // Wait a moment for the league list to update
+      128 |   await page.waitForTimeout(2000);
+        at createLeague (/app/tests/e2e/utils/helpers.ts:125:14)
+        at /app/tests/e2e/auction.spec.ts:94:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Simu-e2e93-s-resolve-deterministically-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Simu-e2e93-s-resolve-deterministically-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Simu-e2e93-s-resolve-deterministically-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/auction-Auction-Tests-Simu-e2e93-s-resolve-deterministically-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Simu-e2e93-s-resolve-deterministically-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auction-Auction-Tests-Simu-e2e93-s-resolve-deterministically-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[27/146] [chromium] › tests/e2e/auction.spec.ts:130:7 › Auction Tests › Safe lot close prevents data corruption
+[1A[2K[chromium] › tests/e2e/auction.spec.ts:130:7 › Auction Tests › Safe lot close prevents data corruption
+🧪 Testing safe lot closing...
+
+[1A[2K🔐 Logging in user: commissioner-close@test.com
+
+[1A[2KSubmit button enabled for email: commissioner-close@test.com
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2K✅ User logged in: commissioner-close@test.com
+
+[1A[2K🏆 Creating league: Safe Close Test
+
+[1A[2K  14) [chromium] › tests/e2e/auction.spec.ts:130:7 › Auction Tests › Safe lot close prevents data corruption 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/leagues/**" until "load"
+    ============================================================
+
+       at utils/helpers.ts:125
+
+      123 |   
+      124 |   // Wait for dialog to close (indicates success)
+    > 125 |   await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'hidden', timeout: 15000 });
+          |              ^
+      126 |   
+      127 |   // Wait a moment for the league list to update
+      128 |   await page.waitForTimeout(2000);
+        at createLeague (/app/tests/e2e/utils/helpers.ts:125:14)
+        at /app/tests/e2e/auction.spec.ts:135:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Safe-44161-se-prevents-data-corruption-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Safe-44161-se-prevents-data-corruption-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Safe-44161-se-prevents-data-corruption-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/auction-Auction-Tests-Safe-44161-se-prevents-data-corruption-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Safe-44161-se-prevents-data-corruption-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auction-Auction-Tests-Safe-44161-se-prevents-data-corruption-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[28/146] [chromium] › tests/e2e/auction.spec.ts:174:7 › Auction Tests › Undo disabled once next lot opens
+[1A[2K[chromium] › tests/e2e/auction.spec.ts:174:7 › Auction Tests › Undo disabled once next lot opens
+🧪 Testing undo button behavior...
+
+[1A[2K🔐 Logging in user: commissioner-undo@test.com
+
+[1A[2KSubmit button enabled for email: commissioner-undo@test.com
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2K✅ User logged in: commissioner-undo@test.com
+
+[1A[2K🏆 Creating league: Undo Test League
+
+[1A[2K  15) [chromium] › tests/e2e/auction.spec.ts:174:7 › Auction Tests › Undo disabled once next lot opens 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/leagues/**" until "load"
+    ============================================================
+
+       at utils/helpers.ts:125
+
+      123 |   
+      124 |   // Wait for dialog to close (indicates success)
+    > 125 |   await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'hidden', timeout: 15000 });
+          |              ^
+      126 |   
+      127 |   // Wait a moment for the league list to update
+      128 |   await page.waitForTimeout(2000);
+        at createLeague (/app/tests/e2e/utils/helpers.ts:125:14)
+        at /app/tests/e2e/auction.spec.ts:179:16
+
+    Error: browserContext._wrapApiCall: ENOENT: no such file or directory, open '/app/test-results/.playwright-artifacts-14/traces/0671ecdb228e1389986c-d6b27c4d25e773f6e60e-recording3.trace'
+
+    Error: browserContext._wrapApiCall: ENOENT: no such file or directory, open '/app/test-results/.playwright-artifacts-14/traces/0671ecdb228e1389986c-d6b27c4d25e773f6e60e-recording3.trace'
+
+    Error: ENOENT: no such file or directory, open '/app/test-results/.playwright-artifacts-14/5adcbb14147d14ab87ae668b60a7e97c.zip'
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Undo-disabled-once-next-lot-opens-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Undo-disabled-once-next-lot-opens-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Undo-disabled-once-next-lot-opens-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[29/146] [chromium] › tests/e2e/auction.spec.ts:229:7 › Auction Tests › Bid validation prevents invalid amounts
+[1A[2K[chromium] › tests/e2e/auction.spec.ts:229:7 › Auction Tests › Bid validation prevents invalid amounts
+🧪 Testing bid validation...
+
+[1A[2K🔐 Logging in user: commissioner-validation@test.com
+
+[1A[2KSubmit button enabled for email: commissioner-validation@test.com
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2K✅ User logged in: commissioner-validation@test.com
+
+[1A[2K🏆 Creating league: Validation Test
+
+[1A[2K  16) [chromium] › tests/e2e/auction.spec.ts:229:7 › Auction Tests › Bid validation prevents invalid amounts 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/leagues/**" until "load"
+    ============================================================
+
+       at utils/helpers.ts:125
+
+      123 |   
+      124 |   // Wait for dialog to close (indicates success)
+    > 125 |   await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'hidden', timeout: 15000 });
+          |              ^
+      126 |   
+      127 |   // Wait a moment for the league list to update
+      128 |   await page.waitForTimeout(2000);
+        at createLeague (/app/tests/e2e/utils/helpers.ts:125:14)
+        at /app/tests/e2e/auction.spec.ts:234:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Bid--a1da7-on-prevents-invalid-amounts-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Bid--a1da7-on-prevents-invalid-amounts-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Bid--a1da7-on-prevents-invalid-amounts-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/auction-Auction-Tests-Bid--a1da7-on-prevents-invalid-amounts-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auction-Auction-Tests-Bid--a1da7-on-prevents-invalid-amounts-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auction-Auction-Tests-Bid--a1da7-on-prevents-invalid-amounts-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[30/146] [chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements
+✅ Login form renders correctly with all required testid elements
+
+[1A[2K[31/146] [chromium] › tests/e2e/auth_ui.spec.ts:41:7 › Authentication UI Tests › Submit button is disabled for invalid email
+[1A[2K[32/146] [chromium] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission
+[1A[2K  17) [chromium] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="auth-error"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  10000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for locator('[data-testid="auth-error"]')[22m
+
+
+      77 |     
+      78 |     // Error should be visible
+    > 79 |     await expect(errorElement).toBeVisible();
+         |                                ^
+      80 |     await expect(errorElement).toContainText('valid email address');
+      81 |   });
+      82 |
+        at /app/tests/e2e/auth_ui.spec.ts:79:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--bde9a-or-invalid-email-submission-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--bde9a-or-invalid-email-submission-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/auth_ui-Authentication-UI--bde9a-or-invalid-email-submission-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--bde9a-or-invalid-email-submission-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--bde9a-or-invalid-email-submission-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[33/146] [chromium] › tests/e2e/auth_ui.spec.ts:83:7 › Authentication UI Tests › Successfully submits valid email and shows success
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:83:7 › Authentication UI Tests › Successfully submits valid email and shows success
+Browser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://pifa-league.preview.emergentagent.com/aut…msifQ.qgb5FdSWxJS5QMMhsKMa5p_Tfyu-oujqU2e6d8qELiQ}
+
+[1A[2KBrowser Console: Test mode: false
+
+[1A[2KAPI Response: {
+  message: [32m'Magic link generated! (Development Mode - Check below)'[39m,
+  dev_magic_link: [32m'https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTAyMzgzOCwidHlwZSI6Im1hZ2ljX2xpbmsifQ.qgb5FdSWxJS5QMMhsKMa5p_Tfyu-oujqU2e6d8qELiQ'[39m
+}
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2K[34/146] [chromium] › tests/e2e/auth_ui.spec.ts:127:7 › Authentication UI Tests › Back to Home navigation works
+[1A[2K[35/146] [chromium] › tests/e2e/auth_ui.spec.ts:137:7 › Authentication UI Tests › Form handles loading state correctly
+[1A[2K  18) [chromium] › tests/e2e/auth_ui.spec.ts:137:7 › Authentication UI Tests › Form handles loading state correctly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('[data-testid="auth-submit-btn"]')
+    Expected string: [32m"Send[7ming[27m Magic Link"[39m
+    Received string: [31m"Send Magic Link"[39m
+    Timeout: 10000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 10000ms[22m
+    [2m  - waiting for locator('[data-testid="auth-submit-btn"]')[22m
+    [2m    14 × locator resolved to <button type="submit" data-testid="auth-submit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 text-primary-foreground shadow h-9 px-4 py-2 w-full bg-blue-600 hover:bg-blue-700 transition-all duration-200">…</button>[22m
+    [2m       - unexpected value "Send Magic Link"[22m
+
+
+      146 |     
+      147 |     // Button should show loading text and be disabled
+    > 148 |     await expect(submitBtn).toContainText('Sending Magic Link');
+          |                             ^
+      149 |     await expect(submitBtn).toBeDisabled();
+      150 |   });
+      151 |
+        at /app/tests/e2e/auth_ui.spec.ts:148:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--050d0-les-loading-state-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--050d0-les-loading-state-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/auth_ui-Authentication-UI--050d0-les-loading-state-correctly-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--050d0-les-loading-state-correctly-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--050d0-les-loading-state-correctly-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[36/146] [chromium] › tests/e2e/auth_ui.spec.ts:152:7 › Authentication UI Tests › No dead ends - page always has navigation options
+[1A[2K  19) [chromium] › tests/e2e/auth_ui.spec.ts:152:7 › Authentication UI Tests › No dead ends - page always has navigation options 
+
+    Error: expect.toBeVisible: Error: strict mode violation: locator('header') resolved to 2 elements:
+        1) <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> aka getByText('Friends of PIFASign InGet StartedSkip to main content')
+        2) <header data-testid="login-header" class="bg-white shadow-sm border-b">…</header> aka getByTestId('login-header')
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for locator('header')[22m
+
+
+      152 |   test('No dead ends - page always has navigation options', async ({ page }) => {
+      153 |     // Verify header is present
+    > 154 |     await expect(page.locator('header')).toBeVisible();
+          |                                          ^
+      155 |     
+      156 |     // Verify back to home link is always present
+      157 |     await expect(page.locator('[data-testid="back-to-home-link"]')).toBeVisible();
+        at /app/tests/e2e/auth_ui.spec.ts:154:42
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--6e953-ways-has-navigation-options-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--6e953-ways-has-navigation-options-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/auth_ui-Authentication-UI--6e953-ways-has-navigation-options-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--6e953-ways-has-navigation-options-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--6e953-ways-has-navigation-options-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[37/146] [chromium] › tests/e2e/auth_ui.spec.ts:170:7 › Authentication UI Tests › Test mode disables animations
+[1A[2K[38/146] [chromium] › tests/e2e/auth_ui.spec.ts:190:7 › Authentication UI Integration › Form submission works using only testids
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:190:7 › Authentication UI Integration › Form submission works using only testids
+✅ Form submission completed successfully using testids
+
+[1A[2K[39/146] [chromium] › tests/e2e/auth_ui.spec.ts:221:7 › Authentication UI Integration › Complete auth flow using UI login mode
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:221:7 › Authentication UI Integration › Complete auth flow using UI login mode
+🔐 Logging in user: ui-integration-test@example.com (mode: ui)
+
+[1A[2K🖱️  UI login for user: ui-integration-test@example.com
+
+[1A[2K✅ UI login successful: ui-integration-test@example.com
+
+[1A[2K[40/146] [chromium] › tests/e2e/auth_ui.spec.ts:233:7 › Authentication UI Integration › Shows error for empty email with proper UX
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:233:7 › Authentication UI Integration › Shows error for empty email with proper UX
+🧪 Testing empty email error handling...
+
+[1A[2K  20) [chromium] › tests/e2e/auth_ui.spec.ts:233:7 › Authentication UI Integration › Shows error for empty email with proper UX 
+
+    TimeoutError: locator.fill: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      239 |
+      240 |     // Submit with empty email (form validation should prevent this, but test anyway)
+    > 241 |     await emailInput.fill('');
+          |                      ^
+      242 |     await expect(submitBtn).toBeDisabled();
+      243 |     
+      244 |     // Add some text then clear it to test error behavior
+        at /app/tests/e2e/auth_ui.spec.ts:241:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[41/146] [chromium] › tests/e2e/auth_ui.spec.ts:254:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:254:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+🧪 Testing invalid email error handling...
+
+[1A[2K  21) [chromium] › tests/e2e/auth_ui.spec.ts:254:7 › Authentication UI Integration › Shows error for invalid email format with concise message 
+
+    TimeoutError: locator.fill: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      260 |
+      261 |     // Enter invalid email and try to submit
+    > 262 |     await emailInput.fill('invalid-email-format');
+          |                      ^
+      263 |     
+      264 |     // Button should be disabled for invalid email
+      265 |     await expect(submitBtn).toBeDisabled();
+        at /app/tests/e2e/auth_ui.spec.ts:262:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[42/146] [chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Error clears when user starts typing
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Error clears when user starts typing
+🧪 Testing error clearing behavior...
+
+[1A[2K  22) [chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Error clears when user starts typing 
+
+    TimeoutError: locator.fill: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      306 |
+      307 |     // Enter email that might trigger error
+    > 308 |     await emailInput.fill('error-test@invaliddomain999.com');
+          |                      ^
+      309 |     await submitBtn.click();
+      310 |     
+      311 |     // Wait a moment for any potential error
+        at /app/tests/e2e/auth_ui.spec.ts:308:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[43/146] [chromium] › tests/e2e/auth_ui.spec.ts:329:7 › Authentication UI Integration › Submit button states work correctly during loading
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:329:7 › Authentication UI Integration › Submit button states work correctly during loading
+🧪 Testing submit button states...
+
+[1A[2K  23) [chromium] › tests/e2e/auth_ui.spec.ts:329:7 › Authentication UI Integration › Submit button states work correctly during loading 
+
+    TimeoutError: locator.fill: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      334 |
+      335 |     // Fill valid email
+    > 336 |     await emailInput.fill('loading-test@example.com');
+          |                      ^
+      337 |     
+      338 |     // Button should be enabled
+      339 |     await expect(submitBtn).toBeEnabled();
+        at /app/tests/e2e/auth_ui.spec.ts:336:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[44/146] [chromium] › tests/e2e/auth_ui.spec.ts:361:7 › Authentication UI Integration › Error display has proper accessibility attributes
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:361:7 › Authentication UI Integration › Error display has proper accessibility attributes
+🧪 Testing error accessibility...
+
+[1A[2K  24) [chromium] › tests/e2e/auth_ui.spec.ts:361:7 › Authentication UI Integration › Error display has proper accessibility attributes 
+
+    TimeoutError: locator.fill: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      367 |
+      368 |     // Try to trigger an error
+    > 369 |     await emailInput.fill('accessibility-test@invaliddomain999.com');
+          |                      ^
+      370 |     await submitBtn.click();
+      371 |     await page.waitForTimeout(2000);
+      372 |
+        at /app/tests/e2e/auth_ui.spec.ts:369:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[45/146] [chromium] › tests/e2e/auth-gate.spec.ts:4:5 › PRE-GATE: Auth UI elements validation
+[1A[2K[chromium] › tests/e2e/auth-gate.spec.ts:4:5 › PRE-GATE: Auth UI elements validation
+🔐 PRE-GATE 2: Checking auth UI elements on /login...
+
+[1A[2K✅ PRE-GATE 2 PASSED: Auth UI elements found (authEmailInput + authSubmitBtn)
+
+[1A[2K[46/146] [chromium] › tests/e2e/basic-e2e.spec.js:47:3 › UCL Auction - Basic E2E Validation › 1. Application Loads Successfully
+[1A[2K[chromium] › tests/e2e/basic-e2e.spec.js:47:3 › UCL Auction - Basic E2E Validation › 1. Application Loads Successfully
+✅ Application Loading - PASSED Page loaded successfully
+
+[1A[2K[47/146] [chromium] › tests/e2e/basic-e2e.spec.js:69:3 › UCL Auction - Basic E2E Validation › 2. Authentication UI Present
+[1A[2K[chromium] › tests/e2e/basic-e2e.spec.js:69:3 › UCL Auction - Basic E2E Validation › 2. Authentication UI Present
+❌ Authentication UI - FAILED No authentication UI found
+
+[1A[2K[48/146] [chromium] › tests/e2e/basic-e2e.spec.js:90:3 › UCL Auction - Basic E2E Validation › 3. Competition Profiles API Working
+[1A[2K[chromium] › tests/e2e/basic-e2e.spec.js:90:3 › UCL Auction - Basic E2E Validation › 3. Competition Profiles API Working
+✅ Competition Profiles API - PASSED Found 3 profiles including UCL
+
+[1A[2K[49/146] [chromium] › tests/e2e/basic-e2e.spec.js:114:3 › UCL Auction - Basic E2E Validation › 4. UCL Competition Profile Structure
+[1A[2K[chromium] › tests/e2e/basic-e2e.spec.js:114:3 › UCL Auction - Basic E2E Validation › 4. UCL Competition Profile Structure
+❌ UCL Profile Structure - FAILED Incorrect defaults: slots=5, budget=100, size={"min":2,"max":8}
+
+[1A[2K[50/146] [chromium] › tests/e2e/basic-e2e.spec.js:141:3 › UCL Auction - Basic E2E Validation › 5. PATCH Endpoint Exists
+[1A[2K[chromium] › tests/e2e/basic-e2e.spec.js:141:3 › UCL Auction - Basic E2E Validation › 5. PATCH Endpoint Exists
+✅ PATCH Endpoint Availability - PASSED PATCH endpoint exists (status: 403)
+
+[1A[2K[51/146] [chromium] › tests/e2e/basic-e2e.spec.js:163:3 › UCL Auction - Basic E2E Validation › 6. Responsive Design Check
+[1A[2K[chromium] › tests/e2e/basic-e2e.spec.js:163:3 › UCL Auction - Basic E2E Validation › 6. Responsive Design Check
+✅ Responsive Design - PASSED Responsive across all viewports
+
+[1A[2K[52/146] [chromium] › tests/e2e/basic-e2e.spec.js:201:3 › UCL Auction - Basic E2E Validation › 7. Performance Check
+[1A[2K[chromium] › tests/e2e/basic-e2e.spec.js:201:3 › UCL Auction - Basic E2E Validation › 7. Performance Check
+✅ Performance Check - PASSED Loaded in 4188ms with resources
+
+[1A[2K[53/146] [chromium] › tests/e2e/basic-e2e.spec.js:225:3 › UCL Auction - Basic E2E Validation › 8. Navigation Structure
+[1A[2K[chromium] › tests/e2e/basic-e2e.spec.js:225:3 › UCL Auction - Basic E2E Validation › 8. Navigation Structure
+❌ Navigation Structure - FAILED locator.isVisible: Error: strict mode violation: locator('nav, header, [role="navigation"]') resolved to 3 elements:
+    1) <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> aka getByText('Friends of PIFASign InGet StartedSkip to main content')
+    2) <nav role="navigation" class="hidden md:flex items-center space-x-2"></nav> aka getByRole('navigation').filter({ hasText: /^$/ })
+    3) <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> aka getByRole('navigation', { name: 'Page sections navigation' })
+
+Call log:
+[2m    - checking visibility of locator('nav, header, [role="navigation"]')[22m
+
+
+[1A[2K[54/146] [chromium] › tests/e2e/basic-e2e.spec.js:246:3 › UCL Auction - Basic E2E Validation › 9. Error Handling
+[1A[2K[chromium] › tests/e2e/basic-e2e.spec.js:246:3 › UCL Auction - Basic E2E Validation › 9. Error Handling
+✅ Error Handling - PASSED Error handling working
+
+[1A[2K[55/146] [chromium] › tests/e2e/basic-e2e.spec.js:270:3 › UCL Auction - Basic E2E Validation › 10. Overall Application Health
+[1A[2K[chromium] › tests/e2e/basic-e2e.spec.js:270:3 › UCL Auction - Basic E2E Validation › 10. Overall Application Health
+✅ Overall Application Health - PASSED Application healthy - frontend, API, and interactivity working
+
+[1A[2K
+============================================================
+
+[1A[2K📊 Basic E2E Test Summary:
+
+[1A[2K⏱️ Duration: 57.11s
+
+[1A[2K✅ Passed: 7
+
+[1A[2K❌ Failed: 3
+
+[1A[2K
+✅ Passed Tests:
+
+[1A[2K  - Application Loading
+
+[1A[2K  - Competition Profiles API
+
+[1A[2K  - PATCH Endpoint Availability
+
+[1A[2K  - Responsive Design
+
+[1A[2K  - Performance Check
+
+[1A[2K  - Error Handling
+
+[1A[2K  - Overall Application Health
+
+[1A[2K
+❌ Failed Tests:
+
+[1A[2K  - Authentication UI: No authentication UI found
+
+[1A[2K  - UCL Profile Structure: Incorrect defaults: slots=5, budget=100, size={"min":2,"max":8}
+
+[1A[2K  - Navigation Structure: locator.isVisible: Error: strict mode violation: locator('nav, header, [role="navigation"]') resolved to 3 elements:
+    1) <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> aka getByText('Friends of PIFASign InGet StartedSkip to main content')
+    2) <nav role="navigation" class="hidden md:flex items-center space-x-2"></nav> aka getByRole('navigation').filter({ hasText: /^$/ })
+    3) <nav role="navigation" aria-label="Page sections navigation" class="sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 -translate-y-full opacity-0">…</nav> aka getByRole('navigation', { name: 'Page sections navigation' })
+
+Call log:
+[2m    - checking visibility of locator('nav, header, [role="navigation"]')[22m
+
+
+[1A[2K============================================================
+
+[1A[2K[56/146] [chromium] › tests/e2e/breadcrumb-test.spec.ts:11:5 › breadcrumb-home navigation in Create League dialog
+[1A[2K[chromium] › tests/e2e/breadcrumb-test.spec.ts:11:5 › breadcrumb-home navigation in Create League dialog
+🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com
+
+[1A[2K🎯 Using ensureClickable for Create League button...
+
+[1A[2K🎯 Checking clickability at coordinates (1167.5, 392.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-league-btn"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-league-btn"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K✅ Element clicked successfully
+
+[1A[2K✅ Breadcrumb navigation test passed
+
+[1A[2K[57/146] [chromium] › tests/e2e/config-drift.spec.js:15:3 › Config Drift Prevention › Rules Badge displays correct format in components
+[1A[2K[chromium] › tests/e2e/config-drift.spec.js:15:3 › Config Drift Prevention › Rules Badge displays correct format in components
+ℹ️ No Rules badge found on dashboard - normal for main leagues list
+
+[1A[2K[58/146] [chromium] › tests/e2e/config-drift.spec.js:55:3 › Config Drift Prevention › Check for hardcoded "3" values on key pages
+[1A[2K[chromium] › tests/e2e/config-drift.spec.js:55:3 › Config Drift Prevention › Check for hardcoded "3" values on key pages
+Checking page: https://pifa-league.preview.emergentagent.com/dashboard
+
+[1A[2K✅ No hardcoded "3" values found on https://pifa-league.preview.emergentagent.com/dashboard
+
+[1A[2K[59/146] [chromium] › tests/e2e/config-drift.spec.js:98:3 › Config Drift Prevention › Verify Rules badge format matches specification
+[1A[2K[chromium] › tests/e2e/config-drift.spec.js:98:3 › Config Drift Prevention › Verify Rules badge format matches specification
+ℹ️ No leagues found to test Rules badge
+
+[1A[2K[60/146] [chromium] › tests/e2e/core-smoke.spec.ts:99:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell
+[1A[2K[chromium] › tests/e2e/core-smoke.spec.ts:99:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell
+🚀 Starting core smoke test...
+
+[1A[2K📝 Step 1: Commissioner creates league...
+
+[1A[2K🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com
+
+[1A[2K🏟️ Creating league: Core Smoke League
+
+[1A[2K🎯 Using ensureClickable for Create League button...
+
+[1A[2K🎯 Checking clickability at coordinates (1167.5, 392.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-league-btn"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-league-btn"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2KConsole error on Commissioner: Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `CreateLeagueDialog`. 
+
+[1A[2K✅ Element clicked successfully
+
+[1A[2K📝 Filling form fields with overlay protection...
+
+[1A[2K🎯 Checking clickability at coordinates (640.0, 179.0)
+
+[1A[2K🔍 Target: INPUT#name[data-testid="create-name"]
+
+[1A[2K🔍 Topmost: INPUT#name[data-testid="create-name"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K🎯 Checking clickability at coordinates (480.5, 536.0)
+
+[1A[2K🔍 Target: INPUT#budget[data-testid="create-budget"]
+
+[1A[2K🔍 Topmost: INPUT#budget[data-testid="create-budget"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K🎯 Checking clickability at coordinates (799.5, 536.0)
+
+[1A[2K🔍 Target: INPUT#slots[data-testid="create-slots"]
+
+[1A[2K🔍 Topmost: INPUT#slots[data-testid="create-slots"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K🎯 Checking clickability at coordinates (480.5, 408.0)
+
+[1A[2K🔍 Target: INPUT#minManagers[data-testid="create-min"]
+
+[1A[2K🔍 Topmost: INPUT#minManagers[data-testid="create-min"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K✅ All form fields filled successfully
+
+[1A[2K🎯 Submitting form with overlay protection...
+
+[1A[2K🎯 Checking clickability at coordinates (798.0, 641.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-submit"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-submit"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K✅ Element clicked successfully
+
+[1A[2KTest failed, capturing artifacts...
+
+[1A[2KScreenshots saved with timestamp: 2025-09-28T01-33-05-820Z
+
+[1A[2K  25) [chromium] › tests/e2e/core-smoke.spec.ts:99:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/admin/**" until "load"
+    ============================================================
+
+      264 |   
+      265 |   // Wait for redirect to league admin page
+    > 266 |   await page.waitForURL('**/admin/**', { timeout: 10000 });
+          |              ^
+      267 |   
+      268 |   // Extract league ID from URL
+      269 |   const url = page.url();
+        at createLeague (/app/tests/e2e/core-smoke.spec.ts:266:14)
+        at /app/tests/e2e/core-smoke.spec.ts:106:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[61/146] [chromium] › tests/e2e/core.smoke.spec.ts:56:7 › Core Smoke Test › Complete auction flow: Create → Invite → Join → Start → Nominate → Bid → Sell
+[1A[2K[chromium] › tests/e2e/core.smoke.spec.ts:56:7 › Core Smoke Test › Complete auction flow: Create → Invite → Join → Start → Nominate → Bid → Sell
+🚀 Starting core smoke test...
+
+[1A[2K
+📋 Step 1: Commissioner creates league
+
+[1A[2K🔐 Logging in user: commissioner@test.com
+
+[1A[2K[Commissioner] info: %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+
+[1A[2K[Commissioner] log: i18next: languageChanged en
+
+[1A[2K[Commissioner] log: i18next: initialized {debug: true, initAsync: true, ns: Array(1), defaultNS: Array(1), fallbackLng: Array(1)}
+
+[1A[2KSubmit button enabled for email: commissioner@test.com
+
+[1A[2K[Commissioner] log: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://pifa-league.preview.emergentagent.com/aut…msifQ.ZiTLBHXJx0XKKHebDV-OUcNLAIb8LhqYOpW7UFyIyi0}
+
+[1A[2K[Commissioner] log: Test mode: false
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2K✅ User logged in: commissioner@test.com
+
+[1A[2K🏆 Creating league: Core E2E Test League
+
+[1A[2K[Commissioner] warning: Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+[1A[2K[Commissioner] warning: Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+[1A[2K[Commissioner] error: Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `CreateLeagueDialog`. 
+
+[1A[2K
+❌ Core smoke test failed: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/leagues/**" until "load"
+============================================================
+    at createLeague [90m(/app/[39mtests/e2e/utils/helpers.ts:125:14[90m)[39m
+    at [90m/app/[39mtests/e2e/core.smoke.spec.ts:65:18 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    location: {
+      file: [32m'/app/tests/e2e/utils/helpers.ts'[39m,
+      line: [33m125[39m,
+      column: [33m14[39m,
+      function: [32m'createLeague'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    group: [90mundefined[39m,
+    stepId: [32m'pw:api@96'[39m,
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@96'[39m,
+      _title: [32m'Wait for navigation'[39m,
+      _parentStep: [90mundefined[39m,
+      skip: [36m[Function (anonymous)][39m
+    },
+    recoverFromStepError: [36m[AsyncFunction: recoverFromStepError][39m,
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1759023208922[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/leagues/**" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/leagues/**" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at createLeague (/app/tests/e2e/utils/helpers.ts:125:14)\n'[39m +
+        [32m'    at /app/tests/e2e/core.smoke.spec.ts:65:18'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+
+[1A[2K📸 Debug info captured for bob-failure: { url: [32m'about:blank'[39m, logs: [] }
+
+[1A[2K📸 Debug info captured for alice-failure: { url: [32m'about:blank'[39m, logs: [] }
+
+[1A[2K📸 Debug info captured for commissioner-failure: { url: [32m'https://pifa-league.preview.emergentagent.com/app'[39m, logs: [] }
+
+[1A[2K  26) [chromium] › tests/e2e/core.smoke.spec.ts:56:7 › Core Smoke Test › Complete auction flow: Create → Invite → Join → Start → Nominate → Bid → Sell 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/leagues/**" until "load"
+    ============================================================
+
+       at utils/helpers.ts:125
+
+      123 |   
+      124 |   // Wait for dialog to close (indicates success)
+    > 125 |   await page.locator(`[data-testid="${TESTIDS.createDialog}"]`).waitFor({ state: 'hidden', timeout: 15000 });
+          |              ^
+      126 |   
+      127 |   // Wait a moment for the league list to update
+      128 |   await page.waitForTimeout(2000);
+        at createLeague (/app/tests/e2e/utils/helpers.ts:125:14)
+        at /app/tests/e2e/core.smoke.spec.ts:65:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/core.smoke-Core-Smoke-Test-9904c-art-→-Nominate-→-Bid-→-Sell-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/core.smoke-Core-Smoke-Test-9904c-art-→-Nominate-→-Bid-→-Sell-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/core.smoke-Core-Smoke-Test-9904c-art-→-Nominate-→-Bid-→-Sell-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/core.smoke-Core-Smoke-Test-9904c-art-→-Nominate-→-Bid-→-Sell-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/core.smoke-Core-Smoke-Test-9904c-art-→-Nominate-→-Bid-→-Sell-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/core.smoke-Core-Smoke-Test-9904c-art-→-Nominate-→-Bid-→-Sell-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[62/146] [chromium] › tests/e2e/helper-demo.spec.ts:12:5 › clickCreateLeague helper finds button from multiple entry points
+[1A[2K[chromium] › tests/e2e/helper-demo.spec.ts:12:5 › clickCreateLeague helper finds button from multiple entry points
+🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com
+
+[1A[2K🎯 Using ensureClickable for Create League button...
+
+[1A[2K🎯 Checking clickability at coordinates (1167.5, 392.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-league-btn"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-league-btn"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K✅ Element clicked successfully
+
+[1A[2K✅ Helper function successfully found and clicked Create League button
+
+[1A[2K[63/146] [chromium] › tests/e2e/i18n-validation.spec.js:71:3 › i18n Validation - Comprehensive Testing › i18n keys render correctly (no missing string warnings)
+[1A[2K[chromium] › tests/e2e/i18n-validation.spec.js:71:3 › i18n Validation - Comprehensive Testing › i18n keys render correctly (no missing string warnings)
+✅ No i18n Console Errors - PASSED 0 i18n errors found: 
+
+[1A[2K❌ No Missing Translation Warnings - FAILED 2 i18n warnings found: i18next: languageChanged en; i18next: initialized {debug: true, initAsync: true, ns: Array(1), defaultNS: Array(1), fallbackLng: Array(1)}
+
+[1A[2K❌ i18n Library Initialization - FAILED i18n library properly loaded
+
+[1A[2K[64/146] [chromium] › tests/e2e/i18n-validation.spec.js:108:3 › i18n Validation - Comprehensive Testing › Key brand messaging renders from i18n
+[1A[2K[chromium] › tests/e2e/i18n-validation.spec.js:108:3 › i18n Validation - Comprehensive Testing › Key brand messaging renders from i18n
+✅ Brand Messaging from i18n - PASSED 3/4 brand elements found
+
+[1A[2K✅ No i18n Placeholders Visible - PASSED No placeholder text detected
+
+[1A[2K[65/146] [chromium] › tests/e2e/i18n-validation.spec.js:155:3 › i18n Validation - Comprehensive Testing › Landing page sections use i18n keys
+[1A[2K[chromium] › tests/e2e/i18n-validation.spec.js:155:3 › i18n Validation - Comprehensive Testing › Landing page sections use i18n keys
+❌ Landing Sections Have i18n Content - FAILED 1/6 sections with proper content
+
+[1A[2K[66/146] [chromium] › tests/e2e/i18n-validation.spec.js:197:3 › i18n Validation - Comprehensive Testing › Navigation components use i18n keys
+[1A[2K[chromium] › tests/e2e/i18n-validation.spec.js:197:3 › i18n Validation - Comprehensive Testing › Navigation components use i18n keys
+✅ Navigation i18n Content - PASSED 2/4 navigation elements working
+
+[1A[2K[67/146] [chromium] › tests/e2e/i18n-validation.spec.js:244:3 › i18n Validation - Comprehensive Testing › Footer and legal content use i18n
+[1A[2K[chromium] › tests/e2e/i18n-validation.spec.js:244:3 › i18n Validation - Comprehensive Testing › Footer and legal content use i18n
+✅ Footer Manifesto i18n - PASSED Footer contains manifesto messaging
+
+[1A[2K✅ Footer Disclaimer i18n - PASSED Footer contains no-gambling disclaimer
+
+[1A[2K✅ Footer Copyright i18n - PASSED Footer contains copyright information
+
+[1A[2K[68/146] [chromium] › tests/e2e/i18n-validation.spec.js:274:3 › i18n Validation - Comprehensive Testing › Theme toggle and accessibility labels use i18n
+[1A[2K[chromium] › tests/e2e/i18n-validation.spec.js:274:3 › i18n Validation - Comprehensive Testing › Theme toggle and accessibility labels use i18n
+✅ Accessibility Labels i18n - PASSED 9/9 ARIA labels properly translated
+
+[1A[2K[69/146] [chromium] › tests/e2e/i18n-validation.spec.js:312:3 › i18n Validation - Comprehensive Testing › No raw translation keys visible in UI
+[1A[2K[chromium] › tests/e2e/i18n-validation.spec.js:312:3 › i18n Validation - Comprehensive Testing › No raw translation keys visible in UI
+✅ No Raw Translation Keys - PASSED 0 potential raw keys found: 
+
+[1A[2K✅ No Undefined Values - PASSED No "undefined" text visible
+
+[1A[2K✅ No Object Serialization - PASSED No "[object Object]" visible
+
+[1A[2K✅ No Raw Interpolation - PASSED No "{{key}}" syntax visible
+
+[1A[2K
+============================================================
+
+[1A[2K📊 i18n Validation Test Summary:
+
+[1A[2K⏱️ Duration: 38.42s
+
+[1A[2K✅ Passed: 12
+
+[1A[2K❌ Failed: 3
+
+[1A[2K
+🎉 Successful Tests:
+
+[1A[2K  - No i18n Console Errors
+
+[1A[2K  - Brand Messaging from i18n
+
+[1A[2K  - No i18n Placeholders Visible
+
+[1A[2K  - Navigation i18n Content
+
+[1A[2K  - Footer Manifesto i18n
+
+[1A[2K  - Footer Disclaimer i18n
+
+[1A[2K  - Footer Copyright i18n
+
+[1A[2K  - Accessibility Labels i18n
+
+[1A[2K  - No Raw Translation Keys
+
+[1A[2K  - No Undefined Values
+
+[1A[2K  - No Object Serialization
+
+[1A[2K  - No Raw Interpolation
+
+[1A[2K
+💥 Failed Tests:
+
+[1A[2K  - No Missing Translation Warnings: 2 i18n warnings found: i18next: languageChanged en; i18next: initialized {debug: true, initAsync: true, ns: Array(1), defaultNS: Array(1), fallbackLng: Array(1)}
+
+[1A[2K  - i18n Library Initialization: i18n library properly loaded
+
+[1A[2K  - Landing Sections Have i18n Content: 1/6 sections with proper content
+
+[1A[2K============================================================
+
+[1A[2K[70/146] [chromium] › tests/e2e/landing-page.spec.js:53:3 › Landing Page - Comprehensive Testing › Landing page loads correctly with all sections
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:53:3 › Landing Page - Comprehensive Testing › Landing page loads correctly with all sections
+✅ Page Title - PASSED Expected: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy.", Got: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy."
+
+[1A[2K✅ All Main Sections - PASSED 6 sections visible
+
+[1A[2K✅ Hero Section - PASSED Hero title visible
+
+[1A[2K✅ Hero CTA Buttons - PASSED Both CTA buttons visible
+
+[1A[2K✅ Footer - PASSED Footer visible
+
+[1A[2K[71/146] [chromium] › tests/e2e/landing-page.spec.js:102:3 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:102:3 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly
+✅ Sticky Navigation Visibility - PASSED After scrolling past hero
+
+[1A[2KAnchor scroll test for #how failed: locator.click: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for locator('a[href="#how"], button:has-text("How it Works")').first()[22m
+[2m    - locator resolved to <button role="tab" tabindex="0" data-section="how" aria-controls="how" aria-selected="false" data-testid="tab-how" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    19 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+
+[1A[2KAnchor scroll test for #why failed: locator.click: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for locator('a[href="#why"], button:has-text("Why FoP")').first()[22m
+[2m    - locator resolved to <button role="tab" tabindex="0" data-section="why" aria-controls="why" aria-selected="false" data-testid="tab-why" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    19 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+
+[1A[2KAnchor scroll test for #features failed: locator.click: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for locator('a[href="#features"], button:has-text("Features")').first()[22m
+[2m    - locator resolved to <button role="tab" tabindex="0" aria-selected="false" data-section="features" aria-controls="features" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    19 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+
+[1A[2KAnchor scroll test for #safety failed: locator.click: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for locator('a[href="#safety"], button:has-text("Fair Play")').first()[22m
+[2m    - locator resolved to <button role="tab" tabindex="0" data-section="safety" aria-selected="false" aria-controls="safety" data-testid="tab-fair" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    19 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+
+[1A[2KAnchor scroll test for #faq failed: locator.click: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for locator('a[href="#faq"], button:has-text("FAQ")').first()[22m
+[2m    - locator resolved to <button role="tab" tabindex="0" data-section="faq" aria-controls="faq" aria-selected="false" data-testid="tab-faq" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    19 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <div class="flex items-center justify-between h-16">…</div> from <header class="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-50">…</header> subtree intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+
+[1A[2K✅ Anchor Scrolling - PASSED 1/6 sections scrolled
+
+[1A[2K[72/146] [chromium] › tests/e2e/landing-page.spec.js:171:3 › Landing Page - Comprehensive Testing › Scroll-spy updates active section highlighting
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:171:3 › Landing Page - Comprehensive Testing › Scroll-spy updates active section highlighting
+❌ Scroll-spy Active Highlighting - FAILED Active section indicators detected
+

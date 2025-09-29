@@ -1,0 +1,455 @@
+🧪 Global E2E Test Setup Starting...
+✅ Application accessible at: https://pifa-league.preview.emergentagent.com (Status: 200)
+🎉 Global setup completed successfully!
+
+Running 137 tests using 1 worker
+
+🧪 Testing Start Auction gate with insufficient members...
+🔐 Logging in user: commissioner@gate.test
+  ✘    1 [chromium] › tests/e2e/access_and_gates.spec.ts:31:7 › Access and Gates Tests › Start Auction disabled when below minimum managers (12.5s)
+🧪 Testing Start Auction gate with sufficient members...
+🔐 Logging in user: commissioner@sufficient.test
+  ✘    2 [chromium] › tests/e2e/access_and_gates.spec.ts:60:7 › Access and Gates Tests › Start Auction enabled when minimum managers reached (12.2s)
+🧪 Testing route guards for unauthenticated access...
+✅ /app correctly redirected to login with toast
+  ✘    3 [chromium] › tests/e2e/access_and_gates.spec.ts:89:7 › Access and Gates Tests › Route guards redirect unauthenticated users with toast notifications (12.9s)
+🧪 Testing non-existent league access...
+🔐 Logging in user: member@404.test
+  ✘    4 [chromium] › tests/e2e/access_and_gates.spec.ts:118:7 › Access and Gates Tests › Non-existent league routes show 404 or redirect safely (12.6s)
+🧪 Testing league member access permissions...
+🔐 Logging in user: commissioner@member-access.test
+  ✘    5 [chromium] › tests/e2e/access_and_gates.spec.ts:139:7 › Access and Gates Tests › League members can access league pages (12.2s)
+🧪 Testing non-member access restrictions...
+🔐 Logging in user: commissioner@private.test
+  ✘    6 [chromium] › tests/e2e/access_and_gates.spec.ts:176:7 › Access and Gates Tests › Non-league members cannot access league pages (12.3s)
+🧪 Testing admin access permissions...
+🔐 Logging in user: commissioner@admin.test
+  ✘    7 [chromium] › tests/e2e/access_and_gates.spec.ts:205:7 › Access and Gates Tests › Commissioner has admin access, members do not (12.4s)
+🧪 Testing auction access gates...
+🔐 Logging in user: commissioner@auction-gate.test
+  ✘    8 [chromium] › tests/e2e/access_and_gates.spec.ts:243:7 › Access and Gates Tests › Auction access requires active auction (12.3s)
+🧪 Testing league-specific route redirects...
+🔐 Logging in user: member@no-league.test
+  ✘    9 [chromium] › tests/e2e/access_and_gates.spec.ts:273:7 › Access and Gates Tests › League-specific routes redirect safely with helpful messages (12.2s)
+🧪 Testing breadcrumb navigation...
+🔐 Logging in user: commissioner@breadcrumb.test
+  ✘   10 [chromium] › tests/e2e/access_and_gates.spec.ts:303:7 › Access and Gates Tests › Breadcrumb navigation appears on all app pages (12.2s)
+Testing stopped early after 10 maximum allowed failures.
+🧹 Global E2E Test Teardown Starting...
+🎉 Global teardown completed!
+
+
+  1) [chromium] › tests/e2e/access_and_gates.spec.ts:31:7 › Access and Gates Tests › Start Auction disabled when below minimum managers 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-magic-link-submit"]')[22m
+
+
+       at utils/helpers.ts:21
+
+      19 |   // Fill email and submit magic link form using test IDs
+      20 |   await page.locator(`[data-testid="${TESTIDS.emailInput}"]`).fill(email);
+    > 21 |   await page.locator(`[data-testid="${TESTIDS.magicLinkSubmit}"]`).click();
+         |                                                                    ^
+      22 |   
+      23 |   // Wait for magic link sent confirmation and click login button using test ID
+      24 |   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).waitFor({ state: 'visible', timeout: 10000 });
+        at login (/app/tests/e2e/utils/helpers.ts:21:68)
+        at /app/tests/e2e/access_and_gates.spec.ts:35:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-2382e-when-below-minimum-managers-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/e2e/access_and_gates.spec.ts:60:7 › Access and Gates Tests › Start Auction enabled when minimum managers reached 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-magic-link-submit"]')[22m
+
+
+       at utils/helpers.ts:21
+
+      19 |   // Fill email and submit magic link form using test IDs
+      20 |   await page.locator(`[data-testid="${TESTIDS.emailInput}"]`).fill(email);
+    > 21 |   await page.locator(`[data-testid="${TESTIDS.magicLinkSubmit}"]`).click();
+         |                                                                    ^
+      22 |   
+      23 |   // Wait for magic link sent confirmation and click login button using test ID
+      24 |   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).waitFor({ state: 'visible', timeout: 10000 });
+        at login (/app/tests/e2e/utils/helpers.ts:21:68)
+        at /app/tests/e2e/access_and_gates.spec.ts:64:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-4d3ab-en-minimum-managers-reached-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests/e2e/access_and_gates.spec.ts:89:7 › Access and Gates Tests › Route guards redirect unauthenticated users with toast notifications 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/login" until "load"
+    ============================================================
+
+      104 |       
+      105 |       // Should redirect to login
+    > 106 |       await unauthenticatedPage.waitForURL('**/login', { timeout: 10000 });
+          |                                 ^
+      107 |       
+      108 |       // Check for auth required toast
+      109 |       const authToast = unauthenticatedPage.locator('[data-testid="auth-required-toast"]');
+        at /app/tests/e2e/access_and_gates.spec.ts:106:33
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-6b973-rs-with-toast-notifications-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › tests/e2e/access_and_gates.spec.ts:118:7 › Access and Gates Tests › Non-existent league routes show 404 or redirect safely 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-magic-link-submit"]')[22m
+
+
+       at utils/helpers.ts:21
+
+      19 |   // Fill email and submit magic link form using test IDs
+      20 |   await page.locator(`[data-testid="${TESTIDS.emailInput}"]`).fill(email);
+    > 21 |   await page.locator(`[data-testid="${TESTIDS.magicLinkSubmit}"]`).click();
+         |                                                                    ^
+      22 |   
+      23 |   // Wait for magic link sent confirmation and click login button using test ID
+      24 |   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).waitFor({ state: 'visible', timeout: 10000 });
+        at login (/app/tests/e2e/utils/helpers.ts:21:68)
+        at /app/tests/e2e/access_and_gates.spec.ts:121:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-66b24-show-404-or-redirect-safely-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › tests/e2e/access_and_gates.spec.ts:139:7 › Access and Gates Tests › League members can access league pages 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-magic-link-submit"]')[22m
+
+
+       at utils/helpers.ts:21
+
+      19 |   // Fill email and submit magic link form using test IDs
+      20 |   await page.locator(`[data-testid="${TESTIDS.emailInput}"]`).fill(email);
+    > 21 |   await page.locator(`[data-testid="${TESTIDS.magicLinkSubmit}"]`).click();
+         |                                                                    ^
+      22 |   
+      23 |   // Wait for magic link sent confirmation and click login button using test ID
+      24 |   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).waitFor({ state: 'visible', timeout: 10000 });
+        at login (/app/tests/e2e/utils/helpers.ts:21:68)
+        at /app/tests/e2e/access_and_gates.spec.ts:143:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-920f7-ers-can-access-league-pages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › tests/e2e/access_and_gates.spec.ts:176:7 › Access and Gates Tests › Non-league members cannot access league pages 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-magic-link-submit"]')[22m
+
+
+       at utils/helpers.ts:21
+
+      19 |   // Fill email and submit magic link form using test IDs
+      20 |   await page.locator(`[data-testid="${TESTIDS.emailInput}"]`).fill(email);
+    > 21 |   await page.locator(`[data-testid="${TESTIDS.magicLinkSubmit}"]`).click();
+         |                                                                    ^
+      22 |   
+      23 |   // Wait for magic link sent confirmation and click login button using test ID
+      24 |   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).waitFor({ state: 'visible', timeout: 10000 });
+        at login (/app/tests/e2e/utils/helpers.ts:21:68)
+        at /app/tests/e2e/access_and_gates.spec.ts:180:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-9555b--cannot-access-league-pages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › tests/e2e/access_and_gates.spec.ts:205:7 › Access and Gates Tests › Commissioner has admin access, members do not 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-magic-link-submit"]')[22m
+
+
+       at utils/helpers.ts:21
+
+      19 |   // Fill email and submit magic link form using test IDs
+      20 |   await page.locator(`[data-testid="${TESTIDS.emailInput}"]`).fill(email);
+    > 21 |   await page.locator(`[data-testid="${TESTIDS.magicLinkSubmit}"]`).click();
+         |                                                                    ^
+      22 |   
+      23 |   // Wait for magic link sent confirmation and click login button using test ID
+      24 |   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).waitFor({ state: 'visible', timeout: 10000 });
+        at login (/app/tests/e2e/utils/helpers.ts:21:68)
+        at /app/tests/e2e/access_and_gates.spec.ts:208:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-f60f0-admin-access-members-do-not-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › tests/e2e/access_and_gates.spec.ts:243:7 › Access and Gates Tests › Auction access requires active auction 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-magic-link-submit"]')[22m
+
+
+       at utils/helpers.ts:21
+
+      19 |   // Fill email and submit magic link form using test IDs
+      20 |   await page.locator(`[data-testid="${TESTIDS.emailInput}"]`).fill(email);
+    > 21 |   await page.locator(`[data-testid="${TESTIDS.magicLinkSubmit}"]`).click();
+         |                                                                    ^
+      22 |   
+      23 |   // Wait for magic link sent confirmation and click login button using test ID
+      24 |   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).waitFor({ state: 'visible', timeout: 10000 });
+        at login (/app/tests/e2e/utils/helpers.ts:21:68)
+        at /app/tests/e2e/access_and_gates.spec.ts:246:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-730ed-ess-requires-active-auction-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [chromium] › tests/e2e/access_and_gates.spec.ts:273:7 › Access and Gates Tests › League-specific routes redirect safely with helpful messages 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-magic-link-submit"]')[22m
+
+
+       at utils/helpers.ts:21
+
+      19 |   // Fill email and submit magic link form using test IDs
+      20 |   await page.locator(`[data-testid="${TESTIDS.emailInput}"]`).fill(email);
+    > 21 |   await page.locator(`[data-testid="${TESTIDS.magicLinkSubmit}"]`).click();
+         |                                                                    ^
+      22 |   
+      23 |   // Wait for magic link sent confirmation and click login button using test ID
+      24 |   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).waitFor({ state: 'visible', timeout: 10000 });
+        at login (/app/tests/e2e/utils/helpers.ts:21:68)
+        at /app/tests/e2e/access_and_gates.spec.ts:277:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-f3336-afely-with-helpful-messages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [chromium] › tests/e2e/access_and_gates.spec.ts:303:7 › Access and Gates Tests › Breadcrumb navigation appears on all app pages 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-magic-link-submit"]')[22m
+
+
+       at utils/helpers.ts:21
+
+      19 |   // Fill email and submit magic link form using test IDs
+      20 |   await page.locator(`[data-testid="${TESTIDS.emailInput}"]`).fill(email);
+    > 21 |   await page.locator(`[data-testid="${TESTIDS.magicLinkSubmit}"]`).click();
+         |                                                                    ^
+      22 |   
+      23 |   // Wait for magic link sent confirmation and click login button using test ID
+      24 |   await page.locator(`[data-testid="${TESTIDS.loginNowButton}"]`).waitFor({ state: 'visible', timeout: 10000 });
+        at login (/app/tests/e2e/utils/helpers.ts:21:68)
+        at /app/tests/e2e/access_and_gates.spec.ts:306:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/access_and_gates-Access-an-1fa3f-on-appears-on-all-app-pages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10 failed
+    [chromium] › tests/e2e/access_and_gates.spec.ts:31:7 › Access and Gates Tests › Start Auction disabled when below minimum managers 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:60:7 › Access and Gates Tests › Start Auction enabled when minimum managers reached 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:89:7 › Access and Gates Tests › Route guards redirect unauthenticated users with toast notifications 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:118:7 › Access and Gates Tests › Non-existent league routes show 404 or redirect safely 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:139:7 › Access and Gates Tests › League members can access league pages 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:176:7 › Access and Gates Tests › Non-league members cannot access league pages 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:205:7 › Access and Gates Tests › Commissioner has admin access, members do not 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:243:7 › Access and Gates Tests › Auction access requires active auction 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:273:7 › Access and Gates Tests › League-specific routes redirect safely with helpful messages 
+    [chromium] › tests/e2e/access_and_gates.spec.ts:303:7 › Access and Gates Tests › Breadcrumb navigation appears on all app pages 
+  127 did not run
+  1 error was not a part of any test, see above for details

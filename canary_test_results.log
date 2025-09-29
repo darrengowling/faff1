@@ -1,0 +1,1866 @@
+🧪 Global E2E Test Setup Starting...
+🔍 Pre-check: Verifying TESTIDS import...
+✅ TESTIDS imported successfully: 122 testids available
+   Sample testids: homeCreateLeagueBtn, navCreateLeagueBtn, joinViaInviteBtn, createLeagueWizardName, createLeagueWizardSlots...
+✅ Application accessible at: https://pifa-league.preview.emergentagent.com (Status: 200)
+🔐 Creating authenticated storage states...
+🔑 Authenticating commish@example.com...
+🔐 Logging in user: commish@example.com (mode: test)
+🧪 Test-only login for user: commish@example.com
+✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+✅ commish@example.com authenticated successfully
+💾 Storage state saved: test-results/commissioner-state.json
+🔑 Authenticating alice@example.com...
+🔐 Logging in user: alice@example.com (mode: test)
+🧪 Test-only login for user: alice@example.com
+✅ Test-only login successful: alice@example.com (User ID: 1d870e32-2668-4003-a477-ed01c0b73532)
+✅ alice@example.com authenticated successfully
+💾 Storage state saved: test-results/alice-state.json
+🔑 Authenticating bob@example.com...
+🔐 Logging in user: bob@example.com (mode: test)
+🧪 Test-only login for user: bob@example.com
+✅ Test-only login successful: bob@example.com (User ID: 219110d6-44db-481a-95f9-af0cf54d5467)
+✅ bob@example.com authenticated successfully
+💾 Storage state saved: test-results/bob-state.json
+🎉 Global setup completed successfully!
+
+Running 62 tests using 1 worker
+
+[1A[2K[1/62] [chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements
+[1A[2K  1) [chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="login-header"]')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-testid="login-header"]')[22m
+
+
+      26 |     
+      27 |     // Verify header structure
+    > 28 |     await expect(page.locator('[data-testid="login-header"]')).toBeVisible();
+         |                                                                ^
+      29 |     
+      30 |     // Verify form accessibility
+      31 |     const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
+        at /app/tests/e2e/auth_ui.spec.ts:28:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-chromium/error-context.md
+
+
+[1A[2K[2/62] [chromium] › tests/e2e/auth_ui.spec.ts:41:7 › Authentication UI Tests › Submit button is disabled for invalid email
+[1A[2K[3/62] [chromium] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission
+[1A[2K  2) [chromium] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByTestId('auth-error')
+    Expected string: [32m"[7mPlease enter a valid email[27m."[39m
+    Received string: [31m"[7mUnable to send magic link. Please try again[27m."[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('auth-error')[22m
+    [2m    9 × locator resolved to <div role="alert" id="email-error" aria-live="assertive" data-testid="auth-error" class="flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md block w-full">…</div>[22m
+    [2m      - unexpected value "Unable to send magic link. Please try again."[22m
+
+
+      85 |     await expect(errorElement).toHaveAttribute('role', 'alert');
+      86 |     await expect(errorElement).toHaveAttribute('aria-live', 'assertive');
+    > 87 |     await expect(errorElement).toContainText('Please enter a valid email.');
+         |                                ^
+      88 |     
+      89 |     // Submit button should re-enable after error (not stuck in loading state)
+      90 |     await expect(submitBtn).toBeEnabled();
+        at /app/tests/e2e/auth_ui.spec.ts:87:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-4f901-or-invalid-email-submission-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-4f901-or-invalid-email-submission-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-auth_ui-Authentication-4f901-or-invalid-email-submission-chromium/error-context.md
+
+
+[1A[2K[4/62] [chromium] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success
+Browser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://pifa-league.preview.emergentagent.com…msifQ.foR9lD39L1rO2yOuf_iNWtFH33XfRxKJHut-jc9pFqM}
+
+[1A[2KBrowser Console: Test mode: false
+
+[1A[2KAPI Response: {
+  message: [32m'Magic link generated! (Development Mode - Check below)'[39m,
+  dev_magic_link: [32m'https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTEwNjkwOCwidHlwZSI6Im1hZ2ljX2xpbmsifQ.foR9lD39L1rO2yOuf_iNWtFH33XfRxKJHut-jc9pFqM'[39m
+}
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2KBrowser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+
+[1A[2KBrowser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+
+[1A[2K[5/62] [chromium] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works
+[1A[2K  3) [chromium] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works 
+
+    Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Expected string: [32m"https://pifa-league.preview.emergentagent.com/"[39m
+    Received string: [31m"https://pifa-league.preview.emergentagent.com/[7mlogin?next=%2Fapp[27m"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveURL" with timeout 5000ms[22m
+    [2m    9 × unexpected value "https://pifa-league.preview.emergentagent.com/login?next=%2Fapp"[22m
+
+
+      148 |     
+      149 |     // Should navigate back to home page
+    > 150 |     await expect(page).toHaveURL('/');
+          |                        ^
+      151 |   });
+      152 |
+      153 |   test('Form handles loading state correctly', async ({ page }) => {
+        at /app/tests/e2e/auth_ui.spec.ts:150:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-chromium/error-context.md
+
+
+[1A[2K[6/62] [chromium] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly
+ℹ️ Loading state too fast to catch - checking aria-busy changed
+
+[1A[2KFinal aria-busy state: false
+
+[1A[2KResponse status: 200
+
+[1A[2K[7/62] [chromium] › tests/e2e/auth_ui.spec.ts:198:7 › Authentication UI Tests › No dead ends - page always has navigation options
+[1A[2K[8/62] [chromium] › tests/e2e/auth_ui.spec.ts:216:7 › Authentication UI Tests › Test mode disables animations
+[1A[2K[9/62] [chromium] › tests/e2e/auth_ui.spec.ts:236:7 › Authentication UI Integration › Form submission works using only testids
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:236:7 › Authentication UI Integration › Form submission works using only testids
+✅ Form submission completed successfully using testids
+
+[1A[2K[10/62] [chromium] › tests/e2e/auth_ui.spec.ts:267:7 › Authentication UI Integration › Complete auth flow using UI login mode
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:267:7 › Authentication UI Integration › Complete auth flow using UI login mode
+🔐 Logging in user: ui-integration-test@example.com (mode: ui)
+
+[1A[2K🖱️  UI login for user: ui-integration-test@example.com
+
+[1A[2K✅ UI login successful: ui-integration-test@example.com
+
+[1A[2K[11/62] [chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX
+🧪 Testing empty email error handling...
+
+[1A[2K  4) [chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      285 |
+      286 |     // Submit with empty email (form validation should prevent this, but test anyway)
+    > 287 |     await emailInput.fill('');
+          |                      ^
+      288 |     await expect(submitBtn).toBeDisabled();
+      289 |     
+      290 |     // Add some text then clear it to test error behavior
+        at /app/tests/e2e/auth_ui.spec.ts:287:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[12/62] [chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+🧪 Testing invalid email error handling...
+
+[1A[2K  5) [chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      306 |
+      307 |     // Enter invalid email and try to submit
+    > 308 |     await emailInput.fill('invalid-email-format');
+          |                      ^
+      309 |     
+      310 |     // Button should be disabled for invalid email
+      311 |     await expect(submitBtn).toBeDisabled();
+        at /app/tests/e2e/auth_ui.spec.ts:308:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[13/62] [chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing
+🧪 Testing error clearing behavior...
+
+[1A[2K  6) [chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      352 |
+      353 |     // Enter email that might trigger error
+    > 354 |     await emailInput.fill('error-test@invaliddomain999.com');
+          |                      ^
+      355 |     await submitBtn.click();
+      356 |     
+      357 |     // Wait a moment for any potential error
+        at /app/tests/e2e/auth_ui.spec.ts:354:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[14/62] [chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading
+🧪 Testing submit button states...
+
+[1A[2K  7) [chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      381 |
+      382 |     // Fill valid email
+    > 383 |     await emailInput.fill('loading-test@example.com');
+          |                      ^
+      384 |     
+      385 |     // Button should be enabled
+      386 |     await expect(submitBtn).toBeEnabled();
+        at /app/tests/e2e/auth_ui.spec.ts:383:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[15/62] [chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes
+[1A[2K[chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes
+🧪 Testing error accessibility...
+
+[1A[2K  8) [chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      439 |
+      440 |     // Try to trigger an error
+    > 441 |     await emailInput.fill('accessibility-test@invaliddomain999.com');
+          |                      ^
+      442 |     await submitBtn.click();
+      443 |     await page.waitForTimeout(2000);
+      444 |
+        at /app/tests/e2e/auth_ui.spec.ts:441:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[16/62] [chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell
+[1A[2K[chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell
+🚀 Starting core smoke test...
+
+[1A[2K📝 Step 1: Commissioner creates league...
+
+[1A[2K🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+
+[1A[2K🏆 Creating league: Core Smoke League
+
+[1A[2K🎯 Using safe click with overlay detection for Create League button...
+
+[1A[2K🎯 Checking overlay at center point (1167.5, 802)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2KConsole error on Commissioner: Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `CreateLeagueDialog`. 
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K📋 Filling Create League form: Core Smoke League
+
+[1A[2K📋 Detected CreateLeagueDialog (modal) form
+
+[1A[2K📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+
+[1A[2K📝 Filling league name...
+
+[1A[2K📝 Filling form fields with type-aware setters...
+
+[1A[2K🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-slots-input=3
+
+[1A[2K🔧 Setting form value: create-budget=100 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-budget=100
+
+[1A[2K🔧 Setting form value: create-min=2 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-min=2
+
+[1A[2K🔧 Setting form value: create-max=8 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-max=8
+
+[1A[2K✅ Create League form filled successfully: Core Smoke League
+
+[1A[2K📝 Form filled, submitting...
+
+[1A[2K🎯 Checking clickability at coordinates (798.0, 641.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-submit"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-submit"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K⏳ Waiting for league creation success...
+
+[1A[2K🏁 Waiting for league creation success and lobby navigation...
+
+[1A[2KConsole error on Commissioner: Failed to load resource: the server responded with a status of 500 ()
+
+[1A[2KConsole error on Commissioner: League creation error: AxiosError
+
+[1A[2K❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+
+[1A[2KTest failed, capturing artifacts...
+
+[1A[2KScreenshots saved with timestamp: 2025-09-29T00-35-29-586Z
+
+[1A[2K  9) [chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell 
+
+    Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================ (URL: https://pifa-league.preview.emergentagent.com/app)
+
+       at e2e/utils/helpers.ts:458
+
+      456 |     });
+      457 |     
+    > 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+          |           ^
+      459 |   }
+      460 | }
+      461 |
+        at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)
+        at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)
+        at /app/tests/e2e/core-smoke.spec.ts:121:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/error-context.md
+
+
+[1A[2K[17/62] [chromium] › tests/e2e/landing-page.spec.js:60:7 › Landing Page - Comprehensive Testing › Landing page loads correctly with all sections
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:60:7 › Landing Page - Comprehensive Testing › Landing page loads correctly with all sections
+✅ Page Title - PASSED Expected: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy.", Got: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy."
+
+[1A[2K✅ All Main Sections - PASSED 6 sections visible
+
+[1A[2K✅ Hero Section - PASSED Hero title visible
+
+[1A[2K✅ Hero CTA Buttons - PASSED Both CTA buttons visible
+
+[1A[2K✅ Footer - PASSED Footer visible
+
+[1A[2K[18/62] [chromium] › tests/e2e/landing-page.spec.js:109:7 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:109:7 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly
+✅ Sticky Navigation Visibility - PASSED After scrolling past hero
+
+[1A[2K✅ Anchor Scrolling - PASSED 1/6 sections scrolled
+
+[1A[2K[19/62] [chromium] › tests/e2e/landing-page.spec.js:178:7 › Landing Page - Comprehensive Testing › Scroll-spy updates active section highlighting
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:178:7 › Landing Page - Comprehensive Testing › Scroll-spy updates active section highlighting
+❌ Scroll-spy Active Highlighting - FAILED Active section indicators detected
+
+[1A[2K✅ Browser Hash Updates - PASSED Hash: #home
+
+[1A[2K[20/62] [chromium] › tests/e2e/landing-page.spec.js:222:7 › Landing Page - Comprehensive Testing › CTAs route to create/join flows correctly
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:222:7 › Landing Page - Comprehensive Testing › CTAs route to create/join flows correctly
+🔍 Checking landing page CTAs for overlay issues...
+
+[1A[2K⏭️ CTA not found: [data-testid="create-league-btn"]
+
+[1A[2K⏭️ CTA not found: [data-testid="join-league-btn"]
+
+[1A[2K🎯 Checking CTA: button:has-text("Create a League")
+
+[1A[2K🎯 Checking overlay at center point (824, 916)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+
+[1A[2K  2: div.text-center (z-index: auto, pointer-events: auto)
+
+[1A[2K  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+
+[1A[2K  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid="section-home"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+
+[1A[2K  6: main.flex-1 (z-index: auto, pointer-events: auto)
+
+[1A[2K  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)
+
+[1A[2K  8: div#root (z-index: auto, pointer-events: auto)
+
+[1A[2K  9: body.theme-light (z-index: auto, pointer-events: auto)
+
+[1A[2K  10: html (z-index: auto, pointer-events: auto)
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+
+[1A[2K✅ CTA clickable: button:has-text("Create a League")
+
+[1A[2K🎯 Checking CTA: button:has-text("Join with an Invite")
+
+[1A[2K🎯 Checking overlay at center point (1087, 916)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+
+[1A[2K  2: div.text-center (z-index: auto, pointer-events: auto)
+
+[1A[2K  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+
+[1A[2K  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid="section-home"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+
+[1A[2K  6: main.flex-1 (z-index: auto, pointer-events: auto)
+
+[1A[2K  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)
+
+[1A[2K  8: div#root (z-index: auto, pointer-events: auto)
+
+[1A[2K  9: body.theme-light (z-index: auto, pointer-events: auto)
+
+[1A[2K  10: html (z-index: auto, pointer-events: auto)
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+
+[1A[2K✅ CTA clickable: button:has-text("Join with an Invite")
+
+[1A[2K✅ All landing page CTAs are clickable
+
+[1A[2K🎯 Checking overlay at center point (824, 916)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+
+[1A[2K  2: div.text-center (z-index: auto, pointer-events: auto)
+
+[1A[2K  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+
+[1A[2K  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid="section-home"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+
+[1A[2K  6: main.flex-1 (z-index: auto, pointer-events: auto)
+
+[1A[2K  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)
+
+[1A[2K  8: div#root (z-index: auto, pointer-events: auto)
+
+[1A[2K  9: body.theme-light (z-index: auto, pointer-events: auto)
+
+[1A[2K  10: html (z-index: auto, pointer-events: auto)
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+
+[1A[2K✅ Create League CTA Routing - PASSED Routes to /login
+
+[1A[2K🎯 Checking overlay at center point (1087, 850)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+
+[1A[2K  2: div.text-center (z-index: auto, pointer-events: auto)
+
+[1A[2K  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+
+[1A[2K  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid="section-home"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+
+[1A[2K  6: main.flex-1 (z-index: auto, pointer-events: auto)
+
+[1A[2K  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)
+
+[1A[2K  8: div#root (z-index: auto, pointer-events: auto)
+
+[1A[2K  9: body.theme-light (z-index: auto, pointer-events: auto)
+
+[1A[2K  10: html (z-index: auto, pointer-events: auto)
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+
+[1A[2K✅ Join Invite CTA Routing - PASSED Routes to /login
+
+[1A[2K✅ Sticky CTA (Mobile) - PASSED Mobile sticky CTA routes correctly
+
+[1A[2K[21/62] [chromium] › tests/e2e/landing-page.spec.js:285:7 › Landing Page - Comprehensive Testing › Responsive design and mobile layout
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:285:7 › Landing Page - Comprehensive Testing › Responsive design and mobile layout
+✅ Responsive Design - PASSED 3/3 viewports working
+
+[1A[2K[22/62] [chromium] › tests/e2e/landing-page.spec.js:323:7 › Landing Page - Comprehensive Testing › Anchor scrolling works correctly without overlay interference
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:323:7 › Landing Page - Comprehensive Testing › Anchor scrolling works correctly without overlay interference
+🔍 Checking anchor scrolling functionality...
+
+[1A[2K📍 Testing anchor: features
+
+[1A[2K⏭️ Anchor link not found: #features
+
+[1A[2K📍 Testing anchor: how-it-works
+
+[1A[2K⏭️ Anchor link not found: #how-it-works
+
+[1A[2K📍 Testing anchor: pricing
+
+[1A[2K⏭️ Anchor link not found: #pricing
+
+[1A[2K📍 Testing anchor: contact
+
+[1A[2K⏭️ Anchor link not found: #contact
+
+[1A[2K✅ All anchor scrolling tests passed
+
+[1A[2K✅ Anchor Scrolling - PASSED All anchor links work correctly
+
+[1A[2K[23/62] [chromium] › tests/e2e/landing-page.spec.js:336:7 › Landing Page - Comprehensive Testing › Mobile menu closes properly on navigation
+[1A[2K[chromium] › tests/e2e/landing-page.spec.js:336:7 › Landing Page - Comprehensive Testing › Mobile menu closes properly on navigation
+🎯 Checking clickability at coordinates (339.0, 32.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K🎯 Checking overlay at center point (339, 32)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K  0: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid="nav-hamburger"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  1: div.flex.items-center.justify-between.h-16 (z-index: auto, pointer-events: auto)
+
+[1A[2K  2: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)
+
+[1A[2K  3: header.sticky.top-0.w-full.bg-theme-surface/95.backdrop-blur-sm.border-b.border-theme-surface-border.z-40[data-testid="app-header"] (z-index: 40, pointer-events: auto)
+
+[1A[2K  4: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)
+
+[1A[2K  5: div#root (z-index: auto, pointer-events: auto)
+
+[1A[2K  6: body.theme-light (z-index: auto, pointer-events: auto)
+
+[1A[2K  7: html (z-index: auto, pointer-events: auto)
+
+[1A[2K✅ No overlay blocking target: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid="nav-hamburger"]
+
+[1A[2K✅ Click successful on: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid="nav-hamburger"]
+
+[1A[2K❌ Mobile Menu Auto-Close - FAILED No navigation items found in drawer
+
+[1A[2K
+============================================================
+
+[1A[2K📊 Landing Page Test Summary:
+
+[1A[2K⏱️ Duration: 26.49s
+
+[1A[2K✅ Passed: 13
+
+[1A[2K❌ Failed: 2
+
+[1A[2K
+🎉 Successful Tests:
+
+[1A[2K  - Page Title
+
+[1A[2K  - All Main Sections
+
+[1A[2K  - Hero Section
+
+[1A[2K  - Hero CTA Buttons
+
+[1A[2K  - Footer
+
+[1A[2K  - Sticky Navigation Visibility
+
+[1A[2K  - Anchor Scrolling
+
+[1A[2K  - Browser Hash Updates
+
+[1A[2K  - Create League CTA Routing
+
+[1A[2K  - Join Invite CTA Routing
+
+[1A[2K  - Sticky CTA (Mobile)
+
+[1A[2K  - Responsive Design
+
+[1A[2K  - Anchor Scrolling
+
+[1A[2K
+💥 Failed Tests:
+
+[1A[2K  - Scroll-spy Active Highlighting: Active section indicators detected
+
+[1A[2K  - Mobile Menu Auto-Close: No navigation items found in drawer
+
+[1A[2K============================================================
+
+[1A[2K[24/62] [chromium] › tests/e2e/navigation.spec.ts:24:9 › Navigation Tests › Desktop Navigation › Landing page anchor navigation works correctly
+[1A[2K  10) [chromium] › tests/e2e/navigation.spec.ts:24:9 › Navigation Tests › Desktop Navigation › Landing page anchor navigation works correctly 
+
+    Error: locator.click: Error: strict mode violation: locator('[data-testid="tab-how"]') resolved to 2 elements:
+        1) <button role="tab" tabindex="0" data-section="how" aria-controls="how" aria-selected="false" data-testid="tab-how" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50">…</button> aka getByRole('tab', { name: 'How it Works' })
+        2) <button role="tab" tabindex="0" data-section="how" aria-controls="how" data-testid="tab-how" aria-selected="false" class="flex-shrink-0 px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 whitespace-nowrap text-gray-600 hover:text-blue-600 hover:bg-blue-50">…</button> aka locator('button').filter({ hasText: '⚙️How it WorksHow' })
+
+    Call log:
+    [2m  - waiting for locator('[data-testid="tab-how"]')[22m
+
+
+      24 |     test('Landing page anchor navigation works correctly', async ({ page }) => {
+      25 |       // Test "How it Works" anchor navigation
+    > 26 |       await page.locator(`[data-testid="${TESTIDS.inPageTabHow}"]`).click({ force: true });
+         |                                                                     ^
+      27 |       
+      28 |       // Wait for hash to change using helper
+      29 |       await waitForHash(page, '#how');
+        at /app/tests/e2e/navigation.spec.ts:26:69
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--7abfa--navigation-works-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--7abfa--navigation-works-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--7abfa--navigation-works-correctly-chromium/error-context.md
+
+
+[1A[2K[25/62] [chromium] › tests/e2e/navigation.spec.ts:50:9 › Navigation Tests › Desktop Navigation › Product dropdown shows only enabled items and navigates correctly
+[1A[2K  11) [chromium] › tests/e2e/navigation.spec.ts:50:9 › Navigation Tests › Desktop Navigation › Product dropdown shows only enabled items and navigates correctly 
+
+    Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Expected pattern: [32m/\/(auction|login)/[39m
+    Received string:  [31m"https://pifa-league.preview.emergentagent.com/#home"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveURL" with timeout 5000ms[22m
+    [2m    9 × unexpected value "https://pifa-league.preview.emergentagent.com/#home"[22m
+
+
+      68 |           // If items are shown, they should navigate properly
+      69 |           await page.locator(`[data-testid="${TESTIDS.navDdAuction}"]`).first().click();
+    > 70 |           await expect(page).toHaveURL(/\/(auction|login)/); // Should go to auction or redirect to login
+         |                              ^
+      71 |         }
+      72 |       }
+      73 |     });
+        at /app/tests/e2e/navigation.spec.ts:70:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--dbb4d-ems-and-navigates-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--dbb4d-ems-and-navigates-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--dbb4d-ems-and-navigates-correctly-chromium/error-context.md
+
+
+[1A[2K[26/62] [chromium] › tests/e2e/navigation.spec.ts:81:9 › Navigation Tests › Mobile Navigation › Mobile hamburger menu works correctly
+[1A[2K[chromium] › tests/e2e/navigation.spec.ts:81:9 › Navigation Tests › Mobile Navigation › Mobile hamburger menu works correctly
+🎯 Checking clickability at coordinates (354.0, 32.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K  12) [chromium] › tests/e2e/navigation.spec.ts:81:9 › Navigation Tests › Mobile Navigation › Mobile hamburger menu works correctly 
+
+    Error: locator._expect: expectedNumber: expected float, got object
+
+      90 |       // Test navigation items are listed
+      91 |       const navigationItems = page.locator(`[data-testid="${TESTIDS.navMobileDrawer}"] button`);
+    > 92 |       await expect(navigationItems).toHaveCount({ min: 3 }); // Should have at least How, Why, Sign In
+         |                                     ^
+      93 |       
+      94 |       // Test drawer focus trap - pressing Escape should close
+      95 |       await page.keyboard.press('Escape');
+        at /app/tests/e2e/navigation.spec.ts:92:37
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-chromium/error-context.md
+
+
+[1A[2K[27/62] [chromium] › tests/e2e/navigation.spec.ts:99:9 › Navigation Tests › Mobile Navigation › Mobile navigation shows only enabled items and navigates correctly
+[1A[2K[chromium] › tests/e2e/navigation.spec.ts:99:9 › Navigation Tests › Mobile Navigation › Mobile navigation shows only enabled items and navigates correctly
+🎯 Checking clickability at coordinates (354.0, 32.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K  13) [chromium] › tests/e2e/navigation.spec.ts:99:9 › Navigation Tests › Mobile Navigation › Mobile navigation shows only enabled items and navigates correctly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="nav-mobile-drawer"]').locator('text="No navigation items available"')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-testid="nav-mobile-drawer"]').locator('text="No navigation items available"')[22m
+
+
+      123 |         // No items shown - verify proper empty state
+      124 |         const emptyMessage = page.locator(`[data-testid="${TESTIDS.navMobileDrawer}"] >> text="No navigation items available"`);
+    > 125 |         await expect(emptyMessage).toBeVisible();
+          |                                    ^
+      126 |       }
+      127 |     });
+      128 |   });
+        at /app/tests/e2e/navigation.spec.ts:125:36
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-chromium/error-context.md
+
+
+[1A[2K[28/62] [chromium] › tests/e2e/navigation.spec.ts:131:9 › Navigation Tests › No Dead Ends & 404 Recovery › All navigation links have valid destinations and no href="#"
+[1A[2K[29/62] [chromium] › tests/e2e/navigation.spec.ts:152:9 › Navigation Tests › No Dead Ends & 404 Recovery › 404 page shows and allows navigation back
+[1A[2K[30/62] [chromium] › tests/e2e/navigation.spec.ts:167:9 › Navigation Tests › Go to... Menu on /app › Go to dropdown shows appropriate options
+[1A[2K  14) [chromium] › tests/e2e/navigation.spec.ts:167:9 › Navigation Tests › Go to... Menu on /app › Go to dropdown shows appropriate options 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/login" until "load"
+    ============================================================
+
+      170 |       
+      171 |       // Should redirect to login for unauthenticated users
+    > 172 |       await page.waitForURL('**/login');
+          |                  ^
+      173 |       
+      174 |       // For authenticated users test (would need login flow)
+      175 |       // This test would check that the Go to... dropdown shows context-aware options
+        at /app/tests/e2e/navigation.spec.ts:172:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--8348f-n-shows-appropriate-options-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--8348f-n-shows-appropriate-options-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--8348f-n-shows-appropriate-options-chromium/error-context.md
+
+
+[1A[2K[31/62] [chromium] › tests/e2e/navigation.spec.ts:180:9 › Navigation Tests › Keyboard Navigation › Keyboard navigation works with proper ARIA and focus management
+[1A[2K  15) [chromium] › tests/e2e/navigation.spec.ts:180:9 › Navigation Tests › Keyboard Navigation › Keyboard navigation works with proper ARIA and focus management 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mnot[2m.[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="nav-mobile-drawer"]')
+    Expected: not visible
+    Received: visible
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "not toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-testid="nav-mobile-drawer"]')[22m
+    [2m    9 × locator resolved to <div class="sr-only" data-state="open" aria-hidden="true" data-testid="nav-mobile-drawer">Mobile drawer state: open</div>[22m
+    [2m      - unexpected value "visible"[22m
+
+
+      219 |       // Test Escape closes mobile drawer
+      220 |       await page.keyboard.press('Escape');
+    > 221 |       await expect(mobileDrawer).not.toBeVisible();
+          |                                      ^
+      222 |     });
+      223 |   });
+      224 | });
+        at /app/tests/e2e/navigation.spec.ts:221:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-chromium/error-context.md
+
+
+[1A[2K[32/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements
+[1A[2K  16) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="home-nav-button"]')
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-testid="home-nav-button"]')[22m
+    [2m    9 × locator resolved to <button data-testid="home-nav-button" class="justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 hidden sm:flex items-center space-x-1 text-sm">…</button>[22m
+    [2m      - unexpected value "hidden"[22m
+
+
+      23 |     // Verify navigation elements exist (no dead-ends)
+      24 |     await expect(page.locator('[data-testid="back-to-home-link"]')).toBeVisible();
+    > 25 |     await expect(page.locator('[data-testid="home-nav-button"]')).toBeVisible();
+         |                                                                   ^
+      26 |     
+      27 |     // Verify header structure
+      28 |     await expect(page.locator('[data-testid="login-header"]')).toBeVisible();
+        at /app/tests/e2e/auth_ui.spec.ts:25:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-auth_ui-Authentication-7ac3e-ll-required-testid-elements-Mobile-Chrome/error-context.md
+
+
+[1A[2K[33/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:41:7 › Authentication UI Tests › Submit button is disabled for invalid email
+[1A[2K[34/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission
+[1A[2K  17) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByTestId('auth-error')
+    Expected string: [32m"[7mPlease enter a valid email[27m."[39m
+    Received string: [31m"[7mUnable to send magic link. Please try again[27m."[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('auth-error')[22m
+    [2m    9 × locator resolved to <div role="alert" id="email-error" aria-live="assertive" data-testid="auth-error" class="flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md block w-full">…</div>[22m
+    [2m      - unexpected value "Unable to send magic link. Please try again."[22m
+
+
+      85 |     await expect(errorElement).toHaveAttribute('role', 'alert');
+      86 |     await expect(errorElement).toHaveAttribute('aria-live', 'assertive');
+    > 87 |     await expect(errorElement).toContainText('Please enter a valid email.');
+         |                                ^
+      88 |     
+      89 |     // Submit button should re-enable after error (not stuck in loading state)
+      90 |     await expect(submitBtn).toBeEnabled();
+        at /app/tests/e2e/auth_ui.spec.ts:87:32
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-4f901-or-invalid-email-submission-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-4f901-or-invalid-email-submission-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-auth_ui-Authentication-4f901-or-invalid-email-submission-Mobile-Chrome/error-context.md
+
+
+[1A[2K[35/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:99:7 › Authentication UI Tests › Successfully submits valid email and shows success
+Browser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://pifa-league.preview.emergentagent.com…msifQ.gnjXp-ofzgpdkDhGFP-twQMd88G7gFU95hXIfosj6hk}
+
+[1A[2KBrowser Console: Test mode: false
+
+[1A[2KAPI Response: {
+  message: [32m'Magic link generated! (Development Mode - Check below)'[39m,
+  dev_magic_link: [32m'https://pifa-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTEwNzE0NywidHlwZSI6Im1hZ2ljX2xpbmsifQ.gnjXp-ofzgpdkDhGFP-twQMd88G7gFU95hXIfosj6hk'[39m
+}
+
+[1A[2KDev magic link button found, clicking...
+
+[1A[2KBrowser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+
+[1A[2KBrowser Console: 🧪 CREATE-DIALOG: closed - dialog closed
+
+[1A[2K[36/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works
+[1A[2K  18) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works 
+
+    Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Expected string: [32m"https://pifa-league.preview.emergentagent.com/"[39m
+    Received string: [31m"https://pifa-league.preview.emergentagent.com/[7mlogin?next=%2Fapp[27m"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveURL" with timeout 5000ms[22m
+    [2m    9 × unexpected value "https://pifa-league.preview.emergentagent.com/login?next=%2Fapp"[22m
+
+
+      148 |     
+      149 |     // Should navigate back to home page
+    > 150 |     await expect(page).toHaveURL('/');
+          |                        ^
+      151 |   });
+      152 |
+      153 |   test('Form handles loading state correctly', async ({ page }) => {
+        at /app/tests/e2e/auth_ui.spec.ts:150:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-auth_ui-Authentication-0fbd4-ck-to-Home-navigation-works-Mobile-Chrome/error-context.md
+
+
+[1A[2K[37/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:153:7 › Authentication UI Tests › Form handles loading state correctly
+ℹ️ Loading state too fast to catch - checking aria-busy changed
+
+[1A[2KFinal aria-busy state: false
+
+[1A[2KResponse status: 200
+
+[1A[2K[38/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:198:7 › Authentication UI Tests › No dead ends - page always has navigation options
+[1A[2K[39/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:216:7 › Authentication UI Tests › Test mode disables animations
+[1A[2K[40/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:236:7 › Authentication UI Integration › Form submission works using only testids
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:236:7 › Authentication UI Integration › Form submission works using only testids
+✅ Form submission completed successfully using testids
+
+[1A[2K[41/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:267:7 › Authentication UI Integration › Complete auth flow using UI login mode
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:267:7 › Authentication UI Integration › Complete auth flow using UI login mode
+🔐 Logging in user: ui-integration-test@example.com (mode: ui)
+
+[1A[2K🖱️  UI login for user: ui-integration-test@example.com
+
+[1A[2K✅ UI login successful: ui-integration-test@example.com
+
+[1A[2K[42/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX
+🧪 Testing empty email error handling...
+
+[1A[2K  19) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      285 |
+      286 |     // Submit with empty email (form validation should prevent this, but test anyway)
+    > 287 |     await emailInput.fill('');
+          |                      ^
+      288 |     await expect(submitBtn).toBeDisabled();
+      289 |     
+      290 |     // Add some text then clear it to test error behavior
+        at /app/tests/e2e/auth_ui.spec.ts:287:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-376ea--empty-email-with-proper-UX-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[43/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message
+🧪 Testing invalid email error handling...
+
+[1A[2K  20) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      306 |
+      307 |     // Enter invalid email and try to submit
+    > 308 |     await emailInput.fill('invalid-email-format');
+          |                      ^
+      309 |     
+      310 |     // Button should be disabled for invalid email
+      311 |     await expect(submitBtn).toBeDisabled();
+        at /app/tests/e2e/auth_ui.spec.ts:308:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-a211b-format-with-concise-message-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[44/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing
+🧪 Testing error clearing behavior...
+
+[1A[2K  21) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      352 |
+      353 |     // Enter email that might trigger error
+    > 354 |     await emailInput.fill('error-test@invaliddomain999.com');
+          |                      ^
+      355 |     await submitBtn.click();
+      356 |     
+      357 |     // Wait a moment for any potential error
+        at /app/tests/e2e/auth_ui.spec.ts:354:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-27043-ars-when-user-starts-typing-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[45/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading
+🧪 Testing submit button states...
+
+[1A[2K  22) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      381 |
+      382 |     // Fill valid email
+    > 383 |     await emailInput.fill('loading-test@example.com');
+          |                      ^
+      384 |     
+      385 |     // Button should be enabled
+      386 |     await expect(submitBtn).toBeEnabled();
+        at /app/tests/e2e/auth_ui.spec.ts:383:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-af8ce-rk-correctly-during-loading-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[46/62] [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes
+[1A[2K[Mobile Chrome] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes
+🧪 Testing error accessibility...
+
+[1A[2K  23) [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[data-testid="auth-email-input"]')[22m
+
+
+      439 |
+      440 |     // Try to trigger an error
+    > 441 |     await emailInput.fill('accessibility-test@invaliddomain999.com');
+          |                      ^
+      442 |     await submitBtn.click();
+      443 |     await page.waitForTimeout(2000);
+      444 |
+        at /app/tests/e2e/auth_ui.spec.ts:441:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-auth_ui-Authentication-c5087-er-accessibility-attributes-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K[47/62] [Mobile Chrome] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell
+[1A[2K[Mobile Chrome] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell
+🚀 Starting core smoke test...
+
+[1A[2K📝 Step 1: Commissioner creates league...
+
+[1A[2K🔐 Logging in user: commish@example.com (mode: test)
+
+[1A[2K🧪 Test-only login for user: commish@example.com
+
+[1A[2K✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+
+[1A[2K🏆 Creating league: Core Smoke League
+
+[1A[2K🎯 Using safe click with overlay detection for Create League button...
+
+[1A[2K🎯 Checking overlay at center point (293, 1150)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2KConsole error on Commissioner: Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `CreateLeagueDialog`. 
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid="create-league-btn"]
+
+[1A[2K📋 Filling Create League form: Core Smoke League
+
+[1A[2K📋 Detected CreateLeagueDialog (modal) form
+
+[1A[2K📝 Using dialog testids: {
+  name: [32m'create-name'[39m,
+  slots: [32m'create-slots-input'[39m,
+  budget: [32m'create-budget'[39m,
+  min: [32m'create-min'[39m,
+  max: [32m'create-max'[39m
+}
+
+[1A[2K📝 Filling league name...
+
+[1A[2K📝 Filling form fields with type-aware setters...
+
+[1A[2K🔧 Setting form value: create-slots-input=3 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-slots-input=3
+
+[1A[2K🔧 Setting form value: create-budget=100 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-budget=100
+
+[1A[2K🔧 Setting form value: create-min=2 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-min=2
+
+[1A[2K🔧 Setting form value: create-max=8 (tag: input, type: number)
+
+[1A[2K✅ Form value set: create-max=8
+
+[1A[2K✅ Create League form filled successfully: Core Smoke League
+
+[1A[2K📝 Form filled, submitting...
+
+[1A[2K🎯 Checking clickability at coordinates (299.8, 661.9)
+
+[1A[2K🔍 Target: BUTTON[data-testid="create-submit"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="create-submit"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2KConsole error on Commissioner: Failed to load resource: the server responded with a status of 500 ()
+
+[1A[2K⏳ Waiting for league creation success...
+
+[1A[2K🏁 Waiting for league creation success and lobby navigation...
+
+[1A[2KConsole error on Commissioner: League creation error: AxiosError
+
+[1A[2K❌ Failed to complete league creation → lobby flow. Current URL: https://pifa-league.preview.emergentagent.com/app
+
+[1A[2KTest failed, capturing artifacts...
+
+[1A[2KScreenshots saved with timestamp: 2025-09-29T00-39-27-539Z
+
+[1A[2K  24) [Mobile Chrome] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell 
+
+    Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation until "load"
+    ============================================================ (URL: https://pifa-league.preview.emergentagent.com/app)
+
+       at e2e/utils/helpers.ts:458
+
+      456 |     });
+      457 |     
+    > 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);
+          |           ^
+      459 |   }
+      460 | }
+      461 |
+        at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)
+        at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)
+        at /app/tests/e2e/core-smoke.spec.ts:121:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/error-context.md
+
+
+[1A[2K[48/62] [Mobile Chrome] › tests/e2e/landing-page.spec.js:60:7 › Landing Page - Comprehensive Testing › Landing page loads correctly with all sections
+[1A[2K[Mobile Chrome] › tests/e2e/landing-page.spec.js:60:7 › Landing Page - Comprehensive Testing › Landing page loads correctly with all sections
+✅ Page Title - PASSED Expected: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy.", Got: "Friends of PIFA — Sports gaming with friends. No gambling, all strategy."
+
+[1A[2K✅ All Main Sections - PASSED 6 sections visible
+
+[1A[2K✅ Hero Section - PASSED Hero title visible
+
+[1A[2K✅ Hero CTA Buttons - PASSED Both CTA buttons visible
+
+[1A[2K✅ Footer - PASSED Footer visible
+
+[1A[2K[49/62] [Mobile Chrome] › tests/e2e/landing-page.spec.js:109:7 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly
+[1A[2K[Mobile Chrome] › tests/e2e/landing-page.spec.js:109:7 › Landing Page - Comprehensive Testing › Sticky in-page navigation anchors scroll correctly
+✅ Sticky Navigation Visibility - PASSED After scrolling past hero
+
+[1A[2K✅ Anchor Scrolling - PASSED 1/6 sections scrolled
+
+[1A[2K[50/62] [Mobile Chrome] › tests/e2e/landing-page.spec.js:178:7 › Landing Page - Comprehensive Testing › Scroll-spy updates active section highlighting
+[1A[2K[Mobile Chrome] › tests/e2e/landing-page.spec.js:178:7 › Landing Page - Comprehensive Testing › Scroll-spy updates active section highlighting
+❌ Scroll-spy Active Highlighting - FAILED Active section indicators detected
+
+[1A[2K✅ Browser Hash Updates - PASSED Hash: #home
+
+[1A[2K[51/62] [Mobile Chrome] › tests/e2e/landing-page.spec.js:222:7 › Landing Page - Comprehensive Testing › CTAs route to create/join flows correctly
+[1A[2K[Mobile Chrome] › tests/e2e/landing-page.spec.js:222:7 › Landing Page - Comprehensive Testing › CTAs route to create/join flows correctly
+🔍 Checking landing page CTAs for overlay issues...
+
+[1A[2K⏭️ CTA not found: [data-testid="create-league-btn"]
+
+[1A[2K⏭️ CTA not found: [data-testid="join-league-btn"]
+
+[1A[2K🎯 Checking CTA: button:has-text("Create a League")
+
+[1A[2K🎯 Checking overlay at center point (827, 920)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+
+[1A[2K  2: div.text-center (z-index: auto, pointer-events: auto)
+
+[1A[2K  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+
+[1A[2K  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid="section-home"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+
+[1A[2K  6: main.flex-1 (z-index: auto, pointer-events: auto)
+
+[1A[2K  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)
+
+[1A[2K  8: div#root (z-index: auto, pointer-events: auto)
+
+[1A[2K  9: body.theme-light (z-index: auto, pointer-events: auto)
+
+[1A[2K  10: html (z-index: auto, pointer-events: auto)
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+
+[1A[2K✅ CTA clickable: button:has-text("Create a League")
+
+[1A[2K🎯 Checking CTA: button:has-text("Join with an Invite")
+
+[1A[2K🎯 Checking overlay at center point (1087, 920)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+
+[1A[2K  2: div.text-center (z-index: auto, pointer-events: auto)
+
+[1A[2K  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+
+[1A[2K  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid="section-home"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+
+[1A[2K  6: main.flex-1 (z-index: auto, pointer-events: auto)
+
+[1A[2K  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)
+
+[1A[2K  8: div#root (z-index: auto, pointer-events: auto)
+
+[1A[2K  9: body.theme-light (z-index: auto, pointer-events: auto)
+
+[1A[2K  10: html (z-index: auto, pointer-events: auto)
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+
+[1A[2K✅ CTA clickable: button:has-text("Join with an Invite")
+
+[1A[2K✅ All landing page CTAs are clickable
+
+[1A[2K🎯 Checking overlay at center point (827, 920)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+
+[1A[2K  2: div.text-center (z-index: auto, pointer-events: auto)
+
+[1A[2K  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+
+[1A[2K  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid="section-home"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+
+[1A[2K  6: main.flex-1 (z-index: auto, pointer-events: auto)
+
+[1A[2K  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)
+
+[1A[2K  8: div#root (z-index: auto, pointer-events: auto)
+
+[1A[2K  9: body.theme-light (z-index: auto, pointer-events: auto)
+
+[1A[2K  10: html (z-index: auto, pointer-events: auto)
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.hover:bg-primary/90.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid="cta-create-league"]
+
+[1A[2K✅ Create League CTA Routing - PASSED Routes to /login
+
+[1A[2K🎯 Checking overlay at center point (1087, 850)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K  0: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)
+
+[1A[2K  2: div.text-center (z-index: auto, pointer-events: auto)
+
+[1A[2K  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)
+
+[1A[2K  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid="section-home"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)
+
+[1A[2K  6: main.flex-1 (z-index: auto, pointer-events: auto)
+
+[1A[2K  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)
+
+[1A[2K  8: div#root (z-index: auto, pointer-events: auto)
+
+[1A[2K  9: body.theme-light (z-index: auto, pointer-events: auto)
+
+[1A[2K  10: html (z-index: auto, pointer-events: auto)
+
+[1A[2K✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+
+[1A[2K✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.border.border-input.shadow-sm.hover:bg-accent.hover:text-accent-foreground.h-10.rounded-md.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid="cta-join-league"]
+
+[1A[2K✅ Join Invite CTA Routing - PASSED Routes to /login
+
+[1A[2K✅ Sticky CTA (Mobile) - PASSED Mobile sticky CTA routes correctly
+
+[1A[2K[52/62] [Mobile Chrome] › tests/e2e/landing-page.spec.js:285:7 › Landing Page - Comprehensive Testing › Responsive design and mobile layout
+[1A[2K[Mobile Chrome] › tests/e2e/landing-page.spec.js:285:7 › Landing Page - Comprehensive Testing › Responsive design and mobile layout
+✅ Responsive Design - PASSED 3/3 viewports working
+
+[1A[2K[53/62] [Mobile Chrome] › tests/e2e/landing-page.spec.js:323:7 › Landing Page - Comprehensive Testing › Anchor scrolling works correctly without overlay interference
+[1A[2K[Mobile Chrome] › tests/e2e/landing-page.spec.js:323:7 › Landing Page - Comprehensive Testing › Anchor scrolling works correctly without overlay interference
+🔍 Checking anchor scrolling functionality...
+
+[1A[2K📍 Testing anchor: features
+
+[1A[2K⏭️ Anchor link not found: #features
+
+[1A[2K📍 Testing anchor: how-it-works
+
+[1A[2K⏭️ Anchor link not found: #how-it-works
+
+[1A[2K📍 Testing anchor: pricing
+
+[1A[2K⏭️ Anchor link not found: #pricing
+
+[1A[2K📍 Testing anchor: contact
+
+[1A[2K⏭️ Anchor link not found: #contact
+
+[1A[2K✅ All anchor scrolling tests passed
+
+[1A[2K✅ Anchor Scrolling - PASSED All anchor links work correctly
+
+[1A[2K[54/62] [Mobile Chrome] › tests/e2e/landing-page.spec.js:336:7 › Landing Page - Comprehensive Testing › Mobile menu closes properly on navigation
+[1A[2K[Mobile Chrome] › tests/e2e/landing-page.spec.js:336:7 › Landing Page - Comprehensive Testing › Mobile menu closes properly on navigation
+🎯 Checking clickability at coordinates (337.0, 32.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K🎯 Checking overlay at center point (337, 32)
+
+[1A[2K📍 Elements at point (top to bottom):
+
+[1A[2K  0: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid="nav-hamburger"] (z-index: auto, pointer-events: auto)
+
+[1A[2K  1: div.flex.items-center.justify-between.h-16 (z-index: auto, pointer-events: auto)
+
+[1A[2K  2: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)
+
+[1A[2K  3: header.sticky.top-0.w-full.bg-theme-surface/95.backdrop-blur-sm.border-b.border-theme-surface-border.z-40[data-testid="app-header"] (z-index: 40, pointer-events: auto)
+
+[1A[2K  4: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)
+
+[1A[2K  5: div#root (z-index: auto, pointer-events: auto)
+
+[1A[2K  6: body.theme-light (z-index: auto, pointer-events: auto)
+
+[1A[2K  7: html (z-index: auto, pointer-events: auto)
+
+[1A[2K✅ No overlay blocking target: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid="nav-hamburger"]
+
+[1A[2K✅ Click successful on: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid="nav-hamburger"]
+
+[1A[2K❌ Mobile Menu Auto-Close - FAILED No navigation items found in drawer
+
+[1A[2K
+============================================================
+
+[1A[2K📊 Landing Page Test Summary:
+
+[1A[2K⏱️ Duration: 33.53s
+
+[1A[2K✅ Passed: 13
+
+[1A[2K❌ Failed: 2
+
+[1A[2K
+🎉 Successful Tests:
+
+[1A[2K  - Page Title
+
+[1A[2K  - All Main Sections
+
+[1A[2K  - Hero Section
+
+[1A[2K  - Hero CTA Buttons
+
+[1A[2K  - Footer
+
+[1A[2K  - Sticky Navigation Visibility
+
+[1A[2K  - Anchor Scrolling
+
+[1A[2K  - Browser Hash Updates
+
+[1A[2K  - Create League CTA Routing
+
+[1A[2K  - Join Invite CTA Routing
+
+[1A[2K  - Sticky CTA (Mobile)
+
+[1A[2K  - Responsive Design
+
+[1A[2K  - Anchor Scrolling
+
+[1A[2K
+💥 Failed Tests:
+
+[1A[2K  - Scroll-spy Active Highlighting: Active section indicators detected
+
+[1A[2K  - Mobile Menu Auto-Close: No navigation items found in drawer
+
+[1A[2K============================================================
+
+[1A[2K[55/62] [Mobile Chrome] › tests/e2e/navigation.spec.ts:24:9 › Navigation Tests › Desktop Navigation › Landing page anchor navigation works correctly
+[1A[2K  25) [Mobile Chrome] › tests/e2e/navigation.spec.ts:24:9 › Navigation Tests › Desktop Navigation › Landing page anchor navigation works correctly 
+
+    Error: locator.click: Error: strict mode violation: locator('[data-testid="tab-how"]') resolved to 2 elements:
+        1) <button role="tab" tabindex="0" data-section="how" aria-controls="how" aria-selected="false" data-testid="tab-how" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50">…</button> aka getByRole('tab', { name: 'How it Works' })
+        2) <button role="tab" tabindex="0" data-section="how" aria-controls="how" data-testid="tab-how" aria-selected="false" class="flex-shrink-0 px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 whitespace-nowrap text-gray-600 hover:text-blue-600 hover:bg-blue-50">…</button> aka locator('button').filter({ hasText: '⚙️How it WorksHow' })
+
+    Call log:
+    [2m  - waiting for locator('[data-testid="tab-how"]')[22m
+
+
+      24 |     test('Landing page anchor navigation works correctly', async ({ page }) => {
+      25 |       // Test "How it Works" anchor navigation
+    > 26 |       await page.locator(`[data-testid="${TESTIDS.inPageTabHow}"]`).click({ force: true });
+         |                                                                     ^
+      27 |       
+      28 |       // Wait for hash to change using helper
+      29 |       await waitForHash(page, '#how');
+        at /app/tests/e2e/navigation.spec.ts:26:69
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--7abfa--navigation-works-correctly-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--7abfa--navigation-works-correctly-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--7abfa--navigation-works-correctly-Mobile-Chrome/error-context.md
+
+
+[1A[2K[56/62] [Mobile Chrome] › tests/e2e/navigation.spec.ts:50:9 › Navigation Tests › Desktop Navigation › Product dropdown shows only enabled items and navigates correctly
+[1A[2K  26) [Mobile Chrome] › tests/e2e/navigation.spec.ts:50:9 › Navigation Tests › Desktop Navigation › Product dropdown shows only enabled items and navigates correctly 
+
+    Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Expected pattern: [32m/\/(auction|login)/[39m
+    Received string:  [31m"https://pifa-league.preview.emergentagent.com/#home"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveURL" with timeout 5000ms[22m
+    [2m    9 × unexpected value "https://pifa-league.preview.emergentagent.com/#home"[22m
+
+
+      68 |           // If items are shown, they should navigate properly
+      69 |           await page.locator(`[data-testid="${TESTIDS.navDdAuction}"]`).first().click();
+    > 70 |           await expect(page).toHaveURL(/\/(auction|login)/); // Should go to auction or redirect to login
+         |                              ^
+      71 |         }
+      72 |       }
+      73 |     });
+        at /app/tests/e2e/navigation.spec.ts:70:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--dbb4d-ems-and-navigates-correctly-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--dbb4d-ems-and-navigates-correctly-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--dbb4d-ems-and-navigates-correctly-Mobile-Chrome/error-context.md
+
+
+[1A[2K[57/62] [Mobile Chrome] › tests/e2e/navigation.spec.ts:81:9 › Navigation Tests › Mobile Navigation › Mobile hamburger menu works correctly
+[1A[2K[Mobile Chrome] › tests/e2e/navigation.spec.ts:81:9 › Navigation Tests › Mobile Navigation › Mobile hamburger menu works correctly
+🎯 Checking clickability at coordinates (352.0, 32.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K  27) [Mobile Chrome] › tests/e2e/navigation.spec.ts:81:9 › Navigation Tests › Mobile Navigation › Mobile hamburger menu works correctly 
+
+    Error: locator._expect: expectedNumber: expected float, got object
+
+      90 |       // Test navigation items are listed
+      91 |       const navigationItems = page.locator(`[data-testid="${TESTIDS.navMobileDrawer}"] button`);
+    > 92 |       await expect(navigationItems).toHaveCount({ min: 3 }); // Should have at least How, Why, Sign In
+         |                                     ^
+      93 |       
+      94 |       // Test drawer focus trap - pressing Escape should close
+      95 |       await page.keyboard.press('Escape');
+        at /app/tests/e2e/navigation.spec.ts:92:37
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--8d9b6-burger-menu-works-correctly-Mobile-Chrome/error-context.md
+
+
+[1A[2K[58/62] [Mobile Chrome] › tests/e2e/navigation.spec.ts:99:9 › Navigation Tests › Mobile Navigation › Mobile navigation shows only enabled items and navigates correctly
+[1A[2K[Mobile Chrome] › tests/e2e/navigation.spec.ts:99:9 › Navigation Tests › Mobile Navigation › Mobile navigation shows only enabled items and navigates correctly
+🎯 Checking clickability at coordinates (352.0, 32.0)
+
+[1A[2K🔍 Target: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K🔍 Topmost: BUTTON[data-testid="nav-hamburger"]
+
+[1A[2K✅ Element is clickable
+
+[1A[2K  28) [Mobile Chrome] › tests/e2e/navigation.spec.ts:99:9 › Navigation Tests › Mobile Navigation › Mobile navigation shows only enabled items and navigates correctly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="nav-mobile-drawer"]').locator('text="No navigation items available"')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-testid="nav-mobile-drawer"]').locator('text="No navigation items available"')[22m
+
+
+      123 |         // No items shown - verify proper empty state
+      124 |         const emptyMessage = page.locator(`[data-testid="${TESTIDS.navMobileDrawer}"] >> text="No navigation items available"`);
+    > 125 |         await expect(emptyMessage).toBeVisible();
+          |                                    ^
+      126 |       }
+      127 |     });
+      128 |   });
+        at /app/tests/e2e/navigation.spec.ts:125:36
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--80adf-ems-and-navigates-correctly-Mobile-Chrome/error-context.md
+
+
+[1A[2K[59/62] [Mobile Chrome] › tests/e2e/navigation.spec.ts:131:9 › Navigation Tests › No Dead Ends & 404 Recovery › All navigation links have valid destinations and no href="#"
+[1A[2K[60/62] [Mobile Chrome] › tests/e2e/navigation.spec.ts:152:9 › Navigation Tests › No Dead Ends & 404 Recovery › 404 page shows and allows navigation back
+[1A[2K[61/62] [Mobile Chrome] › tests/e2e/navigation.spec.ts:167:9 › Navigation Tests › Go to... Menu on /app › Go to dropdown shows appropriate options
+[1A[2K  29) [Mobile Chrome] › tests/e2e/navigation.spec.ts:167:9 › Navigation Tests › Go to... Menu on /app › Go to dropdown shows appropriate options 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/login" until "load"
+    ============================================================
+
+      170 |       
+      171 |       // Should redirect to login for unauthenticated users
+    > 172 |       await page.waitForURL('**/login');
+          |                  ^
+      173 |       
+      174 |       // For authenticated users test (would need login flow)
+      175 |       // This test would check that the Go to... dropdown shows context-aware options
+        at /app/tests/e2e/navigation.spec.ts:172:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--8348f-n-shows-appropriate-options-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--8348f-n-shows-appropriate-options-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--8348f-n-shows-appropriate-options-Mobile-Chrome/error-context.md
+
+
+[1A[2K[62/62] [Mobile Chrome] › tests/e2e/navigation.spec.ts:180:9 › Navigation Tests › Keyboard Navigation › Keyboard navigation works with proper ARIA and focus management
+[1A[2K  30) [Mobile Chrome] › tests/e2e/navigation.spec.ts:180:9 › Navigation Tests › Keyboard Navigation › Keyboard navigation works with proper ARIA and focus management 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mnot[2m.[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('[data-testid="nav-mobile-drawer"]')
+    Expected: not visible
+    Received: visible
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "not toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-testid="nav-mobile-drawer"]')[22m
+    [2m    9 × locator resolved to <div class="sr-only" data-state="open" aria-hidden="true" data-testid="nav-mobile-drawer">Mobile drawer state: open</div>[22m
+    [2m      - unexpected value "visible"[22m
+
+
+      219 |       // Test Escape closes mobile drawer
+      220 |       await page.keyboard.press('Escape');
+    > 221 |       await expect(mobileDrawer).not.toBeVisible();
+          |                                      ^
+      222 |     });
+      223 |   });
+      224 | });
+        at /app/tests/e2e/navigation.spec.ts:221:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/e2e-navigation-Navigation--b9e15-r-ARIA-and-focus-management-Mobile-Chrome/error-context.md
+
+
+🧹 Global E2E Test Teardown Starting...
+🎉 Global teardown completed!
+[1A[2K  30 failed
+    [chromium] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements 
+    [chromium] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission 
+    [chromium] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works 
+    [chromium] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX 
+    [chromium] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message 
+    [chromium] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing 
+    [chromium] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading 
+    [chromium] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes 
+    [chromium] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell 
+    [chromium] › tests/e2e/navigation.spec.ts:24:9 › Navigation Tests › Desktop Navigation › Landing page anchor navigation works correctly 
+    [chromium] › tests/e2e/navigation.spec.ts:50:9 › Navigation Tests › Desktop Navigation › Product dropdown shows only enabled items and navigates correctly 
+    [chromium] › tests/e2e/navigation.spec.ts:81:9 › Navigation Tests › Mobile Navigation › Mobile hamburger menu works correctly 
+    [chromium] › tests/e2e/navigation.spec.ts:99:9 › Navigation Tests › Mobile Navigation › Mobile navigation shows only enabled items and navigates correctly 
+    [chromium] › tests/e2e/navigation.spec.ts:167:9 › Navigation Tests › Go to... Menu on /app › Go to dropdown shows appropriate options 
+    [chromium] › tests/e2e/navigation.spec.ts:180:9 › Navigation Tests › Keyboard Navigation › Keyboard navigation works with proper ARIA and focus management 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:11:7 › Authentication UI Tests › Login page renders form with all required testid elements 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:65:7 › Authentication UI Tests › Shows error for invalid email submission 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:143:7 › Authentication UI Tests › Back to Home navigation works 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:279:7 › Authentication UI Integration › Shows error for empty email with proper UX 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:300:7 › Authentication UI Integration › Shows error for invalid email format with concise message 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:346:7 › Authentication UI Integration › Error clears when user starts typing 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:375:7 › Authentication UI Integration › Submit button states work correctly during loading 
+    [Mobile Chrome] › tests/e2e/auth_ui.spec.ts:433:7 › Authentication UI Integration › Error display has proper accessibility attributes 
+    [Mobile Chrome] › tests/e2e/core-smoke.spec.ts:114:7 › Core Smoke Test › Complete auction flow: create → invite → join → auction → bid → sell 
+    [Mobile Chrome] › tests/e2e/navigation.spec.ts:24:9 › Navigation Tests › Desktop Navigation › Landing page anchor navigation works correctly 
+    [Mobile Chrome] › tests/e2e/navigation.spec.ts:50:9 › Navigation Tests › Desktop Navigation › Product dropdown shows only enabled items and navigates correctly 
+    [Mobile Chrome] › tests/e2e/navigation.spec.ts:81:9 › Navigation Tests › Mobile Navigation › Mobile hamburger menu works correctly 
+    [Mobile Chrome] › tests/e2e/navigation.spec.ts:99:9 › Navigation Tests › Mobile Navigation › Mobile navigation shows only enabled items and navigates correctly 
+    [Mobile Chrome] › tests/e2e/navigation.spec.ts:167:9 › Navigation Tests › Go to... Menu on /app › Go to dropdown shows appropriate options 
+    [Mobile Chrome] › tests/e2e/navigation.spec.ts:180:9 › Navigation Tests › Keyboard Navigation › Keyboard navigation works with proper ARIA and focus management 
+  32 passed (8.4m)
