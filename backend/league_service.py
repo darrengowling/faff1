@@ -27,11 +27,25 @@ class LeagueService:
         commissioner_id: str
     ) -> LeagueResponse:
         """
-        Create a complete league setup with all related documents using sequential operations
-        Sequential operations ensure consistency by creating all required documents in proper order
+        Create a complete league setup with all related documents in a single session
+        Uses transaction if available, falls back to sequential operations
         """
-        logger.info(f"Creating league using sequential operations (MongoDB single instance)")
-        return await LeagueService._create_league_sequential(league_data, commissioner_id)
+        try:
+            # Try transaction approach first for deterministic commit
+            logger.info(f"Attempting league creation with MongoDB session")
+            client = db.client
+            async with await client.start_session() as session:
+                try:
+                    async with session.start_transaction():
+                        result = await LeagueService._create_league_transactional(league_data, commissioner_id, session)
+                        logger.info(f"League creation transaction committed successfully: {result.id}")
+                        return result
+                except Exception as tx_error:
+                    logger.warning(f"Transaction failed: {str(tx_error)}, falling back to sequential")
+                    raise tx_error
+        except Exception as e:
+            logger.warning(f"Session/transaction creation failed: {str(e)}, using sequential operations")
+            return await LeagueService._create_league_sequential(league_data, commissioner_id)
 
     @staticmethod
     async def _create_league_transactional(league_data: LeagueCreate, commissioner_id: str, session) -> LeagueResponse:
