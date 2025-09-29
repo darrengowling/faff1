@@ -8,4 +8,4 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Progress } from './ui/progress';
 import { Badge } from './ui/badge';
 import { User, Trophy, Wallet, Star, Shield, Timer, TrendingUp, Award, Target, DollarSign, Users, ChevronRight, Home, RotateCcw } from 'lucide-react';
-import { TESTIDS } from '../testing/testids';
+import { TESTIDS } from '../testids';
