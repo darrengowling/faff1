@@ -160,7 +160,7 @@ const LoginPage = () => {
         }
       } else {
         // Only for real network errors (non-400): connection issues, 500 errors, etc.
-        errorMessage = 'Unable to send magic link. Please check your connection and try again.';
+        errorMessage = 'Unable to send magic link';
       }
       
       setError(errorMessage);
