@@ -21,8 +21,10 @@ test.describe('Authentication UI Tests', () => {
     await expect(page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`)).toBeVisible({ timeout: 10000 });
     
     // Verify navigation elements exist (no dead-ends)
-    await expect(page.locator('[data-testid="back-to-home-link"]')).toBeVisible();
-    await expect(page.locator('[data-testid="home-nav-button"]')).toBeVisible();
+    const backToHomeLink = page.locator('[data-testid="back-to-home-link"]');
+    await expect(backToHomeLink).toBeVisible();
+    // Verify session-based routing: unauthenticated should point to "/"
+    await expect(backToHomeLink).toHaveAttribute('data-dest', '/');
     
     // Verify header structure
     await expect(page.locator('[data-testid="login-header"]')).toBeVisible();
