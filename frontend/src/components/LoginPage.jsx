@@ -224,7 +224,7 @@ const LoginPage = () => {
                 className="space-y-6" 
                 noValidate={isTestMode}
                 aria-busy={loading ? 'true' : 'false'}
-                data-testid="auth-ready"
+                data-testid={TESTIDS.authFormReady}
               >
                 {/* Loading indicator - always present, visible when loading */}
                 <div 
