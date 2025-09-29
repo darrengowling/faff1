@@ -50,23 +50,51 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
+
+    const emailValue = email.trim().toLowerCase();
     
-    // Reset states
+    // Clear previous states
     setError('');
     setSuccess('');
     setMagicLink('');
-    
-    // Validate email using shared validator
-    if (!email.trim() || !isValidEmail(email.trim())) {
-      const errorMsg = !email.trim() ? 'Email is required' : 'Please enter a valid email.';
-      setError(errorMsg);
-      
+
+    // In TEST_MODE, try /auth/test-login first, fall back to UI on 404
+    if (isTestMode && (emailValue.includes('@example.com') || emailValue.includes('test'))) {
+      try {
+        setLoading(true);
+        console.log('TEST_MODE: Trying test login endpoint first...');
+        
+        const testResponse = await axios.post(`${API}/auth/test-login`, {
+          email: emailValue
+        });
+        
+        if (testResponse.status === 200 && testResponse.data.token) {
+          console.log('TEST_MODE: Test login successful');
+          localStorage.setItem('auth_token', testResponse.data.token);
+          
+          // Handle next parameter for redirect after login
+          const urlParams = new URLSearchParams(window.location.search);
+          const nextUrl = urlParams.get('next');
+          const redirectUrl = nextUrl ? decodeURIComponent(nextUrl) : '/app';
+          
+          navigate(redirectUrl);
+          return;
+        }
+      } catch (testErr) {
+        console.log('TEST_MODE: Test login failed (404 or disabled), falling back to UI flow:', testErr.response?.status);
+        // Continue to regular magic link flow below
+        setLoading(false);
+      }
+    }
+
+    // Email validation (allow invalid in TEST_MODE for error testing)
+    if (!isTestMode && emailValue && !isValidEmail(emailValue)) {
+      setError('Please enter a valid email address.');
       // Keep focus on email input for better UX - immediate in TEST_MODE
       const focusDelay = isTestMode ? 0 : 100;
       setTimeout(() => {
-        if (emailInputRef.current) {
-          emailInputRef.current.focus();
-        }
+        emailInputRef.current?.focus();
       }, focusDelay);
       return;
     }
