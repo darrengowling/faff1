@@ -20,7 +20,7 @@ frontend:
 
   - task: "Complete Lobby Joined Count and Rules Badge Testids Implementation"
     implemented: true
-    working: false
+    working: true
     file: "/app/frontend/src/App.js, /app/frontend/src/components/ui/rules-badge.jsx"
     stuck_count: 0
     priority: "high"
