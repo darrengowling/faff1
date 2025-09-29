@@ -267,20 +267,27 @@ const LoginPage = () => {
                   />
                 </div>
 
-                {/* Error Message - Block level, always visible when error state exists */}
-                {error && (
-                  <div 
-                    id="email-error"
-                    className="flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md block w-full"
-                    data-testid={TESTIDS.authError}
-                    role="alert"
-                    aria-live="assertive"
-                    style={{ display: 'flex', visibility: 'visible' }}
-                  >
-                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm font-medium">{error}</span>
-                  </div>
-                )}
+                {/* Error Message - Always present, visible when error exists (Stable DOM Pattern) */}
+                <div 
+                  id="email-error"
+                  className={`flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md block w-full ${
+                    error ? 'opacity-100' : 'opacity-0 sr-only'
+                  }`}
+                  data-testid={TESTIDS.authError}
+                  role="alert"
+                  aria-live="assertive"
+                  style={{ 
+                    display: 'flex', 
+                    visibility: error ? 'visible' : 'hidden',
+                    height: error ? 'auto' : '0px',
+                    padding: error ? '12px' : '0px',
+                    margin: error ? undefined : '0px'
+                  }}
+                  aria-hidden={!error}
+                >
+                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                  <span className="text-sm font-medium">{error || 'No error'}</span>
+                </div>
 
                 {/* Success Message - Block element */}
                 {success && (
