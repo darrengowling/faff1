@@ -479,7 +479,7 @@ export async function expectAuctionState(page: Page, clubName: string): Promise<
   console.log(`🔍 Expecting auction state for: ${clubName}`);
   
   // Wait for the club name to appear in auction
-  await expect(page.locator(`[data-testid="${TESTIDS.auctionAssetName}"]`)).toContainText(clubName, { timeout: 10000 });
+  await expect(byId(page, 'auctionAssetName')).toContainText(clubName, { timeout: 10000 });
   
   console.log(`✅ Auction state verified for: ${clubName}`);
 }
