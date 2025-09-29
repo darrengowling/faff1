@@ -8,7 +8,7 @@
 const { test, expect } = require('@playwright/test');
 
 // Use baseURL from config
-const BASE_URL = process.env.FRONTEND_URL || 'https://magic-league.preview.emergentagent.com';
+const BASE_URL = process.env.FRONTEND_URL || 'https://pifa-league.preview.emergentagent.com';
 
 test.describe('Config Drift Prevention', () => {
   

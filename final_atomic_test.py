@@ -11,7 +11,7 @@ from datetime import datetime
 def test_atomic_league_creation_fix():
     """Test the specific atomic league creation fix"""
     
-    base_url = "https://magic-league.preview.emergentagent.com"
+    base_url = "https://pifa-league.preview.emergentagent.com"
     api_url = f"{base_url}/api"
     
     print("🧪 ATOMIC LEAGUE CREATION - MongoDB Transaction Fix Test")

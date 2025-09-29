@@ -9,7 +9,7 @@ import { TESTIDS } from '../../frontend/src/testids.ts';
 import { createTestLeague, addTestMember } from './utils/auction-helpers';
 import { initializeTestTime } from './utils/time-helpers';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://magic-league.preview.emergentagent.com';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://pifa-league.preview.emergentagent.com';
 
 test.describe('Scoring Ingest Tests', () => {
   let commissionerPage: Page;

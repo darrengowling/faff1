@@ -1,65 +1,65 @@
 <analysis>
-The AI engineer's work focused on improving the Friends of PIFA application's production readiness, specifically addressing UI/UX, backend stability, and testing. Key issues tackled included resolving frontend compilation errors from a single-header refactor, making the league creation flow atomic and deterministic, improving anchor navigation, formalizing loading states, removing text-based test selectors, and centralizing authentication route guards. Throughout the process, the engineer systematically debugged issues, often discovering deeper root causes like MongoDB replica set configuration or component rendering logic. Repeatedly, the engineer confirmed testid implementations and verified explicit user requests, leading to successful resolutions of numerous critical path failures and improving test suite reliability. The trajectory highlights a methodical approach to bug fixing and feature enhancement.
+The AI engineer's work primarily focused on enhancing the Friends of PIFA application's production readiness, tackling critical E2E testing, UI/UX, and backend stability issues. Initial efforts addressed frontend compilation errors, atomic league creation, and robust testid implementation. Challenges included resolving MongoDB replica set incompatibility (leading to sequential operations), fixing persistent JSX parsing errors in layout components, and repeatedly refining testid usage to meet stringent Playwright requirements. The engineer demonstrated a methodical approach, often debugging deep root causes and iterating on solutions based on continuous testing feedback, particularly for authentication flow, mobile navigation, and league creation. Despite significant progress, the work concluded with testid implementation issues still requiring a full audit and verification across critical components.
 </analysis>
 
 <product_requirements>
-The Friends of PIFA application is a real-time, commissioner-led auction platform for 4-8 friends to bid on Champions League clubs. It includes magic-link authentication, league creation, a live auction engine, club/budget management, fixtures, leaderboards, and admin controls. The primary objective is production readiness, which involves:
-1.  **Robust E2E Testing:** Utilizing s for comprehensive regression testing, eliminating flakiness, and unifying timeouts.
-2.  **Reliable Authentication:** Stable magic-link authentication, a dedicated test-only login for CI, predictable redirects, and proper loading/error states.
-3.  **Enhanced UI/UX:** Improved navigation, accessibility, consistent single-header rendering, elimination of header/drawer click-blocking issues, and deterministic anchor navigation.
-4.  **Stable Backend:** Solid API error handling, proper environment variable usage, atomic and deterministic responses (e.g., league creation), and structured logging.
-5.  **Reliable Socket.IO Connections:** With diagnostic tools.
-6.  **SSR Safety:** Enforced via custom ESLint rules.
-
-Key implementations to date include: a working Create League flow, various CI gates, improved authentication error handling, and robust E2E test infrastructure.
+The Friends of PIFA application aims to be a real-time, commissioner-led auction platform for 4-8 friends to bid on Champions League clubs. It features magic-link authentication, league creation, live auction, club/budget management, fixtures, leaderboards, and admin controls. The overarching goal is production readiness, achieved through robust E2E testing using s, reliable magic-link authentication with predictable redirects and loading states, enhanced UI/UX (consistent single-header, deterministic anchor navigation, fixed mobile drawer behavior), stable backend API error handling, atomic league creation, and reliable Socket.IO connections. Implementations include a working Create League flow, CI gates, improved authentication, and E2E test infrastructure.
 </product_requirements>
 
 <key_technical_concepts>
--   **Full-stack:** React (Vite), FastAPI (Python), MongoDB (with transactions/sequential operations).
+-   **Full-stack:** React (Vite), FastAPI (Python), MongoDB (sequential operations).
 -   **Real-time:** WebSockets (Socket.IO).
--   **Testing:** Playwright E2E, Jest, , Python unit tests.
+-   **Testing:** Playwright E2E, .
 -   **State Management:** React hooks.
--   **Styling:** Tailwind CSS, Shadcn UI.
--   **Deployment:** Kubernetes, backend                          RUNNING   pid 33, uptime 0:00:04
-code-server                      RUNNING   pid 34, uptime 0:00:04
-frontend                         STOPPING  
-mongodb                          RUNNING   pid 36, uptime 0:00:04
+-   **Deployment:** Kubernetes, backend                          RUNNING   pid 27, uptime 0:00:02
+code-server                      RUNNING   pid 29, uptime 0:00:02
+frontend                         RUNNING   pid 33, uptime 0:00:02
+mongodb                          RUNNING   pid 35, uptime 0:00:02
 supervisor> .
--   **Patterns:** Route Guards, Custom ESLint, Idempotent APIs, Deterministic Test Hooks, Structured Logging, CI Pre-Gates.
+-   **Patterns:** Route Guards, Deterministic Test Hooks, Structured Logging.
 </key_technical_concepts>
 
 <code_architecture>
 The application uses a React frontend, a FastAPI Python backend, and a MongoDB database.
 
 
--   ****: Main FastAPI entry point. Updated for  endpoints (e.g., ), structured logging, and uses .
--   ****: Handles core league creation logic. Modified to use sequential MongoDB operations instead of transactions due to replica set configuration, and fixed a table name inconsistency ( to ).
--   ****: Core frontend file. Refactored for single header architecture using  and . Contains  and  components.  now uses  for navigation and  for a transient success marker. A new  component was created and integrated into the routing.
--   ****: Global CSS. Contains rules for sticky headers (), mobile drawer , and anchor scrolling, mostly pre-existing.
--   ****: Replaced by  and . Mobile menu logic was migrated.
--   ****: Authentication form. Enhanced with , pre-API email validation, short-circuiting for invalid emails, and refined error message display (e.g., Please enter a valid email. vs. Unable to send magic link). Also includes  and .
--   ** (NEW)**: Layout for authenticated routes. Provides a consistent header, navigation, and footer. Modified to include  and . Mobile drawer is now always rendered with  and  attribute.
--   ** (NEW)**: Layout for public/marketing routes. Similar to  but tailored for unauthenticated users. Also includes , , and persistent mobile drawer.
--   ****: Component for in-page navigation. Updated with  attributes for navigation buttons and mobile navigation.
--   ****: Displays league rules. Updated to include .
--   ** (NEW)**: Custom hook for deterministic anchor navigation, updating URL hash based on section visibility.
--   ** (NEW)**: Centralized authentication route guards (, ) to manage redirects predictably.
--   ****: Centralized file for all  values. Expanded to include numerous new testids for various UI elements and sections, explicitly exporting both named  and default.
--   ****: Numerous Playwright E2E test files (e.g., , , , , , , ). All updated to use  selectors, unified timeouts, and new helper functions for robust testing.  had its  import fixed.
--   ** (NEW)**: A new E2E test to verify the single header architecture and the presence/state of key header testids across different routes.
--   ****: Playwright global setup. Modified to include a pre-run sanity check for  import.
--   ****: E2E utility functions.  polls for league readiness.  was added to poll for URL hash changes.  was verified to use  for better blocking detection.
+-   ****: Main FastAPI entry. The  endpoint was made  exclusive. The  endpoint and general error logging were refined.
+-   ****: Handles league creation. Modified to consistently use *sequential MongoDB operations* instead of transactions due to environment constraints.
+-   ****: Core frontend. Modified  for deterministic navigation and .  and  were updated for  testids. Testids related to  and  flows were updated to use the new  constant.
+-   ****: Global CSS. Added rules for sticky headers, mobile drawer , and  for anchor navigation.
+-   ****: Authentication form. Refined s (, , , , , ), , and error messages. Email validation now short-circuits without network calls. Updated to use the new  constant.
+-   ** (NEW)**: Component for a persistent Back to Home link. Dynamically routes to  (authenticated) or  (unauthenticated) and includes  attribute for testing. Modified to support  testid for backward compatibility with existing tests.
+-   ****: Layout for authenticated routes. Integrated  in header and mobile drawer. Mobile drawer was refactored to be *always present* with  and , and to auto-close on route change. Updated testids to use new  constant.
+-   ****: Layout for public routes. Similar to , integrated  and refactored mobile drawer to be *always present* with  and auto-close. Updated testids to use new  constant.
+-   ****: In-page navigation component. Added  testid to the root nav element and updated to use new  constant.
+-   ****: Displays league rules. Updated to use .
+-   ****: Displays app brand/logo. Confirmed  testid usage.
+-   ****: Contains action buttons.  was updated to .
+-   ****: Custom hook for deterministic anchor navigation. Functionality confirmed as suitable.
+-   ****: Centralized authentication route guards.  was modified to defer redirect in  to prevent blank screens and allow form rendering.
+-   ****: Original centralized file for  values. **Deprecated** in favor of .
+-   ** (NEW)**: Canonical source of truth for all  values, structured as an export const .
+-   ** (NEW)**: Defines critical testids expected on specific routes for pre-gate checks.
+-   ** (NEW)**: React Testing Library test to verify  rendering and  attributes on various routes.
+-   ****: Numerous Playwright E2E test files (e.g., , , , ).  was updated to remove  and check  on .  was updated to align with  changes.
+-   ****: E2E utility functions.  was updated to wait for  testid.
 </code_architecture>
 
 <pending_tasks>
--   Address the critical authentication session persistence issue that is preventing the atomic post-create flow from working properly.
--   Complete the comprehensive Playwright test suite to achieve a 100% pass rate. (Many individual test failures were resolved, but overall suite pass rate is still not 100%).
+-   **Address remaining testid implementation issues:** Complete the audit and implementation of  for Auction, Roster, Admin/invite components.
+-   **Achieve target E2E pass rate:** The canary test suite currently shows a 66.7% pass rate (after some fixes) or 70.8% (earlier) which is below the desired 85%.
 </pending_tasks>
 
 <current_work>
-Immediately before this summary request, the AI engineer was working on normalizing  imports and adding a pre-run sanity check. This involved verifying that  correctly exports both named  and a default export, and updating all test specifications (e.g., , , ) to import  consistently. Additionally, a check was integrated into  to import  at startup, log the number of keys, and explicitly throw an error if the import fails, ensuring the test environment is correctly configured before running tests. This task was successfully verified, ensuring all  imports are consistent and a robust sanity check is in place.
+Immediately before this summary request, the AI engineer was consolidating  management. This involved:
+1.  **Creating a single source of truth**:  was created to define all canonical .
+2.  **Defining per-route critical testids**:  was introduced to specify expected testids for key routes.
+3.  **Updating components to use new **: Critical components like , , , , , , , , , and  were modified to import and utilize the  constant from the new location.
+4.  **Implementing missing testids**: Several previously missing testids like , , , , and  were implemented in their respective components.
+5.  **Fixing **: The  testid in  was moved to the  to ensure it's not overridden.
+The last action was a verification run of critical route testids, which indicated that critical issues still remain despite the implementations.
 </current_work>
 
 <optional_next_step>
-Run the full E2E test suite to confirm the overall pass rate after all recent fixes.
+Continue to implement and verify the testids for Auction, Roster, Admin/invite components.
 </optional_next_step>

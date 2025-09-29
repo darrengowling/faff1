@@ -26,7 +26,7 @@ from auction_engine import AuctionEngine
 from database import db
 
 class SettingsEnforcementTester:
-    def __init__(self, base_url="https://magic-league.preview.emergentagent.com"):
+    def __init__(self, base_url="https://pifa-league.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.commissioner_token = None
