@@ -74,13 +74,26 @@ const LoginPage = () => {
         if (testResponse.status === 200 && testResponse.data.ok) {
           console.log('TEST_MODE: Test login successful - session cookie set');
           
-          // Handle next parameter for redirect after login
-          const urlParams = new URLSearchParams(window.location.search);
-          const nextUrl = urlParams.get('next');
-          const redirectUrl = nextUrl ? decodeURIComponent(nextUrl) : '/app';
-          
-          navigate(redirectUrl);
-          return;
+          // Verify authentication by fetching user data
+          try {
+            const userResponse = await axios.get(`${API}/auth/me`, {
+              withCredentials: true
+            });
+            console.log('TEST_MODE: User verification successful:', userResponse.data);
+            
+            // Handle next parameter for redirect after login
+            const urlParams = new URLSearchParams(window.location.search);
+            const nextUrl = urlParams.get('next');
+            const redirectUrl = nextUrl ? decodeURIComponent(nextUrl) : '/app';
+            
+            navigate(redirectUrl);
+            return;
+          } catch (verifyErr) {
+            console.error('TEST_MODE: User verification failed:', verifyErr);
+            setError('Authentication failed. Please try again.');
+            setLoading(false);
+            return;
+          }
         }
       } catch (testErr) {
         console.log('TEST_MODE: Test login failed (404 or disabled), falling back to UI flow:', testErr.response?.status);
