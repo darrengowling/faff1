@@ -338,7 +338,7 @@ const LoginPage = () => {
                     </div>
                   </div>
                 )}
-              </form>
+              </TestableForm>
             </CardContent>
           </Card>
 
