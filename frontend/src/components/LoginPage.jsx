@@ -125,6 +125,7 @@ const LoginPage = () => {
         email: emailValue
       });
 
+      setLoading(false);
       setSuccess('Magic link sent! Check your email or use the link below.');
       
       console.log('Magic link response:', response.data);
