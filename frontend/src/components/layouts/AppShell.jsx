@@ -330,15 +330,17 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
       )}
 
       {/* Hidden drawer state tracker for always-present testid */}
-      <div 
-        data-testid="nav-mobile-drawer"
-        data-state={mobileMenuOpen ? 'open' : 'closed'}
-        data-count={mobileItemCount}
-        className="sr-only"
-        aria-hidden="true"
-      >
-        Mobile drawer state: {mobileMenuOpen ? 'open' : 'closed'}
-      </div>
+      {!mobileMenuOpen && (
+        <div 
+          data-testid="nav-mobile-drawer"
+          data-state="closed"
+          data-count={mobileItemCount}
+          className="sr-only"
+          aria-hidden="true"
+        >
+          Mobile drawer state: closed
+        </div>
+      )}
 
       {/* Main Content */}
       <main className="flex-1">
