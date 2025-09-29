@@ -227,10 +227,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Atomic League Creation Implementation"
+    - "Global TEST_MODE Animation Disabling Implementation"
   stuck_tasks: []
   test_all: false
-  test_priority: "atomic_league_creation"
+  test_priority: "test_mode_animation_disabling"
 
   - task: "Testable Components Implementation Verification"
     implemented: true
