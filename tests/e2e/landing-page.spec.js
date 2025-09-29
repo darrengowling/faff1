@@ -88,8 +88,8 @@ test.describe('Landing Page - Comprehensive Testing', () => {
       trackResult('Hero Section', heroVisible, 'Hero title visible');
 
       // Test CTAs in hero section
-      const createLeagueBtn = page.getByTestId(TESTIDS.landingCtaCreate);
-      const joinInviteBtn = page.getByTestId(TESTIDS.landingCtaJoin);
+      const createLeagueBtn = byId(page, 'landingCtaCreate');
+      const joinInviteBtn = byId(page, 'landingCtaJoin');
       
       const createVisible = await createLeagueBtn.isVisible();
       const joinVisible = await joinInviteBtn.isVisible();
