@@ -130,7 +130,7 @@ export async function getInviteLinks(page: Page): Promise<string[]> {
   const inviteLinks: string[] = [];
   
   // Get first invite link
-  const inviteLink = await page.locator(`[data-testid="${TESTIDS.inviteLinkUrl}"]`).first().textContent();
+  const inviteLink = await byId(page, 'inviteLinkUrl').first().textContent();
   if (inviteLink) {
     inviteLinks.push(inviteLink.trim());
   }
@@ -138,12 +138,12 @@ export async function getInviteLinks(page: Page): Promise<string[]> {
   // Generate second invite link if needed
   if (inviteLinks.length === 1) {
     // Create additional invite by sending to test email
-    await page.locator(`[data-testid="${TESTIDS.inviteEmailInput}"]`).fill('test2@example.com');
-    await page.locator(`[data-testid="${TESTIDS.inviteSubmitButton}"]`).click();
+    await fillById(page, 'inviteEmailInput', 'test2@example.com');
+    await clickById(page, 'inviteSubmitButton');
     
     // Wait for new invite to appear and get the link
     await page.waitForTimeout(2000);
-    const secondInvite = await page.locator(`[data-testid="${TESTIDS.inviteLinkUrl}"]`).nth(1).textContent();
+    const secondInvite = await byId(page, 'inviteLinkUrl').nth(1).textContent();
     if (secondInvite) {
       inviteLinks.push(secondInvite.trim());
     }
