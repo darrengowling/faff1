@@ -214,6 +214,21 @@ export const TESTIDS = {
   // Missing hardcoded testids
   loginHeader: 'login-header',
   devMagicLinkBtn: 'dev-magic-link-btn',
+
+  // Navigation item testids
+  navItemHome: 'nav-item-home',
+  navItemHow: 'nav-item-how',
+  navItemWhy: 'nav-item-why',
+  navItemFeatures: 'nav-item-features',
+  navItemSafety: 'nav-item-safety',
+  navItemFaq: 'nav-item-faq',
+  navItemAuction: 'nav-item-auction',
+  navItemRoster: 'nav-item-roster',
+  navItemDashboard: 'nav-item-dashboard',
+  navItemLeaderboard: 'nav-item-leaderboard',
+
+  // Hash navigation
+  navCurrentHash: 'nav-current-hash',
 } as const;
 
 // Type for testid values (for TypeScript safety)
