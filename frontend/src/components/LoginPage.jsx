@@ -258,11 +258,12 @@ const LoginPage = () => {
                   </div>
                 )}
 
-                {/* Success Message */}
+                {/* Success Message - Block element */}
                 {success && (
                   <div 
-                    className="flex items-center space-x-2 text-green-600 bg-green-50 p-3 rounded-md"
+                    className="flex items-center space-x-2 text-green-600 bg-green-50 p-3 rounded-md block w-full"
                     data-testid={TESTIDS.authSuccess}
+                    style={{ display: 'block' }}
                   >
                     <CheckCircle className="w-4 h-4 flex-shrink-0" />
                     <span className="text-sm">{success}</span>
