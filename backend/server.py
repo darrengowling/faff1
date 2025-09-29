@@ -494,6 +494,12 @@ if TEST_MODE:
     @api_router.get("/test/league/{league_id}/ready")
     async def check_league_ready(league_id: str):
         """Test-only endpoint to check if league lobby is ready to render"""
+        if not is_test_mode():
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="League readiness endpoint only available in TEST_MODE"
+            )
+            
         try:
             # Check if league exists
             league = await db.leagues.find_one({"_id": league_id})
