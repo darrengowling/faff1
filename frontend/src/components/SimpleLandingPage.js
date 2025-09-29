@@ -13,7 +13,7 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { BrandBadge } from './ui/brand-badge';
 import { LandingFooter } from './ui/footer';
-import { TESTIDS } from '../testids';
+import { TESTIDS } from '../testing/testids';
 import { TestableSection, TestableButton } from './testable/TestableComponents.tsx';
 import StickyPageNav from './StickyPageNav';
 
