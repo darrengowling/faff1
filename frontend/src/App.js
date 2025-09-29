@@ -629,21 +629,28 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
       const response = await axios.post(`${API}/leagues`, formData);
       
       if (response.status === 201) {
-        // Set success markers for UI feedback
-        setCreateSuccess(true);
+        debugLog('success', `league created: ${response.data.leagueId}`);
+        
+        // Atomic success handling as per requirements:
+        
+        // 1. setOpen(false) - dialog data-state="closed" 
+        onOpenChange(false);
+        
+        // 2. Invalidate caches (using custom refresh mechanism since no React Query)
+        if (onLeagueCreated) {
+          onLeagueCreated(response.data); // Trigger parent refresh
+        }
+        
+        // 3. setJustCreatedId(id) - shows data-testid="create-success"
         setJustCreatedId(response.data.leagueId);
-        debugLog('closed', `league created: ${response.data.leagueId}, closing dialog`);
+        setCreateSuccess(true);
         
-        // Close the dialog first - never leave in data-state="open" after success
-        onOpenChange(false); // This should set data-state="closed"
-        
-        // Navigate to lobby in a microtask using router.push (after dialog close completes)
-        debugLog('navigating', `navigating to lobby: /app/leagues/${response.data.leagueId}/lobby`);
+        // 4. queueMicrotask(() => router.push(`/app/leagues/${id}/lobby`))
         queueMicrotask(() => {
           navigate(`/app/leagues/${response.data.leagueId}/lobby`);
         });
         
-        // Reset form and notify
+        // Reset form state
         setFormData({
           name: '',
           season: '2025-26',
@@ -662,9 +669,6 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
           }
         });
         setErrors({});
-        
-        // Call the callback with new data
-        onLeagueCreated && onLeagueCreated(response.data);
         
         toast.success(t('leagueCreation.leagueCreatedSuccess'));
         
