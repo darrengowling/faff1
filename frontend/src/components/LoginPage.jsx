@@ -318,7 +318,7 @@ const LoginPage = () => {
                       <span>Send Magic Link</span>
                     </div>
                   )}
-                </Button>
+                </TestableButton>
 
                 {/* Development Magic Link */}
                 {magicLink && (
