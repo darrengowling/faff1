@@ -69,8 +69,8 @@ test.describe('Authentication UI Tests', () => {
     await page.goto('/login?playwright=true');
     await page.waitForLoadState('networkidle');
     
-    const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
-    const submitBtn = page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`);
+    const emailInput = byId(page, 'authEmailInput');
+    const submitBtn = byId(page, 'authSubmitBtn');
     
     // Fill with invalid email format
     await emailInput.fill('not-an-email');
@@ -82,7 +82,7 @@ test.describe('Authentication UI Tests', () => {
     await submitBtn.click();
     
     // Error should be visible with proper attributes
-    const errorElement = page.getByTestId('auth-error');
+    const errorElement = byId(page, 'authError');
     await expect(errorElement).toBeVisible();
     await expect(errorElement).toHaveAttribute('role', 'alert');
     await expect(errorElement).toHaveAttribute('aria-live', 'assertive');
