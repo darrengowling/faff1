@@ -337,12 +337,17 @@ export async function placeBid(page: Page, amount: number): Promise<void> {
   // Use bid input or quick bid buttons
   if (amount <= 10) {
     // Use quick bid buttons for small amounts
-    const bidButton = amount === 1 ? TESTIDS.bidPlus1 : amount === 5 ? TESTIDS.bidPlus5 : TESTIDS.bidPlus10;
-    await page.locator(`[data-testid="${bidButton}"]`).click();
+    if (amount === 1) {
+      await clickById(page, 'bidPlus1');
+    } else if (amount === 5) {
+      await clickById(page, 'bidPlus5');
+    } else if (amount === 10) {
+      await clickById(page, 'bidPlus10');
+    }
   } else {
     // Use manual input for larger amounts
-    await page.locator(`[data-testid="${TESTIDS.bidInput}"]`).fill(amount.toString());
-    await page.locator(`[data-testid="${TESTIDS.bidSubmit}"]`).click();
+    await fillById(page, 'bidInput', amount.toString());
+    await clickById(page, 'bidSubmit');
   }
   
   console.log(`✅ Bid placed: ${amount}`);
