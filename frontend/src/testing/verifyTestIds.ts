@@ -97,7 +97,11 @@ export function verifyTestIds(route?: string): TestIdVerificationResult {
     
     if (!element) {
       result.missing.push(testId);
+    } else if (isElementStablyHidden(element)) {
+      // Element is intentionally hidden using stable DOM patterns
+      result.hidden.push(testId);
     } else if (!isElementVisible(element)) {
+      // Element is present but not visible (traditional hiding)
       result.hidden.push(testId);
     } else {
       result.present.push(testId);
