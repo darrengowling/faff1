@@ -850,6 +850,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                     updateSettings('budget_per_manager', e.target.value);
                     clearError('budget');
                   }}
+                  loading={submitting}
                   aria-describedby={errors.budget ? "budget-error" : undefined}
                   className={errors.budget ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
                   data-testid={TESTIDS.createBudget}
