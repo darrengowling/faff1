@@ -1,0 +1,75 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T"
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - button "Friends of PIFA" [ref=e8] [cursor=pointer]:
+              - img [ref=e10] [cursor=pointer]
+              - generic [ref=e16] [cursor=pointer]: Friends of PIFA
+            - button "Back to Home" [ref=e17] [cursor=pointer]:
+              - img
+              - generic [ref=e18] [cursor=pointer]: Back to Home
+          - button "Toggle navigation menu" [expanded] [active] [ref=e19] [cursor=pointer]:
+            - img
+        - navigation [ref=e20]:
+          - generic [ref=e21]:
+            - generic [ref=e22]:
+              - generic [ref=e23]: Menu
+              - button [ref=e24] [cursor=pointer]:
+                - img [ref=e25] [cursor=pointer]
+            - generic [ref=e28]:
+              - generic [ref=e29]:
+                - button [ref=e30] [cursor=pointer]:
+                  - img [ref=e31] [cursor=pointer]
+                  - generic [ref=e36] [cursor=pointer]: How it Works
+                - button [ref=e37] [cursor=pointer]:
+                  - img [ref=e38] [cursor=pointer]
+                  - generic [ref=e42] [cursor=pointer]: Why FoP
+                - button [ref=e43] [cursor=pointer]:
+                  - img [ref=e44] [cursor=pointer]
+                  - generic [ref=e48] [cursor=pointer]: FAQ
+                - button [ref=e50] [cursor=pointer]:
+                  - generic [ref=e52] [cursor=pointer]: Product
+                  - img [ref=e53] [cursor=pointer]
+                - button [ref=e55] [cursor=pointer]:
+                  - generic [ref=e58] [cursor=pointer]: Sign In
+                - button [ref=e59] [cursor=pointer]:
+                  - generic [ref=e62] [cursor=pointer]: Get Started
+              - generic [ref=e63]:
+                - generic [ref=e64]:
+                  - button [ref=e65] [cursor=pointer]: Sign In
+                  - button [ref=e66] [cursor=pointer]: Get Started
+                - generic [ref=e67]:
+                  - generic [ref=e68]: Theme
+                  - button [ref=e69] [cursor=pointer]:
+                    - generic [ref=e70] [cursor=pointer]:
+                      - img
+        - generic [ref=e71]: "Mobile drawer state: open"
+      - main [ref=e72]:
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - img [ref=e76]
+            - heading "Sign In" [level=2] [ref=e79]
+            - paragraph [ref=e80]: Enter your email to receive a magic link for secure access
+          - generic [ref=e81]:
+            - heading "Magic Link Authentication" [level=3] [ref=e83]
+            - generic [ref=e85]:
+              - generic [ref=e86]:
+                - generic [ref=e87]: Email Address
+                - textbox "Email Address" [ref=e88]
+              - button "Send Magic Link" [disabled]:
+                - generic:
+                  - img
+                  - generic: Send Magic Link
+          - paragraph [ref=e90]: No password required. We'll send you a secure link to sign in.
+  - link "Emergent platform logo Made with Emergent" [ref=e91] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e92] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e93] [cursor=pointer]
+      - paragraph [ref=e94] [cursor=pointer]: Made with Emergent
+```
