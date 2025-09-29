@@ -245,7 +245,6 @@ const MarketingShell = ({ children }) => {
         >
           Mobile drawer state: {mobileMenuOpen ? 'open' : 'closed'}
         </div>
-      </header>
 
       {/* Main Content with proper padding for header */}
       <main className="flex-1">
