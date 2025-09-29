@@ -29,6 +29,9 @@ const MarketingShell = ({ children }) => {
   const [mobileItemCount, setMobileItemCount] = React.useState(0);
   const [productDropdownOpen, setProductDropdownOpen] = React.useState(false);
   const [focusedIndex, setFocusedIndex] = React.useState(-1);
+  // Hash handling for anchor navigation
+  const { activeSection } = useScrollSpy({ threshold: 0.5, debounceMs: 100 });
+  const currentHash = activeSection ? `#${activeSection}` : window.location.hash;
 
   // Count visible mobile menu items
   React.useEffect(() => {
