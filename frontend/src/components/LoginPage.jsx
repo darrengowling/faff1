@@ -8,6 +8,7 @@ import { Separator } from './ui/separator';
 import { TESTIDS } from '../testids';
 import { ArrowLeft, Mail, CheckCircle, AlertCircle } from 'lucide-react';
 import EmailValidator from '../utils/emailValidator';
+import { runLoginRouteVerification } from '../utils/loginRouteVerifier';
 import { useAuth } from '../App';
 import axios from 'axios';
 
