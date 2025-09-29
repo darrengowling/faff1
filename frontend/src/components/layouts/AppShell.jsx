@@ -333,17 +333,6 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                 </div>
             </div>
           </div>
-        )}
-
-        {/* Hidden drawer state tracker for testing - Always present */}
-        <div 
-          data-testid="nav-mobile-drawer"
-          data-state={mobileMenuOpen ? 'open' : 'closed'}
-          data-count={mobileItemCount}
-          className="sr-only"
-          aria-hidden="true"
-        >
-          Mobile drawer state: {mobileMenuOpen ? 'open' : 'closed'}
         </div>
       </header>
 
