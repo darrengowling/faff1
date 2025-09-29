@@ -854,7 +854,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="slots">Club Slots per Manager</Label>
-                <Input
+                <TestableInput
                   id="slots"
                   type="number"
                   min="1"
