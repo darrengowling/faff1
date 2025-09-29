@@ -213,12 +213,20 @@ test.describe('Navigation Tests', () => {
       await hamburger.focus();
       await hamburger.click();
       
-      const mobileDrawer = page.locator(`[data-testid="${TESTIDS.navMobileDrawer}"]`);
+      const mobileDrawer = page.locator('[data-testid="nav-mobile-drawer"]');
       await expect(mobileDrawer).toBeVisible();
+      
+      // Verify data-state is "open"
+      await expect(mobileDrawer).toHaveAttribute('data-state', 'open');
+      
+      // Check data-count is numeric and > 0
+      const dataCount = await mobileDrawer.getAttribute('data-count');
+      const itemCount = Number(dataCount);
+      expect(itemCount).toBeGreaterThan(0);
       
       // Test Escape closes mobile drawer
       await page.keyboard.press('Escape');
-      await expect(mobileDrawer).not.toBeVisible();
+      await expect(mobileDrawer).toHaveAttribute('data-state', 'closed');
     });
   });
 });
