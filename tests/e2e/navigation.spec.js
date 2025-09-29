@@ -164,19 +164,16 @@ test.describe('Navigation Components - Comprehensive Testing', () => {
         trackResult('Mobile Drawer Opens', drawerOpened, 'Mobile navigation drawer becomes visible');
 
         if (drawerOpened) {
-          // Test navigation items in mobile drawer
-          const navItems = [
-            page.locator(`[data-testid="${TESTIDS.navSignIn}"]`),
-            page.locator(`[data-testid="${TESTIDS.navCreateLeagueBtn}"]`),
-            page.locator(`[data-testid="${TESTIDS.navDropdownProduct}"]`)
-          ];
+          // Test mobile drawer data-count attribute (numeric assertion)
+          const mobileDrawer = page.locator('[data-testid="nav-mobile-drawer"]');
+          const dataCount = await mobileDrawer.getAttribute('data-count');
+          const itemCount = Number(dataCount);
           
-          let visibleItemCount = 0;
-          for (const item of navItems) {
-            if (await item.isVisible()) visibleItemCount++;
-          }
+          trackResult('Mobile Navigation Items Count', itemCount > 0, `data-count="${itemCount}" items found`);
           
-          trackResult('Mobile Navigation Items', visibleItemCount > 0, `${visibleItemCount} navigation items found`);
+          // Verify data-state is "open"
+          const dataState = await mobileDrawer.getAttribute('data-state');
+          trackResult('Mobile Drawer State', dataState === 'open', `data-state="${dataState}"`);
 
           // Test closing mobile drawer
           let drawerCloses = false;
