@@ -188,7 +188,7 @@ const MarketingShell = ({ children }) => {
           role="navigation"
           aria-label="Mobile navigation menu"
           onClick={(e) => e.stopPropagation()}
-          data-testid="nav-mobile-drawer"
+          data-testid={TESTIDS.mobileDrawer}
           data-state={mobileMenuOpen ? "open" : "closed"}
           data-count={mobileItemCount}
           style={{ 
