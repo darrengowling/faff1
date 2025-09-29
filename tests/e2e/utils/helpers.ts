@@ -369,7 +369,7 @@ export async function expectRosterUpdate(page: Page, clubName: string, remaining
   await expect(page.locator(`text="${clubName}"`)).toBeVisible({ timeout: 10000 });
   
   // Check remaining budget
-  await expect(page.locator(`[data-testid="${TESTIDS.yourBudget}"]`)).toContainText(remainingBudget.toString(), { timeout: 5000 });
+  await expect(byId(page, 'yourBudget')).toContainText(remainingBudget.toString(), { timeout: 5000 });
   
   console.log(`✅ Roster update verified: ${clubName}, budget: ${remainingBudget}`);
 }
