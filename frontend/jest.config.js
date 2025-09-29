@@ -119,7 +119,7 @@ module.exports = {
   
   // Transform ignore patterns
   transformIgnorePatterns: [
-    'node_modules/(?!(axios|@radix-ui|cmdk|class-variance-authority|clsx|lucide-react)/)'
+    'node_modules/(?!(axios|@radix-ui|cmdk|class-variance-authority|clsx|lucide-react|react-router-dom)/)'
   ],
   
   // Global setup
