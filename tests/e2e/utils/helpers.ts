@@ -280,7 +280,7 @@ export async function navigateToLeaderboard(page: Page): Promise<void> {
 }
 
 export async function navigateToFixtures(page: Page): Promise<void> {
-  await page.locator(`[data-testid="${TESTIDS.navDropdownItemFixtures}"]`).click();
+  await clickById(page, 'navDropdownItemFixtures');
   await page.waitForURL('**/fixtures/**', { timeout: 10000 });
 }
 
