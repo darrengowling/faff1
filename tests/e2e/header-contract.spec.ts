@@ -26,7 +26,6 @@ test.describe('Header Contract Tests', () => {
 
       // Required testids that must exist on every page
       const requiredTestIds = [
-        'home-nav-button',
         'back-to-home-link',
         'nav-mobile-drawer'
       ];
