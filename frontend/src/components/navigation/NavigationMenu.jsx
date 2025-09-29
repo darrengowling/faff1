@@ -122,6 +122,7 @@ const NavigationItem = ({
       className={`${variantClasses} ${disabledClasses} ${className}`}
       aria-label={item.description || `Navigate to ${item.label}`}
       data-testid={testId}
+      data-href={href}
     >
       {item.icon && (
         <item.icon className={`w-${variant === 'dropdown' ? '5' : '4'} h-${variant === 'dropdown' ? '5' : '4'} flex-shrink-0 ${
