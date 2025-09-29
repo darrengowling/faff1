@@ -54,10 +54,19 @@ function TestidPresenceChecker({ testIds }: { testIds: string[] }) {
 }
 
 /**
- * Check if element is visible (not display: none, visibility: hidden, etc.)
+ * Check if element is visible (updated for stable DOM patterns)
  */
 function isElementVisible(element: HTMLElement): boolean {
   const style = window.getComputedStyle(element);
+  
+  // Check for explicit hidden attribute
+  if (element.hasAttribute('hidden')) return false;
+  
+  // Check for aria-hidden="true" - these should not count as present
+  if (element.getAttribute('aria-hidden') === 'true') return false;
+  
+  // Check for visually-hidden class (our stable hiding method)
+  if (element.classList.contains('visually-hidden')) return false;
   
   if (style.display === 'none') return false;
   if (style.visibility === 'hidden') return false;
