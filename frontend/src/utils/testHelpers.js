@@ -210,5 +210,6 @@ export default {
   refreshTestSession,
   quickCreateTestLeague,
   startSessionKeepAlive,
-  stopSessionKeepAlive
+  stopSessionKeepAlive,
+  awaitCreatedAndInLobby
 };
