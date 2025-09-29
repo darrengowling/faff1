@@ -224,10 +224,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Comprehensive E2E Testing for 85% Target Pass Rate"
+    - "Testable Components Implementation Verification"
   stuck_tasks: []
   test_all: false
-  test_priority: "comprehensive_e2e_testing"
+  test_priority: "testable_components_verification"
 
   - task: "Comprehensive E2E Testing for 85% Target Pass Rate"
     implemented: true
