@@ -832,7 +832,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="budget">Budget per Manager (£)</Label>
-                <Input
+                <TestableInput
                   id="budget"
                   type="number"
                   min="50"
