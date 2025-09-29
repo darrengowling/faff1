@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { TESTIDS } from '../testids.js';
+import { TESTIDS } from '../testing/testids.ts';
 
 const StickyPageNav = () => {
   const location = useLocation();
