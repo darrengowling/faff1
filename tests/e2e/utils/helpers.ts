@@ -161,11 +161,11 @@ export async function joinViaInvite(page: Page, inviteLink: string): Promise<voi
   await page.waitForLoadState('networkidle');
   
   // Click join button using safe click
-  const joinBtn = page.locator(`[data-testid="${TESTIDS.joinLeagueButton}"]`);
+  const joinBtn = byId(page, 'joinLeagueButton');
   await safeClick(page, joinBtn);
   
   // Wait for success message
-  await page.locator(`[data-testid="${TESTIDS.joinSuccessMessage}"]`).waitFor({ state: 'visible', timeout: 10000 });
+  await waitForId(page, 'joinSuccessMessage', { timeout: 10000 });
   
   console.log('✅ Successfully joined league');
 }
