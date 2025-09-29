@@ -14,6 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { BrandBadge } from './ui/brand-badge';
 import { LandingFooter } from './ui/footer';
 import { TESTIDS } from '../testids';
+import { TestableSection, TestableButton } from './testable/TestableComponents';
 import StickyPageNav from './StickyPageNav';
 
 const SimpleLandingPage = () => {
