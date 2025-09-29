@@ -19,7 +19,7 @@ import {
   getEnabledItems, 
   buildHref 
 } from '../../navigation/navRegistry.js';
-import { TESTIDS } from '../../testids.js';
+import { TESTIDS } from '../../testing/testids.ts';
 
 const PageMenuDropdown = ({ selectedLeague, className = '' }) => {
   const { t } = useTranslation();
