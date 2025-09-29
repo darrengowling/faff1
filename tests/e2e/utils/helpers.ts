@@ -356,7 +356,7 @@ export async function placeBid(page: Page, amount: number): Promise<void> {
 export async function expectTopBid(page: Page, expectedBid: string): Promise<void> {
   console.log(`🔍 Expecting top bid: ${expectedBid}`);
   
-  const topBidElement = page.locator(`[data-testid="${TESTIDS.auctionTopBid}"]`);
+  const topBidElement = byId(page, 'auctionTopBid');
   await expect(topBidElement).toContainText(expectedBid, { timeout: 5000 });
   
   console.log(`✅ Top bid verified: ${expectedBid}`);
