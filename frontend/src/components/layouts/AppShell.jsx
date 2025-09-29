@@ -316,7 +316,9 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                     </div>
                     
                     <MobileNavigation onItemClick={(item) => {
+                      // Force drawer to closed state and update count immediately
                       setMobileMenuOpen(false);
+                      setMobileItemCount(current => current); // Trigger re-render
                     }} />
                     
                     {/* Mobile Auth Actions */}
