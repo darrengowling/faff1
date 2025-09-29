@@ -162,14 +162,20 @@ const MarketingShell = ({ children }) => {
       {/* Mobile Drawer - Always rendered with data attributes */}
       {mobileMenuOpen && (
         <div 
-          className="md:hidden fixed inset-0 z-40 drawer-backdrop"
+          className="md:hidden fixed inset-0 z-40"
           onClick={() => setMobileMenuOpen(false)}
           aria-hidden="true"
           style={{ 
             paddingTop: '64px',
-            pointerEvents: 'none'
+            pointerEvents: 'auto' // Allow backdrop clicks
           }}
         >
+          <div 
+            className="drawer-backdrop absolute inset-0"
+            style={{ 
+              pointerEvents: 'none' // Backdrop visual only
+            }}
+          />
           <div
             className="bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel"
             id="mobile-navigation"
