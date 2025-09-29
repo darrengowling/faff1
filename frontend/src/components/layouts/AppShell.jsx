@@ -1,350 +1,222 @@
-/**
- * AppShell Component
- * 
- * Single header layout shell for all authenticated pages
- * Ensures exactly one <header> element renders across all routes
- */
-
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { 
-  Home, ChevronLeft, ArrowLeft, Trophy, Menu, X
-} from 'lucide-react';
-import { Button } from '../ui/button';
-import { InAppFooter } from '../ui/footer';
-import { getBrandName } from '../../brand';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../App';
-import { HeaderBrand } from '../ui/brand-badge';
-import { ProductDropdownMenu } from '../navigation/ProductDropdownMenu';
-import { AuthNavigation } from '../navigation/AuthNavigation';
-import { MobileNavigation } from '../navigation/NavigationMenu';
-import { IconThemeToggle } from '../ui/theme-toggle';
-import { TESTIDS } from '../../testing/testids';
-import BackToHomeLink from '../BackToHomeLink.tsx';
+import { useTranslation } from 'react-i18next';
+import { Button } from '../ui/button';
+import { Badge } from '../ui/badge';
+import { Card, CardContent } from '../ui/card';
+import { 
+  Trophy, 
+  User, 
+  LogOut, 
+  Menu, 
+  X, 
+  Home,
+  Users,
+  Calendar,
+  Crown,
+  Settings,
+  Bell,
+  Search,
+  Plus
+} from 'lucide-react';
+import { getBrandName } from '../../brand';
+import { TESTIDS } from '../../testids';
+import { TestableRouterLink } from '../testable/TestableComponents.tsx';
 
-const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
+const AppShell = ({ children }) => {
+  const { user, logout } = useAuth();
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const location = useLocation();
-  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Mobile menu state and count tracking
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const [mobileItemCount, setMobileItemCount] = React.useState(0);
-  const [productDropdownOpen, setProductDropdownOpen] = React.useState(false);
-  const [focusedIndex, setFocusedIndex] = React.useState(-1);
-
-  // Count visible mobile menu items
-  React.useEffect(() => {
-    // Count nav items, auth actions, and theme toggle
-    let count = 0;
-    
-    // Back to Home link
-    count += 1;
-    
-    // MobileNavigation items (approximate based on typical nav items)
-    count += 4; // Typical nav items: Home, Features, About, Contact
-    
-    // Auth actions
-    count += 2; // Sign In, Get Started
-    
-    // Theme toggle
-    count += 1;
-    
-    setMobileItemCount(count);
-  }, []);
-
-  // Determine if we're on the home/dashboard page
-  const isHomePage = location.pathname === '/app' || location.pathname === '/dashboard';
-
-  // Generate breadcrumb based on current route
-  const generateBreadcrumb = () => {
-    const path = location.pathname;
-    const segments = path.split('/').filter(Boolean);
-    
-    const routeNames = {
-      'app': 'Dashboard',
-      'dashboard': 'Dashboard', 
-      'auction': 'Auction Room',
-      'clubs': 'My Roster',
-      'fixtures': 'Fixtures',
-      'leaderboard': 'Leaderboard',
-      'admin': 'League Settings',
-      'leagues': 'Leagues',
-      'new': 'Create League'
-    };
-    
-    if (segments.length <= 1) {
-      return 'Dashboard';
-    }
-    
-    const lastSegment = segments[segments.length - 1];
-    const secondLastSegment = segments[segments.length - 2];
-    
-    if (routeNames[lastSegment]) {
-      return routeNames[lastSegment];
-    }
-    
-    if (routeNames[secondLastSegment]) {
-      return `${routeNames[secondLastSegment]} • ${lastSegment}`;
-    }
-    
-    return segments.map(s => routeNames[s] || s).join(' • ');
-  };
-
-  const breadcrumb = pageTitle || generateBreadcrumb();
-
-  // Handle product dropdown
-  const handleProductDropdownToggle = () => {
-    setProductDropdownOpen(!productDropdownOpen);
-  };
-
-  // Close dropdowns and mobile menu on route change
-  React.useEffect(() => {
+  // Close mobile menu when route changes
+  useEffect(() => {
     setMobileMenuOpen(false);
-    setProductDropdownOpen(false);
-    setFocusedIndex(-1);
-    
-    // Ensure any persistent overlays are removed
-    document.body.style.overflow = 'unset';
-    
-    // Remove any full-screen elements with pointer-events that might persist
-    const persistentOverlays = document.querySelectorAll('.drawer-backdrop, [data-persistent-overlay]');
-    persistentOverlays.forEach(overlay => {
-      if (overlay.style.pointerEvents === 'auto' || overlay.classList.contains('drawer-backdrop')) {
-        overlay.remove();
-      }
-    });
   }, [location.pathname]);
 
-  // Handle Escape key to close mobile menu
-  React.useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === 'Escape' && mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    if (mobileMenuOpen) {
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
+  const navigationItems = [
+    { 
+      name: t('nav.dashboard'), 
+      href: '/app', 
+      icon: Home,
+      active: location.pathname === '/app'
+    },
+    { 
+      name: t('nav.leagues'), 
+      href: '/app/leagues', 
+      icon: Trophy,
+      active: location.pathname.startsWith('/app/leagues')
+    },
+    { 
+      name: t('nav.profile'), 
+      href: '/profile', 
+      icon: User,
+      active: location.pathname === '/profile'
     }
-  }, [mobileMenuOpen]);
+  ];
+
+  const handleCreateLeague = () => {
+    navigate('/app/leagues/new');
+  };
 
   return (
-    <div className="min-h-screen bg-theme-surface-secondary flex flex-col">
-      {/* Single App Header */}
-      <header 
-        className="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-40"
-        data-testid={TESTIDS.appHeader}
-      >
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="sticky top-0 z-40 bg-white shadow-sm border-b" data-testid={TESTIDS.appHeader}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Left - Brand and Back to Home */}
-            <div className="flex items-center space-x-4">
-              <HeaderBrand 
-                onClick={() => navigate('/')} 
-                className="cursor-pointer hover:opacity-80 transition-opacity"
-                data-testid={TESTIDS.navBrand}
-              />
-              <BackToHomeLink className="text-theme-text-secondary hover:text-theme-text" />
+          <div className="flex justify-between items-center h-16">
+            {/* Logo and Brand */}
+            <div className="flex items-center space-x-3">
+              <TestableRouterLink 
+                to="/" 
+                className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+                data-testid={TESTIDS.backToHome}
+              >
+                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                  <Trophy className="w-5 h-5 text-white" />
+                </div>
+                <h1 className="text-xl font-bold text-gray-900">
+                  {t('nav.appName', { brandName: getBrandName() })}
+                </h1>
+              </TestableRouterLink>
             </div>
-            
-            {/* Center - Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-2" role="navigation">
-              {/* Product Dropdown */}
-              <ProductDropdownMenu
-                isOpen={productDropdownOpen}
-                onToggle={handleProductDropdownToggle}
-                onClose={() => {
-                  setProductDropdownOpen(false);
-                  setFocusedIndex(-1);
-                }}
-              />
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-8">
+              {navigationItems.map((item) => (
+                <TestableRouterLink
+                  key={item.name}
+                  to={item.href}
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    item.active
+                      ? 'bg-blue-100 text-blue-700'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  }`}
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span>{item.name}</span>
+                </TestableRouterLink>
+              ))}
             </nav>
 
-            {/* Right - Auth Actions */}
-            <div className="hidden md:flex items-center space-x-3">
-              {/* Create League Button (when authenticated) */}
-              {user && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => navigate('/app/leagues/new')}
-                  data-testid={TESTIDS.navCreateLeagueBtn}
-                  className="flex items-center space-x-1 hover:bg-theme-accent hover:text-theme-accent-foreground transition-colors"
-                >
-                  <Trophy className="w-4 h-4" />
-                  <span>Create League</span>
-                </Button>
-              )}
-              
-              <AuthNavigation variant="desktop" />
-              
-              {/* Theme Toggle */}
-              <IconThemeToggle className="hidden md:flex" />
-            </div>
+            {/* Right side actions */}
+            <div className="flex items-center space-x-4">
+              {/* Create League Button */}
+              <Button
+                onClick={handleCreateLeague}
+                className="hidden sm:flex items-center space-x-2 bg-blue-600 hover:bg-blue-700"
+                size="sm"
+              >
+                <Plus className="w-4 h-4" />
+                <span>{t('nav.createLeague')}</span>
+              </Button>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
-              aria-label="Toggle navigation menu"
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-navigation"
-              data-testid={TESTIDS.navHamburger}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+              {/* User Menu */}
+              <div className="flex items-center space-x-3">
+                <div className="hidden sm:flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                    <User className="w-4 h-4 text-gray-600" />
+                  </div>
+                  <div className="text-sm">
+                    <div className="font-medium text-gray-900">{user?.display_name || user?.email}</div>
+                    <div className="text-gray-500">{t('nav.manager')}</div>
+                  </div>
+                </div>
+                
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={logout}
+                  className="hidden sm:flex items-center space-x-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>{t('nav.logout')}</span>
+                </Button>
+              </div>
+
+              {/* Mobile menu button */}
+              <Button
+                variant="outline"
+                size="sm"
+                className="md:hidden"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                data-testid={TESTIDS.mobileDrawer}
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-4 h-4" />
+                ) : (
+                  <Menu className="w-4 h-4" />
+                )}
+              </Button>
+            </div>
           </div>
         </div>
 
-        {/* Breadcrumb Bar */}
-        <div className="bg-theme-surface border-b border-theme-surface-border shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-14">
-              {/* Left Side - Back to Home + Breadcrumb */}
-              <div className="flex items-center space-x-3">
-                {/* Always show Back to Home link */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => navigate('/app')}
-                  data-testid="back-to-home-link"
-                  className="flex items-center space-x-1 text-sm text-theme-text-secondary hover:text-theme-text"
-                >
-                  <Home className="w-4 h-4" />
-                  <span>Home</span>
-                </Button>
-                
-                {showBackButton && !isHomePage && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => navigate('/app')}
-                    data-testid={TESTIDS.backButton}
-                    className="flex items-center space-x-1"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                    <span>Back</span>
-                  </Button>
-                )}
-                
-                {/* Breadcrumb */}
-                <div className="flex items-center space-x-2 text-sm">
-                  <Home className="w-4 h-4 text-gray-400" />
-                  <ChevronLeft className="w-4 h-4 text-gray-400" />
-                  <span className="font-medium text-gray-900" data-testid={TESTIDS.breadcrumbCurrent}>
-                    {breadcrumb}
-                  </span>
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t bg-white">
+            <div className="px-4 py-3 space-y-3">
+              {/* User Info */}
+              <div className="flex items-center space-x-3 pb-3 border-b">
+                <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+                  <User className="w-5 h-5 text-gray-600" />
+                </div>
+                <div>
+                  <div className="font-medium text-gray-900">{user?.display_name || user?.email}</div>
+                  <div className="text-sm text-gray-500">{t('nav.manager')}</div>
                 </div>
               </div>
 
-              {/* Right Side - Additional Actions */}
-              <div className="flex items-center space-x-3">
-                {user && (
-                  <div className="text-sm text-gray-600">
-                    Welcome, <span className="font-medium text-gray-900">{user.email}</span>
-                  </div>
-                )}
+              {/* Navigation Items */}
+              <div className="space-y-2">
+                {navigationItems.map((item) => (
+                  <TestableRouterLink
+                    key={item.name}
+                    to={item.href}
+                    className={`flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                      item.active
+                        ? 'bg-blue-100 text-blue-700'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
+                  >
+                    <item.icon className="w-5 h-5" />
+                    <span>{item.name}</span>
+                  </TestableRouterLink>
+                ))}
+              </div>
+
+              {/* Mobile Actions */}
+              <div className="pt-3 border-t space-y-2">
+                <Button
+                  onClick={handleCreateLeague}
+                  className="w-full flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700"
+                  size="sm"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>{t('nav.createLeague')}</span>
+                </Button>
+                
+                <Button 
+                  variant="outline" 
+                  onClick={logout}
+                  className="w-full flex items-center justify-center space-x-2"
+                  size="sm"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>{t('nav.logout')}</span>
+                </Button>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </header>
 
-      {/* Mobile Drawer - Always present with explicit contract */}
-      <div 
-        className="md:hidden fixed inset-0 z-40"
-        onClick={() => setMobileMenuOpen(false)}
-        aria-hidden={!mobileMenuOpen}
-        style={{ 
-          paddingTop: '64px',
-          pointerEvents: mobileMenuOpen ? 'auto' : 'none',
-          visibility: mobileMenuOpen ? 'visible' : 'hidden',
-          opacity: mobileMenuOpen ? 1 : 0,
-          transition: 'opacity 0.3s ease-in-out'
-        }}
-      >
-        <div 
-          className="drawer-backdrop absolute inset-0"
-          style={{ 
-            pointerEvents: 'none' // Backdrop visual only
-          }}
-        />
-        <div
-          className="bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel"
-          id="mobile-navigation"
-          role="navigation"
-          aria-label="Mobile navigation menu"
-          onClick={(e) => e.stopPropagation()}
-          data-testid={TESTIDS.mobileDrawer}
-          data-state={mobileMenuOpen ? "open" : "closed"}
-          data-count={mobileItemCount}
-          style={{ 
-            pointerEvents: 'auto',
-            transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
-            transition: 'transform 0.3s ease-in-out'
-          }}
-        >
-                <div className="p-4">
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-lg font-semibold text-gray-900">Menu</span>
-                    <button
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="p-2 text-gray-400 hover:text-gray-600 rounded-md"
-                      aria-label="Close menu"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-
-                  {/* Mobile Navigation Items */}
-                  <div className="py-4">
-                    {/* Back to Home - First Item */}
-                    <div className="mb-4">
-                      <BackToHomeLink 
-                        data-testid="back-to-home-link"
-                        className="block py-2 px-0 text-theme-text-secondary hover:text-theme-text"
-                        onClick={() => setMobileMenuOpen(false)}
-                      />
-                    </div>
-                    
-                    <MobileNavigation onItemClick={(item) => {
-                      // Force drawer to closed state and update count immediately
-                      setMobileMenuOpen(false);
-                      setMobileItemCount(current => current); // Trigger re-render
-                    }} />
-                    
-                    {/* Mobile Auth Actions */}
-                    <div className="border-t border-gray-200 mt-4 pt-4 space-y-3">
-                      <AuthNavigation variant="mobile" />
-                      
-                      {/* Mobile Theme Toggle */}
-                      <div className="flex items-center justify-between px-0">
-                        <span className="text-sm text-gray-600">Theme</span>
-                        <IconThemeToggle />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
-
-      {/* Always-present drawer testid - removed duplicate */}
-
       {/* Main Content */}
-      <main className="flex-1">
+      <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         {children}
       </main>
-
-      {/* Footer */}
-      <InAppFooter />
     </div>
   );
 };
