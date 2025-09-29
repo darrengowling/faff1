@@ -22,7 +22,7 @@ export const TESTIDS = {
   createBudget: 'create-budget',
   createMin: 'create-min',
   createMaxInput: 'create-max',
-  createSubmit: 'create-submit',
+  createSubmit: 'createSubmit',
   createCancel: 'create-cancel',
   createSuccess: 'create-success',
   createLoading: 'create-loading',
