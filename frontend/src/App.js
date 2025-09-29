@@ -789,6 +789,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                   clearError('name');
                 }}
                 required
+                loading={submitting}
                 aria-describedby={errors.name ? "name-error" : undefined}
                 className={errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
                 data-testid={TESTIDS.createName}
