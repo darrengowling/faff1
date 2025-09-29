@@ -1206,7 +1206,10 @@ const LeagueManagement = ({ league, onBack }) => {
   }
 
   return (
-    <div className="space-y-6" data-testid={TESTIDS.lobbyReady}>
+    <div 
+      className="space-y-6" 
+      {...(leagueStatus && members.length > 0 && { 'data-testid': TESTIDS.lobbyReady })}
+    >
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
