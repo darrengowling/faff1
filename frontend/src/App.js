@@ -873,6 +873,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                     updateSettings('club_slots_per_manager', e.target.value);
                     clearError('slots');
                   }}
+                  loading={submitting}
                   aria-describedby={errors.slots ? "slots-error" : undefined}
                   className={errors.slots ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
                   data-testid={TESTIDS.createSlots}
