@@ -217,11 +217,11 @@ export const TESTIDS = {
   
   // Auth form testids (consolidated naming)
   authFormReady: 'auth-ready',
-  backToHome: 'back-to-home-link',
+  backToHome: 'backToHome',
   
   // App navigation testids
   appHeader: 'app-header',
-  homeNavButton: 'home-nav-button',
+  homeNavButton: 'homeNavButton',
   
   // Mobile drawer testids
   mobileDrawer: 'nav-mobile-drawer',
