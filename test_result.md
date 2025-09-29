@@ -132,7 +132,7 @@ frontend:
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 8
+  test_sequence: 9
 
 test_plan:
   current_focus:
