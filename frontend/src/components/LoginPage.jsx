@@ -240,14 +240,21 @@ const LoginPage = () => {
                 />
               </div>
 
-              {/* Error Message - Always present, visible when error exists */}
+              {/* Error Message - Always present, visible when error exists (No display:none for TEST_MODE stability) */}
               <div 
                 data-testid={TESTIDS.authError}
                 role="alert"
                 aria-live="assertive"
-                className="flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md"
+                aria-disabled={!error}
+                className={`flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md ${
+                  error ? 'opacity-100' : 'opacity-0'
+                }`}
                 style={{ 
-                  display: error ? 'flex' : 'none'
+                  visibility: error ? 'visible' : 'hidden',
+                  height: error ? 'auto' : '0px',
+                  padding: error ? '12px' : '0px',
+                  margin: error ? undefined : '0px',
+                  overflow: 'hidden'
                 }}
               >
                 <AlertCircle className="w-4 h-4 flex-shrink-0" />
