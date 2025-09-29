@@ -25,7 +25,7 @@ export const TESTIDS = {
   createBudgetInput: 'create-budget',
   createMinInput: 'create-min',
   createMaxInput: 'create-max',
-  createSubmit: 'create-submit',
+  createSubmit: 'createSubmit',
   createCancel: 'create-cancel',
   
   // Create League Error States
@@ -109,7 +109,7 @@ export const TESTIDS = {
   backToHomeButton: 'back-to-home-button',
 
   // League Creation/Management
-  createSubmit: 'create-submit',
+  createSubmit: 'createSubmit',
   createCancel: 'create-cancel',
   
   // Auction
