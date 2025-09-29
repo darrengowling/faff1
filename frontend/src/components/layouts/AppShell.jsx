@@ -34,6 +34,23 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
   const [productDropdownOpen, setProductDropdownOpen] = React.useState(false);
   const [focusedIndex, setFocusedIndex] = React.useState(-1);
 
+  // Count visible mobile menu items
+  React.useEffect(() => {
+    // Count nav items, auth actions, and theme toggle
+    let count = 0;
+    
+    // MobileNavigation items (approximate based on typical nav items)
+    count += 4; // Typical nav items: Home, Features, About, Contact
+    
+    // Auth actions
+    count += 2; // Sign In, Get Started
+    
+    // Theme toggle
+    count += 1;
+    
+    setMobileItemCount(count);
+  }, []);
+
   // Determine if we're on the home/dashboard page
   const isHomePage = location.pathname === '/app' || location.pathname === '/dashboard';
 
