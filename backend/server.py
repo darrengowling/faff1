@@ -540,6 +540,71 @@ if TEST_MODE:
         if not is_test_mode():
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="TestID endpoints only available in TEST_MODE")
         return {"ping": "pong", "timestamp": datetime.now(timezone.utc).isoformat()}
+        
+    @api_router.get("/test/testids/verify")
+    async def verify_test_ids(route: str):
+        """
+        TEST-ONLY TESTID VERIFICATION
+        Verify that required testids are present and visible for a given route.
+        Only enabled when TEST_MODE=true environment variable is set.
+        """
+        if not is_test_mode():
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="TestID verification endpoints only available in TEST_MODE"
+            )
+        
+        logger.info(f"TestID verification requested for route: {route}")
+        
+        try:
+            # Mock verification results - in a real implementation, this would:
+            # 1. Use a headless browser to render the route
+            # 2. Query the DOM for required testids
+            # 3. Check visibility of each element
+            
+            # For demonstration, return mock data based on route
+            mock_results = {
+                "/login": {
+                    "present": ["loginHeader", "authEmailInput", "authSubmitBtn"],
+                    "missing": ["backToHome"],
+                    "hidden": []
+                },
+                "/app": {
+                    "present": ["appHeader", "backToHome"],
+                    "missing": ["homeNavButton"],
+                    "hidden": []
+                },
+                "/app/leagues/new": {
+                    "present": ["createName", "createSlots", "createBudget"],
+                    "missing": ["createSubmit"],
+                    "hidden": ["backToHome"]
+                }
+            }
+            
+            route_data = mock_results.get(route, {
+                "present": [],
+                "missing": ["unknownRoute"],
+                "hidden": []
+            })
+            
+            result = {
+                "present": route_data["present"],
+                "missing": route_data["missing"], 
+                "hidden": route_data["hidden"],
+                "route": route,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "note": "Mock verification - real implementation would use headless browser"
+            }
+            
+            logger.info(f"TestID verification for {route}: {len(result['present'])} present, {len(result['missing'])} missing, {len(result['hidden'])} hidden")
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error in testid verification for route {route}: {e}")
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=f"Verification failed: {str(e)}"
+            )
 
 @api_router.post("/test/time/set")
 async def set_test_time(request: dict):
