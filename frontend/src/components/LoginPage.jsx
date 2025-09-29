@@ -137,6 +137,7 @@ const LoginPage = () => {
         // In test mode, auto-click the magic link for seamless testing
         if (isTestMode) {
           console.log('Auto-navigating to magic link verification...');
+          // Ensure success state is visible before navigation
           setTimeout(() => {
             const url = new URL(response.data.dev_magic_link);
             const token = url.searchParams.get('token');
@@ -144,7 +145,7 @@ const LoginPage = () => {
               console.log('Navigating to /auth/verify with token:', token);
               navigate(`/auth/verify?token=${token}`);
             }
-          }, 1000); // Longer delay to show success state
+          }, 2000); // Longer delay to show success state for tests
           return;
         }
       }
