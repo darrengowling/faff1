@@ -44,12 +44,22 @@ const useAppState = () => {
  */
 const getItemTestId = (item, variant) => {
   const idMap = {
-    'auction-room': TESTIDS.navDropdownItemAuction,
-    'my-roster': TESTIDS.navDropdownItemRoster, 
+    // App navigation items
+    'auction-room': TESTIDS.navItemAuction,
+    'my-roster': TESTIDS.navItemRoster, 
     'fixtures': TESTIDS.navDropdownItemFixtures,
-    'leaderboard': TESTIDS.navDropdownItemLeaderboard,
+    'leaderboard': TESTIDS.navItemLeaderboard,
     'league-admin': TESTIDS.navDropdownItemSettings,
-    'league-settings': TESTIDS.navDropdownItemSettings
+    'league-settings': TESTIDS.navDropdownItemSettings,
+    'dashboard': TESTIDS.navItemDashboard,
+
+    // Landing page anchor items  
+    'home': TESTIDS.navItemHome,
+    'how': TESTIDS.navItemHow,
+    'why': TESTIDS.navItemWhy,
+    'features': TESTIDS.navItemFeatures,
+    'safety': TESTIDS.navItemSafety,
+    'faq': TESTIDS.navItemFaq
   };
   
   return idMap[item.id] || null;
