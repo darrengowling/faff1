@@ -79,12 +79,12 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Centralized Auth Guards and Predictable Redirects"
-    - "auth_ui.spec.ts Authentication Flow Testing"
-    - "access_and_gates.spec.ts Route Guard Testing"
+    - "Sticky Header/Drawer Un-blockable & Deterministic Anchors"
+    - "navigation.spec.ts Mobile Navigation Testing"
+    - "landing-page.spec.js Mobile Landing Page Tests"
   stuck_tasks: []
   test_all: false
-  test_priority: "auth_guards_verification"
+  test_priority: "sticky_header_verification"
 
 agent_communication:
   - agent: "main"
