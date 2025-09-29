@@ -195,7 +195,7 @@ const LoginPage = () => {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <Mail className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Sign In</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2" data-testid="login-header">Sign In</h2>
             <p className="text-gray-600">
               Enter your email to receive a magic link for secure access
             </p>
