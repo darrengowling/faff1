@@ -138,30 +138,22 @@ const LoginPage = () => {
     } catch (err) {
       console.error('Magic link request failed:', err);
       
-      // Handle structured error responses from backend
+      // Handle different types of errors
       let errorMessage = 'Unable to send magic link. Please try again.';
       
       if (err.response?.status === 400) {
+        // 400 errors are validation/user errors, not network issues
         const errorData = err.response.data.detail;
         if (typeof errorData === 'object' && errorData.code === 'INVALID_EMAIL') {
-          errorMessage = errorData.message || 'Please enter a valid email.';
+          errorMessage = 'Please enter a valid email.'; // Align with frontend validation
         } else if (typeof errorData === 'string') {
-          errorMessage = errorData.length < 80 ? errorData : 'Invalid email address format';
+          errorMessage = errorData.length < 80 ? errorData : 'Please enter a valid email.';
         } else {
           errorMessage = 'Please enter a valid email.';
         }
-      } else if (err.response?.status === 429) {
-        errorMessage = 'Too many requests. Please wait a moment and try again.';
-      } else if (err.response?.status >= 500) {
-        errorMessage = 'Server error. Please try again in a moment.';
-      } else if (err.response?.data?.detail) {
-        // Use server message if it's concise
-        const serverMsg = typeof err.response.data.detail === 'string' 
-          ? err.response.data.detail 
-          : err.response.data.detail.message;
-        if (serverMsg && serverMsg.length < 80) {
-          errorMessage = serverMsg;
-        }
+      } else {
+        // Only for real network errors (non-400): connection issues, 500 errors, etc.
+        errorMessage = 'Unable to send magic link. Please check your connection and try again.';
       }
       
       setError(errorMessage);
