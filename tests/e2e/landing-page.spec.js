@@ -225,8 +225,8 @@ test.describe('Landing Page - Comprehensive Testing', () => {
       await checkLandingCTAsClickable(page);
       
       // Test hero CTA buttons with overlay detection
-      const createLeagueBtn = page.getByTestId(TESTIDS.landingCtaCreate).first();
-      const joinInviteBtn = page.getByTestId(TESTIDS.landingCtaJoin).first();
+      const createLeagueBtn = byId(page, 'landingCtaCreate').first();
+      const joinInviteBtn = byId(page, 'landingCtaJoin').first();
 
       // Test Create League button with safe click
       let createRouteWorks = false;
