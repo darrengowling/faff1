@@ -1,6 +1,6 @@
 export const TESTIDS = {
   // Auth
-  loginHeader: 'login-header',
+  loginHeader: 'loginHeader',
   authFormReady: 'auth-ready',
   authEmailInput: 'authEmailInput',
   authSubmitBtn: 'authSubmitBtn',
