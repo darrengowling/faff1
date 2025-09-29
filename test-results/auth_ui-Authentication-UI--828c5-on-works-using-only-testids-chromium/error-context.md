@@ -1,0 +1,60 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T"
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - button "Friends of PIFA" [ref=e8] [cursor=pointer]:
+              - img [ref=e10] [cursor=pointer]
+              - generic [ref=e16] [cursor=pointer]: Friends of PIFA
+            - link "Back to Home" [ref=e17] [cursor=pointer]:
+              - /url: /
+              - text: ← Back to Home
+          - navigation [ref=e18]:
+            - button "Product" [ref=e20] [cursor=pointer]:
+              - generic [ref=e21] [cursor=pointer]: Product
+              - img
+          - generic [ref=e22]:
+            - generic [ref=e23]:
+              - button "Sign In" [ref=e24] [cursor=pointer]
+              - button "Get Started" [ref=e25] [cursor=pointer]
+            - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+              - generic [ref=e27] [cursor=pointer]:
+                - img
+      - main [ref=e29]:
+        - generic [ref=e31]:
+          - generic [ref=e32]:
+            - heading "Sign In" [level=1] [ref=e33]
+            - paragraph [ref=e34]: Enter your email to get a magic link
+          - generic [ref=e35]:
+            - heading "Welcome back" [level=3] [ref=e37]
+            - generic [ref=e38]:
+              - generic [ref=e39]:
+                - generic [ref=e40]:
+                  - generic [ref=e41]: Email Address
+                  - textbox "Email Address" [ref=e42]: test-submission@example.com
+                - generic [ref=e43]:
+                  - img [ref=e44]
+                  - generic [ref=e47]: Magic link sent! Check your email or use the link below.
+                - button "Send Magic Link" [ref=e48] [cursor=pointer]:
+                  - generic [ref=e49] [cursor=pointer]:
+                    - img
+                    - generic [ref=e50] [cursor=pointer]: Send Magic Link
+              - generic [ref=e51]:
+                - paragraph [ref=e52]: "Development Mode - Magic Link:"
+                - link "https://e2e-stability.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Qtc3VibWlzc2lvbkBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE4OTk1MywidHlwZSI6Im1hZ2ljX2xpbmsifQ.cEEWbGZt4hkedVPQWPgrIfM-zwVkFWjpCODVLMvgIWk" [ref=e53] [cursor=pointer]:
+                  - /url: https://e2e-stability.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Qtc3VibWlzc2lvbkBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE4OTk1MywidHlwZSI6Im1hZ2ljX2xpbmsifQ.cEEWbGZt4hkedVPQWPgrIfM-zwVkFWjpCODVLMvgIWk
+              - button "Back to Home" [ref=e55] [cursor=pointer]:
+                - img [ref=e56] [cursor=pointer]
+                - generic [ref=e58] [cursor=pointer]: Back to Home
+          - paragraph [ref=e60]: Having trouble? Contact support for assistance.
+  - link "Emergent platform logo Made with Emergent" [ref=e61] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e62] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e63] [cursor=pointer]
+      - paragraph [ref=e64] [cursor=pointer]: Made with Emergent
+```
