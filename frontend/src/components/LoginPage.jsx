@@ -246,8 +246,14 @@ const LoginPage = () => {
                 role="alert"
                 aria-live="assertive"
                 className={`flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md ${
-                  error ? 'block' : 'hidden'
+                  error ? 'opacity-100' : 'opacity-0'
                 }`}
+                style={{ 
+                  visibility: error ? 'visible' : 'hidden',
+                  height: error ? 'auto' : '0px',
+                  padding: error ? '12px' : '0px',
+                  margin: error ? undefined : '0px'
+                }}
               >
                 <AlertCircle className="w-4 h-4 flex-shrink-0" />
                 <span className="text-sm font-medium">{error || 'No error'}</span>
