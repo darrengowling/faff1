@@ -51,6 +51,14 @@ import {
 // Primary Navigation (main navbar items)
 export const primaryNavigation = [
   {
+    id: 'home',
+    label: 'Home',
+    href: '/#home',
+    icon: Home,
+    enabled: () => true,
+    visible: () => true
+  },
+  {
     id: 'how-it-works',
     label: 'How it Works',
     href: '/#how',
@@ -63,6 +71,22 @@ export const primaryNavigation = [
     label: 'Why FoP',
     href: '/#why', 
     icon: Info,
+    enabled: () => true,
+    visible: () => true
+  },
+  {
+    id: 'features',
+    label: 'Features',
+    href: '/#features',
+    icon: Trophy,
+    enabled: () => true,
+    visible: () => true
+  },
+  {
+    id: 'safety',
+    label: 'Safety',
+    href: '/#safety',
+    icon: Shield,
     enabled: () => true,
     visible: () => true
   },
