@@ -54,6 +54,15 @@ class LeagueService:
         if existing_league:
             raise ValueError(f"League name '{league_data.name.strip()}' already exists for this user")
         
+        # Get default settings from competition profile if no explicit settings provided
+        if league_data.settings is None:
+            competition_service = CompetitionService()
+            default_settings = await competition_service.get_default_settings("ucl")
+            logger.info(f"Using default settings from UCL competition profile")
+        else:
+            default_settings = league_data.settings
+            logger.info(f"Using explicit settings provided by commissioner")
+        
         # Create league with enhanced settings
         league = League(
             name=league_data.name,
