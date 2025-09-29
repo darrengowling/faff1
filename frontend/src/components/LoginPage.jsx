@@ -67,11 +67,12 @@ const LoginPage = () => {
         
         const testResponse = await axios.post(`${API}/auth/test-login`, {
           email: emailValue
+        }, {
+          withCredentials: true  // Ensure cookies are included
         });
         
-        if (testResponse.status === 200 && testResponse.data.token) {
-          console.log('TEST_MODE: Test login successful');
-          localStorage.setItem('auth_token', testResponse.data.token);
+        if (testResponse.status === 200 && testResponse.data.ok) {
+          console.log('TEST_MODE: Test login successful - session cookie set');
           
           // Handle next parameter for redirect after login
           const urlParams = new URLSearchParams(window.location.search);
