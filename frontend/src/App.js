@@ -45,8 +45,7 @@ import { Label } from './components/ui/label';
 import { Separator } from './components/ui/separator';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './components/ui/alert-dialog';
 
-// Import Testable Components
-import { TestableInput, TestableButton } from './components/testable/TestableComponents';
+import { TestableInput, TestableButton } from './components/testable/TestableComponents.tsx';
 
 // Icons
 import { 
