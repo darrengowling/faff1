@@ -377,7 +377,7 @@ export async function expectRosterUpdate(page: Page, clubName: string, remaining
 export async function expectBudgetUnchanged(page: Page, expectedBudget: number): Promise<void> {
   console.log(`🔍 Expecting budget unchanged: ${expectedBudget}`);
   
-  const budgetElement = page.locator(`[data-testid="${TESTIDS.yourBudget}"]`);
+  const budgetElement = byId(page, 'yourBudget');
   await expect(budgetElement).toContainText(expectedBudget.toString(), { timeout: 5000 });
   
   console.log(`✅ Budget unchanged verified: ${expectedBudget}`);
