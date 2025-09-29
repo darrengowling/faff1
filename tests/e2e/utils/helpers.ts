@@ -275,7 +275,7 @@ export async function navigateToRoster(page: Page): Promise<void> {
 }
 
 export async function navigateToLeaderboard(page: Page): Promise<void> {
-  await page.locator(`[data-testid="${TESTIDS.navDropdownItemLeaderboard}"]`).click();
+  await clickById(page, 'navDropdownItemLeaderboard');
   await page.waitForURL('**/leaderboard/**', { timeout: 10000 });
 }
 
