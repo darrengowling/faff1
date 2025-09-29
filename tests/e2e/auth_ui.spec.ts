@@ -30,19 +30,19 @@ test.describe('Authentication UI Tests', () => {
     await expect(byId(page, 'loginHeader')).toBeVisible();
     
     // Verify form accessibility
-    const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
+    const emailInput = byId(page, 'authEmailInput');
     await expect(emailInput).toHaveAttribute('type', 'email');
     await expect(emailInput).toHaveAttribute('required');
     
-    const submitBtn = page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`);
+    const submitBtn = byId(page, 'authSubmitBtn');
     await expect(submitBtn).toHaveAttribute('type', 'submit');
     
     console.log('✅ Login form renders correctly with all required testid elements');
   });
 
   test('Submit button is disabled for invalid email', async ({ page }) => {
-    const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
-    const submitBtn = page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`);
+    const emailInput = byId(page, 'authEmailInput');
+    const submitBtn = byId(page, 'authSubmitBtn');
 
     // Initially disabled when empty
     await expect(submitBtn).toBeDisabled();
