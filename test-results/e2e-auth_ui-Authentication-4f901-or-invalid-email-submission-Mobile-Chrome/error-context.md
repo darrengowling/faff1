@@ -1,0 +1,45 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T"
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - button "Friends of PIFA" [ref=e8] [cursor=pointer]:
+              - img [ref=e10] [cursor=pointer]
+              - generic [ref=e16] [cursor=pointer]: Friends of PIFA
+            - button "Back to Home" [ref=e17] [cursor=pointer]:
+              - img
+              - generic [ref=e18] [cursor=pointer]: Back to Home
+          - button "Toggle navigation menu" [ref=e19] [cursor=pointer]:
+            - img
+        - generic [ref=e20]: "Mobile drawer state: closed"
+      - main [ref=e21]:
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - img [ref=e25]
+            - heading "Sign In" [level=2] [ref=e28]
+            - paragraph [ref=e29]: Enter your email to receive a magic link for secure access
+          - generic [ref=e30]:
+            - heading "Magic Link Authentication" [level=3] [ref=e32]
+            - generic [ref=e34]:
+              - generic [ref=e35]:
+                - generic [ref=e36]: Email Address
+                - textbox "Email Address" [active] [ref=e37]: not-an-email
+              - alert [ref=e38]:
+                - img [ref=e39]
+                - generic [ref=e41]: Unable to send magic link. Please try again.
+              - button "Send Magic Link" [ref=e42] [cursor=pointer]:
+                - generic [ref=e43] [cursor=pointer]:
+                  - img
+                  - generic [ref=e44] [cursor=pointer]: Send Magic Link
+          - paragraph [ref=e46]: No password required. We'll send you a secure link to sign in.
+  - link "Emergent platform logo Made with Emergent" [ref=e47] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e48] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e49] [cursor=pointer]
+      - paragraph [ref=e50] [cursor=pointer]: Made with Emergent
+```
