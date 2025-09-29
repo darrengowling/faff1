@@ -1,0 +1,42 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T"
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - button "Friends of PIFA" [ref=e8] [cursor=pointer]:
+              - img [ref=e10] [cursor=pointer]
+              - generic [ref=e16] [cursor=pointer]: Friends of PIFA
+            - link "Back to Home" [ref=e17] [cursor=pointer]:
+              - /url: /
+              - text: ← Back to Home
+          - button "Toggle navigation menu" [ref=e18] [cursor=pointer]:
+            - img
+      - main [ref=e20]:
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - img [ref=e24]
+            - heading "Sign In" [level=2] [ref=e27]
+            - paragraph [ref=e28]: Enter your email to receive a magic link for secure access
+          - generic [ref=e29]:
+            - heading "Magic Link Authentication" [level=3] [ref=e31]
+            - generic [ref=e33]:
+              - generic [ref=e34]: Form is loading...
+              - generic [ref=e35]:
+                - generic [ref=e36]: Email
+                - textbox "Email" [ref=e37]
+              - button "Send Magic Link" [disabled]:
+                - generic:
+                  - img
+                  - generic: Send Magic Link
+          - paragraph [ref=e39]: No password required. We'll send you a secure link to sign in.
+  - link "Emergent platform logo Made with Emergent" [ref=e40] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e41] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e42] [cursor=pointer]
+      - paragraph [ref=e43] [cursor=pointer]: Made with Emergent
+```
