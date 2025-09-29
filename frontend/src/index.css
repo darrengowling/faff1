@@ -20,6 +20,7 @@
   }
 }
 
+/* Global App Styles */
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -32,6 +33,34 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
+}
+
+/* Critical TestID Stability Rules */
+/* Explicit hidden state - never accidental */
+[data-testid][hidden] {
+    display: none !important;
+}
+
+/* Stable visibility for critical elements - use this instead of display:none */
+[data-testid].visually-hidden {
+    visibility: hidden !important;
+    pointer-events: none !important;
+    /* Keep in layout to prevent DOM shifts */
+    position: relative !important;
+}
+
+/* Disabled state styling for critical elements */
+[data-testid][aria-disabled="true"] {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Loading state styling */
+[data-testid].loading {
+    opacity: 0.7;
+    pointer-events: none;
+    position: relative;
 }
 
 
