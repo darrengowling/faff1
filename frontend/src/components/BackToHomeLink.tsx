@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../App';
 import { TESTIDS } from '../testids';
-import { TestableRouterLink } from './testable/TestableComponents';
+import { TestableRouterLink } from './testable/TestableComponents.tsx';
 
 interface BackToHomeLinkProps {
   className?: string;
