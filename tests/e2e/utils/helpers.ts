@@ -488,7 +488,7 @@ export async function expectLotSold(page: Page, clubName: string): Promise<void>
   console.log(`🔍 Expecting lot sold for: ${clubName}`);
   
   // Wait for SOLD badge or status to appear
-  await page.locator(`[data-testid="${TESTIDS.soldBadge}"]`).waitFor({ state: 'visible', timeout: 15000 });
+  await waitForId(page, 'soldBadge', { timeout: 15000 });
   
   console.log(`✅ Lot sold verified for: ${clubName}`);
 }
