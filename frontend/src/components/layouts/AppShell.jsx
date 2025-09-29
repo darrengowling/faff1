@@ -333,7 +333,7 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                 </div>
             </div>
         </div>
-      )}
+      </div>
 
       {/* Always-present drawer testid - removed duplicate */}
 
