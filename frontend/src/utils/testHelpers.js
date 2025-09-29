@@ -127,6 +127,84 @@ export const stopSessionKeepAlive = (intervalId) => {
   }
 };
 
+/**
+ * Test helper: awaitCreatedAndInLobby(page,id) 
+ * Waits for /lobby URL, polls /test/league/:id/ready (≤2s), then waits for lobby-ready
+ */
+export const awaitCreatedAndInLobby = async (page, leagueId) => {
+  if (!isTestMode()) {
+    console.warn('awaitCreatedAndInLobby: Not in test mode');
+    return { success: false, reason: 'not_test_mode' };
+  }
+
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+  const timeout = 2000; // 2 seconds max
+  const pollInterval = 100; // Poll every 100ms
+
+  try {
+    console.log(`🧪 AWAIT CREATED AND IN LOBBY: Starting for league ${leagueId}`);
+    
+    // Step 1: Wait for /lobby URL
+    console.log('🧪 Step 1: Waiting for /lobby URL...');
+    const expectedUrl = `/app/leagues/${leagueId}/lobby`;
+    await page.waitForURL(`**${expectedUrl}`, { timeout });
+    console.log(`🧪 Step 1 Complete: On ${expectedUrl}`);
+    
+    // Step 2: Poll /test/league/:id/ready (≤2s)
+    console.log('🧪 Step 2: Polling backend readiness...');
+    const startTime = Date.now();
+    let ready = false;
+    
+    while (Date.now() - startTime < timeout && !ready) {
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/test/league/${leagueId}/ready`, {
+          credentials: 'include'
+        });
+        const data = await response.json();
+        
+        if (data.ready) {
+          ready = true;
+          console.log('🧪 Step 2 Complete: Backend reports ready');
+          break;
+        }
+        
+        // Wait before next poll
+        await new Promise(resolve => setTimeout(resolve, pollInterval));
+      } catch (error) {
+        console.warn('🧪 Step 2 Poll Error:', error.message);
+        // Continue polling despite errors
+        await new Promise(resolve => setTimeout(resolve, pollInterval));
+      }
+    }
+    
+    if (!ready) {
+      console.warn('🧪 Step 2 Timeout: Backend never reported ready within 2s');
+      return { success: false, reason: 'backend_not_ready', timeoutMs: timeout };
+    }
+    
+    // Step 3: Wait for lobby-ready testid
+    console.log('🧪 Step 3: Waiting for lobby-ready testid...');
+    await page.waitForSelector('[data-testid="lobby-ready"]', { timeout });
+    console.log('🧪 Step 3 Complete: lobby-ready testid found');
+    
+    console.log(`🧪 AWAIT CREATED AND IN LOBBY: SUCCESS for league ${leagueId}`);
+    return { 
+      success: true, 
+      leagueId,
+      lobbyUrl: expectedUrl,
+      totalTime: Date.now() - startTime
+    };
+    
+  } catch (error) {
+    console.error('🧪 AWAIT CREATED AND IN LOBBY: FAILED for league', leagueId, ':', error);
+    return { 
+      success: false, 
+      error: error.message,
+      leagueId
+    };
+  }
+};
+
 export default {
   isTestMode,
   refreshTestSession,
