@@ -18,7 +18,7 @@ export default function BackToHomeLink({ className = '', onClick }: BackToHomeLi
   return (
     <TestableRouterLink
       to={destination}
-      data-testid={TESTIDS.backToHome}
+      data-testid={TESTIDS.backToHomeLink}
       data-dest={destination}
       aria-label="Back to Home"
       className={`inline-flex items-center gap-2 text-sm underline underline-offset-2 ${className}`}
