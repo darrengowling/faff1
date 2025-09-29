@@ -12,7 +12,7 @@ from datetime import datetime
 
 class PR2PR3Tester:
     def __init__(self):
-        self.base_url = "https://pifa-league.preview.emergentagent.com"
+        self.base_url = "https://testid-enforcer.preview.emergentagent.com"
         self.api_url = f"{self.base_url}/api"
         self.access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNmY4ZTVkMi03NmQ3LTQ4ZjAtOGMyYy0xMTQ5MTIwMTNhOWMiLCJleHAiOjE3NTg4OTE1MjZ9.zdOl6LxlSENv-fxuJ0MafpaEsCPd5CkRTDnOkj5E38E"
         self.headers = {

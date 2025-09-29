@@ -26,7 +26,7 @@ async function verifySocketConfig() {
         console.log(`Frontend Socket Path: ${frontendSocketPath || 'NOT FOUND'}`);
         
         // 2. Fetch backend socket config from /api/socket/config endpoint
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://pifa-league.preview.emergentagent.com';
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://testid-enforcer.preview.emergentagent.com';
         const configUrl = `${backendUrl}/api/socket/config`;
         
         console.log(`Fetching backend config from: ${configUrl}`);

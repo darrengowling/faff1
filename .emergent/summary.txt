@@ -1,65 +1,49 @@
 <analysis>
-The AI engineer's work primarily focused on enhancing the Friends of PIFA application's production readiness, tackling critical E2E testing, UI/UX, and backend stability issues. Initial efforts addressed frontend compilation errors, atomic league creation, and robust testid implementation. Challenges included resolving MongoDB replica set incompatibility (leading to sequential operations), fixing persistent JSX parsing errors in layout components, and repeatedly refining testid usage to meet stringent Playwright requirements. The engineer demonstrated a methodical approach, often debugging deep root causes and iterating on solutions based on continuous testing feedback, particularly for authentication flow, mobile navigation, and league creation. Despite significant progress, the work concluded with testid implementation issues still requiring a full audit and verification across critical components.
+The previous AI engineer executed a comprehensive strategy to achieve production readiness by enforcing robust E2E testing contracts. The primary focus was auditing, consolidating, and enforcing the use of  attributes. Key activities included restoring corrupted components (, ), migrating all testid imports to a canonical file (), and fixing navigation and CTA testid mismatches to improve E2E pass rates (reaching 78.6% before further architectural changes). A major architectural shift involved creating TypeScript wrapper components (, ) to enforce testid presence at compile time. Furthermore, a CI gate mechanism was built: a backend endpoint () and a corresponding audit script () to prevent deployment when critical testids are missing. The DOM stability was enhanced by implementing patterns to keep critical elements mounted (using disabled/loading states instead of unmounting). The work concluded while refactoring Playwright E2E tests to use a canonical selector registry (), which required identifying and adding missing  related testids to the central registry.
 </analysis>
 
 <product_requirements>
-The Friends of PIFA application aims to be a real-time, commissioner-led auction platform for 4-8 friends to bid on Champions League clubs. It features magic-link authentication, league creation, live auction, club/budget management, fixtures, leaderboards, and admin controls. The overarching goal is production readiness, achieved through robust E2E testing using s, reliable magic-link authentication with predictable redirects and loading states, enhanced UI/UX (consistent single-header, deterministic anchor navigation, fixed mobile drawer behavior), stable backend API error handling, atomic league creation, and reliable Socket.IO connections. Implementations include a working Create League flow, CI gates, improved authentication, and E2E test infrastructure.
+The Friends of PIFA application is a commissioner-led auction platform for bidding on Champions League clubs, featuring magic-link authentication, league management, live auction, and leaderboards. The overriding requirement is achieving production readiness through robust E2E testing, targeting an 85% E2E pass rate. This required establishing reliable authentication with deterministic loading states, fixing UI/UX issues (consistent headers, deterministic anchor navigation, reliable mobile drawer), ensuring stable backend API handling (sequential MongoDB operations), and stable Socket.IO connections. The main implementation objective was creating a rigid contract for E2E reliability, including: consolidating all s into a single source of truth, enforcing their presence via TypeScript wrappers, developing an automated DOM verification system (backend endpoint + CI script), and implementing stable DOM patterns to ensure critical elements remain mounted during state changes.
 </product_requirements>
 
 <key_technical_concepts>
--   **Full-stack:** React (Vite), FastAPI (Python), MongoDB (sequential operations).
--   **Real-time:** WebSockets (Socket.IO).
--   **Testing:** Playwright E2E, .
--   **State Management:** React hooks.
--   **Deployment:** Kubernetes, backend                          RUNNING   pid 27, uptime 0:00:02
-code-server                      RUNNING   pid 29, uptime 0:00:02
-frontend                         RUNNING   pid 33, uptime 0:00:02
-mongodb                          RUNNING   pid 35, uptime 0:00:02
-supervisor> .
--   **Patterns:** Route Guards, Deterministic Test Hooks, Structured Logging.
+- **Testing Enforcement**: TypeScript wrappers () requiring  for critical components.
+- **CI Gates**: Backend verification endpoint () used by a CI audit script ().
+- **Stable DOM**: Components maintain presence (mounted) using  or  states for E2E predictability.
+- **Testing Frameworks**: React Testing Library (RTL) contract tests and Playwright E2E testing.
 </key_technical_concepts>
 
 <code_architecture>
-The application uses a React frontend, a FastAPI Python backend, and a MongoDB database.
+The application uses a React (Vite) frontend and a FastAPI (Python) backend with MongoDB.
 
 
--   ****: Main FastAPI entry. The  endpoint was made  exclusive. The  endpoint and general error logging were refined.
--   ****: Handles league creation. Modified to consistently use *sequential MongoDB operations* instead of transactions due to environment constraints.
--   ****: Core frontend. Modified  for deterministic navigation and .  and  were updated for  testids. Testids related to  and  flows were updated to use the new  constant.
--   ****: Global CSS. Added rules for sticky headers, mobile drawer , and  for anchor navigation.
--   ****: Authentication form. Refined s (, , , , , ), , and error messages. Email validation now short-circuits without network calls. Updated to use the new  constant.
--   ** (NEW)**: Component for a persistent Back to Home link. Dynamically routes to  (authenticated) or  (unauthenticated) and includes  attribute for testing. Modified to support  testid for backward compatibility with existing tests.
--   ****: Layout for authenticated routes. Integrated  in header and mobile drawer. Mobile drawer was refactored to be *always present* with  and , and to auto-close on route change. Updated testids to use new  constant.
--   ****: Layout for public routes. Similar to , integrated  and refactored mobile drawer to be *always present* with  and auto-close. Updated testids to use new  constant.
--   ****: In-page navigation component. Added  testid to the root nav element and updated to use new  constant.
--   ****: Displays league rules. Updated to use .
--   ****: Displays app brand/logo. Confirmed  testid usage.
--   ****: Contains action buttons.  was updated to .
--   ****: Custom hook for deterministic anchor navigation. Functionality confirmed as suitable.
--   ****: Centralized authentication route guards.  was modified to defer redirect in  to prevent blank screens and allow form rendering.
--   ****: Original centralized file for  values. **Deprecated** in favor of .
--   ** (NEW)**: Canonical source of truth for all  values, structured as an export const .
--   ** (NEW)**: Defines critical testids expected on specific routes for pre-gate checks.
--   ** (NEW)**: React Testing Library test to verify  rendering and  attributes on various routes.
--   ****: Numerous Playwright E2E test files (e.g., , , , ).  was updated to remove  and check  on .  was updated to align with  changes.
--   ****: E2E utility functions.  was updated to wait for  testid.
+
+- ****: Canonical source for all  values ( constant). Updated repeatedly to consolidate missing testids like section IDs, CTA IDs (), and navigation items.
+- ** (NEW)**: Core enforcement mechanism. Defines , , , etc., which utilize TypeScript to mandate the  attribute, improving compile-time safety. Also supports stable DOM patterns (e.g., handling  state).
+- ****: Key components (like ) were updated to use  and  and incorporate disabled/loading states for stable DOM.
+- ****: Refactored to use  and  to ensure the email input and submit button remain mounted but disabled during loading/submission states.
+- ** (NEW)**: Jest/RTL tests that verify that all testids required by  are present and unique on their respective routes.
+- ****: Added a mock verification endpoint  within the  block. This endpoint is used by CI/testing tools to check if critical testids are accessible.
+- ** (NEW)**: Central registry for Playwright selectors, exporting  to enforce the use of canonical  throughout E2E specs.
+- **E2E Specs (, , etc.)**: Currently being updated to use  instead of raw strings or ad-hoc  imports.
+- ****: Being refactored to use the new  helper, specifically in functions like  and .
 </code_architecture>
 
 <pending_tasks>
--   **Address remaining testid implementation issues:** Complete the audit and implementation of  for Auction, Roster, Admin/invite components.
--   **Achieve target E2E pass rate:** The canary test suite currently shows a 66.7% pass rate (after some fixes) or 70.8% (earlier) which is below the desired 85%.
+- **Continue E2E Selector Refactoring**: Complete the migration of all E2E test files and utility functions ( and various specs) to exclusively use the  helper from .
+- **Verify E2E Pass Rate**: Run the comprehensive E2E test suite after selector refactoring to ensure the 85% pass rate target is met.
 </pending_tasks>
 
 <current_work>
-Immediately before this summary request, the AI engineer was consolidating  management. This involved:
-1.  **Creating a single source of truth**:  was created to define all canonical .
-2.  **Defining per-route critical testids**:  was introduced to specify expected testids for key routes.
-3.  **Updating components to use new **: Critical components like , , , , , , , , , and  were modified to import and utilize the  constant from the new location.
-4.  **Implementing missing testids**: Several previously missing testids like , , , , and  were implemented in their respective components.
-5.  **Fixing **: The  testid in  was moved to the  to ensure it's not overridden.
-The last action was a verification run of critical route testids, which indicated that critical issues still remain despite the implementations.
+The immediate work being performed is the refactoring of E2E test utilities to use the canonical selector registry. This was initiated by creating  which provides the  helper. The engineer successfully updated several E2E specification files (, , ).
+
+While working on refactoring , the engineer discovered that the required testids for the create league buttons (, ) were missing from the canonical  file. The engineer fixed this discrepancy by adding them to .
+
+The last operation was fixing the  helper function in  to use the newly enforced  selector:
+
+The trajectory ended immediately after the successful edit to  to incorporate the new selectors. The goal is to fully eliminate ad-hoc selectors from E2E tests.
 </current_work>
 
 <optional_next_step>
-Continue to implement and verify the testids for Auction, Roster, Admin/invite components.
+Continue updating the remaining Playwright E2E helper functions in  to use the canonical  selector helper.
 </optional_next_step>

@@ -5,7 +5,7 @@
 
 import { Page } from '@playwright/test';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://pifa-league.preview.emergentagent.com';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://testid-enforcer.preview.emergentagent.com';
 
 export interface LeagueSettings {
   name: string;
