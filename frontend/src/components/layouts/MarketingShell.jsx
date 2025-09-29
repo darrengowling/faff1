@@ -159,34 +159,40 @@ const MarketingShell = ({ children }) => {
         </div>
       </header>
 
-      {/* Mobile Drawer - Always rendered with data attributes */}
-      {mobileMenuOpen && (
+      {/* Mobile Drawer - Always present with explicit contract */}
+      <div 
+        className="md:hidden fixed inset-0 z-40"
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden={!mobileMenuOpen}
+        style={{ 
+          paddingTop: '64px',
+          pointerEvents: mobileMenuOpen ? 'auto' : 'none',
+          visibility: mobileMenuOpen ? 'visible' : 'hidden',
+          opacity: mobileMenuOpen ? 1 : 0,
+          transition: 'opacity 0.3s ease-in-out'
+        }}
+      >
         <div 
-          className="md:hidden fixed inset-0 z-40"
-          onClick={() => setMobileMenuOpen(false)}
-          aria-hidden="true"
+          className="drawer-backdrop absolute inset-0"
           style={{ 
-            paddingTop: '64px',
-            pointerEvents: 'auto' // Allow backdrop clicks
+            pointerEvents: 'none' // Backdrop visual only
+          }}
+        />
+        <div
+          className="bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel"
+          id="mobile-navigation"
+          role="navigation"
+          aria-label="Mobile navigation menu"
+          onClick={(e) => e.stopPropagation()}
+          data-testid="nav-mobile-drawer"
+          data-state={mobileMenuOpen ? "open" : "closed"}
+          data-count={mobileItemCount}
+          style={{ 
+            pointerEvents: 'auto',
+            transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
+            transition: 'transform 0.3s ease-in-out'
           }}
         >
-          <div 
-            className="drawer-backdrop absolute inset-0"
-            style={{ 
-              pointerEvents: 'none' // Backdrop visual only
-            }}
-          />
-          <div
-            className="bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel"
-            id="mobile-navigation"
-            role="navigation"
-            aria-label="Mobile navigation menu"
-            onClick={(e) => e.stopPropagation()}
-            data-testid="nav-mobile-drawer"
-            data-state="open"
-            data-count={mobileItemCount}
-            style={{ pointerEvents: 'auto' }}
-          >
                 <div className="p-4">
                   <div className="flex items-center justify-between mb-6">
                     <span className="text-lg font-semibold text-gray-900">Menu</span>
