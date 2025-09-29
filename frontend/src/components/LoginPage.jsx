@@ -259,7 +259,7 @@ const LoginPage = () => {
                         : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
                     }`}
                     placeholder="your.email@example.com"
-                    disabled={loading}
+                    loading={loading}
                     data-testid={TESTIDS.authEmailInput}
                     autoComplete="email"
                     required
