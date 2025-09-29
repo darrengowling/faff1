@@ -138,23 +138,14 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Left - Brand and Home Button */}
+            {/* Left - Brand and Back to Home */}
             <div className="flex items-center space-x-4">
               <HeaderBrand 
                 onClick={() => navigate('/')} 
                 className="cursor-pointer hover:opacity-80 transition-opacity"
                 data-testid={TESTIDS.navBrand}
               />
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate('/app')}
-                data-testid="home-nav-button"
-                className="hidden sm:flex items-center space-x-1 text-sm"
-              >
-                <Home className="w-4 h-4" />
-                <span>Home</span>
-              </Button>
+              <BackToHomeLink className="text-theme-text-secondary hover:text-theme-text" />
             </div>
             
             {/* Center - Desktop Navigation */}
