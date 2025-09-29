@@ -221,7 +221,9 @@ const MarketingShell = ({ children }) => {
                     </div>
                     
                     <MobileNavigation onItemClick={(item) => {
+                      // Force drawer to closed state and update count immediately
                       setMobileMenuOpen(false);
+                      setMobileItemCount(current => current); // Trigger re-render
                     }} />
                     
                     {/* Mobile Auth Actions */}
