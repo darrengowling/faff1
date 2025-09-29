@@ -110,6 +110,23 @@ const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
+  // Session keep-alive for TEST_MODE
+  useEffect(() => {
+    let keepAliveInterval = null;
+    
+    if (isTestMode() && user) {
+      console.log('🧪 Starting TEST_MODE session keep-alive');
+      keepAliveInterval = startSessionKeepAlive();
+    }
+    
+    // Cleanup interval when component unmounts or user logs out
+    return () => {
+      if (keepAliveInterval) {
+        stopSessionKeepAlive(keepAliveInterval);
+      }
+    };
+  }, [user]); // Re-run when user state changes
+
   const fetchUser = async () => {
     try {
       const response = await axios.get(`${API}/auth/me`);
