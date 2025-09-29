@@ -357,7 +357,7 @@ const SimpleLandingPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </TestableSection>
 
       {/* Final CTA Section */}
       <section id="cta" className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
