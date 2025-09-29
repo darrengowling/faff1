@@ -1,0 +1,57 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T"
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - button "Friends of PIFA" [ref=e8] [cursor=pointer]:
+              - img [ref=e10] [cursor=pointer]
+              - generic [ref=e16] [cursor=pointer]: Friends of PIFA
+            - button "Home" [ref=e17] [cursor=pointer]:
+              - img
+              - generic [ref=e18] [cursor=pointer]: Home
+            - button "Back to Home" [ref=e19] [cursor=pointer]:
+              - img
+              - generic [ref=e20] [cursor=pointer]: Back to Home
+          - navigation [ref=e21]:
+            - button "Product" [ref=e23] [cursor=pointer]:
+              - generic [ref=e24] [cursor=pointer]: Product
+              - img
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - button "Sign In" [ref=e27] [cursor=pointer]
+              - button "Get Started" [ref=e28] [cursor=pointer]
+            - button "Switch to dark mode" [ref=e29] [cursor=pointer]:
+              - generic [ref=e30] [cursor=pointer]:
+                - img
+        - generic [ref=e31]: "Mobile drawer state: closed"
+      - main [ref=e32]:
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - img [ref=e36]
+            - heading "Sign In" [level=2] [ref=e39]
+            - paragraph [ref=e40]: Enter your email to receive a magic link for secure access
+          - generic [ref=e41]:
+            - heading "Magic Link Authentication" [level=3] [ref=e43]
+            - generic [ref=e45]:
+              - generic [ref=e46]:
+                - generic [ref=e47]: Email Address
+                - textbox "Email Address" [active] [ref=e48]: not-an-email
+              - alert [ref=e49]:
+                - img [ref=e50]
+                - generic [ref=e52]: Unable to send magic link. Please try again.
+              - button "Send Magic Link" [ref=e53] [cursor=pointer]:
+                - generic [ref=e54] [cursor=pointer]:
+                  - img
+                  - generic [ref=e55] [cursor=pointer]: Send Magic Link
+          - paragraph [ref=e57]: No password required. We'll send you a secure link to sign in.
+  - link "Emergent platform logo Made with Emergent" [ref=e58] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e59] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e60] [cursor=pointer]
+      - paragraph [ref=e61] [cursor=pointer]: Made with Emergent
+```
