@@ -534,6 +534,13 @@ if TEST_MODE:
             logger.error(f"Error checking league readiness: {e}")
             return {"ready": False, "reason": "error", "error": str(e)}
 
+    @api_router.get("/test/testids/ping")
+    async def ping_test_ids():
+        """Simple ping endpoint for testing testids routes"""
+        if not is_test_mode():
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="TestID endpoints only available in TEST_MODE")
+        return {"ping": "pong", "timestamp": datetime.now(timezone.utc).isoformat()}
+
 @api_router.post("/test/time/set")
 async def set_test_time(request: dict):
     """
