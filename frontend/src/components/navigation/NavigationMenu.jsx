@@ -53,10 +53,10 @@ const getItemTestId = (item, variant) => {
     'league-settings': TESTIDS.navDropdownItemSettings,
     'dashboard': TESTIDS.navItemDashboard,
 
-    // Landing page anchor items  
+    // Landing page anchor items (match navRegistry IDs)
     'home': TESTIDS.navItemHome,
-    'how': TESTIDS.navItemHow,
-    'why': TESTIDS.navItemWhy,
+    'how-it-works': TESTIDS.navItemHow,
+    'why-fop': TESTIDS.navItemWhy,
     'features': TESTIDS.navItemFeatures,
     'safety': TESTIDS.navItemSafety,
     'faq': TESTIDS.navItemFaq
