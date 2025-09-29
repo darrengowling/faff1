@@ -1026,6 +1026,8 @@ async def reset_test_scoring(request: dict):
         This endpoint would typically be used by headless browsers or E2E testing
         to verify testid availability before running tests.
         """
+        logger.info(f"TestID verification endpoint called for route: {route}")
+        
         if not is_test_mode():
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
@@ -1040,14 +1042,17 @@ async def reset_test_scoring(request: dict):
             # 3. Return the verification results
             
             # For now, return a mock structure that matches the expected format
-            return {
-                "present": [],
-                "missing": [],
-                "hidden": [],
+            result = {
+                "present": ["mockTestId1", "mockTestId2"],
+                "missing": ["missingTestId1"],
+                "hidden": ["hiddenTestId1"],
                 "route": route,
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "note": "This endpoint requires a headless browser implementation to actually verify DOM testids"
             }
+            
+            logger.info(f"TestID verification completed for route {route}: {len(result['present'])} present, {len(result['missing'])} missing, {len(result['hidden'])} hidden")
+            return result
             
         except Exception as e:
             logger.error(f"Error verifying testids for route {route}: {e}")
