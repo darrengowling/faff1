@@ -9,7 +9,7 @@ interface BackToHomeLinkProps {
 export default function BackToHomeLink({ className = '', onClick }: BackToHomeLinkProps) {
   return (
     <Link
-      to="/app"
+      to="/"
       data-testid="back-to-home-link"
       aria-label="Back to Home"
       className={`inline-flex items-center gap-2 text-sm underline underline-offset-2 ${className}`}
