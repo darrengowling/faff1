@@ -17,9 +17,9 @@ frontend:
 
   - task: "Complete Lobby Joined Count and Rules Badge Testids Implementation"
     implemented: true
-    working: "NA"
+    working: false
     file: "/app/frontend/src/App.js, /app/frontend/src/components/ui/rules-badge.jsx"
-    stuck_count: 1
+    stuck_count: 2
     priority: "high"
     needs_retesting: false
     status_history:
@@ -35,6 +35,9 @@ frontend:
       - working: "NA"
         agent: "testing"
         comment: "ℹ️ LOBBY TESTIDS STATUS - PARTIAL IMPLEMENTATION: Final verification shows league creation → lobby navigation is working, but lobby page shows 'Failed to load league. Please try again.' error message instead of full lobby interface. CURRENT STATE: ✅ League creation successful (league ID: 717e51d4-caae-46ef-8000-8e8b2c50b7f7), ✅ Navigation to /app/leagues/{id}/lobby working, ❌ Lobby page shows error due to 403 authentication issues when fetching league details. TESTIDS IMPACT: Cannot verify lobby-joined-count, rules-badge, or start-auction testids because lobby page fails to load league data (403 errors on /api/leagues/{id}). The testids are implemented in code but lobby functionality is blocked by authentication/authorization issues. This is a backend API access issue, not a frontend testid implementation issue."
+      - working: false
+        agent: "testing"
+        comment: "❌ ATOMIC POST-CREATE FLOW VERIFICATION - CRITICAL AUTHENTICATION ISSUES: Comprehensive testing of atomic post-create flow reveals multiple critical issues blocking lobby testid verification. BACKEND ATOMIC OPERATIONS: ✅ POST /leagues creates league successfully (league ID: 90f32ede-5251-44ff-9714-fd7a3d1cc27c), ✅ Sequential operations work (league + membership + roster + scoring rules), ✅ TEST_MODE readiness endpoint returns {ready: true}. FRONTEND ISSUES: ❌ CreateLeagueWizard form submission fails with 'Invalid response from server' despite backend success, ❌ Dialog state management broken - no success marker appears, ❌ Navigation to lobby fails due to frontend error handling, ❌ 403 authentication errors when accessing /api/leagues/{id} and /api/auth/me. ROOT CAUSE: Authentication session not properly maintained between test login and subsequent API calls, causing 403 errors that prevent lobby data loading. TESTIDS STATUS: Cannot verify lobby-joined, lobby-joined-count, rules-badge, or start-auction testids because lobby shows 'Failed to load league. Please try again.' error instead of rendering league data. URGENT: Fix authentication session persistence and frontend error handling to enable lobby testid verification."
 
   - task: "Fix Frontend Compilation Issues with AppShell/MarketingShell Import Paths"
     implemented: true
