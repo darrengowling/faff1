@@ -791,7 +791,7 @@ const AuctionRoom = ({ user, token }) => {
                   <div className="flex justify-between items-center">
                     <div className="flex items-center space-x-3">
                       <div className={`w-4 h-4 rounded-full ${getLotStatusColor(currentLot.status)} animate-pulse`}></div>
-                      <CardTitle className="text-2xl text-white" data-testid={TESTIDS.auctionAssetName}>
+                      <CardTitle className="text-2xl text-white" data-testid={TESTIDS.auctionAsset}>
                         {currentLot.club.name}
                       </CardTitle>
                       <Badge variant="outline" className="text-gray-300">
