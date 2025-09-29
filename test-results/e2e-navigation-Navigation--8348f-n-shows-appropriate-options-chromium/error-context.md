@@ -28,27 +28,26 @@
             - button "Switch to dark mode" [ref=e29] [cursor=pointer]:
               - generic [ref=e30] [cursor=pointer]:
                 - img
-        - generic [ref=e31]: "Mobile drawer state: closed"
-      - main [ref=e32]:
-        - generic [ref=e34]:
-          - generic [ref=e35]:
-            - img [ref=e36]
-            - heading "Sign In" [level=2] [ref=e39]
-            - paragraph [ref=e40]: Enter your email to receive a magic link for secure access
-          - generic [ref=e41]:
-            - heading "Magic Link Authentication" [level=3] [ref=e43]
-            - generic [ref=e45]:
-              - generic [ref=e46]:
-                - generic [ref=e47]: Email Address
-                - textbox "Email Address" [ref=e48]
+      - main [ref=e31]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - img [ref=e35]
+            - heading "Sign In" [level=2] [ref=e38]
+            - paragraph [ref=e39]: Enter your email to receive a magic link for secure access
+          - generic [ref=e40]:
+            - heading "Magic Link Authentication" [level=3] [ref=e42]
+            - generic [ref=e44]:
+              - generic [ref=e45]:
+                - generic [ref=e46]: Email Address
+                - textbox "Email Address" [ref=e47]
               - button "Send Magic Link" [disabled]:
                 - generic:
                   - img
                   - generic: Send Magic Link
-          - paragraph [ref=e50]: No password required. We'll send you a secure link to sign in.
-  - link "Emergent platform logo Made with Emergent" [ref=e51] [cursor=pointer]:
+          - paragraph [ref=e49]: No password required. We'll send you a secure link to sign in.
+  - link "Emergent platform logo Made with Emergent" [ref=e50] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e52] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e53] [cursor=pointer]
-      - paragraph [ref=e54] [cursor=pointer]: Made with Emergent
+    - generic [ref=e51] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e52] [cursor=pointer]
+      - paragraph [ref=e53] [cursor=pointer]: Made with Emergent
 ```
