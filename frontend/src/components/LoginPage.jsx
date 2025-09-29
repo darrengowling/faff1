@@ -102,8 +102,9 @@ const LoginPage = () => {
       }
     }
 
-    // Email validation - short-circuit if invalid (do not call API)
+    // Email validation - short-circuit if invalid (do not call API)  
     if (emailValue && !isValidEmail(emailValue)) {
+      setLoading(false); // Reset loading immediately on validation error
       setError('Please enter a valid email.');
       // Keep focus on email input for better UX
       const focusDelay = isTestMode ? 0 : 100;
