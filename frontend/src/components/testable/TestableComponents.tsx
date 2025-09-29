@@ -16,7 +16,7 @@ type MustHaveTestId = { 'data-testid': string };
  * Used for critical actions like form submission, navigation, etc.
  */
 export function TestableButton(
-  props: JSX.IntrinsicElements['button'] & MustHaveTestId
+  props: React.ButtonHTMLAttributes<HTMLButtonElement> & MustHaveTestId
 ) {
   return <button {...props} />;
 }
@@ -26,7 +26,7 @@ export function TestableButton(
  * Used for critical form fields like email, passwords, etc.
  */
 export function TestableInput(
-  props: JSX.IntrinsicElements['input'] & MustHaveTestId
+  props: React.InputHTMLAttributes<HTMLInputElement> & MustHaveTestId
 ) {
   return <input {...props} />;
 }
@@ -36,7 +36,7 @@ export function TestableInput(
  * Used for critical navigation like back-to-home, primary CTAs, etc.
  */
 export function TestableLink(
-  props: JSX.IntrinsicElements['a'] & MustHaveTestId
+  props: React.AnchorHTMLAttributes<HTMLAnchorElement> & MustHaveTestId
 ) {
   return <a {...props} />;
 }
@@ -56,7 +56,7 @@ export function TestableRouterLink(
  * Used for critical forms like login, create league, etc.
  */
 export function TestableForm(
-  props: JSX.IntrinsicElements['form'] & MustHaveTestId
+  props: React.FormHTMLAttributes<HTMLFormElement> & MustHaveTestId
 ) {
   return <form {...props} />;
 }
@@ -66,7 +66,7 @@ export function TestableForm(
  * Used for critical page sections for navigation testing
  */
 export function TestableSection(
-  props: JSX.IntrinsicElements['section'] & MustHaveTestId
+  props: React.HTMLAttributes<HTMLElement> & MustHaveTestId
 ) {
   return <section {...props} />;
 }
@@ -76,7 +76,7 @@ export function TestableSection(
  * Used for critical containers like mobile drawers, dialogs, etc.
  */
 export function TestableDiv(
-  props: JSX.IntrinsicElements['div'] & MustHaveTestId
+  props: React.HTMLAttributes<HTMLDivElement> & MustHaveTestId
 ) {
   return <div {...props} />;
 }
