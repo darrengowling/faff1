@@ -215,7 +215,7 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                   variant="ghost"
                   size="sm"
                   onClick={() => navigate('/app')}
-                  data-testid="back-to-home-link"
+                  data-testid="home-nav-button"
                   className="flex items-center space-x-1 text-sm text-theme-text-secondary hover:text-theme-text"
                 >
                   <Home className="w-4 h-4" />
