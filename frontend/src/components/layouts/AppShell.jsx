@@ -137,7 +137,7 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
       {/* Single App Header */}
       <header 
         className="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-40"
-        data-testid="app-header"
+        data-testid={TESTIDS.appHeader}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
