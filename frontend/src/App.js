@@ -841,7 +841,7 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
                   }}
                   aria-describedby={errors.budget ? "budget-error" : undefined}
                   className={errors.budget ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
-                  data-testid="create-budget"
+                  data-testid={TESTIDS.createBudget}
                 />
                 {errors.budget && (
                   <p id="budget-error" className="text-sm text-red-600" data-testid="create-error-budget">
