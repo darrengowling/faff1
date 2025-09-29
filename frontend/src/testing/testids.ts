@@ -8,7 +8,7 @@ export const TESTIDS = {
   authError: 'auth-error',
   authSuccess: 'auth-success',
   backToHome: 'backToHome',
-  homeNavButton: 'home-nav-button',
+  homeNavButton: 'homeNavButton',
   
   // Legacy auth testids (for backward compatibility)
   emailInput: 'authEmailInput',
@@ -79,7 +79,7 @@ export const TESTIDS = {
   navItemFaq: 'nav-item-faq',
   
   // Additional testids for compatibility
-  homeNavButton: 'home-nav-button',
+  homeNavButton: 'homeNavButton',
 } as const;
 
 export type TestIdKey = keyof typeof TESTIDS;
