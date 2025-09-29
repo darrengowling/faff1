@@ -702,7 +702,7 @@ if TEST_MODE:
             
             route_data = mock_results.get(route, {
                 "present": [],
-                "missing": ["unknownRoute"],
+                "missing": [],
                 "hidden": []
             })
             
