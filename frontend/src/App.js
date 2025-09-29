@@ -757,19 +757,16 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-testid={TESTIDS.createDialog}>
-        {/* Success indicator - Always present for testing (Stable DOM Pattern) */}
-        <div 
-          data-testid={TESTIDS.createSuccess} 
-          className={createSuccess ? 'sr-only' : 'sr-only'}
-          aria-hidden={!createSuccess}
-          style={{
-            visibility: createSuccess ? 'visible' : 'hidden',
-            height: '0px',
-            overflow: 'hidden'
-          }}
-        >
-          {createSuccess ? 'League creation successful' : 'No success yet'}
-        </div>
+        {/* Success indicator - hidden but present for testing */}
+        {createSuccess && (
+          <div 
+            data-testid={TESTIDS.createSuccess} 
+            className="sr-only" 
+            aria-hidden="true"
+          >
+            League creation successful
+          </div>
+        )}
         
         <DialogHeader>
           {/* Breadcrumb Navigation */}
