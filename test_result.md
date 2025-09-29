@@ -151,10 +151,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Deterministic League Creation and Lobby Navigation Implementation"
+    - "Mobile Drawer Contract Implementation"
   stuck_tasks: []
   test_all: false
-  test_priority: "deterministic_flow_testing"
+  test_priority: "mobile_drawer_contract_testing"
 
 agent_communication:
   - agent: "main"
