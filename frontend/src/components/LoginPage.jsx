@@ -226,6 +226,15 @@ const LoginPage = () => {
                 aria-busy={loading}
                 data-testid="auth-ready"
               >
+                {/* Loading indicator - always present, visible when loading */}
+                <div 
+                  data-testid={TESTIDS.authLoading}
+                  className={loading ? 'block' : 'sr-only'}
+                  aria-hidden={!loading}
+                >
+                  Form is loading...
+                </div>
+
                 {/* Email Input */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
