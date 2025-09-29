@@ -14,7 +14,7 @@ import { ProductDropdownMenu } from '../navigation/ProductDropdownMenu';
 import { AuthNavigation } from '../navigation/AuthNavigation';
 import { MobileNavigation } from '../navigation/NavigationMenu';
 import { IconThemeToggle } from '../ui/theme-toggle';
-import { TESTIDS } from '../../testing/testids';
+import { TESTIDS } from '../../testids';
 import { useAuth } from '../../App';
 import BackToHomeLink from '../BackToHomeLink.tsx';
 import useScrollSpy from '../../hooks/useScrollSpy';
