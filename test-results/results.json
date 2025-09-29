@@ -69,433 +69,25 @@
   },
   "suites": [
     {
-      "title": "auth_ui.spec.ts",
-      "file": "auth_ui.spec.ts",
+      "title": "core-smoke.spec.ts",
+      "file": "core-smoke.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Authentication UI Tests",
-          "file": "auth_ui.spec.ts",
-          "line": 5,
+          "title": "Core Smoke Test",
+          "file": "core-smoke.spec.ts",
+          "line": 44,
           "column": 6,
           "specs": [
             {
-              "title": "Login page renders form with all required testid elements",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2077,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Login form renders correctly with all required testid elements\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:15:20.145Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-16a7cbf7c39be55f4930",
-              "file": "auth_ui.spec.ts",
-              "line": 11,
-              "column": 7
-            },
-            {
-              "title": "Submit button is disabled for invalid email",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1596,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:15:22.365Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-fde3573f92da4c9a1833",
-              "file": "auth_ui.spec.ts",
-              "line": 43,
-              "column": 7
-            },
-            {
-              "title": "Shows error for invalid email submission",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2214,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Invalid email error properly displayed with role=\"alert\" and form remains interactive\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:15:23.984Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-ec2a5dfc6d4fbdba2635",
-              "file": "auth_ui.spec.ts",
-              "line": 67,
-              "column": 7
-            },
-            {
-              "title": "Successfully submits valid email and shows success",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1734,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Browser Console: Failed to fetch user: AxiosError\n"
-                        },
-                        {
-                          "text": "Browser Console: Token expired or invalid, logging out\n"
-                        },
-                        {
-                          "text": "Browser Console: Failed to load resource: the server responded with a status of 403 ()\n"
-                        },
-                        {
-                          "text": "Browser Console: Failed to fetch user: AxiosError\n"
-                        },
-                        {
-                          "text": "Browser Console: Token expired or invalid, logging out\n"
-                        },
-                        {
-                          "text": "Browser Console: Magic link response: {message: Magic link generated! (Development Mode - Check below), dev_magic_link: https://magic-league.preview.emergentagent.com/aut…msifQ.e0wSlSy9rODdIqSxksWg-wenSeJvTx2dqxbdF-FkCMQ}\n"
-                        },
-                        {
-                          "text": "Browser Console: Test mode: false\n"
-                        },
-                        {
-                          "text": "API Response: {\n  message: \u001b[32m'Magic link generated! (Development Mode - Check below)'\u001b[39m,\n  dev_magic_link: \u001b[32m'https://magic-league.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE0OTAyNywidHlwZSI6Im1hZ2ljX2xpbmsifQ.e0wSlSy9rODdIqSxksWg-wenSeJvTx2dqxbdF-FkCMQ'\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "Dev magic link button found, clicking...\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:15:26.227Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-c66a1c63b7b3bd54cd83",
-              "file": "auth_ui.spec.ts",
-              "line": 101,
-              "column": 7
-            },
-            {
-              "title": "Back to Home navigation works",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1580,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:15:27.982Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-140158d28f89de1d308b",
-              "file": "auth_ui.spec.ts",
-              "line": 145,
-              "column": 7
-            },
-            {
-              "title": "Form handles loading state correctly",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1592,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "ℹ️ Loading state too fast to catch - checking aria-busy changed\n"
-                        },
-                        {
-                          "text": "Final aria-busy state: false\n"
-                        },
-                        {
-                          "text": "Response status: 200\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:15:29.578Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-96a890925798fac6caad",
-              "file": "auth_ui.spec.ts",
-              "line": 155,
-              "column": 7
-            },
-            {
-              "title": "No dead ends - page always has navigation options",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1411,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:15:31.186Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-b2e090213d7dd9fc5a44",
-              "file": "auth_ui.spec.ts",
-              "line": 200,
-              "column": 7
-            },
-            {
-              "title": "Test mode disables animations",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1429,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:15:32.614Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-8c07875bc5127b233182",
-              "file": "auth_ui.spec.ts",
-              "line": 218,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Authentication UI Integration",
-          "file": "auth_ui.spec.ts",
-          "line": 237,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Form submission works using only testids",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 1772,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Form submission completed successfully using testids\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:15:34.060Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-5a0bc8ebc36d0d18578e",
-              "file": "auth_ui.spec.ts",
-              "line": 238,
-              "column": 7
-            },
-            {
-              "title": "Complete auth flow using UI login mode",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2884,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🔐 Logging in user: ui-integration-test@example.com (mode: ui)\n"
-                        },
-                        {
-                          "text": "🖱️  UI login for user: ui-integration-test@example.com\n"
-                        },
-                        {
-                          "text": "✅ UI login successful: ui-integration-test@example.com\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:15:35.848Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-2511f37fb5c022ccca49",
-              "file": "auth_ui.spec.ts",
-              "line": 269,
-              "column": 7
-            },
-            {
-              "title": "Shows error for empty email with proper UX",
+              "title": "Complete auction flow: create → invite → join → auction → bid → sell",
               "ok": false,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 60000,
+                  "timeout": 90000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
@@ -505,378 +97,188 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 11053,
+                      "duration": 18044,
                       "error": {
-                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:289:22",
+                        "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://magic-league.preview.emergentagent.com/app)",
+                        "stack": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://magic-league.preview.emergentagent.com/app)\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16",
                         "location": {
-                          "file": "/app/tests/e2e/auth_ui.spec.ts",
-                          "column": 22,
-                          "line": 289
+                          "file": "/app/tests/e2e/utils/helpers.ts",
+                          "column": 11,
+                          "line": 458
                         },
-                        "snippet": "  287 |\n  288 |     // Submit with empty email (form validation should prevent this, but test anyway)\n> 289 |     await emailInput.fill('');\n      |                      ^\n  290 |     await expect(submitBtn).toBeDisabled();\n  291 |     \n  292 |     // Add some text then clear it to test error behavior"
+                        "snippet": "   at utils/helpers.ts:458\n\n  456 |     });\n  457 |     \n> 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  459 |   }\n  460 | }\n  461 |"
                       },
                       "errors": [
                         {
                           "location": {
-                            "file": "/app/tests/e2e/auth_ui.spec.ts",
-                            "column": 22,
-                            "line": 289
+                            "file": "/app/tests/e2e/utils/helpers.ts",
+                            "column": 11,
+                            "line": 458
                           },
-                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  287 |\n  288 |     // Submit with empty email (form validation should prevent this, but test anyway)\n> 289 |     await emailInput.fill('');\n      |                      ^\n  290 |     await expect(submitBtn).toBeDisabled();\n  291 |     \n  292 |     // Add some text then clear it to test error behavior\n    at /app/tests/e2e/auth_ui.spec.ts:289:22"
+                          "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://magic-league.preview.emergentagent.com/app)\n\n   at utils/helpers.ts:458\n\n  456 |     });\n  457 |     \n> 458 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  459 |   }\n  460 | }\n  461 |\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:458:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16"
                         }
                       ],
                       "stdout": [
                         {
-                          "text": "🧪 Testing empty email error handling...\n"
+                          "text": "🚀 Starting core smoke test...\n"
+                        },
+                        {
+                          "text": "📝 Step 1: Commissioner creates league...\n"
+                        },
+                        {
+                          "text": "🔐 Logging in user: commish@example.com (mode: test)\n"
+                        },
+                        {
+                          "text": "🧪 Test-only login for user: commish@example.com\n"
+                        },
+                        {
+                          "text": "✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)\n"
+                        },
+                        {
+                          "text": "🏆 Creating league: Core Smoke League\n"
+                        },
+                        {
+                          "text": "🎯 Using safe click with overlay detection for Create League button...\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (1167.5, 802)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid=\"create-league-btn\"]\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: Each child in a list should have a unique \"key\" prop.%s%s See https://react.dev/link/warning-keys for more information. \n\nCheck the render method of `CreateLeagueDialog`. \n"
+                        },
+                        {
+                          "text": "✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid=\"create-league-btn\"]\n"
+                        },
+                        {
+                          "text": "📋 Filling Create League form: Core Smoke League\n"
+                        },
+                        {
+                          "text": "📋 Detected CreateLeagueDialog (modal) form\n"
+                        },
+                        {
+                          "text": "📝 Using dialog testids: {\n  name: \u001b[32m'create-name'\u001b[39m,\n  slots: \u001b[32m'create-slots-input'\u001b[39m,\n  budget: \u001b[32m'create-budget'\u001b[39m,\n  min: \u001b[32m'create-min'\u001b[39m,\n  max: \u001b[32m'create-max'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "📝 Filling league name...\n"
+                        },
+                        {
+                          "text": "📝 Filling form fields with type-aware setters...\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-slots-input=3 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-slots-input=3\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-budget=100 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-budget=100\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-min=2 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-min=2\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-max=8 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-max=8\n"
+                        },
+                        {
+                          "text": "✅ Create League form filled successfully: Core Smoke League\n"
+                        },
+                        {
+                          "text": "📝 Form filled, submitting...\n"
+                        },
+                        {
+                          "text": "🎯 Checking clickability at coordinates (798.0, 641.0)\n"
+                        },
+                        {
+                          "text": "🔍 Target: BUTTON[data-testid=\"create-submit\"]\n"
+                        },
+                        {
+                          "text": "🔍 Topmost: BUTTON[data-testid=\"create-submit\"]\n"
+                        },
+                        {
+                          "text": "✅ Element is clickable\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for league creation success...\n"
+                        },
+                        {
+                          "text": "🏁 Waiting for league creation success and lobby navigation...\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: Failed to load resource: the server responded with a status of 500 ()\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: League creation error: AxiosError\n"
+                        },
+                        {
+                          "text": "Test failed, capturing artifacts...\n"
+                        },
+                        {
+                          "text": "Screenshots saved with timestamp: 2025-09-29T12-17-22-826Z\n"
                         }
                       ],
-                      "stderr": [],
+                      "stderr": [
+                        {
+                          "text": "❌ Failed to complete league creation → lobby flow. Current URL: https://magic-league.preview.emergentagent.com/app\n"
+                        }
+                      ],
                       "retry": 0,
-                      "startTime": "2025-09-29T12:15:38.748Z",
+                      "startTime": "2025-09-29T12:17:05.119Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/test-failed-1.png"
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-1.png"
                         },
                         {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/video.webm"
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-2.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-3.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/error-context.md"
                         },
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/trace.zip"
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/trace.zip"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/app/tests/e2e/auth_ui.spec.ts",
-                        "column": 22,
-                        "line": 289
+                        "file": "/app/tests/e2e/utils/helpers.ts",
+                        "column": 11,
+                        "line": 458
                       }
                     }
                   ],
                   "status": "unexpected"
                 }
               ],
-              "id": "03a6b9075963f640fefd-8211cb37914dd849d4a7",
-              "file": "auth_ui.spec.ts",
-              "line": 281,
-              "column": 7
-            },
-            {
-              "title": "Shows error for invalid email format with concise message",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 11123,
-                      "error": {
-                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:310:22",
-                        "location": {
-                          "file": "/app/tests/e2e/auth_ui.spec.ts",
-                          "column": 22,
-                          "line": 310
-                        },
-                        "snippet": "  308 |\n  309 |     // Enter invalid email and try to submit\n> 310 |     await emailInput.fill('invalid-email-format');\n      |                      ^\n  311 |     \n  312 |     // Button should be disabled for invalid email\n  313 |     await expect(submitBtn).toBeDisabled();"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/app/tests/e2e/auth_ui.spec.ts",
-                            "column": 22,
-                            "line": 310
-                          },
-                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  308 |\n  309 |     // Enter invalid email and try to submit\n> 310 |     await emailInput.fill('invalid-email-format');\n      |                      ^\n  311 |     \n  312 |     // Button should be disabled for invalid email\n  313 |     await expect(submitBtn).toBeDisabled();\n    at /app/tests/e2e/auth_ui.spec.ts:310:22"
-                        }
-                      ],
-                      "stdout": [
-                        {
-                          "text": "🧪 Testing invalid email error handling...\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:15:50.608Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/video.webm"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/app/tests/e2e/auth_ui.spec.ts",
-                        "column": 22,
-                        "line": 310
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-ac21712ece11ffeccf88",
-              "file": "auth_ui.spec.ts",
-              "line": 302,
-              "column": 7
-            },
-            {
-              "title": "Error clears when user starts typing",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 11098,
-                      "error": {
-                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:356:22",
-                        "location": {
-                          "file": "/app/tests/e2e/auth_ui.spec.ts",
-                          "column": 22,
-                          "line": 356
-                        },
-                        "snippet": "  354 |\n  355 |     // Enter email that might trigger error\n> 356 |     await emailInput.fill('error-test@invaliddomain999.com');\n      |                      ^\n  357 |     await submitBtn.click();\n  358 |     \n  359 |     // Wait a moment for any potential error"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/app/tests/e2e/auth_ui.spec.ts",
-                            "column": 22,
-                            "line": 356
-                          },
-                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  354 |\n  355 |     // Enter email that might trigger error\n> 356 |     await emailInput.fill('error-test@invaliddomain999.com');\n      |                      ^\n  357 |     await submitBtn.click();\n  358 |     \n  359 |     // Wait a moment for any potential error\n    at /app/tests/e2e/auth_ui.spec.ts:356:22"
-                        }
-                      ],
-                      "stdout": [
-                        {
-                          "text": "🧪 Testing error clearing behavior...\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:16:02.652Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/video.webm"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/app/tests/e2e/auth_ui.spec.ts",
-                        "column": 22,
-                        "line": 356
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-c7318167fe6268fc0bef",
-              "file": "auth_ui.spec.ts",
-              "line": 348,
-              "column": 7
-            },
-            {
-              "title": "Submit button states work correctly during loading",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 11191,
-                      "error": {
-                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:385:22",
-                        "location": {
-                          "file": "/app/tests/e2e/auth_ui.spec.ts",
-                          "column": 22,
-                          "line": 385
-                        },
-                        "snippet": "  383 |\n  384 |     // Fill valid email\n> 385 |     await emailInput.fill('loading-test@example.com');\n      |                      ^\n  386 |     \n  387 |     // Button should be enabled\n  388 |     await expect(submitBtn).toBeEnabled();"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/app/tests/e2e/auth_ui.spec.ts",
-                            "column": 22,
-                            "line": 385
-                          },
-                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  383 |\n  384 |     // Fill valid email\n> 385 |     await emailInput.fill('loading-test@example.com');\n      |                      ^\n  386 |     \n  387 |     // Button should be enabled\n  388 |     await expect(submitBtn).toBeEnabled();\n    at /app/tests/e2e/auth_ui.spec.ts:385:22"
-                        }
-                      ],
-                      "stdout": [
-                        {
-                          "text": "🧪 Testing submit button states...\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:16:14.665Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/video.webm"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/app/tests/e2e/auth_ui.spec.ts",
-                        "column": 22,
-                        "line": 385
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-ef2d4aa0749639d18765",
-              "file": "auth_ui.spec.ts",
-              "line": 377,
-              "column": 7
-            },
-            {
-              "title": "Error display has proper accessibility attributes",
-              "ok": false,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 60000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 11141,
-                      "error": {
-                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
-                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:443:22",
-                        "location": {
-                          "file": "/app/tests/e2e/auth_ui.spec.ts",
-                          "column": 22,
-                          "line": 443
-                        },
-                        "snippet": "  441 |\n  442 |     // Try to trigger an error\n> 443 |     await emailInput.fill('accessibility-test@invaliddomain999.com');\n      |                      ^\n  444 |     await submitBtn.click();\n  445 |     await page.waitForTimeout(2000);\n  446 |"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/app/tests/e2e/auth_ui.spec.ts",
-                            "column": 22,
-                            "line": 443
-                          },
-                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  441 |\n  442 |     // Try to trigger an error\n> 443 |     await emailInput.fill('accessibility-test@invaliddomain999.com');\n      |                      ^\n  444 |     await submitBtn.click();\n  445 |     await page.waitForTimeout(2000);\n  446 |\n    at /app/tests/e2e/auth_ui.spec.ts:443:22"
-                        }
-                      ],
-                      "stdout": [
-                        {
-                          "text": "🧪 Testing error accessibility...\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-09-29T12:16:26.770Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/video.webm"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/app/test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/app/tests/e2e/auth_ui.spec.ts",
-                        "column": 22,
-                        "line": 443
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
-                }
-              ],
-              "id": "03a6b9075963f640fefd-4481e3e6a45b0e05d79c",
-              "file": "auth_ui.spec.ts",
-              "line": 435,
+              "id": "a1185c8c8a119dd4daa6-824956169c2fdc1743ba",
+              "file": "core-smoke.spec.ts",
+              "line": 114,
               "column": 7
             }
           ]
@@ -886,11 +288,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-09-29T12:15:07.440Z",
-    "duration": 90697.26999999999,
-    "expected": 10,
+    "startTime": "2025-09-29T12:16:52.258Z",
+    "duration": 32148.823999999997,
+    "expected": 0,
     "skipped": 0,
-    "unexpected": 5,
+    "unexpected": 1,
     "flaky": 0
   }
 }
