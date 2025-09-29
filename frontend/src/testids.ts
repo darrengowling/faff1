@@ -229,6 +229,29 @@ export const TESTIDS = {
 
   // Hash navigation
   navCurrentHash: 'nav-current-hash',
+
+  // Missing testids from tests
+  auctionTitle: 'auction-title',
+  authRequiredToast: 'auth-required-toast',
+  backToHomeLink: 'back-to-home-link',
+  clubCount: 'club-count',
+  clubName: 'club-name',
+  connectionStatus: 'connection-status',
+  createDialog: 'create-dialog', 
+  createSuccess: 'create-success',
+  currentLot: 'current-lot',
+  joinLeagueBtn: 'join-league-btn',
+  leagueSettings: 'league-settings',
+  memberCount: 'member-count',
+  ownedClub: 'owned-club',
+  placeBidBtn: 'place-bid-btn',
+  placeBidButton: 'place-bid-button',
+  stickyPageNav: 'sticky-page-nav',
+  timer: 'timer',
+  timerDisplay: 'timer-display',
+  totalPoints: 'total-points',
+  userBudget: 'user-budget',
+  userMenu: 'user-menu',
 } as const;
 
 // Type for testid values (for TypeScript safety)
