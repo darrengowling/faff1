@@ -177,14 +177,14 @@ export async function startAuction(page: Page): Promise<void> {
   console.log('🔨 Starting auction...');
   
   // Wait for start auction button to be enabled
-  const startButton = page.locator(`[data-testid="${TESTIDS.startAuctionBtn}"]`);
+  const startButton = byId(page, 'startAuction');
   await expect(startButton).toBeEnabled({ timeout: 10000 });
   
   // Click start auction
   await startButton.click();
   
   // Wait for auction room to load
-  await page.locator(`[data-testid="${TESTIDS.auctionRoom}"]`).waitFor({ state: 'visible', timeout: 15000 });
+  await byId(page, 'auctionRoom').waitFor({ state: 'visible', timeout: 15000 });
   
   console.log('✅ Auction started successfully');
 }
@@ -193,20 +193,20 @@ export async function nominateFirstAsset(page: Page): Promise<string> {
   console.log('🎯 Nominating first asset...');
   
   // Click nominate button
-  await page.locator(`[data-testid="${TESTIDS.nominateBtn}"]`).click();
+  await clickById(page, 'nominateBtn');
   
   // Select first available asset from dropdown
-  const nominateSelect = page.locator(`[data-testid="${TESTIDS.nominateSelect}"]`);
+  const nominateSelect = byId(page, 'nominateSelect');
   await nominateSelect.waitFor({ state: 'visible' });
   await nominateSelect.selectOption({ index: 0 });
   
   // Submit nomination
-  await page.locator(`[data-testid="${TESTIDS.nominateSubmit}"]`).click();
+  await clickById(page, 'nominateSubmit');
   
   // Wait for asset to appear in auction
-  await page.locator(`[data-testid="${TESTIDS.auctionAssetName}"]`).waitFor({ state: 'visible' });
+  await waitForId(page, 'auctionAsset');
   
-  const assetName = await page.locator(`[data-testid="${TESTIDS.auctionAssetName}"]`).textContent() || '';
+  const assetName = await byId(page, 'auctionAsset').textContent() || '';
   
   console.log(`✅ Nominated asset: ${assetName}`);
   return assetName;
