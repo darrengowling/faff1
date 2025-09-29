@@ -76,6 +76,10 @@ const LoginPage = () => {
         if (testResponse.status === 200 && testResponse.data.ok) {
           console.log('TEST_MODE: Test login successful - session cookie set');
           
+          // Show success state before redirect
+          setLoading(false);
+          setSuccess('Login successful! Redirecting...');
+          
           // Refresh the auth context to pick up the new session
           refreshUser();
           
@@ -84,7 +88,10 @@ const LoginPage = () => {
           const nextUrl = urlParams.get('next');
           const redirectUrl = nextUrl ? decodeURIComponent(nextUrl) : '/app';
           
-          navigate(redirectUrl);
+          // Delay navigation to show success state
+          setTimeout(() => {
+            navigate(redirectUrl);
+          }, 500);
           return;
         }
       } catch (testErr) {
