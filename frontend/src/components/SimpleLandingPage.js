@@ -38,7 +38,7 @@ import {
   Lock,
   HelpCircle
 } from 'lucide-react';
-import { TESTIDS } from '../testids.ts';
+import { TESTIDS } from '../testids';
 import { getBrandName } from '../brand';
 import MarketingShell from './layouts/MarketingShell';
 import { TestableSection, TestableButton } from './testable/TestableComponents.tsx';
