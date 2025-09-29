@@ -257,28 +257,41 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
           </div>
         </div>
 
-        {/* Mobile Drawer - Conditionally rendered */}
-        {mobileMenuOpen && (
+        {/* Mobile Drawer - Always rendered with data attributes */}
+        <div 
+          className="md:hidden fixed inset-0 z-40"
+          style={{ 
+            paddingTop: '64px',
+            pointerEvents: mobileMenuOpen ? 'auto' : 'none',
+            visibility: mobileMenuOpen ? 'visible' : 'hidden'
+          }}
+        >
+          {/* Backdrop */}
           <div 
-            className="md:hidden fixed inset-0 z-40 drawer-backdrop"
+            className="drawer-backdrop absolute inset-0"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
             style={{ 
-              paddingTop: '64px',
               pointerEvents: 'none' // Backdrop never intercepts clicks
             }}
+          />
+          
+          {/* Drawer Panel */}
+          <div
+            className="bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel relative"
+            id="mobile-navigation"
+            role="navigation"
+            aria-label="Mobile navigation menu"
+            onClick={(e) => e.stopPropagation()}
+            data-testid="nav-mobile-drawer"
+            data-state={mobileMenuOpen ? "open" : "closed"}
+            data-count={mobileItemCount}
+            style={{ 
+              pointerEvents: 'auto', // Panel allows clicks
+              transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
+              transition: 'transform 0.3s ease-in-out'
+            }}
           >
-            <div
-              className="bg-theme-surface w-full max-w-sm min-h-full shadow-lg overflow-y-auto drawer-panel"
-              id="mobile-navigation"
-              role="navigation"
-              aria-label="Mobile navigation menu"
-              onClick={(e) => e.stopPropagation()}
-              data-testid="nav-mobile-drawer"
-              data-state="open"
-              data-count={mobileItemCount}
-              style={{ pointerEvents: 'auto' }} // Panel allows clicks
-            >
                 <div className="p-4">
                   <div className="flex items-center justify-between mb-6">
                     <span className="text-lg font-semibold text-gray-900">Menu</span>
