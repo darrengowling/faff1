@@ -144,7 +144,7 @@ const LoginPage = () => {
               console.log('Navigating to /auth/verify with token:', token);
               navigate(`/auth/verify?token=${token}`);
             }
-          }, 500);
+          }, 1000); // Longer delay to show success state
           return;
         }
       }
