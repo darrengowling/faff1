@@ -62,7 +62,8 @@ const LoginPage = () => {
     setMagicLink('');
 
     // In TEST_MODE, try /auth/test-login first, fall back to UI on 404
-    if (isTestMode && (emailValue.includes('@example.com') || emailValue.includes('test'))) {
+    // Skip test-login for emails specifically meant to test magic link flow
+    if (isTestMode && (emailValue.includes('@example.com') || emailValue.includes('test')) && !emailValue.includes('magic-link')) {
       try {
         setLoading(true);
         console.log('TEST_MODE: Trying test login endpoint first...');
