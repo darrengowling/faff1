@@ -30,9 +30,16 @@ const MarketingShell = ({ children }) => {
   const [mobileItemCount, setMobileItemCount] = React.useState(0);
   const [productDropdownOpen, setProductDropdownOpen] = React.useState(false);
   const [focusedIndex, setFocusedIndex] = React.useState(-1);
-  // Hash handling for anchor navigation
-  const { activeSection } = useScrollSpy({ threshold: 0.5, debounceMs: 100 });
-  const currentHash = activeSection ? `#${activeSection}` : window.location.hash;
+  // Hash handling for anchor navigation - use hash spy for stable navigation
+  const { currentHash, setHash } = useHashSpy(['#home', '#how', '#why', '#features', '#safety', '#faq']);
+
+  // Force drawer closed on any route or anchor navigation
+  useEffect(() => {
+    // Close drawer on route change
+    setMobileMenuOpen(false);
+    // Update count immediately 
+    setMobileItemCount(current => current);
+  }, [location.pathname, location.hash]);
 
   // Count visible mobile menu items
   React.useEffect(() => {
