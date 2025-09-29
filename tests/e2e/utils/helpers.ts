@@ -290,7 +290,7 @@ export async function navigateToFixtures(page: Page): Promise<void> {
 export async function waitForJoinedCount(page: Page, count: number): Promise<void> {
   console.log(`⏳ Waiting for ${count} members to join...`);
   
-  await expect(page.locator(`[data-testid="${TESTIDS.lobbyJoinedCount}"]`))
+  await expect(byId(page, 'lobbyJoinedCount'))
     .toContainText(`${count}`, { timeout: 30000 });
   
   console.log(`✅ ${count} members joined`);
