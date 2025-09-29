@@ -571,6 +571,88 @@ if TEST_MODE:
             "expiresIn": 7200
         }
 
+    @api_router.post("/test/league/quick-create")
+    async def quick_create_test_league(current_user: UserResponse = Depends(get_current_verified_user)):
+        """
+        TEST-ONLY QUICK LEAGUE CREATION
+        Creates a pre-configured test league with minimal setup for lobby testing
+        Returns league ID for immediate lobby access
+        """
+        if not is_test_mode():
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Quick league creation only available in TEST_MODE"
+            )
+        
+        import uuid
+        from datetime import datetime, timezone
+        
+        try:
+            # Create test league with minimal configuration
+            league_id = str(uuid.uuid4())
+            test_league_name = f"Quick Test League {datetime.now().strftime('%H%M%S')}"
+            
+            league_data = {
+                "_id": league_id,
+                "name": test_league_name,
+                "season": "2025-26",
+                "commissioner_id": current_user.id,
+                "status": "setup",
+                "settings": {
+                    "budget_per_manager": 100,
+                    "club_slots_per_manager": 8,
+                    "roster_size": 8,
+                    "budget": 100,
+                    "bid_timer_seconds": BID_TIMER_SECONDS,
+                    "anti_snipe_seconds": ANTI_SNIPE_SECONDS,
+                    "league_size": {"min": 2, "max": 8}
+                },
+                "created_at": datetime.now(timezone.utc),
+                "updated_at": datetime.now(timezone.utc)
+            }
+            
+            # Insert league
+            await db.leagues.insert_one(league_data)
+            
+            # Create commissioner membership
+            membership_data = {
+                "_id": str(uuid.uuid4()),
+                "league_id": league_id,
+                "user_id": current_user.id,
+                "role": "commissioner",
+                "status": "active",
+                "joined_at": datetime.now(timezone.utc)
+            }
+            await db.league_memberships.insert_one(membership_data)
+            
+            # Create commissioner roster
+            roster_data = {
+                "_id": str(uuid.uuid4()),
+                "league_id": league_id,
+                "user_id": current_user.id,
+                "clubs": [],
+                "budget_remaining": 100,
+                "created_at": datetime.now(timezone.utc)
+            }
+            await db.rosters.insert_one(roster_data)
+            
+            logger.info(f"🧪 QUICK TEST LEAGUE CREATED: {league_id} by {current_user.email}")
+            
+            return {
+                "ok": True,
+                "leagueId": league_id,
+                "name": test_league_name,
+                "lobbyUrl": f"/app/leagues/{league_id}/lobby",
+                "message": "Quick test league created successfully"
+            }
+            
+        except Exception as e:
+            logger.error(f"Error creating quick test league: {e}")
+            raise HTTPException(
+                status_code=500,
+                detail=f"Failed to create quick test league: {str(e)}"
+            )
+
     @api_router.get("/test/testids/ping")
     async def ping_test_ids():
         """Simple ping endpoint for testing testids routes"""
