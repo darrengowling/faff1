@@ -21,6 +21,7 @@ class FocusedAuthLeagueTest:
         self.tests_run = 0
         self.tests_passed = 0
         self.failed_tests = []
+        self.session = requests.Session()  # Use session to handle cookies
         
         # Test data with realistic values
         self.test_email = "pifa_test_user@example.com"
