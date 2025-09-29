@@ -260,7 +260,7 @@ export async function verifyRosterCount(page: Page, expectedCount: number): Prom
 export async function verifyBudgetAmount(page: Page, expectedAmount: number): Promise<void> {
   console.log(`🔍 Verifying budget amount: ${expectedAmount}`);
   
-  const budgetDisplay = page.locator(`[data-testid="${TESTIDS.budgetRemaining}"]`);
+  const budgetDisplay = byId(page, 'budgetRemaining');
   await expect(budgetDisplay).toContainText(expectedAmount.toString(), { timeout: 10000 });
   
   console.log(`✅ Budget amount verified: ${expectedAmount}`);
