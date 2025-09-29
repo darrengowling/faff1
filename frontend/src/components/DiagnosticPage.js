@@ -48,7 +48,7 @@ const DiagnosticPage = () => {
     origin: config.viteApiUrl !== 'Not set' ? config.viteApiUrl :
             config.nextApiUrl !== 'Not set' ? config.nextApiUrl :
             config.reactApiOrigin !== 'Not set' ? config.reactApiOrigin :
-            'https://pifa-league.preview.emergentagent.com',
+            'https://e2e-stability.preview.emergentagent.com',
                
     path: config.viteSocketPath !== 'Not set' ? config.viteSocketPath :
           config.nextSocketPath !== 'Not set' ? config.nextSocketPath :

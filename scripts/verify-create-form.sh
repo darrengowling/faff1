@@ -14,7 +14,7 @@ echo "🧪 PRE-GATE: Verifying Create League form accessibility and testids..."
 # Configuration
 MAX_RETRIES=3
 TIMEOUT=30
-BASE_URL="${PLAYWRIGHT_BASE_URL:-https://pifa-league.preview.emergentagent.com}"
+BASE_URL="${PLAYWRIGHT_BASE_URL:-https://e2e-stability.preview.emergentagent.com}"
 
 # Set environment for Node.js script
 export BASE_URL
@@ -29,7 +29,7 @@ const { chromium } = require("playwright");
   const page = await context.newPage();
   
   try {
-    const baseUrl = process.env.BASE_URL || "https://pifa-league.preview.emergentagent.com";
+    const baseUrl = process.env.BASE_URL || "https://e2e-stability.preview.emergentagent.com";
     console.log(`🔍 Navigating to application: ${baseUrl}`);
     await page.goto(baseUrl);
     await page.waitForLoadState("networkidle", { timeout: 30000 });

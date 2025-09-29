@@ -10,7 +10,7 @@
 ### Socket.IO Diagnostics Results
 ```
 🔌 Socket.IO Diagnostics Starting...
-Backend URL: https://pifa-league.preview.emergentagent.com
+Backend URL: https://e2e-stability.preview.emergentagent.com
 Socket Path: /api/socketio
 Transports: polling, websocket
 

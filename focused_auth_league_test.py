@@ -12,7 +12,7 @@ import time
 from datetime import datetime, timezone
 
 class FocusedAuthLeagueTest:
-    def __init__(self, base_url="https://pifa-league.preview.emergentagent.com"):
+    def __init__(self, base_url="https://e2e-stability.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.token = None

@@ -87,13 +87,13 @@ After applying the configuration:
 
 1. **Test Socket.IO endpoint directly**:
    ```bash
-   curl "https://pifa-league.preview.emergentagent.com/socket.io/?EIO=4&transport=polling"
+   curl "https://e2e-stability.preview.emergentagent.com/socket.io/?EIO=4&transport=polling"
    ```
    Should return: `0{"sid":"...","upgrades":["websocket"],"pingInterval":...}`
 
 2. **Test API endpoint** (should still work):
    ```bash
-   curl "https://pifa-league.preview.emergentagent.com/api/health"
+   curl "https://e2e-stability.preview.emergentagent.com/api/health"
    ```
    Should return: `{"status":"healthy","timestamp":"..."}`
 
@@ -136,7 +136,7 @@ If the fix doesn't work immediately:
 4. **Verify WebSocket support**:
    ```bash
    curl -i -N -H "Connection: Upgrade" -H "Upgrade: websocket" \
-        "https://pifa-league.preview.emergentagent.com/socket.io/"
+        "https://e2e-stability.preview.emergentagent.com/socket.io/"
    ```
 
 ## Platform-Specific Notes

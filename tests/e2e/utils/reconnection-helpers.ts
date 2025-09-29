@@ -22,7 +22,7 @@ export async function testSocketReconnection(
   const hasSocket = currentUrl.includes('/auction/') || currentUrl.includes('/diagnostics');
   
   if (!hasSocket) {
-    await page.goto('https://pifa-league.preview.emergentagent.com/diagnostics');
+    await page.goto('https://e2e-stability.preview.emergentagent.com/diagnostics');
     await page.waitForLoadState('domcontentloaded');
   }
   
@@ -122,7 +122,7 @@ export async function testAuctionReconnection(
   console.log(`🏟️ Testing auction reconnection for ${email} in league ${leagueId}`);
   
   // Navigate to auction room
-  await page.goto(`https://pifa-league.preview.emergentagent.com/auction/${leagueId}`);
+  await page.goto(`https://e2e-stability.preview.emergentagent.com/auction/${leagueId}`);
   await page.waitForLoadState('domcontentloaded');
   
   // Wait for auction to load

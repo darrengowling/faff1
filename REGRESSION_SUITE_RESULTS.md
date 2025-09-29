@@ -10,7 +10,7 @@
 
 #### ✅ PRE-GATE 1: Socket.IO Diagnostics - PASSED
 ```
-Backend URL: https://pifa-league.preview.emergentagent.com
+Backend URL: https://e2e-stability.preview.emergentagent.com
 Socket Path: /api/socketio
 Transports: polling, websocket
 

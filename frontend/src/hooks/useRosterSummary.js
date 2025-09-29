@@ -26,7 +26,7 @@ export const useRosterSummary = (leagueId, userId = null) => {
       const token = localStorage.getItem('token');
       const apiUrl = process.env.REACT_APP_BACKEND_URL || 
                     process.env.NEXT_PUBLIC_API_URL ||
-                    'https://pifa-league.preview.emergentagent.com';
+                    'https://e2e-stability.preview.emergentagent.com';
 
       const params = userId ? `?userId=${userId}` : '';
       const response = await fetch(`${apiUrl}/api/leagues/${leagueId}/roster/summary${params}`, {
