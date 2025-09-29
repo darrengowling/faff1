@@ -1,0 +1,57 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T"
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - button "Friends of PIFA" [ref=e8] [cursor=pointer]:
+              - img [ref=e10] [cursor=pointer]
+              - generic [ref=e16] [cursor=pointer]: Friends of PIFA
+            - link "Back to Home" [ref=e17] [cursor=pointer]:
+              - /url: /
+              - text: ← Back to Home
+          - navigation [ref=e18]:
+            - button "Product" [ref=e20] [cursor=pointer]:
+              - generic [ref=e21] [cursor=pointer]: Product
+              - img
+          - generic [ref=e22]:
+            - generic [ref=e23]:
+              - button "Sign In" [ref=e24] [cursor=pointer]
+              - button "Get Started" [ref=e25] [cursor=pointer]
+            - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+              - generic [ref=e27] [cursor=pointer]:
+                - img
+      - main [ref=e29]:
+        - generic [ref=e31]:
+          - generic [ref=e32]:
+            - img [ref=e33]
+            - heading "Sign In" [level=2] [ref=e36]
+            - paragraph [ref=e37]: Enter your email to receive a magic link for secure access
+          - generic [ref=e38]:
+            - heading "Magic Link Authentication" [level=3] [ref=e40]
+            - generic [ref=e42]:
+              - generic [ref=e43]: Form is loading...
+              - generic [ref=e44]:
+                - generic [ref=e45]: Email
+                - textbox "Email" [ref=e46]: loading-test@example.com
+              - generic [ref=e47]:
+                - img [ref=e48]
+                - generic [ref=e51]: Magic link sent! Check your email or use the link below.
+              - button "Send Magic Link" [ref=e52] [cursor=pointer]:
+                - generic [ref=e53] [cursor=pointer]:
+                  - img [ref=e54] [cursor=pointer]
+                  - generic [ref=e57] [cursor=pointer]: Send Magic Link
+              - generic [ref=e59]:
+                - paragraph [ref=e60]: "Development Mode - Magic Link:"
+                - button "Login Now" [ref=e61] [cursor=pointer]
+          - paragraph [ref=e63]: No password required. We'll send you a secure link to sign in.
+  - link "Emergent platform logo Made with Emergent" [ref=e64] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e65] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e66] [cursor=pointer]
+      - paragraph [ref=e67] [cursor=pointer]: Made with Emergent
+```
