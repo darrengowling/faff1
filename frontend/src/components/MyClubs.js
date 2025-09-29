@@ -224,7 +224,7 @@ const MyClubs = ({ user, token }) => {
             
             {/* Additional stats grid */}
             <div className="grid grid-cols-2 gap-4 mt-6">
-              <div className="text-center p-4 bg-green-50 rounded-lg" data-testid={TESTIDS.budgetDisplay}>
+              <div className="text-center p-4 bg-green-50 rounded-lg" data-testid={TESTIDS.yourBudget}>
                 <Wallet className="w-6 h-6 text-green-600 mx-auto mb-2" aria-hidden="true" />
                 <div className="text-2xl font-bold text-green-600" data-testid={TESTIDS.budgetRemaining}>
                   {budget_info.budget_remaining}
