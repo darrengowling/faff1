@@ -16,6 +16,7 @@ import { CompactRules } from './components/ui/rules-badge.jsx';
 
 // Import testing utilities
 import { setupRouteVerification } from './testing/verifyTestIds.ts';
+import { startSessionKeepAlive, stopSessionKeepAlive, isTestMode } from './utils/testHelpers.js';
 
 // Import components
 import AuctionRoom from './components/AuctionRoom';
