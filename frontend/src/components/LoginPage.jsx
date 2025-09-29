@@ -88,10 +88,10 @@ const LoginPage = () => {
       }
     }
 
-    // Email validation (allow invalid in TEST_MODE for error testing)
-    if (!isTestMode && emailValue && !isValidEmail(emailValue)) {
-      setError('Please enter a valid email address.');
-      // Keep focus on email input for better UX - immediate in TEST_MODE
+    // Email validation - short-circuit if invalid (do not call API)
+    if (emailValue && !isValidEmail(emailValue)) {
+      setError('Please enter a valid email.');
+      // Keep focus on email input for better UX
       const focusDelay = isTestMode ? 0 : 100;
       setTimeout(() => {
         emailInputRef.current?.focus();
