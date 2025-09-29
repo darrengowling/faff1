@@ -234,7 +234,7 @@ const MarketingShell = ({ children }) => {
                 </div>
             </div>
         </div>
-      )}
+      </div>
 
       {/* Always-present drawer testid - removed duplicate */}
 
