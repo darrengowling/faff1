@@ -40,6 +40,9 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
     // Count nav items, auth actions, and theme toggle
     let count = 0;
     
+    // Back to Home link
+    count += 1;
+    
     // MobileNavigation items (approximate based on typical nav items)
     count += 4; // Typical nav items: Home, Features, About, Contact
     
