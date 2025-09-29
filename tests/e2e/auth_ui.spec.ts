@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { TESTIDS } from '../../frontend/src/testids.ts';
+import { byId, selectors, waitForId, clickById, fillById, isVisibleById } from './utils/selectors';
 import { login } from './utils/login';
 
 test.describe('Authentication UI Tests', () => {
@@ -17,17 +17,17 @@ test.describe('Authentication UI Tests', () => {
     await expect(page).toHaveURL('/login');
 
     // CRITICAL: Assert all required form elements with testids are present and visible
-    await expect(page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`)).toBeVisible({ timeout: 10000 });
-    await expect(page.locator(`[data-testid="${TESTIDS.authSubmitBtn}"]`)).toBeVisible({ timeout: 10000 });
+    await expect(byId(page, 'authEmailInput')).toBeVisible({ timeout: 10000 });
+    await expect(byId(page, 'authSubmitBtn')).toBeVisible({ timeout: 10000 });
     
     // Verify navigation elements exist (no dead-ends)
-    const backToHomeLink = page.locator('[data-testid="back-to-home-link"]');
+    const backToHomeLink = byId(page, 'backToHome');
     await expect(backToHomeLink).toBeVisible();
     // Verify session-based routing: unauthenticated should point to "/"
     await expect(backToHomeLink).toHaveAttribute('data-dest', '/');
     
     // Verify header structure
-    await expect(page.locator('[data-testid="login-header"]')).toBeVisible();
+    await expect(byId(page, 'loginHeader')).toBeVisible();
     
     // Verify form accessibility
     const emailInput = page.locator(`[data-testid="${TESTIDS.authEmailInput}"]`);
