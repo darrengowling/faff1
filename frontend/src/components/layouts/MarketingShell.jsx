@@ -43,23 +43,23 @@ const MarketingShell = ({ children }) => {
 
   // Count visible mobile menu items
   React.useEffect(() => {
-    // Count nav items, auth actions, and theme toggle for marketing shell
+    // Count nav items based on actual MobileNavigation items
     let count = 0;
     
     // Back to Home link
     count += 1;
     
-    // MobileNavigation items (marketing focused)
-    count += 3; // Features, Pricing, About
+    // MobileNavigation items (6 anchor sections: home, how, why, features, safety, faq)
+    count += 6;
     
-    // Auth actions 
-    count += 2; // Sign In, Get Started
+    // Auth actions (Sign In, Get Started or user actions)
+    count += user ? 2 : 2; // Adjust based on auth state
     
     // Theme toggle
     count += 1;
     
     setMobileItemCount(count);
-  }, []);
+  }, [user]); // Recalculate when auth state changes
 
   // Handle product dropdown
   const handleProductDropdownToggle = () => {
