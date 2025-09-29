@@ -49,9 +49,21 @@ export const TESTIDS = {
   
   // Auction
   auctionAsset: 'auction-asset-name',
+  auctionAssetName: 'auction-asset-name',
   auctionTimer: 'auction-timer',
   auctionTopBid: 'auction-top-bid',
+  auctionRoom: 'auction-room',
   bidPlus1: 'bid-plus-1',
+  bidPlus5: 'bid-plus-5',
+  bidPlus10: 'bid-plus-10',
+  bidInput: 'bid-input',
+  bidSubmit: 'bid-submit',
+  nominateBtn: 'nominate-btn',
+  nominateSelect: 'nominate-select',
+  nominateSubmit: 'nominate-submit',
+  closeLotButton: 'close-lot-button',
+  nextLotButton: 'next-lot-button',
+  undoButton: 'undo-button',
   soldBadge: 'lot-sold',
   
   // Nav / Mobile
