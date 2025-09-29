@@ -449,12 +449,12 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Fix Frontend Compilation Issues with AppShell/MarketingShell Import Paths"
-    - "UI Login Timeout Resolution"
-    - "Loading State Test Fix in auth_ui.spec.ts"
+    - "Centralized Auth Guards and Predictable Redirects"
+    - "auth_ui.spec.ts Authentication Flow Testing"
+    - "access_and_gates.spec.ts Route Guard Testing"
   stuck_tasks: []
-  test_all: true
-  test_priority: "production_readiness_validated"
+  test_all: false
+  test_priority: "auth_guards_verification"
 
   - task: "CI Pipeline Integration for Create Form Pre-Gate"
     implemented: true
