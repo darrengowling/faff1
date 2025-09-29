@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { TESTIDS } from '../testids.js';
+import { TESTIDS } from '../testing/testids.ts';
 
 // Test helper functions
 const testFormInputTestids = () => [
