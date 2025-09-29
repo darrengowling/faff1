@@ -23,7 +23,7 @@ import {
   awaitCreatedAndInLobby
 } from './utils/helpers';
 import { ensureClickable, clickWhenReady } from './utils/ensureClickable';
-import { TESTIDS } from '../../frontend/src/testids.ts';
+import { byId, selectors, waitForId, clickById } from './utils/selectors';
 
 // Test configuration
 const TEST_TIMEOUT = 90000; // 90 seconds max
