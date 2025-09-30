@@ -313,6 +313,19 @@ const LoginPage = () => {
                 <p className="text-sm text-blue-800 font-medium mb-2">
                   Development Mode - Magic Link:
                 </p>
+                <Button
+                  data-testid="dev-magic-link-btn"
+                  onClick={() => {
+                    const url = new URL(magicLink);
+                    const token = url.searchParams.get('token');
+                    if (token) {
+                      navigate(`/auth/verify?token=${token}`);
+                    }
+                  }}
+                  className="w-full mb-2 bg-blue-600 hover:bg-blue-700"
+                >
+                  Login Now (Dev Mode)
+                </Button>
                 <a
                   href={magicLink}
                   className="text-sm text-blue-600 underline break-all hover:text-blue-800"
