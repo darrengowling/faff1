@@ -79,7 +79,7 @@ export const TESTIDS = {
   navItemFaq: 'nav-item-faq',
   
   // Additional testids for compatibility
-  homeNavButton: 'homeNavButton',
+  homeNavButton: 'home-nav-button',
 } as const;
 
 export type TestIdKey = keyof typeof TESTIDS;
