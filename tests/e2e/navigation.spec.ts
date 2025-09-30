@@ -89,7 +89,7 @@ test.describe('Navigation Tests', () => {
       
       // Test navigation items are listed
       const navigationItems = page.locator(`[data-testid="${TESTIDS.navMobileDrawer}"] button`);
-      await expect(navigationItems).toHaveCount({ min: 3 }); // Should have at least How, Why, Sign In
+      await expect(navigationItems.count()).toBeGreaterThanOrEqual(3); // Should have at least How, Why, Sign In
       
       // Test drawer focus trap - pressing Escape should close
       await page.keyboard.press('Escape');
