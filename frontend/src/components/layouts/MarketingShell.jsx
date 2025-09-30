@@ -27,7 +27,6 @@ const MarketingShell = ({ children }) => {
   // Mobile menu state and count tracking
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [mobileItemCount, setMobileItemCount] = React.useState(0);
-  const [productDropdownOpen, setProductDropdownOpen] = React.useState(false);
   const [focusedIndex, setFocusedIndex] = React.useState(-1);
   // Hash handling for anchor navigation - use hash spy for stable navigation
   const { currentHash, setHash } = useHashSpy(['#home', '#how', '#why', '#features', '#safety', '#faq']);
