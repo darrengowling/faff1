@@ -1386,8 +1386,7 @@ function App() {
         <Router>
           <Toaster />
             
-            {/* Conditional BackToHomeLink - only on routes without their own navigation */}
-            <ConditionalBackToHomeLink />
+            {/* Simplified App - no conditional marketing links needed */}
             
             {/* Global League Creation Success Marker */}
             <LeagueCreateSuccessMarker />
