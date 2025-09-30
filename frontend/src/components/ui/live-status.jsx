@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Badge } from './badge';
 import { Clock, DollarSign, Trophy } from 'lucide-react';
-import { TESTIDS } from '../../testids';
+import { TESTIDS } from '../../testids.ts';
 
 /**
  * Live Status Components
