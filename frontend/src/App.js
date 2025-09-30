@@ -1373,10 +1373,12 @@ function App() {
             
             {/* Routes - Simplified App-Only Structure */}
             <Routes>
-              {/* Login Route - No marketing shell needed */}
+              {/* Login Route - With AppShell for navigation consistency */}
               <Route path="/login" element={
                 <RedirectIfAuthed>
-                  <LoginPage />
+                  <AppShell showBackButton={false} pageTitle="Sign In">
+                    <LoginPage />
+                  </AppShell>
                 </RedirectIfAuthed>
               } />
               
