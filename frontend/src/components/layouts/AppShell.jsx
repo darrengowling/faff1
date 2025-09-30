@@ -172,7 +172,10 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
 
             {/* Mobile Menu Button */}
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => {
+                console.log('Mobile menu toggle clicked, current state:', mobileMenuOpen);
+                setMobileMenuOpen(!mobileMenuOpen);
+              }}
               className="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
