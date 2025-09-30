@@ -1975,6 +1975,15 @@ function App() {
                 </RequireAuth>
               } />
               
+              {/* League Creation Route */}
+              <Route path="/app/leagues/new" element={
+                <RequireAuth>
+                  <AppShell showBackButton={true} pageTitle="Create New League">
+                    <LeagueCreationPage />
+                  </AppShell>
+                </RequireAuth>
+              } />
+              
               {/* League Lobby Route */}
               <Route path="/app/leagues/:id/lobby" element={
                 <RequireAuth>
