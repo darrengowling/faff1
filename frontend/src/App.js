@@ -1288,6 +1288,31 @@ const LeagueCreateSuccessMarker = () => {
   );
 };
 
+// Conditional BackToHomeLink - only shows on routes without their own navigation
+const ConditionalBackToHomeLink = () => {
+  const location = useLocation();
+  
+  // Only show on routes that don't have their own navigation
+  const shouldShow = (
+    location.pathname !== '/' && 
+    !location.pathname.startsWith('/app') && 
+    !location.pathname.startsWith('/auth')
+  );
+  
+  if (!shouldShow) {
+    return null;
+  }
+  
+  return (
+    <div className="fixed top-4 left-4 z-50">
+      <BackToHomeLink 
+        data-testid="back-to-home-link"
+        className="text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border"
+      />
+    </div>
+  );
+};
+
 // Main App Component
 function App() {
   // TEST_MODE: Globally disable animations/transitions to prevent timing issues
