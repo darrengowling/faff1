@@ -42,6 +42,22 @@ const LoginPage = () => {
     return false;
   };
 
+  const resetTestState = () => {
+    if (isTestMode()) {
+      setEmail('');
+      setError('');
+      setSuccess('');
+      setLoading(false);
+    }
+  };
+
+  // Reset test state when component mounts in test mode
+  useEffect(() => {
+    if (isTestMode()) {
+      resetTestState();
+    }
+  }, []);
+
   // Handle RedirectIfAuthed behavior - in TEST_MODE defer by 150ms but render form first
   useEffect(() => {
     if (user && !authLoading) {
