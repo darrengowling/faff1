@@ -1357,12 +1357,19 @@ function App() {
       // Inject at the end of head to override other styles
       document.head.appendChild(testModeStyles);
       
+      // TEST_MODE uniqueness guard for back-to-home-link
+      const uniquenessGuard = setInterval(() => {
+        const n = document.querySelectorAll('[data-testid="back-to-home-link"]').length;
+        if (n !== 1) console.warn(`[testid-uniqueness] back-to-home-link count = ${n}`);
+      }, 1000);
+      
       // Cleanup on unmount
       return () => {
         const existingStyles = document.getElementById('test-mode-styles');
         if (existingStyles) {
           document.head.removeChild(existingStyles);
         }
+        clearInterval(uniquenessGuard);
       };
     }
   }, []);
