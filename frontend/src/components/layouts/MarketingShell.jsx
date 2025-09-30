@@ -120,7 +120,12 @@ const MarketingShell = ({ children }) => {
                 className="cursor-pointer hover:opacity-80 transition-opacity"
                 data-testid={TESTIDS.navBrand}
               />
-              <BackToHomeLink className="text-theme-text-secondary hover:text-theme-text" />
+              {/* MarketingShell variant testid */}
+              <BackToHomeLink 
+                testId="marketing-back-home" 
+                to="/" 
+                className="text-theme-text-secondary hover:text-theme-text" 
+              />
             </div>
             
             {/* Center - Desktop Navigation */}
