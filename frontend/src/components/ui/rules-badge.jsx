@@ -68,16 +68,15 @@ export const CompactRules = ({ leagueSettings, loading = false, className = "" }
   if (loading || !leagueSettings) {
     return (
       <span className={`text-xs text-gray-500 ${className}`}>
-        {t('rules.loading')}
+        {t('ui.loading')}
       </span>
     );
   }
 
   const { clubSlots, budgetPerManager, leagueSize } = leagueSettings;
-  const rulesText = t('rules.slots', { slots: clubSlots }) + ' · ' + 
-                   t('rules.budget', { budget: budgetPerManager }) + ' · ' + 
-                   t('rules.min', { min: leagueSize.min }) + ' · ' + 
-                   t('rules.max', { max: leagueSize.max });
+  
+  // Build rules text with proper values instead of translation interpolation
+  const rulesText = `Slots: ${clubSlots || '?'} · Budget: $${budgetPerManager || '?'}M · Min: ${leagueSize?.min || '?'} · Max: ${leagueSize?.max || '?'}`;
   
   return (
     <span className={`text-xs text-gray-600 font-mono ${className}`} data-testid={TESTIDS.rulesBadge}>
