@@ -288,7 +288,7 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                       {/* Mobile drawer variant testid */}
                       <BackToHomeLink 
                         testId="nav-mobile-home-link" 
-                        to="/app"
+                        to="/"
                         className="block py-2 px-0 text-theme-text-secondary hover:text-theme-text" 
                         onClick={() => setMobileMenuOpen(false)}
                       />
