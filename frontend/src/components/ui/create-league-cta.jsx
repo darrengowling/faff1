@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from './button';
 import { Plus, Loader2 } from 'lucide-react';
 import { TESTIDS } from '../../testids.ts';
