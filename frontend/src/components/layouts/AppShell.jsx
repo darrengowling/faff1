@@ -158,15 +158,7 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
             
             {/* Center - Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-2" role="navigation">
-              {/* Product Dropdown */}
-              <ProductDropdownMenu
-                isOpen={productDropdownOpen}
-                onToggle={handleProductDropdownToggle}
-                onClose={() => {
-                  setProductDropdownOpen(false);
-                  setFocusedIndex(-1);
-                }}
-              />
+              {/* Product dropdown removed - no functional pages to link to */}
             </nav>
 
             {/* Right - Auth Actions */}
