@@ -275,16 +275,12 @@ const LoginPage = () => {
                 role="alert"
                 aria-live="assertive"
                 className={error 
-                  ? "flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md opacity-100 visible"
-                  : "flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 rounded-md opacity-0 invisible h-0 overflow-hidden"
+                  ? "flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md"
+                  : "flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md opacity-0 h-0 overflow-hidden"
                 }
               >
-                {error && (
-                  <>
-                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm font-medium">{error}</span>
-                  </>
-                )}
+                <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                <span className="text-sm font-medium">{error || ''}</span>
               </div>
 
               {/* Success Message */}
