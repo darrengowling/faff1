@@ -214,7 +214,7 @@ export const TESTIDS = {
   adminPanel: 'admin-panel',
 
   // Missing hardcoded testids
-  loginHeader: 'loginHeader',
+  loginHeader: 'login-header',
   devMagicLinkBtn: 'dev-magic-link-btn',
   
   // Auth form testids (consolidated naming)
