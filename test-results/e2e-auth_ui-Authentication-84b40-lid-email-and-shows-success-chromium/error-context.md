@@ -39,7 +39,7 @@
               - generic [ref=e41]:
                 - generic [ref=e42]:
                   - generic [ref=e43]: Email Address
-                  - textbox "Email Address" [ref=e44]: test-submission@example.com
+                  - textbox "Email Address" [ref=e44]: playwright-test@example.com
                 - generic [ref=e45]:
                   - img [ref=e46]
                   - generic [ref=e49]: Magic link sent! Check your email or use the link below.
@@ -49,8 +49,8 @@
                     - generic [ref=e52] [cursor=pointer]: Send Magic Link
               - generic [ref=e53]:
                 - paragraph [ref=e54]: "Development Mode - Magic Link:"
-                - link "https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Qtc3VibWlzc2lvbkBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE5NzU4OSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.QdqmCCJ6oFT5SIEH9Lq_xrsvWEu0wEhwjz-LPkevSOE" [ref=e55] [cursor=pointer]:
-                  - /url: https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Qtc3VibWlzc2lvbkBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE5NzU4OSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.QdqmCCJ6oFT5SIEH9Lq_xrsvWEu0wEhwjz-LPkevSOE
+                - link "https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE5OTQwNCwidHlwZSI6Im1hZ2ljX2xpbmsifQ.hA9gPB3X5duq5ZLK0oB4zPiX-vN8T5csoDJ3AzZAgp4" [ref=e55] [cursor=pointer]:
+                  - /url: https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE5OTQwNCwidHlwZSI6Im1hZ2ljX2xpbmsifQ.hA9gPB3X5duq5ZLK0oB4zPiX-vN8T5csoDJ3AzZAgp4
               - button "Back to Home" [ref=e57] [cursor=pointer]:
                 - img [ref=e58] [cursor=pointer]
                 - generic [ref=e60] [cursor=pointer]: Back to Home
