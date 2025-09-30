@@ -1,0 +1,220 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T":
+      - list:
+        - listitem [ref=e3]:
+          - img [ref=e5]
+          - generic [ref=e8]: League created successfully!
+    - generic [ref=e9]:
+      - banner [ref=e10]:
+        - generic [ref=e12]:
+          - generic [ref=e13]:
+            - button "Friends of PIFA" [ref=e14] [cursor=pointer]:
+              - img [ref=e16] [cursor=pointer]
+              - generic [ref=e22] [cursor=pointer]: Friends of PIFA
+            - link "Back to Home" [ref=e23] [cursor=pointer]:
+              - /url: /app
+              - text: ← Back to Home
+          - navigation [ref=e24]:
+            - button "Product" [ref=e26] [cursor=pointer]:
+              - generic [ref=e27] [cursor=pointer]: Product
+              - img
+          - generic [ref=e28]:
+            - button "Create League" [ref=e29] [cursor=pointer]:
+              - img
+              - generic [ref=e30] [cursor=pointer]: Create League
+            - generic [ref=e31]:
+              - generic [ref=e32]:
+                - img [ref=e33]
+                - generic [ref=e36]: commish@example.com
+              - button "Sign Out" [ref=e37] [cursor=pointer]:
+                - img
+                - generic [ref=e38] [cursor=pointer]: Sign Out
+            - button "Switch to dark mode" [ref=e39] [cursor=pointer]:
+              - generic [ref=e40] [cursor=pointer]:
+                - img
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - button "Back" [ref=e45] [cursor=pointer]:
+              - img
+              - generic [ref=e46] [cursor=pointer]: Back
+            - generic [ref=e47]:
+              - img [ref=e48]
+              - img [ref=e51]
+              - generic [ref=e53]: League Lobby
+          - generic [ref=e55]:
+            - text: Welcome,
+            - generic [ref=e56]: commish@example.com
+      - generic [ref=e57]: "#"
+      - main [ref=e58]:
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]:
+              - button "← Back" [ref=e62] [cursor=pointer]
+              - generic [ref=e63]:
+                - heading "Gate Test League 1759200734299" [level=2] [ref=e64]
+                - paragraph [ref=e65]: 2025-26 • UCL
+            - generic [ref=e66]:
+              - generic [ref=e67]: setup
+              - generic [ref=e68]:
+                - img [ref=e69]
+                - text: Commissioner
+          - generic [ref=e71]:
+            - generic [ref=e72]:
+              - generic [ref=e73]:
+                - generic [ref=e74]: "1"
+                - text: /8
+              - generic [ref=e75]: Need 1 more
+            - generic [ref=e77]: "Slots: {slots} · Budget: {budget} · Min: {min} · Max: {max}"
+            - button "Start Auction" [disabled] [ref=e79]:
+              - img [ref=e80]
+              - text: Start Auction
+          - generic [ref=e82]:
+            - heading "League Status Details" [level=3] [ref=e84]:
+              - img [ref=e85]
+              - generic [ref=e87]: League Status Details
+            - generic [ref=e89]:
+              - generic [ref=e90]:
+                - generic [ref=e91]: "1"
+                - generic [ref=e92]: Members
+              - generic [ref=e93]:
+                - generic [ref=e94]: "2"
+                - generic [ref=e95]: Min Required
+              - generic [ref=e96]:
+                - generic [ref=e97]: "8"
+                - generic [ref=e98]: Max Allowed
+              - generic [ref=e99]:
+                - generic [ref=e100]: ✗
+                - generic [ref=e101]: Ready
+          - generic [ref=e102]:
+            - generic [ref=e103]:
+              - heading "Members (1)" [level=3] [ref=e105]:
+                - img [ref=e106]
+                - generic [ref=e111]: Members (1)
+              - generic [ref=e114]:
+                - generic [ref=e115]:
+                  - img [ref=e117]
+                  - generic [ref=e120]:
+                    - generic [ref=e121]: commish
+                    - generic [ref=e122]: commish@example.com
+                - generic [ref=e124]:
+                  - img [ref=e125]
+                  - text: commissioner
+            - generic [ref=e127]:
+              - heading "Invitations" [level=3] [ref=e129]:
+                - img [ref=e130]
+                - generic [ref=e133]: Invitations
+              - generic [ref=e134]:
+                - generic [ref=e135]:
+                  - textbox "manager@example.com" [ref=e136]
+                  - button [ref=e137] [cursor=pointer]:
+                    - img
+                - paragraph [ref=e139]: No invitations sent yet
+          - generic [ref=e140]:
+            - heading "League Settings" [level=3] [ref=e142]:
+              - img [ref=e143]
+              - generic [ref=e146]: League Settings
+            - generic [ref=e147]:
+              - generic [ref=e148]:
+                - generic [ref=e149]:
+                  - img [ref=e150]
+                  - generic [ref=e152]: "100"
+                  - generic [ref=e153]: Budget
+                - generic [ref=e154]:
+                  - img [ref=e155]
+                  - generic [ref=e159]: "3"
+                  - generic [ref=e160]: Club Slots
+                - generic [ref=e161]:
+                  - img [ref=e162]
+                  - generic [ref=e168]: "1"
+                  - generic [ref=e169]: Min Increment
+                - generic [ref=e170]:
+                  - img [ref=e171]
+                  - generic [ref=e174]: 60s
+                  - generic [ref=e175]: Bid Timer
+              - generic [ref=e176]:
+                - heading "Scoring Rules" [level=4] [ref=e177]
+                - generic [ref=e178]:
+                  - generic [ref=e179]:
+                    - generic [ref=e180]: "+1"
+                    - generic [ref=e181]: Per Goal
+                  - generic [ref=e182]:
+                    - generic [ref=e183]: "+3"
+                    - generic [ref=e184]: Per Win
+                  - generic [ref=e185]:
+                    - generic [ref=e186]: "+1"
+                    - generic [ref=e187]: Per Draw
+          - generic [ref=e188]:
+            - heading "Quick Access" [level=3] [ref=e190]:
+              - img [ref=e191]
+              - generic [ref=e194]: Quick Access
+            - generic [ref=e196]:
+              - button "My Clubs" [ref=e197] [cursor=pointer]:
+                - img
+                - generic [ref=e198] [cursor=pointer]: My Clubs
+              - button "Fixtures & Results" [ref=e199] [cursor=pointer]:
+                - img
+                - generic [ref=e200] [cursor=pointer]: Fixtures & Results
+              - button "Leaderboard" [ref=e201] [cursor=pointer]:
+                - img
+                - generic [ref=e202] [cursor=pointer]: Leaderboard
+              - button "Admin Panel" [ref=e203] [cursor=pointer]:
+                - img
+                - generic [ref=e204] [cursor=pointer]: Admin Panel
+      - contentinfo [ref=e205]:
+        - generic [ref=e207]:
+          - generic [ref=e208]:
+            - generic [ref=e209]:
+              - img [ref=e211]
+              - generic [ref=e216]:
+                - generic [ref=e217]: Friends of PIFA
+                - generic [ref=e218]: Sports gaming with friends. No gambling. All strategy.
+            - paragraph [ref=e219]: Join the social sports arena where skill beats luck.
+            - generic [ref=e220]:
+              - img [ref=e221]
+              - generic [ref=e223]: We stand for integrity, fairness, and the joy of the game
+          - generic [ref=e224]:
+            - heading "Fair Play Commitment" [level=3] [ref=e225]
+            - generic [ref=e226]:
+              - generic [ref=e228]:
+                - img [ref=e229]
+                - generic [ref=e235]:
+                  - paragraph [ref=e236]: No gambling. No wagering. Pure sports strategy.
+                  - paragraph [ref=e237]: This platform does not involve any form of gambling, betting, or wagering.
+              - generic [ref=e238]:
+                - img [ref=e239]
+                - generic [ref=e244]: Designed for entertainment and friendly competition only.
+              - generic [ref=e245]: Must be 13+ to use this service.
+          - generic [ref=e246]:
+            - heading "Legal & Support" [level=3] [ref=e247]
+            - generic [ref=e249]:
+              - button "Navigate to Terms of Service" [ref=e250] [cursor=pointer]:
+                - generic [ref=e252] [cursor=pointer]:
+                  - generic [ref=e253] [cursor=pointer]: Terms of Service
+                  - img [ref=e254] [cursor=pointer]
+              - button "Navigate to Privacy Policy" [ref=e258] [cursor=pointer]:
+                - generic [ref=e260] [cursor=pointer]:
+                  - generic [ref=e261] [cursor=pointer]: Privacy Policy
+                  - img [ref=e262] [cursor=pointer]
+              - button "Navigate to Contact Us" [ref=e266] [cursor=pointer]:
+                - generic [ref=e268] [cursor=pointer]:
+                  - generic [ref=e269] [cursor=pointer]: Contact Us
+                  - img [ref=e270] [cursor=pointer]
+              - button "Navigate to About Us" [ref=e274] [cursor=pointer]:
+                - generic [ref=e276] [cursor=pointer]:
+                  - generic [ref=e277] [cursor=pointer]: About Us
+                  - img [ref=e278] [cursor=pointer]
+        - generic [ref=e284]:
+          - generic [ref=e286]: © 2025 Friends of PIFA. All rights reserved.
+          - generic [ref=e287]:
+            - generic [ref=e288]: 100% Free to Play
+            - generic [ref=e289]: No Real Money
+  - link "Emergent platform logo Made with Emergent" [ref=e290] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e291] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e292] [cursor=pointer]
+      - paragraph [ref=e293] [cursor=pointer]: Made with Emergent
+```
