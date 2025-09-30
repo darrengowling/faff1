@@ -52,11 +52,10 @@ export const TESTIDS = {
   createLoading: 'create-loading',
   createError: 'create-error',
   
-  // Navigation
+  // Navigation - Simplified (no marketing variants)
   navBrand: 'nav-brand',
+  navHamburger: 'nav-hamburger',
   navSignIn: 'nav-sign-in',
-  navSignInMobile: 'nav-sign-in-mobile',
-  navSignInDesktop: 'nav-sign-in-desktop',
   navDropdownProduct: 'nav-dd-product',
   navDdAuction: 'nav-dd-auction',
   navDdRoster: 'nav-dd-roster',
