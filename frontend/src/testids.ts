@@ -45,6 +45,8 @@ export const TESTIDS = {
   authError: 'auth-error',
   authSuccess: 'auth-success',
   authLoading: 'auth-loading',
+  authFormReady: 'auth-ready',
+  loginHeader: 'login-header',
   
   // Create League Form
   createLoading: 'create-loading',
