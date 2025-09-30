@@ -280,13 +280,17 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                   <div className="py-4">
                     {/* Back to Home - First Item */}
                     <div className="mb-4">
-                      {/* Mobile drawer variant testid */}
-                      <BackToHomeLink 
-                        testId="nav-mobile-home-link" 
-                        to="/"
-                        className="block py-2 px-0 text-theme-text-secondary hover:text-theme-text" 
-                        onClick={() => setMobileMenuOpen(false)}
-                      />
+                      {/* Simplified mobile navigation - direct to dashboard */}
+                      <button
+                        onClick={() => {
+                          navigate('/app');
+                          setMobileMenuOpen(false);
+                        }}
+                        className="block py-2 px-0 text-theme-text-secondary hover:text-theme-text font-medium"
+                        data-testid="nav-mobile-home-link"
+                      >
+                        ← Dashboard
+                      </button>
                     </div>
                     
                     <MobileNavigation onItemClick={(item) => {
