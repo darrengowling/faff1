@@ -251,10 +251,13 @@ agent_communication:
 
 test_plan:
   current_focus:
-    - "Back-to-Home-Link Uniqueness Fix Verification"
-  stuck_tasks: []
-  test_all: false
-  test_priority: "testid_uniqueness_verification"
+    - "E2E Test Pass Rate Assessment for 85% Target"
+  stuck_tasks: 
+    - "Core-Smoke League Creation Flow"
+    - "Navigation Duplicate Testid Issues"
+    - "Auth UI Error Display Issues"
+  test_all: true
+  test_priority: "comprehensive_e2e_assessment"
 
   - task: "Testable Components Implementation Verification"
     implemented: true
