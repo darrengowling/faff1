@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getBrandName, getBrandTagline } from '../brand';
-import useScrollSpy from '../hooks/useScrollSpy';
+import { useHashSpy } from '../hooks/useHashSpy';
 import { 
   Trophy, Users, Shield, Clock, Target, Star, 
   ChevronRight, Menu, X, Check, ArrowRight,
