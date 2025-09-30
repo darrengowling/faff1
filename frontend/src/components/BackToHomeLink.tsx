@@ -27,7 +27,7 @@ export default function BackToHomeLink({
       data-testid={testId}
       data-dest={destination}
       aria-label="Back to Home"
-      className={`inline-flex items-center gap-2 text-sm underline underline-offset-2 relative z-50 ${className}`}
+      className={`inline-flex items-center gap-2 text-sm underline underline-offset-2 relative z-50 hover:z-50 ${className}`}
       onClick={onClick}
     >
       ← Back to Home
