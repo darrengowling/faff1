@@ -69,6 +69,8 @@ export const TESTIDS = {
   navDropdownItemLeaderboard: 'nav-dd-leaderboard', // Legacy alias
   navDropdownItemSettings: 'nav-dd-settings', // Legacy alias
   navHamburger: 'nav-hamburger',
+  navHamburgerMarketing: 'nav-hamburger-marketing',
+  navHamburgerApp: 'nav-hamburger-app',
   navMobileDrawer: 'nav-mobile-drawer',
   navMobileItemAuction: 'nav-mobile-item-auction-room',
   navMobileItemRoster: 'nav-mobile-item-my-roster',
