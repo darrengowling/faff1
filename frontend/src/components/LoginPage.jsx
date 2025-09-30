@@ -352,9 +352,11 @@ const LoginPage = () => {
 
             <Separator />
             
-            {/* Back to Home Link */}
+            {/* Login completed - remove back to home since no marketing site */}
             <div className="text-center">
-              <BackToHomeLink className="text-theme-text-secondary hover:text-theme-text transition-colors" />
+              <p className="text-sm text-theme-text-secondary">
+                Don't have an account? Contact your league commissioner for an invitation.
+              </p>
             </div>
           </CardContent>
         </Card>
