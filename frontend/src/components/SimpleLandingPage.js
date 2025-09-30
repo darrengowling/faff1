@@ -17,6 +17,7 @@ import { TESTIDS } from '../testids.ts';
 import { TestableSection, TestableButton } from './testable/TestableComponents.tsx';
 import BackToHomeLink from './BackToHomeLink.tsx';
 import { useHashSpy } from '../hooks/useHashSpy';
+import StickyPageNav from './StickyPageNav';
 
 const SimpleLandingPage = () => {
   const navigate = useNavigate();
