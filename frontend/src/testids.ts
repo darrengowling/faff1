@@ -243,7 +243,7 @@ export const TESTIDS = {
   clubCount: 'club-count',
   clubName: 'club-name',
   connectionStatus: 'connection-status',
-  createDialog: 'create-dialog', 
+  createDialogLegacy: 'create-dialog', // Legacy - use createDialog instead 
   createSuccess: 'create-success',
   currentLot: 'current-lot',
   joinLeagueBtn: 'join-league-btn',
