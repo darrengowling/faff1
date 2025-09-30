@@ -10,7 +10,6 @@ import { ArrowLeft, Mail, CheckCircle, AlertCircle } from 'lucide-react';
 import EmailValidator from '../utils/emailValidator';
 import { runLoginRouteVerification } from '../utils/loginRouteVerifier';
 import { useAuth } from '../App';
-import BackToHomeLink from './BackToHomeLink.tsx';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
