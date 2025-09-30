@@ -48,7 +48,7 @@
             - generic [ref=e56]:
               - button "← Back" [ref=e57] [cursor=pointer]
               - generic [ref=e58]:
-                - heading "Gate Test League 1759275372134" [level=2] [ref=e59]
+                - heading "Gate Test League 1759275501484" [level=2] [ref=e59]
                 - paragraph [ref=e60]: 2025-26 • UCL
             - generic [ref=e61]:
               - generic [ref=e62]: setup
