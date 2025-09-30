@@ -170,7 +170,7 @@ const MarketingShell = ({ children }) => {
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
-              data-testid={TESTIDS.navHamburger}
+              data-testid={TESTIDS.navHamburgerMarketing}
             >
               {mobileMenuOpen ? (
                 <X className="w-6 h-6" />
