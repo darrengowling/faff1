@@ -10,7 +10,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Trophy, Home } from 'lucide-react';
 import { Button } from '../ui/button';
 import { HeaderBrand } from '../ui/brand-badge';
-import { ProductDropdownMenu } from '../navigation/ProductDropdownMenu';
 import { AuthNavigation } from '../navigation/AuthNavigation';
 import MobileNavigation from '../navigation/MobileNavigation';
 import { IconThemeToggle } from '../ui/theme-toggle';
