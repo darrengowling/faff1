@@ -1304,7 +1304,7 @@ const ConditionalBackToHomeLink = () => {
   }
   
   return (
-    <div className="fixed top-4 left-4 z-50">
+    <div className="fixed top-4 left-4 z-30">
       <BackToHomeLink 
         testId="global-back-home"
         to="/"
