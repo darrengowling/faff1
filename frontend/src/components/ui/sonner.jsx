@@ -1,6 +1,6 @@
 import { useTheme } from "next-themes"
 import { Toaster as Sonner } from "sonner"
-import { TESTIDS } from "../../testids"
+import { TESTIDS } from "../../testids.ts"
 
 const Toaster = ({
   ...props
