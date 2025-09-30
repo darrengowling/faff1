@@ -26,8 +26,14 @@ export const useHashSpy = (sections = ['#home', '#how', '#why', '#features', '#s
           const newUrl = newHash ? `${window.location.pathname}${newHash}` : window.location.pathname;
           window.history.replaceState(null, '', newUrl);
         }
+        
+        // Update nav-current-hash marker element
+        const hashMarker = document.querySelector('[data-testid="nav-current-hash"]');
+        if (hashMarker) {
+          hashMarker.textContent = newHash || '';
+        }
       }
-    }, 100); // 100ms debounce
+    }, 100); // 100ms debounce as required
   }, [currentHash]);
 
   // Check which section is ≥50% visible
