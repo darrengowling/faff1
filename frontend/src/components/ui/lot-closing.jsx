@@ -4,7 +4,7 @@ import { Button } from './button';
 import { AlertTriangle, Clock, X, CheckCircle } from 'lucide-react';
 import { Badge } from './badge';
 import { toast } from 'sonner';
-import { TESTIDS } from '../../testids';
+import { TESTIDS } from '../../testids.ts';
 
 /**
  * Lot Close Confirmation Dialog
