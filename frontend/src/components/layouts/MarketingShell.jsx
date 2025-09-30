@@ -198,7 +198,7 @@ const MarketingShell = ({ children }) => {
           onClick={(e) => e.stopPropagation()}
           data-testid="nav-mobile-drawer"
           data-state={mobileMenuOpen ? "open" : "closed"}
-          data-count={mobileItemCount}
+          data-count={String(mobileItemCount)}
           style={{ 
             pointerEvents: 'auto',
             transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
