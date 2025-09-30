@@ -1,0 +1,14 @@
+{"version":8,"type":"context-options","origin":"library","browserName":"","options":{},"platform":"linux","wallTime":1759201159178,"monotonicTime":442754.99,"sdkLanguage":"javascript","contextId":"request-context@1819796ee2e29e77d05248d5e6756524","title":"basic-e2e.spec.js:114 › UCL Auction - Basic E2E Validation › 4. UCL Competition Profile Structure"}
+{"type":"before","callId":"call@75","startTime":442757.291,"class":"APIRequestContext","method":"fetch","params":{"url":"/api/competition-profiles/ucl","method":"GET","timeout":10000},"stepId":"pw:api@21","beforeSnapshot":"before@call@75"}
+{"type":"log","callId":"call@75","time":442758.401,"message":"→ GET https://test-harmony.preview.emergentagent.com/api/competition-profiles/ucl"}
+{"type":"log","callId":"call@75","time":442758.422,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@75","time":442758.428,"message":"  accept: */*"}
+{"type":"log","callId":"call@75","time":442758.433,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@75","time":442814.45,"message":"← 200 OK"}
+{"type":"log","callId":"call@75","time":442814.469,"message":"  content-length: 339"}
+{"type":"log","callId":"call@75","time":442814.475,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@75","time":442814.48,"message":"  date: Tue, 30 Sep 2025 02:59:18 GMT"}
+{"type":"log","callId":"call@75","time":442814.486,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@75","time":442814.49,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@75","time":442814.495,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@75","endTime":442814.644,"result":{"response":{"url":"https://test-harmony.preview.emergentagent.com/api/competition-profiles/ucl","status":200,"statusText":"OK","headers":[{"name":"Content-Length","value":"339"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Tue, 30 Sep 2025 02:59:18 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"01905bd8b19cf0b48323eefe71dbf543"}},"afterSnapshot":"after@call@75"}
