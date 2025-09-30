@@ -50,6 +50,9 @@ const MobileNavigation = ({ onItemClick }) => {
   const handleItemClick = (item, event) => {
     event.preventDefault();
     
+    // Force drawer state → closed before navigation completes
+    onItemClick?.(item);
+    
     // Scroll to target section
     const target = document.querySelector(item.href);
     if (target) {
@@ -63,9 +66,6 @@ const MobileNavigation = ({ onItemClick }) => {
     if (typeof window !== 'undefined') {
       window.history.replaceState(null, '', item.href);
     }
-    
-    // Notify parent to close drawer and update count
-    onItemClick?.(item);
   };
 
   return (
