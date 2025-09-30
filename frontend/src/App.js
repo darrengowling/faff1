@@ -31,7 +31,6 @@ import LeagueCreationPage from './components/LeagueCreationPage';
 import LeagueCreationForm from './components/LeagueCreationForm';
 import { SafeRoute } from './components/routing/RouteGuards';
 import AppShell from './components/layouts/AppShell';
-import BackToHomeLink from './components/BackToHomeLink.tsx';
 import EnhancedHomeScreen from './components/EnhancedHomeScreen';
 import DashboardContent from './components/DashboardContent';
 import AppLayout, { DashboardLayout, AuctionLayout, AdminLayout, RosterLayout, FixturesLayout, LeaderboardLayout } from './components/layouts/AppLayout';
