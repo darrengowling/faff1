@@ -1348,12 +1348,17 @@ function App() {
           <Toaster />
             
             {/* Global BackToHomeLink - rendered before any auth guards/redirects */}
-            <div className="fixed top-4 left-4 z-50">
-              <BackToHomeLink 
-                data-testid="back-to-home-link"
-                className="text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border"
-              />
-            </div>
+            {/* Only show on routes that don't have their own navigation */}
+            {location.pathname !== '/' && 
+             !location.pathname.startsWith('/app') && 
+             !location.pathname.startsWith('/auth') && (
+              <div className="fixed top-4 left-4 z-50">
+                <BackToHomeLink 
+                  data-testid="back-to-home-link"
+                  className="text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border"
+                />
+              </div>
+            )}
             
             {/* Global League Creation Success Marker */}
             <LeagueCreateSuccessMarker />
