@@ -327,14 +327,7 @@ const LoginPage = () => {
             
             {/* Back to Home Link */}
             <div className="text-center">
-              <button
-                onClick={() => navigate('/')}
-                data-testid="back-to-home-link"
-                className="inline-flex items-center space-x-1 text-sm text-theme-text-secondary hover:text-theme-text transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Back to Home</span>
-              </button>
+              <BackToHomeLink className="text-theme-text-secondary hover:text-theme-text transition-colors" />
             </div>
           </CardContent>
         </Card>
