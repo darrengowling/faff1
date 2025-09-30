@@ -1027,6 +1027,103 @@ const AuctionRoom = ({ user, token }) => {
               </CardContent>
             </Card>
 
+            {/* Teams List */}
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center">
+                  <Trophy className="w-5 h-5 mr-2" />
+                  Teams to Auction ({auctionState?.lots?.length || 0})
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ScrollArea className="h-64 pr-4">
+                  <div className="space-y-2">
+                    {auctionState?.lots?.length > 0 ? (
+                      auctionState.lots.map((lot, index) => (
+                        <div 
+                          key={lot._id} 
+                          className={`flex items-center justify-between p-2 rounded transition-colors ${
+                            lot._id === currentLot?._id 
+                              ? 'bg-blue-600 border border-blue-400' 
+                              : lot.status === 'sold' 
+                                ? 'bg-green-700 border border-green-500' 
+                                : lot.status === 'withdrawn'
+                                  ? 'bg-red-700 border border-red-500'
+                                  : 'bg-gray-700 hover:bg-gray-600'
+                          }`}
+                        >
+                          <div className="flex items-center space-x-3">
+                            {/* Team Badge */}
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
+                              lot._id === currentLot?._id 
+                                ? 'bg-blue-500 text-white' 
+                                : lot.status === 'sold' 
+                                  ? 'bg-green-500 text-white' 
+                                  : lot.status === 'withdrawn'
+                                    ? 'bg-red-500 text-white'
+                                    : 'bg-gradient-to-br from-blue-600 to-purple-600 text-white'
+                            }`}>
+                              {lot.club?.short_name || lot.club?.name?.substring(0, 3) || '???'}
+                            </div>
+                            <div>
+                              <div className={`text-sm font-medium ${
+                                lot._id === currentLot?._id ? 'text-white' : 'text-gray-200'
+                              }`}>
+                                {lot.club?.name || 'Unknown Team'}
+                              </div>
+                              {lot.club?.country && (
+                                <div className="text-xs text-gray-400">
+                                  {lot.club.country}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            {/* Status Badge */}
+                            {lot.status === 'sold' && (
+                              <Badge variant="outline" className="text-green-400 border-green-400 text-xs">
+                                SOLD
+                              </Badge>
+                            )}
+                            {lot.status === 'withdrawn' && (
+                              <Badge variant="outline" className="text-red-400 border-red-400 text-xs">
+                                OUT
+                              </Badge>
+                            )}
+                            {lot._id === currentLot?._id && (
+                              <Badge variant="outline" className="text-blue-400 border-blue-400 text-xs animate-pulse">
+                                LIVE
+                              </Badge>
+                            )}
+                            {lot.status === 'pending' && lot._id !== currentLot?._id && (
+                              <Badge variant="outline" className="text-gray-400 border-gray-400 text-xs">
+                                #{index + 1}
+                              </Badge>
+                            )}
+                            {/* Final Price */}
+                            {lot.status === 'sold' && lot.final_price && (
+                              <div className="text-right">
+                                <div className="text-green-400 text-xs font-medium">
+                                  {lot.final_price}
+                                </div>
+                                <div className="text-gray-500 text-xs">credits</div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="text-gray-500 text-center py-4">
+                        <Trophy className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                        <div>No teams available</div>
+                        <div className="text-xs mt-1">Teams will appear when auction starts</div>
+                      </div>
+                    )}
+                  </div>
+                </ScrollArea>
+              </CardContent>
+            </Card>
+
             {/* Managers List */}
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
