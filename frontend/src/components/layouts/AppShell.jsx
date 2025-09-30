@@ -148,7 +148,12 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                 className="cursor-pointer hover:opacity-80 transition-opacity"
                 data-testid={TESTIDS.navBrand}
               />
-              <BackToHomeLink className="text-theme-text-secondary hover:text-theme-text" />
+              {/* ONE canonical instance with back-to-home-link testid */}
+              <BackToHomeLink 
+                testId="back-to-home-link" 
+                to="/app" 
+                className="text-theme-text-secondary hover:text-theme-text" 
+              />
             </div>
             
             {/* Center - Desktop Navigation */}
