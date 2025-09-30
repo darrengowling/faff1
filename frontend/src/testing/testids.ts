@@ -1,9 +1,9 @@
 export const TESTIDS = {
   // Auth
-  loginHeader: 'loginHeader',
+  loginHeader: 'login-header',
   authFormReady: 'auth-ready',
-  authEmailInput: 'authEmailInput',
-  authSubmitBtn: 'authSubmitBtn',
+  authEmailInput: 'auth-email-input',
+  authSubmitBtn: 'auth-submit-btn',
   authLoading: 'auth-loading',
   authError: 'auth-error',
   authSuccess: 'auth-success',
