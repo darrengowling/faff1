@@ -1253,8 +1253,13 @@ const AppRootRedirect = () => {
     );
   }
   
-  // Simple logic: authenticated = app, unauthenticated = login
-  return <Navigate to={user ? "/app" : "/login"} replace />;
+  // Show landing page for unauthenticated users, redirect to app for authenticated
+  if (user) {
+    return <Navigate to="/app" replace />;
+  }
+  
+  // Show simplified landing page for unauthenticated users
+  return <LandingPage />;
 };
 
 // Global League Creation Success Marker Component
