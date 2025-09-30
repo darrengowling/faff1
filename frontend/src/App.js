@@ -1290,8 +1290,6 @@ const LeagueCreateSuccessMarker = () => {
 
 // Main App Component
 function App() {
-  const location = useLocation();
-  
   // TEST_MODE: Globally disable animations/transitions to prevent timing issues
   useEffect(() => {
     const isTestMode = () => {
