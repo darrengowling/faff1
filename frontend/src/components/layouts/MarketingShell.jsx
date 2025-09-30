@@ -232,9 +232,11 @@ const MarketingShell = ({ children }) => {
                   <div className="py-4">
                     {/* Back to Home - First Item */}
                     <div className="mb-4">
+                      {/* Mobile drawer variant testid for marketing shell */}
                       <BackToHomeLink 
-                        data-testid="back-to-home-link"
-                        className="block py-2 px-0 text-theme-text-secondary hover:text-theme-text"
+                        testId="nav-mobile-home-link" 
+                        to="/"
+                        className="block py-2 px-0 text-theme-text-secondary hover:text-theme-text" 
                         onClick={() => setMobileMenuOpen(false)}
                       />
                     </div>
