@@ -239,10 +239,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "100% Reliable Anchor Navigation for Landing Page"
+    - "Back-to-Home-Link Uniqueness Fix Verification"
   stuck_tasks: []
   test_all: false
-  test_priority: "anchor_navigation_reliability_verification"
+  test_priority: "testid_uniqueness_verification"
 
   - task: "Testable Components Implementation Verification"
     implemented: true
