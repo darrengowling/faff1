@@ -17,7 +17,7 @@ import {
   BreadcrumbPage, 
   BreadcrumbSeparator 
 } from './breadcrumb';
-import { TESTIDS } from '../../testids';
+import { TESTIDS } from '../../testids.ts';
 
 /**
  * Generate breadcrumb items based on current path
