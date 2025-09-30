@@ -10,14 +10,34 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 export const useHashSpy = (sections = ['#home', '#how', '#why', '#features', '#safety', '#faq']) => {
   const [currentHash, setCurrentHash] = useState('');
   const debounceTimer = useRef(null);
+  const lastNavigationTime = useRef(0);
   
   // Debounced function to update hash
-  const updateHash = useCallback((newHash) => {
+  const updateHash = useCallback((newHash, isFromNavigation = false) => {
     if (debounceTimer.current) {
       clearTimeout(debounceTimer.current);
     }
     
+    // If this is from navigation, record the time and update immediately
+    if (isFromNavigation) {
+      lastNavigationTime.current = Date.now();
+      setCurrentHash(newHash);
+      
+      // Update nav-current-hash marker immediately
+      const hashMarker = document.querySelector('[data-testid="nav-current-hash"]');
+      if (hashMarker) {
+        hashMarker.textContent = newHash || '';
+      }
+      return;
+    }
+    
     debounceTimer.current = setTimeout(() => {
+      // Don't override recent navigation clicks (within 500ms)
+      const timeSinceNavigation = Date.now() - lastNavigationTime.current;
+      if (timeSinceNavigation < 500) {
+        return; // Skip this update to preserve navigation
+      }
+      
       if (newHash !== currentHash) {
         setCurrentHash(newHash);
         
