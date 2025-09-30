@@ -65,11 +65,6 @@ const MarketingShell = ({ children }) => {
     setMobileItemCount(actualCount);
   }, [user, mobileMenuOpen]); // Update on auth state or drawer state change
 
-  // Handle product dropdown
-  const handleProductDropdownToggle = () => {
-    setProductDropdownOpen(!productDropdownOpen);
-  };
-
   // Close dropdowns and mobile menu on route change
   React.useEffect(() => {
     setMobileMenuOpen(false);
