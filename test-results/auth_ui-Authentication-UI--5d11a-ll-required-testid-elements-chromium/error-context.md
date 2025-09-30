@@ -1,0 +1,78 @@
+# Page snapshot
+
+```yaml
+- generic [active]:
+  - link "Emergent platform logo Made with Emergent" [ref=e1] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e2] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e3] [cursor=pointer]
+      - paragraph [ref=e4] [cursor=pointer]: Made with Emergent
+  - iframe [ref=e5]:
+    - generic [ref=f1e2]:
+      - generic [ref=f1e3]: "Compiled with problems:"
+      - button "Dismiss" [ref=f1e4] [cursor=pointer]: ×
+      - generic [ref=f1e5]:
+        - generic [ref=f1e6]:
+          - generic [ref=f1e7] [cursor=pointer]: ERROR in ./src/App.js 33:0-36
+          - generic [ref=f1e8]: "Module not found: Error: Can't resolve './testids' in '/app/frontend/src'"
+        - generic [ref=f1e9]:
+          - generic [ref=f1e10] [cursor=pointer]: ERROR in ./src/components/AdminDashboard.js 28:0-37
+          - generic [ref=f1e11]: "Module not found: Error: Can't resolve '../testids' in '/app/frontend/src/components'"
+        - generic [ref=f1e12]:
+          - generic [ref=f1e13] [cursor=pointer]: ERROR in ./src/components/AuctionRoom.js 12:0-37
+          - generic [ref=f1e14]: "Module not found: Error: Can't resolve '../testids' in '/app/frontend/src/components'"
+        - generic [ref=f1e15]:
+          - generic [ref=f1e16] [cursor=pointer]: ERROR in ./src/components/Leaderboard.js 12:0-37
+          - generic [ref=f1e17]: "Module not found: Error: Can't resolve '../testids' in '/app/frontend/src/components'"
+        - generic [ref=f1e18]:
+          - generic [ref=f1e19] [cursor=pointer]: ERROR in ./src/components/LeagueCreationForm.jsx 17:0-37
+          - generic [ref=f1e20]: "Module not found: Error: Can't resolve '../testids' in '/app/frontend/src/components'"
+        - generic [ref=f1e21]:
+          - generic [ref=f1e22] [cursor=pointer]: ERROR in ./src/components/LoginPage.jsx 12:0-37
+          - generic [ref=f1e23]: "Module not found: Error: Can't resolve '../testids' in '/app/frontend/src/components'"
+        - generic [ref=f1e24]:
+          - generic [ref=f1e25] [cursor=pointer]: ERROR in ./src/components/SimpleLandingPage.js 17:0-37
+          - generic [ref=f1e26]: "Module not found: Error: Can't resolve '../testids' in '/app/frontend/src/components'"
+        - generic [ref=f1e27]:
+          - generic [ref=f1e28] [cursor=pointer]: ERROR in ./src/components/StickyPageNav.js 12:0-37
+          - generic [ref=f1e29]: "Module not found: Error: Can't resolve '../testids' in '/app/frontend/src/components'"
+        - generic [ref=f1e30]:
+          - generic [ref=f1e31] [cursor=pointer]: ERROR in ./src/components/layouts/AppShell.jsx 25:0-40
+          - generic [ref=f1e32]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/layouts'"
+        - generic [ref=f1e33]:
+          - generic [ref=f1e34] [cursor=pointer]: ERROR in ./src/components/layouts/MarketingShell.jsx 21:0-40
+          - generic [ref=f1e35]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/layouts'"
+        - generic [ref=f1e36]:
+          - generic [ref=f1e37] [cursor=pointer]: ERROR in ./src/components/navigation/AuthNavigation.jsx 15:0-40
+          - generic [ref=f1e38]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/navigation'"
+        - generic [ref=f1e39]:
+          - generic [ref=f1e40] [cursor=pointer]: ERROR in ./src/components/navigation/ProductDropdownMenu.jsx 12:0-40
+          - generic [ref=f1e41]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/navigation'"
+        - generic [ref=f1e42]:
+          - generic [ref=f1e43] [cursor=pointer]: ERROR in ./src/components/ui/alert-dialog.jsx 8:0-40
+          - generic [ref=f1e44]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/ui'"
+        - generic [ref=f1e45]:
+          - generic [ref=f1e46] [cursor=pointer]: ERROR in ./src/components/ui/dialog.jsx 8:0-40
+          - generic [ref=f1e47]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/ui'"
+        - generic [ref=f1e48]:
+          - generic [ref=f1e49] [cursor=pointer]: ERROR in ./src/components/ui/empty-state.js 12:0-40
+          - generic [ref=f1e50]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/ui'"
+        - generic [ref=f1e51]:
+          - generic [ref=f1e52] [cursor=pointer]: ERROR in ./src/components/ui/enhanced-breadcrumb.jsx 17:0-40
+          - generic [ref=f1e53]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/ui'"
+        - generic [ref=f1e54]:
+          - generic [ref=f1e55] [cursor=pointer]: ERROR in ./src/components/ui/live-status.jsx 11:0-40
+          - generic [ref=f1e56]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/ui'"
+        - generic [ref=f1e57]:
+          - generic [ref=f1e58] [cursor=pointer]: ERROR in ./src/components/ui/lot-closing.jsx 12:0-40
+          - generic [ref=f1e59]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/ui'"
+        - generic [ref=f1e60]:
+          - generic [ref=f1e61] [cursor=pointer]: ERROR in ./src/components/ui/quick-action-cards.jsx 16:0-40
+          - generic [ref=f1e62]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/ui'"
+        - generic [ref=f1e63]:
+          - generic [ref=f1e64] [cursor=pointer]: ERROR in ./src/components/ui/rules-badge.jsx 11:0-40
+          - generic [ref=f1e65]: "Module not found: Error: Can't resolve '../../testids' in '/app/frontend/src/components/ui'"
+        - generic [ref=f1e66]:
+          - generic [ref=f1e67] [cursor=pointer]: ERROR in ./src/utils/loginRouteVerifier.js 10:0-37
+          - generic [ref=f1e68]: "Module not found: Error: Can't resolve '../testids' in '/app/frontend/src/utils'"
+```
