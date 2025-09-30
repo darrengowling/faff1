@@ -79,7 +79,7 @@ export const AuthNavigation = ({ variant = 'desktop' }) => {
             variant="ghost"
             size="sm"
             onClick={() => navigate('/login')}
-            data-testid={TESTIDS.navSignIn}
+            data-testid={TESTIDS.navSignInDesktop}
           >
             Sign In
           </Button>
