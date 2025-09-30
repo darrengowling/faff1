@@ -22,8 +22,20 @@ const SimpleLandingPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  // Use hash spy hook for deterministic section tracking
+  const { currentHash } = useHashSpy(['#home', '#how', '#why', '#features', '#safety', '#faq']);
+
   return (
     <div className="min-h-screen bg-theme-surface">
+      {/* Hash navigation marker - always present for testing */}
+      <div 
+        data-testid="nav-current-hash"
+        className="sr-only"
+        aria-hidden="true"
+      >
+        {currentHash || '#'}
+      </div>
+      
       {/* Sticky Page Navigation */}
       <StickyPageNav />
       
