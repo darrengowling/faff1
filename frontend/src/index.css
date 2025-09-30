@@ -85,6 +85,7 @@ html {
 /* Anchor sections with proper scroll margin */
 .anchor-section {
     scroll-margin-top: var(--header-h);
+    min-height: 60vh; /* Ensure sections are not zero-height */
 }
 
 /* Disabled state styling for critical elements */
