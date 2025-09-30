@@ -114,7 +114,7 @@ const MarketingShell = ({ children }) => {
               />
               {/* MarketingShell variant testid */}
               <BackToHomeLink 
-                testId="marketing-back-home" 
+                testId="back-to-home-link" 
                 to="/" 
                 className="text-theme-text-secondary hover:text-theme-text" 
               />
