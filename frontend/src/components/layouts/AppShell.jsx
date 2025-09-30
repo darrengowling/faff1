@@ -93,11 +93,6 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
 
   const breadcrumb = pageTitle || generateBreadcrumb();
 
-  // Handle product dropdown
-  const handleProductDropdownToggle = () => {
-    setProductDropdownOpen(!productDropdownOpen);
-  };
-
   // Close dropdowns and mobile menu on route change
   React.useEffect(() => {
     setMobileMenuOpen(false);
