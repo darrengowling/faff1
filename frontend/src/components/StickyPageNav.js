@@ -131,6 +131,9 @@ const StickyPageNav = () => {
       hashMarker.textContent = `#${sectionId}`;
     }
     
+    // Set flag to prevent hash spy from overriding this navigation
+    window._lastNavigationTime = Date.now();
+    
     // Update active section state immediately
     setActiveSection(sectionId);
     
