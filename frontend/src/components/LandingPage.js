@@ -48,6 +48,9 @@ const LandingPage = () => {
         if (hashMarker) {
           hashMarker.textContent = `#${sectionId}`;
         }
+        
+        // Set flag to prevent hash spy from overriding this navigation
+        window._lastNavigationTime = Date.now();
       }
       
       // Determine scroll behavior based on TEST_MODE
