@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent } from './card';
 import { Button } from './button';
-import { TESTIDS } from '../../testids';
+import { TESTIDS } from '../../testids.ts';
 
 const QuickActionCards = ({ 
   onCreateLeague, 
