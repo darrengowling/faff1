@@ -12,7 +12,7 @@ from datetime import datetime
 def test_atomic_league_creation():
     """Test atomic league creation after MongoDB transaction fixes"""
     
-    base_url = "https://e2e-stability.preview.emergentagent.com"
+    base_url = "https://test-harmony.preview.emergentagent.com"
     api_url = f"{base_url}/api"
     
     print("🧪 ATOMIC LEAGUE CREATION TEST - MongoDB Transaction Fix Verification")

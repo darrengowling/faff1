@@ -8,7 +8,7 @@
 const { test, expect } = require('@playwright/test');
 
 // Use baseURL from config
-const BASE_URL = process.env.FRONTEND_URL || 'https://e2e-stability.preview.emergentagent.com';
+const BASE_URL = process.env.FRONTEND_URL || 'https://test-harmony.preview.emergentagent.com';
 
 test.describe('Config Drift Prevention', () => {
   

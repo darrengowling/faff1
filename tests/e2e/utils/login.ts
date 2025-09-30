@@ -6,7 +6,7 @@
 import { Page } from '@playwright/test';
 import { TESTIDS } from '../../../frontend/src/testids.ts';
 
-const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'https://e2e-stability.preview.emergentagent.com';
+const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'https://test-harmony.preview.emergentagent.com';
 const INTERNAL_API_URL = 'http://localhost:8001'; // Direct backend access for test-login
 
 export interface LoginOptions {

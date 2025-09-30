@@ -14,7 +14,7 @@ import time
 import uuid
 
 class AtomicFlowTester:
-    def __init__(self, base_url="https://e2e-stability.preview.emergentagent.com"):
+    def __init__(self, base_url="https://test-harmony.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.session = requests.Session()  # Use session to maintain cookies

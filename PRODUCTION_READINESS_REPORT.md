@@ -58,7 +58,7 @@ sed -i 's|/api/socketio|/api/socket.io|g' backend/.env
 ## 🔍 HANDSHAKE GATE RESULTS
 
 **Socket.IO Diagnostics:** ❌ FAILED  
-**Backend URL:** https://e2e-stability.preview.emergentagent.com  
+**Backend URL:** https://test-harmony.preview.emergentagent.com  
 **Transports Tested:** polling, websocket  
 
 ```

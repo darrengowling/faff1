@@ -49,8 +49,8 @@
                     - generic [ref=e52] [cursor=pointer]: Send Magic Link
               - generic [ref=e53]:
                 - paragraph [ref=e54]: "Development Mode - Magic Link:"
-                - link "https://e2e-stability.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE5NzU1MSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.XGg30c9eefVvSMeXb0fHmZg-ZaCADNadmLwPzlPDISU" [ref=e55] [cursor=pointer]:
-                  - /url: https://e2e-stability.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE5NzU1MSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.XGg30c9eefVvSMeXb0fHmZg-ZaCADNadmLwPzlPDISU
+                - link "https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE5NzU1MSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.XGg30c9eefVvSMeXb0fHmZg-ZaCADNadmLwPzlPDISU" [ref=e55] [cursor=pointer]:
+                  - /url: https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE5NzU1MSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.XGg30c9eefVvSMeXb0fHmZg-ZaCADNadmLwPzlPDISU
               - button "Back to Home" [ref=e57] [cursor=pointer]:
                 - img [ref=e58] [cursor=pointer]
                 - generic [ref=e60] [cursor=pointer]: Back to Home

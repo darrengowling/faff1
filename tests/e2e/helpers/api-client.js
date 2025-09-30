@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 class APIClient {
-  constructor(baseURL = 'https://e2e-stability.preview.emergentagent.com/api') {
+  constructor(baseURL = 'https://test-harmony.preview.emergentagent.com/api') {
     this.baseURL = baseURL;
     this.defaultHeaders = {
       'Content-Type': 'application/json'

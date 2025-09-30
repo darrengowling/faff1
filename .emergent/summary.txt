@@ -1,60 +1,64 @@
 <analysis>
-The previous AI engineer focused intensively on establishing production readiness by fixing critical architectural weaknesses related to E2E testability. The work began by addressing immediate compilation errors caused by improper  imports and restoring corrupt component files (, ). The core strategy evolved from simple testid implementation to enforcing testability at the compile and runtime levels. Key achievements include creating TypeScript  wrappers that mandate  usage, developing route-based testid contract tests (RTL), implementing a backend API endpoint () for CI/runtime verification, and establishing robust CI gating scripts. The final effort involved implementing stable DOM patterns by keeping critical elements mounted but visually disabled during loading, resolving long-standing issues where elements disappeared during testing flows. This comprehensive approach shifts testability from an optional implementation detail to a mandatory, enforced standard, concluding with stable components and a working verification pipeline.
+The trajectory documents a focused effort to achieve production readiness for a full-stack application by stabilizing its End-to-End (E2E) test suite, with a target pass rate of 85%. The work began by implementing and verifying  attributes across critical user flows. Initial progress was promising, reaching an 80% pass rate after some trial and error with session management strategies.
+
+However, subsequent canary test runs revealed persistent flakiness and critical failures in specific specs (, , ). The engineer systematically addressed each failure based on user-provided Change requests. This involved refactoring the login page for synchronous rendering, making league creation atomic with a dedicated page, and stabilizing mobile navigation interactions by hardening CSS and component state management.
+
+A recurring, circular problem was the inconsistency in testid naming conventions (camelCase vs. kebab-case) between the central  file and hardcoded strings in the Playwright test files. This led to multiple failed attempts and rollbacks. The final phase of work involved a laser-targeted fix for an  failure, which correctly identified this naming mismatch as the root cause. The engineer was in the process of aligning the canonical  file with the test's explicit expectations when the trajectory ended.
 </analysis>
 
 <product_requirements>
-The Friends of PIFA application is an auction platform for 4-8 friends to bid on Champions League clubs, featuring magic-link authentication, league creation, live auction, and budget management.
+The primary objective is to make the Friends of PIFA application production-ready by achieving an E2E test pass rate of 85% or higher. The application is an auction platform for friends to bid on Champions League clubs.
 
-The primary objective for the previous development cycle was to achieve production readiness, specifically by increasing the E2E test pass rate to a target of 85%. This required robust implementation and verification of  attributes across all critical flows.
-
-**Implemented Features/Fixes:**
-1.  **Codebase Stability:** Fixed core compilation issues and restored corrupted layout/component files.
-2.  **TestID Consolidation:** Migrated all  definitions to a canonical, centralized file ().
-3.  **Testability Enforcement:** Implemented TypeScript wrapper components (, , etc.) that enforce the presence of  at compile time.
-4.  **Verification Pipeline:** Created runtime verification tooling, including a dedicated backend  endpoint () and React Testing Library (RTL) contract tests.
-5.  **DOM Stability:** Refactored critical UI components (Login, Create League) to use stable DOM patterns, ensuring elements are disabled () but remain mounted during loading phases instead of being unmounted/hidden via .
+To achieve this goal, the following key features and fixes were requested and implemented:
+1.  **TestID Implementation:** Ensure critical UI elements across all major routes (, , , global navigation) have stable  attributes for reliable testing.
+2.  **Stable DOM Patterns:** Refactor components to avoid unmounting critical elements during loading states. Instead, use attributes like  and  to keep them in the DOM but visually inactive.
+3.  **Synchronous Login:** The login page must render its form elements immediately on first paint, without being blocked by authentication checks, to prevent test timeouts.
+4.  **Atomic League Creation:** The league creation flow must be atomic (backend transaction) and observable. A dedicated  page was created to decouple the form from modal state issues.
+5.  **Reliable Mobile Navigation:** The mobile navigation drawer must have deterministic state management (), accurate item counts (), and reliable anchor link scrolling to eliminate flaky tests.
+6.  **Authentication Stability:** Backend test login must be idempotent, and a Playwright  must be used to pre-generate authentication states, preventing random sign-outs during tests.
 </product_requirements>
 
 <key_technical_concepts>
--   **Testability Enforcement:** Using TypeScript interfaces () to mandate  usage.
--   **Stable DOM Pattern:** Employing CSS rules (, , ) instead of conditional rendering to preserve elements in the DOM during test runs.
--   **CI Gating:** Utilizing Node scripts () and environment checks () to fail the pipeline early if critical contracts (testids, config) are broken.
--   **RTL Contract Testing:** Using Jest/RTL to verify critical testid presence on key routes quickly, independent of the E2E environment.
+- **Testability Enforcement**: Centralizing all  values in a canonical  file and using TypeScript to enforce their usage.
+- **Stable DOM Patterns**: Prioritizing CSS and ARIA attributes (, ) over conditional rendering () or  to ensure key elements remain in the DOM for test runners.
+- **Atomic Operations**: Using MongoDB sessions/transactions on the backend () to ensure database operations (like creating a league and its commissioner) are all-or-nothing.
+- **Playwright Global Setup**: Using a  file to programmatically log in test users and save their storage states, ensuring tests start with a consistent, authenticated session.
 </key_technical_concepts>
 
 <code_architecture>
-The application uses a React/Vite frontend, a FastAPI Python backend, and MongoDB.
+The application is a standard monorepo with a React/Vite frontend and a Python/FastAPI backend.
 
 
 
--   ****: Canonical source of all . Updated to include navigation (, etc.), CTA, and section testids, addressing previous E2E failures.
--   ** (NEW)**: TypeScript wrappers (, , , ) that require a  prop, enforcing testability at compile time and supporting stable disabled/loading states.
--   ****: Critical file defining routes and core league logic. Modified to import  and replace native HTML elements (in ,  button) with these components, ensuring testability during loading/creation flows.
--   ****: Refactored to use  and  for email and submission, ensuring both remain mounted but disabled during API calls (), adhering to stable DOM patterns.
--   ****: Added  endpoint within the  block to allow automated scripts and verification tools to programmatically check if the required critical testids are present for a given frontend route.
--   ** (NEW)**: Jest/RTL test suite that dynamically iterates over critical routes (defined in ) to ensure testid presence before expensive E2E runs.
--   ****: Modified to include CSS rules to support deterministic hiding of testable elements, using  and  instead of removing them from the DOM.
--   ****: Updated  to include missing links (, , ) to align the application's actual navigation structure with E2E test expectations.
+-   ****: The canonical source for all  strings. This file was repeatedly edited to correct naming convention mismatches (camelCase vs. kebab-case) to align with test expectations.
+-   ****: Heavily refactored to render synchronously, manage loading/error states stably using ARIA attributes, and align its  usage with the strict contract defined in .
+-   ****: The main application file containing routing and top-level state. It was modified to add a new route for , conditionally render a global , and inject global CSS in  to disable animations.
+-   ****: Refactored to accept a  prop, allowing for a single canonical instance () and multiple variant instances (, ) to resolve test strict mode violations.
+-   ****: The main FastAPI application. It was modified to make the  endpoint idempotent, fix cookie domain settings for session stability, and add a  probe to verify atomic league creation. The mock data in the testid verifier endpoint was also fixed.
+-   ** (New)**: A Playwright configuration file created to programmatically log in three test users (commish, alice, bob) before tests run, ensuring stable and independent authenticated sessions for test specs.
+-   ****: A critical E2E test file that repeatedly failed. Its hardcoded testid strings served as the primary contract for fixing the  and  implementations.
 </code_architecture>
 
 <pending_tasks>
-- Achieve the target E2E pass rate of 85%. (Last measured at 51.9% after stable DOM fixes, requiring a final comprehensive E2E verification).
-- Continue auditing and implementing  across the remaining complex components, if required by future testing.
+- **Achieve 85% E2E Pass Rate**: The primary goal remains outstanding.
+- **Fix **: This test was still failing due to visibility issues with the  button.
+- **Fix **: This test was failing due to syntax errors in its assertions.
+- **Resolve all testid inconsistencies**: A full audit is needed to ensure all components and tests use the same, correct testid values from the canonical source.
 </pending_tasks>
 
 <current_work>
-The immediate work before the trajectory concluded was implementing **Stable DOM Patterns** to ensure critical components remain visible/present in the DOM for reliable E2E testing, even during loading or disabled states.
+The engineer was performing a laser-targeted fix to resolve the final, persistent failure in the  E2E test. The user identified that despite multiple fixes, the same issues were recurring. The final diagnosis was a fundamental mismatch between the test file, which used hardcoded **kebab-case** strings (e.g., ), and the application's central  file, which defined constants with **camelCase** values (e.g., ).
 
-This involved:
-1.  **CSS Updates:** Modifying  to define a global rule:  and enhancing styles for elements that are disabled.
-2.  ** Enhancement:** Updated the custom Testable components to handle loading and disabled states gracefully, making them suitable for use in stable DOM patterns.
-3.  **Component Refactoring:**
-    *   : Refactored input fields and the submit button to use  and , ensuring they are always mounted but set to  during authentication attempts.
-    *   : Applied similar refactoring to the  inputs and the Start Auction button, maintaining their DOM presence during loading or disabled conditions.
+The previous attempt to solve a strict mode violation for duplicate  testids was successful but did not address this deeper naming issue.
 
-The final action (M689) was generating documentation for stable DOM patterns, and the application build was successful (M676). The system is now structurally ready for reliable E2E testing.
+The immediate work involved:
+1.  **Examining the contract**: The engineer read the test file () to understand its exact expectations for testid strings.
+2.  **Identifying the mismatch**: It was confirmed that the test expected  while the code provided .
+3.  **Implementing the fix**: The engineer started editing the canonical source of truth, , to change the values of the constants to match the kebab-case strings expected by the test. The last action was updating the  constant.
+
+The core of the current work is to methodically align the application's implementation with the rigid contract defined by the E2E tests, starting with the highest-priority authentication flow.
 </current_work>
 
 <optional_next_step>
-Run the comprehensive frontend E2E test suite to verify the achieved pass rate now that structural testability and DOM stability are enforced.
+Continue updating the  file to align all constants with the kebab-case strings required by , then re-run the test to confirm the fix and move on to the next failing spec.
 </optional_next_step>

@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 
 def test_league_creation():
-    base_url = "https://e2e-stability.preview.emergentagent.com"
+    base_url = "https://test-harmony.preview.emergentagent.com"
     api_url = f"{base_url}/api"
     
     # Generate unique test data

@@ -12,7 +12,7 @@ test.describe('League Settings Regression Tests', () => {
   
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
-    apiUrl = process.env.REACT_APP_BACKEND_URL || 'https://e2e-stability.preview.emergentagent.com';
+    apiUrl = process.env.REACT_APP_BACKEND_URL || 'https://test-harmony.preview.emergentagent.com';
   });
 
   test.describe('Min=2 Gate: Start Auction Button Logic', () => {

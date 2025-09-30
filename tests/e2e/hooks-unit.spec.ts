@@ -6,7 +6,7 @@
 import { test, expect } from '@playwright/test';
 import { initializeTestTime } from './utils/time-helpers';
 
-const BACKEND_URL = 'https://e2e-stability.preview.emergentagent.com';
+const BACKEND_URL = 'https://test-harmony.preview.emergentagent.com';
 
 test.describe('Hooks Unit Tests', () => {
   
