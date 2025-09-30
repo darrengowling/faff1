@@ -260,12 +260,8 @@ const LoginPage = () => {
                 role="alert"
                 aria-live="assertive"
                 className={`flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md transition-opacity ${
-                  error ? 'opacity-100' : 'opacity-0 h-0 p-0 border-0'
+                  error ? 'opacity-100 visible' : 'opacity-0 invisible h-0 p-0 border-0'
                 }`}
-                style={{ 
-                  display: error ? 'flex' : 'block',
-                  visibility: error ? 'visible' : 'hidden'
-                }}
               >
                 {error && (
                   <>
