@@ -1399,21 +1399,17 @@ function App() {
             {/* Global League Creation Success Marker */}
             <LeagueCreateSuccessMarker />
             
-            {/* Routes with centralized auth guards */}
+            {/* Routes - Simplified App-Only Structure */}
             <Routes>
-              {/* Marketing Shell Routes - Redirect if already authenticated */}
+              {/* Login Route - No marketing shell needed */}
               <Route path="/login" element={
                 <RedirectIfAuthed>
-                  <MarketingShell>
-                    <LoginPage />
-                  </MarketingShell>
+                  <LoginPage />
                 </RedirectIfAuthed>
               } />
-              <Route path="/" element={
-                <MarketingShell>
-                  <RootRoute />
-                </MarketingShell>
-              } />
+              
+              {/* Root Route - Direct redirect to login or app */}
+              <Route path="/" element={<AppRootRedirect />} />
               
               {/* Auth verification without shell */}
               <Route path="/auth/verify" element={<MagicLinkVerify />} />
