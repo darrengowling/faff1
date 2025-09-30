@@ -110,9 +110,7 @@ export const TESTIDS = {
   backButton: 'back-button',
   backToHomeButton: 'back-to-home-button',
 
-  // League Creation/Management
-  createSubmit: 'create-submit',
-  createCancel: 'create-cancel',
+  // League Creation/Management (removed duplicates - using earlier definitions)
   
   // Auction
   auctionRoom: 'auction-room',
