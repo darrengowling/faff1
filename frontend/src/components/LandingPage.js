@@ -565,6 +565,15 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Hash navigation marker - always present for testing */}
+      <div 
+        data-testid="nav-current-hash"
+        className="sr-only"
+        aria-hidden="true"
+      >
+        {currentHash || '#'}
+      </div>
+      
       <NavigationHeader />
       <HeroSection />
       <HowItWorksSection />
