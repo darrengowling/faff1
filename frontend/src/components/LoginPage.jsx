@@ -369,6 +369,11 @@ const LoginPage = () => {
             Having trouble? Contact support for assistance.
           </p>
         </div>
+
+        {/* Back to Home Link */}
+        <div className="text-center">
+          <BackToHomeLink />
+        </div>
       </div>
     </div>
   );
