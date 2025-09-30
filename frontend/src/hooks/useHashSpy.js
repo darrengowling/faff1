@@ -120,8 +120,8 @@ export const useHashSpy = (sections = ['#home', '#how', '#why', '#features', '#s
   }, [checkVisibleSection]);
 
   // Force update hash (useful for navigation)
-  const setHash = useCallback((hash) => {
-    updateHash(hash);
+  const setHash = useCallback((hash, isFromNavigation = false) => {
+    updateHash(hash, isFromNavigation);
   }, [updateHash]);
 
   return {
