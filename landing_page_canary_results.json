@@ -1,0 +1,723 @@
+🧪 Global E2E Test Setup Starting...
+🔍 Pre-check: Verifying TESTIDS import...
+✅ TESTIDS imported successfully: 184 testids available
+   Sample testids: homeCreateLeagueBtn, navCreateLeagueBtn, joinViaInviteBtn, createLeagueWizardName, createLeagueWizardSlots...
+✅ Application accessible at: https://e2e-stability.preview.emergentagent.com (Status: 200)
+🔐 Creating authenticated storage states...
+🔑 Authenticating commish@example.com...
+🔐 Logging in user: commish@example.com (mode: test)
+🧪 Test-only login for user: commish@example.com
+✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+✅ commish@example.com authenticated successfully
+💾 Storage state saved: test-results/commissioner-state.json
+🔑 Authenticating alice@example.com...
+🔐 Logging in user: alice@example.com (mode: test)
+🧪 Test-only login for user: alice@example.com
+✅ Test-only login successful: alice@example.com (User ID: 1d870e32-2668-4003-a477-ed01c0b73532)
+✅ alice@example.com authenticated successfully
+💾 Storage state saved: test-results/alice-state.json
+🔑 Authenticating bob@example.com...
+🔐 Logging in user: bob@example.com (mode: test)
+🧪 Test-only login for user: bob@example.com
+✅ Test-only login successful: bob@example.com (User ID: 219110d6-44db-481a-95f9-af0cf54d5467)
+✅ bob@example.com authenticated successfully
+💾 Storage state saved: test-results/bob-state.json
+🎉 Global setup completed successfully!
+🧹 Global E2E Test Teardown Starting...
+🎉 Global teardown completed!
+{
+  "config": {
+    "configFile": "/app/playwright.config.ts",
+    "rootDir": "/app/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/app/tests/e2e/utils/global-setup.ts",
+    "globalTeardown": "/app/tests/e2e/utils/global-teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "port": 3000,
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "landing-page.spec.js",
+      "file": "landing-page.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Landing Page - Comprehensive Testing",
+          "file": "landing-page.spec.js",
+          "line": 16,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Landing page loads correctly with all sections",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2180,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Page Title - PASSED Expected: \"Friends of PIFA — Sports gaming with friends. No gambling, all strategy.\", Got: \"Friends of PIFA — Sports gaming with friends. No gambling, all strategy.\"\n"
+                        },
+                        {
+                          "text": "✅ All Main Sections - PASSED 6 sections visible\n"
+                        },
+                        {
+                          "text": "✅ Hero Section - PASSED Hero title visible\n"
+                        },
+                        {
+                          "text": "✅ Hero CTA Buttons - PASSED Both CTA buttons visible\n"
+                        },
+                        {
+                          "text": "✅ Footer - PASSED Footer visible\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T01:16:55.876Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-950d2067fc9dcc96137b",
+              "file": "landing-page.spec.js",
+              "line": 60,
+              "column": 7
+            },
+            {
+              "title": "Sticky in-page navigation anchors scroll correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3019,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Sticky Navigation Visibility - PASSED After scrolling past hero\n"
+                        },
+                        {
+                          "text": "❌ Anchor Scrolling - FAILED 0/6 sections scrolled\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T01:16:58.208Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-98b23e8810ac776541ae",
+              "file": "landing-page.spec.js",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "Scroll-spy updates active section highlighting",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9123,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "❌ Scroll-spy Active Highlighting - FAILED Active section indicators detected\n"
+                        },
+                        {
+                          "text": "✅ Browser Hash Updates - PASSED Hash: #home\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T01:17:01.251Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-58981c169aa2575ed4b7",
+              "file": "landing-page.spec.js",
+              "line": 178,
+              "column": 7
+            },
+            {
+              "title": "CTAs route to create/join flows correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3171,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🔍 Checking landing page CTAs for overlay issues...\n"
+                        },
+                        {
+                          "text": "⏭️ CTA not found: [data-testid=\"create-league-btn\"]\n"
+                        },
+                        {
+                          "text": "⏭️ CTA not found: [data-testid=\"join-league-btn\"]\n"
+                        },
+                        {
+                          "text": "🎯 Checking CTA: button:has-text(\"Create a League\")\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (842.5, 916)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "  0: button.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"]\n"
+                        },
+                        {
+                          "text": "✅ CTA clickable: button:has-text(\"Create a League\")\n"
+                        },
+                        {
+                          "text": "🎯 Checking CTA: button:has-text(\"Join with an Invite\")\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (1071, 916)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "  0: button.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"]\n"
+                        },
+                        {
+                          "text": "✅ CTA clickable: button:has-text(\"Join with an Invite\")\n"
+                        },
+                        {
+                          "text": "✅ All landing page CTAs are clickable\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (842.5, 916)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "  0: button.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"]\n"
+                        },
+                        {
+                          "text": "✅ Click successful on: button.w-full.sm:w-auto.text-lg.px-8.py-4.shadow-lg.hover:shadow-xl.transition-all[data-testid=\"cta-create-league\"]\n"
+                        },
+                        {
+                          "text": "✅ Create League CTA Routing - PASSED Routes to /login\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (1071, 850)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "  0: button.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  1: div.flex.flex-col.sm:flex-row.items-center.justify-center.gap-4.mb-12 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  2: div.text-center (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  3: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8.py-12.lg:py-20 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  4: section#home.anchor-section.pt-16.bg-gradient-to-br.from-blue-50.via-theme-surface.to-indigo-50.min-h-screen.flex.items-center[data-testid=\"section-home\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  5: div.min-h-screen.bg-theme-surface (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  6: main.flex-1 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  7: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  8: div#root (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  9: body.theme-light (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  10: html (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"]\n"
+                        },
+                        {
+                          "text": "✅ Click successful on: button.w-full.sm:w-auto.text-lg.px-8.py-4[data-testid=\"cta-join-league\"]\n"
+                        },
+                        {
+                          "text": "✅ Join Invite CTA Routing - PASSED Routes to /login\n"
+                        },
+                        {
+                          "text": "✅ Sticky CTA (Mobile) - PASSED Mobile sticky CTA routes correctly\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T01:17:10.392Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-322cd155575eb62f4280",
+              "file": "landing-page.spec.js",
+              "line": 222,
+              "column": 7
+            },
+            {
+              "title": "Responsive design and mobile layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3529,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Responsive Design - PASSED 3/3 viewports working\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T01:17:13.582Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-9b9429a5f5c1114e8018",
+              "file": "landing-page.spec.js",
+              "line": 285,
+              "column": 7
+            },
+            {
+              "title": "Anchor scrolling works correctly without overlay interference",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7240,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🔍 Checking anchor scrolling functionality...\n"
+                        },
+                        {
+                          "text": "📍 Testing anchor: features\n"
+                        },
+                        {
+                          "text": "❌ Anchor Scrolling - FAILED Anchor scroll test failed for #features: Overlay detection failed: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#features\"]').first() to be visible\u001b[22m\n\u001b[2m    15 × locator resolved to hidden <a href=\"#features\" data-href=\"#features\" data-testid=\"nav-item-features\" class=\"block py-2 px-0 text-theme-text-secondary hover:text-theme-text transition-colors rounded-md hover:bg-theme-bg-tertiary\">Features</a>\u001b[22m\n\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T01:17:17.128Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-794c1b2a35ad05d40973",
+              "file": "landing-page.spec.js",
+              "line": 323,
+              "column": 7
+            },
+            {
+              "title": "Mobile menu closes properly on navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4386,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Checking clickability at coordinates (339.0, 32.0)\n"
+                        },
+                        {
+                          "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                        },
+                        {
+                          "text": "🔍 Topmost: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                        },
+                        {
+                          "text": "✅ Element is clickable\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (339, 32)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "  0: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"] (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  1: div.flex.items-center.justify-between.h-16 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  2: div.max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8 (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  3: header.sticky.top-0.w-full.bg-theme-surface/95.backdrop-blur-sm.border-b.border-theme-surface-border.z-40[data-testid=\"app-header\"] (z-index: 40, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  4: div.min-h-screen.bg-theme-surface.flex.flex-col (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  5: div#root (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  6: body.theme-light (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "  7: html (z-index: auto, pointer-events: auto)\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"]\n"
+                        },
+                        {
+                          "text": "✅ Click successful on: button.md:hidden.p-2.text-gray-600.hover:text-gray-900.hover:bg-gray-100.rounded-md.transition-colors[data-testid=\"nav-hamburger\"]\n"
+                        },
+                        {
+                          "text": "✅ Mobile Menu Auto-Close - PASSED Menu closes on navigation\n"
+                        },
+                        {
+                          "text": "\n============================================================\n"
+                        },
+                        {
+                          "text": "📊 Landing Page Test Summary:\n"
+                        },
+                        {
+                          "text": "⏱️ Duration: 32.93s\n"
+                        },
+                        {
+                          "text": "✅ Passed: 12\n"
+                        },
+                        {
+                          "text": "❌ Failed: 3\n"
+                        },
+                        {
+                          "text": "\n🎉 Successful Tests:\n"
+                        },
+                        {
+                          "text": "  - Page Title\n"
+                        },
+                        {
+                          "text": "  - All Main Sections\n"
+                        },
+                        {
+                          "text": "  - Hero Section\n"
+                        },
+                        {
+                          "text": "  - Hero CTA Buttons\n"
+                        },
+                        {
+                          "text": "  - Footer\n"
+                        },
+                        {
+                          "text": "  - Sticky Navigation Visibility\n"
+                        },
+                        {
+                          "text": "  - Browser Hash Updates\n"
+                        },
+                        {
+                          "text": "  - Create League CTA Routing\n"
+                        },
+                        {
+                          "text": "  - Join Invite CTA Routing\n"
+                        },
+                        {
+                          "text": "  - Sticky CTA (Mobile)\n"
+                        },
+                        {
+                          "text": "  - Responsive Design\n"
+                        },
+                        {
+                          "text": "  - Mobile Menu Auto-Close\n"
+                        },
+                        {
+                          "text": "\n💥 Failed Tests:\n"
+                        },
+                        {
+                          "text": "  - Anchor Scrolling: 0/6 sections scrolled\n"
+                        },
+                        {
+                          "text": "  - Scroll-spy Active Highlighting: Active section indicators detected\n"
+                        },
+                        {
+                          "text": "  - Anchor Scrolling: Anchor scroll test failed for #features: Overlay detection failed: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"#features\"]').first() to be visible\u001b[22m\n\u001b[2m    15 × locator resolved to hidden <a href=\"#features\" data-href=\"#features\" data-testid=\"nav-item-features\" class=\"block py-2 px-0 text-theme-text-secondary hover:text-theme-text transition-colors rounded-md hover:bg-theme-bg-tertiary\">Features</a>\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "============================================================\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T01:17:24.385Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3e0fb330acbf3aa1aea3-a2025b593f9c64ad304e",
+              "file": "landing-page.spec.js",
+              "line": 336,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-30T01:16:42.982Z",
+    "duration": 45901.807,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
