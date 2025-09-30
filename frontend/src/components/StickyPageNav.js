@@ -179,7 +179,7 @@ const StickyPageNav = () => {
   return (
     <nav
       ref={navRef}
-      className={`sticky top-16 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-40 transition-all duration-300 ${
+      className={`sticky top-16 bg-white border-b border-gray-200 z-40 transition-all duration-300 ${
         isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}
       role="navigation"
