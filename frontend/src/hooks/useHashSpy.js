@@ -33,7 +33,8 @@ export const useHashSpy = (sections = ['#home', '#how', '#why', '#features', '#s
     
     debounceTimer.current = setTimeout(() => {
       // Don't override recent navigation clicks (within 500ms)
-      const timeSinceNavigation = Date.now() - lastNavigationTime.current;
+      const lastNavTime = typeof window !== 'undefined' ? (window._lastNavigationTime || 0) : 0;
+      const timeSinceNavigation = Date.now() - Math.max(lastNavigationTime.current, lastNavTime);
       if (timeSinceNavigation < 500) {
         return; // Skip this update to preserve navigation
       }
