@@ -33,33 +33,39 @@ const MarketingShell = ({ children }) => {
   // Hash handling for anchor navigation - use hash spy for stable navigation
   const { currentHash, setHash } = useHashSpy(['#home', '#how', '#why', '#features', '#safety', '#faq']);
 
-  // Force drawer closed on any route or anchor navigation
+  // Force drawer closed on any route or anchor navigation  
   useEffect(() => {
     // Close drawer on route change
     setMobileMenuOpen(false);
-    // Update count immediately 
-    setMobileItemCount(current => current);
+    // Update count immediately when drawer state changes
+    const actualCount = calculateVisibleItemCount();
+    setMobileItemCount(actualCount);
   }, [location.pathname, location.hash]);
 
-  // Count visible mobile menu items
-  React.useEffect(() => {
-    // Count nav items based on actual MobileNavigation items
+  // Calculate visible item count deterministically
+  const calculateVisibleItemCount = () => {
     let count = 0;
     
     // Back to Home link
     count += 1;
     
-    // MobileNavigation items (6 anchor sections: home, how, why, features, safety, faq)
+    // MobileNavigation items (6 anchor sections)
     count += 6;
     
-    // Auth actions (Sign In, Get Started or user actions)
-    count += user ? 2 : 2; // Adjust based on auth state
+    // Auth actions
+    count += 2;
     
     // Theme toggle
     count += 1;
     
-    setMobileItemCount(count);
-  }, [user]); // Recalculate when auth state changes
+    return count;
+  };
+
+  // Update count when drawer opens/closes or user state changes
+  React.useEffect(() => {
+    const actualCount = calculateVisibleItemCount();
+    setMobileItemCount(actualCount);
+  }, [user, mobileMenuOpen]); // Update on auth state or drawer state change
 
   // Handle product dropdown
   const handleProductDropdownToggle = () => {
