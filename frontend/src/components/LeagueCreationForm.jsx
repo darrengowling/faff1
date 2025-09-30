@@ -410,7 +410,7 @@ const LeagueCreationForm = ({
             className="flex-1" 
             disabled={submitting || Object.keys(errors).length > 0}
             loading={submitting}
-            data-testid={TESTIDS.createSubmit}
+            data-testid={TESTIDS.createLeagueWizardSubmit}
           >
             {submitting ? 'Creating...' : 'Create League'}
           </TestableButton>
