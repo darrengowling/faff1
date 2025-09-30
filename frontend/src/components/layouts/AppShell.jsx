@@ -198,7 +198,7 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
-              data-testid={TESTIDS.navHamburger}
+              data-testid={TESTIDS.navHamburgerApp}
             >
               {mobileMenuOpen ? (
                 <X className="w-6 h-6" />
