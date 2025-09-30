@@ -40,8 +40,8 @@ export const TESTIDS = {
   loginNowButton: 'auth-login-now-button', // Legacy: use dev-magic-link-btn directly
   
   // Authentication Page (/login) - Current
-  authEmailInput: 'authEmailInput',
-  authSubmitBtn: 'authSubmitBtn',
+  authEmailInput: 'auth-email-input',
+  authSubmitBtn: 'auth-submit-btn',
   authError: 'auth-error',
   authSuccess: 'auth-success',
   authLoading: 'auth-loading',
