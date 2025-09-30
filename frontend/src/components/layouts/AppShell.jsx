@@ -31,7 +31,6 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
   // Mobile menu state and count tracking
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [mobileItemCount, setMobileItemCount] = React.useState(0);
-  const [productDropdownOpen, setProductDropdownOpen] = React.useState(false);
   const [focusedIndex, setFocusedIndex] = React.useState(-1);
 
   // Count visible mobile menu items
