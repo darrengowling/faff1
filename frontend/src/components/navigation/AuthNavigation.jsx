@@ -38,7 +38,7 @@ export const AuthNavigation = ({ variant = 'desktop' }) => {
               variant="outline"
               onClick={() => navigate('/login')}
               className="w-full"
-              data-testid={TESTIDS.navSignIn}
+              data-testid={TESTIDS.navSignInMobile}
             >
               Sign In
             </Button>
