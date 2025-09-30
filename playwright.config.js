@@ -6,6 +6,8 @@ const { defineConfig, devices } = require('@playwright/test');
  */
 module.exports = defineConfig({
   testDir: './tests',
+  /* Global setup for authentication */
+  globalSetup: require.resolve('./tests/globalSetup.js'),
   /* Run tests in files in parallel */
   fullyParallel: false, // Sequential for auction tests
   /* Fail the build on CI if you accidentally left test.only in the source code. */
