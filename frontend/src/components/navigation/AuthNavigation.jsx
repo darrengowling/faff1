@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../ui/button';
 import { User, LogOut } from 'lucide-react';
 import { useAuth } from '../../App';
-import { TESTIDS } from '../../testids';
+import { TESTIDS } from '../../testids.ts';
 
 export const AuthNavigation = ({ variant = 'desktop' }) => {
   const navigate = useNavigate();

@@ -6,7 +6,7 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '../ui/button';
-import { TESTIDS } from '../../testids';
+import { TESTIDS } from '../../testids.ts';
 
 export const ProductDropdownMenu = ({ isOpen, onToggle, onClose }) => {
   return (
