@@ -16,6 +16,7 @@ import { LandingFooter } from './ui/footer';
 import { TESTIDS } from '../testids';
 import { TestableSection, TestableButton } from './testable/TestableComponents.tsx';
 import StickyPageNav from './StickyPageNav';
+import { useHashSpy } from '../hooks/useHashSpy';
 
 const SimpleLandingPage = () => {
   const navigate = useNavigate();
