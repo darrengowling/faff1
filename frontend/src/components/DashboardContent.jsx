@@ -261,6 +261,7 @@ const DashboardContent = ({
           <CreateLeagueCTA 
             isLoading={loading}
             onCreateLeague={onCreateLeague}
+            showSecondaryAction={true}
           />
         </div>
 
