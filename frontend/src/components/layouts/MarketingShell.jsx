@@ -100,7 +100,7 @@ const MarketingShell = ({ children }) => {
     <div className="min-h-screen bg-theme-surface flex flex-col">
       {/* Single Marketing Header */}
       <header 
-        className="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-40"
+        className="sticky top-0 w-full bg-theme-surface/98 backdrop-blur border-b border-theme-surface-border z-40"
         data-testid="app-header"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
