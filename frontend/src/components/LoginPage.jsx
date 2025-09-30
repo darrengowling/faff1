@@ -275,7 +275,10 @@ const LoginPage = () => {
 
               {/* Success Message */}
               {success && (
-                <div className="flex items-center space-x-2 text-green-600 bg-green-50 p-3 rounded-md">
+                <div 
+                  data-testid={TESTIDS.authSuccess}
+                  className="flex items-center space-x-2 text-green-600 bg-green-50 p-3 rounded-md"
+                >
                   <CheckCircle className="w-4 h-4 flex-shrink-0" />
                   <span className="text-sm">{success}</span>
                 </div>
