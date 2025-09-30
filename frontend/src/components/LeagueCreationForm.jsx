@@ -292,7 +292,7 @@ const LeagueCreationForm = ({
                 loading={submitting}
                 aria-describedby={errors.budget ? "budget-error" : undefined}
                 className={errors.budget ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
-                data-testid={TESTIDS.createBudget}
+                data-testid={TESTIDS.createBudgetInput}
               />
               {errors.budget && (
                 <p id="budget-error" className="text-sm text-red-600" data-testid="create-error-budget">
