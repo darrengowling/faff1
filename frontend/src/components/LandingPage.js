@@ -35,16 +35,34 @@ const LandingPage = () => {
     { id: 'faq', label: 'FAQ' },
   ];
 
-  // Smooth scroll to section
+  // Smooth scroll to section (auto in TEST_MODE)
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       // Update hash immediately for immediate feedback
       if (window.location.hash !== `#${sectionId}`) {
         window.history.replaceState(null, null, `#${sectionId}`);
+        
+        // Update nav-current-hash marker immediately
+        const hashMarker = document.querySelector('[data-testid="nav-current-hash"]');
+        if (hashMarker) {
+          hashMarker.textContent = `#${sectionId}`;
+        }
       }
-      // Smooth scroll to section
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Determine scroll behavior based on TEST_MODE
+      const isTestMode = (
+        process.env.NODE_ENV === 'test' ||
+        process.env.REACT_APP_PLAYWRIGHT_TEST === 'true' ||
+        process.env.REACT_APP_TEST_MODE === 'true' ||
+        (typeof window !== 'undefined' && window.location.search.includes('playwright=true'))
+      );
+      
+      // Scroll to section (auto in TEST_MODE, smooth otherwise)
+      element.scrollIntoView({ 
+        behavior: isTestMode ? 'auto' : 'smooth', 
+        block: 'start' 
+      });
     }
     setMobileMenuOpen(false);
   };
