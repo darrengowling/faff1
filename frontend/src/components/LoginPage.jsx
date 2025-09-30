@@ -244,6 +244,7 @@ const LoginPage = () => {
               onSubmit={handleSubmit}
               data-testid={`${TESTIDS.authFormReady}${loading ? ` ${TESTIDS.authLoading}` : ''}`}
               aria-busy={loading}
+              noValidate={isTestMode()}
               className="space-y-4"
             >
               {/* Render contract: input with authEmailInput testid and required attributes */}
