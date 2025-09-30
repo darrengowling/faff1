@@ -1,0 +1,54 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T"
+    - link "Back to Home" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - text: ← Back to Home
+    - generic [ref=e5]:
+      - banner [ref=e6]:
+        - generic [ref=e8]:
+          - generic [ref=e9]:
+            - button "Friends of PIFA" [ref=e10] [cursor=pointer]:
+              - img [ref=e12] [cursor=pointer]
+              - generic [ref=e18] [cursor=pointer]: Friends of PIFA
+            - link "Back to Home" [ref=e19] [cursor=pointer]:
+              - /url: /
+              - text: ← Back to Home
+          - button "Toggle navigation menu" [ref=e20] [cursor=pointer]:
+            - img
+      - main [ref=e22]:
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - heading "Sign In" [level=1] [ref=e26]
+            - paragraph [ref=e27]: Enter your email to get a magic link
+          - generic [ref=e28]:
+            - heading "Welcome back" [level=3] [ref=e30]
+            - generic [ref=e31]:
+              - generic [ref=e32]:
+                - generic [ref=e33]:
+                  - generic [ref=e34]: Email Address
+                  - textbox "Email Address" [ref=e35]: ui-integration-test@example.com
+                - generic [ref=e36]:
+                  - img [ref=e37]
+                  - generic [ref=e40]: Magic link sent! Check your email or use the link below.
+                - button "Send Magic Link" [ref=e41] [cursor=pointer]:
+                  - generic [ref=e42] [cursor=pointer]:
+                    - img
+                    - generic [ref=e43] [cursor=pointer]: Send Magic Link
+              - generic [ref=e44]:
+                - paragraph [ref=e45]: "Development Mode - Magic Link:"
+                - link "https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVpLWludGVncmF0aW9uLXRlc3RAZXhhbXBsZS5jb20iLCJleHAiOjE3NTkxOTk2OTQsInR5cGUiOiJtYWdpY19saW5rIn0.kv6WlCS3taBvuqxM-xhsJk4i16rMPbwHqvzIACrLrsk" [ref=e46] [cursor=pointer]:
+                  - /url: https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVpLWludGVncmF0aW9uLXRlc3RAZXhhbXBsZS5jb20iLCJleHAiOjE3NTkxOTk2OTQsInR5cGUiOiJtYWdpY19saW5rIn0.kv6WlCS3taBvuqxM-xhsJk4i16rMPbwHqvzIACrLrsk
+              - button "Back to Home" [ref=e48] [cursor=pointer]:
+                - img [ref=e49] [cursor=pointer]
+                - generic [ref=e51] [cursor=pointer]: Back to Home
+          - paragraph [ref=e53]: Having trouble? Contact support for assistance.
+  - link "Emergent platform logo Made with Emergent" [ref=e54] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e55] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e56] [cursor=pointer]
+      - paragraph [ref=e57] [cursor=pointer]: Made with Emergent
+```
