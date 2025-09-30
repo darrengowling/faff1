@@ -223,7 +223,7 @@ export const TESTIDS = {
   
   // App navigation testids
   appHeader: 'app-header',
-  homeNavButton: 'homeNavButton',
+  homeNavButton: 'home-nav-button',
   
   // Mobile drawer testids
   mobileDrawer: 'nav-mobile-drawer',
