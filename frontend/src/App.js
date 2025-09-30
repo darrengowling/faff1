@@ -1294,30 +1294,11 @@ const LeagueCreateSuccessMarker = () => {
   );
 };
 
-// Conditional BackToHomeLink - only shows on routes without their own navigation
+// Simplified app state - no marketing navigation needed
 const ConditionalBackToHomeLink = () => {
   const location = useLocation();
   
-  // Only show on routes that don't have their own navigation
-  const shouldShow = (
-    location.pathname !== '/' && 
-    !location.pathname.startsWith('/app') && 
-    !location.pathname.startsWith('/auth')
-  );
-  
-  if (!shouldShow) {
-    return null;
-  }
-  
-  return (
-    <div className="fixed top-4 left-4 z-30">
-      <BackToHomeLink 
-        testId="global-back-home"
-        to="/"
-        className="text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border"
-      />
-    </div>
-  );
+  return null; // No conditional navigation needed in simplified app
 };
 
 // Main App Component
