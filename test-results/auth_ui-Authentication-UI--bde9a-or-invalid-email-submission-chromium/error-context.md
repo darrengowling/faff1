@@ -4,53 +4,26 @@
 - generic [ref=e1]:
   - generic [ref=e2]:
     - region "Notifications alt+T"
-    - link "Back to Home" [ref=e4] [cursor=pointer]:
-      - /url: /
-      - text: ← Back to Home
-    - generic [ref=e5]:
-      - banner [ref=e6]:
-        - generic [ref=e8]:
-          - generic [ref=e9]:
-            - button "Friends of PIFA" [ref=e10] [cursor=pointer]:
-              - img [ref=e12] [cursor=pointer]
-              - generic [ref=e18] [cursor=pointer]: Friends of PIFA
-            - link "Back to Home" [ref=e19] [cursor=pointer]:
-              - /url: /
-              - text: ← Back to Home
-          - navigation [ref=e20]:
-            - button "Product" [ref=e22] [cursor=pointer]:
-              - generic [ref=e23] [cursor=pointer]: Product
-              - img
-          - generic [ref=e24]:
-            - generic [ref=e25]:
-              - button "Sign In" [ref=e26] [cursor=pointer]
-              - button "Get Started" [ref=e27] [cursor=pointer]
-            - button "Switch to dark mode" [ref=e28] [cursor=pointer]:
-              - generic [ref=e29] [cursor=pointer]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - heading "Sign In" [level=1] [ref=e6]
+        - paragraph [ref=e7]: Enter your email to get a magic link
+      - generic [ref=e8]:
+        - heading "Welcome back" [level=3] [ref=e10]
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - generic [ref=e13]:
+              - generic [ref=e14]: Email Address
+              - textbox "Email Address" [active] [ref=e15]: not-an-email
+            - button "Send Magic Link" [ref=e16] [cursor=pointer]:
+              - generic [ref=e17] [cursor=pointer]:
                 - img
-      - main [ref=e31]:
-        - generic [ref=e33]:
-          - generic [ref=e34]:
-            - heading "Sign In" [level=1] [ref=e35]
-            - paragraph [ref=e36]: Enter your email to get a magic link
-          - generic [ref=e37]:
-            - heading "Welcome back" [level=3] [ref=e39]
-            - generic [ref=e40]:
-              - generic [ref=e41]:
-                - generic [ref=e42]:
-                  - generic [ref=e43]: Email Address
-                  - textbox "Email Address" [active] [ref=e44]: not-an-email
-                - button "Send Magic Link" [ref=e45] [cursor=pointer]:
-                  - generic [ref=e46] [cursor=pointer]:
-                    - img
-                    - generic [ref=e47] [cursor=pointer]: Send Magic Link
-              - link "Back to Home" [ref=e49] [cursor=pointer]:
-                - /url: /
-                - text: ← Back to Home
-          - paragraph [ref=e51]: Having trouble? Contact support for assistance.
-  - link "Emergent platform logo Made with Emergent" [ref=e52] [cursor=pointer]:
+                - generic [ref=e18] [cursor=pointer]: Send Magic Link
+          - paragraph [ref=e20]: Don't have an account? Contact your league commissioner for an invitation.
+      - paragraph [ref=e22]: Having trouble? Contact support for assistance.
+  - link "Emergent platform logo Made with Emergent" [ref=e23] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e53] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e54] [cursor=pointer]
-      - paragraph [ref=e55] [cursor=pointer]: Made with Emergent
+    - generic [ref=e24] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e25] [cursor=pointer]
+      - paragraph [ref=e26] [cursor=pointer]: Made with Emergent
 ```
