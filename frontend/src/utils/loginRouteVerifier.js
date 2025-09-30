@@ -5,7 +5,7 @@
  * Prevents timeout issues in auth_ui.spec.ts
  */
 
-import { TESTIDS } from '../testids';
+import { TESTIDS } from '../testids.ts';
 
 export const verifyLoginRoute = () => {
   return new Promise((resolve, reject) => {
