@@ -288,7 +288,7 @@ const LoginPage = () => {
               <Button
                 type="submit"
                 data-testid={TESTIDS.authSubmitBtn}
-                disabled={loading}
+                disabled={loading || !email.trim() || !validateEmail(email.trim())}
                 className="w-full"
               >
                 {loading ? (
