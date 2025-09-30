@@ -55,6 +55,8 @@ export const TESTIDS = {
   // Navigation
   navBrand: 'nav-brand',
   navSignIn: 'nav-sign-in',
+  navSignInMobile: 'nav-sign-in-mobile',
+  navSignInDesktop: 'nav-sign-in-desktop',
   navDropdownProduct: 'nav-dd-product',
   navDdAuction: 'nav-dd-auction',
   navDdRoster: 'nav-dd-roster',
