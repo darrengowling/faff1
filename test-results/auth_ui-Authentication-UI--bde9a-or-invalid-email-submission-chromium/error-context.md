@@ -40,17 +40,17 @@
                 - generic [ref=e42]:
                   - generic [ref=e43]: Email Address
                   - textbox "Email Address" [active] [ref=e44]: not-an-email
-                - button "Send Magic Link" [ref=e45] [cursor=pointer]:
-                  - generic [ref=e46] [cursor=pointer]:
+                - button "Send Magic Link" [disabled]:
+                  - generic:
                     - img
-                    - generic [ref=e47] [cursor=pointer]: Send Magic Link
-              - button "Back to Home" [ref=e49] [cursor=pointer]:
-                - img [ref=e50] [cursor=pointer]
-                - generic [ref=e52] [cursor=pointer]: Back to Home
-          - paragraph [ref=e54]: Having trouble? Contact support for assistance.
-  - link "Emergent platform logo Made with Emergent" [ref=e55] [cursor=pointer]:
+                    - generic: Send Magic Link
+              - link "Back to Home" [ref=e46] [cursor=pointer]:
+                - /url: /
+                - text: ← Back to Home
+          - paragraph [ref=e48]: Having trouble? Contact support for assistance.
+  - link "Emergent platform logo Made with Emergent" [ref=e49] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e56] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e57] [cursor=pointer]
-      - paragraph [ref=e58] [cursor=pointer]: Made with Emergent
+    - generic [ref=e50] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e51] [cursor=pointer]
+      - paragraph [ref=e52] [cursor=pointer]: Made with Emergent
 ```

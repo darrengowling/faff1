@@ -49,15 +49,15 @@
                     - generic [ref=e52] [cursor=pointer]: Send Magic Link
               - generic [ref=e53]:
                 - paragraph [ref=e54]: "Development Mode - Magic Link:"
-                - link "https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTIwMTk2MiwidHlwZSI6Im1hZ2ljX2xpbmsifQ.C-0cCEmXLTzY4M01FwaqFaqnOaIWTZ6RYSjSy8g0OY0" [ref=e55] [cursor=pointer]:
-                  - /url: https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTIwMTk2MiwidHlwZSI6Im1hZ2ljX2xpbmsifQ.C-0cCEmXLTzY4M01FwaqFaqnOaIWTZ6RYSjSy8g0OY0
-              - button "Back to Home" [ref=e57] [cursor=pointer]:
-                - img [ref=e58] [cursor=pointer]
-                - generic [ref=e60] [cursor=pointer]: Back to Home
-          - paragraph [ref=e62]: Having trouble? Contact support for assistance.
-  - link "Emergent platform logo Made with Emergent" [ref=e63] [cursor=pointer]:
+                - link "https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTIwMjM1NSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.YRag1bOodTCKWUrVs-7QBFzdOtTRFqEHtW3VhjbeY88" [ref=e55] [cursor=pointer]:
+                  - /url: https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTIwMjM1NSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.YRag1bOodTCKWUrVs-7QBFzdOtTRFqEHtW3VhjbeY88
+              - link "Back to Home" [ref=e57] [cursor=pointer]:
+                - /url: /
+                - text: ← Back to Home
+          - paragraph [ref=e59]: Having trouble? Contact support for assistance.
+  - link "Emergent platform logo Made with Emergent" [ref=e60] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e64] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e65] [cursor=pointer]
-      - paragraph [ref=e66] [cursor=pointer]: Made with Emergent
+    - generic [ref=e61] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e62] [cursor=pointer]
+      - paragraph [ref=e63] [cursor=pointer]: Made with Emergent
 ```
