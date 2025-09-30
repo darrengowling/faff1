@@ -33,6 +33,18 @@ const SimpleLandingPage = () => {
         <BackToHomeLink />
       </div>
       
+      {/* Navigation Sign In Button for Header Contract */}
+      <div className="absolute top-4 right-4 z-10">
+        <Button 
+          onClick={() => navigate('/login')}
+          data-testid="nav-sign-in"
+          variant="outline"
+          size="sm"
+        >
+          Sign In
+        </Button>
+      </div>
+      
       {/* Hash navigation marker - always present for testing */}
       <div 
         data-testid="nav-current-hash"
