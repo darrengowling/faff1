@@ -1384,12 +1384,10 @@ function App() {
             
             {/* Routes - Simplified App-Only Structure */}
             <Routes>
-              {/* Login Route - With AppShell for navigation consistency */}
+              {/* Login Route - Standalone without shell wrapper */}
               <Route path="/login" element={
                 <RedirectIfAuthed>
-                  <AppShell showBackButton={false} pageTitle="Sign In">
-                    <LoginPage />
-                  </AppShell>
+                  <LoginPage />
                 </RedirectIfAuthed>
               } />
               
