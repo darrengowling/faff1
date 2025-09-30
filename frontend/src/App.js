@@ -28,6 +28,7 @@ import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage';
 import SimpleLandingPage from './components/SimpleLandingPage';
 import CreateLeagueWizard from './components/CreateLeagueWizard';
+import LeagueCreationPage from './components/LeagueCreationPage';
 import { SafeRoute } from './components/routing/RouteGuards';
 import AppShell from './components/layouts/AppShell';
 import MarketingShell from './components/layouts/MarketingShell';
