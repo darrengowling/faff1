@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TESTIDS } from '../testids';
+import { TESTIDS } from '../testids.ts';
 import { useAuth } from '../App';
 
 interface BackToHomeLinkProps {

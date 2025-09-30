@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 import { Button } from './ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Separator } from './ui/separator';
-import { TESTIDS } from '../testids';
+import { TESTIDS } from '../testids.ts';
 import { ArrowLeft, Mail, CheckCircle, AlertCircle } from 'lucide-react';
 import EmailValidator from '../utils/emailValidator';
 import { runLoginRouteVerification } from '../utils/loginRouteVerifier';

@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import axios from 'axios';
-import { TESTIDS } from '../testids';
+import { TESTIDS } from '../testids.ts';
 import { Button } from './ui/button';
 import { Label } from './ui/label';
 import { Input } from './ui/input';

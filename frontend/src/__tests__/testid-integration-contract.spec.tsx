@@ -6,7 +6,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { TESTIDS } from '../testids';
+import { TESTIDS } from '../testids.ts';
 
 // Simple mock components for integration testing (no external deps)
 const MockAuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
