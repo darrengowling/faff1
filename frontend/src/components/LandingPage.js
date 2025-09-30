@@ -22,8 +22,8 @@ const LandingPage = () => {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Use scroll spy hook for deterministic section tracking
-  const { activeSection } = useScrollSpy({ threshold: 0.5 });
+  // Use hash spy hook for deterministic section tracking with nav-current-hash updates
+  const { currentHash } = useHashSpy(['#home', '#how', '#why', '#features', '#safety', '#faq']);
 
   // Navigation sections
   const navSections = [
