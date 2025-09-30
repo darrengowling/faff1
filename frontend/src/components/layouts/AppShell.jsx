@@ -285,7 +285,7 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
           onClick={(e) => e.stopPropagation()}
           data-testid={TESTIDS.mobileDrawer}
           data-state={mobileMenuOpen ? "open" : "closed"}
-          data-count={mobileItemCount}
+          data-count={String(mobileItemCount)}
           style={{ 
             pointerEvents: 'auto',
             transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
