@@ -1397,11 +1397,9 @@ function App() {
                 </RedirectIfAuthed>
               } />
               <Route path="/" element={
-                <RedirectIfAuthed>
-                  <MarketingShell>
-                    <RootRoute />
-                  </MarketingShell>
-                </RedirectIfAuthed>
+                <MarketingShell>
+                  <RootRoute />
+                </MarketingShell>
               } />
               
               {/* Auth verification without shell */}
