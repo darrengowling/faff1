@@ -14,35 +14,57 @@ const CreateLeagueCTA = ({
   isLoading = false, 
   onCreateLeague,
   variant = 'default',
-  className = ''
+  className = '',
+  showSecondaryAction = false // New prop to show page link
 }) => {
+  const navigate = useNavigate();
+  
+  const handlePageRedirect = () => {
+    navigate('/app/leagues/new');
+  };
+
   // Always render button with testid - never hide the element
   return (
-    <Button
-      onClick={isLoading ? undefined : onCreateLeague}
-      disabled={isLoading}
-      className={className}
-      variant={variant}
-      data-testid={TESTIDS.createLeagueBtn}
-      aria-label={
-        isLoading 
-          ? "Loading leagues data, create league will be available shortly" 
-          : "Create a new league"
-      }
-      title={isLoading ? "Loading…" : "Create a new league to get started"}
-    >
-      {isLoading ? (
-        <>
-          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-          Loading…
-        </>
-      ) : (
-        <>
-          <Plus className="w-4 h-4 mr-2" />
-          Create League
-        </>
+    <div className="flex items-center gap-3">
+      <Button
+        onClick={isLoading ? undefined : onCreateLeague}
+        disabled={isLoading}
+        className={className}
+        variant={variant}
+        data-testid={TESTIDS.createLeagueBtn}
+        aria-label={
+          isLoading 
+            ? "Loading leagues data, create league will be available shortly" 
+            : "Create a new league (opens dialog)"
+        }
+        title={isLoading ? "Loading…" : "Create a new league using dialog"}
+      >
+        {isLoading ? (
+          <>
+            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            Loading…
+          </>
+        ) : (
+          <>
+            <Plus className="w-4 h-4 mr-2" />
+            Create League
+          </>
+        )}
+      </Button>
+      
+      {showSecondaryAction && !isLoading && (
+        <Button
+          onClick={handlePageRedirect}
+          variant="outline"
+          className="text-sm"
+          data-testid="create-league-page-link"
+          aria-label="Create a new league (opens page)"
+          title="Create a new league using dedicated page"
+        >
+          Open Form Page
+        </Button>
       )}
-    </Button>
+    </div>
   );
 };
 
