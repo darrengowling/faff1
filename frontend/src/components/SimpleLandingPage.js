@@ -27,6 +27,11 @@ const SimpleLandingPage = () => {
 
   return (
     <div className="min-h-screen bg-theme-surface">
+      {/* Back to Home Link for Header Contract */}
+      <div className="absolute top-4 left-4 z-10">
+        <BackToHomeLink />
+      </div>
+      
       {/* Hash navigation marker - always present for testing */}
       <div 
         data-testid="nav-current-hash"
