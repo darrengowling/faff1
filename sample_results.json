@@ -23,3 +23,2027 @@
 ✅ bob@example.com authenticated successfully
 💾 Storage state saved: test-results/bob-state.json
 🎉 Global setup completed successfully!
+🧹 Global E2E Test Teardown Starting...
+🎉 Global teardown completed!
+{
+  "config": {
+    "configFile": "/app/playwright.config.ts",
+    "rootDir": "/app/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/app/tests/e2e/utils/global-setup.ts",
+    "globalTeardown": "/app/tests/e2e/utils/global-teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "port": 3000,
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "auth_ui.spec.ts",
+      "file": "auth_ui.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Authentication UI Tests",
+          "file": "auth_ui.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Login page renders form with all required testid elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2237,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Login form renders correctly with all required testid elements\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:44:32.050Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-16a7cbf7c39be55f4930",
+              "file": "auth_ui.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "Submit button is disabled for invalid email",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1440,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:44:34.441Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-fde3573f92da4c9a1833",
+              "file": "auth_ui.spec.ts",
+              "line": 43,
+              "column": 7
+            },
+            {
+              "title": "Shows error for invalid email submission",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 12986,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByTestId('auth-error')\nExpected: visible\nReceived: hidden\nTimeout:  6000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('auth-error')\u001b[22m\n\u001b[2m    10 × locator resolved to <div role=\"alert\" aria-live=\"assertive\" data-testid=\"auth-error\" class=\"flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md transition-opacity opacity-0 h-0 p-0 border-0\"></div>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByTestId('auth-error')\nExpected: visible\nReceived: hidden\nTimeout:  6000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('auth-error')\u001b[22m\n\u001b[2m    10 × locator resolved to <div role=\"alert\" aria-live=\"assertive\" data-testid=\"auth-error\" class=\"flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md transition-opacity opacity-0 h-0 p-0 border-0\"></div>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:86:32",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 32,
+                          "line": 86
+                        },
+                        "snippet": "  84 |     // Error should be visible with proper attributes\n  85 |     const errorElement = page.getByTestId('auth-error');\n> 86 |     await expect(errorElement).toBeVisible();\n     |                                ^\n  87 |     await expect(errorElement).toHaveAttribute('role', 'alert');\n  88 |     await expect(errorElement).toHaveAttribute('aria-live', 'assertive');\n  89 |     await expect(errorElement).toContainText('Please enter a valid email.');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 32,
+                            "line": 86
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByTestId('auth-error')\nExpected: visible\nReceived: hidden\nTimeout:  6000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('auth-error')\u001b[22m\n\u001b[2m    10 × locator resolved to <div role=\"alert\" aria-live=\"assertive\" data-testid=\"auth-error\" class=\"flex items-center space-x-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-md transition-opacity opacity-0 h-0 p-0 border-0\"></div>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n\n\n  84 |     // Error should be visible with proper attributes\n  85 |     const errorElement = page.getByTestId('auth-error');\n> 86 |     await expect(errorElement).toBeVisible();\n     |                                ^\n  87 |     await expect(errorElement).toHaveAttribute('role', 'alert');\n  88 |     await expect(errorElement).toHaveAttribute('aria-live', 'assertive');\n  89 |     await expect(errorElement).toContainText('Please enter a valid email.');\n    at /app/tests/e2e/auth_ui.spec.ts:86:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:44:35.902Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--bde9a-or-invalid-email-submission-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--bde9a-or-invalid-email-submission-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--bde9a-or-invalid-email-submission-chromium/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--bde9a-or-invalid-email-submission-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 32,
+                        "line": 86
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-ec2a5dfc6d4fbdba2635",
+              "file": "auth_ui.spec.ts",
+              "line": 67,
+              "column": 7
+            },
+            {
+              "title": "Successfully submits valid email and shows success",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1969,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "API Response: {\n  message: \u001b[32m'Magic link generated! (Development Mode - Check below)'\u001b[39m,\n  dev_magic_link: \u001b[32m'https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTIwNDc5MSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.kjypdz0axa1Y1xb79mLwyEB8t4elsryefj2WZjTjEGE'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "Dev magic link button found, clicking...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:44:49.838Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-c66a1c63b7b3bd54cd83",
+              "file": "auth_ui.spec.ts",
+              "line": 101,
+              "column": 7
+            },
+            {
+              "title": "Back to Home navigation works",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1630,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:44:51.955Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-140158d28f89de1d308b",
+              "file": "auth_ui.spec.ts",
+              "line": 145,
+              "column": 7
+            },
+            {
+              "title": "Form handles loading state correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1401,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "ℹ️ Loading state too fast to catch - checking aria-busy changed\n"
+                        },
+                        {
+                          "text": "Final aria-busy state: false\n"
+                        },
+                        {
+                          "text": "Response status: 200\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:44:53.605Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-96a890925798fac6caad",
+              "file": "auth_ui.spec.ts",
+              "line": 155,
+              "column": 7
+            },
+            {
+              "title": "No dead ends - page always has navigation options",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1320,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:44:55.026Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-b2e090213d7dd9fc5a44",
+              "file": "auth_ui.spec.ts",
+              "line": 200,
+              "column": 7
+            },
+            {
+              "title": "Test mode disables animations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1407,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:44:56.362Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-8c07875bc5127b233182",
+              "file": "auth_ui.spec.ts",
+              "line": 218,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Authentication UI Integration",
+          "file": "auth_ui.spec.ts",
+          "line": 237,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Form submission works using only testids",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1950,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Form submission completed successfully using testids\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:44:57.785Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-5a0bc8ebc36d0d18578e",
+              "file": "auth_ui.spec.ts",
+              "line": 238,
+              "column": 7
+            },
+            {
+              "title": "Complete auth flow using UI login mode",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5509,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🔐 Logging in user: ui-integration-test@example.com (mode: ui)\n"
+                        },
+                        {
+                          "text": "🖱️  UI login for user: ui-integration-test@example.com\n"
+                        },
+                        {
+                          "text": "✅ UI login successful: ui-integration-test@example.com\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:44:59.751Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-2511f37fb5c022ccca49",
+              "file": "auth_ui.spec.ts",
+              "line": 269,
+              "column": 7
+            },
+            {
+              "title": "Shows error for empty email with proper UX",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11155,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:289:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 289
+                        },
+                        "snippet": "  287 |\n  288 |     // Submit with empty email (form validation should prevent this, but test anyway)\n> 289 |     await emailInput.fill('');\n      |                      ^\n  290 |     await expect(submitBtn).toBeDisabled();\n  291 |     \n  292 |     // Add some text then clear it to test error behavior"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 289
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  287 |\n  288 |     // Submit with empty email (form validation should prevent this, but test anyway)\n> 289 |     await emailInput.fill('');\n      |                      ^\n  290 |     await expect(submitBtn).toBeDisabled();\n  291 |     \n  292 |     // Add some text then clear it to test error behavior\n    at /app/tests/e2e/auth_ui.spec.ts:289:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing empty email error handling...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:45:05.283Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--2725b--empty-email-with-proper-UX-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 289
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-8211cb37914dd849d4a7",
+              "file": "auth_ui.spec.ts",
+              "line": 281,
+              "column": 7
+            },
+            {
+              "title": "Shows error for invalid email format with concise message",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11133,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:310:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 310
+                        },
+                        "snippet": "  308 |\n  309 |     // Enter invalid email and try to submit\n> 310 |     await emailInput.fill('invalid-email-format');\n      |                      ^\n  311 |     \n  312 |     // Button should be disabled for invalid email\n  313 |     await expect(submitBtn).toBeDisabled();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 310
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  308 |\n  309 |     // Enter invalid email and try to submit\n> 310 |     await emailInput.fill('invalid-email-format');\n      |                      ^\n  311 |     \n  312 |     // Button should be disabled for invalid email\n  313 |     await expect(submitBtn).toBeDisabled();\n    at /app/tests/e2e/auth_ui.spec.ts:310:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing invalid email error handling...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:45:17.276Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--fbee4-format-with-concise-message-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 310
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-ac21712ece11ffeccf88",
+              "file": "auth_ui.spec.ts",
+              "line": 302,
+              "column": 7
+            },
+            {
+              "title": "Error clears when user starts typing",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11151,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:356:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 356
+                        },
+                        "snippet": "  354 |\n  355 |     // Enter email that might trigger error\n> 356 |     await emailInput.fill('error-test@invaliddomain999.com');\n      |                      ^\n  357 |     await submitBtn.click();\n  358 |     \n  359 |     // Wait a moment for any potential error"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 356
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  354 |\n  355 |     // Enter email that might trigger error\n> 356 |     await emailInput.fill('error-test@invaliddomain999.com');\n      |                      ^\n  357 |     await submitBtn.click();\n  358 |     \n  359 |     // Wait a moment for any potential error\n    at /app/tests/e2e/auth_ui.spec.ts:356:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing error clearing behavior...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:45:29.354Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--b7efb-ars-when-user-starts-typing-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 356
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-c7318167fe6268fc0bef",
+              "file": "auth_ui.spec.ts",
+              "line": 348,
+              "column": 7
+            },
+            {
+              "title": "Submit button states work correctly during loading",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11152,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:385:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 385
+                        },
+                        "snippet": "  383 |\n  384 |     // Fill valid email\n> 385 |     await emailInput.fill('loading-test@example.com');\n      |                      ^\n  386 |     \n  387 |     // Button should be enabled\n  388 |     await expect(submitBtn).toBeEnabled();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 385
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  383 |\n  384 |     // Fill valid email\n> 385 |     await emailInput.fill('loading-test@example.com');\n      |                      ^\n  386 |     \n  387 |     // Button should be enabled\n  388 |     await expect(submitBtn).toBeEnabled();\n    at /app/tests/e2e/auth_ui.spec.ts:385:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing submit button states...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:45:41.436Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--7bdf6-rk-correctly-during-loading-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 385
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-ef2d4aa0749639d18765",
+              "file": "auth_ui.spec.ts",
+              "line": 377,
+              "column": 7
+            },
+            {
+              "title": "Error display has proper accessibility attributes",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11441,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n    at /app/tests/e2e/auth_ui.spec.ts:443:22",
+                        "location": {
+                          "file": "/app/tests/e2e/auth_ui.spec.ts",
+                          "column": 22,
+                          "line": 443
+                        },
+                        "snippet": "  441 |\n  442 |     // Try to trigger an error\n> 443 |     await emailInput.fill('accessibility-test@invaliddomain999.com');\n      |                      ^\n  444 |     await submitBtn.click();\n  445 |     await page.waitForTimeout(2000);\n  446 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auth_ui.spec.ts",
+                            "column": 22,
+                            "line": 443
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"auth-email-input\"]')\u001b[22m\n\n\n  441 |\n  442 |     // Try to trigger an error\n> 443 |     await emailInput.fill('accessibility-test@invaliddomain999.com');\n      |                      ^\n  444 |     await submitBtn.click();\n  445 |     await page.waitForTimeout(2000);\n  446 |\n    at /app/tests/e2e/auth_ui.spec.ts:443:22"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🧪 Testing error accessibility...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:45:53.564Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/app/test-results/auth_ui-Authentication-UI--cfda5-er-accessibility-attributes-chromium/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auth_ui.spec.ts",
+                        "column": 22,
+                        "line": 443
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "03a6b9075963f640fefd-4481e3e6a45b0e05d79c",
+              "file": "auth_ui.spec.ts",
+              "line": 435,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "core-smoke.spec.ts",
+      "file": "core-smoke.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Core Smoke Test",
+          "file": "core-smoke.spec.ts",
+          "line": 44,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Complete auction flow: create → invite → join → auction → bid → sell",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 26708,
+                      "error": {
+                        "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)",
+                        "stack": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:461:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16",
+                        "location": {
+                          "file": "/app/tests/e2e/utils/helpers.ts",
+                          "column": 11,
+                          "line": 461
+                        },
+                        "snippet": "   at utils/helpers.ts:461\n\n  459 |     });\n  460 |     \n> 461 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  462 |   }\n  463 | }\n  464 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/utils/helpers.ts",
+                            "column": 11,
+                            "line": 461
+                          },
+                          "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)\n\n   at utils/helpers.ts:461\n\n  459 |     });\n  460 |     \n> 461 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  462 |   }\n  463 | }\n  464 |\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:461:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16"
+                        },
+                        {
+                          "message": "Error: browserContext._wrapApiCall: ENOENT: no such file or directory, open '/app/test-results/.playwright-artifacts-6/traces/a1185c8c8a119dd4daa6-824956169c2fdc1743ba-recording3.trace'"
+                        },
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/core-smoke.spec.ts",
+                            "column": 32,
+                            "line": 109
+                          },
+                          "message": "Error: apiRequestContext._wrapApiCall: ENOENT: no such file or directory, open '/app/test-results/.playwright-artifacts-6/traces/a1185c8c8a119dd4daa6-824956169c2fdc1743ba-recording3.trace'\n\n  107 |\n  108 |   test.afterAll(async () => {\n> 109 |     await commissionerContext?.close();\n      |                                ^\n  110 |     await aliceContext?.close();\n  111 |     await bobContext?.close();\n  112 |   });\n    at /app/tests/e2e/core-smoke.spec.ts:109:32"
+                        },
+                        {
+                          "message": "Error: browserContext._wrapApiCall: ENOENT: no such file or directory, open '/app/test-results/.playwright-artifacts-6/traces/a1185c8c8a119dd4daa6-824956169c2fdc1743ba-recording4.trace'"
+                        },
+                        {
+                          "message": "Error: ENOENT: no such file or directory, open '/app/test-results/.playwright-artifacts-6/86ad74d2ee36aa1d4a1494585164cecc.zip'"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🚀 Starting core smoke test...\n"
+                        },
+                        {
+                          "text": "📝 Step 1: Commissioner creates league...\n"
+                        },
+                        {
+                          "text": "🔐 Logging in user: commish@example.com (mode: test)\n"
+                        },
+                        {
+                          "text": "🧪 Test-only login for user: commish@example.com\n"
+                        },
+                        {
+                          "text": "✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)\n"
+                        },
+                        {
+                          "text": "🏆 Creating league: Core Smoke League\n"
+                        },
+                        {
+                          "text": "🎯 Using safe click with overlay detection for Create League button...\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (1011.5, 802)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid=\"create-league-btn\"]\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: Each child in a list should have a unique \"key\" prop.%s%s See https://react.dev/link/warning-keys for more information. \n\nCheck the render method of `LeagueCreationForm`. \n"
+                        },
+                        {
+                          "text": "✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid=\"create-league-btn\"]\n"
+                        },
+                        {
+                          "text": "📋 Filling Create League form: Core Smoke League\n"
+                        },
+                        {
+                          "text": "📋 Detected CreateLeagueWizard (page) form\n"
+                        },
+                        {
+                          "text": "📝 Using wizard testids: {\n  name: \u001b[32m'create-name'\u001b[39m,\n  slots: \u001b[32m'create-slots'\u001b[39m,\n  budget: \u001b[32m'create-budget'\u001b[39m,\n  min: \u001b[32m'create-min'\u001b[39m,\n  max: \u001b[32m'create-max'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "📝 Filling league name...\n"
+                        },
+                        {
+                          "text": "📝 Filling form fields with type-aware setters...\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-slots=3 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-slots=3\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-budget=100 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-budget=100\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-min=2 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-min=2\n"
+                        },
+                        {
+                          "text": "✅ Create League form filled successfully: Core Smoke League\n"
+                        },
+                        {
+                          "text": "📝 Form filled, submitting...\n"
+                        },
+                        {
+                          "text": "🎯 Checking clickability at coordinates (807.0, 665.0)\n"
+                        },
+                        {
+                          "text": "🔍 Target: BUTTON[data-testid=\"create-submit\"]\n"
+                        },
+                        {
+                          "text": "🔍 Topmost: BUTTON[data-testid=\"create-submit\"]\n"
+                        },
+                        {
+                          "text": "✅ Element is clickable\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for league creation success...\n"
+                        },
+                        {
+                          "text": "🏁 Waiting for league creation success and lobby navigation...\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: Failed to load resource: the server responded with a status of 500 ()\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: League creation error: AxiosError\n"
+                        },
+                        {
+                          "text": "Test failed, capturing artifacts...\n"
+                        },
+                        {
+                          "text": "Screenshots saved with timestamp: 2025-09-30T03-46-30-708Z\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Failed to complete league creation → lobby flow. Current URL: https://test-harmony.preview.emergentagent.com/app\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:46:06.096Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-3.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/core-smoke-Core-Smoke-Test-1e195-join-→-auction-→-bid-→-sell-chromium/test-failed-2.png"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/utils/helpers.ts",
+                        "column": 11,
+                        "line": 461
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a1185c8c8a119dd4daa6-824956169c2fdc1743ba",
+              "file": "core-smoke.spec.ts",
+              "line": 114,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "header-contract.spec.ts",
+      "file": "header-contract.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Header Contract Tests",
+          "file": "header-contract.spec.ts",
+          "line": 12,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Login Page (/login) has required header testids",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2886,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Login Page: back-to-home-link exists\n"
+                        },
+                        {
+                          "text": "✅ Login Page: nav-mobile-drawer exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:47:34.658Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3750c5bea60ce4b24126-924f220a4d1f95f0aa72",
+              "file": "header-contract.spec.ts",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "Landing Page (/) has required header testids",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3871,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Landing Page: back-to-home-link exists\n"
+                        },
+                        {
+                          "text": "✅ Landing Page: nav-mobile-drawer exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:47:37.703Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3750c5bea60ce4b24126-b2d26430b421d7b60b0e",
+              "file": "header-contract.spec.ts",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "App Dashboard (/app) has required header testids",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2667,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ App Dashboard: back-to-home-link exists\n"
+                        },
+                        {
+                          "text": "✅ App Dashboard: nav-mobile-drawer exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:47:41.597Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3750c5bea60ce4b24126-931ad5176613bcf9a3c8",
+              "file": "header-contract.spec.ts",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "Create League (/app/leagues/new) has required header testids",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3744,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Create League: back-to-home-link exists\n"
+                        },
+                        {
+                          "text": "✅ Create League: nav-mobile-drawer exists\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:47:44.302Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3750c5bea60ce4b24126-d33251c7dfceef8057e7",
+              "file": "header-contract.spec.ts",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "All routes have exactly one header element",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10910,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Login Page: Exactly 1 header found\n"
+                        },
+                        {
+                          "text": "✅ Landing Page: Exactly 1 header found\n"
+                        },
+                        {
+                          "text": "✅ App Dashboard: Exactly 1 header found\n"
+                        },
+                        {
+                          "text": "✅ Create League: Exactly 1 header found\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-30T03:47:48.082Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3750c5bea60ce4b24126-daec126584730759e40e",
+              "file": "header-contract.spec.ts",
+              "line": 60,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "navigation.spec.ts",
+      "file": "navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Navigation Tests",
+          "file": "navigation.spec.ts",
+          "line": 12,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Desktop Navigation",
+              "file": "navigation.spec.ts",
+              "line": 19,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Landing page anchor navigation works correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 7,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 2165,
+                          "error": {
+                            "message": "Error: locator.click: Error: strict mode violation: locator('[data-testid=\"tab-how\"]') resolved to 2 elements:\n    1) <button role=\"tab\" tabindex=\"0\" data-section=\"how\" aria-controls=\"how\" aria-selected=\"false\" data-testid=\"tab-how\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button> aka getByRole('tab', { name: 'How it Works' })\n    2) <button role=\"tab\" tabindex=\"0\" data-section=\"how\" aria-controls=\"how\" data-testid=\"tab-how\" aria-selected=\"false\" class=\"flex-shrink-0 px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 whitespace-nowrap text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button> aka locator('button').filter({ hasText: '⚙️How it WorksHow' })\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"tab-how\"]')\u001b[22m\n",
+                            "stack": "Error: locator.click: Error: strict mode violation: locator('[data-testid=\"tab-how\"]') resolved to 2 elements:\n    1) <button role=\"tab\" tabindex=\"0\" data-section=\"how\" aria-controls=\"how\" aria-selected=\"false\" data-testid=\"tab-how\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button> aka getByRole('tab', { name: 'How it Works' })\n    2) <button role=\"tab\" tabindex=\"0\" data-section=\"how\" aria-controls=\"how\" data-testid=\"tab-how\" aria-selected=\"false\" class=\"flex-shrink-0 px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 whitespace-nowrap text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button> aka locator('button').filter({ hasText: '⚙️How it WorksHow' })\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"tab-how\"]')\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:26:69",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 69,
+                              "line": 26
+                            },
+                            "snippet": "  24 |     test('Landing page anchor navigation works correctly', async ({ page }) => {\n  25 |       // Test \"How it Works\" anchor navigation\n> 26 |       await page.locator(`[data-testid=\"${TESTIDS.inPageTabHow}\"]`).click({ force: true });\n     |                                                                     ^\n  27 |       \n  28 |       // Wait for hash to change using helper\n  29 |       await waitForHash(page, '#how');"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 69,
+                                "line": 26
+                              },
+                              "message": "Error: locator.click: Error: strict mode violation: locator('[data-testid=\"tab-how\"]') resolved to 2 elements:\n    1) <button role=\"tab\" tabindex=\"0\" data-section=\"how\" aria-controls=\"how\" aria-selected=\"false\" data-testid=\"tab-how\" class=\"px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button> aka getByRole('tab', { name: 'How it Works' })\n    2) <button role=\"tab\" tabindex=\"0\" data-section=\"how\" aria-controls=\"how\" data-testid=\"tab-how\" aria-selected=\"false\" class=\"flex-shrink-0 px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 whitespace-nowrap text-gray-600 hover:text-blue-600 hover:bg-blue-50\">…</button> aka locator('button').filter({ hasText: '⚙️How it WorksHow' })\n\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"tab-how\"]')\u001b[22m\n\n\n  24 |     test('Landing page anchor navigation works correctly', async ({ page }) => {\n  25 |       // Test \"How it Works\" anchor navigation\n> 26 |       await page.locator(`[data-testid=\"${TESTIDS.inPageTabHow}\"]`).click({ force: true });\n     |                                                                     ^\n  27 |       \n  28 |       // Wait for hash to change using helper\n  29 |       await waitForHash(page, '#how');\n    at /app/tests/e2e/navigation.spec.ts:26:69"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-30T03:47:59.027Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/navigation-Navigation-Test-0dca0--navigation-works-correctly-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/navigation-Navigation-Test-0dca0--navigation-works-correctly-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/navigation-Navigation-Test-0dca0--navigation-works-correctly-chromium/error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/app/test-results/navigation-Navigation-Test-0dca0--navigation-works-correctly-chromium/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 69,
+                            "line": 26
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-84da4f540692867c9b31",
+                  "file": "navigation.spec.ts",
+                  "line": 24,
+                  "column": 9
+                },
+                {
+                  "title": "Product dropdown shows only enabled items and navigates correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 8,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 11446,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/(auction|login)/\u001b[39m\nReceived string:  \u001b[31m\"https://test-harmony.preview.emergentagent.com/#home\"\u001b[39m\nTimeout: 6000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 6000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"https://test-harmony.preview.emergentagent.com/#home\"\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/(auction|login)/\u001b[39m\nReceived string:  \u001b[31m\"https://test-harmony.preview.emergentagent.com/#home\"\u001b[39m\nTimeout: 6000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 6000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"https://test-harmony.preview.emergentagent.com/#home\"\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:70:30",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 30,
+                              "line": 70
+                            },
+                            "snippet": "  68 |           // If items are shown, they should navigate properly\n  69 |           await page.locator(`[data-testid=\"${TESTIDS.navDdAuction}\"]`).first().click();\n> 70 |           await expect(page).toHaveURL(/\\/(auction|login)/); // Should go to auction or redirect to login\n     |                              ^\n  71 |         }\n  72 |       }\n  73 |     });"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 30,
+                                "line": 70
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/(auction|login)/\u001b[39m\nReceived string:  \u001b[31m\"https://test-harmony.preview.emergentagent.com/#home\"\u001b[39m\nTimeout: 6000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 6000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"https://test-harmony.preview.emergentagent.com/#home\"\u001b[22m\n\n\n  68 |           // If items are shown, they should navigate properly\n  69 |           await page.locator(`[data-testid=\"${TESTIDS.navDdAuction}\"]`).first().click();\n> 70 |           await expect(page).toHaveURL(/\\/(auction|login)/); // Should go to auction or redirect to login\n     |                              ^\n  71 |         }\n  72 |       }\n  73 |     });\n    at /app/tests/e2e/navigation.spec.ts:70:30"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-30T03:48:02.079Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/navigation-Navigation-Test-2d79c-ems-and-navigates-correctly-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/navigation-Navigation-Test-2d79c-ems-and-navigates-correctly-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/navigation-Navigation-Test-2d79c-ems-and-navigates-correctly-chromium/error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/app/test-results/navigation-Navigation-Test-2d79c-ems-and-navigates-correctly-chromium/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 30,
+                            "line": 70
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-7def16c013e2f7816075",
+                  "file": "navigation.spec.ts",
+                  "line": 50,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Mobile Navigation",
+              "file": "navigation.spec.ts",
+              "line": 76,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Mobile hamburger menu works correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 9,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 3257,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[1mMatcher error\u001b[22m: \u001b[31mreceived\u001b[39m value must be a number or bigint\n\nReceived has type:  object\nReceived has value: \u001b[31m{Symbol(async_id_symbol): 12976, Symbol(trigger_async_id_symbol): 12583, Symbol(kResourceStore): undefined}\u001b[39m",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[1mMatcher error\u001b[22m: \u001b[31mreceived\u001b[39m value must be a number or bigint\n\nReceived has type:  object\nReceived has value: \u001b[31m{Symbol(async_id_symbol): 12976, Symbol(trigger_async_id_symbol): 12583, Symbol(kResourceStore): undefined}\u001b[39m\n    at /app/tests/e2e/navigation.spec.ts:92:45",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 45,
+                              "line": 92
+                            },
+                            "snippet": "  90 |       // Test navigation items are listed\n  91 |       const navigationItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] button`);\n> 92 |       await expect(navigationItems.count()).toBeGreaterThanOrEqual(3); // Should have at least How, Why, Sign In\n     |                                             ^\n  93 |       \n  94 |       // Test drawer focus trap - pressing Escape should close\n  95 |       await page.keyboard.press('Escape');"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 45,
+                                "line": 92
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[1mMatcher error\u001b[22m: \u001b[31mreceived\u001b[39m value must be a number or bigint\n\nReceived has type:  object\nReceived has value: \u001b[31m{Symbol(async_id_symbol): 12976, Symbol(trigger_async_id_symbol): 12583, Symbol(kResourceStore): undefined}\u001b[39m\n\n  90 |       // Test navigation items are listed\n  91 |       const navigationItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] button`);\n> 92 |       await expect(navigationItems.count()).toBeGreaterThanOrEqual(3); // Should have at least How, Why, Sign In\n     |                                             ^\n  93 |       \n  94 |       // Test drawer focus trap - pressing Escape should close\n  95 |       await page.keyboard.press('Escape');\n    at /app/tests/e2e/navigation.spec.ts:92:45"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🎯 Checking clickability at coordinates (354.0, 32.0)\n"
+                            },
+                            {
+                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "🔍 Topmost: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "✅ Element is clickable\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-30T03:48:15.135Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 45,
+                            "line": 92
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-13ede477cf1247e81029",
+                  "file": "navigation.spec.ts",
+                  "line": 81,
+                  "column": 9
+                },
+                {
+                  "title": "Mobile navigation shows only enabled items and navigates correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 10,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 9129,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  6000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  6000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:125:36",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 36,
+                              "line": 125
+                            },
+                            "snippet": "  123 |         // No items shown - verify proper empty state\n  124 |         const emptyMessage = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] >> text=\"No navigation items available\"`);\n> 125 |         await expect(emptyMessage).toBeVisible();\n      |                                    ^\n  126 |       }\n  127 |     });\n  128 |   });"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 36,
+                                "line": 125
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  6000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\u001b[22m\n\n\n  123 |         // No items shown - verify proper empty state\n  124 |         const emptyMessage = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] >> text=\"No navigation items available\"`);\n> 125 |         await expect(emptyMessage).toBeVisible();\n      |                                    ^\n  126 |       }\n  127 |     });\n  128 |   });\n    at /app/tests/e2e/navigation.spec.ts:125:36"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🎯 Checking clickability at coordinates (354.0, 32.0)\n"
+                            },
+                            {
+                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "🔍 Topmost: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "✅ Element is clickable\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-30T03:48:19.442Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 36,
+                            "line": 125
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-d9a97c6a0fbeb004a3c1",
+                  "file": "navigation.spec.ts",
+                  "line": 99,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "No Dead Ends & 404 Recovery",
+              "file": "navigation.spec.ts",
+              "line": 130,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "All navigation links have valid destinations and no href=\"#\"",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 11,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 3810,
+                          "error": {
+                            "message": "Error: locator.isVisible: Error: strict mode violation: locator('[data-testid=\"nav-sign-in\"]') resolved to 2 elements:\n    1) <button data-testid=\"nav-sign-in\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs\">Sign In</button> aka getByTestId('app-header').getByTestId('nav-sign-in')\n    2) <button data-testid=\"nav-sign-in\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full\">Sign In</button> aka getByTestId('nav-mobile-drawer').getByTestId('nav-sign-in')\n\nCall log:\n\u001b[2m    - checking visibility of locator('[data-testid=\"nav-sign-in\"]')\u001b[22m\n",
+                            "stack": "Error: locator.isVisible: Error: strict mode violation: locator('[data-testid=\"nav-sign-in\"]') resolved to 2 elements:\n    1) <button data-testid=\"nav-sign-in\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs\">Sign In</button> aka getByTestId('app-header').getByTestId('nav-sign-in')\n    2) <button data-testid=\"nav-sign-in\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full\">Sign In</button> aka getByTestId('nav-mobile-drawer').getByTestId('nav-sign-in')\n\nCall log:\n\u001b[2m    - checking visibility of locator('[data-testid=\"nav-sign-in\"]')\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:138:30",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 30,
+                              "line": 138
+                            },
+                            "snippet": "  136 |       // Test sign in button using testid\n  137 |       const signInButton = page.locator(`[data-testid=\"${TESTIDS.navSignIn}\"]`);\n> 138 |       if (await signInButton.isVisible()) {\n      |                              ^\n  139 |         await signInButton.click();\n  140 |         await page.waitForURL('**/login');\n  141 |       }"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 30,
+                                "line": 138
+                              },
+                              "message": "Error: locator.isVisible: Error: strict mode violation: locator('[data-testid=\"nav-sign-in\"]') resolved to 2 elements:\n    1) <button data-testid=\"nav-sign-in\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs\">Sign In</button> aka getByTestId('app-header').getByTestId('nav-sign-in')\n    2) <button data-testid=\"nav-sign-in\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full\">Sign In</button> aka getByTestId('nav-mobile-drawer').getByTestId('nav-sign-in')\n\nCall log:\n\u001b[2m    - checking visibility of locator('[data-testid=\"nav-sign-in\"]')\u001b[22m\n\n\n  136 |       // Test sign in button using testid\n  137 |       const signInButton = page.locator(`[data-testid=\"${TESTIDS.navSignIn}\"]`);\n> 138 |       if (await signInButton.isVisible()) {\n      |                              ^\n  139 |         await signInButton.click();\n  140 |         await page.waitForURL('**/login');\n  141 |       }\n    at /app/tests/e2e/navigation.spec.ts:138:30"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-30T03:48:29.923Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/navigation-Navigation-Test-e8bba-d-destinations-and-no-href--chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/navigation-Navigation-Test-e8bba-d-destinations-and-no-href--chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/navigation-Navigation-Test-e8bba-d-destinations-and-no-href--chromium/error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/app/test-results/navigation-Navigation-Test-e8bba-d-destinations-and-no-href--chromium/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 30,
+                            "line": 138
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-0931aa5b7565ae63a511",
+                  "file": "navigation.spec.ts",
+                  "line": 131,
+                  "column": 9
+                },
+                {
+                  "title": "404 page shows and allows navigation back",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 12,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 13254,
+                          "error": {
+                            "message": "TimeoutError: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-brand\"]')\u001b[22m\n\u001b[2m    - locator resolved to <div tabindex=\"0\" role=\"button\" data-testid=\"nav-brand\" class=\"flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity cursor-pointer hover:opacity-80 transition-opacity\">…</div>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <a href=\"/\" data-dest=\"/\" data-discover=\"true\" aria-label=\"Back to Home\" data-testid=\"global-back-home\" class=\"inline-flex items-center gap-2 text-sm underline underline-offset-2 text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border\">← Back to Home</a> from <div class=\"fixed top-4 left-4 z-50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <a href=\"/\" data-dest=\"/\" data-discover=\"true\" aria-label=\"Back to Home\" data-testid=\"global-back-home\" class=\"inline-flex items-center gap-2 text-sm underline underline-offset-2 text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border\">← Back to Home</a> from <div class=\"fixed top-4 left-4 z-50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    18 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <a href=\"/\" data-dest=\"/\" data-discover=\"true\" aria-label=\"Back to Home\" data-testid=\"global-back-home\" class=\"inline-flex items-center gap-2 text-sm underline underline-offset-2 text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border\">← Back to Home</a> from <div class=\"fixed top-4 left-4 z-50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+                            "stack": "TimeoutError: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-brand\"]')\u001b[22m\n\u001b[2m    - locator resolved to <div tabindex=\"0\" role=\"button\" data-testid=\"nav-brand\" class=\"flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity cursor-pointer hover:opacity-80 transition-opacity\">…</div>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <a href=\"/\" data-dest=\"/\" data-discover=\"true\" aria-label=\"Back to Home\" data-testid=\"global-back-home\" class=\"inline-flex items-center gap-2 text-sm underline underline-offset-2 text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border\">← Back to Home</a> from <div class=\"fixed top-4 left-4 z-50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <a href=\"/\" data-dest=\"/\" data-discover=\"true\" aria-label=\"Back to Home\" data-testid=\"global-back-home\" class=\"inline-flex items-center gap-2 text-sm underline underline-offset-2 text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border\">← Back to Home</a> from <div class=\"fixed top-4 left-4 z-50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    18 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <a href=\"/\" data-dest=\"/\" data-discover=\"true\" aria-label=\"Back to Home\" data-testid=\"global-back-home\" class=\"inline-flex items-center gap-2 text-sm underline underline-offset-2 text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border\">← Back to Home</a> from <div class=\"fixed top-4 left-4 z-50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:161:65",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 65,
+                              "line": 161
+                            },
+                            "snippet": "  159 |       \n  160 |       // Should be able to navigate back to home via brand\n> 161 |       await page.locator(`[data-testid=\"${TESTIDS.navBrand}\"]`).click();\n      |                                                                 ^\n  162 |       await expect(page).toHaveURL('/');\n  163 |     });\n  164 |   });"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 65,
+                                "line": 161
+                              },
+                              "message": "TimeoutError: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"nav-brand\"]')\u001b[22m\n\u001b[2m    - locator resolved to <div tabindex=\"0\" role=\"button\" data-testid=\"nav-brand\" class=\"flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity cursor-pointer hover:opacity-80 transition-opacity\">…</div>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <a href=\"/\" data-dest=\"/\" data-discover=\"true\" aria-label=\"Back to Home\" data-testid=\"global-back-home\" class=\"inline-flex items-center gap-2 text-sm underline underline-offset-2 text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border\">← Back to Home</a> from <div class=\"fixed top-4 left-4 z-50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <a href=\"/\" data-dest=\"/\" data-discover=\"true\" aria-label=\"Back to Home\" data-testid=\"global-back-home\" class=\"inline-flex items-center gap-2 text-sm underline underline-offset-2 text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border\">← Back to Home</a> from <div class=\"fixed top-4 left-4 z-50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    18 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <a href=\"/\" data-dest=\"/\" data-discover=\"true\" aria-label=\"Back to Home\" data-testid=\"global-back-home\" class=\"inline-flex items-center gap-2 text-sm underline underline-offset-2 text-theme-text-secondary hover:text-theme-text bg-theme-surface/80 backdrop-blur-sm px-2 py-1 rounded shadow-sm border border-theme-border\">← Back to Home</a> from <div class=\"fixed top-4 left-4 z-50\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n  159 |       \n  160 |       // Should be able to navigate back to home via brand\n> 161 |       await page.locator(`[data-testid=\"${TESTIDS.navBrand}\"]`).click();\n      |                                                                 ^\n  162 |       await expect(page).toHaveURL('/');\n  163 |     });\n  164 |   });\n    at /app/tests/e2e/navigation.spec.ts:161:65"
+                            },
+                            {
+                              "message": "Error: apiRequestContext._wrapApiCall: ENOENT: no such file or directory, open '/app/test-results/.playwright-artifacts-12/traces/5d2868f7d23420c27cca-94a303b80d3b9c4f6dfb.network'"
+                            },
+                            {
+                              "message": "Error: ENOENT: no such file or directory, open '/app/test-results/.playwright-artifacts-12/7f1f8e7a70988020e6046ec3b2be9682.zip'"
+                            },
+                            {
+                              "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-30T03:48:35.060Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/navigation-Navigation-Test-b2940--and-allows-navigation-back-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/navigation-Navigation-Test-b2940--and-allows-navigation-back-chromium/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 65,
+                            "line": 161
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-94a303b80d3b9c4f6dfb",
+                  "file": "navigation.spec.ts",
+                  "line": 152,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Go to... Menu on /app",
+              "file": "navigation.spec.ts",
+              "line": 166,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Go to dropdown shows appropriate options",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 13,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 44621,
+                          "error": {
+                            "message": "TimeoutError: page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/login\" until \"load\"\n============================================================",
+                            "stack": "TimeoutError: page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/login\" until \"load\"\n============================================================\n    at /app/tests/e2e/navigation.spec.ts:172:18",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 18,
+                              "line": 172
+                            },
+                            "snippet": "  170 |       \n  171 |       // Should redirect to login for unauthenticated users\n> 172 |       await page.waitForURL('**/login');\n      |                  ^\n  173 |       \n  174 |       // For authenticated users test (would need login flow)\n  175 |       // This test would check that the Go to... dropdown shows context-aware options"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 18,
+                                "line": 172
+                              },
+                              "message": "TimeoutError: page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/login\" until \"load\"\n============================================================\n\n  170 |       \n  171 |       // Should redirect to login for unauthenticated users\n> 172 |       await page.waitForURL('**/login');\n      |                  ^\n  173 |       \n  174 |       // For authenticated users test (would need login flow)\n  175 |       // This test would check that the Go to... dropdown shows context-aware options\n    at /app/tests/e2e/navigation.spec.ts:172:18"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-30T03:49:49.463Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/navigation-Navigation-Test-6d441-n-shows-appropriate-options-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/navigation-Navigation-Test-6d441-n-shows-appropriate-options-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/navigation-Navigation-Test-6d441-n-shows-appropriate-options-chromium/error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/app/test-results/navigation-Navigation-Test-6d441-n-shows-appropriate-options-chromium/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 18,
+                            "line": 172
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-35eeb63fe2427bc62273",
+                  "file": "navigation.spec.ts",
+                  "line": 167,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Keyboard Navigation",
+              "file": "navigation.spec.ts",
+              "line": 179,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Keyboard navigation works with proper ARIA and focus management",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 14,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 5378,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-30T03:50:36.131Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-d1a86528db557087091d",
+                  "file": "navigation.spec.ts",
+                  "line": 180,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-30T03:44:15.401Z",
+    "duration": 386495.51999999996,
+    "expected": 15,
+    "skipped": 0,
+    "unexpected": 14,
+    "flaky": 0
+  }
+}
