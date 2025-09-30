@@ -134,8 +134,7 @@ const AppLayout = ({ children, showBackButton = true, pageTitle = null }) => {
         {children}
       </main>
 
-      {/* Footer */}
-      <InAppFooter />
+      {/* Footer removed - AppShell already provides InAppFooter */}
       
       {/* Back to Top Button for long pages */}
       <button
