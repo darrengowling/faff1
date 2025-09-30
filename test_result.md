@@ -227,10 +227,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Global TEST_MODE Animation Disabling Implementation"
+    - "Back-to-Home-Link Timeout Resolution Testing Complete"
   stuck_tasks: []
   test_all: false
-  test_priority: "test_mode_animation_disabling"
+  test_priority: "back_to_home_link_verification"
 
   - task: "Testable Components Implementation Verification"
     implemented: true
