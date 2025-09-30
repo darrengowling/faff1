@@ -1260,7 +1260,11 @@ const AppRootRedirect = () => {
   }
   
   // Show simplified landing page for unauthenticated users
-  return <SimpleLandingPage />;
+  return (
+    <MarketingShell>
+      <SimpleLandingPage />
+    </MarketingShell>
+  );
 };
 
 // Global League Creation Success Marker Component
