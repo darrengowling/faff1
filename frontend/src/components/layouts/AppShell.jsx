@@ -215,18 +215,6 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
             <div className="flex items-center justify-between h-14">
               {/* Left Side - Back to Home + Breadcrumb */}
               <div className="flex items-center space-x-3">
-                {/* Always show Back to Home link */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => navigate('/app')}
-                  data-testid={TESTIDS.homeNavButton}
-                  className="flex items-center space-x-1 text-sm text-theme-text-secondary hover:text-theme-text"
-                >
-                  <Home className="w-4 h-4" />
-                  <span>Home</span>
-                </Button>
-                
                 {showBackButton && !isHomePage && (
                   <Button
                     variant="ghost"
