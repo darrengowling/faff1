@@ -1,0 +1,305 @@
+🧪 Global E2E Test Setup Starting...
+🔍 Pre-check: Verifying TESTIDS import...
+✅ TESTIDS imported successfully: 184 testids available
+   Sample testids: homeCreateLeagueBtn, navCreateLeagueBtn, joinViaInviteBtn, createLeagueWizardName, createLeagueWizardSlots...
+✅ Application accessible at: https://e2e-stability.preview.emergentagent.com (Status: 200)
+🔐 Creating authenticated storage states...
+🔑 Authenticating commish@example.com...
+🔐 Logging in user: commish@example.com (mode: test)
+🧪 Test-only login for user: commish@example.com
+✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)
+✅ commish@example.com authenticated successfully
+💾 Storage state saved: test-results/commissioner-state.json
+🔑 Authenticating alice@example.com...
+🔐 Logging in user: alice@example.com (mode: test)
+🧪 Test-only login for user: alice@example.com
+✅ Test-only login successful: alice@example.com (User ID: 1d870e32-2668-4003-a477-ed01c0b73532)
+✅ alice@example.com authenticated successfully
+💾 Storage state saved: test-results/alice-state.json
+🔑 Authenticating bob@example.com...
+🔐 Logging in user: bob@example.com (mode: test)
+🧪 Test-only login for user: bob@example.com
+✅ Test-only login successful: bob@example.com (User ID: 219110d6-44db-481a-95f9-af0cf54d5467)
+✅ bob@example.com authenticated successfully
+💾 Storage state saved: test-results/bob-state.json
+🎉 Global setup completed successfully!
+🧹 Global E2E Test Teardown Starting...
+🎉 Global teardown completed!
+{
+  "config": {
+    "configFile": "/app/playwright.config.ts",
+    "rootDir": "/app/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/app/tests/e2e/utils/global-setup.ts",
+    "globalTeardown": "/app/tests/e2e/utils/global-teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "port": 3000,
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "navigation.spec.ts",
+      "file": "navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Navigation Tests",
+          "file": "navigation.spec.ts",
+          "line": 12,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Mobile Navigation",
+              "file": "navigation.spec.ts",
+              "line": 76,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Mobile hamburger menu works correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 2441,
+                          "error": {
+                            "message": "Error: locator._expect: expectedNumber: expected float, got object",
+                            "stack": "Error: locator._expect: expectedNumber: expected float, got object\n    at /app/tests/e2e/navigation.spec.ts:92:37",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 37,
+                              "line": 92
+                            },
+                            "snippet": "  90 |       // Test navigation items are listed\n  91 |       const navigationItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] button`);\n> 92 |       await expect(navigationItems).toHaveCount({ min: 3 }); // Should have at least How, Why, Sign In\n     |                                     ^\n  93 |       \n  94 |       // Test drawer focus trap - pressing Escape should close\n  95 |       await page.keyboard.press('Escape');"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 37,
+                                "line": 92
+                              },
+                              "message": "Error: locator._expect: expectedNumber: expected float, got object\n\n  90 |       // Test navigation items are listed\n  91 |       const navigationItems = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] button`);\n> 92 |       await expect(navigationItems).toHaveCount({ min: 3 }); // Should have at least How, Why, Sign In\n     |                                     ^\n  93 |       \n  94 |       // Test drawer focus trap - pressing Escape should close\n  95 |       await page.keyboard.press('Escape');\n    at /app/tests/e2e/navigation.spec.ts:92:37"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🎯 Checking clickability at coordinates (354.0, 32.0)\n"
+                            },
+                            {
+                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "🔍 Topmost: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "✅ Element is clickable\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-30T01:15:34.059Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/app/test-results/navigation-Navigation-Test-c1bbd-burger-menu-works-correctly-chromium/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 37,
+                            "line": 92
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-13ede477cf1247e81029",
+                  "file": "navigation.spec.ts",
+                  "line": 81,
+                  "column": 9
+                },
+                {
+                  "title": "Mobile navigation shows only enabled items and navigates correctly",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 60000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 8871,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  6000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  6000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:125:36",
+                            "location": {
+                              "file": "/app/tests/e2e/navigation.spec.ts",
+                              "column": 36,
+                              "line": 125
+                            },
+                            "snippet": "  123 |         // No items shown - verify proper empty state\n  124 |         const emptyMessage = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] >> text=\"No navigation items available\"`);\n> 125 |         await expect(emptyMessage).toBeVisible();\n      |                                    ^\n  126 |       }\n  127 |     });\n  128 |   });"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/app/tests/e2e/navigation.spec.ts",
+                                "column": 36,
+                                "line": 125
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  6000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 6000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"nav-mobile-drawer\"]').locator('text=\"No navigation items available\"')\u001b[22m\n\n\n  123 |         // No items shown - verify proper empty state\n  124 |         const emptyMessage = page.locator(`[data-testid=\"${TESTIDS.navMobileDrawer}\"] >> text=\"No navigation items available\"`);\n> 125 |         await expect(emptyMessage).toBeVisible();\n      |                                    ^\n  126 |       }\n  127 |     });\n  128 |   });\n    at /app/tests/e2e/navigation.spec.ts:125:36"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "🎯 Checking clickability at coordinates (354.0, 32.0)\n"
+                            },
+                            {
+                              "text": "🔍 Target: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "🔍 Topmost: BUTTON[data-testid=\"nav-hamburger\"]\n"
+                            },
+                            {
+                              "text": "✅ Element is clickable\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2025-09-30T01:15:37.511Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/video.webm"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/app/test-results/navigation-Navigation-Test-9949e-ems-and-navigates-correctly-chromium/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/app/tests/e2e/navigation.spec.ts",
+                            "column": 36,
+                            "line": 125
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-d9a97c6a0fbeb004a3c1",
+                  "file": "navigation.spec.ts",
+                  "line": 99,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-30T01:15:21.203Z",
+    "duration": 25460.091,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}
