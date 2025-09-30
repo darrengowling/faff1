@@ -1243,7 +1243,7 @@ const AdminDashboardWrapper = () => {
   return <AdminDashboard user={user} token={token} />;
 };
 
-// Simple App Root Redirect Component
+// Simple App Root Redirect Component - NO MARKETING SHELL
 const AppRootRedirect = () => {
   const { user, loading } = useAuth();
   
@@ -1255,17 +1255,8 @@ const AppRootRedirect = () => {
     );
   }
   
-  // Show landing page for unauthenticated users, redirect to app for authenticated
-  if (user) {
-    return <Navigate to="/app" replace />;
-  }
-  
-  // Show simplified landing page for unauthenticated users
-  return (
-    <MarketingShell>
-      <SimpleLandingPage />
-    </MarketingShell>
-  );
+  // Direct redirect: authenticated = app, unauthenticated = login
+  return <Navigate to={user ? "/app" : "/login"} replace />;
 };
 
 // Global League Creation Success Marker Component
