@@ -1500,9 +1500,9 @@ function App() {
               
               {/* 404 - Catch all unmatched routes */}
               <Route path="*" element={
-                <MarketingShell>
+                <AppShell>
                   <NotFoundPage />
-                </MarketingShell>
+                </AppShell>
               } />
             </Routes>
         </Router>
