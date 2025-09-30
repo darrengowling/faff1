@@ -136,16 +136,11 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
             {/* Left - Brand and Back to Home */}
             <div className="flex items-center space-x-4">
               <HeaderBrand 
-                onClick={() => navigate('/')} 
+                onClick={() => navigate('/app')} 
                 className="cursor-pointer hover:opacity-80 transition-opacity"
                 data-testid={TESTIDS.navBrand}
               />
-              {/* Back to Marketing Home - explicit override for authenticated users */}
-              <BackToHomeLink 
-                testId="back-to-home-link" 
-                to="/" 
-                className="text-theme-text-secondary hover:text-theme-text" 
-              />
+              {/* Simplified app navigation - logo goes to dashboard */}
             </div>
             
             {/* Center - Desktop Navigation */}
