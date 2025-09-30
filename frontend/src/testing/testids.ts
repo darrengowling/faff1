@@ -7,12 +7,12 @@ export const TESTIDS = {
   authLoading: 'auth-loading',
   authError: 'auth-error',
   authSuccess: 'auth-success',
-  backToHome: 'backToHome',
-  homeNavButton: 'homeNavButton',
+  backToHome: 'back-to-home-link',
+  homeNavButton: 'home-nav-button',
   
   // Legacy auth testids (for backward compatibility)
-  emailInput: 'authEmailInput',
-  magicLinkSubmit: 'authSubmitBtn',
+  emailInput: 'auth-email-input',
+  magicLinkSubmit: 'auth-submit-btn',
   loginNowButton: 'dev-magic-link-btn',
   
   // Create league
