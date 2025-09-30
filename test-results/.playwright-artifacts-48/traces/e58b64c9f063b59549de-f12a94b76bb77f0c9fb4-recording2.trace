@@ -1,0 +1,41 @@
+{"version":8,"type":"context-options","origin":"library","browserName":"chromium","options":{"noDefaultViewport":false,"viewport":{"width":1280,"height":720},"ignoreHTTPSErrors":false,"javaScriptEnabled":true,"bypassCSP":false,"userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36","locale":"en-US","timezoneId":"America/New_York","offline":false,"deviceScaleFactor":1,"isMobile":false,"hasTouch":false,"colorScheme":"light","acceptDownloads":"accept","baseURL":"https://test-harmony.preview.emergentagent.com","serviceWorkers":"allow","selectorEngines":[],"testIdAttributeName":"data-testid"},"platform":"linux","wallTime":1759201394209,"monotonicTime":677786.266,"sdkLanguage":"javascript","testIdAttributeName":"data-testid","contextId":"browser-context@c45c1ba3d4e2ad11a7adaf5c32af562c","title":"league-settings-regression.spec.js:190 › League Settings Regression Tests › Settings Persistence and Consistency › Server responses include correct settings everywhere"}
+{"type":"before","callId":"call@20","startTime":677790.977,"class":"APIRequestContext","method":"fetch","params":{"url":"https://test-harmony.preview.emergentagent.com/api/competition-profiles","method":"GET","timeout":10000},"stepId":"pw:api@19","beforeSnapshot":"before@call@20"}
+{"type":"log","callId":"call@20","time":677792.555,"message":"→ GET https://test-harmony.preview.emergentagent.com/api/competition-profiles"}
+{"type":"log","callId":"call@20","time":677792.577,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@20","time":677792.585,"message":"  accept: */*"}
+{"type":"log","callId":"call@20","time":677792.59,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"screencast-frame","pageId":"page@b3ae8f0347d8d617e780be724c41043c","sha1":"page@b3ae8f0347d8d617e780be724c41043c-1759201394221.jpeg","width":1280,"height":720,"timestamp":677797.983,"frameSwapWallTime":1759201394217.353}
+{"type":"log","callId":"call@20","time":677810.197,"message":"← 200 OK"}
+{"type":"log","callId":"call@20","time":677810.217,"message":"  content-length: 1048"}
+{"type":"log","callId":"call@20","time":677810.225,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@20","time":677810.231,"message":"  date: Tue, 30 Sep 2025 03:03:13 GMT"}
+{"type":"log","callId":"call@20","time":677810.236,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@20","time":677810.242,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@20","time":677810.247,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@20","endTime":677810.412,"result":{"response":{"url":"https://test-harmony.preview.emergentagent.com/api/competition-profiles","status":200,"statusText":"OK","headers":[{"name":"Content-Length","value":"1048"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Tue, 30 Sep 2025 03:03:13 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"0e144438004f6f6ac42c357602761cd3"}},"afterSnapshot":"after@call@20"}
+{"type":"before","callId":"call@23","startTime":677816.332,"class":"APIRequestContext","method":"fetch","params":{"url":"https://test-harmony.preview.emergentagent.com/api/clubs","method":"GET","timeout":10000},"stepId":"pw:api@22","beforeSnapshot":"before@call@23"}
+{"type":"log","callId":"call@23","time":677817.618,"message":"→ GET https://test-harmony.preview.emergentagent.com/api/clubs"}
+{"type":"log","callId":"call@23","time":677817.638,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@23","time":677817.645,"message":"  accept: */*"}
+{"type":"log","callId":"call@23","time":677817.651,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@23","time":677835.84,"message":"← 200 OK"}
+{"type":"log","callId":"call@23","time":677835.871,"message":"  content-length: 3561"}
+{"type":"log","callId":"call@23","time":677835.88,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@23","time":677835.886,"message":"  date: Tue, 30 Sep 2025 03:03:13 GMT"}
+{"type":"log","callId":"call@23","time":677835.899,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@23","time":677835.909,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@23","time":677835.919,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@23","endTime":677836.841,"result":{"response":{"url":"https://test-harmony.preview.emergentagent.com/api/clubs","status":200,"statusText":"OK","headers":[{"name":"Content-Length","value":"3561"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Tue, 30 Sep 2025 03:03:13 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"d94be5764328436c1d4f257649705dd7"}},"afterSnapshot":"after@call@23"}
+{"type":"before","callId":"call@26","startTime":677843.576,"class":"APIRequestContext","method":"fetch","params":{"url":"https://test-harmony.preview.emergentagent.com/api/timez","method":"GET","timeout":10000},"stepId":"pw:api@26","beforeSnapshot":"before@call@26"}
+{"type":"log","callId":"call@26","time":677844.853,"message":"→ GET https://test-harmony.preview.emergentagent.com/api/timez"}
+{"type":"log","callId":"call@26","time":677844.877,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.16 Safari/537.36"}
+{"type":"log","callId":"call@26","time":677844.886,"message":"  accept: */*"}
+{"type":"log","callId":"call@26","time":677844.897,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@26","time":677855.836,"message":"← 200 OK"}
+{"type":"log","callId":"call@26","time":677855.852,"message":"  content-length: 42"}
+{"type":"log","callId":"call@26","time":677855.859,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@26","time":677855.869,"message":"  date: Tue, 30 Sep 2025 03:03:13 GMT"}
+{"type":"log","callId":"call@26","time":677855.875,"message":"  server: uvicorn"}
+{"type":"log","callId":"call@26","time":677855.885,"message":"  via: 1.1 google"}
+{"type":"log","callId":"call@26","time":677855.891,"message":"  alt-svc: h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}
+{"type":"after","callId":"call@26","endTime":677856.071,"result":{"response":{"url":"https://test-harmony.preview.emergentagent.com/api/timez","status":200,"statusText":"OK","headers":[{"name":"Content-Length","value":"42"},{"name":"content-type","value":"application/json"},{"name":"date","value":"Tue, 30 Sep 2025 03:03:13 GMT"},{"name":"server","value":"uvicorn"},{"name":"via","value":"1.1 google"},{"name":"Alt-Svc","value":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"}],"fetchUid":"dc18ffb9d6d7df862ce6941b7f09de66"}},"afterSnapshot":"after@call@26"}
