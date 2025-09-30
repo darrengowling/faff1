@@ -96,7 +96,6 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
   // Close dropdowns and mobile menu on route change
   React.useEffect(() => {
     setMobileMenuOpen(false);
-    setProductDropdownOpen(false);
     setFocusedIndex(-1);
     
     // Ensure any persistent overlays are removed
