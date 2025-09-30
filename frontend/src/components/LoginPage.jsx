@@ -207,7 +207,7 @@ const LoginPage = () => {
         {/* Render contract: H1 with login-header testid */}
         <div className="text-center">
           <h1 
-            data-testid={TESTIDS.loginHeader}
+            data-testid="login-header"
             className="text-3xl font-bold text-theme-text"
           >
             Sign In
