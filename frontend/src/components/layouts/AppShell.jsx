@@ -140,10 +140,10 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                 className="cursor-pointer hover:opacity-80 transition-opacity"
                 data-testid={TESTIDS.navBrand}
               />
-              {/* ONE canonical instance with back-to-home-link testid */}
+              {/* Back to Marketing Home - explicit override for authenticated users */}
               <BackToHomeLink 
                 testId="back-to-home-link" 
-                to="/app" 
+                to="/" 
                 className="text-theme-text-secondary hover:text-theme-text" 
               />
             </div>
