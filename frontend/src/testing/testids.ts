@@ -50,7 +50,7 @@ export const TESTIDS = {
   auctionTimer: 'auction-timer',
   auctionTopBid: 'auction-top-bid',
   bidPlus1: 'bid-plus-1',
-  soldBadge: 'lot-sold',
+  soldBadge: 'sold-badge',
   
   // Nav / Mobile
   appHeader: 'app-header',
