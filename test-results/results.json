@@ -1,0 +1,490 @@
+{
+  "config": {
+    "configFile": "/app/playwright.config.js",
+    "rootDir": "/app/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/app/tests/e2e/utils/global-setup.ts",
+    "globalTeardown": "/app/tests/e2e/global-teardown.js",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": {
+      "command": "echo \"Using existing preview server\"",
+      "url": "https://test-harmony.preview.emergentagent.com",
+      "reuseExistingServer": true,
+      "timeout": 5000
+    }
+  },
+  "suites": [
+    {
+      "title": "e2e/core-smoke.spec.ts",
+      "file": "e2e/core-smoke.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Core Smoke Test",
+          "file": "e2e/core-smoke.spec.ts",
+          "line": 44,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Complete auction flow: create → invite → join → auction → bid → sell",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 19502,
+                      "error": {
+                        "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)",
+                        "stack": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:461:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16",
+                        "location": {
+                          "file": "/app/tests/e2e/utils/helpers.ts",
+                          "column": 11,
+                          "line": 461
+                        },
+                        "snippet": "   at e2e/utils/helpers.ts:461\n\n  459 |     });\n  460 |     \n> 461 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  462 |   }\n  463 | }\n  464 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/utils/helpers.ts",
+                            "column": 11,
+                            "line": 461
+                          },
+                          "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)\n\n   at e2e/utils/helpers.ts:461\n\n  459 |     });\n  460 |     \n> 461 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  462 |   }\n  463 | }\n  464 |\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:461:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🚀 Starting core smoke test...\n"
+                        },
+                        {
+                          "text": "📝 Step 1: Commissioner creates league...\n"
+                        },
+                        {
+                          "text": "🔐 Logging in user: commish@example.com (mode: test)\n"
+                        },
+                        {
+                          "text": "🧪 Test-only login for user: commish@example.com\n"
+                        },
+                        {
+                          "text": "✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)\n"
+                        },
+                        {
+                          "text": "🏆 Creating league: Core Smoke League\n"
+                        },
+                        {
+                          "text": "🎯 Using safe click with overlay detection for Create League button...\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (1011.5, 802)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid=\"create-league-btn\"]\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: Each child in a list should have a unique \"key\" prop.%s%s See https://react.dev/link/warning-keys for more information. \n\nCheck the render method of `LeagueCreationForm`. \n"
+                        },
+                        {
+                          "text": "✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid=\"create-league-btn\"]\n"
+                        },
+                        {
+                          "text": "📋 Filling Create League form: Core Smoke League\n"
+                        },
+                        {
+                          "text": "📋 Detected CreateLeagueWizard (page) form\n"
+                        },
+                        {
+                          "text": "📝 Using wizard testids: {\n  name: \u001b[32m'create-name'\u001b[39m,\n  slots: \u001b[32m'create-slots'\u001b[39m,\n  budget: \u001b[32m'create-budget'\u001b[39m,\n  min: \u001b[32m'create-min'\u001b[39m,\n  max: \u001b[32m'create-max'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "📝 Filling league name...\n"
+                        },
+                        {
+                          "text": "📝 Filling form fields with type-aware setters...\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-slots=3 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-slots=3\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-budget=100 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-budget=100\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-min=2 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-min=2\n"
+                        },
+                        {
+                          "text": "✅ Create League form filled successfully: Core Smoke League\n"
+                        },
+                        {
+                          "text": "📝 Form filled, submitting...\n"
+                        },
+                        {
+                          "text": "🎯 Checking clickability at coordinates (807.0, 665.0)\n"
+                        },
+                        {
+                          "text": "🔍 Target: BUTTON[data-testid=\"create-submit\"]\n"
+                        },
+                        {
+                          "text": "🔍 Topmost: BUTTON[data-testid=\"create-submit\"]\n"
+                        },
+                        {
+                          "text": "✅ Element is clickable\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for league creation success...\n"
+                        },
+                        {
+                          "text": "🏁 Waiting for league creation success and lobby navigation...\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: Failed to load resource: the server responded with a status of 500 ()\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: League creation error: AxiosError\n"
+                        },
+                        {
+                          "text": "Test failed, capturing artifacts...\n"
+                        },
+                        {
+                          "text": "Screenshots saved with timestamp: 2025-09-30T02-28-50-163Z\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Failed to complete league creation → lobby flow. Current URL: https://test-harmony.preview.emergentagent.com/app\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-09-30T02:28:30.937Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-2.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-3.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/utils/helpers.ts",
+                        "column": 11,
+                        "line": 461
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a5fcfbe8c85b541a0c0c-8b6509bfa1611018d41b",
+              "file": "e2e/core-smoke.spec.ts",
+              "line": 114,
+              "column": 7
+            },
+            {
+              "title": "Complete auction flow: create → invite → join → auction → bid → sell",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 21703,
+                      "error": {
+                        "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)",
+                        "stack": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:461:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16",
+                        "location": {
+                          "file": "/app/tests/e2e/utils/helpers.ts",
+                          "column": 11,
+                          "line": 461
+                        },
+                        "snippet": "   at e2e/utils/helpers.ts:461\n\n  459 |     });\n  460 |     \n> 461 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  462 |   }\n  463 | }\n  464 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/utils/helpers.ts",
+                            "column": 11,
+                            "line": 461
+                          },
+                          "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)\n\n   at e2e/utils/helpers.ts:461\n\n  459 |     });\n  460 |     \n> 461 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  462 |   }\n  463 | }\n  464 |\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:461:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🚀 Starting core smoke test...\n"
+                        },
+                        {
+                          "text": "📝 Step 1: Commissioner creates league...\n"
+                        },
+                        {
+                          "text": "🔐 Logging in user: commish@example.com (mode: test)\n"
+                        },
+                        {
+                          "text": "🧪 Test-only login for user: commish@example.com\n"
+                        },
+                        {
+                          "text": "✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)\n"
+                        },
+                        {
+                          "text": "🏆 Creating league: Core Smoke League\n"
+                        },
+                        {
+                          "text": "🎯 Using safe click with overlay detection for Create League button...\n"
+                        },
+                        {
+                          "text": "🎯 Checking overlay at center point (183, 1170)\n"
+                        },
+                        {
+                          "text": "📍 Elements at point (top to bottom):\n"
+                        },
+                        {
+                          "text": "✅ No overlay blocking target: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid=\"create-league-btn\"]\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: Each child in a list should have a unique \"key\" prop.%s%s See https://react.dev/link/warning-keys for more information. \n\nCheck the render method of `LeagueCreationForm`. \n"
+                        },
+                        {
+                          "text": "✅ Click successful on: button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-colors.focus-visible:outline-none.focus-visible:ring-1.focus-visible:ring-ring.disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg]:size-4.[&_svg]:shrink-0.bg-primary.text-primary-foreground.shadow.hover:bg-primary/90.h-9.px-4.py-2[data-testid=\"create-league-btn\"]\n"
+                        },
+                        {
+                          "text": "📋 Filling Create League form: Core Smoke League\n"
+                        },
+                        {
+                          "text": "📋 Detected CreateLeagueWizard (page) form\n"
+                        },
+                        {
+                          "text": "📝 Using wizard testids: {\n  name: \u001b[32m'create-name'\u001b[39m,\n  slots: \u001b[32m'create-slots'\u001b[39m,\n  budget: \u001b[32m'create-budget'\u001b[39m,\n  min: \u001b[32m'create-min'\u001b[39m,\n  max: \u001b[32m'create-max'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "📝 Filling league name...\n"
+                        },
+                        {
+                          "text": "📝 Filling form fields with type-aware setters...\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-slots=3 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-slots=3\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-budget=100 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-budget=100\n"
+                        },
+                        {
+                          "text": "🔧 Setting form value: create-min=2 (tag: input, type: number)\n"
+                        },
+                        {
+                          "text": "✅ Form value set: create-min=2\n"
+                        },
+                        {
+                          "text": "✅ Create League form filled successfully: Core Smoke League\n"
+                        },
+                        {
+                          "text": "📝 Form filled, submitting...\n"
+                        },
+                        {
+                          "text": "🎯 Checking clickability at coordinates (310.0, 675.9)\n"
+                        },
+                        {
+                          "text": "🔍 Target: BUTTON[data-testid=\"create-submit\"]\n"
+                        },
+                        {
+                          "text": "🔍 Topmost: BUTTON[data-testid=\"create-submit\"]\n"
+                        },
+                        {
+                          "text": "✅ Element is clickable\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for league creation success...\n"
+                        },
+                        {
+                          "text": "🏁 Waiting for league creation success and lobby navigation...\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: Failed to load resource: the server responded with a status of 500 ()\n"
+                        },
+                        {
+                          "text": "Console error on Commissioner: League creation error: AxiosError\n"
+                        },
+                        {
+                          "text": "Test failed, capturing artifacts...\n"
+                        },
+                        {
+                          "text": "Screenshots saved with timestamp: 2025-09-30T02-29-11-351Z\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Failed to complete league creation → lobby flow. Current URL: https://test-harmony.preview.emergentagent.com/app\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-09-30T02:28:51.876Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-2.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-3.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/e2e-core-smoke-Core-Smoke--81730-join-→-auction-→-bid-→-sell-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/utils/helpers.ts",
+                        "column": 11,
+                        "line": 461
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a5fcfbe8c85b541a0c0c-421cd7f1e1881018034b",
+              "file": "e2e/core-smoke.spec.ts",
+              "line": 114,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-30T02:28:17.739Z",
+    "duration": 56662.591,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}
