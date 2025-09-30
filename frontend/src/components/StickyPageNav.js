@@ -125,6 +125,15 @@ const StickyPageNav = () => {
     // Update hash immediately for better UX
     window.history.pushState(null, null, `#${sectionId}`);
     
+    // Update nav-current-hash marker immediately for TEST_MODE reliability
+    const hashMarker = document.querySelector('[data-testid="nav-current-hash"]');
+    if (hashMarker) {
+      hashMarker.textContent = `#${sectionId}`;
+    }
+    
+    // Update active section state immediately
+    setActiveSection(sectionId);
+    
     if (prefersReducedMotion) {
       // Instant scroll for reduced motion
       window.scrollTo(0, elementPosition);
