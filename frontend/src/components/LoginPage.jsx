@@ -354,7 +354,7 @@ const LoginPage = () => {
 
             <Separator />
             
-            {/* Login completed - remove back to home since no marketing site */}
+            {/* Login completed - simplified app structure */}
             <div className="text-center">
               <p className="text-sm text-theme-text-secondary">
                 Don't have an account? Contact your league commissioner for an invitation.
@@ -368,11 +368,6 @@ const LoginPage = () => {
           <p>
             Having trouble? Contact support for assistance.
           </p>
-        </div>
-
-        {/* Back to Home Link */}
-        <div className="text-center">
-          <BackToHomeLink />
         </div>
       </div>
     </div>
