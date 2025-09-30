@@ -809,6 +809,54 @@ const LeagueManagement = ({ league, onBack }) => {
         </Card>
       )}
 
+      {/* Teams to be Auctioned */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <Trophy className="w-5 h-5" />
+            <span>Teams in Auction</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {/* Hardcoded teams for now - replace with actual data from backend */}
+            {[
+              { name: 'Manchester City', country: 'England', short_name: 'MCI' },
+              { name: 'Barcelona', country: 'Spain', short_name: 'BAR' },
+              { name: 'Bayern Munich', country: 'Germany', short_name: 'BAY' },
+              { name: 'Paris Saint-Germain', country: 'France', short_name: 'PSG' },
+              { name: 'Real Madrid', country: 'Spain', short_name: 'RMA' },
+              { name: 'Liverpool', country: 'England', short_name: 'LIV' },
+              { name: 'Chelsea', country: 'England', short_name: 'CHE' },
+              { name: 'Juventus', country: 'Italy', short_name: 'JUV' },
+              { name: 'Arsenal', country: 'England', short_name: 'ARS' },
+              { name: 'Atletico Madrid', country: 'Spain', short_name: 'ATM' },
+              { name: 'Tottenham', country: 'England', short_name: 'TOT' },
+              { name: 'AC Milan', country: 'Italy', short_name: 'MIL' }
+            ].map((team, index) => (
+              <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                {/* Team Badge */}
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs font-bold">
+                    {team.short_name}
+                  </span>
+                </div>
+                <div>
+                  <div className="font-medium text-gray-900">{team.name}</div>
+                  <div className="text-sm text-gray-600">{team.country}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <p className="text-blue-800 text-sm">
+              <Trophy className="w-4 h-4 inline mr-1" />
+              These teams will be available for bidding once the auction starts. Plan your strategy!
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Members */}
         <Card>
