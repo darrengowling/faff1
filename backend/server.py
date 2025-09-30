@@ -443,13 +443,20 @@ async def test_login(request: dict, response: Response):
         
         # Set HTTP-only session cookie with extended timeout for TEST_MODE
         session_max_age = 7200 if TEST_MODE else 3600  # 2 hours in TEST_MODE, 1 hour in production
+        
+        # Determine proper domain for cookie
+        # For preview domains like e2e-stability.preview.emergentagent.com, don't set domain to allow subdomain access
+        cookie_domain = None  # Let browser handle domain automatically
+        
         response.set_cookie(
             key="access_token",
             value=access_token,
             httponly=True,
             samesite="lax",  # Required for cross-origin test requests
             secure=True,     # Use HTTPS for production domain
-            max_age=session_max_age
+            path="/",        # Ensure cookie is available site-wide
+            max_age=session_max_age,
+            domain=cookie_domain  # None allows automatic domain handling
         )
         
         # Structured logging: session step (success)
