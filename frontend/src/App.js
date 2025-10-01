@@ -830,15 +830,7 @@ const LeagueManagement = ({ league, onBack }) => {
     fetchLeagueDataWithRetry();
     
     // Set up real-time WebSocket connection for league updates
-    const origin = process.env.REACT_APP_BACKEND_URL || 
-                   'https://leaguemate-1.preview.emergentagent.com';
-    
-    const socket = io(origin, {
-      path: '/api/socket.io',  // OVERLAY PATTERN - USES EXISTING /api/* ROUTING
-      transports: ['websocket', 'polling'],
-      withCredentials: true,
-      reconnection: true
-    });
+    const socket = createSocket();
 
     socket.on('connect', () => {
       console.log('Connected to league real-time updates');
