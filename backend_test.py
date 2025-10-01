@@ -16,30 +16,32 @@ from typing import Dict, List, Optional
 BACKEND_URL = "https://livebid-app.preview.emergentagent.com"
 API_BASE = f"{BACKEND_URL}/api"
 
-class BiddingTestSuite:
+class AuctionClockTester:
+    """Test suite for server-authoritative auction clock implementation"""
+    
     def __init__(self):
-        self.sessions = {}  # email -> session mapping
+        self.session = None
         self.test_users = []
-        self.league_id = None
-        self.auction_id = None
-        self.current_lot_id = None
-        self.test_results = []
+        self.test_league_id = None
+        self.test_auction_id = None
+        self.socket_events = []
         
     async def setup_session(self):
-        """Setup HTTP sessions - will be created per user"""
-        pass
+        """Setup HTTP session with authentication"""
+        self.session = aiohttp.ClientSession()
         
-    async def cleanup_session(self):
-        """Cleanup HTTP sessions"""
-        for session in self.sessions.values():
-            session.close()
-            
-    async def log_result(self, test_name: str, success: bool, details: str = ""):
-        """Log test result"""
-        status = "✅ PASS" if success else "❌ FAIL"
-        result = f"{status}: {test_name}"
-        if details:
-            result += f" - {details}"
+        # Test login for commissioner
+        commissioner_email = f"commissioner-{int(time.time())}@test.com"
+        login_response = await self.session.post(
+            f"{API_BASE}/auth/test-login",
+            json={"email": commissioner_email}
+        )
+        
+        if login_response.status != 200:
+            raise Exception(f"Failed to login commissioner: {login_response.status}")
+        
+        print(f"✅ Commissioner authenticated: {commissioner_email}")
+        return commissioner_email
         print(result)
         self.test_results.append({
             'test': test_name,
