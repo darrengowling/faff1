@@ -403,6 +403,68 @@ const AuctionRoom = ({ user, token }) => {
         }
       });
 
+      // Auction event handlers
+      newSocket.on('auction_state', (state) => {
+        console.log('Auction state received:', state);
+        setAuctionState(state);
+        setCurrentLot(state.current_lot);
+        setTimeRemaining(state.time_remaining || 0);
+        setAuctionStatus(state.status);
+        setManagers(state.managers || []);
+        
+        // Find user's budget and slots
+        const userManager = state.managers?.find(m => m.user_id === user.id);
+        if (userManager) {
+          setUserBudget(userManager.budget_remaining);
+          setUserSlots(userManager.club_slots);
+        }
+      });
+
+      newSocket.on('lot_update', (data) => {
+        console.log('Lot update:', data);
+        setCurrentLot(data.lot);
+        
+        // Update bid amount to minimum next bid
+        if (data.lot.current_bid > 0) {
+          const minBid = data.lot.current_bid + (auctionState?.settings?.min_increment || 1);
+          setBidAmount(minBid);
+        } else {
+          setBidAmount(auctionState?.settings?.min_increment || 1);
+        }
+        
+        // Calculate time remaining
+        if (data.lot.timer_ends_at) {
+          const serverNow = Date.now() + serverTimeOffset;
+          const timerEndsAt = new Date(data.lot.timer_ends_at).getTime();
+          const remaining = Math.max(0, Math.floor((timerEndsAt - serverNow) / 1000));
+          setTimeRemaining(remaining);
+        }
+      });
+
+      newSocket.on('bid_result', (result) => {
+        setBidding(false);
+        if (result.success) {
+          toast.success(`Bid placed: ${result.amount} credits`);
+        } else {
+          toast.error(`Bid failed: ${result.error}`);
+        }
+      });
+
+      newSocket.on('auction_paused', (data) => {
+        setAuctionStatus('paused');
+        toast.info('Auction paused by commissioner');
+      });
+
+      newSocket.on('auction_resumed', (data) => {
+        setAuctionStatus('live');
+        toast.info('Auction resumed');
+      });
+
+      newSocket.on('auction_ended', (data) => {
+        setAuctionStatus('completed');
+        toast.success('Auction completed!');
+      });
+
       // Heartbeat system
       const heartbeatInterval = setInterval(() => {
         if (newSocket.connected) {
