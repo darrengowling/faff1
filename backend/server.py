@@ -147,13 +147,16 @@ async def request_sync(sid, data):
 # Create FastAPI app
 fastapi_app = FastAPI(title="Friends of PIFA API", version="1.0.0")
 
-# Add CORS middleware - more permissive in TEST_MODE
+# Add CORS middleware - exact origin only for production security
 cors_origins = [FRONTEND_ORIGIN]
 if TEST_MODE:
     # In test mode, allow additional origins for flexibility
     cors_origins.extend(["http://localhost:3000", "https://livebid-app.preview.emergentagent.com"])
     # Remove duplicates
     cors_origins = list(set(cors_origins))
+
+# Log CORS configuration for security auditing
+logger.info(f"CORS configured for origins: {cors_origins} (TEST_MODE: {TEST_MODE})")
 
 fastapi_app.add_middleware(
     CORSMiddleware,
