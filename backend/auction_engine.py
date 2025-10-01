@@ -365,13 +365,13 @@ class AuctionEngine:
                                 {"_id": lot_id},
                                 {"$set": {
                                     "status": "sold",
-                                    "winner_id": lot["leading_bidder_id"],
+                                    "winner_id": lot["top_bidder_id"],
                                     "final_price": lot["current_bid"]
                                 }},
                                 session=session
                             )
                             
-                            logger.info(f"Lot {lot_id} SOLD to {lot['leading_bidder_id']} for {lot['current_bid']}")
+                            logger.info(f"Lot {lot_id} SOLD to {lot['top_bidder_id']} for {lot['current_bid']}")
                             
                         except DuplicateKeyError:
                             # Club already owned - mark as unsold
