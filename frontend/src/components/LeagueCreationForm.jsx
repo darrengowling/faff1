@@ -279,7 +279,7 @@ const LeagueCreationForm = ({
           <h4 className="font-medium text-gray-900">League Settings</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-3">
-              <Label htmlFor="budget">Budget per Manager (£)</Label>
+              <Label htmlFor="budget">Budget per Manager (£m)</Label>
               <TestableInput
                 id="budget"
                 type="number"
