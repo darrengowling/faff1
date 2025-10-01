@@ -46,12 +46,10 @@ ANTI_SNIPE_SECONDS = int(os.getenv("ANTI_SNIPE_SECONDS", str(DEFAULT_ANTI_SNIPE)
 # Legacy compatibility
 IS_TEST_MODE = os.getenv("PLAYWRIGHT_TEST") == "true" or TEST_MODE
 
-# Socket.IO ASGI wrapper configuration
+# Socket.IO ASGI wrapper configuration - STANDARDIZED TO DEFAULT PATH
 FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:3000")
-SOCKET_PATH = os.getenv("SOCKET_PATH", "/api/socketio")
-SOCKETIO_PATH_INTERNAL = SOCKET_PATH.lstrip("/")  # "api/socketio"
 
-# Create Socket.IO server
+# Create Socket.IO server with default configuration
 sio = socketio.AsyncServer(async_mode="asgi", cors_allowed_origins=[FRONTEND_ORIGIN])
 
 # Socket.IO event handlers
