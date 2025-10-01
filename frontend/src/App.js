@@ -917,6 +917,26 @@ const LeagueManagement = ({ league, onBack }) => {
                 </Button>
               </form>
 
+              {/* Copy Invitation Link Button */}
+              <div className="flex items-center justify-center">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    const invitationLink = `${window.location.origin}/join/${league.id}`;
+                    navigator.clipboard.writeText(invitationLink).then(() => {
+                      toast.success('Invitation link copied to clipboard!');
+                    }).catch(() => {
+                      toast.error('Failed to copy link');
+                    });
+                  }}
+                  className="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
+                  data-testid={TESTIDS.copyInvitationLinkButton}
+                >
+                  <Copy className="w-4 h-4 mr-2" />
+                  Copy Invitation Link
+                </Button>
+              </div>
+
               {/* Invitation List */}
               <div className="space-y-2">
                 {invitations.length === 0 ? (
