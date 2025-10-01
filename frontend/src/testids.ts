@@ -40,11 +40,11 @@ export const TESTIDS = {
   createLoading: 'create-loading',
   createError: 'create-error',
   
-  // Navigation - Core testids that tests expect
+  // Navigation - Single definitions only
   navBrand: 'nav-brand',
-  navHamburger: 'nav-hamburger', 
+  navHamburger: 'nav-hamburger',
   navSignIn: 'nav-sign-in',
-  backToHome: 'back-to-home-link',  // Tests expect this
+  backToHome: 'back-to-home-link',
   mobileDrawer: 'nav-mobile-drawer',
   navMobileItemAuction: 'nav-mobile-item-auction-room',
   navMobileItemRoster: 'nav-mobile-item-my-roster',
