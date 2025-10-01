@@ -551,11 +551,12 @@ class AuctionEngine:
             for lot_id, timer_task in self.auction_timers.items():
                 timer_task.cancel()
             
-            # Broadcast pause
+            # Broadcast pause to league room
+            league_id = self.active_auctions[auction_id]["league_id"]
             await self.sio.emit('auction_paused', {
                 "auction_id": auction_id,
                 "message": "Auction paused by commissioner"
-            }, room=f"auction_{auction_id}")
+            }, room=league_id)
             
             logger.info(f"Auction {auction_id} paused by commissioner {commissioner_id}")
             return True
