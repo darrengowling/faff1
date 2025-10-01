@@ -159,32 +159,31 @@ class BiddingTestSuite:
         
         try:
             # Start auction
-            async with self.session.post(f"{API_BASE}/auction/{self.league_id}/start") as resp:
-                if resp.status == 200:
-                    data = await resp.json()
-                    self.auction_id = data.get('auction_id', self.league_id)  # Fallback to league_id
-                    await self.log_result("Auction Start", True, f"Auction ID: {self.auction_id}")
-                else:
-                    error_text = await resp.text()
-                    await self.log_result("Auction Start", False, f"Status {resp.status}: {error_text}")
-                    return False
+            resp = self.session.post(f"{API_BASE}/auction/{self.league_id}/start")
+            if resp.status_code == 200:
+                data = resp.json()
+                self.auction_id = data.get('auction_id', self.league_id)  # Fallback to league_id
+                await self.log_result("Auction Start", True, f"Auction ID: {self.auction_id}")
+            else:
+                await self.log_result("Auction Start", False, f"Status {resp.status_code}: {resp.text}")
+                return False
                     
             # Get auction state to find current lot
-            async with self.session.get(f"{API_BASE}/auction/{self.auction_id}/state") as resp:
-                if resp.status == 200:
-                    data = await resp.json()
-                    current_lot = data.get('current_lot')
-                    if current_lot:
-                        self.current_lot_id = current_lot['id']
-                        await self.log_result("Current Lot Retrieval", True, 
-                                            f"Lot ID: {self.current_lot_id}, Club: {current_lot.get('club', {}).get('name', 'Unknown')}")
-                        return True
-                    else:
-                        await self.log_result("Current Lot Retrieval", False, "No current lot found")
-                        return False
+            resp = self.session.get(f"{API_BASE}/auction/{self.auction_id}/state")
+            if resp.status_code == 200:
+                data = resp.json()
+                current_lot = data.get('current_lot')
+                if current_lot:
+                    self.current_lot_id = current_lot['id']
+                    await self.log_result("Current Lot Retrieval", True, 
+                                        f"Lot ID: {self.current_lot_id}, Club: {current_lot.get('club', {}).get('name', 'Unknown')}")
+                    return True
                 else:
-                    await self.log_result("Current Lot Retrieval", False, f"Status {resp.status}")
+                    await self.log_result("Current Lot Retrieval", False, "No current lot found")
                     return False
+            else:
+                await self.log_result("Current Lot Retrieval", False, f"Status {resp.status_code}")
+                return False
                     
         except Exception as e:
             await self.log_result("Auction Start and Lot Retrieval", False, f"Exception: {str(e)}")
