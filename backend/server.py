@@ -191,10 +191,13 @@ def convert_doc_to_response(doc, response_class):
     if not doc:
         return None
     
-    # Create a copy and map _id to id
-    converted = doc.copy()
-    if '_id' in converted:
-        converted['id'] = converted.pop('_id')
+    # Create a clean copy for conversion
+    converted = {}
+    for key, value in doc.items():
+        if key == '_id':
+            converted['id'] = value
+        else:
+            converted[key] = value
     
     return response_class(**converted)
 
