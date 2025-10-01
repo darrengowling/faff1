@@ -403,13 +403,13 @@ class AuctionEngine:
                 logger.error(f"Failed to close lot {lot_id}: {e}")
                 await session.abort_transaction()
     
-    async def place_bid(self, auction_id: str, lot_id: str, bidder_id: str, amount: int) -> Dict:
+    async def place_bid(self, auction_id: str, lot_id: str, bidder_id: str, amount: int, op_id: Optional[str] = None) -> Dict:
         """
-        Place bid with comprehensive validation guardrails and atomic operations
+        Place bid using race-safe and replay-safe BidService
         Returns bid result with success/failure status
         """
-        # Import AdminService here to avoid circular imports
-        from admin_service import AdminService
+        from bid_service import BidService
+        import uuid
         
         try:
             # Get auction data
@@ -419,93 +419,66 @@ class AuctionEngine:
             
             league_id = auction_data["league_id"]
             
-            # GUARDRAIL 1: Validate budget constraints
-            budget_valid, budget_error = await AdminService.validate_budget_constraint(
-                bidder_id, league_id, amount
-            )
-            if not budget_valid:
-                return {"success": False, "error": budget_error}
+            # Generate opId if not provided (for backward compatibility)
+            if not op_id:
+                op_id = str(uuid.uuid4())
             
-            # GUARDRAIL 2: Validate roster capacity constraints  
-            capacity_valid, capacity_error = await AdminService.validate_roster_capacity(
-                bidder_id, league_id
-            )
-            if not capacity_valid:
-                return {"success": False, "error": capacity_error}
+            # Use race-safe and replay-safe bid service
+            result = await BidService.place_bid(league_id, bidder_id, amount, op_id)
             
-            # GUARDRAIL 3: Use atomic simultaneous bid handling
-            success, message, bid_id = await AdminService.handle_simultaneous_bids(
-                lot_id, bidder_id, amount
-            )
+            if not result["success"]:
+                return result
             
-            if not success:
-                return {"success": False, "error": message}
-            
-            # Get updated lot state
+            # Handle anti-snipe logic if bid was successful
             lot = await db.lots.find_one({"_id": lot_id})
-            if not lot:
-                return {"success": False, "error": "Lot not found"}
-            
-            # Anti-snipe logic with server-authoritative timing (deterministic in test mode)
-            current_time = now()  # Use time provider for deterministic testing
-            if lot.get("timer_ends_at"):
+            if lot and lot.get("timer_ends_at"):
+                current_time = now()
                 end_time = lot["timer_ends_at"]
                 if isinstance(end_time, str):
                     end_time = datetime.fromisoformat(end_time.replace('Z', '+00:00'))
                 elif isinstance(end_time, datetime) and end_time.tzinfo is None:
-                    # Handle timezone-naive datetime from database
                     end_time = end_time.replace(tzinfo=timezone.utc)
                 
                 seconds_remaining = (end_time - current_time).total_seconds()
-                # Use auction-specific anti-snipe seconds from settings
                 anti_snipe_threshold = auction_data["settings"]["anti_snipe_seconds"]
                 
                 if seconds_remaining < anti_snipe_threshold:
-                    # GUARDRAIL 3: Server-authoritative timer extension (deterministic)
-                    # Extend to now + (threshold * 2) for deterministic behavior
+                    # Extend timer for anti-snipe
                     extension_seconds = anti_snipe_threshold * 2
                     new_end_time = current_time + timedelta(seconds=extension_seconds)
                     
-                    # Log the extension event for deterministic testing
                     logger.info(f"🕐 ANTI-SNIPE EXTEND: lot_id={lot_id}, threshold={anti_snipe_threshold}s, "
-                               f"remaining={seconds_remaining:.1f}s, extended_by={extension_seconds}s, "
-                               f"new_end={new_end_time.isoformat()}")
-                    timer_valid, timer_error = await AdminService.validate_timer_monotonicity(
-                        auction_id, new_end_time
+                               f"remaining={seconds_remaining:.1f}s, extended_by={extension_seconds}s")
+                    
+                    # Atomically update timer
+                    await db.lots.update_one(
+                        {"_id": lot_id},
+                        {"$set": {"timer_ends_at": new_end_time}}
                     )
                     
-                    if timer_valid:
-                        # Atomically update timer - only server can do this
-                        await db.lots.update_one(
-                            {"_id": lot_id},
-                            {"$set": {"timer_ends_at": new_end_time}}
+                    # Cancel and restart timer
+                    if lot_id in self.auction_timers:
+                        self.auction_timers[lot_id].cancel()
+                        self.auction_timers[lot_id] = asyncio.create_task(
+                            self._lot_timer(auction_id, lot_id, new_end_time)
                         )
-                        
-                        # Cancel and restart timer
-                        if lot_id in self.auction_timers:
-                            self.auction_timers[lot_id].cancel()
-                            self.auction_timers[lot_id] = asyncio.create_task(
-                                self._lot_timer(auction_id, lot_id, new_end_time)
-                            )
-                        
-                        logger.info(f"Server-authoritative anti-snipe: Timer extended for lot {lot_id} to {new_end_time}")
-                    else:
-                        logger.warning(f"Timer extension failed: {timer_error}")
             
-            # Broadcast real-time update with latest server state
-            await self._broadcast_lot_update(auction_id, lot_id)
-            
-            logger.info(f"Bid placed: {bidder_id} bid {amount} on lot {lot_id}")
-            
-            return {
-                "success": True,
+            # Broadcast real-time update to league room
+            league_id = auction_data["league_id"]
+            await self.sio.emit('bid_update', {
+                "auction_id": auction_id,
                 "lot_id": lot_id,
                 "amount": amount,
                 "bidder_id": bidder_id,
-                "current_bid": lot["current_bid"],
-                "leading_bidder_id": lot["top_bidder_id"],
-                "bid_id": bid_id
-            }
+                "current_bid": result["current_bid"],
+                "leading_bidder_id": result["leading_bidder_id"],
+                "op_id": op_id,
+                "timestamp": result["timestamp"]
+            }, room=league_id)
+            
+            logger.info(f"Race-safe bid placed: {bidder_id} bid {amount} on lot {lot_id} (opId: {op_id})")
+            
+            return result
                     
         except Exception as e:
             logger.error(f"Bid placement failed: {e}")
