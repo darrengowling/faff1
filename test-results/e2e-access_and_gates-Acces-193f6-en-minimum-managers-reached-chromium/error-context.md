@@ -950,54 +950,53 @@
     - generic:
       - img
       - paragraph: Made with Emergent
-  - dialog "Create New League" [active] [ref=e2]:
+  - dialog "Create New League" [ref=e2]:
     - generic [ref=e3]:
       - generic [ref=e4]:
-        - button "Home" [ref=e5] [cursor=pointer]
+        - button "Home" [active] [ref=e5] [cursor=pointer]
         - generic [ref=e6]: /
         - generic [ref=e7]: New League
       - heading "Create New League" [level=2] [ref=e8]
     - generic [ref=e10]:
-      - paragraph [ref=e12]: Failed to create league. Please try again.
-      - generic [ref=e13]:
-        - generic [ref=e14]:
-          - generic [ref=e15]: League Name
-          - textbox "League Name" [ref=e16]: Sufficient Members League
-        - generic [ref=e17]:
-          - generic [ref=e18]: Season
-          - textbox "Season" [ref=e19]: 2025-26
-        - generic [ref=e20]:
-          - generic [ref=e21]: Competition Template
-          - combobox "Competition Template" [ref=e22]:
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - generic [ref=e13]: League Name
+          - textbox "League Name" [ref=e14]
+        - generic [ref=e15]:
+          - generic [ref=e16]: Season
+          - textbox "Season" [ref=e17]: 2025-26
+        - generic [ref=e18]:
+          - generic [ref=e19]: Competition Template
+          - combobox "Competition Template" [ref=e20]:
             - option "UEFA Champions League (UCL) - 5 slots" [selected]
             - option "UEFA Europa League (UEL) - 5 slots"
             - option "Custom Competition (CUSTOM) - 5 slots"
-          - paragraph [ref=e23]: Choose a template to set default values. You can customize them below.
-      - generic [ref=e24]:
-        - heading "League Settings" [level=4] [ref=e25]
-        - generic [ref=e26]:
-          - generic [ref=e27]:
-            - generic [ref=e28]: Budget per Manager (£)
-            - spinbutton "Budget per Manager (£)" [ref=e29]: "100"
-          - generic [ref=e30]:
-            - generic [ref=e31]: Club Slots per Manager
-            - spinbutton "Club Slots per Manager" [ref=e32]: "3"
-          - generic [ref=e33]:
-            - generic [ref=e34]: Min Bid Increment
-            - spinbutton "Min Bid Increment" [ref=e35]: "1"
-          - generic [ref=e36]:
-            - generic [ref=e37]: Bid Timer (seconds)
-            - spinbutton "Bid Timer (seconds)" [ref=e38]: "60"
-          - generic [ref=e39]:
-            - generic [ref=e40]: Min Managers
-            - spinbutton "Min Managers" [ref=e41]: "2"
-          - generic [ref=e42]:
-            - generic [ref=e43]: Max Managers
-            - spinbutton "Max Managers" [ref=e44]: "8"
-      - generic [ref=e45]:
-        - button "Cancel" [ref=e46] [cursor=pointer]
-        - button "Create League" [ref=e47] [cursor=pointer]
-    - button "Close" [ref=e48] [cursor=pointer]:
-      - img [ref=e49] [cursor=pointer]
-      - generic [ref=e52] [cursor=pointer]: Close
+          - paragraph [ref=e21]: Choose a template to set default values. You can customize them below.
+      - generic [ref=e22]:
+        - heading "League Settings" [level=4] [ref=e23]
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - generic [ref=e26]: Budget per Manager (£)
+            - spinbutton "Budget per Manager (£)" [ref=e27]: "100"
+          - generic [ref=e28]:
+            - generic [ref=e29]: Club Slots per Manager
+            - spinbutton "Club Slots per Manager" [ref=e30]: "5"
+          - generic [ref=e31]:
+            - generic [ref=e32]: Min Bid Increment
+            - spinbutton "Min Bid Increment" [ref=e33]: "1"
+          - generic [ref=e34]:
+            - generic [ref=e35]: Bid Timer (seconds)
+            - spinbutton "Bid Timer (seconds)" [ref=e36]: "60"
+          - generic [ref=e37]:
+            - generic [ref=e38]: Min Managers
+            - spinbutton "Min Managers" [ref=e39]: "2"
+          - generic [ref=e40]:
+            - generic [ref=e41]: Max Managers
+            - spinbutton "Max Managers" [ref=e42]: "8"
+      - generic [ref=e43]:
+        - button "Cancel" [ref=e44] [cursor=pointer]
+        - button "Create League" [ref=e45] [cursor=pointer]
+    - button "Close" [ref=e46] [cursor=pointer]:
+      - img [ref=e47] [cursor=pointer]
+      - generic [ref=e50] [cursor=pointer]: Close
 ```
