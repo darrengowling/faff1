@@ -65,6 +65,10 @@ const AuctionRoom = ({ user, token }) => {
   const [connected, setConnected] = useState(false);
   const [connectionStatus, setConnectionStatus] = useState('connecting'); // 'connecting', 'connected', 'reconnecting', 'offline'
   
+  // Mounted ref to prevent stale state updates
+  const mountedRef = useRef(true);
+  const abortControllerRef = useRef(new AbortController());
+  
   // Server time synchronization state
   const [serverTimeOffset, setServerTimeOffset] = useState(0);
   const [lastServerTime, setLastServerTime] = useState(null);
