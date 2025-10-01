@@ -228,6 +228,40 @@ def convert_doc_to_response(doc, response_class):
     
     return response_class(**converted)
 
+# Helper function to get sync state for league/auction
+async def get_sync_state(league_id: str):
+    """Get current league/auction state synchronization data"""
+    # Get current league state
+    league = await db.leagues.find_one({"_id": league_id})
+    if not league:
+        raise ValueError('League not found')
+    
+    # Get league status
+    league_status = await LeagueService.get_league_status(league_id)
+    
+    # Get league members
+    members = await LeagueService.get_league_members(league_id)
+    
+    # Try to get current auction state if auction is active
+    auction_state = None
+    try:
+        engine = get_auction_engine()
+        if engine:
+            auction_state = await engine.get_auction_state(league_id)
+    except Exception as e:
+        logger.debug(f"No active auction for league {league_id}: {e}")
+    
+    # Prepare sync data
+    sync_data = {
+        'league_id': league_id,
+        'league': league,
+        'league_status': league_status.dict() if league_status else None,
+        'members': [member.dict() for member in members] if members else [],
+        'auction_state': auction_state
+    }
+    
+    return sync_data
+
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
