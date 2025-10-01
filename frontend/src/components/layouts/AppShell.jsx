@@ -155,8 +155,19 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
               {/* Product dropdown removed - no functional pages to link to */}
             </nav>
 
-            {/* Right - Auth Actions */}
+            {/* Right - Sign In for tests */}
             <div className="hidden md:flex items-center space-x-3">
+              {!user && (
+                <Button
+                  onClick={() => navigate('/login')}
+                  variant="outline"
+                  size="sm"
+                  data-testid={TESTIDS.navSignIn}
+                >
+                  Sign In
+                </Button>
+              )}
+              
               {/* Create League Button (when authenticated) */}
               {user && (
                 <Button
