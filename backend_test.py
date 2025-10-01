@@ -132,23 +132,22 @@ class BiddingTestSuite:
                     
             # Add other users to league
             for user in self.test_users[1:]:  # Skip commissioner
-                async with self.session.post(f"{API_BASE}/leagues/{self.league_id}/join") as resp:
-                    if resp.status == 200:
-                        await self.log_result(f"User Join - {user['email']}", True)
-                    else:
-                        error_text = await resp.text()
-                        await self.log_result(f"User Join - {user['email']}", False, f"Status {resp.status}: {error_text}")
+                resp = self.session.post(f"{API_BASE}/leagues/{self.league_id}/join")
+                if resp.status_code == 200:
+                    await self.log_result(f"User Join - {user['email']}", True)
+                else:
+                    await self.log_result(f"User Join - {user['email']}", False, f"Status {resp.status_code}: {resp.text}")
                         
             # Verify league status
-            async with self.session.get(f"{API_BASE}/leagues/{self.league_id}/status") as resp:
-                if resp.status == 200:
-                    data = await resp.json()
-                    await self.log_result("League Status Check", True, 
-                                        f"Members: {data['member_count']}, Ready: {data['is_ready']}")
-                    return data['is_ready']
-                else:
-                    await self.log_result("League Status Check", False, f"Status {resp.status}")
-                    return False
+            resp = self.session.get(f"{API_BASE}/leagues/{self.league_id}/status")
+            if resp.status_code == 200:
+                data = resp.json()
+                await self.log_result("League Status Check", True, 
+                                    f"Members: {data['member_count']}, Ready: {data['is_ready']}")
+                return data['is_ready']
+            else:
+                await self.log_result("League Status Check", False, f"Status {resp.status_code}")
+                return False
                     
         except Exception as e:
             await self.log_result("Complete Auction Setup", False, f"Exception: {str(e)}")
