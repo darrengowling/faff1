@@ -216,8 +216,8 @@ const LeagueCreationForm = ({
         )}
 
         {/* Basic Info */}
-        <div className="space-y-4">
-          <div className="space-y-2">
+        <div className="space-y-6">
+          <div className="space-y-3">
             <Label htmlFor="name">{t('leagueCreation.leagueName')}</Label>
             <TestableInput
               id="name"
@@ -229,7 +229,7 @@ const LeagueCreationForm = ({
               required
               loading={submitting}
               aria-describedby={errors.name ? "name-error" : undefined}
-              className={errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
+              className={`${errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''} py-3 px-4`}
               data-testid={TESTIDS.createName}
             />
             {errors.name && (
@@ -239,13 +239,14 @@ const LeagueCreationForm = ({
             )}
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Label htmlFor="season">{t('dashboard.season')}</Label>
             <Input
               id="season"
               placeholder="2025-26"
               value={formData.season}
               onChange={(e) => setFormData(prev => ({ ...prev, season: e.target.value }))}
+              className="py-3 px-4"
               required
             />
           </div>
