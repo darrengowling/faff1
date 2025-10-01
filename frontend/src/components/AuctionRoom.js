@@ -288,7 +288,7 @@ const AuctionRoom = ({ user, token }) => {
     };
   };
 
-  // Initialize unified WebSocket connection 
+  // Initialize unified WebSocket connection with proper cleanup
   useEffect(() => {
     if (!token || !auctionId) return;
 
@@ -299,12 +299,17 @@ const AuctionRoom = ({ user, token }) => {
     const newSocket = socketFactory.socket;
     const joinAndSyncFn = socketFactory.joinAndSync;
     
+    // Create new abort controller for this effect
+    abortControllerRef.current = new AbortController();
+    
     // Set authentication token
     newSocket.auth = { token };
     
     // Store socket and joinAndSync function in state
-    setSocket(newSocket);
-    setJoinAndSync(() => joinAndSyncFn);
+    if (mountedRef.current) {
+      setSocket(newSocket);
+      setJoinAndSync(() => joinAndSyncFn);
+    }
     
     // Join auction room and sync state on mount
     joinAndSyncFn(auctionId);
@@ -312,17 +317,291 @@ const AuctionRoom = ({ user, token }) => {
     // Additional auction-specific room joins
     newSocket.emit('join_auction', { auction_id: auctionId });
     
-    // Set up auction-specific event handlers
-    setupAuctionEventHandlers(newSocket);
+    // Define event handlers with mounted guard
+    const onConnect = () => {
+      if (!mountedRef.current) return;
+      console.log('Unified WebSocket connected for auction');
+      setConnected(true);
+      setConnectionStatus('connected');
+    };
+
+    const onDisconnect = (reason) => {
+      if (!mountedRef.current) return;
+      console.log('Unified WebSocket disconnected:', reason);
+      setConnected(false);
+      setConnectionStatus('reconnecting');
+    };
+
+    const onConnectError = (error) => {
+      if (!mountedRef.current) return;
+      console.error('Unified WebSocket connection error:', error);
+      setConnected(false);
+      setConnectionStatus('reconnecting');
+      
+      if (error.description?.includes('Authentication failed') || 
+          error.message?.includes('403')) {
+        setConnectionStatus('error');
+        toast.error('Authentication failed. Please refresh the page and log in again.');
+      }
+    };
+
+    const onConnectionStatus = (data) => {
+      if (!mountedRef.current) return;
+      console.log('Connection status:', data);
+      if (data.status === 'connected') {
+        setConnectionStatus('connected');
+      } else if (data.status === 'auth_failed') {
+        setConnectionStatus('offline');
+        toast.error('Authentication failed. Please refresh and log in again.');
+      }
+    };
+
+    const onAuctionSnapshot = (snapshot) => {
+      if (!mountedRef.current) return;
+      console.log('Received auction snapshot:', snapshot);
+      restoreStateFromSnapshot(snapshot);
+    };
+
+    const onPresenceList = (data) => {
+      if (!mountedRef.current) return;
+      setPresentUsers(data.users || []);
+      const presenceMap = {};
+      data.users?.forEach(user => {
+        presenceMap[user.user_id] = user.status;
+      });
+      setUserPresence(presenceMap);
+    };
+
+    const onUserPresence = (data) => {
+      if (!mountedRef.current) return;
+      setUserPresence(prev => ({
+        ...prev,
+        [data.user_id]: data.status
+      }));
+      
+      if (data.status === 'online') {
+        toast.info(`${data.display_name} joined the auction`);
+      } else if (data.status === 'offline') {
+        toast.info(`${data.display_name} left the auction`);
+      }
+    };
+
+    const onAuctionState = (state) => {
+      if (!mountedRef.current) return;
+      console.log('Auction state received:', state);
+      setAuctionState(state);
+      setCurrentLot(state.current_lot);
+      setTimeRemaining(state.time_remaining || 0);
+      setAuctionStatus(state.status);
+      setManagers(state.managers || []);
+      
+      const userManager = state.managers?.find(m => m.user_id === user.id);
+      if (userManager) {
+        setUserBudget(userManager.budget_remaining);
+        setUserSlots(userManager.club_slots);
+      }
+    };
+
+    const onLotUpdate = (data) => {
+      if (!mountedRef.current) return;
+      console.log('Lot update:', data);
+      setCurrentLot(data.lot);
+      
+      if (data.lot.current_bid > 0) {
+        const minBid = data.lot.current_bid + (auctionState?.settings?.min_increment || 1);
+        setBidAmount(minBid);
+      } else {
+        setBidAmount(auctionState?.settings?.min_increment || 1);
+      }
+      
+      if (data.lot.timer_ends_at) {
+        const serverNow = Date.now() + serverTimeOffset;
+        const timerEndsAt = new Date(data.lot.timer_ends_at).getTime();
+        const remaining = Math.max(0, Math.floor((timerEndsAt - serverNow) / 1000));
+        setTimeRemaining(remaining);
+      }
+    };
+
+    const onBidResult = (result) => {
+      if (!mountedRef.current) return;
+      setBidding(false);
+      if (result.success) {
+        toast.success(`Bid placed: ${result.amount} credits`);
+      } else {
+        toast.error(`Bid failed: ${result.error}`);
+      }
+    };
+
+    const onBidUpdate = (data) => {
+      if (!mountedRef.current) return;
+      console.log('Bid update:', data);
+      // Handle real-time bid updates from other users
+      if (data.lot_id && currentLot?.id === data.lot_id) {
+        setCurrentLot(prev => ({
+          ...prev,
+          current_bid: data.current_bid,
+          top_bidder_id: data.leading_bidder_id
+        }));
+      }
+    };
+
+    const onTick = (tickData) => {
+      if (!mountedRef.current) return;
+      console.log('Server tick:', tickData);
+      if (tickData.lot_id && currentLot?.id === tickData.lot_id) {
+        setTimeRemaining(Math.max(0, Math.floor(tickData.remaining_ms / 1000)));
+      }
+    };
+
+    const onAntiSnipe = (data) => {
+      if (!mountedRef.current) return;
+      console.log('Anti-snipe extension:', data);
+      toast.info(`Timer extended by ${data.extended_by_ms / 1000}s due to late bid!`);
+      if (data.lot_id && currentLot?.id === data.lot_id) {
+        const newEndsAt = new Date(data.new_endsAt).getTime();
+        const serverNow = Date.now() + serverTimeOffset;
+        const remaining = Math.max(0, Math.floor((newEndsAt - serverNow) / 1000));
+        setTimeRemaining(remaining);
+      }
+    };
+
+    const onSold = (data) => {
+      if (!mountedRef.current) return;
+      console.log('Lot sold:', data);
+      toast.success(`${data.clubId} sold to ${data.winner.name} for ${data.price} credits!`);
+      setAuctionStatus('waiting_next_lot');
+    };
+
+    const onAuctionPaused = (data) => {
+      if (!mountedRef.current) return;
+      setAuctionStatus('paused');
+      toast.info('Auction paused by commissioner');
+    };
+
+    const onAuctionResumed = (data) => {
+      if (!mountedRef.current) return;
+      setAuctionStatus('live');
+      toast.info('Auction resumed');
+    };
+
+    const onAuctionEnded = (data) => {
+      if (!mountedRef.current) return;
+      setAuctionStatus('completed');
+      toast.success('Auction completed!');
+    };
+
+    const onSyncState = (state) => {
+      if (!mountedRef.current) return;
+      console.log('Auction sync state received:', state);
+      
+      if (state.auction_state) {
+        setAuctionState(state.auction_state);
+        setCurrentLot(state.auction_state.current_lot);
+        setTimeRemaining(state.auction_state.time_remaining || 0);
+        setAuctionStatus(state.auction_state.status);
+        setManagers(state.auction_state.managers || []);
+        
+        const userManager = state.auction_state.managers?.find(m => m.user_id === user.id);
+        if (userManager) {
+          setUserBudget(userManager.budget_remaining);
+          setUserSlots(userManager.club_slots);
+        }
+      }
+      
+      toast.success('Auction state synchronized');
+    };
+
+    const onJoined = (data) => {
+      if (!mountedRef.current) return;
+      console.log('Successfully joined auction room:', data);
+    };
+
+    const onHeartbeatAck = (data) => {
+      if (!mountedRef.current) return;
+      const serverTime = new Date(data.server_time).getTime();
+      const clientTime = Date.now();
+      const offset = serverTime - clientTime;
+      
+      if (Math.abs(offset - serverTimeOffset) > 150) {
+        setServerTimeOffset(offset);
+      }
+    };
+
+    // Register event handlers
+    newSocket.on('connect', onConnect);
+    newSocket.on('disconnect', onDisconnect);
+    newSocket.on('connect_error', onConnectError);
+    newSocket.on('connection_status', onConnectionStatus);
+    newSocket.on('auction_snapshot', onAuctionSnapshot);
+    newSocket.on('presence_list', onPresenceList);
+    newSocket.on('user_presence', onUserPresence);
+    newSocket.on('auction_state', onAuctionState);
+    newSocket.on('lot_update', onLotUpdate);
+    newSocket.on('bid_result', onBidResult);
+    newSocket.on('bid_update', onBidUpdate);
+    newSocket.on('tick', onTick);
+    newSocket.on('anti_snipe', onAntiSnipe);
+    newSocket.on('sold', onSold);
+    newSocket.on('auction_paused', onAuctionPaused);
+    newSocket.on('auction_resumed', onAuctionResumed);
+    newSocket.on('auction_ended', onAuctionEnded);
+    newSocket.on('sync_state', onSyncState);
+    newSocket.on('joined', onJoined);
+    newSocket.on('heartbeat_ack', onHeartbeatAck);
+
+    // Heartbeat system
+    const heartbeatInterval = setInterval(() => {
+      if (newSocket.connected) {
+        newSocket.emit('heartbeat', { timestamp: Date.now() });
+      }
+    }, 30000);
 
     return () => {
+      // Mark component as unmounted
+      mountedRef.current = false;
+      
+      // Abort any ongoing fetch requests
+      abortControllerRef.current.abort();
+      
+      // Remove specific event listeners
+      newSocket.off('connect', onConnect);
+      newSocket.off('disconnect', onDisconnect);
+      newSocket.off('connect_error', onConnectError);
+      newSocket.off('connection_status', onConnectionStatus);
+      newSocket.off('auction_snapshot', onAuctionSnapshot);
+      newSocket.off('presence_list', onPresenceList);
+      newSocket.off('user_presence', onUserPresence);
+      newSocket.off('auction_state', onAuctionState);
+      newSocket.off('lot_update', onLotUpdate);
+      newSocket.off('bid_result', onBidResult);
+      newSocket.off('bid_update', onBidUpdate);
+      newSocket.off('tick', onTick);
+      newSocket.off('anti_snipe', onAntiSnipe);
+      newSocket.off('sold', onSold);
+      newSocket.off('auction_paused', onAuctionPaused);
+      newSocket.off('auction_resumed', onAuctionResumed);
+      newSocket.off('auction_ended', onAuctionEnded);
+      newSocket.off('sync_state', onSyncState);
+      newSocket.off('joined', onJoined);
+      newSocket.off('heartbeat_ack', onHeartbeatAck);
+      
+      // Clear intervals
+      clearInterval(heartbeatInterval);
+      
+      // Clean up socket connection
       if (newSocket) {
         console.log('Cleaning up unified socket connection');
-        newSocket.removeAllListeners();
         newSocket.close();
       }
     };
   }, [token, auctionId]);
+
+  // Cleanup on component unmount
+  useEffect(() => {
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
 
   // All event handlers moved to connectSocket function
   console.log('Initial auction state loaded via connectSocket');
