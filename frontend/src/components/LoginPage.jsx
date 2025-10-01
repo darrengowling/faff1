@@ -407,6 +407,7 @@ const LoginPage = () => {
             Having trouble? Contact support for assistance.
           </p>
         </div>
+        </div>
       </div>
     </div>
   );
