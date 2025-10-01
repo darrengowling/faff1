@@ -215,19 +215,16 @@ class SocketIOOverlayTestSuite:
                 return False
                 
             # Add another user to meet minimum requirements
-            resp = self.session.post(f"{API_BASE}/auth/test-login", json={"email": "manager@example.com"})
+            manager_session = requests.Session()
+            resp = manager_session.post(f"{API_BASE}/auth/test-login", json={"email": "manager@example.com"})
             if resp.status_code == 200:
-                # Create a separate session for the manager
-                manager_session = requests.Session()
-                manager_session.cookies.update(resp.cookies)
-                
                 resp = manager_session.post(f"{API_BASE}/leagues/{self.league_id}/join")
                 if resp.status_code == 200:
                     await self.log_result("Manager Join", True, "Manager joined league")
                 else:
                     await self.log_result("Manager Join", False, f"Status {resp.status_code}")
                     
-            # Check league status
+            # Check league status (use commissioner session)
             resp = self.session.get(f"{API_BASE}/leagues/{self.league_id}/status")
             if resp.status_code == 200:
                 data = resp.json()
@@ -240,7 +237,7 @@ class SocketIOOverlayTestSuite:
                 await self.log_result("League Ready Check", False, f"Status {resp.status_code}")
                 return False
                 
-            # Start auction
+            # Start auction (use commissioner session - the original authenticated session)
             resp = self.session.post(f"{API_BASE}/auction/{self.league_id}/start")
             if resp.status_code == 200:
                 data = resp.json()
