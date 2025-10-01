@@ -252,11 +252,11 @@ const LeagueCreationForm = ({
           </div>
           
           {/* Competition Profile Selection */}
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Label htmlFor="profile">Competition Template</Label>
             <select
               id="profile"
-              className="w-full p-2 border border-gray-300 rounded-md"
+              className="w-full py-3 px-4 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               value={selectedProfile}
               onChange={(e) => setSelectedProfile(e.target.value)}
             >
