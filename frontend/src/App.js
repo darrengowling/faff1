@@ -769,11 +769,11 @@ const LeagueManagement = ({ league, onBack }) => {
     if (!leagueStatus?.is_ready) return;
     
     try {
-      const startResponse = await axios.post(`${API}/auction/${league._id}/start`);
+      const startResponse = await axios.post(`${API}/auction/${league.id}/start`);
       if (startResponse.status === 200) {
         toast.success('Auction started successfully! Redirecting...');
         setTimeout(() => {
-          navigate(`/auction/${league._id}`);
+          navigate(`/auction/${league.id}`);
         }, 1500);
       }
     } catch (error) {
