@@ -1086,7 +1086,7 @@ const LeagueManagement = ({ league, onBack }) => {
                   data-testid={TESTIDS.copyInvitationLinkButton}
                 >
                   <Copy className="w-4 h-4 mr-2" />
-                  Copy Invitation Link
+                  Copy Invite Code: {league.invite_code || 'Loading...'}
                 </Button>
               </div>
 
