@@ -240,6 +240,8 @@ class AuctionResponse(BaseModel):
 class LotStatus(str, Enum):
     PENDING = "pending"
     OPEN = "open"
+    GOING_ONCE = "going_once"  # Auction timer state
+    GOING_TWICE = "going_twice"  # Auction timer state
     PRE_CLOSED = "pre_closed"  # New: 10s undo window
     SOLD = "sold"
     UNSOLD = "unsold"
