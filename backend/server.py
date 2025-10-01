@@ -203,7 +203,10 @@ def convert_doc_to_response(doc, response_class):
 
 # Helper function to get sync state for league/auction
 async def get_sync_state(league_id: str):
-    """Get current league/auction state synchronization data"""
+    """
+    Get current league/auction state synchronization data
+    Returns: {lot, highestBid, endsAt, managers, budgets}
+    """
     # Get current league state
     league = await db.leagues.find_one({"_id": league_id})
     if not league:
@@ -212,24 +215,45 @@ async def get_sync_state(league_id: str):
     # Get league status
     league_status = await LeagueService.get_league_status(league_id)
     
-    # Get league members
+    # Get league members with budget information
     members = await LeagueService.get_league_members(league_id)
     
-    # Try to get current auction state if auction is active
+    # Get auction state if auction is active
     auction_state = None
+    current_lot = None
+    highest_bid = None
+    ends_at = None
+    
     try:
         engine = get_auction_engine()
         if engine:
             auction_state = await engine.get_auction_state(league_id)
+            if auction_state and auction_state.get('current_lot'):
+                current_lot = auction_state['current_lot']
+                highest_bid = current_lot.get('current_bid', 0)
+                ends_at = current_lot.get('timer_ends_at')
     except Exception as e:
         logger.debug(f"No active auction for league {league_id}: {e}")
     
-    # Prepare sync data
+    # Extract managers and budgets from members
+    managers = []
+    budgets = {}
+    if members:
+        for member in members:
+            member_data = member.dict() if hasattr(member, 'dict') else member
+            managers.append(member_data)
+            budgets[member_data.get('user_id')] = member_data.get('budget_remaining', 0)
+    
+    # Prepare sync data in the specified format
     sync_data = {
         'league_id': league_id,
-        'league': league,
+        'lot': current_lot,
+        'highestBid': highest_bid,
+        'endsAt': ends_at,
+        'managers': managers,
+        'budgets': budgets,
+        # Additional helpful data
         'league_status': league_status.dict() if league_status else None,
-        'members': [member.dict() for member in members] if members else [],
         'auction_state': auction_state
     }
     
