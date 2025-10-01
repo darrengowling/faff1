@@ -339,8 +339,7 @@ const AuctionRoom = ({ user, token }) => {
       }
       
       // Simplified Socket.IO configuration using environment variables
-      const origin = import.meta.env.VITE_BACKEND_URL || 
-                     process.env.REACT_APP_BACKEND_URL || 
+      const origin = process.env.REACT_APP_BACKEND_URL || 
                      'https://leaguemate-1.preview.emergentagent.com';
                        
       const path = '/api/socketio';
