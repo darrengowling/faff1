@@ -1075,11 +1075,11 @@ const LeagueManagement = ({ league, onBack }) => {
                 <Button
                   variant="outline"
                   onClick={() => {
-                    const invitationLink = `${window.location.origin}/join/${league.id}`;
-                    navigator.clipboard.writeText(invitationLink).then(() => {
-                      toast.success('Invitation link copied to clipboard!');
+                    const inviteCode = league.invite_code || 'CODE_NOT_FOUND';
+                    navigator.clipboard.writeText(inviteCode).then(() => {
+                      toast.success(`Invite code ${inviteCode} copied to clipboard!`);
                     }).catch(() => {
-                      toast.error('Failed to copy link');
+                      toast.error('Failed to copy invite code');
                     });
                   }}
                   className="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
