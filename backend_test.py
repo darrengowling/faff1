@@ -362,7 +362,10 @@ class BiddingTestSuite:
                 return False
                 
             # Get current lot state
-            resp = self.session.get(f"{API_BASE}/auction/{self.auction_id}/state")
+            commissioner = self.test_users[0]
+            commissioner_session = self.sessions[commissioner['email']]
+            
+            resp = commissioner_session.get(f"{API_BASE}/auction/{self.auction_id}/state")
             if resp.status_code == 200:
                 data = resp.json()
                 current_lot = data.get('current_lot')
