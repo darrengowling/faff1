@@ -328,5 +328,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-        """Test that required environment variables are properly configured"""
-        # Test backend health to verify environment is working
