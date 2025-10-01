@@ -1,0 +1,44 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T"
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - button "Friends of PIFA" [ref=e8] [cursor=pointer]
+            - button "← Back to Home" [ref=e9] [cursor=pointer]
+          - button "Sign In" [ref=e11] [cursor=pointer]
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - heading "Sign In" [level=1] [ref=e15]
+          - paragraph [ref=e16]: Enter your email to get a magic link
+        - generic [ref=e17]:
+          - heading "Welcome back" [level=3] [ref=e19]
+          - generic [ref=e20]:
+            - generic [ref=e21]:
+              - generic [ref=e22]:
+                - generic [ref=e23]: Email Address
+                - textbox "Email Address" [ref=e24]: regression-test@example.com
+              - generic [ref=e25]:
+                - img [ref=e26]
+                - generic [ref=e29]: Magic link sent! Check your email or use the link below.
+              - button "Send Magic Link" [ref=e30] [cursor=pointer]:
+                - generic [ref=e31] [cursor=pointer]:
+                  - img
+                  - generic [ref=e32] [cursor=pointer]: Send Magic Link
+            - generic [ref=e33]:
+              - paragraph [ref=e34]: "Development Mode - Magic Link:"
+              - button "Login Now (Dev Mode)" [ref=e35] [cursor=pointer]
+              - link "https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZ3Jlc3Npb24tdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTI3ODgxMSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.gZKPyoPQvFmxH97jYVS_PuD3GV3kmC4rIr6mzENaX0U" [ref=e36] [cursor=pointer]:
+                - /url: https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZ3Jlc3Npb24tdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTI3ODgxMSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.gZKPyoPQvFmxH97jYVS_PuD3GV3kmC4rIr6mzENaX0U
+            - paragraph [ref=e38]: Don't have an account? Contact your league commissioner for an invitation.
+        - paragraph [ref=e40]: Having trouble? Contact support for assistance.
+  - link "Emergent platform logo Made with Emergent" [ref=e41] [cursor=pointer]:
+    - /url: https://app.emergent.sh/?utm_source=emergent-badge
+    - generic [ref=e42] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e43] [cursor=pointer]
+      - paragraph [ref=e44] [cursor=pointer]: Made with Emergent
+```
