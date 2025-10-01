@@ -306,6 +306,7 @@ class Bid(BaseModel):
 class BidCreate(BaseModel):
     lot_id: str
     amount: int
+    op_id: Optional[str] = None  # Operation ID for replay safety
 
 class BidResponse(BaseModel):
     id: str
