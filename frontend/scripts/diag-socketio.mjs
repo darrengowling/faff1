@@ -15,7 +15,7 @@ const API_ORIGIN = process.env.NEXT_PUBLIC_API_URL ||
 
 const SOCKET_PATH = process.env.NEXT_PUBLIC_SOCKET_PATH || 
                    process.env.VITE_SOCKET_PATH || 
-                   '/api/socketio';
+                   '/api/socket.io';
 
 console.log('🔍 Socket.IO Handshake Diagnostics');
 console.log('===================================');
