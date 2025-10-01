@@ -37,7 +37,7 @@ export function createSocket(API_ORIGIN) {
 }
 
 // Utility function to get the current API origin
-export function getApiOrigin(): string {
+export function getApiOrigin() {
   return (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_BACKEND_URL) ||
          (typeof import !== 'undefined' && import.meta?.env?.VITE_BACKEND_URL) ||
          process.env.REACT_APP_BACKEND_URL || 
