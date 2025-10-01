@@ -766,6 +766,10 @@ const LeagueManagement = ({ league, onBack }) => {
   const [inviteEmail, setInviteEmail] = useState('');
   const [inviteLoading, setInviteLoading] = useState(false);
   const [auctionStartLoading, setAuctionStartLoading] = useState(false);
+  
+  // Mounted ref to prevent stale state updates
+  const mountedRef = useRef(true);
+  const abortControllerRef = useRef(new AbortController());
 
   const handleStartAuction = async () => {
     if (!leagueStatus?.is_ready || auctionStartLoading) {
