@@ -328,8 +328,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    # ==================== ENVIRONMENT & HEALTH TESTS ====================
     
     def test_environment_variables(self):
         """Test that required environment variables are properly configured"""
