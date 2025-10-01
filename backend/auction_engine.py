@@ -341,9 +341,9 @@ class AuctionEngine:
                             
                             # 1. Create roster club (with guardrails passed)
                             roster_club = RosterClub(
-                                roster_id=f"roster_{lot['leading_bidder_id']}_{auction_id}",  # Will be resolved
+                                roster_id=f"roster_{lot['top_bidder_id']}_{auction_id}",  # Will be resolved
                                 league_id=league_id,
-                                user_id=lot["leading_bidder_id"],
+                                user_id=lot["top_bidder_id"],
                                 club_id=lot["club_id"],
                                 price=lot["current_bid"]
                             )
