@@ -304,9 +304,13 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                   <div className="flex items-center justify-between mb-6">
                     <span className="text-lg font-semibold text-gray-900">Menu</span>
                     <button
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={() => {
+                        console.log('Mobile drawer close button clicked');
+                        setMobileMenuOpen(false);
+                      }}
                       className="p-2 text-gray-400 hover:text-gray-600 rounded-md"
                       aria-label="Close menu"
+                      data-testid="nav-mobile-close"
                     >
                       <X className="w-5 h-5" />
                     </button>
