@@ -84,10 +84,10 @@ class TimezoneFixTestSuite:
         try:
             # Create test users
             test_emails = [
-                "commissioner@timezone.test",
-                "manager1@timezone.test", 
-                "manager2@timezone.test",
-                "manager3@timezone.test"
+                "commissioner@example.com",
+                "manager1@example.com", 
+                "manager2@example.com",
+                "manager3@example.com"
             ]
             
             # Authenticate all users
