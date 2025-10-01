@@ -2551,8 +2551,8 @@ async def socket_config():
 # Socket.IO Diagnostic endpoint (alternative path to avoid routing conflicts)
 @api_router.get("/socket-diag") 
 async def socketio_diagnostics():
-    """Socket.IO diagnostics endpoint - GET /api/socket-diag (avoiding /api/socketio path conflict)"""
-    socket_path = os.getenv('SOCKET_PATH', '/api/socketio')
+    """Socket.IO diagnostics endpoint - GET /api/socket-diag"""
+    socket_path = '/socket.io'  # STANDARDIZED PATH
     return {
         "ok": True,
         "path": socket_path,
