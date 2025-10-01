@@ -1207,11 +1207,23 @@ async def place_test_bid(request: dict):
             detail="User not found"
         )
     
+    # Find current open lot for the league
+    current_lot = await db.lots.find_one({
+        "league_id": league_id,
+        "status": {"$in": ["open", "going_once", "going_twice"]}
+    })
+    
+    if not current_lot:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="No open lot available for bidding"
+        )
+    
     # Place bid using auction engine with race-safety
     auction_engine = get_auction_engine()
     import uuid
     op_id = str(uuid.uuid4())  # Generate unique operation ID for test bid
-    result = await auction_engine.place_bid(league_id, None, user["_id"], amount, op_id)  # lot_id will be resolved in engine
+    result = await auction_engine.place_bid(league_id, current_lot["_id"], user["_id"], amount, op_id)
     
     if not result.get("success"):
         raise HTTPException(
