@@ -679,7 +679,8 @@ class AuctionEngine:
                         "display_name": bidder["display_name"]
                     }
             
-            # Broadcast update
+            # Broadcast update to league room
+            league_id = self.active_auctions[auction_id]["league_id"]
             await self.sio.emit('lot_update', {
                 "auction_id": auction_id,
                 "lot": {
@@ -696,7 +697,7 @@ class AuctionEngine:
                     "timer_ends_at": lot.get("timer_ends_at").isoformat() if lot.get("timer_ends_at") else None,
                     "order_index": lot["order_index"]
                 }
-            }, room=f"auction_{auction_id}")
+            }, room=league_id)
             
         except Exception as e:
             logger.error(f"Failed to broadcast lot update: {e}")
