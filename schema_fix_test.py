@@ -48,7 +48,7 @@ async def test_lot_status_transitions():
     
     resp = session.post(f"{API_BASE}/leagues", json=league_data)
     if resp.status_code != 201:
-        print(f"❌ League creation failed: {resp.status_code}")
+        print(f"❌ League creation failed: {resp.status_code} - {resp.text}")
         return False
         
     league_id = resp.json()['leagueId']
