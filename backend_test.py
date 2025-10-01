@@ -28,7 +28,9 @@ class AuctionClockTester:
         
     async def setup_session(self):
         """Setup HTTP session with authentication"""
-        self.session = aiohttp.ClientSession()
+        # Create session with cookie jar to maintain authentication
+        jar = aiohttp.CookieJar(unsafe=True)
+        self.session = aiohttp.ClientSession(cookie_jar=jar)
         
         # Test login for commissioner
         commissioner_email = f"commissioner-{int(time.time())}@test.com"
