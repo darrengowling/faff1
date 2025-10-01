@@ -40,7 +40,7 @@ async def test_lot_status_transitions():
         "settings": {
             "budget_per_manager": 100,
             "club_slots_per_manager": 8,
-            "bid_timer_seconds": 10,  # Very short timer for testing
+            "bid_timer_seconds": 30,  # Minimum allowed timer
             "anti_snipe_seconds": 3,
             "league_size": {"min": 2, "max": 8}
         }
