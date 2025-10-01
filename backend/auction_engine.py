@@ -636,11 +636,12 @@ class AuctionEngine:
             if auction_id in self.active_auctions:
                 del self.active_auctions[auction_id]
             
-            # Broadcast end
+            # Broadcast end to league room
+            league_id = self.active_auctions[auction_id]["league_id"]
             await self.sio.emit('auction_ended', {
                 "auction_id": auction_id,
                 "message": "Auction completed"
-            }, room=f"auction_{auction_id}")
+            }, room=league_id)
             
             logger.info(f"Auction {auction_id} completed")
             
