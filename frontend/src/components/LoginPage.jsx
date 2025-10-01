@@ -269,7 +269,7 @@ const LoginPage = () => {
 
         <Card className="border-theme-border bg-theme-bg-secondary">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center text-theme-text">Welcome back</CardTitle>
+            <CardTitle className="text-2xl text-center text-theme-text">Sign In</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             
