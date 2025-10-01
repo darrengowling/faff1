@@ -935,19 +935,29 @@ const LeagueManagement = ({ league, onBack }) => {
   }, []);
 
   const fetchLeagueData = async () => {
+    if (!mountedRef.current) return;
+    
     try {
       // Add small delay to ensure backend consistency
       await new Promise(resolve => setTimeout(resolve, 200));
       
       const [membersRes, statusRes, invitationsRes] = await Promise.all([
-        axios.get(`${API}/leagues/${league.id}/members`),
-        axios.get(`${API}/leagues/${league.id}/status`),
-        isCommissioner ? axios.get(`${API}/leagues/${league.id}/invitations`) : Promise.resolve({ data: [] })
+        axios.get(`${API}/leagues/${league.id}/members`, {
+          signal: abortControllerRef.current.signal
+        }),
+        axios.get(`${API}/leagues/${league.id}/status`, {
+          signal: abortControllerRef.current.signal
+        }),
+        isCommissioner ? axios.get(`${API}/leagues/${league.id}/invitations`, {
+          signal: abortControllerRef.current.signal
+        }) : Promise.resolve({ data: [] })
       ]);
 
-      setMembers(membersRes.data);
-      setLeagueStatus(statusRes.data);
-      setInvitations(invitationsRes.data);
+      if (mountedRef.current) {
+        setMembers(membersRes.data);
+        setLeagueStatus(statusRes.data);
+        setInvitations(invitationsRes.data);
+      }
       
       // Log status for debugging
       console.log('League status updated:', statusRes.data);
