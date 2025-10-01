@@ -44,7 +44,7 @@ async def test_anti_snipe_timer():
                 "club_slots_per_manager": 8,
                 "bid_timer_seconds": 30,
                 "anti_snipe_seconds": 3,
-                "league_size": {"min": 1, "max": 8}
+                "league_size": {"min": 2, "max": 8}
             }
         }
         
