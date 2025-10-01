@@ -827,6 +827,13 @@ const LeagueManagement = ({ league, onBack }) => {
 
   useEffect(() => {
     fetchLeagueDataWithRetry();
+    
+    // Set up periodic refresh every 10 seconds to show real-time updates
+    const refreshInterval = setInterval(() => {
+      fetchLeagueData();
+    }, 10000);
+    
+    return () => clearInterval(refreshInterval);
   }, [league.id]);
 
   const fetchLeagueData = async () => {
