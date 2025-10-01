@@ -47,7 +47,11 @@ services:
       - SMTP_USERNAME=${SMTP_USERNAME}
       - SMTP_PASSWORD=${SMTP_PASSWORD}
       - FRONTEND_BASE_URL=${FRONTEND_BASE_URL}
+      - FRONTEND_ORIGIN=${FRONTEND_ORIGIN}
       - ENVIRONMENT=${ENVIRONMENT:-production}
+      # Security: Disable test endpoints in production
+      - TEST_MODE=${TEST_MODE:-false}
+      - ALLOW_TEST_LOGIN=${ALLOW_TEST_LOGIN:-false}
     volumes:
       - ./logs:/app/logs
     ports:
