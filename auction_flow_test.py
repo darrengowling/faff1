@@ -225,27 +225,19 @@ class AuctionFlowTester:
             if not self.test_league:
                 return self.log_test("Setup Nomination Order", False, "No test league created")
             
-            session = self.authenticated_users[self.commissioner_email]['session']
             league_id = self.test_league["league_id"]
             
-            # Get league members to create nomination order
-            response = session.get(f"{self.api_url}/leagues/{league_id}/members")
+            # Use the fix script to set up nomination order
+            import subprocess
+            result = subprocess.run([
+                'python', '/app/fix_auction_nomination.py', league_id
+            ], capture_output=True, text=True)
             
-            if response.status_code == 200:
-                members = response.json()
-                user_ids = [member.get('user_id') for member in members if member.get('user_id')]
-                
-                if len(user_ids) >= 2:
-                    # Update the auction with nomination order
-                    # We'll need to directly update the database since there's no API endpoint for this
-                    # For now, let's try to start the auction and see if we can handle the error
-                    details = f"Found {len(user_ids)} members for nomination order"
-                    return self.log_test("Setup Nomination Order", True, details)
-                else:
-                    details = f"Not enough members: {len(user_ids)}"
-                    return self.log_test("Setup Nomination Order", False, details)
+            if result.returncode == 0:
+                details = f"Successfully set up nomination order: {result.stdout.strip()}"
+                return self.log_test("Setup Nomination Order", True, details)
             else:
-                details = f"Failed to get members: {response.status_code}"
+                details = f"Failed to set up nomination order: {result.stderr.strip()}"
                 return self.log_test("Setup Nomination Order", False, details)
                 
         except Exception as e:
