@@ -115,7 +115,7 @@ class TimezoneFixTestSuite:
                 "settings": {
                     "budget_per_manager": 100,
                     "club_slots_per_manager": 8,
-                    "bid_timer_seconds": 8,  # Short timer for testing
+                    "bid_timer_seconds": 30,  # Minimum allowed timer
                     "anti_snipe_seconds": 3,  # Short anti-snipe for testing
                     "league_size": {"min": 2, "max": 8}
                 }
