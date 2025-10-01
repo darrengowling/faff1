@@ -312,6 +312,32 @@ const AuctionRoom = ({ user, token }) => {
     try {
       setConnectionStatus('connecting');
       
+      // Validate token before attempting connection
+      console.log('Validating authentication token...');
+      try {
+        const authResponse = await fetch(`${BACKEND_URL}/api/auth/me`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include'
+        });
+        
+        if (!authResponse.ok) {
+          console.error('Token validation failed:', authResponse.status);
+          setConnectionStatus('error');
+          toast.error('Authentication expired. Please refresh the page and try again.');
+          return;
+        }
+        
+        console.log('Token validation successful');
+      } catch (authError) {
+        console.error('Auth check failed:', authError);
+        setConnectionStatus('error');
+        toast.error('Unable to verify authentication. Please refresh the page.');
+        return;
+      }
+      
       // Simplified Socket.IO configuration using environment variables
       const origin = import.meta.env.VITE_BACKEND_URL || 
                      process.env.REACT_APP_BACKEND_URL || 
