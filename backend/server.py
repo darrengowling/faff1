@@ -73,6 +73,24 @@ async def join_auction(sid, data):
         await sio.enter_room(sid, f"auction_{auction_id}")
         await sio.emit('joined', {'auction_id': auction_id}, to=sid)
 
+@sio.event
+async def join_league(sid, data):
+    """Join league room for real-time updates"""
+    league_id = data.get('league_id')
+    user_id = data.get('user_id')
+    if league_id:
+        await sio.enter_room(sid, f"league_{league_id}")
+        await sio.emit('league_joined', {
+            'league_id': league_id, 
+            'user_id': user_id
+        }, to=sid)
+        
+        # Notify others in the league room
+        await sio.emit('user_joined_league', {
+            'league_id': league_id,
+            'user_id': user_id
+        }, room=f"league_{league_id}", skip_sid=sid)
+
 # Create FastAPI app
 fastapi_app = FastAPI(title="Friends of PIFA API", version="1.0.0")
 
