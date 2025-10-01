@@ -2,6 +2,7 @@ import React, { useState, useEffect, createContext, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Toaster, toast } from 'sonner';
+import { io } from 'socket.io-client';
 import './App.css';
 import './styles/mobile-optimizations.css';
 
