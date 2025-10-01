@@ -167,6 +167,7 @@ export const useAuth = () => {
 // Login Component
 const Login = () => {
   const { t } = useTranslation();
+  const location = useLocation();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [linkSent, setLinkSent] = useState(false);
