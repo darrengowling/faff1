@@ -73,26 +73,33 @@ class AuctionClockTester:
         for i in range(count):
             manager_email = f"manager-{i}-{int(time.time())}@test.com"
             
-            # Create manager user
-            login_response = await self.session.post(
-                f"{API_BASE}/auth/test-login",
-                json={"email": manager_email}
-            )
+            # Create separate session for each manager
+            jar = aiohttp.CookieJar(unsafe=True)
+            manager_session = aiohttp.ClientSession(cookie_jar=jar)
             
-            if login_response.status != 200:
-                print(f"⚠️ Failed to create manager {manager_email}")
-                continue
-            
-            # Join league
-            join_response = await self.session.post(
-                f"{API_BASE}/leagues/{self.test_league_id}/join"
-            )
-            
-            if join_response.status == 200:
-                self.test_users.append(manager_email)
-                print(f"✅ Manager added: {manager_email}")
-            else:
-                print(f"⚠️ Failed to join league: {manager_email}")
+            try:
+                # Create manager user
+                login_response = await manager_session.post(
+                    f"{API_BASE}/auth/test-login",
+                    json={"email": manager_email}
+                )
+                
+                if login_response.status != 200:
+                    print(f"⚠️ Failed to create manager {manager_email}")
+                    continue
+                
+                # Join league
+                join_response = await manager_session.post(
+                    f"{API_BASE}/leagues/{self.test_league_id}/join"
+                )
+                
+                if join_response.status == 200:
+                    self.test_users.append(manager_email)
+                    print(f"✅ Manager added: {manager_email}")
+                else:
+                    print(f"⚠️ Failed to join league: {manager_email}")
+            finally:
+                await manager_session.close()
     
     async def start_auction(self) -> str:
         """Start the auction"""
