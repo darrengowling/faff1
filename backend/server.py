@@ -1454,7 +1454,7 @@ async def join_league_direct(
         raise HTTPException(status_code=404, detail="League not found")
     
     # Check if already a member
-    existing_membership = await db.memberships.find_one({
+    existing_membership = await db.league_memberships.find_one({
         "league_id": league_id,
         "user_id": current_user.id
     })
