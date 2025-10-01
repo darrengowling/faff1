@@ -295,9 +295,10 @@ class SocketIOOverlayTestSuite:
                 await self.log_result("Socket.IO Authentication", True, f"Joined room: {data}")
                 
             try:
-                # Connect with authentication token
+                # Connect with authentication token - use correct Socket.IO version
                 await sio_client.connect(
-                    f"{BACKEND_URL}/api/socket.io",
+                    f"{BACKEND_URL}",
+                    socketio_path="/api/socket.io",
                     auth={'token': self.access_token},
                     transports=['polling', 'websocket']
                 )
