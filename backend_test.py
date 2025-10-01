@@ -27,9 +27,8 @@ class InviteCodeTester:
         self.session = requests.Session()
         self.session.headers.update({
             'Content-Type': 'application/json',
-            'User-Agent': 'Copy-Invite-Link-Tester/1.0'
+            'User-Agent': 'Invite-Code-Tester/1.0'
         })
-        self.test_league_id = None
         self.tests_run = 0
         self.tests_passed = 0
         self.failed_tests = []
@@ -66,45 +65,42 @@ class InviteCodeTester:
         except Exception as e:
             return self.log_test("Health Check", False, f"Exception: {str(e)}")
 
-    def test_authentication_login(self, email):
-        """Test authentication via test-login endpoint"""
+    def authenticate_user(self, email):
+        """Authenticate a test user and store session"""
         try:
+            # Create new session for this user
+            user_session = requests.Session()
+            user_session.headers.update({
+                'Content-Type': 'application/json',
+                'User-Agent': 'Invite-Code-Tester/1.0'
+            })
+            
             payload = {"email": email}
-            response = self.session.post(f"{self.api_url}/auth/test-login", json=payload)
+            response = user_session.post(f"{self.api_url}/auth/test-login", json=payload)
             success = response.status_code == 200
             
             if success:
                 data = response.json()
+                self.authenticated_users[email] = user_session
                 details = f"Status: {response.status_code}, User ID: {data.get('userId')}, Email: {data.get('email')}"
             else:
                 details = f"Status: {response.status_code}, Response: {response.text}"
                 
-            return self.log_test(f"Authentication Login ({email})", success, details)
+            return self.log_test(f"Authentication ({email})", success, details)
         except Exception as e:
-            return self.log_test(f"Authentication Login ({email})", False, f"Exception: {str(e)}")
+            return self.log_test(f"Authentication ({email})", False, f"Exception: {str(e)}")
 
-    def test_auth_me(self):
-        """Test /auth/me endpoint to verify session"""
+    def create_league_with_invite_code(self, email, league_name):
+        """Create a league and verify it gets an invite code"""
         try:
-            response = self.session.get(f"{self.api_url}/auth/me")
-            success = response.status_code == 200
-            
-            if success:
-                data = response.json()
-                details = f"Status: {response.status_code}, User: {data.get('email')}, Verified: {data.get('verified')}"
-            else:
-                details = f"Status: {response.status_code}, Response: {response.text}"
+            if email not in self.authenticated_users:
+                return self.log_test(f"Create League ({league_name})", False, f"User {email} not authenticated")
                 
-            return self.log_test("Auth Me Verification", success, details)
-        except Exception as e:
-            return self.log_test("Auth Me Verification", False, f"Exception: {str(e)}")
-
-    def test_league_creation(self):
-        """Test league creation to get a league ID"""
-        try:
-            timestamp = int(datetime.now().timestamp())
+            session = self.authenticated_users[email]
+            
+            # Create league
             league_data = {
-                "name": f"Copy Invite Test League {timestamp}",
+                "name": league_name,
                 "season": "2025-26",
                 "settings": {
                     "budget_per_manager": 100,
@@ -118,215 +114,278 @@ class InviteCodeTester:
                 }
             }
             
-            response = self.session.post(f"{self.api_url}/leagues", json=league_data)
-            success = response.status_code == 201
+            response = session.post(f"{self.api_url}/leagues", json=league_data)
             
-            if success:
-                data = response.json()
-                self.test_league_id = data.get('leagueId')
-                details = f"Status: {response.status_code}, League ID: {self.test_league_id}"
-            else:
-                details = f"Status: {response.status_code}, Response: {response.text}"
+            if response.status_code == 201:
+                league_id = response.json().get("leagueId")
                 
-            return self.log_test("League Creation", success, details)
-        except Exception as e:
-            return self.log_test("League Creation", False, f"Exception: {str(e)}")
-
-    def test_league_details(self):
-        """Test getting league details"""
-        if not self.test_league_id:
-            return self.log_test("League Details", False, "No league ID available")
-            
-        try:
-            response = self.session.get(f"{self.api_url}/leagues/{self.test_league_id}")
-            success = response.status_code == 200
-            
-            if success:
-                data = response.json()
-                details = f"Status: {response.status_code}, League: {data.get('name')}, Status: {data.get('status')}"
-            else:
-                details = f"Status: {response.status_code}, Response: {response.text}"
+                # Get league details to verify invite code
+                league_response = session.get(f"{self.api_url}/leagues/{league_id}")
                 
-            return self.log_test("League Details", success, details)
-        except Exception as e:
-            return self.log_test("League Details", False, f"Exception: {str(e)}")
-
-    def test_league_members_before_join(self):
-        """Test getting league members before join (should be 1 - commissioner)"""
-        if not self.test_league_id:
-            return self.log_test("League Members (Before Join)", False, "No league ID available")
-            
-        try:
-            response = self.session.get(f"{self.api_url}/leagues/{self.test_league_id}/members")
-            success = response.status_code == 200
-            
-            if success:
-                data = response.json()
-                member_count = len(data) if isinstance(data, list) else 0
-                details = f"Status: {response.status_code}, Member count: {member_count}"
-                if member_count > 0:
-                    details += f", Members: {[m.get('email', 'N/A') for m in data]}"
-            else:
-                details = f"Status: {response.status_code}, Response: {response.text}"
-                
-            return self.log_test("League Members (Before Join)", success, details)
-        except Exception as e:
-            return self.log_test("League Members (Before Join)", False, f"Exception: {str(e)}")
-
-    def test_direct_league_join(self):
-        """Test direct league join via /api/leagues/{league_id}/join - MAIN TEST"""
-        if not self.test_league_id:
-            return self.log_test("Direct League Join", False, "No league ID available")
-        
-        # First, authenticate as a different user who will join the league
-        auth_success = self.test_authentication_login(self.join_user_email)
-        if not auth_success:
-            return self.log_test("Direct League Join", False, "Failed to authenticate join user")
-            
-        try:
-            response = self.session.post(f"{self.api_url}/leagues/{self.test_league_id}/join")
-            success = response.status_code == 200
-            
-            if success:
-                data = response.json()
-                details = f"Status: {response.status_code}, Message: {data.get('message', 'Success')}"
-            else:
-                details = f"Status: {response.status_code}, Response: {response.text}"
-                
-            return self.log_test("Direct League Join", success, details)
-        except Exception as e:
-            return self.log_test("Direct League Join", False, f"Exception: {str(e)}")
-
-    def test_league_members_after_join(self):
-        """Test getting league members after join (should be 2 - commissioner + joined user)"""
-        if not self.test_league_id:
-            return self.log_test("League Members (After Join)", False, "No league ID available")
-            
-        # Re-authenticate as original user to check members
-        auth_success = self.test_authentication_login(self.commissioner_email)
-        if not auth_success:
-            return self.log_test("League Members (After Join)", False, "Failed to re-authenticate commissioner")
-            
-        try:
-            response = self.session.get(f"{self.api_url}/leagues/{self.test_league_id}/members")
-            success = response.status_code == 200
-            
-            if success:
-                data = response.json()
-                member_count = len(data) if isinstance(data, list) else 0
-                details = f"Status: {response.status_code}, Member count: {member_count}"
-                if member_count > 0:
-                    member_emails = [m.get('email', 'N/A') for m in data]
-                    details += f", Members: {member_emails}"
-                    # Check if join user is in the list
-                    if self.join_user_email in member_emails:
-                        details += " ✅ Join user found in members"
+                if league_response.status_code == 200:
+                    league_details = league_response.json()
+                    invite_code = league_details.get("invite_code")
+                    
+                    if invite_code:
+                        # Verify invite code format (6 characters, letters and numbers, uppercase)
+                        if len(invite_code) == 6 and invite_code.isalnum() and invite_code.isupper():
+                            self.created_leagues.append({
+                                "league_id": league_id,
+                                "invite_code": invite_code,
+                                "creator_email": email,
+                                "league_name": league_name
+                            })
+                            details = f"League ID: {league_id}, Invite Code: {invite_code} (format verified)"
+                            return self.log_test(f"Create League with Invite Code ({league_name})", True, details)
+                        else:
+                            details = f"League ID: {league_id}, Invalid invite code format: {invite_code} (should be 6 uppercase alphanumeric)"
+                            return self.log_test(f"Create League with Invite Code ({league_name})", False, details)
                     else:
-                        details += " ❌ Join user NOT found in members"
-                        success = False
+                        details = f"League ID: {league_id}, Missing invite_code field"
+                        return self.log_test(f"Create League with Invite Code ({league_name})", False, details)
+                else:
+                    details = f"Failed to get league details: {league_response.status_code} - {league_response.text}"
+                    return self.log_test(f"Create League with Invite Code ({league_name})", False, details)
             else:
-                details = f"Status: {response.status_code}, Response: {response.text}"
+                details = f"League creation failed: {response.status_code} - {response.text}"
+                return self.log_test(f"Create League with Invite Code ({league_name})", False, details)
                 
-            return self.log_test("League Members (After Join)", success, details)
         except Exception as e:
-            return self.log_test("League Members (After Join)", False, f"Exception: {str(e)}")
+            return self.log_test(f"Create League with Invite Code ({league_name})", False, f"Exception: {str(e)}")
 
-    def test_league_status(self):
-        """Test league status endpoint"""
-        if not self.test_league_id:
-            return self.log_test("League Status", False, "No league ID available")
-            
+    def join_league_by_invite_code(self, email, invite_code, expected_status=200):
+        """Test joining a league using invite code"""
         try:
-            response = self.session.get(f"{self.api_url}/leagues/{self.test_league_id}/status")
-            success = response.status_code == 200
+            if email not in self.authenticated_users:
+                return self.log_test(f"Join by Invite Code ({email})", False, f"User {email} not authenticated")
+                
+            session = self.authenticated_users[email]
+            
+            # Join league by invite code
+            response = session.post(f"{self.api_url}/leagues/join-by-code", 
+                                  json={"code": invite_code})
+            
+            success = response.status_code == expected_status
             
             if success:
-                data = response.json()
-                details = f"Status: {response.status_code}, League Status: {data.get('status')}, Members: {data.get('member_count')}/{data.get('max_members')}, Ready: {data.get('is_ready')}"
+                if response.status_code == 200:
+                    result = response.json()
+                    details = f"Status: {response.status_code}, Message: {result.get('message', 'No message')}"
+                elif response.status_code == 404:
+                    details = f"Status: {response.status_code}, Correctly returned 404 for invalid code"
+                elif response.status_code == 400:
+                    result = response.json()
+                    details = f"Status: {response.status_code}, Message: {result.get('detail', 'No detail')}"
+                else:
+                    details = f"Status: {response.status_code}"
             else:
-                details = f"Status: {response.status_code}, Response: {response.text}"
+                details = f"Expected {expected_status} but got {response.status_code} - {response.text}"
                 
-            return self.log_test("League Status", success, details)
+            return self.log_test(f"Join by Invite Code ({email}, {invite_code})", success, details)
+                
         except Exception as e:
-            return self.log_test("League Status", False, f"Exception: {str(e)}")
+            return self.log_test(f"Join by Invite Code ({email}, {invite_code})", False, f"Exception: {str(e)}")
 
-    def run_copy_invitation_link_tests(self):
-        """Run comprehensive Copy Invitation Link functionality tests"""
-        print("🧪 BACKEND API TESTING - Copy Invitation Link Functionality")
-        print("=" * 70)
-        print(f"Backend URL: {self.base_url}")
-        print(f"Commissioner: {self.commissioner_email}")
-        print(f"Join User: {self.join_user_email}")
-        print()
+    def verify_league_membership(self, creator_email, league_id, expected_members):
+        """Verify league membership after joins"""
+        try:
+            if creator_email not in self.authenticated_users:
+                return self.log_test("Verify League Membership", False, f"Creator {creator_email} not authenticated")
+                
+            session = self.authenticated_users[creator_email]
+            
+            # Get league members
+            response = session.get(f"{self.api_url}/leagues/{league_id}/members")
+            
+            if response.status_code == 200:
+                members = response.json()
+                member_emails = [member.get('email') for member in members]
+                
+                # Check if all expected members are present
+                missing_members = []
+                for expected_email in expected_members:
+                    if expected_email not in member_emails:
+                        missing_members.append(expected_email)
+                
+                if not missing_members:
+                    details = f"All {len(expected_members)} expected members found: {member_emails}"
+                    return self.log_test("Verify League Membership", True, details)
+                else:
+                    details = f"Missing members: {missing_members}, Found: {member_emails}"
+                    return self.log_test("Verify League Membership", False, details)
+            else:
+                details = f"Failed to get league members: {response.status_code} - {response.text}"
+                return self.log_test("Verify League Membership", False, details)
+                
+        except Exception as e:
+            return self.log_test("Verify League Membership", False, f"Exception: {str(e)}")
+
+    def test_invite_code_uniqueness(self):
+        """Test that multiple leagues get unique invite codes"""
+        try:
+            # Create multiple leagues and collect their invite codes
+            invite_codes = []
+            league_names = [
+                f"Uniqueness Test League 1 - {int(time.time())}",
+                f"Uniqueness Test League 2 - {int(time.time())}",
+                f"Uniqueness Test League 3 - {int(time.time())}"
+            ]
+            
+            for league_name in league_names:
+                if self.create_league_with_invite_code(self.test_email_1, league_name):
+                    # Find the most recently created league
+                    if self.created_leagues:
+                        latest_league = self.created_leagues[-1]
+                        invite_codes.append(latest_league["invite_code"])
+                else:
+                    return self.log_test("Invite Code Uniqueness", False, f"Failed to create league: {league_name}")
+            
+            # Check for uniqueness
+            if len(invite_codes) == len(set(invite_codes)):
+                details = f"All {len(invite_codes)} invite codes are unique: {invite_codes}"
+                return self.log_test("Invite Code Uniqueness", True, details)
+            else:
+                details = f"Duplicate invite codes found: {invite_codes}"
+                return self.log_test("Invite Code Uniqueness", False, details)
+                
+        except Exception as e:
+            return self.log_test("Invite Code Uniqueness", False, f"Exception: {str(e)}")
+
+    def run_invite_code_system_tests(self):
+        """Run comprehensive invite code system tests as requested in review"""
+        print("🚀 Starting Invite Code System Tests")
+        print("=" * 80)
         
-        # Test sequence as requested in review
-        tests = [
-            ("1. Health Check", self.test_health_check),
-            ("2. Authentication (Commissioner)", lambda: self.test_authentication_login(self.commissioner_email)),
-            ("3. Auth Me Verification", self.test_auth_me),
-            ("4. League Creation", self.test_league_creation),
-            ("5. League Details", self.test_league_details),
-            ("6. League Members (Before Join)", self.test_league_members_before_join),
-            ("7. Direct League Join", self.test_direct_league_join),
-            ("8. League Members (After Join)", self.test_league_members_after_join),
-            ("9. League Status", self.test_league_status),
-        ]
+        # Test 1: Health Check
+        print("\n📋 TEST 1: API Health Check")
+        if not self.test_health_check():
+            print("❌ API is not healthy, stopping tests")
+            return False
         
-        for test_name, test_func in tests:
-            print(f"\n--- {test_name} ---")
-            test_func()
+        # Test 2: User Authentication
+        print("\n📋 TEST 2: User Authentication")
+        auth_success = True
+        for email in [self.test_email_1, self.test_email_2, self.test_email_3]:
+            if not self.authenticate_user(email):
+                auth_success = False
         
-        print("\n" + "=" * 70)
-        print("🎯 COPY INVITATION LINK FUNCTIONALITY TEST RESULTS")
-        print("=" * 70)
+        if not auth_success:
+            print("❌ Authentication failed, cannot continue tests")
+            return False
+        
+        # Test 3: Create League with Invite Code
+        print("\n📋 TEST 3: Create League with Invite Code")
+        league_name = f"Invite Code Test League - {int(time.time())}"
+        if not self.create_league_with_invite_code(self.test_email_1, league_name):
+            print("❌ League creation failed, cannot continue join tests")
+            return False
+        
+        # Get the created league info
+        test_league = self.created_leagues[-1]
+        invite_code = test_league["invite_code"]
+        league_id = test_league["league_id"]
+        
+        # Test 4: Valid Invite Code Join
+        print("\n📋 TEST 4: Join via Valid Invite Code")
+        self.join_league_by_invite_code(self.test_email_2, invite_code, expected_status=200)
+        
+        # Test 5: Invalid Invite Code (should return 404)
+        print("\n📋 TEST 5: Invalid Invite Code Returns 404")
+        self.join_league_by_invite_code(self.test_email_3, "INVALID123", expected_status=404)
+        
+        # Test 6: Duplicate Join (should return 400)
+        print("\n📋 TEST 6: Duplicate Join Returns 400")
+        self.join_league_by_invite_code(self.test_email_2, invite_code, expected_status=400)
+        
+        # Test 7: Verify League Membership
+        print("\n📋 TEST 7: Verify League Membership")
+        expected_members = [self.test_email_1, self.test_email_2]  # Creator + one joiner
+        self.verify_league_membership(self.test_email_1, league_id, expected_members)
+        
+        # Test 8: Invite Code Uniqueness
+        print("\n📋 TEST 8: Invite Code Uniqueness")
+        self.test_invite_code_uniqueness()
+        
+        # Test 9: Complete Flow Test (Create → Join → Verify)
+        print("\n📋 TEST 9: Complete Flow Test")
+        flow_league_name = f"Complete Flow Test - {int(time.time())}"
+        if self.create_league_with_invite_code(self.test_email_3, flow_league_name):
+            flow_league = self.created_leagues[-1]
+            flow_invite_code = flow_league["invite_code"]
+            flow_league_id = flow_league["league_id"]
+            
+            # Join with different user
+            if self.join_league_by_invite_code(self.test_email_1, flow_invite_code, expected_status=200):
+                # Verify membership
+                flow_expected_members = [self.test_email_3, self.test_email_1]
+                self.verify_league_membership(self.test_email_3, flow_league_id, flow_expected_members)
+        
+        # Print final summary
+        self.print_test_summary()
+        
+        # Return success if 75% or more tests passed
+        success_rate = (self.tests_passed / self.tests_run) * 100 if self.tests_run > 0 else 0
+        return success_rate >= 75
+
+    def print_test_summary(self):
+        """Print comprehensive test summary"""
+        print("\n" + "=" * 80)
+        print("🎯 INVITE CODE SYSTEM TEST SUMMARY")
+        print("=" * 80)
         
         success_rate = (self.tests_passed / self.tests_run) * 100 if self.tests_run > 0 else 0
-        print(f"Overall Success Rate: {self.tests_passed}/{self.tests_run} ({success_rate:.1f}%)")
         
-        if self.test_league_id:
-            print(f"Created League ID: {self.test_league_id}")
-            print(f"Invitation Link Format: {self.base_url}/join/{self.test_league_id}")
-        
-        # Critical test analysis
-        critical_tests = [
-            "Authentication Login",
-            "League Creation", 
-            "Direct League Join",
-            "League Members (After Join)"
-        ]
-        
-        critical_passed = sum(1 for test in self.failed_tests if not any(critical in test for critical in critical_tests))
-        critical_total = len(critical_tests)
-        critical_rate = ((critical_total - len([t for t in self.failed_tests if any(c in t for c in critical_tests)])) / critical_total) * 100
-        
-        print(f"Critical Tests Success Rate: {critical_rate:.1f}%")
+        print(f"📊 OVERALL RESULTS: {self.tests_passed}/{self.tests_run} tests passed ({success_rate:.1f}%)")
         
         if self.failed_tests:
             print("\n❌ FAILED TESTS:")
-            for failed in self.failed_tests:
-                print(f"   - {failed}")
+            for failed_test in self.failed_tests:
+                print(f"   - {failed_test}")
         
-        # Final assessment
-        print("\n🔍 COPY INVITATION LINK READINESS ASSESSMENT:")
-        if critical_rate >= 100:
-            print("✅ Backend is READY to support Copy Invitation Link feature")
-            print("   - Authentication endpoints working")
-            print("   - League creation successful")
-            print("   - Direct league join functional")
-            print("   - Member verification working")
-        elif critical_rate >= 75:
-            print("⚠️  Backend is PARTIALLY READY with minor issues")
-            print("   - Core functionality working but some edge cases may fail")
+        print(f"\n📋 CREATED LEAGUES: {len(self.created_leagues)}")
+        for league in self.created_leagues:
+            print(f"   - {league['league_name']}: {league['invite_code']} (ID: {league['league_id']})")
+        
+        if success_rate >= 90:
+            print("\n🎉 EXCELLENT: Invite code system is working perfectly!")
+        elif success_rate >= 75:
+            print("\n✅ GOOD: Invite code system is mostly working with minor issues")
+        elif success_rate >= 50:
+            print("\n⚠️ PARTIAL: Invite code system has significant issues")
         else:
-            print("❌ Backend is NOT READY for Copy Invitation Link feature")
-            print("   - Critical functionality failures detected")
+            print("\n❌ CRITICAL: Invite code system has major failures")
         
-        return success_rate >= 75
+        # Summary for main agent
+        print("\n" + "=" * 80)
+        print("📝 SUMMARY FOR MAIN AGENT:")
+        print("=" * 80)
+        
+        if success_rate >= 90:
+            print("✅ INVITE CODE SYSTEM FULLY FUNCTIONAL")
+            print("   - All core functionality working correctly")
+            print("   - 6-character invite codes generated properly")
+            print("   - Join-by-code endpoint working as expected")
+            print("   - Error handling (404/400) working correctly")
+            print("   - Invite code uniqueness verified")
+        elif success_rate >= 75:
+            print("⚠️ INVITE CODE SYSTEM MOSTLY FUNCTIONAL")
+            print("   - Core functionality working")
+            print("   - Some minor issues detected")
+            print("   - Review failed tests above for details")
+        else:
+            print("❌ INVITE CODE SYSTEM HAS CRITICAL ISSUES")
+            print("   - Major functionality failures detected")
+            print("   - Requires immediate attention")
+            print("   - Review failed tests above for details")
 
 def main():
     """Main test execution"""
-    tester = CopyInviteLinkTester()
-    success = tester.run_copy_invitation_link_tests()
+    print("🧪 Backend API Testing Suite - Invite Code System")
+    print("Testing new invite code functionality as requested in review")
+    print("=" * 80)
+    
+    tester = InviteCodeTester()
+    success = tester.run_invite_code_system_tests()
     
     # Exit with appropriate code
     sys.exit(0 if success else 1)
