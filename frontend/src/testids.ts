@@ -52,23 +52,11 @@ export const TESTIDS = {
   createLoading: 'create-loading',
   createError: 'create-error',
   
-  // Navigation - Simplified (no marketing variants)
+  // Navigation - Core testids that tests expect
   navBrand: 'nav-brand',
-  navHamburger: 'nav-hamburger',
+  navHamburger: 'nav-hamburger', 
   navSignIn: 'nav-sign-in',
-  navDropdownProduct: 'nav-dd-product',
-  navDdAuction: 'nav-dd-auction',
-  navDdRoster: 'nav-dd-roster',
-  navDdFixtures: 'nav-dd-fixtures',
-  navDdLeaderboard: 'nav-dd-leaderboard',
-  navDdSettings: 'nav-dd-settings',
-  navDropdownItemAuction: 'nav-dd-auction', // Legacy alias
-  navDropdownItemRoster: 'nav-dd-roster', // Legacy alias
-  navDropdownItemFixtures: 'nav-dd-fixtures', // Legacy alias
-  navDropdownItemLeaderboard: 'nav-dd-leaderboard', // Legacy alias
-  navDropdownItemSettings: 'nav-dd-settings', // Legacy alias
-  // Navigation - Simplified 
-  navHamburger: 'nav-hamburger',
+  backToHome: 'back-to-home-link',  // Tests expect this
   mobileDrawer: 'nav-mobile-drawer',
   navMobileItemAuction: 'nav-mobile-item-auction-room',
   navMobileItemRoster: 'nav-mobile-item-my-roster',
