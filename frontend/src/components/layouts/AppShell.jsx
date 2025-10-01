@@ -144,7 +144,7 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
               <button
                 onClick={() => navigate('/app')}
                 data-testid={TESTIDS.backToHome}
-                className="inline-flex items-center gap-2 text-sm text-theme-text-secondary hover:text-theme-text relative z-50"
+                className="inline-flex items-center gap-2 text-sm text-theme-text-secondary hover:text-theme-text relative z-20"
               >
                 ← Dashboard
               </button>
