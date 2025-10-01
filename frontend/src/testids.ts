@@ -11,19 +11,12 @@ export const TESTIDS = {
   navCreateLeagueBtn: 'nav-create-league-btn', // header "+ New League" button
   joinViaInviteBtn: 'join-via-invite-btn',
 
-  // Create League Wizard  
-  createLeagueWizardName: 'create-name',
-  createLeagueWizardSlots: 'create-slots', 
-  createLeagueWizardBudget: 'create-budget',
-  createLeagueWizardMin: 'create-min',
-  createLeagueWizardSubmit: 'create-submit',
-  
-  // League creation (Dialog)
+  // Create League Wizard - Single definitions
   createDialog: 'create-league-dialog',
-  createNameInput: 'create-name',
-  createSlotsInput: 'create-slots',
-  createBudgetInput: 'create-budget',
-  createMinInput: 'create-min',
+  createName: 'create-name',
+  createSlots: 'create-slots', 
+  createBudget: 'create-budget',
+  createMin: 'create-min',
   createMaxInput: 'create-max',
   createSubmit: 'create-submit',
   createCancel: 'create-cancel',
@@ -34,12 +27,7 @@ export const TESTIDS = {
   createErrorBudget: 'create-error-budget',
   createErrorMin: 'create-error-min',
   
-  // Authentication (Legacy - use auth* versions instead)
-  emailInput: 'auth-email-input', // Legacy: use authEmailInput instead
-  magicLinkSubmit: 'auth-magic-link-submit', // Legacy: use authSubmitBtn instead
-  loginNowButton: 'auth-login-now-button', // Legacy: use dev-magic-link-btn directly
-  
-  // Authentication Page (/login) - Current
+  // Authentication - Single definitions
   authEmailInput: 'auth-email-input',
   authSubmitBtn: 'auth-submit-btn',
   authError: 'auth-error',
