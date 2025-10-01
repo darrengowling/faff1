@@ -24,5 +24,5 @@ kubectl get ingress ucl-auction-ingress -o wide
 echo "✅ Ingress configuration applied!"
 echo ""
 echo "🧪 Test Socket.IO routing:"
-echo "   curl -I https://leaguemate-1.preview.emergentagent.com/socket.io/"
+echo "   curl -I https://livebid-app.preview.emergentagent.com/socket.io/"
 echo "   (Should return Socket.IO handshake, not HTML)"

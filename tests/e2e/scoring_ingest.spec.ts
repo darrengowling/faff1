@@ -9,7 +9,7 @@ import { TESTIDS } from '../../frontend/src/testids.ts';
 import { createTestLeague, addTestMember } from './utils/auction-helpers';
 import { initializeTestTime } from './utils/time-helpers';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://leaguemate-1.preview.emergentagent.com';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://livebid-app.preview.emergentagent.com';
 
 test.describe('Scoring Ingest Tests', () => {
   let commissionerPage: Page;

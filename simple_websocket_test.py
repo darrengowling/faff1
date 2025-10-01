@@ -9,7 +9,7 @@ import json
 import time
 
 # Configuration
-BACKEND_URL = "https://leaguemate-1.preview.emergentagent.com"
+BACKEND_URL = "https://livebid-app.preview.emergentagent.com"
 API_BASE = f"{BACKEND_URL}/api"
 
 async def test_authentication():

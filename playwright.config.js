@@ -25,7 +25,7 @@ module.exports = defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://leaguemate-1.preview.emergentagent.com',
+    baseURL: 'https://livebid-app.preview.emergentagent.com',
     
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -63,7 +63,7 @@ module.exports = defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'echo "Using existing preview server"',
-    url: 'https://leaguemate-1.preview.emergentagent.com',
+    url: 'https://livebid-app.preview.emergentagent.com',
     reuseExistingServer: true,
     timeout: 5000,
   },

@@ -15,7 +15,7 @@ import time
 import uuid
 
 class MultipleUsersJoinTester:
-    def __init__(self, base_url="https://leaguemate-1.preview.emergentagent.com"):
+    def __init__(self, base_url="https://livebid-app.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.session = requests.Session()

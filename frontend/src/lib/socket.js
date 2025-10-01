@@ -41,5 +41,5 @@ export function getApiOrigin(): string {
   return (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_BACKEND_URL) ||
          (typeof import !== 'undefined' && import.meta?.env?.VITE_BACKEND_URL) ||
          process.env.REACT_APP_BACKEND_URL || 
-         'https://leaguemate-1.preview.emergentagent.com';
+         'https://livebid-app.preview.emergentagent.com';
 }

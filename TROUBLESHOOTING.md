@@ -21,7 +21,7 @@ kubectl apply -f k8s-ingress.yaml
 ### Verification
 Test Socket.IO endpoint:
 ```bash
-curl "https://leaguemate-1.preview.emergentagent.com/socket.io/?EIO=4&transport=polling"
+curl "https://livebid-app.preview.emergentagent.com/socket.io/?EIO=4&transport=polling"
 ```
 Should return Socket.IO handshake response, not HTML.
 

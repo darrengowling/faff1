@@ -5,7 +5,7 @@
 
 import { Page } from '@playwright/test';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://leaguemate-1.preview.emergentagent.com';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://livebid-app.preview.emergentagent.com';
 
 export interface LeagueSettings {
   name: string;

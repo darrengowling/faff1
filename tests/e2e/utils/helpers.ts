@@ -422,7 +422,7 @@ export async function awaitCreatedAndInLobby(page: Page, leagueId?: string): Pro
     console.log(`✅ League ID: ${extractedLeagueId}`);
     
     // Poll readiness endpoint (TEST_MODE only)
-    const apiOrigin = process.env.REACT_APP_BACKEND_URL || 'https://leaguemate-1.preview.emergentagent.com';
+    const apiOrigin = process.env.REACT_APP_BACKEND_URL || 'https://livebid-app.preview.emergentagent.com';
     console.log('🔍 Polling league readiness...');
     
     for (let i = 0; i < 10; i++) {

@@ -16,7 +16,7 @@ import os
 from datetime import datetime
 
 # Backend URL from environment
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://leaguemate-1.preview.emergentagent.com')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://livebid-app.preview.emergentagent.com')
 API_BASE = f"{BACKEND_URL}/api"
 
 class FinalAuctionFixVerification:

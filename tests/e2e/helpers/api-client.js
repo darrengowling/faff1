@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 class APIClient {
-  constructor(baseURL = 'https://leaguemate-1.preview.emergentagent.com/api') {
+  constructor(baseURL = 'https://livebid-app.preview.emergentagent.com/api') {
     this.baseURL = baseURL;
     this.defaultHeaders = {
       'Content-Type': 'application/json'

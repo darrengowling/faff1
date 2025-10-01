@@ -2,7 +2,7 @@
 🔍 Pre-check: Verifying TESTIDS import...
 ✅ TESTIDS imported successfully: 172 testids available
    Sample testids: homeCreateLeagueBtn, navCreateLeagueBtn, joinViaInviteBtn, createLeagueWizardName, createLeagueWizardSlots...
-✅ Application accessible at: https://leaguemate-1.preview.emergentagent.com (Status: 200)
+✅ Application accessible at: https://livebid-app.preview.emergentagent.com (Status: 200)
 🔐 Creating authenticated storage states...
 🔑 Authenticating commish@example.com...
 🔐 Logging in user: commish@example.com (mode: test)
@@ -86,7 +86,7 @@
     "workers": 1,
     "webServer": {
       "command": "echo \"Using existing preview server\"",
-      "url": "https://leaguemate-1.preview.emergentagent.com",
+      "url": "https://livebid-app.preview.emergentagent.com",
       "reuseExistingServer": true,
       "timeout": 5000
     }

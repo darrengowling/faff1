@@ -2,7 +2,7 @@
 🔍 Pre-check: Verifying TESTIDS import...
 ✅ TESTIDS imported successfully: 184 testids available
    Sample testids: homeCreateLeagueBtn, navCreateLeagueBtn, joinViaInviteBtn, createLeagueWizardName, createLeagueWizardSlots...
-✅ Application accessible at: https://leaguemate-1.preview.emergentagent.com (Status: 200)
+✅ Application accessible at: https://livebid-app.preview.emergentagent.com (Status: 200)
 🔐 Creating authenticated storage states...
 🔑 Authenticating commish@example.com...
 🔐 Logging in user: commish@example.com (mode: test)
@@ -371,7 +371,7 @@
                       ],
                       "stdout": [
                         {
-                          "text": "API Response: {\n  message: \u001b[32m'Magic link generated! (Development Mode - Check below)'\u001b[39m,\n  dev_magic_link: \u001b[32m'https://leaguemate-1.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE5NTU0NywidHlwZSI6Im1hZ2ljX2xpbmsifQ.n5dfz71j6VewYb3-dnlYkZVXh7xtoPLvT_2H0zVrZhQ'\u001b[39m\n}\n"
+                          "text": "API Response: {\n  message: \u001b[32m'Magic link generated! (Development Mode - Check below)'\u001b[39m,\n  dev_magic_link: \u001b[32m'https://livebid-app.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTE5NTU0NywidHlwZSI6Im1hZ2ljX2xpbmsifQ.n5dfz71j6VewYb3-dnlYkZVXh7xtoPLvT_2H0zVrZhQ'\u001b[39m\n}\n"
                         },
                         {
                           "text": "Browser Console: 🚨 TestID Verification: Missing testids on route /login: data-testid=\"authFormReady\"\n"

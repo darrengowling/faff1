@@ -8,8 +8,8 @@
 import { chromium } from '@playwright/test';
 import path from 'path';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://leaguemate-1.preview.emergentagent.com';
-const FRONTEND_URL = process.env.FRONTEND_URL || 'https://leaguemate-1.preview.emergentagent.com';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://livebid-app.preview.emergentagent.com';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://livebid-app.preview.emergentagent.com';
 
 // Test users with deterministic data
 const TEST_USERS = [

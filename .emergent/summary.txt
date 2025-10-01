@@ -1,64 +1,63 @@
 <analysis>
-The trajectory documents a focused effort to achieve production readiness for a full-stack application by stabilizing its End-to-End (E2E) test suite, with a target pass rate of 85%. The work began by implementing and verifying  attributes across critical user flows. Initial progress was promising, reaching an 80% pass rate after some trial and error with session management strategies.
+The trajectory documents the evolution of a full-stack football auction application from a buggy MVP to a near production-ready state. The initial focus was on achieving an 85% E2E test pass rate by fixing UI inconsistencies ( conventions) and frontend bugs. Frustration with complexity led to a major architectural simplification: the removal of the entire marketing portion of the site, streamlining the app's focus.
 
-However, subsequent canary test runs revealed persistent flakiness and critical failures in specific specs (, , ). The engineer systematically addressed each failure based on user-provided Change requests. This involved refactoring the login page for synchronous rendering, making league creation atomic with a dedicated page, and stabilizing mobile navigation interactions by hardening CSS and component state management.
+Development then pivoted to fixing core user-reported functional issues. A non-functional email invitation system was replaced with a simpler copy invite code feature. Subsequent user testing revealed critical bugs preventing the core auction flow from starting. The AI engineer diagnosed these issues, which included database field name mismatches (uid=0(root) gid=0(root) groups=0(root) vs ) and, most significantly, a series of complex WebSocket (Socket.IO) implementation problems.
 
-A recurring, circular problem was the inconsistency in testid naming conventions (camelCase vs. kebab-case) between the central  file and hardcoded strings in the Playwright test files. This led to multiple failed attempts and rollbacks. The final phase of work involved a laser-targeted fix for an  failure, which correctly identified this naming mismatch as the root cause. The engineer was in the process of aligning the canonical  file with the test's explicit expectations when the trajectory ended.
+The final phase involved an intensive, iterative effort to stabilize the real-time auction functionality. This progressed from fixing broken connection paths and authentication failures to implementing a robust, fault-tolerant Socket.IO client with an ASGI overlay pattern on the backend. The work concluded mid-refactor, creating a unified socket factory to be used across the application, as per the user's direct request for cleaner code.
 </analysis>
-
 <product_requirements>
-The primary objective is to make the Friends of PIFA application production-ready by achieving an E2E test pass rate of 85% or higher. The application is an auction platform for friends to bid on Champions League clubs.
+The primary goal is to deliver a stable, production-ready Friends of PIFA football club auction application. The core user journey involves a league commissioner creating a league, inviting friends using a simple invite code, and running a live, real-time auction where all participants can bid on teams.
 
-To achieve this goal, the following key features and fixes were requested and implemented:
-1.  **TestID Implementation:** Ensure critical UI elements across all major routes (, , , global navigation) have stable  attributes for reliable testing.
-2.  **Stable DOM Patterns:** Refactor components to avoid unmounting critical elements during loading states. Instead, use attributes like  and  to keep them in the DOM but visually inactive.
-3.  **Synchronous Login:** The login page must render its form elements immediately on first paint, without being blocked by authentication checks, to prevent test timeouts.
-4.  **Atomic League Creation:** The league creation flow must be atomic (backend transaction) and observable. A dedicated  page was created to decouple the form from modal state issues.
-5.  **Reliable Mobile Navigation:** The mobile navigation drawer must have deterministic state management (), accurate item counts (), and reliable anchor link scrolling to eliminate flaky tests.
-6.  **Authentication Stability:** Backend test login must be idempotent, and a Playwright  must be used to pre-generate authentication states, preventing random sign-outs during tests.
+Initial requirements focused on an 85% E2E test pass rate, but this evolved to prioritize fixing tangible user-facing bugs and ensuring a seamless core experience.
+
+**Key Features & Fixes Implemented:**
+- **Simplified Architecture:** The entire marketing website was removed, focusing the application solely on the auction functionality. The app now directs users to login or the dashboard.
+- **Functional Invitation System:** An initial, broken email invitation system was replaced with a reliable invite code system. Users can generate a code, share it, and new members can join a league easily.
+- **Stable Real-Time Auctions:** After extensive debugging of WebSocket (Socket.IO) connectivity, authentication, and state synchronization, the live auction system is now functional. This includes real-time updates for bidding, timers, and league lobby events.
+- **Robust Reconnection:** The application now supports automatic reconnection and state synchronization, ensuring that users who refresh their browser or experience network drops can rejoin the auction without losing their place.
 </product_requirements>
-
 <key_technical_concepts>
-- **Testability Enforcement**: Centralizing all  values in a canonical  file and using TypeScript to enforce their usage.
-- **Stable DOM Patterns**: Prioritizing CSS and ARIA attributes (, ) over conditional rendering () or  to ensure key elements remain in the DOM for test runners.
-- **Atomic Operations**: Using MongoDB sessions/transactions on the backend () to ensure database operations (like creating a league and its commissioner) are all-or-nothing.
-- **Playwright Global Setup**: Using a  file to programmatically log in test users and save their storage states, ensuring tests start with a consistent, authenticated session.
+- **Monorepo Architecture:** A React/Vite frontend communicates with a Python/FastAPI backend.
+- **Real-Time Communication (Socket.IO):** Extensively used for live auction updates and lobby synchronization. The implementation evolved to use an ASGI overlay pattern on the backend and a robust, auto-fallback client on the frontend.
+- **E2E Testing (Playwright):** Used to validate UI stability and core user flows, driving many of the initial bug fixes.
+- **Architectural Simplification:** A major refactoring effort removed the marketing site, simplifying routing in  and reducing overall complexity.
 </key_technical_concepts>
-
 <code_architecture>
-The application is a standard monorepo with a React/Vite frontend and a Python/FastAPI backend.
+The application is a monorepo with a React frontend and a FastAPI backend. The architecture is centered around a main  file that handles routing and contains many of the core components as inline definitions. Real-time functionality is managed through a dedicated Socket.IO client library and corresponding backend handlers.
 
 
 
--   ****: The canonical source for all  strings. This file was repeatedly edited to correct naming convention mismatches (camelCase vs. kebab-case) to align with test expectations.
--   ****: Heavily refactored to render synchronously, manage loading/error states stably using ARIA attributes, and align its  usage with the strict contract defined in .
--   ****: The main application file containing routing and top-level state. It was modified to add a new route for , conditionally render a global , and inject global CSS in  to disable animations.
--   ****: Refactored to accept a  prop, allowing for a single canonical instance () and multiple variant instances (, ) to resolve test strict mode violations.
--   ****: The main FastAPI application. It was modified to make the  endpoint idempotent, fix cookie domain settings for session stability, and add a  probe to verify atomic league creation. The mock data in the testid verifier endpoint was also fixed.
--   ** (New)**: A Playwright configuration file created to programmatically log in three test users (commish, alice, bob) before tests run, ensuring stable and independent authenticated sessions for test specs.
--   ****: A critical E2E test file that repeatedly failed. Its hardcoded testid strings served as the primary contract for fixing the  and  implementations.
+-   ****
+    -   **Importance:** This file contains the new, unified socket factory responsible for creating and managing the application's single Socket.IO connection. It includes logic for automatic reconnection, state synchronization (), and path resolution.
+    -   **Changes:** This file was newly created at the user's request to consolidate all socket logic into a reusable, clean factory pattern, replacing disparate connection logic in  and .
+
+-   ****
+    -   **Importance:** The main entry point for the React application, containing all client-side routing and defining many core components inline, such as  and .
+    -   **Changes:** Heavily modified throughout the trajectory. The  component was updated to use the new unified socket factory from  to manage real-time updates for joining users. It also had a polling mechanism as a temporary fix before full WebSocket implementation. The routing was simplified by removing the marketing site.
+
+-   ****
+    -   **Importance:** The core component for the live auction experience. It handles all real-time event listeners for bidding, timers, and auction state changes.
+    -   **Changes:** This file underwent significant refactoring to fix broken Socket.IO connections. Multiple conflicting connection attempts were consolidated, and token authentication logic was added to resolve connection hangs. It still needs to be updated to use the new unified socket factory.
+
+-   ****
+    -   **Importance:** The main FastAPI application file. It defines all REST API endpoints and Socket.IO event handlers.
+    -   **Changes:** The Socket.IO setup was completely refactored to use an ASGI overlay pattern, moving the connection path from a custom  to the standard . This change was critical to resolve ingress routing issues and stabilize real-time connections. Event handlers for  and  were added.
+
+-   ** & **
+    -   **Importance:** These files contain the core business logic for auctions and league management.
+    -   **Changes:** Fixed a critical bug where the  for auctions was not being created, preventing auctions from starting. Also addressed a timezone-related bug that could cause timer inconsistencies in live auctions. Socket.IO  calls were added to notify clients of state changes.
 </code_architecture>
-
 <pending_tasks>
-- **Achieve 85% E2E Pass Rate**: The primary goal remains outstanding.
-- **Fix **: This test was still failing due to visibility issues with the  button.
-- **Fix **: This test was failing due to syntax errors in its assertions.
-- **Resolve all testid inconsistencies**: A full audit is needed to ensure all components and tests use the same, correct testid values from the canonical source.
+- **Complete the Socket Factory Refactor:** The  component still uses its own local socket connection logic. It needs to be updated to use the new, unified socket factory from  to ensure consistent and reliable real-time communication.
+- **Update AuctionRoom on mount:** The  component must be updated to call the  function from the new socket factory when the component mounts.
 </pending_tasks>
-
 <current_work>
-The engineer was performing a laser-targeted fix to resolve the final, persistent failure in the  E2E test. The user identified that despite multiple fixes, the same issues were recurring. The final diagnosis was a fundamental mismatch between the test file, which used hardcoded **kebab-case** strings (e.g., ), and the application's central  file, which defined constants with **camelCase** values (e.g., ).
+The most recent task was a direct implementation of a user request to refactor the entire client-side Socket.IO management into a single, unified factory. This was done to improve code quality, reduce redundancy, and ensure consistent real-time behavior across the application.
 
-The previous attempt to solve a strict mode violation for duplicate  testids was successful but did not address this deeper naming issue.
+The AI engineer created a new file, , containing a  function. This factory handles establishing the connection, setting the correct path (), and automatically managing reconnection logic. Crucially, it exposes a  method and is configured to automatically rejoin a user to their last active league (using ) upon connection or reconnection.
 
-The immediate work involved:
-1.  **Examining the contract**: The engineer read the test file () to understand its exact expectations for testid strings.
-2.  **Identifying the mismatch**: It was confirmed that the test expected  while the code provided .
-3.  **Implementing the fix**: The engineer started editing the canonical source of truth, , to change the values of the constants to match the kebab-case strings expected by the test. The last action was updating the  constant.
-
-The core of the current work is to methodically align the application's implementation with the rigid contract defined by the E2E tests, starting with the highest-priority authentication flow.
+Immediately after creating this new factory, the engineer began integrating it into the application. The  component (defined inside ) was the first to be refactored. The old, direct  call was replaced with an import from the new  factory, and its  hook was updated to use the  method. The work stopped immediately after successfully refactoring this first component. The next logical step is to apply the same refactoring to the  component.
 </current_work>
-
 <optional_next_step>
-Continue updating the  file to align all constants with the kebab-case strings required by , then re-run the test to confirm the fix and move on to the next failing spec.
+Update the  component to use the new unified socket factory from , replacing its local socket connection logic and using the  method on mount.
 </optional_next_step>
