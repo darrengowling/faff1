@@ -104,10 +104,21 @@ class LeagueService:
         membership_dict = membership.dict(by_alias=True)
         await db.league_memberships.insert_one(membership_dict, session=session)
         
+        # Get league members for nomination order
+        members = await db.league_memberships.find(
+            {"league_id": league.id, "status": "active"}
+        ).to_list(length=None)
+        
+        # Create nomination order (randomized list of member user IDs)
+        import random
+        nomination_order = [member["user_id"] for member in members]
+        random.shuffle(nomination_order)  # Randomize the nomination order
+        
         # Create default auction document with test overrides if needed
         auction = Auction(
             id=league.id,  # Use league_id as auction_id for simplicity
             league_id=league.id,
+            nomination_order=nomination_order,
             budget_per_manager=league.settings.budget_per_manager,
             min_increment=league.settings.min_increment,
             anti_snipe_seconds=TEST_ANTI_SNIPE_SECONDS if IS_TEST_MODE else league.settings.anti_snipe_seconds,
