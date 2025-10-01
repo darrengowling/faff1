@@ -245,14 +245,13 @@ class BiddingTestSuite:
                 "amount": 8  # Lower than current bid
             }
             
-            async with self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", 
-                                       json=bid_data) as resp:
-                if resp.status == 400:
-                    await self.log_result(f"Invalid Low Bid - {manager3['email']}", True, 
-                                        "Correctly rejected low bid")
-                else:
-                    await self.log_result(f"Invalid Low Bid - {manager3['email']}", False, 
-                                        f"Should have rejected low bid, got status {resp.status}")
+            resp = self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=bid_data)
+            if resp.status_code == 400:
+                await self.log_result(f"Invalid Low Bid - {manager3['email']}", True, 
+                                    "Correctly rejected low bid")
+            else:
+                await self.log_result(f"Invalid Low Bid - {manager3['email']}", False, 
+                                    f"Should have rejected low bid, got status {resp.status_code}")
                     
             return len(bid_results) >= 2
             
