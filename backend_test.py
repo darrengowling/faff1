@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 import time
 import uuid
 
-class CopyInviteLinkTester:
+class InviteCodeTester:
     def __init__(self, base_url="https://leaguemate-1.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
