@@ -196,7 +196,7 @@ const LeagueCreationForm = ({
         </div>
       )}
       
-      <form onSubmit={handleSubmit} className="space-y-6" aria-busy={submitting}>
+      <form onSubmit={handleSubmit} className="space-y-8" aria-busy={submitting}>
         {/* Loading indicator for tests */}
         {submitting && (
           <div 
