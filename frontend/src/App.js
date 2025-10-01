@@ -482,6 +482,140 @@ const InvitationAccept = () => {
   return null;
 };
 
+// League Join Component
+const LeagueJoin = () => {
+  const { leagueId } = useParams();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [league, setLeague] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    const joinLeague = async () => {
+      if (!leagueId) {
+        setError('Invalid league link');
+        setLoading(false);
+        return;
+      }
+
+      if (!user) {
+        // Redirect to login with return URL
+        navigate(`/login?redirect=${encodeURIComponent(`/join/${leagueId}`)}`);
+        return;
+      }
+
+      try {
+        setLoading(true);
+        
+        // First, get league details to show user what they're joining
+        const leagueResponse = await axios.get(`${API}/leagues/${leagueId}`);
+        setLeague(leagueResponse.data);
+        
+        // Then join the league
+        await axios.post(`${API}/leagues/${leagueId}/join`);
+        
+        setSuccess(true);
+        toast.success(`Successfully joined ${leagueResponse.data.name}!`);
+        
+        setTimeout(() => {
+          navigate(`/app/leagues/${leagueId}/lobby`);
+        }, 2000);
+        
+      } catch (error) {
+        console.error('Join league error:', error);
+        if (error.response?.status === 404) {
+          setError('League not found. The link may be invalid or expired.');
+        } else if (error.response?.status === 400) {
+          setError(error.response?.data?.detail || 'Cannot join this league.');
+        } else {
+          setError('Failed to join league. Please try again.');
+        }
+        toast.error(error.response?.data?.detail || 'Failed to join league');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    joinLeague();
+  }, [leagueId, user, navigate]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardContent className="text-center p-8">
+            <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
+            <p>Joining league...</p>
+            {league && (
+              <p className="text-sm text-gray-600 mt-2">
+                Joining "{league.name}"
+              </p>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardContent className="text-center p-8">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <XCircle className="w-8 h-8 text-red-600 mx-auto mb-2" />
+              <h3 className="text-lg font-semibold text-red-900 mb-2">Unable to Join League</h3>
+              <p className="text-red-800">{error}</p>
+            </div>
+            <div className="flex space-x-2 mt-4">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={() => navigate('/app')}
+              >
+                Go to Dashboard
+              </Button>
+              {league && (
+                <Button
+                  className="flex-1"
+                  onClick={() => window.location.reload()}
+                >
+                  Try Again
+                </Button>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (success && league) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardContent className="text-center p-8">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-green-900 mb-2">Welcome to the League!</h3>
+              <p className="text-green-800">
+                You've successfully joined <strong>{league.name}</strong>
+              </p>
+              <p className="text-sm text-green-600 mt-2">
+                Redirecting to league lobby...
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  return null;
+};
+
 // Enhanced League Creation Dialog
 const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
   const { t } = useTranslation();
