@@ -185,6 +185,80 @@ class AdminService:
             return False, "Bid validation failed"
 
     @staticmethod
+    async def handle_simultaneous_bids(lot_id: str, bidder_id: str, bid_amount: int) -> Tuple[bool, str, str]:
+        """
+        Handle actual bid placement with atomic operations to prevent race conditions
+        
+        Args:
+            lot_id: Lot being bid on
+            bidder_id: User placing bid  
+            bid_amount: Bid amount
+            
+        Returns:
+            Tuple of (success, message, bid_id)
+        """
+        try:
+            from models import Bid
+            import uuid
+            from datetime import datetime, timezone
+            
+            # Use atomic update to prevent race conditions
+            # Only update if current bid is still lower than our bid
+            update_result = await db.lots.update_one(
+                {
+                    "_id": lot_id,
+                    "current_bid": {"$lt": bid_amount},
+                    "status": {"$in": ["open", "going_once", "going_twice"]}
+                },
+                {
+                    "$set": {
+                        "current_bid": bid_amount,
+                        "current_bidder_id": bidder_id,
+                        "last_bid_at": datetime.now(timezone.utc)
+                    }
+                }
+            )
+            
+            if update_result.modified_count == 0:
+                # Either lot not found, bid too low, or lot not active
+                lot = await db.lots.find_one({"_id": lot_id})
+                if not lot:
+                    return False, "Lot not found", ""
+                elif lot["current_bid"] >= bid_amount:
+                    return False, f"Bid of {bid_amount} is not higher than current bid of {lot['current_bid']}", ""
+                else:
+                    return False, "Lot is no longer accepting bids", ""
+            
+            # Create bid record
+            bid = Bid(
+                lot_id=lot_id,
+                bidder_id=bidder_id,
+                amount=bid_amount,
+                timestamp=datetime.now(timezone.utc),
+                status="winning"
+            )
+            
+            bid_dict = bid.dict(by_alias=True)
+            await db.bids.insert_one(bid_dict)
+            
+            # Mark previous bids for this lot as outbid
+            await db.bids.update_many(
+                {
+                    "lot_id": lot_id,
+                    "_id": {"$ne": bid.id},
+                    "status": "winning"
+                },
+                {"$set": {"status": "outbid"}}
+            )
+            
+            logger.info(f"Successful bid placed: {bidder_id} bid {bid_amount} on lot {lot_id}")
+            return True, f"Successful bid of {bid_amount}", str(bid.id)
+            
+        except Exception as e:
+            logger.error(f"Failed to handle simultaneous bids: {e}")
+            return False, "Failed to place bid", ""
+
+    @staticmethod
     async def validate_budget_change_constraints(league_id: str, new_budget: int) -> Tuple[bool, str]:
         """
         GUARDRAIL: Validate budget change constraints
