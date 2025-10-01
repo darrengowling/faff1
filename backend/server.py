@@ -1356,7 +1356,7 @@ async def create_league(
 @api_router.get("/leagues", response_model=List[LeagueResponse])
 async def get_my_leagues(current_user: UserResponse = Depends(get_current_verified_user)):
     """Get leagues where current user is a member"""
-    memberships = await db.memberships.find({"user_id": current_user.id}).to_list(length=None)
+    memberships = await db.league_memberships.find({"user_id": current_user.id}).to_list(length=None)
     league_ids = [m["league_id"] for m in memberships]
     
     leagues = await db.leagues.find({"_id": {"$in": league_ids}}).to_list(length=None)
@@ -1369,7 +1369,7 @@ async def get_my_leagues(current_user: UserResponse = Depends(get_current_verifi
             league['status'] = 'setup'
         
         # Add member_count by counting memberships
-        member_count = await db.memberships.count_documents({"league_id": league["_id"]})
+        member_count = await db.league_memberships.count_documents({"league_id": league["_id"]})
         league['member_count'] = member_count
         
         enriched_leagues.append(league)
