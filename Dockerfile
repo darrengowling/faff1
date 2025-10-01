@@ -41,6 +41,10 @@ RUN mkdir -p /app/logs
 ENV PYTHONPATH="/app/backend:$PYTHONPATH"
 ENV PORT=8000
 
+# Security: Disable test endpoints in production builds
+ENV TEST_MODE=false
+ENV ALLOW_TEST_LOGIN=false
+
 # Expose port
 EXPOSE 8000
 
