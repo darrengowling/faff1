@@ -87,7 +87,9 @@ export function createSocket(API_ORIGIN: string): Socket {
 
 // Utility function to get the current API origin
 export function getApiOrigin(): string {
-  return import.meta.env.VITE_BACKEND_URL || 
+  // Support both Vite and Create React App environment variables
+  return (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_BACKEND_URL) ||
+         (typeof import !== 'undefined' && import.meta?.env?.VITE_BACKEND_URL) ||
          process.env.REACT_APP_BACKEND_URL || 
          'https://leaguemate-1.preview.emergentagent.com';
 }
