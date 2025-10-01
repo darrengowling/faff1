@@ -1500,6 +1500,15 @@ function App() {
               {/* Utility routes without specific shell */}
               <Route path="/diag" element={<DiagnosticPage />} />
               
+              {/* League Join Route */}
+              <Route path="/join/:leagueId" element={
+                <RequireAuth>
+                  <AppShell>
+                    <LeagueJoin />
+                  </AppShell>
+                </RequireAuth>
+              } />
+              
               {/* 404 - Catch all unmatched routes */}
               <Route path="*" element={
                 <AppShell>
