@@ -2568,7 +2568,7 @@ async def health():
 # Include the router in the main app
 fastapi_app.include_router(api_router)
 
-# Create single ASGI wrapper - Socket.IO intercepts /api/socketio, all other routes go to FastAPI
+# Create single ASGI wrapper - Socket.IO intercepts /socket.io, all other routes go to FastAPI
 # Create ASGI app with standard Socket.IO path (no leading slash)
 app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app, socketio_path="socket.io")
 
