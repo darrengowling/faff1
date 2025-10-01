@@ -215,9 +215,48 @@ const LoginPage = () => {
     }
   };
 
-  // Render contract: synchronous rendering with all required testids visible on first paint
   return (
-    <div className="min-h-screen bg-theme-bg flex items-center justify-center p-4">
+    <div className="min-h-screen bg-theme-bg flex flex-col">
+      {/* Header with required testids for header contract */}
+      <header className="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => navigate('/')}
+                data-testid={TESTIDS.navBrand}
+                className="text-xl font-bold text-theme-text"
+              >
+                Friends of PIFA
+              </button>
+              <button
+                onClick={() => navigate('/')}
+                data-testid={TESTIDS.backToHome}
+                className="inline-flex items-center gap-2 text-sm text-theme-text-secondary hover:text-theme-text"
+              >
+                ← Back to Home
+              </button>
+            </div>
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => navigate('/login')}
+                data-testid={TESTIDS.navSignIn}
+                className="px-4 py-2 text-sm border border-theme-border rounded-md hover:bg-theme-surface-secondary"
+              >
+                Sign In
+              </button>
+              <button
+                data-testid={TESTIDS.navHamburger}
+                className="md:hidden p-2 text-theme-text rounded-md"
+              >
+                ☰
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="flex-1 flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         
         {/* Render contract: H1 with login-header testid */}
