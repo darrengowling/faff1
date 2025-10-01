@@ -451,6 +451,9 @@ class AuctionEngine:
                 end_time = lot["timer_ends_at"]
                 if isinstance(end_time, str):
                     end_time = datetime.fromisoformat(end_time.replace('Z', '+00:00'))
+                elif isinstance(end_time, datetime) and end_time.tzinfo is None:
+                    # Handle timezone-naive datetime from database
+                    end_time = end_time.replace(tzinfo=timezone.utc)
                 
                 seconds_remaining = (end_time - current_time).total_seconds()
                 # Use auction-specific anti-snipe seconds from settings
