@@ -621,8 +621,8 @@ const AuctionRoom = ({ user, token }) => {
               {/* Connection Status */}
               <ConnectionStatusIndicator 
                 status={connectionStatus}
-                reconnectAttempts={reconnectAttempts}
-                maxAttempts={maxReconnectAttempts}
+                reconnectAttempts={0}
+                maxAttempts={10}
                 className="mr-4"
               />
               
