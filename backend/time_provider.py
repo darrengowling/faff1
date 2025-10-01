@@ -85,21 +85,6 @@ def is_test_mode() -> bool:
     return time_provider.is_test_mode
 
 
-def require_test_mode():
-    """Decorator to ensure endpoints are only accessible in TEST_MODE"""
-    def decorator(func):
-        async def wrapper(*args, **kwargs):
-            if not is_test_mode():
-                from fastapi import HTTPException
-                raise HTTPException(
-                    status_code=404,
-                    detail="Endpoint not found"
-                )
-            return await func(*args, **kwargs)
-        return wrapper
-    return decorator
-
-
 def set_test_time_ms(time_ms: int) -> None:
     """Set test time (TEST_MODE only)"""
     time_provider.set_time_ms(time_ms)
