@@ -1803,7 +1803,7 @@ async def start_auction(
                 'auction_id': auction_id,
                 'started_by': current_user.id,
                 'message': 'Auction has started!'
-            }, room=f"league_{auction_id}")
+            }, room=auction_id)
             
             return {"message": "Auction started successfully", "auction_id": auction_id}
         else:
