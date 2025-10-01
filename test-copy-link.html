@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Copy Link Test</title>
+</head>
+<body>
+    <h1>Copy Invitation Link Test</h1>
+    <button id="copyBtn">Copy Invitation Link</button>
+    <p id="status"></p>
+    
+    <script>
+        const testLeagueId = "test-league-123";
+        const copyBtn = document.getElementById('copyBtn');
+        const status = document.getElementById('status');
+        
+        copyBtn.addEventListener('click', () => {
+            const invitationLink = `${window.location.origin}/join/${testLeagueId}`;
+            navigator.clipboard.writeText(invitationLink).then(() => {
+                status.textContent = `✅ Copied: ${invitationLink}`;
+                status.style.color = 'green';
+            }).catch(() => {
+                status.textContent = '❌ Failed to copy';
+                status.style.color = 'red';
+            });
+        });
+        
+        // Show what would be copied
+        status.textContent = `Will copy: ${window.location.origin}/join/${testLeagueId}`;
+    </script>
+</body>
+</html>
