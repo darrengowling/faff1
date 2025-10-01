@@ -228,17 +228,15 @@ class BiddingTestSuite:
                 "amount": 10
             }
             
-            async with self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", 
-                                       json=bid_data) as resp:
-                if resp.status == 200:
-                    data = await resp.json()
-                    bid_results.append(data)
-                    await self.log_result(f"Higher Bid - {manager2['email']}", True, 
-                                        f"Amount: {bid_data['amount']}, Success: {data.get('success', False)}")
-                else:
-                    error_text = await resp.text()
-                    await self.log_result(f"Higher Bid - {manager2['email']}", False, 
-                                        f"Status {resp.status}: {error_text}")
+            resp = self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=bid_data)
+            if resp.status_code == 200:
+                data = resp.json()
+                bid_results.append(data)
+                await self.log_result(f"Higher Bid - {manager2['email']}", True, 
+                                    f"Amount: {bid_data['amount']}, Success: {data.get('success', False)}")
+            else:
+                await self.log_result(f"Higher Bid - {manager2['email']}", False, 
+                                    f"Status {resp.status_code}: {resp.text}")
                     
             # Test invalid bid (too low)
             manager3 = self.test_users[3]
