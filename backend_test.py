@@ -23,34 +23,42 @@ from typing import Dict, List, Optional
 BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://leaguemate-1.preview.emergentagent.com')
 API_BASE = f"{BACKEND_URL}/api"
 
-class InviteCodeTester:
-    def __init__(self, base_url="https://leaguemate-1.preview.emergentagent.com"):
-        self.base_url = base_url
-        self.api_url = f"{base_url}/api"
-        self.session = requests.Session()
-        self.session.headers.update({
-            'Content-Type': 'application/json',
-            'User-Agent': 'Invite-Code-Tester/1.0'
+class BiddingTestSuite:
+    def __init__(self):
+        self.session = None
+        self.test_users = []
+        self.league_id = None
+        self.auction_id = None
+        self.current_lot_id = None
+        self.test_results = []
+        
+    async def setup_session(self):
+        """Setup HTTP session with proper headers"""
+        connector = aiohttp.TCPConnector(ssl=False)
+        timeout = aiohttp.ClientTimeout(total=30)
+        self.session = aiohttp.ClientSession(
+            connector=connector,
+            timeout=timeout,
+            headers={'Content-Type': 'application/json'}
+        )
+        
+    async def cleanup_session(self):
+        """Cleanup HTTP session"""
+        if self.session:
+            await self.session.close()
+            
+    async def log_result(self, test_name: str, success: bool, details: str = ""):
+        """Log test result"""
+        status = "✅ PASS" if success else "❌ FAIL"
+        result = f"{status}: {test_name}"
+        if details:
+            result += f" - {details}"
+        print(result)
+        self.test_results.append({
+            'test': test_name,
+            'success': success,
+            'details': details
         })
-        self.tests_run = 0
-        self.tests_passed = 0
-        self.failed_tests = []
-        
-        # Test data for Invite Code System functionality
-        timestamp = int(datetime.now().timestamp())
-        self.test_email_1 = f"invite_test_user1_{timestamp}@example.com"
-        self.test_email_2 = f"invite_test_user2_{timestamp}@example.com"
-        self.test_email_3 = f"invite_test_user3_{timestamp}@example.com"
-        self.authenticated_users = {}
-        self.created_leagues = []
-        
-    def log_test(self, name, success, details=""):
-        """Log test results"""
-        self.tests_run += 1
-        if success:
-            self.tests_passed += 1
-            print(f"✅ {name} - PASSED {details}")
-        else:
             self.failed_tests.append(f"{name}: {details}")
             print(f"❌ {name} - FAILED {details}")
         return success
