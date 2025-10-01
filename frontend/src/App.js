@@ -828,13 +828,54 @@ const LeagueManagement = ({ league, onBack }) => {
   useEffect(() => {
     fetchLeagueDataWithRetry();
     
-    // Set up periodic refresh every 10 seconds to show real-time updates
-    const refreshInterval = setInterval(() => {
-      fetchLeagueData();
-    }, 10000);
+    // Set up real-time WebSocket connection for league updates
+    const origin = import.meta.env.VITE_BACKEND_URL || 
+                   process.env.REACT_APP_BACKEND_URL || 
+                   'https://leaguemate-1.preview.emergentagent.com';
     
-    return () => clearInterval(refreshInterval);
-  }, [league.id]);
+    const socket = io(origin, {
+      path: '/api/socketio',
+      transports: ['polling', 'websocket'],
+      withCredentials: true
+    });
+
+    socket.on('connect', () => {
+      console.log('Connected to league real-time updates');
+      // Join league room for real-time updates
+      socket.emit('join_league', { 
+        league_id: league.id,
+        user_id: user.id 
+      });
+    });
+
+    socket.on('member_joined', (data) => {
+      console.log('Member joined event:', data);
+      if (data.league_id === league.id) {
+        // Refresh league data to show new member
+        fetchLeagueData();
+        toast.success(`New member joined the league!`);
+      }
+    });
+
+    socket.on('league_status_update', (data) => {
+      console.log('League status update:', data);
+      if (data.league_id === league.id) {
+        setLeagueStatus(prev => ({
+          ...prev,
+          member_count: data.member_count,
+          is_ready: data.is_ready
+        }));
+      }
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Disconnected from league updates');
+    });
+    
+    return () => {
+      socket.disconnect();
+    };
+  }, [league.id, user.id]);
 
   const fetchLeagueData = async () => {
     try {
