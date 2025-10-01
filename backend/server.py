@@ -68,16 +68,28 @@ async def connect(sid, environ, auth):
     token = auth['token']
     
     try:
-        # Validate token using existing auth system
-        from auth import get_current_user_from_token
-        user = await get_current_user_from_token(token)
-        if not user:
-            print(f"Socket.IO connection rejected - invalid token: {sid}")
+        # Validate token using JWT verification
+        from jose import JWTError, jwt
+        from auth import SECRET_KEY, ALGORITHM
+        
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id: str = payload.get("sub")
+        if user_id is None:
+            print(f"Socket.IO connection rejected - no user_id in token: {sid}")
             return False
         
-        print(f"Socket.IO client connected: {sid} (user: {user.email})")
+        # Verify user exists
+        user = await db.users.find_one({"_id": user_id})
+        if not user:
+            print(f"Socket.IO connection rejected - user not found: {sid}")
+            return False
+        
+        print(f"Socket.IO client connected: {sid} (user: {user['email']})")
         return True
         
+    except JWTError as e:
+        print(f"Socket.IO connection rejected - JWT error: {sid}, {str(e)}")
+        return False
     except Exception as e:
         print(f"Socket.IO connection rejected - auth error: {sid}, {str(e)}")
         return False
