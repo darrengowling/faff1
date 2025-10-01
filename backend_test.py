@@ -166,8 +166,11 @@ class BiddingTestSuite:
         print("\n🎯 PHASE 2: AUCTION START AND LOT RETRIEVAL")
         
         try:
-            # Start auction
-            resp = self.session.post(f"{API_BASE}/auction/{self.league_id}/start")
+            # Start auction as commissioner
+            commissioner = self.test_users[0]
+            commissioner_session = self.sessions[commissioner['email']]
+            
+            resp = commissioner_session.post(f"{API_BASE}/auction/{self.league_id}/start")
             if resp.status_code == 200:
                 data = resp.json()
                 self.auction_id = data.get('auction_id', self.league_id)  # Fallback to league_id
@@ -177,7 +180,7 @@ class BiddingTestSuite:
                 return False
                     
             # Get auction state to find current lot
-            resp = self.session.get(f"{API_BASE}/auction/{self.auction_id}/state")
+            resp = commissioner_session.get(f"{API_BASE}/auction/{self.auction_id}/state")
             if resp.status_code == 200:
                 data = resp.json()
                 current_lot = data.get('current_lot')
