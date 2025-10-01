@@ -105,29 +105,26 @@ const AuctionRoom = ({ user, token }) => {
   const [showChat, setShowChat] = useState(true);
   const [isCommissioner, setIsCommissioner] = useState(false);
 
-  // Initialize WebSocket connection
+  // Initialize WebSocket connection - consolidated single connection
   useEffect(() => {
     if (!token || !auctionId) return;
 
-    const newSocket = io(BACKEND_URL, {
-      auth: { token },
-      transports: ['websocket', 'polling']
-    });
+    console.log('Initializing Socket.IO connection for auction:', auctionId);
+    
+    // Use the same connection logic as the reconnect function
+    connectSocket();
 
-    newSocket.on('connect', () => {
-      console.log('Connected to auction server');
-      setConnected(true);
-      
-      // Join auction room
-      newSocket.emit('join_auction', { auction_id: auctionId });
-    });
+    return () => {
+      if (socket) {
+        console.log('Cleaning up socket connection');
+        socket.removeAllListeners();
+        socket.close();
+      }
+    };
+  }, [token, auctionId]);
 
-    newSocket.on('disconnect', () => {
-      console.log('Disconnected from auction server');
-      setConnected(false);
-    });
-
-    newSocket.on('auction_state', (state) => {
+  // Moved auction_state handler to connectSocket function to avoid duplication
+  const handleAuctionStateUpdate = (state) => {
       console.log('Auction state received:', state);
       setAuctionState(state);
       setManagers(state.managers || []);
