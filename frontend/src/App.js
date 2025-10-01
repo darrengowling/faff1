@@ -963,6 +963,13 @@ const LeagueManagement = ({ league, onBack }) => {
       console.log('League status updated:', statusRes.data);
       
     } catch (error) {
+      // Don't show errors for aborted requests
+      if (error.name === 'AbortError' || error.message?.includes('canceled')) {
+        return;
+      }
+      
+      if (!mountedRef.current) return;
+      
       console.error('Failed to load league data:', error);
       
       let errorMessage = 'Failed to load league data. ';
