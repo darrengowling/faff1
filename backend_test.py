@@ -121,16 +121,14 @@ class BiddingTestSuite:
                 }
             }
             
-            async with self.session.post(f"{API_BASE}/leagues", 
-                                       json=league_data) as resp:
-                if resp.status == 201:
-                    data = await resp.json()
-                    self.league_id = data['leagueId']
-                    await self.log_result("League Creation", True, f"League ID: {self.league_id}")
-                else:
-                    error_text = await resp.text()
-                    await self.log_result("League Creation", False, f"Status {resp.status}: {error_text}")
-                    return False
+            resp = self.session.post(f"{API_BASE}/leagues", json=league_data)
+            if resp.status_code == 201:
+                data = resp.json()
+                self.league_id = data['leagueId']
+                await self.log_result("League Creation", True, f"League ID: {self.league_id}")
+            else:
+                await self.log_result("League Creation", False, f"Status {resp.status_code}: {resp.text}")
+                return False
                     
             # Add other users to league
             for user in self.test_users[1:]:  # Skip commissioner
