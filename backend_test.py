@@ -58,13 +58,23 @@ class BiddingTestSuite:
     async def authenticate_user(self, email: str) -> Optional[str]:
         """Authenticate user and return user_id"""
         try:
-            resp = self.session.post(f"{API_BASE}/auth/test-login", json={"email": email})
+            # Create separate session for each user
+            session = requests.Session()
+            session.headers.update({
+                'Content-Type': 'application/json',
+                'User-Agent': 'BiddingTestSuite/1.0'
+            })
+            
+            resp = session.post(f"{API_BASE}/auth/test-login", json={"email": email})
             if resp.status_code == 200:
                 data = resp.json()
+                # Store the authenticated session
+                self.sessions[email] = session
                 await self.log_result(f"Authentication for {email}", True, f"User ID: {data['userId']}")
                 return data['userId']
             else:
                 await self.log_result(f"Authentication for {email}", False, f"Status {resp.status_code}: {resp.text}")
+                session.close()
                 return None
         except Exception as e:
             await self.log_result(f"Authentication for {email}", False, f"Exception: {str(e)}")
