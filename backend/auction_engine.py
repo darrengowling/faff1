@@ -75,11 +75,12 @@ class AuctionEngine:
                             "status": lot["status"]
                         }
                 
-                # Broadcast time sync
+                # Broadcast time sync to league room
+                league_id = self.active_auctions[auction_id]["league_id"]
                 await self.sio.emit('time_sync', {
                     'server_now': server_now.isoformat(),
                     'current_lot': current_lot
-                }, room=f"auction_{auction_id}")
+                }, room=league_id)
                 
                 await asyncio.sleep(2)  # Send every 2 seconds
                 
