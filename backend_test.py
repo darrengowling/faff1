@@ -328,8 +328,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
-    def test_environment_variables(self):
         """Test that required environment variables are properly configured"""
         # Test backend health to verify environment is working
         success, status, data = self.make_request('GET', 'health', token=None)
