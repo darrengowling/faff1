@@ -897,8 +897,21 @@ const LeagueManagement = ({ league, onBack }) => {
     
     return () => {
       socket.disconnect();
+      // Keep leagueId in sessionStorage for potential reconnection
+      // Only remove if navigating to a different league
     };
   }, [league.id, user.id]);
+  
+  // Clean up session storage when component unmounts completely
+  useEffect(() => {
+    return () => {
+      // Only clean up if we're navigating away from leagues entirely
+      const currentPath = window.location.pathname;
+      if (!currentPath.includes('/leagues/') && !currentPath.includes('/auction/')) {
+        sessionStorage.removeItem("leagueId");
+      }
+    };
+  }, []);
 
   const fetchLeagueData = async () => {
     try {
