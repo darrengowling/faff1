@@ -41,14 +41,14 @@ class AuctionEngine:
         self.time_sync_tasks: Dict[str, asyncio.Task] = {}  # auction_id -> sync_task
         
     async def start_time_sync(self, auction_id: str):
-        """Start periodic time synchronization for an auction"""
+        """Start server-authoritative clock for an auction"""
         if auction_id in self.time_sync_tasks:
             return  # Already running
         
         self.time_sync_tasks[auction_id] = asyncio.create_task(
-            self._time_sync_loop(auction_id)
+            self._authoritative_clock_loop(auction_id)
         )
-        logger.info(f"Started time sync for auction {auction_id}")
+        logger.info(f"Started authoritative clock for auction {auction_id}")
     
     async def stop_time_sync(self, auction_id: str):
         """Stop time synchronization for an auction"""
