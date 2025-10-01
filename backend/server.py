@@ -2557,7 +2557,7 @@ async def socket_config():
 @api_router.get("/socket-diag") 
 async def socketio_diagnostics():
     """Socket.IO diagnostics endpoint - GET /api/socket-diag"""
-    socket_path = '/socket.io'  # STANDARDIZED PATH
+    socket_path = '/api/socket.io'  # OVERLAY PATH
     return {
         "ok": True,
         "path": socket_path,
