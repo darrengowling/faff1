@@ -347,6 +347,9 @@ const AuctionRoom = ({ user, token }) => {
       // Set authentication token for Socket.IO
       newSocket.auth = { token };
 
+      // Store auction/league ID for reconnection
+      sessionStorage.setItem("leagueId", auctionId); // auctionId is leagueId in our system
+      
       // Connection status events
       newSocket.on('connect', () => {
         console.log('WebSocket connected');
@@ -356,6 +359,8 @@ const AuctionRoom = ({ user, token }) => {
         
         // Join auction room
         newSocket.emit('join_auction', { auction_id: auctionId });
+        newSocket.emit('join_league', { leagueId: auctionId });
+        newSocket.emit('request_sync', { leagueId: auctionId });
         
         // Set timeout for auction state loading
         setTimeout(() => {
