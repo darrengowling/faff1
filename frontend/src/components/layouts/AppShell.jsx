@@ -151,13 +151,7 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                 data-testid={TESTIDS.navBrand}
               />
               {/* Tests expect back-to-home-link testid */}
-              <button
-                onClick={() => navigate('/app')}
-                data-testid={TESTIDS.backToHome}
-                className="inline-flex items-center gap-2 text-sm text-theme-text-secondary hover:text-theme-text relative z-20"
-              >
-                ← Dashboard
-              </button>
+              {/* Removed redundant dashboard link since user is already on dashboard */}
             </div>
             
             {/* Center - Desktop Navigation */}
