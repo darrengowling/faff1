@@ -31,6 +31,16 @@ async def test_authentication():
                         cookies[cookie.key] = cookie.value
                         print(f"Cookie: {cookie.key}={cookie.value}")
                     
+                    # Also try to get cookies from headers
+                    if not cookies and 'Set-Cookie' in resp.headers:
+                        print(f"Set-Cookie header: {resp.headers['Set-Cookie']}")
+                        # Simple cookie parsing
+                        cookie_str = resp.headers['Set-Cookie']
+                        if 'access_token=' in cookie_str:
+                            token_part = cookie_str.split('access_token=')[1].split(';')[0]
+                            cookies['access_token'] = token_part
+                            print(f"Extracted access_token: {token_part[:20]}...")
+                    
                     return {
                         "success": True,
                         "user_id": result["userId"],
