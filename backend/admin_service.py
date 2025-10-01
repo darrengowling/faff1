@@ -213,7 +213,7 @@ class AdminService:
                 {
                     "$set": {
                         "current_bid": bid_amount,
-                        "current_bidder_id": bidder_id,
+                        "top_bidder_id": bidder_id,
                         "last_bid_at": datetime.now(timezone.utc)
                     }
                 }
