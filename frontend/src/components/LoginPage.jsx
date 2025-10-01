@@ -245,12 +245,7 @@ const LoginPage = () => {
               >
                 Sign In
               </button>
-              <button
-                data-testid={TESTIDS.navHamburger}
-                className="md:hidden p-2 text-theme-text rounded-md"
-              >
-                ☰
-              </button>
+              {/* Remove hamburger from login page - no mobile navigation needed */}
             </div>
           </div>
         </div>
