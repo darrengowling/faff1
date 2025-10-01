@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """
-Backend API Testing for Copy Invitation Link Functionality
+Backend API Testing Suite for League Creator App
 Testing Agent - Comprehensive Backend API Verification
 
-Focus: Copy Invitation Link functionality testing as requested in review
-- Authentication endpoints
-- League creation 
-- Direct league join via /api/leagues/{league_id}/join
-- League member verification
+Focus: Invite Code System Testing as requested in review
+- Create League with Invite Code (6-character alphanumeric)
+- Join via Invite Code (/api/leagues/join-by-code endpoint)
+- Invalid invite code handling (404)
+- Duplicate join handling (400)
+- Invite Code Uniqueness verification
+- Complete flow testing (Create → Join → Verify)
 """
 
 import requests
