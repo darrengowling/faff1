@@ -820,6 +820,9 @@ const LeagueManagement = ({ league, onBack }) => {
 
   const fetchLeagueData = async () => {
     try {
+      // Add small delay to ensure backend consistency
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
       const [membersRes, statusRes, invitationsRes] = await Promise.all([
         axios.get(`${API}/leagues/${league.id}/members`),
         axios.get(`${API}/leagues/${league.id}/status`),
@@ -829,8 +832,23 @@ const LeagueManagement = ({ league, onBack }) => {
       setMembers(membersRes.data);
       setLeagueStatus(statusRes.data);
       setInvitations(invitationsRes.data);
+      
+      // Log status for debugging
+      console.log('League status updated:', statusRes.data);
+      
     } catch (error) {
-      toast.error('Failed to load league data');
+      console.error('Failed to load league data:', error);
+      
+      let errorMessage = 'Failed to load league data. ';
+      if (error.response?.status === 404) {
+        errorMessage += 'League not found.';
+      } else if (error.code === 'NETWORK_ERROR' || !error.response) {
+        errorMessage += 'Please check your connection.';
+      } else {
+        errorMessage += 'Please try refreshing the page.';
+      }
+      
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
