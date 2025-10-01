@@ -764,6 +764,7 @@ const LeagueManagement = ({ league, onBack }) => {
   const [loading, setLoading] = useState(true);
   const [inviteEmail, setInviteEmail] = useState('');
   const [inviteLoading, setInviteLoading] = useState(false);
+  const [auctionStartLoading, setAuctionStartLoading] = useState(false);
 
   const handleStartAuction = async () => {
     if (!leagueStatus?.is_ready) return;
