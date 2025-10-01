@@ -2573,13 +2573,12 @@ async def health():
 # Include the router in the main app
 fastapi_app.include_router(api_router)
 
-# Overlay pattern: ASGIApp intercepts only /api/socket.io; everything else goes to FastAPI
-asgi_overlay = socketio.ASGIApp(
-    sio, other_asgi_app=fastapi_app, socketio_path="socket.io"  # NOTE: no leading slash
-)
+# Mount Socket.IO under /api path using FastAPI sub-application pattern
+socketio_app = socketio.ASGIApp(sio, socketio_path="socket.io")
+fastapi_app.mount("/api", socketio_app)
 
 # Entry point for uvicorn:
-app = asgi_overlay
+app = fastapi_app
 
 if __name__ == "__main__":
     import uvicorn
