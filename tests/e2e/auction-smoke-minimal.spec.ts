@@ -81,8 +81,8 @@ test.describe('Minimal Auction Smoke Test', () => {
     await commissionerPage.waitForLoadState('networkidle');
     await login(commissionerPage, USERS.commissioner.email, { mode: 'test' });
     
-    // Verify we're in dashboard
-    await expect(commissionerPage.locator('[data-testid="dashboard"]')).toBeVisible();
+    // Verify we're authenticated and on the main app page
+    await expect(commissionerPage.locator('[data-testid="create-league-btn"]')).toBeVisible();
     console.log('✅ Commissioner authenticated and in dashboard');
 
     // Step 2: Create league (page, not dialog) 
