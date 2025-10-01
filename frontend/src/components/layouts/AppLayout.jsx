@@ -94,10 +94,8 @@ const AppLayout = ({ children, showBackButton = true, pageTitle = null }) => {
                       className="flex items-center space-x-1 text-theme-text-secondary hover:text-theme-primary transition-colors focus:outline-none focus:ring-2 focus:ring-theme-primary focus:ring-offset-2 rounded px-1"
                       aria-label="Navigate to Dashboard"
                     >
-                      <Home className="w-4 h-4" />
-                      <span>Dashboard</span>
+                      <span>← Dashboard</span>
                     </button>
-                    <ChevronLeft className="w-4 h-4 text-theme-text-tertiary rotate-180" />
                   </>
                 )}
                 <span className="font-medium text-theme-text" aria-current="page">
