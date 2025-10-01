@@ -155,6 +155,7 @@ class DatabaseIndexManager:
             "settlements",
             "weeklyPoints", 
             "result_ingest",
+            "auction_logs",
             "users"
         ]
         
