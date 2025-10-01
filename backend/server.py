@@ -113,20 +113,70 @@ async def join_auction(sid, data):
 @sio.event
 async def join_league(sid, data):
     """Join league room for real-time updates"""
-    league_id = data.get('league_id')
+    league_id = data.get('leagueId') or data.get('league_id')  # Support both formats
     user_id = data.get('user_id')
+    
     if league_id:
         await sio.enter_room(sid, f"league_{league_id}")
-        await sio.emit('league_joined', {
-            'league_id': league_id, 
-            'user_id': user_id
-        }, to=sid)
+        await sio.emit('joined', {'leagueId': league_id}, to=sid)
         
-        # Notify others in the league room
-        await sio.emit('user_joined_league', {
+        logger.info(f"Client {sid} joined league room: {league_id}")
+        
+        # Notify others in the league room if user_id provided
+        if user_id:
+            await sio.emit('user_joined_league', {
+                'league_id': league_id,
+                'user_id': user_id
+            }, room=f"league_{league_id}", skip_sid=sid)
+
+@sio.event
+async def request_sync(sid, data):
+    """Request current league/auction state synchronization"""
+    league_id = data.get('leagueId') or data.get('league_id')
+    
+    if not league_id:
+        await sio.emit('sync_error', {'error': 'League ID required'}, to=sid)
+        return
+    
+    try:
+        # Get current league state
+        league = await db.leagues.find_one({"_id": league_id})
+        if not league:
+            await sio.emit('sync_error', {'error': 'League not found'}, to=sid)
+            return
+        
+        # Get league status
+        league_status = await LeagueService.get_league_status(league_id)
+        
+        # Get members
+        members = await LeagueService.get_league_members(league_id)
+        
+        # Check if auction exists and get auction state
+        auction = await db.auctions.find_one({"league_id": league_id})
+        auction_state = None
+        
+        if auction:
+            try:
+                from auction_engine import AuctionEngine
+                engine = AuctionEngine()
+                auction_state = await engine.get_auction_state(league_id)
+            except Exception as e:
+                logger.warning(f"Could not get auction state for {league_id}: {e}")
+        
+        # Build sync response
+        sync_data = {
             'league_id': league_id,
-            'user_id': user_id
-        }, room=f"league_{league_id}", skip_sid=sid)
+            'league_status': league_status.dict() if league_status else None,
+            'members': [member.dict() for member in members] if members else [],
+            'auction_state': auction_state
+        }
+        
+        await sio.emit('sync_state', sync_data, to=sid)
+        logger.info(f"Sent sync state to client {sid} for league {league_id}")
+        
+    except Exception as e:
+        logger.error(f"Error syncing state for league {league_id}: {e}")
+        await sio.emit('sync_error', {'error': 'Failed to sync state'}, to=sid)
 
 # Create FastAPI app
 fastapi_app = FastAPI(title="Friends of PIFA API", version="1.0.0")
