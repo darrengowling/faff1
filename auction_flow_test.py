@@ -524,8 +524,12 @@ class AuctionFlowTester:
             print("❌ League not ready for auction, cannot continue")
             return False
         
-        # Test 6: Start Auction
-        print("\n📋 TEST 6: Start Auction")
+        # Test 6: Setup Auction Nomination Order
+        print("\n📋 TEST 6: Setup Auction Nomination Order")
+        self.setup_auction_nomination_order()
+        
+        # Test 7: Start Auction
+        print("\n📋 TEST 7: Start Auction")
         if not self.start_auction():
             print("❌ Failed to start auction, cannot continue bidding tests")
             return False
