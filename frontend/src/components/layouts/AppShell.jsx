@@ -130,6 +130,11 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
       <header 
         className="sticky top-0 w-full bg-theme-surface/95 backdrop-blur-sm border-b border-theme-surface-border z-30"
         data-testid={TESTIDS.appHeader}
+        style={{ 
+          pointerEvents: 'auto',
+          // Ensure header doesn't block content clicks
+          position: 'sticky'
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
