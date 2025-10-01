@@ -521,7 +521,7 @@ const LeagueJoin = () => {
 
       if (!user) {
         // Redirect to login with return URL
-        navigate(`/login?redirect=${encodeURIComponent(`/join/${leagueId}`)}`);
+        navigate(`/login?next=${encodeURIComponent(`/join/${leagueId}`)}`);
         return;
       }
 
