@@ -767,19 +767,48 @@ const LeagueManagement = ({ league, onBack }) => {
   const [auctionStartLoading, setAuctionStartLoading] = useState(false);
 
   const handleStartAuction = async () => {
-    if (!leagueStatus?.is_ready) return;
+    if (!leagueStatus?.is_ready || auctionStartLoading) {
+      return;
+    }
+    
+    setAuctionStartLoading(true);
     
     try {
+      // Add explicit delay to ensure backend is ready
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      toast.info('Starting auction...');
+      
       const startResponse = await axios.post(`${API}/auction/${league.id}/start`);
+      
       if (startResponse.status === 200) {
         toast.success('Auction started successfully! Redirecting...');
-        setTimeout(() => {
-          navigate(`/auction/${league.id}`);
-        }, 1500);
+        
+        // Wait for backend to fully initialize auction
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        navigate(`/auction/${league.id}`);
+      } else {
+        throw new Error(`Unexpected status: ${startResponse.status}`);
       }
     } catch (error) {
       console.error('Start auction error:', error);
-      toast.error('Failed to start auction. Make sure league is ready.');
+      
+      let errorMessage = 'Failed to start auction. ';
+      
+      if (error.response?.status === 404) {
+        errorMessage += 'League not found. Please try refreshing the page.';
+      } else if (error.response?.status === 400) {
+        errorMessage += error.response.data?.detail || 'League not ready for auction.';
+      } else if (error.code === 'NETWORK_ERROR' || !error.response) {
+        errorMessage += 'Network error. Please check your connection and try again.';
+      } else {
+        errorMessage += 'Please try again in a moment.';
+      }
+      
+      toast.error(errorMessage);
+    } finally {
+      setAuctionStartLoading(false);
     }
   };
 
