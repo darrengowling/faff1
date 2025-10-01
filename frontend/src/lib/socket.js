@@ -9,11 +9,14 @@ function resolveSocketPath(): string {
 
 export function createSocket(API_ORIGIN: string): Socket {
   let path = resolveSocketPath();
-  console.log(`🔌 Creating Socket.IO connection to ${API_ORIGIN} with path: ${path}`);
+  const transports = (import.meta.env.VITE_SOCKET_TRANSPORTS ?? "polling,websocket").split(",");
+  
+  console.log(`🔌 Creating Socket.IO connection to ${API_ORIGIN}`);
+  console.log(`📡 Path: ${path} | Transports: ${transports.join(', ')}`);
   
   let socket: Socket = io(API_ORIGIN, {
     path,
-    transports: (import.meta.env.VITE_SOCKET_TRANSPORTS ?? "polling,websocket").split(","),
+    transports,
     withCredentials: true,
     reconnection: true,
   });
