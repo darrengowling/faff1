@@ -188,17 +188,27 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
               <IconThemeToggle className="hidden md:flex" />
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Enhanced for reliable testing */}
             <button
               onClick={() => {
-                console.log('Mobile menu toggle clicked, current state:', mobileMenuOpen);
-                setMobileMenuOpen(!mobileMenuOpen);
+                const newState = !mobileMenuOpen;
+                console.log('Mobile menu toggle clicked, current state:', mobileMenuOpen, '-> new state:', newState);
+                setMobileMenuOpen(newState);
+                
+                // Force immediate DOM update for testing reliability
+                setTimeout(() => {
+                  const drawer = document.querySelector('[data-testid="nav-mobile-drawer"]');
+                  if (drawer) {
+                    drawer.setAttribute('data-state', newState ? 'open' : 'closed');
+                  }
+                }, 0);
               }}
               className="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
-              aria-label="Toggle navigation menu"
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
               data-testid={TESTIDS.navHamburger}
+              data-state={mobileMenuOpen ? "expanded" : "collapsed"}
             >
               {mobileMenuOpen ? (
                 <X className="w-6 h-6" />
