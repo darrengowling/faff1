@@ -1683,6 +1683,14 @@ async def start_auction(
         success = await engine.start_auction(auction_id, current_user.id)
         
         if success:
+            # Emit real-time event to league room about auction start
+            await sio.emit('auction_started', {
+                'league_id': auction_id,  # auction_id is league_id in our system
+                'auction_id': auction_id,
+                'started_by': current_user.id,
+                'message': 'Auction has started!'
+            }, room=f"league_{auction_id}")
+            
             return {"message": "Auction started successfully", "auction_id": auction_id}
         else:
             raise HTTPException(status_code=400, detail="Failed to start auction")
