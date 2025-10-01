@@ -420,7 +420,7 @@ agent_communication:
 
 test_plan:
   current_focus:
-    - "Invite Code System Implementation"
+    - "Smart Socket.IO Client with Auto-Fallback Implementation"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
