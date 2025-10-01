@@ -26,7 +26,7 @@ API_BASE = f"{BACKEND_URL}/api"
 
 class BiddingTestSuite:
     def __init__(self):
-        self.session = None
+        self.sessions = {}  # email -> session mapping
         self.test_users = []
         self.league_id = None
         self.auction_id = None
