@@ -292,7 +292,8 @@ class LeagueService:
             await db.invitations.insert_one(invitation_dict)
             
             # Send invitation email (or log for development)
-            invitation_link = f"http://localhost:3000/invite?token={token}"
+            from server import FRONTEND_ORIGIN
+            invitation_link = f"{FRONTEND_ORIGIN}/invite?token={token}"
             
             # Get inviter name for email
             inviter = await db.users.find_one({"_id": inviter_id})
