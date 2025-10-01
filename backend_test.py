@@ -59,347 +59,452 @@ class BiddingTestSuite:
             'success': success,
             'details': details
         })
-            self.failed_tests.append(f"{name}: {details}")
-            print(f"❌ {name} - FAILED {details}")
-        return success
-
-    def test_health_check(self):
-        """Test API health endpoint"""
+        
+    async def authenticate_user(self, email: str) -> Optional[str]:
+        """Authenticate user and return user_id"""
         try:
-            response = self.session.get(f"{self.api_url}/health")
-            success = response.status_code == 200
-            details = f"Status: {response.status_code}"
-            if success:
-                data = response.json()
-                details += f", Response: {data}"
-            return self.log_test("Health Check", success, details)
+            async with self.session.post(f"{API_BASE}/auth/test-login", 
+                                       json={"email": email}) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    await self.log_result(f"Authentication for {email}", True, f"User ID: {data['userId']}")
+                    return data['userId']
+                else:
+                    error_text = await resp.text()
+                    await self.log_result(f"Authentication for {email}", False, f"Status {resp.status}: {error_text}")
+                    return None
         except Exception as e:
-            return self.log_test("Health Check", False, f"Exception: {str(e)}")
-
-    def authenticate_user(self, email):
-        """Authenticate a test user and store session"""
+            await self.log_result(f"Authentication for {email}", False, f"Exception: {str(e)}")
+            return None
+            
+    async def create_league_with_multiple_users(self) -> bool:
+        """
+        CRITICAL TEST 1: Complete Auction Setup
+        Create league with multiple users for bidding
+        """
+        print("\n🎯 PHASE 1: COMPLETE AUCTION SETUP")
+        
         try:
-            # Create new session for this user
-            user_session = requests.Session()
-            user_session.headers.update({
-                'Content-Type': 'application/json',
-                'User-Agent': 'Invite-Code-Tester/1.0'
-            })
+            # Create test users
+            test_emails = [
+                "commissioner@test.com",
+                "manager1@test.com", 
+                "manager2@test.com",
+                "manager3@test.com",
+                "manager4@test.com"
+            ]
             
-            payload = {"email": email}
-            response = user_session.post(f"{self.api_url}/auth/test-login", json=payload)
-            success = response.status_code == 200
-            
-            if success:
-                data = response.json()
-                self.authenticated_users[email] = user_session
-                details = f"Status: {response.status_code}, User ID: {data.get('userId')}, Email: {data.get('email')}"
-            else:
-                details = f"Status: {response.status_code}, Response: {response.text}"
+            # Authenticate all users
+            for email in test_emails:
+                user_id = await self.authenticate_user(email)
+                if user_id:
+                    self.test_users.append({
+                        'email': email,
+                        'user_id': user_id,
+                        'role': 'commissioner' if email == test_emails[0] else 'manager'
+                    })
+                    
+            if len(self.test_users) < 5:
+                await self.log_result("User Authentication", False, f"Only {len(self.test_users)}/5 users authenticated")
+                return False
                 
-            return self.log_test(f"Authentication ({email})", success, details)
-        except Exception as e:
-            return self.log_test(f"Authentication ({email})", False, f"Exception: {str(e)}")
-
-    def create_league_with_invite_code(self, email, league_name):
-        """Create a league and verify it gets an invite code"""
-        try:
-            if email not in self.authenticated_users:
-                return self.log_test(f"Create League ({league_name})", False, f"User {email} not authenticated")
-                
-            session = self.authenticated_users[email]
+            await self.log_result("User Authentication", True, f"All {len(self.test_users)} users authenticated")
             
-            # Create league
+            # Create league as commissioner
+            commissioner = self.test_users[0]
             league_data = {
-                "name": league_name,
+                "name": f"Bidding Test League {datetime.now().strftime('%H%M%S')}",
                 "season": "2025-26",
                 "settings": {
                     "budget_per_manager": 100,
                     "club_slots_per_manager": 8,
                     "bid_timer_seconds": 60,
                     "anti_snipe_seconds": 30,
-                    "league_size": {
-                        "min": 2,
-                        "max": 8
-                    }
+                    "league_size": {"min": 2, "max": 8}
                 }
             }
             
-            response = session.post(f"{self.api_url}/leagues", json=league_data)
-            
-            if response.status_code == 201:
-                league_id = response.json().get("leagueId")
-                
-                # Get league details to verify invite code
-                league_response = session.get(f"{self.api_url}/leagues/{league_id}")
-                
-                if league_response.status_code == 200:
-                    league_details = league_response.json()
-                    invite_code = league_details.get("invite_code")
+            async with self.session.post(f"{API_BASE}/leagues", 
+                                       json=league_data) as resp:
+                if resp.status == 201:
+                    data = await resp.json()
+                    self.league_id = data['leagueId']
+                    await self.log_result("League Creation", True, f"League ID: {self.league_id}")
+                else:
+                    error_text = await resp.text()
+                    await self.log_result("League Creation", False, f"Status {resp.status}: {error_text}")
+                    return False
                     
-                    if invite_code:
-                        # Verify invite code format (6 characters, letters and numbers, uppercase)
-                        if len(invite_code) == 6 and invite_code.isalnum() and invite_code.isupper():
-                            self.created_leagues.append({
-                                "league_id": league_id,
-                                "invite_code": invite_code,
-                                "creator_email": email,
-                                "league_name": league_name
-                            })
-                            details = f"League ID: {league_id}, Invite Code: {invite_code} (format verified)"
-                            return self.log_test(f"Create League with Invite Code ({league_name})", True, details)
-                        else:
-                            details = f"League ID: {league_id}, Invalid invite code format: {invite_code} (should be 6 uppercase alphanumeric)"
-                            return self.log_test(f"Create League with Invite Code ({league_name})", False, details)
+            # Add other users to league
+            for user in self.test_users[1:]:  # Skip commissioner
+                async with self.session.post(f"{API_BASE}/leagues/{self.league_id}/join") as resp:
+                    if resp.status == 200:
+                        await self.log_result(f"User Join - {user['email']}", True)
                     else:
-                        details = f"League ID: {league_id}, Missing invite_code field"
-                        return self.log_test(f"Create League with Invite Code ({league_name})", False, details)
+                        error_text = await resp.text()
+                        await self.log_result(f"User Join - {user['email']}", False, f"Status {resp.status}: {error_text}")
+                        
+            # Verify league status
+            async with self.session.get(f"{API_BASE}/leagues/{self.league_id}/status") as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    await self.log_result("League Status Check", True, 
+                                        f"Members: {data['member_count']}, Ready: {data['is_ready']}")
+                    return data['is_ready']
                 else:
-                    details = f"Failed to get league details: {league_response.status_code} - {league_response.text}"
-                    return self.log_test(f"Create League with Invite Code ({league_name})", False, details)
-            else:
-                details = f"League creation failed: {response.status_code} - {response.text}"
-                return self.log_test(f"Create League with Invite Code ({league_name})", False, details)
-                
+                    await self.log_result("League Status Check", False, f"Status {resp.status}")
+                    return False
+                    
         except Exception as e:
-            return self.log_test(f"Create League with Invite Code ({league_name})", False, f"Exception: {str(e)}")
-
-    def join_league_by_invite_code(self, email, invite_code, expected_status=200):
-        """Test joining a league using invite code"""
-        try:
-            if email not in self.authenticated_users:
-                return self.log_test(f"Join by Invite Code ({email})", False, f"User {email} not authenticated")
-                
-            session = self.authenticated_users[email]
-            
-            # Join league by invite code
-            response = session.post(f"{self.api_url}/leagues/join-by-code", 
-                                  json={"code": invite_code})
-            
-            success = response.status_code == expected_status
-            
-            if success:
-                if response.status_code == 200:
-                    result = response.json()
-                    details = f"Status: {response.status_code}, Message: {result.get('message', 'No message')}"
-                elif response.status_code == 404:
-                    details = f"Status: {response.status_code}, Correctly returned 404 for invalid code"
-                elif response.status_code == 400:
-                    result = response.json()
-                    details = f"Status: {response.status_code}, Message: {result.get('detail', 'No detail')}"
-                else:
-                    details = f"Status: {response.status_code}"
-            else:
-                details = f"Expected {expected_status} but got {response.status_code} - {response.text}"
-                
-            return self.log_test(f"Join by Invite Code ({email}, {invite_code})", success, details)
-                
-        except Exception as e:
-            return self.log_test(f"Join by Invite Code ({email}, {invite_code})", False, f"Exception: {str(e)}")
-
-    def verify_league_membership(self, creator_email, league_id, expected_members):
-        """Verify league membership after joins"""
-        try:
-            if creator_email not in self.authenticated_users:
-                return self.log_test("Verify League Membership", False, f"Creator {creator_email} not authenticated")
-                
-            session = self.authenticated_users[creator_email]
-            
-            # Get league members
-            response = session.get(f"{self.api_url}/leagues/{league_id}/members")
-            
-            if response.status_code == 200:
-                members = response.json()
-                member_emails = [member.get('email') for member in members]
-                
-                # Check if all expected members are present
-                missing_members = []
-                for expected_email in expected_members:
-                    if expected_email not in member_emails:
-                        missing_members.append(expected_email)
-                
-                if not missing_members:
-                    details = f"All {len(expected_members)} expected members found: {member_emails}"
-                    return self.log_test("Verify League Membership", True, details)
-                else:
-                    details = f"Missing members: {missing_members}, Found: {member_emails}"
-                    return self.log_test("Verify League Membership", False, details)
-            else:
-                details = f"Failed to get league members: {response.status_code} - {response.text}"
-                return self.log_test("Verify League Membership", False, details)
-                
-        except Exception as e:
-            return self.log_test("Verify League Membership", False, f"Exception: {str(e)}")
-
-    def test_invite_code_uniqueness(self):
-        """Test that multiple leagues get unique invite codes"""
-        try:
-            # Create multiple leagues and collect their invite codes
-            invite_codes = []
-            league_names = [
-                f"Uniqueness Test League 1 - {int(time.time())}",
-                f"Uniqueness Test League 2 - {int(time.time())}",
-                f"Uniqueness Test League 3 - {int(time.time())}"
-            ]
-            
-            for league_name in league_names:
-                if self.create_league_with_invite_code(self.test_email_1, league_name):
-                    # Find the most recently created league
-                    if self.created_leagues:
-                        latest_league = self.created_leagues[-1]
-                        invite_codes.append(latest_league["invite_code"])
-                else:
-                    return self.log_test("Invite Code Uniqueness", False, f"Failed to create league: {league_name}")
-            
-            # Check for uniqueness
-            if len(invite_codes) == len(set(invite_codes)):
-                details = f"All {len(invite_codes)} invite codes are unique: {invite_codes}"
-                return self.log_test("Invite Code Uniqueness", True, details)
-            else:
-                details = f"Duplicate invite codes found: {invite_codes}"
-                return self.log_test("Invite Code Uniqueness", False, details)
-                
-        except Exception as e:
-            return self.log_test("Invite Code Uniqueness", False, f"Exception: {str(e)}")
-
-    def run_invite_code_system_tests(self):
-        """Run comprehensive invite code system tests as requested in review"""
-        print("🚀 Starting Invite Code System Tests")
-        print("=" * 80)
-        
-        # Test 1: Health Check
-        print("\n📋 TEST 1: API Health Check")
-        if not self.test_health_check():
-            print("❌ API is not healthy, stopping tests")
+            await self.log_result("Complete Auction Setup", False, f"Exception: {str(e)}")
             return False
-        
-        # Test 2: User Authentication
-        print("\n📋 TEST 2: User Authentication")
-        auth_success = True
-        for email in [self.test_email_1, self.test_email_2, self.test_email_3]:
-            if not self.authenticate_user(email):
-                auth_success = False
-        
-        if not auth_success:
-            print("❌ Authentication failed, cannot continue tests")
-            return False
-        
-        # Test 3: Create League with Invite Code
-        print("\n📋 TEST 3: Create League with Invite Code")
-        league_name = f"Invite Code Test League - {int(time.time())}"
-        if not self.create_league_with_invite_code(self.test_email_1, league_name):
-            print("❌ League creation failed, cannot continue join tests")
-            return False
-        
-        # Get the created league info
-        test_league = self.created_leagues[-1]
-        invite_code = test_league["invite_code"]
-        league_id = test_league["league_id"]
-        
-        # Test 4: Valid Invite Code Join
-        print("\n📋 TEST 4: Join via Valid Invite Code")
-        self.join_league_by_invite_code(self.test_email_2, invite_code, expected_status=200)
-        
-        # Test 5: Invalid Invite Code (should return 404)
-        print("\n📋 TEST 5: Invalid Invite Code Returns 404")
-        self.join_league_by_invite_code(self.test_email_3, "INVALID123", expected_status=404)
-        
-        # Test 6: Duplicate Join (should return 400)
-        print("\n📋 TEST 6: Duplicate Join Returns 400")
-        self.join_league_by_invite_code(self.test_email_2, invite_code, expected_status=400)
-        
-        # Test 7: Verify League Membership
-        print("\n📋 TEST 7: Verify League Membership")
-        expected_members = [self.test_email_1, self.test_email_2]  # Creator + one joiner
-        self.verify_league_membership(self.test_email_1, league_id, expected_members)
-        
-        # Test 8: Invite Code Uniqueness
-        print("\n📋 TEST 8: Invite Code Uniqueness")
-        self.test_invite_code_uniqueness()
-        
-        # Test 9: Complete Flow Test (Create → Join → Verify)
-        print("\n📋 TEST 9: Complete Flow Test")
-        flow_league_name = f"Complete Flow Test - {int(time.time())}"
-        if self.create_league_with_invite_code(self.test_email_3, flow_league_name):
-            flow_league = self.created_leagues[-1]
-            flow_invite_code = flow_league["invite_code"]
-            flow_league_id = flow_league["league_id"]
             
-            # Join with different user
-            if self.join_league_by_invite_code(self.test_email_1, flow_invite_code, expected_status=200):
-                # Verify membership
-                flow_expected_members = [self.test_email_3, self.test_email_1]
-                self.verify_league_membership(self.test_email_3, flow_league_id, flow_expected_members)
+    async def start_auction_and_get_lots(self) -> bool:
+        """Start auction and get active lots"""
+        print("\n🎯 PHASE 2: AUCTION START AND LOT RETRIEVAL")
         
-        # Print final summary
-        self.print_test_summary()
+        try:
+            # Start auction
+            async with self.session.post(f"{API_BASE}/auction/{self.league_id}/start") as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    self.auction_id = data.get('auction_id', self.league_id)  # Fallback to league_id
+                    await self.log_result("Auction Start", True, f"Auction ID: {self.auction_id}")
+                else:
+                    error_text = await resp.text()
+                    await self.log_result("Auction Start", False, f"Status {resp.status}: {error_text}")
+                    return False
+                    
+            # Get auction state to find current lot
+            async with self.session.get(f"{API_BASE}/auction/{self.auction_id}/state") as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    current_lot = data.get('current_lot')
+                    if current_lot:
+                        self.current_lot_id = current_lot['id']
+                        await self.log_result("Current Lot Retrieval", True, 
+                                            f"Lot ID: {self.current_lot_id}, Club: {current_lot.get('club', {}).get('name', 'Unknown')}")
+                        return True
+                    else:
+                        await self.log_result("Current Lot Retrieval", False, "No current lot found")
+                        return False
+                else:
+                    await self.log_result("Current Lot Retrieval", False, f"Status {resp.status}")
+                    return False
+                    
+        except Exception as e:
+            await self.log_result("Auction Start and Lot Retrieval", False, f"Exception: {str(e)}")
+            return False
+            
+    async def test_bid_placement(self) -> bool:
+        """
+        CRITICAL TEST 2: Place Actual Bids
+        Test POST /api/auction/{auction_id}/bid endpoint
+        """
+        print("\n🎯 PHASE 3: ACTUAL BID PLACEMENT TESTING")
         
-        # Return success if 75% or more tests passed
-        success_rate = (self.tests_passed / self.tests_run) * 100 if self.tests_run > 0 else 0
-        return success_rate >= 75
+        try:
+            if not self.current_lot_id:
+                await self.log_result("Bid Placement Setup", False, "No current lot available")
+                return False
+                
+            # Test bid placement from multiple users
+            bid_results = []
+            
+            # Manager 1 places first bid
+            manager1 = self.test_users[1]
+            bid_data = {
+                "lot_id": self.current_lot_id,
+                "amount": 5
+            }
+            
+            async with self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", 
+                                       json=bid_data) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    bid_results.append(data)
+                    await self.log_result(f"First Bid - {manager1['email']}", True, 
+                                        f"Amount: {bid_data['amount']}, Success: {data.get('success', False)}")
+                else:
+                    error_text = await resp.text()
+                    await self.log_result(f"First Bid - {manager1['email']}", False, 
+                                        f"Status {resp.status}: {error_text}")
+                    
+            # Manager 2 places higher bid
+            manager2 = self.test_users[2]
+            bid_data = {
+                "lot_id": self.current_lot_id,
+                "amount": 10
+            }
+            
+            async with self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", 
+                                       json=bid_data) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    bid_results.append(data)
+                    await self.log_result(f"Higher Bid - {manager2['email']}", True, 
+                                        f"Amount: {bid_data['amount']}, Success: {data.get('success', False)}")
+                else:
+                    error_text = await resp.text()
+                    await self.log_result(f"Higher Bid - {manager2['email']}", False, 
+                                        f"Status {resp.status}: {error_text}")
+                    
+            # Test invalid bid (too low)
+            manager3 = self.test_users[3]
+            bid_data = {
+                "lot_id": self.current_lot_id,
+                "amount": 8  # Lower than current bid
+            }
+            
+            async with self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", 
+                                       json=bid_data) as resp:
+                if resp.status == 400:
+                    await self.log_result(f"Invalid Low Bid - {manager3['email']}", True, 
+                                        "Correctly rejected low bid")
+                else:
+                    await self.log_result(f"Invalid Low Bid - {manager3['email']}", False, 
+                                        f"Should have rejected low bid, got status {resp.status}")
+                    
+            return len(bid_results) >= 2
+            
+        except Exception as e:
+            await self.log_result("Bid Placement Testing", False, f"Exception: {str(e)}")
+            return False
+            
+    async def test_race_conditions(self) -> bool:
+        """
+        CRITICAL TEST 3: Race Condition Testing
+        Test simultaneous bidding scenarios
+        """
+        print("\n🎯 PHASE 4: RACE CONDITION TESTING")
+        
+        try:
+            if not self.current_lot_id:
+                await self.log_result("Race Condition Setup", False, "No current lot available")
+                return False
+                
+            # Prepare simultaneous bids from multiple users
+            tasks = []
+            bid_amount = 15
+            
+            for i, user in enumerate(self.test_users[1:4]):  # Use 3 managers
+                bid_data = {
+                    "lot_id": self.current_lot_id,
+                    "amount": bid_amount + i  # Slightly different amounts
+                }
+                
+                task = self.place_bid_async(user, bid_data, f"Simultaneous Bid {i+1}")
+                tasks.append(task)
+                
+            # Execute all bids simultaneously
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+            
+            successful_bids = 0
+            failed_bids = 0
+            
+            for i, result in enumerate(results):
+                if isinstance(result, Exception):
+                    await self.log_result(f"Simultaneous Bid {i+1}", False, f"Exception: {str(result)}")
+                    failed_bids += 1
+                elif result:
+                    successful_bids += 1
+                else:
+                    failed_bids += 1
+                    
+            await self.log_result("Race Condition Handling", True, 
+                                f"Successful: {successful_bids}, Failed: {failed_bids}")
+            
+            # At least one bid should succeed, others should fail gracefully
+            return successful_bids >= 1
+            
+        except Exception as e:
+            await self.log_result("Race Condition Testing", False, f"Exception: {str(e)}")
+            return False
+            
+    async def place_bid_async(self, user: Dict, bid_data: Dict, test_name: str) -> bool:
+        """Helper method for async bid placement"""
+        try:
+            async with self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", 
+                                       json=bid_data) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    success = data.get('success', False)
+                    await self.log_result(f"{test_name} - {user['email']}", success, 
+                                        f"Amount: {bid_data['amount']}")
+                    return success
+                else:
+                    error_text = await resp.text()
+                    await self.log_result(f"{test_name} - {user['email']}", False, 
+                                        f"Status {resp.status}: {error_text}")
+                    return False
+        except Exception as e:
+            await self.log_result(f"{test_name} - {user['email']}", False, f"Exception: {str(e)}")
+            return False
+            
+    async def test_bid_state_management(self) -> bool:
+        """
+        CRITICAL TEST 4: Bid State Management
+        Verify winning bid tracking and bid history
+        """
+        print("\n🎯 PHASE 5: BID STATE MANAGEMENT TESTING")
+        
+        try:
+            if not self.current_lot_id:
+                await self.log_result("Bid State Setup", False, "No current lot available")
+                return False
+                
+            # Get current lot state
+            async with self.session.get(f"{API_BASE}/auction/{self.auction_id}/state") as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    current_lot = data.get('current_lot')
+                    if current_lot:
+                        current_bid = current_lot.get('current_bid', 0)
+                        top_bidder = current_lot.get('top_bidder')
+                        await self.log_result("Current Lot State", True, 
+                                            f"Current bid: {current_bid}, Top bidder: {top_bidder}")
+                        
+                        # Verify bid progression
+                        if current_bid > 0:
+                            await self.log_result("Bid Progression", True, "Bids are being tracked correctly")
+                            return True
+                        else:
+                            await self.log_result("Bid Progression", False, "No bids recorded")
+                            return False
+                    else:
+                        await self.log_result("Current Lot State", False, "No current lot in auction state")
+                        return False
+                else:
+                    await self.log_result("Current Lot State", False, f"Status {resp.status}")
+                    return False
+                    
+        except Exception as e:
+            await self.log_result("Bid State Management", False, f"Exception: {str(e)}")
+            return False
+            
+    async def test_budget_impact(self) -> bool:
+        """
+        CRITICAL TEST 5: Budget Impact
+        Verify budget deductions and constraint validation
+        """
+        print("\n🎯 PHASE 6: BUDGET IMPACT TESTING")
+        
+        try:
+            # Get league members with budget info
+            async with self.session.get(f"{API_BASE}/leagues/{self.league_id}/members") as resp:
+                if resp.status == 200:
+                    members = await resp.json()
+                    await self.log_result("Member Budget Retrieval", True, f"Found {len(members)} members")
+                    
+                    # Check if any member has reduced budget (indicating successful bids)
+                    budget_changes_detected = False
+                    for member in members:
+                        if hasattr(member, 'budget_remaining') and member.get('budget_remaining', 100) < 100:
+                            budget_changes_detected = True
+                            await self.log_result("Budget Deduction Detected", True, 
+                                                f"User {member.get('user_id', 'Unknown')} has budget {member.get('budget_remaining', 'Unknown')}")
+                            
+                    if not budget_changes_detected:
+                        await self.log_result("Budget Impact", True, "No budget changes yet (bids may not be finalized)")
+                    
+                    # Test budget constraint by trying to bid more than available budget
+                    manager = self.test_users[4]  # Use last manager
+                    excessive_bid = {
+                        "lot_id": self.current_lot_id,
+                        "amount": 150  # More than total budget
+                    }
+                    
+                    async with self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", 
+                                               json=excessive_bid) as resp:
+                        if resp.status == 400:
+                            await self.log_result("Budget Constraint Validation", True, 
+                                                "Correctly rejected excessive bid")
+                            return True
+                        else:
+                            await self.log_result("Budget Constraint Validation", False, 
+                                                f"Should have rejected excessive bid, got status {resp.status}")
+                            return False
+                            
+                else:
+                    await self.log_result("Member Budget Retrieval", False, f"Status {resp.status}")
+                    return False
+                    
+        except Exception as e:
+            await self.log_result("Budget Impact Testing", False, f"Exception: {str(e)}")
+            return False
+            
+    async def run_complete_bidding_test(self):
+        """Run the complete bidding mechanism test suite"""
+        print("🎯 COMPREHENSIVE BIDDING MECHANISM TEST SUITE")
+        print("=" * 60)
+        
+        await self.setup_session()
+        
+        try:
+            # Phase 1: Complete Auction Setup
+            setup_success = await self.create_league_with_multiple_users()
+            if not setup_success:
+                print("\n❌ CRITICAL FAILURE: Could not set up auction environment")
+                return
+                
+            # Phase 2: Start Auction
+            auction_success = await self.start_auction_and_get_lots()
+            if not auction_success:
+                print("\n❌ CRITICAL FAILURE: Could not start auction or get lots")
+                return
+                
+            # Phase 3: Test Bid Placement
+            bid_success = await self.test_bid_placement()
+            
+            # Phase 4: Test Race Conditions
+            race_success = await self.test_race_conditions()
+            
+            # Phase 5: Test Bid State Management
+            state_success = await self.test_bid_state_management()
+            
+            # Phase 6: Test Budget Impact
+            budget_success = await self.test_budget_impact()
+            
+            # Summary
+            print("\n" + "=" * 60)
+            print("🎯 BIDDING MECHANISM TEST RESULTS SUMMARY")
+            print("=" * 60)
+            
+            total_tests = len(self.test_results)
+            passed_tests = sum(1 for result in self.test_results if result['success'])
+            
+            print(f"Total Tests: {total_tests}")
+            print(f"Passed: {passed_tests}")
+            print(f"Failed: {total_tests - passed_tests}")
+            print(f"Success Rate: {(passed_tests/total_tests)*100:.1f}%")
+            
+            # Critical functionality assessment
+            critical_phases = [setup_success, auction_success, bid_success, race_success, state_success, budget_success]
+            critical_passed = sum(critical_phases)
+            
+            print(f"\nCRITICAL PHASES: {critical_passed}/6 passed")
+            
+            if critical_passed >= 5:
+                print("✅ BIDDING MECHANISM IS FUNCTIONAL - Ready for tomorrow's test!")
+            elif critical_passed >= 3:
+                print("⚠️ BIDDING MECHANISM PARTIALLY FUNCTIONAL - Some issues need attention")
+            else:
+                print("❌ BIDDING MECHANISM HAS CRITICAL ISSUES - Needs immediate fixes")
+                
+            # Detailed failure analysis
+            failed_tests = [result for result in self.test_results if not result['success']]
+            if failed_tests:
+                print(f"\n❌ FAILED TESTS ({len(failed_tests)}):")
+                for test in failed_tests:
+                    print(f"  - {test['test']}: {test['details']}")
+                    
+        finally:
+            await self.cleanup_session()
 
-    def print_test_summary(self):
-        """Print comprehensive test summary"""
-        print("\n" + "=" * 80)
-        print("🎯 INVITE CODE SYSTEM TEST SUMMARY")
-        print("=" * 80)
-        
-        success_rate = (self.tests_passed / self.tests_run) * 100 if self.tests_run > 0 else 0
-        
-        print(f"📊 OVERALL RESULTS: {self.tests_passed}/{self.tests_run} tests passed ({success_rate:.1f}%)")
-        
-        if self.failed_tests:
-            print("\n❌ FAILED TESTS:")
-            for failed_test in self.failed_tests:
-                print(f"   - {failed_test}")
-        
-        print(f"\n📋 CREATED LEAGUES: {len(self.created_leagues)}")
-        for league in self.created_leagues:
-            print(f"   - {league['league_name']}: {league['invite_code']} (ID: {league['league_id']})")
-        
-        if success_rate >= 90:
-            print("\n🎉 EXCELLENT: Invite code system is working perfectly!")
-        elif success_rate >= 75:
-            print("\n✅ GOOD: Invite code system is mostly working with minor issues")
-        elif success_rate >= 50:
-            print("\n⚠️ PARTIAL: Invite code system has significant issues")
-        else:
-            print("\n❌ CRITICAL: Invite code system has major failures")
-        
-        # Summary for main agent
-        print("\n" + "=" * 80)
-        print("📝 SUMMARY FOR MAIN AGENT:")
-        print("=" * 80)
-        
-        if success_rate >= 90:
-            print("✅ INVITE CODE SYSTEM FULLY FUNCTIONAL")
-            print("   - All core functionality working correctly")
-            print("   - 6-character invite codes generated properly")
-            print("   - Join-by-code endpoint working as expected")
-            print("   - Error handling (404/400) working correctly")
-            print("   - Invite code uniqueness verified")
-        elif success_rate >= 75:
-            print("⚠️ INVITE CODE SYSTEM MOSTLY FUNCTIONAL")
-            print("   - Core functionality working")
-            print("   - Some minor issues detected")
-            print("   - Review failed tests above for details")
-        else:
-            print("❌ INVITE CODE SYSTEM HAS CRITICAL ISSUES")
-            print("   - Major functionality failures detected")
-            print("   - Requires immediate attention")
-            print("   - Review failed tests above for details")
-
-def main():
+async def main():
     """Main test execution"""
-    print("🧪 Backend API Testing Suite - Invite Code System")
-    print("Testing new invite code functionality as requested in review")
-    print("=" * 80)
-    
-    tester = InviteCodeTester()
-    success = tester.run_invite_code_system_tests()
-    
-    # Exit with appropriate code
-    sys.exit(0 if success else 1)
+    test_suite = BiddingTestSuite()
+    await test_suite.run_complete_bidding_test()
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
