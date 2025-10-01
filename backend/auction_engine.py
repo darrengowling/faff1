@@ -718,10 +718,7 @@ class AuctionEngine:
                 "status": "open"
             })
             
-            if current_lot and current_lot.get("timer_ends_at"):
-                self.auction_timers[current_lot["_id"]] = asyncio.create_task(
-                    self._lot_timer(auction_id, current_lot["_id"], current_lot["timer_ends_at"])
-                )
+            # Timer is handled by authoritative clock loop
             
             # Broadcast resume to league room
             league_id = self.active_auctions[auction_id]["league_id"]
