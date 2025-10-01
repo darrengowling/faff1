@@ -185,7 +185,7 @@ class BiddingTestSuite:
                 data = resp.json()
                 current_lot = data.get('current_lot')
                 if current_lot:
-                    self.current_lot_id = current_lot['id']
+                    self.current_lot_id = current_lot.get('id')
                     await self.log_result("Current Lot Retrieval", True, 
                                         f"Lot ID: {self.current_lot_id}, Club: {current_lot.get('club', {}).get('name', 'Unknown')}")
                     return True
@@ -193,7 +193,7 @@ class BiddingTestSuite:
                     await self.log_result("Current Lot Retrieval", False, "No current lot found")
                     return False
             else:
-                await self.log_result("Current Lot Retrieval", False, f"Status {resp.status_code}")
+                await self.log_result("Current Lot Retrieval", False, f"Status {resp.status_code}: {resp.text}")
                 return False
                     
         except Exception as e:
