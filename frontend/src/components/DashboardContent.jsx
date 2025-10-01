@@ -16,6 +16,8 @@ import {
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+
+const API = import.meta.env.VITE_BACKEND_URL || process.env.REACT_APP_BACKEND_URL;
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
 import { useAuth } from '../App';
