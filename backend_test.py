@@ -34,17 +34,13 @@ class BiddingTestSuite:
         self.test_results = []
         
     async def setup_session(self):
-        """Setup HTTP session with proper headers"""
-        self.session = requests.Session()
-        self.session.headers.update({
-            'Content-Type': 'application/json',
-            'User-Agent': 'BiddingTestSuite/1.0'
-        })
+        """Setup HTTP sessions - will be created per user"""
+        pass
         
     async def cleanup_session(self):
-        """Cleanup HTTP session"""
-        if self.session:
-            self.session.close()
+        """Cleanup HTTP sessions"""
+        for session in self.sessions.values():
+            session.close()
             
     async def log_result(self, test_name: str, success: bool, details: str = ""):
         """Log test result"""
