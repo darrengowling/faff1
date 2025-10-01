@@ -35,18 +35,16 @@ class BiddingTestSuite:
         
     async def setup_session(self):
         """Setup HTTP session with proper headers"""
-        connector = aiohttp.TCPConnector(ssl=False)
-        timeout = aiohttp.ClientTimeout(total=30)
-        self.session = aiohttp.ClientSession(
-            connector=connector,
-            timeout=timeout,
-            headers={'Content-Type': 'application/json'}
-        )
+        self.session = requests.Session()
+        self.session.headers.update({
+            'Content-Type': 'application/json',
+            'User-Agent': 'BiddingTestSuite/1.0'
+        })
         
     async def cleanup_session(self):
         """Cleanup HTTP session"""
         if self.session:
-            await self.session.close()
+            self.session.close()
             
     async def log_result(self, test_name: str, success: bool, details: str = ""):
         """Log test result"""
