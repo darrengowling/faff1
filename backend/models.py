@@ -67,6 +67,7 @@ class League(BaseModel):
     settings: LeagueSettings = Field(default_factory=LeagueSettings)
     status: str = "setup"  # setup, ready, active, completed
     member_count: int = 1  # Commissioner is always first member
+    invite_code: Optional[str] = None  # 6-character invite code for joining
     created_at: datetime = Field(default_factory=utc_now)
     
     class Config:
