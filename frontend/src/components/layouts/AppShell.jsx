@@ -242,9 +242,8 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                   </Button>
                 )}
                 
-                {/* Breadcrumb */}
-                <div className="flex items-center space-x-2 text-sm">
-                  <ChevronLeft className="w-4 h-4 text-gray-400" />
+                {/* Page Title */}
+                <div className="flex items-center text-sm">
                   <span className="font-medium text-gray-900" data-testid={TESTIDS.breadcrumbCurrent}>
                     {breadcrumb}
                   </span>
