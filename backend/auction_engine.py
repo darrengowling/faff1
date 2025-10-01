@@ -593,11 +593,12 @@ class AuctionEngine:
                     self._lot_timer(auction_id, current_lot["_id"], current_lot["timer_ends_at"])
                 )
             
-            # Broadcast resume
+            # Broadcast resume to league room
+            league_id = self.active_auctions[auction_id]["league_id"]
             await self.sio.emit('auction_resumed', {
                 "auction_id": auction_id,
                 "message": "Auction resumed by commissioner"
-            }, room=f"auction_{auction_id}")
+            }, room=league_id)
             
             logger.info(f"Auction {auction_id} resumed by commissioner {commissioner_id}")
             return True
