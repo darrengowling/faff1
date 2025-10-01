@@ -275,10 +275,10 @@ const LeagueCreationForm = ({
         <Separator />
 
         {/* League Settings */}
-        <div className="space-y-4">
+        <div className="space-y-6">
           <h4 className="font-medium text-gray-900">League Settings</h4>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-3">
               <Label htmlFor="budget">Budget per Manager (£)</Label>
               <TestableInput
                 id="budget"
@@ -292,7 +292,7 @@ const LeagueCreationForm = ({
                 }}
                 loading={submitting}
                 aria-describedby={errors.budget ? "budget-error" : undefined}
-                className={errors.budget ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
+                className={`${errors.budget ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''} py-3 px-4`}
                 data-testid={TESTIDS.createBudget}
               />
               {errors.budget && (
@@ -302,7 +302,7 @@ const LeagueCreationForm = ({
               )}
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-3">
               <Label htmlFor="slots">Club Slots per Manager</Label>
               <TestableInput
                 id="slots"
@@ -316,7 +316,7 @@ const LeagueCreationForm = ({
                 }}
                 loading={submitting}
                 aria-describedby={errors.slots ? "slots-error" : undefined}
-                className={errors.slots ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
+                className={`${errors.slots ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''} py-3 px-4`}
                 data-testid={TESTIDS.createSlots}
               />
               {errors.slots && (
