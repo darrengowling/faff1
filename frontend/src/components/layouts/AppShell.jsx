@@ -329,7 +329,20 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
 
                   {/* Mobile Navigation Items */}
                   <div className="py-4">
-                    {/* Removed redundant mobile dashboard link since user is already on dashboard */}
+                    {/* Mobile My Leagues Navigation */}
+                    {user && (
+                      <button
+                        onClick={() => {
+                          navigate('/app');
+                          setTimeout(() => {
+                            setMobileMenuOpen(false);
+                          }, 150);
+                        }}
+                        className="w-full text-left px-0 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+                      >
+                        My Leagues
+                      </button>
+                    )}
                     
                     <MobileNavigation onItemClick={(item) => {
                       console.log('Mobile navigation item clicked:', item);
