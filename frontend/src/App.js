@@ -834,9 +834,10 @@ const LeagueManagement = ({ league, onBack }) => {
                    'https://leaguemate-1.preview.emergentagent.com';
     
     const socket = io(origin, {
-      path: '/api/socketio',
-      transports: ['polling', 'websocket'],
-      withCredentials: true
+      path: '/socket.io',  // STANDARDIZED TO DEFAULT SOCKET.IO PATH
+      transports: ['websocket', 'polling'],
+      withCredentials: true,
+      reconnection: true
     });
 
     socket.on('connect', () => {
