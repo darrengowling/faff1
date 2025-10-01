@@ -62,16 +62,14 @@ class BiddingTestSuite:
     async def authenticate_user(self, email: str) -> Optional[str]:
         """Authenticate user and return user_id"""
         try:
-            async with self.session.post(f"{API_BASE}/auth/test-login", 
-                                       json={"email": email}) as resp:
-                if resp.status == 200:
-                    data = await resp.json()
-                    await self.log_result(f"Authentication for {email}", True, f"User ID: {data['userId']}")
-                    return data['userId']
-                else:
-                    error_text = await resp.text()
-                    await self.log_result(f"Authentication for {email}", False, f"Status {resp.status}: {error_text}")
-                    return None
+            resp = self.session.post(f"{API_BASE}/auth/test-login", json={"email": email})
+            if resp.status_code == 200:
+                data = resp.json()
+                await self.log_result(f"Authentication for {email}", True, f"User ID: {data['userId']}")
+                return data['userId']
+            else:
+                await self.log_result(f"Authentication for {email}", False, f"Status {resp.status_code}: {resp.text}")
+                return None
         except Exception as e:
             await self.log_result(f"Authentication for {email}", False, f"Exception: {str(e)}")
             return None
