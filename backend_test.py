@@ -384,43 +384,42 @@ class BiddingTestSuite:
         
         try:
             # Get league members with budget info
-            async with self.session.get(f"{API_BASE}/leagues/{self.league_id}/members") as resp:
-                if resp.status == 200:
-                    members = await resp.json()
-                    await self.log_result("Member Budget Retrieval", True, f"Found {len(members)} members")
-                    
-                    # Check if any member has reduced budget (indicating successful bids)
-                    budget_changes_detected = False
-                    for member in members:
-                        if hasattr(member, 'budget_remaining') and member.get('budget_remaining', 100) < 100:
-                            budget_changes_detected = True
-                            await self.log_result("Budget Deduction Detected", True, 
-                                                f"User {member.get('user_id', 'Unknown')} has budget {member.get('budget_remaining', 'Unknown')}")
-                            
-                    if not budget_changes_detected:
-                        await self.log_result("Budget Impact", True, "No budget changes yet (bids may not be finalized)")
-                    
-                    # Test budget constraint by trying to bid more than available budget
-                    manager = self.test_users[4]  # Use last manager
-                    excessive_bid = {
-                        "lot_id": self.current_lot_id,
-                        "amount": 150  # More than total budget
-                    }
-                    
-                    async with self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", 
-                                               json=excessive_bid) as resp:
-                        if resp.status == 400:
-                            await self.log_result("Budget Constraint Validation", True, 
-                                                "Correctly rejected excessive bid")
-                            return True
-                        else:
-                            await self.log_result("Budget Constraint Validation", False, 
-                                                f"Should have rejected excessive bid, got status {resp.status}")
-                            return False
-                            
+            resp = self.session.get(f"{API_BASE}/leagues/{self.league_id}/members")
+            if resp.status_code == 200:
+                members = resp.json()
+                await self.log_result("Member Budget Retrieval", True, f"Found {len(members)} members")
+                
+                # Check if any member has reduced budget (indicating successful bids)
+                budget_changes_detected = False
+                for member in members:
+                    if hasattr(member, 'budget_remaining') and member.get('budget_remaining', 100) < 100:
+                        budget_changes_detected = True
+                        await self.log_result("Budget Deduction Detected", True, 
+                                            f"User {member.get('user_id', 'Unknown')} has budget {member.get('budget_remaining', 'Unknown')}")
+                        
+                if not budget_changes_detected:
+                    await self.log_result("Budget Impact", True, "No budget changes yet (bids may not be finalized)")
+                
+                # Test budget constraint by trying to bid more than available budget
+                manager = self.test_users[4]  # Use last manager
+                excessive_bid = {
+                    "lot_id": self.current_lot_id,
+                    "amount": 150  # More than total budget
+                }
+                
+                resp = self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=excessive_bid)
+                if resp.status_code == 400:
+                    await self.log_result("Budget Constraint Validation", True, 
+                                        "Correctly rejected excessive bid")
+                    return True
                 else:
-                    await self.log_result("Member Budget Retrieval", False, f"Status {resp.status}")
+                    await self.log_result("Budget Constraint Validation", False, 
+                                        f"Should have rejected excessive bid, got status {resp.status_code}")
                     return False
+                        
+            else:
+                await self.log_result("Member Budget Retrieval", False, f"Status {resp.status_code}")
+                return False
                     
         except Exception as e:
             await self.log_result("Budget Impact Testing", False, f"Exception: {str(e)}")
