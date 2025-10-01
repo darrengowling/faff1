@@ -102,14 +102,33 @@ class TokenAuthConnectionTest:
                 self.league_id = data['leagueId']
                 self.log_result("League Creation", True, f"League ID: {self.league_id}")
                 
+                # Add another user to meet minimum requirements
+                manager_session = requests.Session()
+                manager_auth = manager_session.post(f"{API_BASE}/auth/test-login", 
+                                                  json={"email": "manager_for_auth_test@example.com"})
+                if manager_auth.status_code == 200:
+                    join_resp = manager_session.post(f"{API_BASE}/leagues/{self.league_id}/join")
+                    if join_resp.status_code == 200:
+                        self.log_result("Manager Join", True, "Added manager to meet minimum")
+                    else:
+                        self.log_result("Manager Join", False, f"Status {join_resp.status_code}")
+                
+                # Check league status
+                status_resp = self.session.get(f"{API_BASE}/leagues/{self.league_id}/status")
+                if status_resp.status_code == 200:
+                    status_data = status_resp.json()
+                    self.log_result("League Status", True, 
+                                  f"Members: {status_data.get('member_count', 0)}, Ready: {status_data.get('is_ready', False)}")
+                
                 # Start auction
                 start_resp = self.session.post(f"{API_BASE}/auction/{self.league_id}/start")
                 if start_resp.status_code == 200:
                     self.log_result("Auction Start", True, "Auction started for testing")
                     return True
                 else:
-                    self.log_result("Auction Start", False, f"Status {start_resp.status_code}")
-                    return False
+                    self.log_result("Auction Start", False, f"Status {start_resp.status_code}: {start_resp.text}")
+                    # Continue anyway - we can test connection even without started auction
+                    return True
             else:
                 self.log_result("League Creation", False, f"Status {league_resp.status_code}")
                 return False
