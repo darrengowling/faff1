@@ -136,7 +136,7 @@ SCHEMAS = {
                 "_id": {"bsonType": "string"},
                 "auction_id": {"bsonType": "string"},
                 "club_id": {"bsonType": "string"},
-                "status": {"bsonType": "string", "enum": ["pending", "open", "sold", "unsold"]},
+                "status": {"bsonType": "string", "enum": ["pending", "open", "going_once", "going_twice", "sold", "unsold"]},
                 "nominated_by": {"bsonType": ["string", "null"]},
                 "order_index": {"bsonType": "int", "minimum": 0},
                 "current_bid": {"bsonType": "int", "minimum": 0},
