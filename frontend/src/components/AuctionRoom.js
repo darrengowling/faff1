@@ -112,7 +112,7 @@ const AuctionRoom = ({ user, token }) => {
     console.log('Initializing Socket.IO connection for auction:', auctionId);
     
     // Use the same connection logic as the reconnect function
-    connectSocket();
+    connectWebSocket();
 
     return () => {
       if (socket) {
