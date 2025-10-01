@@ -342,7 +342,7 @@ const AuctionRoom = ({ user, token }) => {
       const origin = process.env.REACT_APP_BACKEND_URL || 
                      'https://leaguemate-1.preview.emergentagent.com';
                        
-      const path = '/socket.io';  // STANDARD SOCKET.IO PATH - INGRESS CONFIGURED
+      const path = '/api/socket.io';  // OVERLAY PATTERN - USES EXISTING /api/* ROUTING
       const transports = ['websocket', 'polling'];
       
       console.log(`Socket.IO connecting to: ${origin} with path: ${path}, transports: ${transports}`);
