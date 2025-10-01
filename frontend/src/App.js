@@ -1115,7 +1115,7 @@ const LeagueManagement = ({ league, onBack }) => {
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => navigator.clipboard.writeText(`${window.location.origin}/join/${league._id}`)}
+                          onClick={() => navigator.clipboard.writeText(`${window.location.origin}/join/${league.id}`)}
                           data-testid={TESTIDS.inviteCopyButton}
                         >
                           <Copy className="w-3 h-3" />
