@@ -449,34 +449,50 @@ async def leave_auction(sid, data):
 
 @sio.event
 async def place_bid(sid, data):
-    """Place bid through WebSocket"""
+    """Place bid through WebSocket with race-safety and replay-safety"""
     try:
         if sid not in user_sessions:
+            await sio.emit('bid_result', {"success": False, "error": "Not authenticated"}, room=sid)
             return {"success": False, "error": "Not authenticated"}
         
         user = user_sessions[sid]["user"]
         auction_id = data.get("auction_id")
         lot_id = data.get("lot_id")
         amount = data.get("amount")
+        op_id = data.get("opId")  # Operation ID for replay safety
         
         if not all([auction_id, lot_id, amount]):
-            return {"success": False, "error": "Missing required fields"}
+            error_result = {"success": False, "error": "Missing required fields"}
+            await sio.emit('bid_result', error_result, room=sid)
+            return error_result
         
         if not isinstance(amount, int) or amount <= 0:
-            return {"success": False, "error": "Invalid bid amount"}
+            error_result = {"success": False, "error": "Invalid bid amount"}
+            await sio.emit('bid_result', error_result, room=sid)
+            return error_result
+            
+        # Generate opId if not provided by client
+        if not op_id:
+            import uuid
+            op_id = str(uuid.uuid4())
         
-        # Place bid through auction engine
+        # Place bid through race-safe auction engine
         engine = get_auction_engine()
-        result = await engine.place_bid(auction_id, lot_id, user.id, amount)
+        result = await engine.place_bid(auction_id, lot_id, user.id, amount, op_id)
         
-        # Send individual response
+        # Send individual response to caller
         await sio.emit('bid_result', result, room=sid)
+        
+        # If successful and not a replay, bid_update was already broadcasted by auction engine
+        # If error, only send to caller (already done above)
         
         return result
         
     except Exception as e:
         logger.error(f"Place bid error: {e}")
-        return {"success": False, "error": str(e)}
+        error_result = {"success": False, "error": str(e)}
+        await sio.emit('bid_result', error_result, room=sid)
+        return error_result
 
 @sio.event
 async def send_chat_message(sid, data):
