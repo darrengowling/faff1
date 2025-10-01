@@ -135,39 +135,9 @@ async def request_sync(sid, data):
         return
     
     try:
-        # Get current league state
-        league = await db.leagues.find_one({"_id": league_id})
-        if not league:
-            await sio.emit('sync_error', {'error': 'League not found'}, to=sid)
-            return
-        
-        # Get league status
-        league_status = await LeagueService.get_league_status(league_id)
-        
-        # Get members
-        members = await LeagueService.get_league_members(league_id)
-        
-        # Check if auction exists and get auction state
-        auction = await db.auctions.find_one({"league_id": league_id})
-        auction_state = None
-        
-        if auction:
-            try:
-                from auction_engine import AuctionEngine
-                engine = AuctionEngine()
-                auction_state = await engine.get_auction_state(league_id)
-            except Exception as e:
-                logger.warning(f"Could not get auction state for {league_id}: {e}")
-        
-        # Build sync response
-        sync_data = {
-            'league_id': league_id,
-            'league_status': league_status.dict() if league_status else None,
-            'members': [member.dict() for member in members] if members else [],
-            'auction_state': auction_state
-        }
-        
-        await sio.emit('sync_state', sync_data, to=sid)
+        # Get sync state using the auction service
+        state = await get_sync_state(league_id)
+        await sio.emit("sync_state", state, room=sid)
         logger.info(f"Sent sync state to client {sid} for league {league_id}")
         
     except Exception as e:
