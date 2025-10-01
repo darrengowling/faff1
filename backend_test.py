@@ -34,10 +34,13 @@ class InviteCodeTester:
         self.tests_passed = 0
         self.failed_tests = []
         
-        # Test data for Copy Invitation Link functionality
+        # Test data for Invite Code System functionality
         timestamp = int(datetime.now().timestamp())
-        self.commissioner_email = f"commissioner-{timestamp}@example.com"
-        self.join_user_email = f"join-user-{timestamp}@example.com"
+        self.test_email_1 = f"invite_test_user1_{timestamp}@example.com"
+        self.test_email_2 = f"invite_test_user2_{timestamp}@example.com"
+        self.test_email_3 = f"invite_test_user3_{timestamp}@example.com"
+        self.authenticated_users = {}
+        self.created_leagues = []
         
     def log_test(self, name, success, details=""):
         """Log test results"""
