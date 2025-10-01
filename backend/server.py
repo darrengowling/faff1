@@ -56,9 +56,31 @@ sio = socketio.AsyncServer(async_mode="asgi", cors_allowed_origins=[FRONTEND_ORI
 
 # Socket.IO event handlers
 @sio.event
-async def connect(sid, environ):
-    """Handle client connection"""
-    print(f"Socket.IO client connected: {sid}")
+async def connect(sid, environ, auth):
+    """Handle client connection with authentication"""
+    print(f"Socket.IO client connecting: {sid}")
+    
+    # Validate authentication token
+    if not auth or 'token' not in auth:
+        print(f"Socket.IO connection rejected - no token: {sid}")
+        return False
+    
+    token = auth['token']
+    
+    try:
+        # Validate token using existing auth system
+        from auth import get_current_user_from_token
+        user = await get_current_user_from_token(token)
+        if not user:
+            print(f"Socket.IO connection rejected - invalid token: {sid}")
+            return False
+        
+        print(f"Socket.IO client connected: {sid} (user: {user.email})")
+        return True
+        
+    except Exception as e:
+        print(f"Socket.IO connection rejected - auth error: {sid}, {str(e)}")
+        return False
 
 @sio.event
 async def disconnect(sid):
