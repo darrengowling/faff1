@@ -833,22 +833,27 @@ const LeagueManagement = ({ league, onBack }) => {
   useEffect(() => {
     fetchLeagueDataWithRetry();
     
-    // Set up real-time WebSocket connection for league updates
+    // Set up real-time WebSocket connection for league updates with proper cleanup
     const { socket, joinAndSync } = createSocket(getApiOrigin());
+    
+    // Create new abort controller for this effect
+    abortControllerRef.current = new AbortController();
     
     // Join league room and sync state
     joinAndSync(league.id);
 
-    socket.on('member_joined', (data) => {
+    // Define event handlers with mounted guard
+    const onMemberJoined = (data) => {
+      if (!mountedRef.current) return;
       console.log('Member joined event:', data);
       if (data.league_id === league.id) {
-        // Refresh league data to show new member
         fetchLeagueData();
         toast.success(`New member joined the league!`);
       }
-    });
+    };
 
-    socket.on('league_status_update', (data) => {
+    const onLeagueStatusUpdate = (data) => {
+      if (!mountedRef.current) return;
       console.log('League status update:', data);
       if (data.league_id === league.id) {
         setLeagueStatus(prev => ({
@@ -857,42 +862,77 @@ const LeagueManagement = ({ league, onBack }) => {
           is_ready: data.is_ready
         }));
       }
-    });
+    };
 
-    socket.on('auction_started', (data) => {
+    const onAuctionStarted = (data) => {
+      if (!mountedRef.current) return;
       console.log('Auction started event:', data);
       if (data.league_id === league.id) {
         toast.success('Auction has started! Redirecting...');
         setTimeout(() => {
-          navigate(`/auction/${league.id}`);
+          if (mountedRef.current) {
+            navigate(`/auction/${league.id}`);
+          }
         }, 1500);
       }
-    });
+    };
 
-    socket.on('sync_state', (state) => {
+    const onSyncState = (state) => {
+      if (!mountedRef.current) return;
       console.log('League sync state received:', state);
       if (state.league_id === league.id) {
-        // Update league state from sync
         if (state.members) setMembers(state.members);
         if (state.league_status) setLeagueStatus(state.league_status);
         if (state.invitations) setInvitations(state.invitations);
         
         toast.success('League state synchronized');
       }
-    });
+    };
 
-    socket.on('joined', (data) => {
+    const onJoined = (data) => {
+      if (!mountedRef.current) return;
       console.log('Successfully joined league room:', data);
-    });
+    };
 
-    socket.on('disconnect', () => {
+    const onDisconnect = () => {
+      if (!mountedRef.current) return;
       console.log('Disconnected from league updates');
-    });
+    };
+
+    // Register event handlers
+    socket.on('member_joined', onMemberJoined);
+    socket.on('league_status_update', onLeagueStatusUpdate);
+    socket.on('auction_started', onAuctionStarted);
+    socket.on('sync_state', onSyncState);
+    socket.on('joined', onJoined);
+    socket.on('disconnect', onDisconnect);
     
     return () => {
+      // Mark component as unmounted
+      mountedRef.current = false;
+      
+      // Abort any ongoing fetch requests
+      abortControllerRef.current.abort();
+      
+      // Remove specific event listeners
+      socket.off('member_joined', onMemberJoined);
+      socket.off('league_status_update', onLeagueStatusUpdate);
+      socket.off('auction_started', onAuctionStarted);
+      socket.off('sync_state', onSyncState);
+      socket.off('joined', onJoined);
+      socket.off('disconnect', onDisconnect);
+      
+      // Clean up socket connection
       socket.disconnect();
     };
   }, [league.id, user.id]);
+
+  // Cleanup on component unmount
+  useEffect(() => {
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
 
   const fetchLeagueData = async () => {
     try {
