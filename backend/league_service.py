@@ -175,6 +175,18 @@ class LeagueService:
                 default_settings = league_data.settings
                 logger.info(f"Using explicit settings provided by commissioner")
             
+            # Generate unique invite code
+            import random
+            import string
+            
+            def generate_invite_code():
+                return ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+            
+            # Ensure invite code is unique
+            invite_code = generate_invite_code()
+            while await db.leagues.find_one({"invite_code": invite_code}):
+                invite_code = generate_invite_code()
+            
             # Create league with enhanced settings
             league = League(
                 name=league_data.name,
@@ -185,6 +197,7 @@ class LeagueService:
                 member_count=1
             )
             league_dict = league.dict(by_alias=True)
+            league_dict["invite_code"] = invite_code  # Add invite code to league
             
             # Sequential operations (no transaction)
             await db.leagues.insert_one(league_dict)
