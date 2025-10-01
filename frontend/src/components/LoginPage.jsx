@@ -229,13 +229,7 @@ const LoginPage = () => {
               >
                 Friends of PIFA
               </button>
-              <button
-                onClick={() => navigate('/')}
-                data-testid={TESTIDS.backToHome}
-                className="inline-flex items-center gap-2 text-sm text-theme-text-secondary hover:text-theme-text"
-              >
-                ← Back to Home
-              </button>
+              {/* Removed back to home button - not needed on login page */}
             </div>
             <div className="flex items-center space-x-3">
               <button
