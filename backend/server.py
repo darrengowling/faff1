@@ -1207,9 +1207,11 @@ async def place_test_bid(request: dict):
             detail="User not found"
         )
     
-    # Place bid using auction engine
+    # Place bid using auction engine with race-safety
     auction_engine = get_auction_engine()
-    result = await auction_engine.place_bid(league_id, user["_id"], amount)
+    import uuid
+    op_id = str(uuid.uuid4())  # Generate unique operation ID for test bid
+    result = await auction_engine.place_bid(league_id, None, user["_id"], amount, op_id)  # lot_id will be resolved in engine
     
     if not result.get("success"):
         raise HTTPException(
