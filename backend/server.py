@@ -1295,6 +1295,33 @@ async def create_league(
         logger.info(f"[{request_id}] {payload_summary} - success leagueId={league_response.id}")
         return response_data
         
+    except ValueError as ve:
+        # Handle duplicate league name and other validation errors
+        if "already exists" in str(ve):
+            if TEST_MODE:
+                logger.info(f"🧪 LEAGUES.CREATE: {{'requestId': '{request_id}', 'step': 'error', 'code': 'DUPLICATE_NAME'}}")
+            logger.warning(f"[{request_id}] {payload_summary} - error.code=DUPLICATE_NAME")
+            raise HTTPException(
+                status_code=400,
+                detail={
+                    "code": "DUPLICATE_NAME",
+                    "field": "name",
+                    "message": str(ve)
+                }
+            )
+        else:
+            # Other ValueError instances
+            if TEST_MODE:
+                logger.info(f"🧪 LEAGUES.CREATE: {{'requestId': '{request_id}', 'step': 'error', 'code': 'VALIDATION_ERROR'}}")
+            logger.warning(f"[{request_id}] {payload_summary} - error.code=VALIDATION_ERROR - {str(ve)}")
+            raise HTTPException(
+                status_code=400,
+                detail={
+                    "code": "VALIDATION_ERROR",
+                    "message": str(ve)
+                }
+            )
+        
     except HTTPException as he:
         # Structured logging: error step for HTTP exceptions
         if TEST_MODE:
