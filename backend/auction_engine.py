@@ -431,47 +431,7 @@ class AuctionEngine:
         except Exception as e:
             logger.error(f"Failed to start next lot: {e}")
     
-    async def _lot_timer(self, auction_id: str, lot_id: str, timer_ends_at: datetime):
-        """Timer for individual lot with going once/twice states"""
-        try:
-            # Wait until 6 seconds before end
-            wait_time = (timer_ends_at - now()).total_seconds() - 6
-            if wait_time > 0:
-                await asyncio.sleep(wait_time)
-            
-            # Check if lot is still open (might have been extended)
-            lot = await db.lots.find_one({"_id": lot_id})
-            if not lot or lot["status"] != "open":
-                return
-            
-            # Going once (3 seconds)
-            await db.lots.update_one(
-                {"_id": lot_id},
-                {"$set": {"status": "going_once"}}
-            )
-            await self._broadcast_lot_update(auction_id, lot_id)
-            await asyncio.sleep(3)
-            
-            # Check again
-            lot = await db.lots.find_one({"_id": lot_id})
-            if not lot or lot["status"] != "going_once":
-                return
-            
-            # Going twice (3 seconds)
-            await db.lots.update_one(
-                {"_id": lot_id},
-                {"$set": {"status": "going_twice"}}
-            )
-            await self._broadcast_lot_update(auction_id, lot_id)
-            await asyncio.sleep(3)
-            
-            # Final check and close lot
-            await self._close_lot(auction_id, lot_id)
-            
-        except asyncio.CancelledError:
-            logger.info(f"Timer cancelled for lot {lot_id}")
-        except Exception as e:
-            logger.error(f"Timer error for lot {lot_id}: {e}")
+    # Legacy _lot_timer method removed - replaced with server-authoritative clock
     
     async def _close_lot(self, auction_id: str, lot_id: str):
         """Close lot and process sale atomically"""
