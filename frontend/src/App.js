@@ -904,9 +904,19 @@ const LeagueManagement = ({ league, onBack }) => {
 
   return (
     <div 
-      className="space-y-6" 
+      className={`space-y-6 ${auctionStartLoading ? 'relative' : ''}`}
       {...(leagueStatus && members.length > 0 && { 'data-testid': TESTIDS.lobbyReady })}
     >
+      {/* Auction Start Loading Overlay */}
+      {auctionStartLoading && (
+        <div className="absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center z-50 rounded-lg">
+          <div className="text-center">
+            <RefreshCw className="w-8 h-8 animate-spin text-blue-600 mx-auto mb-2" />
+            <p className="text-lg font-medium text-gray-900">Starting Auction...</p>
+            <p className="text-sm text-gray-600">Please wait while we initialize the auction</p>
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
