@@ -261,21 +261,25 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
         </div>
       </header>
 
-      {/* Mobile Drawer - Always present with explicit contract */}
+      {/* Mobile Drawer - Enhanced state management for testing */}
       <div 
         className="md:hidden fixed inset-0 z-40"
-        onClick={() => setMobileMenuOpen(false)}
+        onClick={() => {
+          console.log('Mobile drawer backdrop clicked, closing menu');
+          setMobileMenuOpen(false);
+        }}
         aria-hidden={!mobileMenuOpen}
+        data-visible={mobileMenuOpen ? "true" : "false"}
         style={{ 
           paddingTop: '64px',
           pointerEvents: mobileMenuOpen ? 'auto' : 'none',
           visibility: mobileMenuOpen ? 'visible' : 'hidden',
           opacity: mobileMenuOpen ? 1 : 0,
-          transition: 'opacity 0.3s ease-in-out'
+          transition: 'opacity 0.2s ease-in-out'
         }}
       >
         <div 
-          className="drawer-backdrop absolute inset-0"
+          className="drawer-backdrop absolute inset-0 bg-black/20"
           style={{ 
             pointerEvents: 'none' // Backdrop visual only
           }}
@@ -289,10 +293,11 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
           data-testid={TESTIDS.mobileDrawer}
           data-state={mobileMenuOpen ? "open" : "closed"}
           data-count={String(mobileItemCount)}
+          data-menu-open={mobileMenuOpen ? "true" : "false"}
           style={{ 
             pointerEvents: 'auto',
             transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
-            transition: 'transform 0.3s ease-in-out'
+            transition: 'transform 0.2s ease-in-out'
           }}
         >
                 <div className="p-4">
