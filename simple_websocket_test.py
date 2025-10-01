@@ -27,9 +27,12 @@ async def test_authentication():
                     
                     # Extract cookies
                     cookies = {}
-                    for cookie in resp.cookies:
-                        cookies[cookie.key] = cookie.value
-                        print(f"Cookie: {cookie.key}={cookie.value}")
+                    try:
+                        for cookie in resp.cookies:
+                            cookies[cookie.key] = cookie.value
+                            print(f"Cookie: {cookie.key}={cookie.value}")
+                    except Exception as cookie_error:
+                        print(f"Cookie extraction error: {cookie_error}")
                     
                     # Also try to get cookies from headers
                     if not cookies and 'Set-Cookie' in resp.headers:
