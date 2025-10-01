@@ -244,7 +244,6 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                 
                 {/* Breadcrumb */}
                 <div className="flex items-center space-x-2 text-sm">
-                  <Home className="w-4 h-4 text-gray-400" />
                   <ChevronLeft className="w-4 h-4 text-gray-400" />
                   <span className="font-medium text-gray-900" data-testid={TESTIDS.breadcrumbCurrent}>
                     {breadcrumb}
