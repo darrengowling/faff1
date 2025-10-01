@@ -46,11 +46,16 @@ ANTI_SNIPE_SECONDS = int(os.getenv("ANTI_SNIPE_SECONDS", str(DEFAULT_ANTI_SNIPE)
 # Legacy compatibility
 IS_TEST_MODE = os.getenv("PLAYWRIGHT_TEST") == "true" or TEST_MODE
 
-# Socket.IO ASGI wrapper configuration - STANDARDIZED TO DEFAULT PATH
+# Socket.IO configuration for /api/socket.io overlay pattern
 FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://localhost:3000")
 
-# Create Socket.IO server with default configuration
-sio = socketio.AsyncServer(async_mode="asgi", cors_allowed_origins=[FRONTEND_ORIGIN])
+# Create Socket.IO server with proper configuration
+sio = socketio.AsyncServer(
+    async_mode="asgi",
+    cors_allowed_origins=[FRONTEND_ORIGIN],  # exact origin in preview
+    ping_interval=25, 
+    ping_timeout=60,
+)
 
 # Socket.IO event handlers
 @sio.event
