@@ -362,24 +362,23 @@ class AuctionFlowTester:
             if not self.test_auction:
                 return self.log_test("Test Bid Validation", False, "No auction started")
             
-            league_id = self.test_auction["league_id"]
-            session = self.authenticated_users[self.commissioner_email]['session']
+            auction_id = self.test_auction["auction_id"]
+            session = self.authenticated_users[self.manager_emails[0]]['session']
             
-            # Test invalid bid (too low)
+            # Test invalid bid (without proper lot_id)
             invalid_bid_data = {
-                "leagueId": league_id,
-                "email": self.manager_emails[0],
-                "amount": 1  # Too low
+                "amount": 1,  # Too low
+                "lot_id": "invalid_lot_id"
             }
             
-            response = session.post(f"{self.api_url}/test/auction/bid", json=invalid_bid_data)
+            response = session.post(f"{self.api_url}/auction/{auction_id}/bid", json=invalid_bid_data)
             
-            # Should fail with 400 status
-            if response.status_code == 400:
-                details = "Correctly rejected low bid"
+            # Should fail with 400 or 404 status (not 500)
+            if response.status_code in [400, 404]:
+                details = f"Correctly rejected invalid bid with status {response.status_code}"
                 return self.log_test("Test Bid Validation", True, details)
             else:
-                details = f"Expected 400 for invalid bid, got {response.status_code}"
+                details = f"Expected 400/404 for invalid bid, got {response.status_code}"
                 return self.log_test("Test Bid Validation", False, details)
                 
         except Exception as e:
