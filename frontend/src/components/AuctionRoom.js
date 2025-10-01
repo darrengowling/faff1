@@ -506,6 +506,32 @@ const AuctionRoom = ({ user, token }) => {
         toast.success('Auction completed!');
       });
 
+      newSocket.on('sync_state', (state) => {
+        console.log('Auction sync state received:', state);
+        
+        // Update auction state from sync
+        if (state.auction_state) {
+          setAuctionState(state.auction_state);
+          setCurrentLot(state.auction_state.current_lot);
+          setTimeRemaining(state.auction_state.time_remaining || 0);
+          setAuctionStatus(state.auction_state.status);
+          setManagers(state.auction_state.managers || []);
+          
+          // Find user's budget and slots
+          const userManager = state.auction_state.managers?.find(m => m.user_id === user.id);
+          if (userManager) {
+            setUserBudget(userManager.budget_remaining);
+            setUserSlots(userManager.club_slots);
+          }
+        }
+        
+        toast.success('Auction state synchronized');
+      });
+
+      newSocket.on('joined', (data) => {
+        console.log('Successfully joined auction room:', data);
+      });
+
       // Heartbeat system
       const heartbeatInterval = setInterval(() => {
         if (newSocket.connected) {
