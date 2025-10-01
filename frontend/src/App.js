@@ -972,7 +972,16 @@ const LeagueManagement = ({ league, onBack }) => {
           {isCommissioner && (
             <div className="mb-6">
               <TestableButton
-                onClick={() => (leagueStatus?.is_ready && !auctionStartLoading) ? handleStartAuction() : null}
+                onClick={() => {
+                  // Ensure all data is loaded and league is truly ready
+                  if (leagueStatus?.is_ready && 
+                      !auctionStartLoading && 
+                      !loading && 
+                      members.length >= (leagueStatus?.min_members || 2) &&
+                      league.id) {
+                    handleStartAuction();
+                  }
+                }}
                 className={`w-full transition-all duration-200 ${
                   auctionStartLoading 
                     ? 'bg-blue-600 cursor-wait' 
