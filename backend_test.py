@@ -312,19 +312,24 @@ class BiddingTestSuite:
     async def place_bid_async(self, user: Dict, bid_data: Dict, test_name: str) -> bool:
         """Helper method for async bid placement"""
         try:
-            async with self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", 
-                                       json=bid_data) as resp:
-                if resp.status == 200:
-                    data = await resp.json()
-                    success = data.get('success', False)
-                    await self.log_result(f"{test_name} - {user['email']}", success, 
-                                        f"Amount: {bid_data['amount']}")
-                    return success
-                else:
-                    error_text = await resp.text()
-                    await self.log_result(f"{test_name} - {user['email']}", False, 
-                                        f"Status {resp.status}: {error_text}")
-                    return False
+            # Use executor to run synchronous requests in async context
+            loop = asyncio.get_event_loop()
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                resp = await loop.run_in_executor(
+                    executor, 
+                    lambda: self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=bid_data)
+                )
+                
+            if resp.status_code == 200:
+                data = resp.json()
+                success = data.get('success', False)
+                await self.log_result(f"{test_name} - {user['email']}", success, 
+                                    f"Amount: {bid_data['amount']}")
+                return success
+            else:
+                await self.log_result(f"{test_name} - {user['email']}", False, 
+                                    f"Status {resp.status_code}: {resp.text}")
+                return False
         except Exception as e:
             await self.log_result(f"{test_name} - {user['email']}", False, f"Exception: {str(e)}")
             return False
