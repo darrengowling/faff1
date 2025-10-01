@@ -326,7 +326,7 @@ const LeagueCreationForm = ({
               )}
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-3">
               <Label htmlFor="minIncrement">Min Bid Increment</Label>
               <Input
                 id="minIncrement"
@@ -335,10 +335,11 @@ const LeagueCreationForm = ({
                 max="10"
                 value={formData.settings.min_increment}
                 onChange={(e) => updateSettings('min_increment', e.target.value)}
+                className="py-3 px-4"
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-3">
               <Label htmlFor="bidTimer">Bid Timer (seconds)</Label>
               <Input
                 id="bidTimer"
@@ -347,10 +348,11 @@ const LeagueCreationForm = ({
                 max="300"
                 value={formData.settings.bid_timer_seconds}
                 onChange={(e) => updateSettings('bid_timer_seconds', e.target.value)}
+                className="py-3 px-4"
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-3">
               <Label htmlFor="minManagers">Min Managers</Label>
               <Input
                 id="minManagers"
@@ -366,7 +368,7 @@ const LeagueCreationForm = ({
                   clearError('min');
                 }}
                 aria-describedby={errors.min ? "min-error" : undefined}
-                className={errors.min ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
+                className={`${errors.min ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''} py-3 px-4`}
                 data-testid={TESTIDS.createMin}
               />
               {errors.min && (
