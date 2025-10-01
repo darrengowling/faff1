@@ -383,8 +383,19 @@ const AuctionRoom = ({ user, token }) => {
       });
 
       newSocket.on('connect_error', (error) => {
-        console.log('WebSocket connection error:', error);
+        console.error('WebSocket connection error:', error);
         setConnected(false);
+        
+        // Check if this is an authentication error
+        if (error.description?.includes('Authentication failed') || 
+            error.message?.includes('403') ||
+            error.type === 'TransportError' && error.description?.includes('403')) {
+          console.error('Authentication failed for Socket.IO connection');
+          setConnectionStatus('error');
+          toast.error('Authentication failed. Please refresh the page and log in again.');
+          return;
+        }
+        
         setConnectionStatus('reconnecting');
         attemptReconnect();
       });
