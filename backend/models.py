@@ -87,6 +87,7 @@ class LeagueResponse(BaseModel):
     settings: LeagueSettings
     status: str
     member_count: int
+    invite_code: Optional[str] = None  # 6-character invite code for joining
     created_at: datetime
 
 # Invitation Models
