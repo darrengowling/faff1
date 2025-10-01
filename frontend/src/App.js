@@ -187,7 +187,7 @@ const Login = () => {
         
         // Add redirect parameter if present
         const urlParams = new URLSearchParams(location.search);
-        const redirectTo = urlParams.get('redirect');
+        const redirectTo = urlParams.get('next') || urlParams.get('redirect');
         if (redirectTo) {
           const url = new URL(magicLinkUrl);
           url.searchParams.set('redirect', redirectTo);
