@@ -651,12 +651,17 @@ class AuctionEngine:
                         {"$set": {"timer_ends_at": new_end_time}}
                     )
                     
-                    # Cancel and restart timer
-                    if lot_id in self.auction_timers:
-                        self.auction_timers[lot_id].cancel()
-                        self.auction_timers[lot_id] = asyncio.create_task(
-                            self._lot_timer(auction_id, lot_id, new_end_time)
-                        )
+                    # Emit anti-snipe event to all clients in league room
+                    await self.sio.emit('anti_snipe', {
+                        'new_endsAt': new_end_time.isoformat(),
+                        'extended_by_ms': extension_seconds * 1000,
+                        'lot_id': lot_id,
+                        'trigger_bid': {
+                            'bidder_id': bidder_id,
+                            'amount': amount
+                        },
+                        'threshold_seconds': anti_snipe_threshold
+                    }, room=league_id)
             
             # Broadcast real-time update to league room
             league_id = auction_data["league_id"]
