@@ -933,18 +933,35 @@ const LeagueManagement = ({ league, onBack }) => {
           {isCommissioner && (
             <div className="mb-6">
               <TestableButton
-                onClick={() => leagueStatus?.is_ready ? handleStartAuction() : null}
-                className={`w-full ${leagueStatus?.is_ready 
-                  ? 'bg-green-600 hover:bg-green-700' 
-                  : 'bg-gray-400 cursor-not-allowed'}`}
+                onClick={() => (leagueStatus?.is_ready && !auctionStartLoading) ? handleStartAuction() : null}
+                className={`w-full transition-all duration-200 ${
+                  auctionStartLoading 
+                    ? 'bg-blue-600 cursor-wait' 
+                    : leagueStatus?.is_ready 
+                      ? 'bg-green-600 hover:bg-green-700 active:bg-green-800' 
+                      : 'bg-gray-400 cursor-not-allowed'
+                }`}
                 data-testid={TESTIDS.startAuction}
-                disabled={!leagueStatus?.is_ready}
-                title={!leagueStatus?.is_ready ? 
-                  `Cannot start auction - need minimum ${leagueStatus?.min_members || 2} members (currently ${leagueStatus?.member_count || 0})` : 
-                  'Start the auction now'}
+                disabled={!leagueStatus?.is_ready || auctionStartLoading}
+                title={
+                  auctionStartLoading 
+                    ? 'Starting auction...'
+                    : !leagueStatus?.is_ready 
+                      ? `Cannot start auction - need minimum ${leagueStatus?.min_members || 2} members (currently ${leagueStatus?.member_count || 0})` 
+                      : 'Start the auction now'
+                }
               >
-                <Play className="w-4 h-4 mr-2" />
-                Start Auction
+                {auctionStartLoading ? (
+                  <>
+                    <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                    Starting Auction...
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-4 h-4 mr-2" />
+                    Start Auction
+                  </>
+                )}
               </TestableButton>
             </div>
           )}
