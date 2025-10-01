@@ -84,9 +84,9 @@ class AuctionSystemFixTest:
         try:
             # Create league with multiple users first
             test_emails = [
-                "commissioner@schema.test",
-                "manager1@schema.test", 
-                "manager2@schema.test"
+                "commissioner@example.com",
+                "manager1@example.com", 
+                "manager2@example.com"
             ]
             
             # Authenticate users
