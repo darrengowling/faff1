@@ -323,10 +323,11 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
                       {/* Simplified mobile navigation - direct to dashboard */}
                       <button
                         onClick={() => {
+                          console.log('Mobile dashboard navigation clicked');
                           navigate('/app');
-                          setMobileMenuOpen(false);
+                          setTimeout(() => setMobileMenuOpen(false), 100);
                         }}
-                        className="block py-2 px-0 text-theme-text-secondary hover:text-theme-text font-medium"
+                        className="block py-2 px-0 text-theme-text-secondary hover:text-theme-text font-medium w-full text-left"
                         data-testid="nav-mobile-home-link"
                       >
                         ← Dashboard
