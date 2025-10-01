@@ -326,7 +326,7 @@ class AuctionEngine:
                             
                             # GUARDRAIL: Roster capacity check at lot close
                             capacity_valid, capacity_error = await AdminService.validate_roster_capacity(
-                                lot["leading_bidder_id"], league_id
+                                lot["top_bidder_id"], league_id
                             )
                             
                             if not capacity_valid:
