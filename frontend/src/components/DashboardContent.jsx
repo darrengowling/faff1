@@ -9,7 +9,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 import { 
   Trophy, Users, Plus, Mail, Eye, Play, Gavel, 
   Calendar, DollarSign, Target, Crown
