@@ -115,6 +115,7 @@ class BiddingTestSuite:
             
             # Create league as commissioner
             commissioner = self.test_users[0]
+            commissioner_session = self.sessions[commissioner['email']]
             league_data = {
                 "name": f"Bidding Test League {datetime.now().strftime('%H%M%S')}",
                 "season": "2025-26",
@@ -127,7 +128,7 @@ class BiddingTestSuite:
                 }
             }
             
-            resp = self.session.post(f"{API_BASE}/leagues", json=league_data)
+            resp = commissioner_session.post(f"{API_BASE}/leagues", json=league_data)
             if resp.status_code == 201:
                 data = resp.json()
                 self.league_id = data['leagueId']
@@ -138,14 +139,15 @@ class BiddingTestSuite:
                     
             # Add other users to league
             for user in self.test_users[1:]:  # Skip commissioner
-                resp = self.session.post(f"{API_BASE}/leagues/{self.league_id}/join")
+                user_session = self.sessions[user['email']]
+                resp = user_session.post(f"{API_BASE}/leagues/{self.league_id}/join")
                 if resp.status_code == 200:
                     await self.log_result(f"User Join - {user['email']}", True)
                 else:
                     await self.log_result(f"User Join - {user['email']}", False, f"Status {resp.status_code}: {resp.text}")
                         
             # Verify league status
-            resp = self.session.get(f"{API_BASE}/leagues/{self.league_id}/status")
+            resp = commissioner_session.get(f"{API_BASE}/leagues/{self.league_id}/status")
             if resp.status_code == 200:
                 data = resp.json()
                 await self.log_result("League Status Check", True, 
