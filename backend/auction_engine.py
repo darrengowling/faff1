@@ -311,7 +311,7 @@ class AuctionEngine:
                             
                             # GUARDRAIL: Final budget check at lot close
                             budget_valid, budget_error = await AdminService.validate_budget_constraint(
-                                lot["leading_bidder_id"], league_id, lot["current_bid"]
+                                lot["top_bidder_id"], league_id, lot["current_bid"]
                             )
                             
                             if not budget_valid:
