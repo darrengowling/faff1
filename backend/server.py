@@ -2569,7 +2569,8 @@ async def health():
 fastapi_app.include_router(api_router)
 
 # Create single ASGI wrapper - Socket.IO intercepts /api/socketio, all other routes go to FastAPI
-app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app, socketio_path=SOCKETIO_PATH_INTERNAL)
+# Create ASGI app with standard Socket.IO path (no leading slash)
+app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app, socketio_path="socket.io")
 
 if __name__ == "__main__":
     import uvicorn
