@@ -1498,6 +1498,75 @@ async def join_league_direct(
     
     return {"message": "Successfully joined league"}
 
+@api_router.post("/leagues/join-by-code")
+async def join_league_by_code(
+    request: dict,
+    current_user: UserResponse = Depends(get_current_verified_user)
+):
+    """Join a league using an invite code"""
+    invite_code = request.get("code", "").strip().upper()
+    
+    if not invite_code:
+        raise HTTPException(status_code=400, detail="Invite code is required")
+    
+    # Find league by invite code
+    league = await db.leagues.find_one({"invite_code": invite_code})
+    if not league:
+        raise HTTPException(status_code=404, detail="Invalid invite code")
+    
+    league_id = league["_id"]
+    
+    # Check if already a member
+    existing_membership = await db.league_memberships.find_one({
+        "league_id": league_id,
+        "user_id": current_user.id
+    })
+    if existing_membership:
+        raise HTTPException(status_code=400, detail="Already a member of this league")
+    
+    # Check league capacity
+    if league["member_count"] >= league["settings"]["league_size"]["max"]:
+        raise HTTPException(status_code=400, detail="League is full")
+    
+    # Add membership (same logic as direct join)
+    membership = Membership(
+        league_id=league_id,
+        user_id=current_user.id,
+        role=MembershipRole.MANAGER
+    )
+    membership_dict = membership.dict(by_alias=True)
+    await db.league_memberships.insert_one(membership_dict)
+    
+    # Create roster
+    roster = Roster(
+        league_id=league_id,
+        user_id=current_user.id,
+        budget_start=league["settings"]["budget_per_manager"],
+        budget_remaining=league["settings"]["budget_per_manager"],
+        club_slots=league["settings"]["club_slots_per_manager"]
+    )
+    roster_dict = roster.dict(by_alias=True)
+    await db.rosters.insert_one(roster_dict)
+    
+    # Update league member count
+    await db.leagues.update_one(
+        {"_id": league_id},
+        {"$inc": {"member_count": 1}}
+    )
+    
+    # Check if league is now ready
+    await LeagueService.validate_league_ready(league_id)
+    
+    logger.info(f"User {current_user.id} joined league {league_id} via invite code {invite_code}")
+    
+    return {
+        "message": f"Successfully joined {league['name']}!",
+        "league": {
+            "id": league_id,
+            "name": league["name"]
+        }
+    }
+
 @api_router.get("/leagues/{league_id}/members", response_model=List[LeagueMemberResponse])
 async def get_league_members(
     league_id: str,
