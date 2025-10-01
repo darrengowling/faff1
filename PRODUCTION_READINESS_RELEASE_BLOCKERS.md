@@ -10,7 +10,7 @@
 ### Socket.IO Diagnostics Results
 ```
 🔌 Socket.IO Diagnostics Starting...
-Backend URL: https://test-harmony.preview.emergentagent.com
+Backend URL: https://leaguemate-1.preview.emergentagent.com
 Socket Path: /api/socketio
 Transports: polling, websocket
 

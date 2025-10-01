@@ -5,7 +5,7 @@
 
 import { Page } from '@playwright/test';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://test-harmony.preview.emergentagent.com';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://leaguemate-1.preview.emergentagent.com';
 
 /**
  * Set the test time to a specific timestamp

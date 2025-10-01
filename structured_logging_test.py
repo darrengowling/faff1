@@ -15,7 +15,7 @@ import re
 from datetime import datetime, timezone
 
 class StructuredLoggingTester:
-    def __init__(self, base_url="https://test-harmony.preview.emergentagent.com"):
+    def __init__(self, base_url="https://leaguemate-1.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.tests_run = 0

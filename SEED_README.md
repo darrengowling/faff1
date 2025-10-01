@@ -90,7 +90,7 @@ Use magic-link authentication with these emails:
 - `david.manager@demo.com` - Owns Bayern Munich + Inter
 
 ### Demo URLs
-- **Application**: https://test-harmony.preview.emergentagent.com
+- **Application**: https://leaguemate-1.preview.emergentagent.com
 - **My Clubs**: `/clubs/{league_id}`
 - **Fixtures**: `/fixtures/{league_id}` 
 - **Leaderboard**: `/leaderboard/{league_id}`

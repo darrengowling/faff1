@@ -33,7 +33,7 @@ test_current_routing() {
     log "Testing current WebSocket routing configuration..."
     
     # Test Socket.IO endpoint
-    response=$(curl -s -w "%{http_code}" "https://test-harmony.preview.emergentagent.com/socket.io/?EIO=4&transport=polling" -o /tmp/socketio_response.txt)
+    response=$(curl -s -w "%{http_code}" "https://leaguemate-1.preview.emergentagent.com/socket.io/?EIO=4&transport=polling" -o /tmp/socketio_response.txt)
     
     if [ "$response" = "200" ]; then
         content=$(cat /tmp/socketio_response.txt)
@@ -102,7 +102,7 @@ verify_fix() {
             log "Running additional verification tests..."
             
             # Test API endpoint still works
-            api_response=$(curl -s -w "%{http_code}" "https://test-harmony.preview.emergentagent.com/api/health" -o /dev/null)
+            api_response=$(curl -s -w "%{http_code}" "https://leaguemate-1.preview.emergentagent.com/api/health" -o /dev/null)
             if [ "$api_response" = "200" ]; then
                 success "API endpoints are still working correctly"
             else
@@ -110,7 +110,7 @@ verify_fix() {
             fi
             
             # Test frontend still works
-            frontend_response=$(curl -s -w "%{http_code}" "https://test-harmony.preview.emergentagent.com/" -o /dev/null)
+            frontend_response=$(curl -s -w "%{http_code}" "https://leaguemate-1.preview.emergentagent.com/" -o /dev/null)
             if [ "$frontend_response" = "200" ]; then
                 success "Frontend is still working correctly"
             else
@@ -147,7 +147,7 @@ show_manual_instructions() {
     echo "   Copy nginx-ingress-socketio.conf to your nginx configuration directory"
     echo
     echo "5. Verify the fix by testing:"
-    echo "   curl 'https://test-harmony.preview.emergentagent.com/socket.io/?EIO=4&transport=polling'"
+    echo "   curl 'https://leaguemate-1.preview.emergentagent.com/socket.io/?EIO=4&transport=polling'"
     echo "   (Should return Socket.IO handshake, not HTML)"
 }
 

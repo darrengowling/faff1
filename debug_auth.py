@@ -7,7 +7,7 @@ import requests
 import json
 
 def test_auth_system():
-    base_url = "https://test-harmony.preview.emergentagent.com"
+    base_url = "https://leaguemate-1.preview.emergentagent.com"
     api_url = f"{base_url}/api"
     
     # Test known protected endpoint

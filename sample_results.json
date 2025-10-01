@@ -2,7 +2,7 @@
 🔍 Pre-check: Verifying TESTIDS import...
 ✅ TESTIDS imported successfully: 184 testids available
    Sample testids: homeCreateLeagueBtn, navCreateLeagueBtn, joinViaInviteBtn, createLeagueWizardName, createLeagueWizardSlots...
-✅ Application accessible at: https://test-harmony.preview.emergentagent.com (Status: 200)
+✅ Application accessible at: https://leaguemate-1.preview.emergentagent.com (Status: 200)
 🔐 Creating authenticated storage states...
 🔑 Authenticating commish@example.com...
 🔐 Logging in user: commish@example.com (mode: test)
@@ -266,7 +266,7 @@
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "API Response: {\n  message: \u001b[32m'Magic link generated! (Development Mode - Check below)'\u001b[39m,\n  dev_magic_link: \u001b[32m'https://test-harmony.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTIwNDc5MSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.kjypdz0axa1Y1xb79mLwyEB8t4elsryefj2WZjTjEGE'\u001b[39m\n}\n"
+                          "text": "API Response: {\n  message: \u001b[32m'Magic link generated! (Development Mode - Check below)'\u001b[39m,\n  dev_magic_link: \u001b[32m'https://leaguemate-1.preview.emergentagent.com/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBsYXl3cmlnaHQtdGVzdEBleGFtcGxlLmNvbSIsImV4cCI6MTc1OTIwNDc5MSwidHlwZSI6Im1hZ2ljX2xpbmsifQ.kjypdz0axa1Y1xb79mLwyEB8t4elsryefj2WZjTjEGE'\u001b[39m\n}\n"
                         },
                         {
                           "text": "Dev magic link button found, clicking...\n"
@@ -948,8 +948,8 @@
                       "status": "failed",
                       "duration": 26708,
                       "error": {
-                        "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)",
-                        "stack": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:461:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16",
+                        "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://leaguemate-1.preview.emergentagent.com/app)",
+                        "stack": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://leaguemate-1.preview.emergentagent.com/app)\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:461:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16",
                         "location": {
                           "file": "/app/tests/e2e/utils/helpers.ts",
                           "column": 11,
@@ -964,7 +964,7 @@
                             "column": 11,
                             "line": 461
                           },
-                          "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://test-harmony.preview.emergentagent.com/app)\n\n   at utils/helpers.ts:461\n\n  459 |     });\n  460 |     \n> 461 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  462 |   }\n  463 | }\n  464 |\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:461:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16"
+                          "message": "Error: League creation → lobby navigation failed: page.waitForURL: Timeout 10000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================ (URL: https://leaguemate-1.preview.emergentagent.com/app)\n\n   at utils/helpers.ts:461\n\n  459 |     });\n  460 |     \n> 461 |     throw new Error(`League creation → lobby navigation failed: ${error.message} (URL: ${currentUrl})`);\n      |           ^\n  462 |   }\n  463 | }\n  464 |\n    at awaitCreatedAndInLobby (/app/tests/e2e/utils/helpers.ts:461:11)\n    at createLeague (/app/tests/e2e/utils/helpers.ts:121:10)\n    at /app/tests/e2e/core-smoke.spec.ts:121:16"
                         },
                         {
                           "message": "Error: browserContext._wrapApiCall: ENOENT: no such file or directory, open '/app/test-results/.playwright-artifacts-6/traces/a1185c8c8a119dd4daa6-824956169c2fdc1743ba-recording3.trace'"
@@ -1096,7 +1096,7 @@
                       ],
                       "stderr": [
                         {
-                          "text": "❌ Failed to complete league creation → lobby flow. Current URL: https://test-harmony.preview.emergentagent.com/app\n"
+                          "text": "❌ Failed to complete league creation → lobby flow. Current URL: https://leaguemate-1.preview.emergentagent.com/app\n"
                         }
                       ],
                       "retry": 0,
@@ -1483,8 +1483,8 @@
                           "status": "failed",
                           "duration": 11446,
                           "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/(auction|login)/\u001b[39m\nReceived string:  \u001b[31m\"https://test-harmony.preview.emergentagent.com/#home\"\u001b[39m\nTimeout: 6000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 6000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"https://test-harmony.preview.emergentagent.com/#home\"\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/(auction|login)/\u001b[39m\nReceived string:  \u001b[31m\"https://test-harmony.preview.emergentagent.com/#home\"\u001b[39m\nTimeout: 6000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 6000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"https://test-harmony.preview.emergentagent.com/#home\"\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:70:30",
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/(auction|login)/\u001b[39m\nReceived string:  \u001b[31m\"https://leaguemate-1.preview.emergentagent.com/#home\"\u001b[39m\nTimeout: 6000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 6000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"https://leaguemate-1.preview.emergentagent.com/#home\"\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/(auction|login)/\u001b[39m\nReceived string:  \u001b[31m\"https://leaguemate-1.preview.emergentagent.com/#home\"\u001b[39m\nTimeout: 6000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 6000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"https://leaguemate-1.preview.emergentagent.com/#home\"\u001b[22m\n\n    at /app/tests/e2e/navigation.spec.ts:70:30",
                             "location": {
                               "file": "/app/tests/e2e/navigation.spec.ts",
                               "column": 30,
@@ -1499,7 +1499,7 @@
                                 "column": 30,
                                 "line": 70
                               },
-                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/(auction|login)/\u001b[39m\nReceived string:  \u001b[31m\"https://test-harmony.preview.emergentagent.com/#home\"\u001b[39m\nTimeout: 6000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 6000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"https://test-harmony.preview.emergentagent.com/#home\"\u001b[22m\n\n\n  68 |           // If items are shown, they should navigate properly\n  69 |           await page.locator(`[data-testid=\"${TESTIDS.navDdAuction}\"]`).first().click();\n> 70 |           await expect(page).toHaveURL(/\\/(auction|login)/); // Should go to auction or redirect to login\n     |                              ^\n  71 |         }\n  72 |       }\n  73 |     });\n    at /app/tests/e2e/navigation.spec.ts:70:30"
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/(auction|login)/\u001b[39m\nReceived string:  \u001b[31m\"https://leaguemate-1.preview.emergentagent.com/#home\"\u001b[39m\nTimeout: 6000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 6000ms\u001b[22m\n\u001b[2m    10 × unexpected value \"https://leaguemate-1.preview.emergentagent.com/#home\"\u001b[22m\n\n\n  68 |           // If items are shown, they should navigate properly\n  69 |           await page.locator(`[data-testid=\"${TESTIDS.navDdAuction}\"]`).first().click();\n> 70 |           await expect(page).toHaveURL(/\\/(auction|login)/); // Should go to auction or redirect to login\n     |                              ^\n  71 |         }\n  72 |       }\n  73 |     });\n    at /app/tests/e2e/navigation.spec.ts:70:30"
                             }
                           ],
                           "stdout": [],
