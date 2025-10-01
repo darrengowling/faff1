@@ -73,11 +73,28 @@ const DashboardContent = ({
     }
   };
 
-  const handleJoinViaInvite = () => {
-    // You can implement an invite dialog or navigate to invite page
+  const handleJoinViaInvite = async () => {
     const inviteCode = prompt('Enter your invitation code:');
-    if (inviteCode) {
-      navigate(`/invite?code=${inviteCode}`);
+    if (inviteCode && inviteCode.trim()) {
+      try {
+        const response = await axios.post(`${API}/leagues/join-by-code`, {
+          code: inviteCode.trim()
+        });
+        
+        toast.success(response.data.message);
+        
+        // Navigate to the joined league
+        if (response.data.league?.id) {
+          navigate(`/app/leagues/${response.data.league.id}/lobby`);
+        } else {
+          // Refresh dashboard to show new league
+          window.location.reload();
+        }
+      } catch (error) {
+        console.error('Join via invite failed:', error);
+        const errorMessage = error.response?.data?.detail || 'Failed to join league with this code';
+        toast.error(errorMessage);
+      }
     }
   };
 
