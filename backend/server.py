@@ -1472,7 +1472,7 @@ async def join_league_direct(
         role=MembershipRole.MANAGER
     )
     membership_dict = membership.dict(by_alias=True)
-    await db.memberships.insert_one(membership_dict)
+    await db.league_memberships.insert_one(membership_dict)
     
     # Create roster
     roster = Roster(
