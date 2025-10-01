@@ -869,6 +869,16 @@ const LeagueManagement = ({ league, onBack }) => {
       }
     });
 
+    socket.on('auction_started', (data) => {
+      console.log('Auction started event:', data);
+      if (data.league_id === league.id) {
+        toast.success('Auction has started! Redirecting...');
+        setTimeout(() => {
+          navigate(`/auction/${league.id}`);
+        }, 1500);
+      }
+    });
+
     socket.on('disconnect', () => {
       console.log('Disconnected from league updates');
     });
