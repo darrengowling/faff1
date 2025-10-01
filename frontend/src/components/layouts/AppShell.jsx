@@ -322,21 +322,7 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
 
                   {/* Mobile Navigation Items */}
                   <div className="py-4">
-                    {/* Back to Home - First Item */}
-                    <div className="mb-4">
-                      {/* Simplified mobile navigation - direct to dashboard */}
-                      <button
-                        onClick={() => {
-                          console.log('Mobile dashboard navigation clicked');
-                          navigate('/app');
-                          setTimeout(() => setMobileMenuOpen(false), 100);
-                        }}
-                        className="block py-2 px-0 text-theme-text-secondary hover:text-theme-text font-medium w-full text-left"
-                        data-testid="nav-mobile-home-link"
-                      >
-                        ← Dashboard
-                      </button>
-                    </div>
+                    {/* Removed redundant mobile dashboard link since user is already on dashboard */}
                     
                     <MobileNavigation onItemClick={(item) => {
                       console.log('Mobile navigation item clicked:', item);
