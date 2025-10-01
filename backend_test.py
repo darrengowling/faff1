@@ -347,29 +347,29 @@ class BiddingTestSuite:
                 return False
                 
             # Get current lot state
-            async with self.session.get(f"{API_BASE}/auction/{self.auction_id}/state") as resp:
-                if resp.status == 200:
-                    data = await resp.json()
-                    current_lot = data.get('current_lot')
-                    if current_lot:
-                        current_bid = current_lot.get('current_bid', 0)
-                        top_bidder = current_lot.get('top_bidder')
-                        await self.log_result("Current Lot State", True, 
-                                            f"Current bid: {current_bid}, Top bidder: {top_bidder}")
-                        
-                        # Verify bid progression
-                        if current_bid > 0:
-                            await self.log_result("Bid Progression", True, "Bids are being tracked correctly")
-                            return True
-                        else:
-                            await self.log_result("Bid Progression", False, "No bids recorded")
-                            return False
+            resp = self.session.get(f"{API_BASE}/auction/{self.auction_id}/state")
+            if resp.status_code == 200:
+                data = resp.json()
+                current_lot = data.get('current_lot')
+                if current_lot:
+                    current_bid = current_lot.get('current_bid', 0)
+                    top_bidder = current_lot.get('top_bidder')
+                    await self.log_result("Current Lot State", True, 
+                                        f"Current bid: {current_bid}, Top bidder: {top_bidder}")
+                    
+                    # Verify bid progression
+                    if current_bid > 0:
+                        await self.log_result("Bid Progression", True, "Bids are being tracked correctly")
+                        return True
                     else:
-                        await self.log_result("Current Lot State", False, "No current lot in auction state")
+                        await self.log_result("Bid Progression", False, "No bids recorded")
                         return False
                 else:
-                    await self.log_result("Current Lot State", False, f"Status {resp.status}")
+                    await self.log_result("Current Lot State", False, "No current lot in auction state")
                     return False
+            else:
+                await self.log_result("Current Lot State", False, f"Status {resp.status_code}")
+                return False
                     
         except Exception as e:
             await self.log_result("Bid State Management", False, f"Exception: {str(e)}")
