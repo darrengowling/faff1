@@ -1,0 +1,326 @@
+{
+  "config": {
+    "configFile": "/app/playwright.config.js",
+    "rootDir": "/app/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/app/tests/e2e/utils/global-setup.ts",
+    "globalTeardown": "/app/tests/e2e/global-teardown.js",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": {
+      "command": "echo \"Using existing preview server\"",
+      "url": "https://livebid-app.preview.emergentagent.com",
+      "reuseExistingServer": true,
+      "timeout": 5000
+    }
+  },
+  "suites": [
+    {
+      "title": "e2e/auction-smoke-minimal.spec.ts",
+      "file": "e2e/auction-smoke-minimal.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Minimal Auction Smoke Test",
+          "file": "e2e/auction-smoke-minimal.spec.ts",
+          "line": 31,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Minimal auction path with anti-snipe",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 7400,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"dashboard\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"dashboard\"]')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"dashboard\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"dashboard\"]')\u001b[22m\n\n    at /app/tests/e2e/auction-smoke-minimal.spec.ts:85:73",
+                        "location": {
+                          "file": "/app/tests/e2e/auction-smoke-minimal.spec.ts",
+                          "column": 73,
+                          "line": 85
+                        },
+                        "snippet": "  83 |     \n  84 |     // Verify we're in dashboard\n> 85 |     await expect(commissionerPage.locator('[data-testid=\"dashboard\"]')).toBeVisible();\n     |                                                                         ^\n  86 |     console.log('✅ Commissioner authenticated and in dashboard');\n  87 |\n  88 |     // Step 2: Create league (page, not dialog) "
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auction-smoke-minimal.spec.ts",
+                            "column": 73,
+                            "line": 85
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"dashboard\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"dashboard\"]')\u001b[22m\n\n\n  83 |     \n  84 |     // Verify we're in dashboard\n> 85 |     await expect(commissionerPage.locator('[data-testid=\"dashboard\"]')).toBeVisible();\n     |                                                                         ^\n  86 |     console.log('✅ Commissioner authenticated and in dashboard');\n  87 |\n  88 |     // Step 2: Create league (page, not dialog) \n    at /app/tests/e2e/auction-smoke-minimal.spec.ts:85:73"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🚀 Starting minimal auction smoke test with anti-snipe...\n"
+                        },
+                        {
+                          "text": "📝 Step 1: Commissioner test login...\n"
+                        },
+                        {
+                          "text": "Commissioner console error: Failed to load resource: the server responded with a status of 403 ()\n"
+                        },
+                        {
+                          "text": "Commissioner console error: Failed to fetch user: AxiosError\n"
+                        },
+                        {
+                          "text": "Commissioner console error: Failed to load resource: the server responded with a status of 403 ()\n"
+                        },
+                        {
+                          "text": "Commissioner console error: Failed to fetch user: AxiosError\n"
+                        },
+                        {
+                          "text": "🔐 Logging in user: commish@example.com (mode: test)\n"
+                        },
+                        {
+                          "text": "🧪 Test-only login for user: commish@example.com\n"
+                        },
+                        {
+                          "text": "✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-01T23:47:50.734Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auction-smoke-minimal--abcb5-uction-path-with-anti-snipe-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auction-smoke-minimal--abcb5-uction-path-with-anti-snipe-chromium/test-failed-2.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auction-smoke-minimal--abcb5-uction-path-with-anti-snipe-chromium/test-failed-3.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/e2e-auction-smoke-minimal--abcb5-uction-path-with-anti-snipe-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auction-smoke-minimal.spec.ts",
+                        "column": 73,
+                        "line": 85
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cd0aaeae0770db07afb-dff0f2aad3e6c311c071",
+              "file": "e2e/auction-smoke-minimal.spec.ts",
+              "line": 75,
+              "column": 7
+            },
+            {
+              "title": "Minimal auction path with anti-snipe",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 7576,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"dashboard\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"dashboard\"]')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"dashboard\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"dashboard\"]')\u001b[22m\n\n    at /app/tests/e2e/auction-smoke-minimal.spec.ts:85:73",
+                        "location": {
+                          "file": "/app/tests/e2e/auction-smoke-minimal.spec.ts",
+                          "column": 73,
+                          "line": 85
+                        },
+                        "snippet": "  83 |     \n  84 |     // Verify we're in dashboard\n> 85 |     await expect(commissionerPage.locator('[data-testid=\"dashboard\"]')).toBeVisible();\n     |                                                                         ^\n  86 |     console.log('✅ Commissioner authenticated and in dashboard');\n  87 |\n  88 |     // Step 2: Create league (page, not dialog) "
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/app/tests/e2e/auction-smoke-minimal.spec.ts",
+                            "column": 73,
+                            "line": 85
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  locator('[data-testid=\"dashboard\"]')\nExpected: visible\nReceived: <element(s) not found>\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-testid=\"dashboard\"]')\u001b[22m\n\n\n  83 |     \n  84 |     // Verify we're in dashboard\n> 85 |     await expect(commissionerPage.locator('[data-testid=\"dashboard\"]')).toBeVisible();\n     |                                                                         ^\n  86 |     console.log('✅ Commissioner authenticated and in dashboard');\n  87 |\n  88 |     // Step 2: Create league (page, not dialog) \n    at /app/tests/e2e/auction-smoke-minimal.spec.ts:85:73"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🚀 Starting minimal auction smoke test with anti-snipe...\n"
+                        },
+                        {
+                          "text": "📝 Step 1: Commissioner test login...\n"
+                        },
+                        {
+                          "text": "Commissioner console error: Failed to load resource: the server responded with a status of 403 ()\n"
+                        },
+                        {
+                          "text": "Commissioner console error: Failed to fetch user: AxiosError\n"
+                        },
+                        {
+                          "text": "Commissioner console error: Failed to load resource: the server responded with a status of 403 ()\n"
+                        },
+                        {
+                          "text": "Commissioner console error: Failed to fetch user: AxiosError\n"
+                        },
+                        {
+                          "text": "🔐 Logging in user: commish@example.com (mode: test)\n"
+                        },
+                        {
+                          "text": "🧪 Test-only login for user: commish@example.com\n"
+                        },
+                        {
+                          "text": "✅ Test-only login successful: commish@example.com (User ID: e92d337d-41e1-4867-abb8-154aa3a6357a)\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-01T23:47:59.433Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auction-smoke-minimal--abcb5-uction-path-with-anti-snipe-Mobile-Chrome/test-failed-3.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auction-smoke-minimal--abcb5-uction-path-with-anti-snipe-Mobile-Chrome/test-failed-2.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/app/test-results/e2e-auction-smoke-minimal--abcb5-uction-path-with-anti-snipe-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/app/test-results/e2e-auction-smoke-minimal--abcb5-uction-path-with-anti-snipe-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/app/tests/e2e/auction-smoke-minimal.spec.ts",
+                        "column": 73,
+                        "line": 85
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cd0aaeae0770db07afb-abf018c216b0d229dc23",
+              "file": "e2e/auction-smoke-minimal.spec.ts",
+              "line": 75,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-01T23:47:38.318Z",
+    "duration": 29352.854,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}
