@@ -291,7 +291,9 @@ const AuctionRoom = ({ user, token }) => {
     console.log('Initializing unified Socket.IO connection for auction:', auctionId);
     
     // Create unified socket connection using factory
-    const { socket: newSocket, joinAndSync: joinAndSyncFn } = createSocket(getApiOrigin());
+    const socketFactory = createSocket(getApiOrigin());
+    const newSocket = socketFactory.socket;
+    const joinAndSyncFn = socketFactory.joinAndSync;
     
     // Set authentication token
     newSocket.auth = { token };
