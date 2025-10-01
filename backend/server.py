@@ -1711,7 +1711,7 @@ async def join_league_by_code(
         'user_id': current_user.id,
         'user_email': current_user.email,
         'member_count': league["member_count"] + 1
-    }, room=f"league_{league_id}")
+    }, room=league_id)
     
     # Emit league status update
     updated_league = await db.leagues.find_one({"_id": league_id})
@@ -1719,7 +1719,7 @@ async def join_league_by_code(
         'league_id': league_id,
         'member_count': updated_league["member_count"],
         'is_ready': updated_league["member_count"] >= updated_league["settings"]["league_size"]["min"]
-    }, room=f"league_{league_id}")
+    }, room=league_id)
     
     logger.info(f"User {current_user.id} joined league {league_id} via invite code {invite_code}")
     
