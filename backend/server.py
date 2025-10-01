@@ -147,15 +147,15 @@ fastapi_app.add_middleware(
     allow_headers=["*"]
 )
 
-# Custom middleware to handle /socket.io/diag before Socket.IO intercepts it
+# Custom middleware to handle /api/socket.io/diag before Socket.IO intercepts it
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 
 class SocketIODiagMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
-        # Intercept /socket.io/diag requests before they reach Socket.IO
-        if request.url.path == "/socket.io/diag":
-            socket_path = '/socket.io'  # STANDARDIZED PATH
+        # Intercept /api/socket.io/diag requests before they reach Socket.IO
+        if request.url.path == "/api/socket.io/diag":
+            socket_path = '/api/socket.io'  # OVERLAY PATH
             return JSONResponse({
                 "ok": True,
                 "path": socket_path,
