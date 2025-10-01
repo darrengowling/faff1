@@ -183,7 +183,18 @@ const Login = () => {
       
       // Check if development magic link is provided
       if (response.data.dev_magic_link) {
-        setMagicLink(response.data.dev_magic_link);
+        let magicLinkUrl = response.data.dev_magic_link;
+        
+        // Add redirect parameter if present
+        const urlParams = new URLSearchParams(location.search);
+        const redirectTo = urlParams.get('redirect');
+        if (redirectTo) {
+          const url = new URL(magicLinkUrl);
+          url.searchParams.set('redirect', redirectTo);
+          magicLinkUrl = url.toString();
+        }
+        
+        setMagicLink(magicLinkUrl);
         toast.success(t('auth.magicLinkSent'));
       } else {
         toast.success(t('auth.magicLinkSent'));
