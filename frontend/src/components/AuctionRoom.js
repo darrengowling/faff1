@@ -104,20 +104,36 @@ const AuctionRoom = ({ user, token }) => {
   const [showChat, setShowChat] = useState(true);
   const [isCommissioner, setIsCommissioner] = useState(false);
 
-  // Initialize WebSocket connection - consolidated single connection
+  // Initialize unified WebSocket connection 
   useEffect(() => {
     if (!token || !auctionId) return;
 
-    console.log('Initializing Socket.IO connection for auction:', auctionId);
+    console.log('Initializing unified Socket.IO connection for auction:', auctionId);
     
-    // Use the same connection logic as the reconnect function
-    connectWebSocket();
+    // Create unified socket connection using factory
+    const { socket: newSocket, joinAndSync: joinAndSyncFn } = createSocket(getApiOrigin());
+    
+    // Set authentication token
+    newSocket.auth = { token };
+    
+    // Store socket and joinAndSync function in state
+    setSocket(newSocket);
+    setJoinAndSync(() => joinAndSyncFn);
+    
+    // Join auction room and sync state on mount
+    joinAndSyncFn(auctionId);
+    
+    // Additional auction-specific room joins
+    newSocket.emit('join_auction', { auction_id: auctionId });
+    
+    // Set up auction-specific event handlers
+    setupAuctionEventHandlers(newSocket);
 
     return () => {
-      if (socket) {
-        console.log('Cleaning up socket connection');
-        socket.removeAllListeners();
-        socket.close();
+      if (newSocket) {
+        console.log('Cleaning up unified socket connection');
+        newSocket.removeAllListeners();
+        newSocket.close();
       }
     };
   }, [token, auctionId]);
