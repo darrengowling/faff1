@@ -1512,6 +1512,22 @@ async def join_league_direct(
     # Check if league is now ready
     await LeagueService.validate_league_ready(league_id)
     
+    # Emit real-time event to league room
+    await sio.emit('member_joined', {
+        'league_id': league_id,
+        'user_id': current_user.id,
+        'user_email': current_user.email,
+        'member_count': league["member_count"] + 1
+    }, room=f"league_{league_id}")
+    
+    # Emit league status update
+    updated_league = await db.leagues.find_one({"_id": league_id})
+    await sio.emit('league_status_update', {
+        'league_id': league_id,
+        'member_count': updated_league["member_count"],
+        'is_ready': updated_league["member_count"] >= updated_league["settings"]["league_size"]["min"]
+    }, room=f"league_{league_id}")
+    
     logger.info(f"User {current_user.id} joined league {league_id}")
     
     return {"message": "Successfully joined league"}
