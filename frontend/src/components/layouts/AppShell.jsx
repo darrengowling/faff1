@@ -136,7 +136,12 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
           position: 'sticky'
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div 
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          style={{ 
+            pointerEvents: 'auto' // Ensure child elements are clickable
+          }}
+        >
           <div className="flex items-center justify-between h-16">
             {/* Left - Brand and Navigation */}
             <div className="flex items-center space-x-4">
