@@ -327,11 +327,12 @@ class BiddingTestSuite:
         """Helper method for async bid placement"""
         try:
             # Use executor to run synchronous requests in async context
+            user_session = self.sessions[user['email']]
             loop = asyncio.get_event_loop()
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 resp = await loop.run_in_executor(
                     executor, 
-                    lambda: self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=bid_data)
+                    lambda: user_session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=bid_data)
                 )
                 
             if resp.status_code == 200:
