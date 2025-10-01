@@ -156,7 +156,16 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
             
             {/* Center - Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-2" role="navigation">
-              {/* Product dropdown removed - no functional pages to link to */}
+              {user && (
+                <Button
+                  onClick={() => navigate('/app')}
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-700 hover:text-gray-900"
+                >
+                  My Leagues
+                </Button>
+              )}
             </nav>
 
             {/* Right - Sign In for tests */}
