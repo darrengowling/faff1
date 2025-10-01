@@ -428,20 +428,13 @@ const AuctionRoom = ({ user, token }) => {
     try {
       setConnectionStatus('connecting');
       
-      // Get Socket.IO configuration from environment (cross-origin pattern)
-      const origin = (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_PUBLIC_API_URL) || 
-                     process.env.NEXT_PUBLIC_API_URL ||
-                     (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_PUBLIC_API_URL) ||
-                     process.env.REACT_APP_API_ORIGIN ||
+      // Simplified Socket.IO configuration using environment variables
+      const origin = import.meta.env.VITE_BACKEND_URL || 
+                     process.env.REACT_APP_BACKEND_URL || 
                      'https://leaguemate-1.preview.emergentagent.com';
                        
-      const path = (typeof window !== 'undefined' && window.import?.meta?.env?.VITE_SOCKET_PATH) ||
-                   process.env.NEXT_PUBLIC_SOCKET_PATH ||
-                   '/api/socketio';
-                   
-      const transports = ((typeof window !== 'undefined' && window.import?.meta?.env?.VITE_SOCKET_TRANSPORTS) || 
-                         process.env.NEXT_PUBLIC_SOCKET_TRANSPORTS || 
-                         'polling,websocket').split(',');
+      const path = '/api/socketio';
+      const transports = ['polling', 'websocket'];
       
       console.log(`Socket.IO connecting to: ${origin} with path: ${path}, transports: ${transports}`);
       
