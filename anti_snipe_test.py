@@ -50,7 +50,7 @@ async def test_anti_snipe_timer():
         
         resp = session.post(f"{API_BASE}/leagues", json=league_data)
         if resp.status_code != 201:
-            print(f"❌ League creation failed: {resp.status_code}")
+            print(f"❌ League creation failed: {resp.status_code} - {resp.text}")
             return
         
         league_id = resp.json()['leagueId']
