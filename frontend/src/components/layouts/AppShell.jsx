@@ -133,14 +133,21 @@ const AppShell = ({ children, showBackButton = true, pageTitle = null }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Left - Brand and Back to Home */}
+            {/* Left - Brand and Navigation */}
             <div className="flex items-center space-x-4">
               <HeaderBrand 
                 onClick={() => navigate('/app')} 
                 className="cursor-pointer hover:opacity-80 transition-opacity"
                 data-testid={TESTIDS.navBrand}
               />
-              {/* Simplified app navigation - logo goes to dashboard */}
+              {/* Tests expect back-to-home-link testid */}
+              <button
+                onClick={() => navigate('/app')}
+                data-testid={TESTIDS.backToHome}
+                className="inline-flex items-center gap-2 text-sm text-theme-text-secondary hover:text-theme-text relative z-50"
+              >
+                ← Dashboard
+              </button>
             </div>
             
             {/* Center - Desktop Navigation */}
