@@ -9,7 +9,7 @@ export function createSocket(API_ORIGIN) {
     reconnection: true,
   });
 
-  function joinAndSync(leagueId: string) {
+  function joinAndSync(leagueId) {
     sessionStorage.setItem("leagueId", leagueId);
     socket.emit("join_league", { leagueId });
     socket.emit("request_sync", { leagueId });
