@@ -317,35 +317,17 @@ class CopyInviteLinkTester:
             print("   - Critical functionality failures detected")
         
         return success_rate >= 75
-        
-        auth_token = token or self.token
-        if auth_token:
-            headers['Authorization'] = f'Bearer {auth_token}'
-            
-        try:
-            if method == 'GET':
-                response = requests.get(url, headers=headers, timeout=15)
-            elif method == 'POST':
-                response = requests.post(url, json=data, headers=headers, timeout=15)
-            elif method == 'PUT':
-                response = requests.put(url, json=data, headers=headers, timeout=15)
-            elif method == 'PATCH':
-                response = requests.patch(url, json=data, headers=headers, timeout=15)
-            elif method == 'DELETE':
-                response = requests.delete(url, headers=headers, timeout=15)
-            
-            success = response.status_code == expected_status
-            response_data = {}
-            
-            try:
-                response_data = response.json()
-            except:
-                response_data = {"text": response.text}
-                
-            return success, response.status_code, response_data
-            
-        except requests.exceptions.RequestException as e:
-            return False, 0, {"error": str(e)}
+
+def main():
+    """Main test execution"""
+    tester = CopyInviteLinkTester()
+    success = tester.run_copy_invitation_link_tests()
+    
+    # Exit with appropriate code
+    sys.exit(0 if success else 1)
+
+if __name__ == "__main__":
+    main()
 
     # ==================== ENVIRONMENT & HEALTH TESTS ====================
     
