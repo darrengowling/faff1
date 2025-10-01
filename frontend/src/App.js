@@ -830,7 +830,7 @@ const LeagueManagement = ({ league, onBack }) => {
     fetchLeagueDataWithRetry();
     
     // Set up real-time WebSocket connection for league updates
-    const socket = createSocket();
+    const socket = createSocket(getApiOrigin());
 
     socket.on('connect', () => {
       console.log('Connected to league real-time updates');
