@@ -1,24 +1,27 @@
 #!/usr/bin/env python3
 """
-Backend API Testing Suite for League Creator App
-Testing Agent - Comprehensive Backend API Verification
+COMPREHENSIVE BIDDING MECHANISM TEST
+Tests the complete auction bidding functionality as requested in review.
 
-Focus: Invite Code System Testing as requested in review
-- Create League with Invite Code (6-character alphanumeric)
-- Join via Invite Code (/api/leagues/join-by-code endpoint)
-- Invalid invite code handling (404)
-- Duplicate join handling (400)
-- Invite Code Uniqueness verification
-- Complete flow testing (Create → Join → Verify)
+This test covers:
+1. Complete Auction Setup (league creation, multiple users, auction start)
+2. Place Actual Bids (POST /api/auction/{auction_id}/bid endpoint)
+3. Race Condition Testing (simultaneous bidding scenarios)
+4. Bid State Management (winning bid tracking, bid history)
+5. Budget Impact (budget deductions, constraint validation)
 """
 
-import requests
-import sys
+import asyncio
+import aiohttp
 import json
 import os
-from datetime import datetime, timezone
-import time
-import uuid
+import sys
+from datetime import datetime
+from typing import Dict, List, Optional
+
+# Backend URL from environment
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://leaguemate-1.preview.emergentagent.com')
+API_BASE = f"{BACKEND_URL}/api"
 
 class InviteCodeTester:
     def __init__(self, base_url="https://leaguemate-1.preview.emergentagent.com"):
