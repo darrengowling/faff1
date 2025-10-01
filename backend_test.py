@@ -96,10 +96,18 @@ class AuctionClockTester:
     
     async def start_auction(self) -> str:
         """Start the auction"""
+        # First check if league is ready
+        league_response = await self.session.get(f"{API_BASE}/leagues/{self.test_league_id}")
+        if league_response.status == 200:
+            league_data = await league_response.json()
+            if league_data.get("status") != "ready":
+                raise Exception(f"League not ready for auction: status={league_data.get('status')}")
+        
         response = await self.session.post(f"{API_BASE}/auction/{self.test_league_id}/start")
         
         if response.status != 200:
-            raise Exception(f"Failed to start auction: {response.status}")
+            error_text = await response.text()
+            raise Exception(f"Failed to start auction: {response.status} - {error_text}")
         
         result = await response.json()
         self.test_auction_id = self.test_league_id  # Auction ID same as league ID
