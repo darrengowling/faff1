@@ -418,10 +418,7 @@ class AuctionEngine:
                 }
             )
             
-            # Start timer task
-            self.auction_timers[lot["_id"]] = asyncio.create_task(
-                self._lot_timer(auction_id, lot["_id"], timer_ends_at)
-            )
+            # Timer is handled by authoritative clock loop
             
             # Broadcast lot start
             await self._broadcast_lot_update(auction_id, lot["_id"])
