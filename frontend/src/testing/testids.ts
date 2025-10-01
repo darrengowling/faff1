@@ -40,6 +40,7 @@ export const TESTIDS = {
   // Invitations
   inviteEmailInput: 'invite-email-input',
   inviteSubmitButton: 'invite-submit-button',
+  copyInvitationLinkButton: 'copy-invitation-link-button',
   inviteLinkItem: 'invite-link-item',
   inviteLinkUrl: 'invite-link-url',
   inviteCopyButton: 'invite-copy-button',
