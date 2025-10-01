@@ -57,37 +57,232 @@ class AuctionEngine:
             del self.time_sync_tasks[auction_id]
             logger.info(f"Stopped time sync for auction {auction_id}")
     
-    async def _time_sync_loop(self, auction_id: str):
-        """Send server time every 2 seconds for client synchronization"""
+    async def _authoritative_clock_loop(self, auction_id: str):
+        """Server-authoritative clock emitting tick events every 400ms"""
         try:
+            league_id = self.active_auctions[auction_id]["league_id"]
+            
             while auction_id in self.active_auctions:
-                server_now = now()  # Use time provider
+                server_now = now()
                 
-                # Get current lot timer info if exists
-                current_lot = None
-                auction = await db.auctions.find_one({"_id": auction_id})
-                if auction and auction.get("current_lot_id"):
-                    lot = await db.lots.find_one({"_id": auction["current_lot_id"]})
-                    if lot and lot.get("timer_ends_at"):
-                        current_lot = {
-                            "lot_id": lot["_id"],
-                            "timer_ends_at": lot["timer_ends_at"].isoformat(),
-                            "status": lot["status"]
-                        }
+                # Get current open lot
+                current_lot = await db.lots.find_one({
+                    "league_id": league_id,
+                    "status": {"$in": ["open", "going_once", "going_twice"]}
+                })
                 
-                # Broadcast time sync to league room
-                league_id = self.active_auctions[auction_id]["league_id"]
-                await self.sio.emit('time_sync', {
-                    'server_now': server_now.isoformat(),
-                    'current_lot': current_lot
-                }, room=league_id)
+                if current_lot and current_lot.get("timer_ends_at"):
+                    end_time = current_lot["timer_ends_at"]
+                    if isinstance(end_time, str):
+                        end_time = datetime.fromisoformat(end_time.replace('Z', '+00:00'))
+                    elif isinstance(end_time, datetime) and end_time.tzinfo is None:
+                        end_time = end_time.replace(tzinfo=timezone.utc)
+                    
+                    remaining_ms = max(0, int((end_time - server_now).total_seconds() * 1000))
+                    
+                    # Emit authoritative tick to all clients
+                    await self.sio.emit('tick', {
+                        'remaining_ms': remaining_ms,
+                        'endsAt': end_time.isoformat(),
+                        'lot_id': current_lot["_id"],
+                        'league_id': league_id,
+                        'status': current_lot["status"],
+                        'server_time': server_now.isoformat()
+                    }, room=league_id)
+                    
+                    # Check for lot expiry
+                    if remaining_ms <= 0 and current_lot["status"] in ["open", "going_once", "going_twice"]:
+                        await self._handle_lot_expiry(auction_id, current_lot["_id"])
                 
-                await asyncio.sleep(2)  # Send every 2 seconds
+                await asyncio.sleep(0.4)  # 400ms tick interval
                 
         except asyncio.CancelledError:
-            logger.info(f"Time sync cancelled for auction {auction_id}")
+            logger.info(f"Authoritative clock cancelled for auction {auction_id}")
         except Exception as e:
-            logger.error(f"Time sync error for auction {auction_id}: {e}")
+            logger.error(f"Authoritative clock error for auction {auction_id}: {e}")
+
+    async def _handle_lot_expiry(self, auction_id: str, lot_id: str):
+        """Handle lot expiry with going_once/going_twice states"""
+        try:
+            lot = await db.lots.find_one({"_id": lot_id})
+            if not lot:
+                return
+            
+            league_id = self.active_auctions[auction_id]["league_id"]
+            
+            if lot["status"] == "open":
+                # Move to going_once for 3 seconds
+                new_end_time = now() + timedelta(seconds=3)
+                await db.lots.update_one(
+                    {"_id": lot_id},
+                    {"$set": {
+                        "status": "going_once",
+                        "timer_ends_at": new_end_time
+                    }}
+                )
+                
+                # Emit status change
+                await self.sio.emit('lot_status_change', {
+                    'lot_id': lot_id,
+                    'status': 'going_once',
+                    'endsAt': new_end_time.isoformat(),
+                    'remaining_ms': 3000
+                }, room=league_id)
+                
+                logger.info(f"Lot {lot_id} moved to GOING ONCE")
+                
+            elif lot["status"] == "going_once":
+                # Move to going_twice for 3 seconds
+                new_end_time = now() + timedelta(seconds=3)
+                await db.lots.update_one(
+                    {"_id": lot_id},
+                    {"$set": {
+                        "status": "going_twice",
+                        "timer_ends_at": new_end_time
+                    }}
+                )
+                
+                # Emit status change
+                await self.sio.emit('lot_status_change', {
+                    'lot_id': lot_id,
+                    'status': 'going_twice',
+                    'endsAt': new_end_time.isoformat(),
+                    'remaining_ms': 3000
+                }, room=league_id)
+                
+                logger.info(f"Lot {lot_id} moved to GOING TWICE")
+                
+            elif lot["status"] == "going_twice":
+                # Finalize the lot
+                await self._finalize_lot(auction_id, lot_id)
+                
+        except Exception as e:
+            logger.error(f"Error handling lot expiry for {lot_id}: {e}")
+
+    async def _finalize_lot(self, auction_id: str, lot_id: str):
+        """Finalize lot and emit sold event"""
+        async with await db.client.start_session() as session:
+            try:
+                async with session.start_transaction():
+                    # Get final lot state
+                    lot = await db.lots.find_one({"_id": lot_id}, session=session)
+                    if not lot:
+                        return
+                    
+                    league_id = self.active_auctions[auction_id]["league_id"]
+                    
+                    if lot["current_bid"] > 0 and lot["top_bidder_id"]:
+                        # Process sale
+                        await self._process_lot_sale(auction_id, lot_id, lot, session)
+                        
+                        # Get winner info
+                        winner = await db.users.find_one({"_id": lot["top_bidder_id"]}, session=session)
+                        
+                        # Emit sold event
+                        await self.sio.emit('sold', {
+                            'clubId': lot["club_id"],
+                            'winner': {
+                                'id': lot["top_bidder_id"],
+                                'name': winner["display_name"] if winner else "Unknown"
+                            },
+                            'price': lot["current_bid"],
+                            'lot_id': lot_id,
+                            'final_price': lot["current_bid"]
+                        }, room=league_id)
+                        
+                        logger.info(f"Lot {lot_id} SOLD to {lot['top_bidder_id']} for {lot['current_bid']}")
+                        
+                    else:
+                        # No bids - mark as unsold
+                        await db.lots.update_one(
+                            {"_id": lot_id},
+                            {"$set": {"status": "unsold"}},
+                            session=session
+                        )
+                        
+                        # Emit unsold event
+                        await self.sio.emit('unsold', {
+                            'clubId': lot["club_id"],
+                            'lot_id': lot_id,
+                            'reason': 'no_bids'
+                        }, room=league_id)
+                        
+                        logger.info(f"Lot {lot_id} marked as UNSOLD - no bids")
+                    
+                    # Start next lot if available
+                    await self._start_next_lot(auction_id)
+                    
+            except Exception as e:
+                logger.error(f"Error finalizing lot {lot_id}: {e}")
+                await session.abort_transaction()
+
+    async def _process_lot_sale(self, auction_id: str, lot_id: str, lot: dict, session):
+        """Process the actual sale within a transaction"""
+        from admin_service import AdminService
+        
+        league_id = self.active_auctions[auction_id]["league_id"]
+        
+        # Validation guardrails
+        no_duplicate = await AdminService.validate_no_duplicate_ownership(
+            league_id, lot["club_id"]
+        )
+        if not no_duplicate:
+            await db.lots.update_one(
+                {"_id": lot_id},
+                {"$set": {"status": "unsold"}},
+                session=session
+            )
+            return
+        
+        budget_valid, _ = await AdminService.validate_budget_constraint(
+            lot["top_bidder_id"], league_id, lot["current_bid"]
+        )
+        if not budget_valid:
+            await db.lots.update_one(
+                {"_id": lot_id},
+                {"$set": {"status": "unsold"}},
+                session=session
+            )
+            return
+        
+        capacity_valid, _ = await AdminService.validate_roster_capacity(
+            lot["top_bidder_id"], league_id
+        )
+        if not capacity_valid:
+            await db.lots.update_one(
+                {"_id": lot_id},
+                {"$set": {"status": "unsold"}},
+                session=session
+            )
+            return
+        
+        # Create roster club
+        roster_club = RosterClub(
+            roster_id=f"roster_{lot['top_bidder_id']}_{auction_id}",
+            league_id=league_id,
+            user_id=lot["top_bidder_id"],
+            club_id=lot["club_id"],
+            price=lot["current_bid"]
+        )
+        await db.roster_clubs.insert_one(roster_club.dict(by_alias=True), session=session)
+        
+        # Deduct budget
+        await db.rosters.update_one(
+            {"league_id": league_id, "user_id": lot["top_bidder_id"]},
+            {"$inc": {"budget_remaining": -lot["current_bid"]}},
+            session=session
+        )
+        
+        # Mark as sold
+        await db.lots.update_one(
+            {"_id": lot_id},
+            {"$set": {
+                "status": "sold",
+                "winner_id": lot["top_bidder_id"],
+                "final_price": lot["current_bid"]
+            }},
+            session=session
+        )
         
     async def start_auction(self, auction_id: str, commissioner_id: str) -> bool:
         """Start an auction if league is ready"""
