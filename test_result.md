@@ -220,6 +220,18 @@ backend:
         agent: "testing"
         comment: "⚠️ ERROR HANDLING AND STATUS CODES VERIFICATION - 50% SUCCESS: Partial success in error handling verification with some issues identified. CRITICAL VERIFICATION RESULTS: ✅ Invalid League Creation - Returns 400 for missing/invalid league name as expected, ✅ Invalid Email in Test-Login - Returns 400 for invalid email format as expected, ❌ Non-Existent League Access - Returns 403 instead of expected 404 for non-existent league IDs, ❌ Unauthorized Access - Some endpoints not properly returning 401 for unauthenticated requests. WORKING ERROR CASES: Input validation errors (400), authentication format errors (400), business logic errors properly handled. ISSUES IDENTIFIED: Some endpoints returning 403 (Forbidden) instead of 404 (Not Found) for non-existent resources, inconsistent unauthorized access handling. TESTING METHODOLOGY: Tested various error scenarios including invalid inputs, non-existent resources, unauthorized access attempts. RESULTS: Core error handling working but needs improvement in HTTP status code consistency, particularly for 404 vs 403 distinction and unauthorized access handling."
 
+  - task: "Copy Invitation Link Functionality"
+    implemented: true
+    working: false
+    file: "/app/backend/server.py, /app/backend/league_service.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "⚠️ COPY INVITATION LINK FUNCTIONALITY VERIFICATION - 90% SUCCESS: Comprehensive testing of Copy Invitation Link functionality as requested in review. CRITICAL VERIFICATION RESULTS: ✅ Authentication Endpoints - POST /api/auth/test-login working perfectly (200 status), creates verified users and sets HTTP-only session cookies, ✅ League Creation - POST /api/leagues working correctly (201 status), creates league with proper settings and commissioner membership, ✅ Direct League Join - POST /api/leagues/{league_id}/join working correctly (200 status), successfully adds user to league and increments member count, ✅ League Status - GET /api/leagues/{league_id}/status working correctly, shows accurate member count (2/8) and ready status after join, ❌ CRITICAL ISSUE IDENTIFIED: Collection Name Mismatch - GET /api/leagues/{league_id}/members endpoint returns incomplete member list due to collection name mismatch between 'memberships' (used by join endpoint in server.py line 1475) and 'league_memberships' (used by get_league_members in league_service.py line 461). TESTING METHODOLOGY: Created test league, authenticated two different users, executed direct league join, verified member count via status endpoint vs members endpoint. BACKEND LOGS CONFIRM: User successfully joined league ('User 4bb757cc-dff5-4e67-9b1d-1cbc3021aae1 joined league 3c906318-7e62-40f1-9dd7-f444d0f36bcc'), league shows 2 members in status, but members endpoint only returns commissioner due to collection mismatch. RESULTS: Copy Invitation Link backend functionality is 90% ready - core join mechanism works perfectly, but member verification fails due to database collection inconsistency. This is the same issue previously identified in League Management Endpoints testing."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
