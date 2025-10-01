@@ -829,21 +829,11 @@ const LeagueManagement = ({ league, onBack }) => {
   useEffect(() => {
     fetchLeagueDataWithRetry();
     
-    // Store league ID in session storage for reconnection
-    sessionStorage.setItem("leagueId", league.id);
-    
     // Set up real-time WebSocket connection for league updates
-    const socket = createSocket(getApiOrigin());
-
-    socket.on('connect', () => {
-      console.log('Connected to league real-time updates');
-      // Join league room for real-time updates
-      socket.emit('join_league', { 
-        leagueId: league.id,
-        user_id: user.id 
-      });
-      socket.emit('request_sync', { leagueId: league.id });
-    });
+    const { socket, joinAndSync } = createSocket(getApiOrigin());
+    
+    // Join league room and sync state
+    joinAndSync(league.id);
 
     socket.on('member_joined', (data) => {
       console.log('Member joined event:', data);
