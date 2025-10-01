@@ -89,7 +89,7 @@ test.describe('Minimal Auction Smoke Test', () => {
     console.log('🏗️  Step 2: Creating league via page...');
     
     // Navigate to create league page
-    await commissionerPage.click('[data-testid="create-league-button"]');
+    await commissionerPage.click('[data-testid="create-league-btn"]');
     await commissionerPage.waitForURL('**/create-league**');
     await commissionerPage.waitForLoadState('networkidle');
     
