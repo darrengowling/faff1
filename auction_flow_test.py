@@ -521,10 +521,10 @@ class AuctionFlowTester:
             print("❌ Failed to start auction, cannot continue bidding tests")
             return False
         
-        # Test 8: Nominate First Asset
-        print("\n📋 TEST 8: Nominate First Asset")
-        if not self.nominate_first_asset():
-            print("❌ Failed to nominate asset, continuing with other tests")
+        # Test 8: Check Auction State
+        print("\n📋 TEST 8: Check Auction State")
+        if not self.check_auction_state():
+            print("❌ Failed to check auction state, continuing with other tests")
         
         # Test 9: Simulate Bidding Process
         print("\n📋 TEST 9: Simulate Bidding Process")
