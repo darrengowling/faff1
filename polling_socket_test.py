@@ -240,7 +240,7 @@ class PollingSocketTestSuite:
                 "settings": {
                     "budget_per_manager": 100,
                     "club_slots_per_manager": 8,
-                    "bid_timer_seconds": 8,
+                    "bid_timer_seconds": 30,  # Minimum 30 seconds required
                     "anti_snipe_seconds": 3,
                     "league_size": {
                         "min": 2,
