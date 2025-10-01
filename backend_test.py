@@ -217,12 +217,13 @@ class BiddingTestSuite:
             
             # Manager 1 places first bid
             manager1 = self.test_users[1]
+            manager1_session = self.sessions[manager1['email']]
             bid_data = {
                 "lot_id": self.current_lot_id,
                 "amount": 5
             }
             
-            resp = self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=bid_data)
+            resp = manager1_session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=bid_data)
             if resp.status_code == 200:
                 data = resp.json()
                 bid_results.append(data)
@@ -234,12 +235,13 @@ class BiddingTestSuite:
                     
             # Manager 2 places higher bid
             manager2 = self.test_users[2]
+            manager2_session = self.sessions[manager2['email']]
             bid_data = {
                 "lot_id": self.current_lot_id,
                 "amount": 10
             }
             
-            resp = self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=bid_data)
+            resp = manager2_session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=bid_data)
             if resp.status_code == 200:
                 data = resp.json()
                 bid_results.append(data)
@@ -251,12 +253,13 @@ class BiddingTestSuite:
                     
             # Test invalid bid (too low)
             manager3 = self.test_users[3]
+            manager3_session = self.sessions[manager3['email']]
             bid_data = {
                 "lot_id": self.current_lot_id,
                 "amount": 8  # Lower than current bid
             }
             
-            resp = self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=bid_data)
+            resp = manager3_session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=bid_data)
             if resp.status_code == 400:
                 await self.log_result(f"Invalid Low Bid - {manager3['email']}", True, 
                                     "Correctly rejected low bid")
