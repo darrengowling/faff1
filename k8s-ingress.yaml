@@ -20,7 +20,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: ucl-auction-1.preview.emergentagent.com
+  - host: leaguemate-1.preview.emergentagent.com
     http:
       paths:
       # Socket.IO WebSocket routes (CRITICAL FIX)
