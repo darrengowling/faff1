@@ -287,7 +287,7 @@ class AuctionEngine:
                     if not lot:
                         return
                     
-                    if lot["current_bid"] > 0 and lot["leading_bidder_id"]:
+                    if lot["current_bid"] > 0 and lot["top_bidder_id"]:
                         # SOLD - process transaction atomically with guardrails
                         try:
                             # Import AdminService here to avoid circular imports
