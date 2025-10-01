@@ -23,7 +23,7 @@ spec:
   - host: leaguemate-1.preview.emergentagent.com
     http:
       paths:
-      # Socket.IO WebSocket routes (CRITICAL FIX)
+      # Socket.IO WebSocket routes (CRITICAL FIX) - Must be BEFORE /api route
       - path: /socket.io
         pathType: Prefix
         backend:
