@@ -990,7 +990,13 @@ const LeagueManagement = ({ league, onBack }) => {
                       : 'bg-gray-400 cursor-not-allowed'
                 }`}
                 data-testid={TESTIDS.startAuction}
-                disabled={!leagueStatus?.is_ready || auctionStartLoading}
+                disabled={
+                  !leagueStatus?.is_ready || 
+                  auctionStartLoading || 
+                  loading || 
+                  members.length < (leagueStatus?.min_members || 2) ||
+                  !league.id
+                }
                 title={
                   auctionStartLoading 
                     ? 'Starting auction...'
