@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 """
-Comprehensive Backend API Testing Suite
-Tests all core backend functionality including auth, leagues, auctions, database operations
+Backend API Testing for Copy Invitation Link Functionality
+Testing Agent - Comprehensive Backend API Verification
+
+Focus: Copy Invitation Link functionality testing as requested in review
+- Authentication endpoints
+- League creation 
+- Direct league join via /api/leagues/{league_id}/join
+- League member verification
 """
 
 import requests
@@ -12,26 +18,24 @@ from datetime import datetime, timezone
 import time
 import uuid
 
-class ComprehensiveBackendTester:
+class CopyInviteLinkTester:
     def __init__(self, base_url="https://leaguemate-1.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
-        self.token = None
-        self.user_data = None
+        self.session = requests.Session()
+        self.session.headers.update({
+            'Content-Type': 'application/json',
+            'User-Agent': 'Copy-Invite-Link-Tester/1.0'
+        })
         self.test_league_id = None
-        self.test_auction_id = None
-        self.test_clubs = []
         self.tests_run = 0
         self.tests_passed = 0
         self.failed_tests = []
         
-        # Test data
-        self.test_email = "backend_test@example.com"
-        self.manager_emails = [
-            "manager1@example.com",
-            "manager2@example.com", 
-            "manager3@example.com"
-        ]
+        # Test data for Copy Invitation Link functionality
+        timestamp = int(datetime.now().timestamp())
+        self.commissioner_email = f"commissioner-{timestamp}@example.com"
+        self.join_user_email = f"join-user-{timestamp}@example.com"
         
     def log_test(self, name, success, details=""):
         """Log test results"""
