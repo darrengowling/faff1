@@ -12,12 +12,13 @@ This test covers:
 """
 
 import asyncio
-import aiohttp
+import requests
 import json
 import os
 import sys
 from datetime import datetime
 from typing import Dict, List, Optional
+import concurrent.futures
 
 # Backend URL from environment
 BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://leaguemate-1.preview.emergentagent.com')
