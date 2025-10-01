@@ -114,20 +114,16 @@ async def join_auction(sid, data):
 async def join_league(sid, data):
     """Join league room for real-time updates"""
     league_id = data.get('leagueId') or data.get('league_id')  # Support both formats
-    user_id = data.get('user_id')
     
     if league_id:
-        await sio.enter_room(sid, f"league_{league_id}")
-        await sio.emit('joined', {'leagueId': league_id}, to=sid)
+        # Enter the league room using just the league_id as room name
+        await sio.enter_room(sid, league_id)
+        await sio.emit("joined", {"leagueId": league_id}, room=sid)
         
         logger.info(f"Client {sid} joined league room: {league_id}")
         
-        # Notify others in the league room if user_id provided
-        if user_id:
-            await sio.emit('user_joined_league', {
-                'league_id': league_id,
-                'user_id': user_id
-            }, room=f"league_{league_id}", skip_sid=sid)
+        # Automatically request sync after joining
+        await request_sync(sid, {"leagueId": league_id})
 
 @sio.event
 async def request_sync(sid, data):
