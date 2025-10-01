@@ -1618,18 +1618,14 @@ function App() {
               <Route path="/dashboard" element={
                 <RequireAuth>
                   <AppShell showBackButton={false} pageTitle="Dashboard">
-                    <DashboardLayout>
-                      <Dashboard />
-                    </DashboardLayout>
+                    <Dashboard />
                   </AppShell>
                 </RequireAuth>
               } />
               <Route path="/app" element={
                 <RequireAuth>
                   <AppShell showBackButton={false} pageTitle="Dashboard">
-                    <DashboardLayout>
-                      <Dashboard />
-                    </DashboardLayout>
+                    <Dashboard />
                   </AppShell>
                 </RequireAuth>
               } />
