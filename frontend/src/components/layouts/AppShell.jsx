@@ -9,7 +9,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
-  Home, ChevronLeft, ArrowLeft, Trophy, Menu, X
+  ChevronLeft, ArrowLeft, Trophy, Menu, X
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { InAppFooter } from '../ui/footer';
