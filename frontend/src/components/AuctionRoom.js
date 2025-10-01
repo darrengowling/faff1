@@ -338,23 +338,14 @@ const AuctionRoom = ({ user, token }) => {
         return;
       }
       
-      // Simplified Socket.IO configuration using environment variables
-      const origin = process.env.REACT_APP_BACKEND_URL || 
-                     'https://leaguemate-1.preview.emergentagent.com';
-                       
-      const path = '/api/socket.io';  // OVERLAY PATTERN - USES EXISTING /api/* ROUTING
-      const transports = ['websocket', 'polling'];
+      // Use smart Socket.IO client with auto-fallback
+      const origin = getApiOrigin();
+      console.log('Creating smart Socket.IO connection for auction room');
+
+      const newSocket = createSocket(origin);
       
-      console.log(`Socket.IO connecting to: ${origin} with path: ${path}, transports: ${transports}`);
-      
-      const newSocket = io(origin, {
-        auth: { token },
-        path,
-        transports,
-        withCredentials: true,
-        timeout: 10000,
-        forceNew: true
-      });
+      // Set authentication token for Socket.IO
+      newSocket.auth = { token };
 
       // Connection status events
       newSocket.on('connect', () => {
