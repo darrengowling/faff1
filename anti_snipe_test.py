@@ -56,6 +56,20 @@ async def test_anti_snipe_timer():
         league_id = resp.json()['leagueId']
         print(f"✅ League created: {league_id}")
         
+        # Add another user to meet minimum requirement
+        session2 = requests.Session()
+        session2.headers.update({
+            'Content-Type': 'application/json',
+            'User-Agent': 'AntiSnipeTest/1.0'
+        })
+        
+        resp = session2.post(f"{API_BASE}/auth/test-login", json={"email": "manager2@example.com"})
+        if resp.status_code == 200:
+            resp = session2.post(f"{API_BASE}/leagues/{league_id}/join")
+            if resp.status_code == 200:
+                print("✅ Second user joined league")
+            session2.close()
+        
         # Start auction
         resp = session.post(f"{API_BASE}/auction/{league_id}/start")
         if resp.status_code != 200:
