@@ -814,8 +814,19 @@ const LeagueManagement = ({ league, onBack }) => {
 
   const isCommissioner = league.commissioner_id === user.id;
 
+  const fetchLeagueDataWithRetry = async (retryCount = 0) => {
+    try {
+      await fetchLeagueData();
+    } catch (error) {
+      if (retryCount < 2) {
+        console.log(`Retrying league data fetch (${retryCount + 1}/2)...`);
+        setTimeout(() => fetchLeagueDataWithRetry(retryCount + 1), 1000);
+      }
+    }
+  };
+
   useEffect(() => {
-    fetchLeagueData();
+    fetchLeagueDataWithRetry();
   }, [league.id]);
 
   const fetchLeagueData = async () => {
