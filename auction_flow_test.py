@@ -534,29 +534,29 @@ class AuctionFlowTester:
             print("❌ Failed to start auction, cannot continue bidding tests")
             return False
         
-        # Test 7: Nominate First Asset
-        print("\n📋 TEST 7: Nominate First Asset")
+        # Test 8: Nominate First Asset
+        print("\n📋 TEST 8: Nominate First Asset")
         if not self.nominate_first_asset():
             print("❌ Failed to nominate asset, continuing with other tests")
         
-        # Test 8: Simulate Bidding Process
-        print("\n📋 TEST 8: Simulate Bidding Process")
+        # Test 9: Simulate Bidding Process
+        print("\n📋 TEST 9: Simulate Bidding Process")
         self.simulate_bidding_process()
         
-        # Test 9: Test Bid Validation
-        print("\n📋 TEST 9: Test Bid Validation")
+        # Test 10: Test Bid Validation
+        print("\n📋 TEST 10: Test Bid Validation")
         self.test_bid_validation()
         
-        # Test 10: Verify Budget Tracking
-        print("\n📋 TEST 10: Verify Budget Tracking")
+        # Test 11: Verify Budget Tracking
+        print("\n📋 TEST 11: Verify Budget Tracking")
         self.verify_budget_tracking()
         
-        # Test 11: Test Auction Progression
-        print("\n📋 TEST 11: Test Auction Progression")
+        # Test 12: Test Auction Progression
+        print("\n📋 TEST 12: Test Auction Progression")
         self.test_auction_progression()
         
-        # Test 12: Verify Auction Completion
-        print("\n📋 TEST 12: Verify Auction Completion")
+        # Test 13: Verify Auction Completion
+        print("\n📋 TEST 13: Verify Auction Completion")
         self.verify_auction_completion()
         
         # Print final summary
