@@ -279,13 +279,15 @@ agent_communication:
 
 test_plan:
   current_focus:
+    - "Copy Invitation Link Functionality"
     - "E2E Test Pass Rate Assessment for 85% Target"
   stuck_tasks: 
     - "Core-Smoke League Creation Flow"
     - "Navigation Duplicate Testid Issues"
     - "Auth UI Error Display Issues"
+    - "Collection Name Mismatch (memberships vs league_memberships)"
   test_all: true
-  test_priority: "comprehensive_e2e_assessment"
+  test_priority: "copy_invitation_link_verification"
 
   - task: "Testable Components Implementation Verification"
     implemented: true
