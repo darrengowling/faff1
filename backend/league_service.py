@@ -293,11 +293,27 @@ class LeagueService:
             
             # Send invitation email (or log for development)
             invitation_link = f"http://localhost:3000/invite?token={token}"
-            logger.info(f"Invitation link for {email}: {invitation_link}")
-            print(f"\n📨 Invitation Link for {email}:")
-            print(f"   {invitation_link}\n")
             
-            logger.info(f"Sent invitation to {email} for league {league_id}")
+            # Get inviter name for email
+            inviter = await db.users.find_one({"_id": inviter_id})
+            inviter_name = inviter.get("display_name", "A league commissioner") if inviter else "A league commissioner"
+            
+            # Import and use email sending function
+            from auth import send_invitation_email
+            email_sent = send_invitation_email(
+                email=email,
+                league_name=league["name"],
+                inviter_name=inviter_name,
+                invitation_link=invitation_link
+            )
+            
+            if email_sent:
+                logger.info(f"Invitation email sent to {email} for league {league_id}")
+            else:
+                # Fallback: Log the link for development
+                logger.info(f"Email not sent (SMTP not configured). Invitation link for {email}: {invitation_link}")
+                print(f"\n📨 Invitation Link for {email}:")
+                print(f"   {invitation_link}\n")
             
             return InvitationResponse(
                 id=invitation.id,
