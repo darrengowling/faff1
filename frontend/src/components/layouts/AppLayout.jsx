@@ -61,7 +61,8 @@ const AppLayout = ({ children, showBackButton = true, pageTitle = null }) => {
   return (
     <div className="min-h-screen bg-theme-surface-secondary flex flex-col">
       {/* Global Navigation Header */}
-      <GlobalNavbar />
+      {/* GlobalNavbar removed to prevent duplicate nav-hamburger testid */}
+      {/* <GlobalNavbar /> */}
       
       {/* App Header with Back Button and Breadcrumb */}
       <header className="bg-theme-surface border-b border-theme-surface-border shadow-sm">
