@@ -354,7 +354,7 @@ class AuctionEngine:
                             await db.rosters.update_one(
                                 {
                                     "league_id": league_id,
-                                    "user_id": lot["leading_bidder_id"]
+                                    "user_id": lot["top_bidder_id"]
                                 },
                                 {"$inc": {"budget_remaining": -lot["current_bid"]}},
                                 session=session
