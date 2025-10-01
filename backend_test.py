@@ -402,7 +402,10 @@ class BiddingTestSuite:
         
         try:
             # Get league members with budget info
-            resp = self.session.get(f"{API_BASE}/leagues/{self.league_id}/members")
+            commissioner = self.test_users[0]
+            commissioner_session = self.sessions[commissioner['email']]
+            
+            resp = commissioner_session.get(f"{API_BASE}/leagues/{self.league_id}/members")
             if resp.status_code == 200:
                 members = resp.json()
                 await self.log_result("Member Budget Retrieval", True, f"Found {len(members)} members")
@@ -420,12 +423,13 @@ class BiddingTestSuite:
                 
                 # Test budget constraint by trying to bid more than available budget
                 manager = self.test_users[4]  # Use last manager
+                manager_session = self.sessions[manager['email']]
                 excessive_bid = {
                     "lot_id": self.current_lot_id,
                     "amount": 150  # More than total budget
                 }
                 
-                resp = self.session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=excessive_bid)
+                resp = manager_session.post(f"{API_BASE}/auction/{self.auction_id}/bid", json=excessive_bid)
                 if resp.status_code == 400:
                     await self.log_result("Budget Constraint Validation", True, 
                                         "Correctly rejected excessive bid")
