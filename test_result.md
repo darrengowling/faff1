@@ -305,8 +305,10 @@ agent_communication:
 
 test_plan:
   current_focus:
-    - "Copy Invitation Link Functionality"
-    - "E2E Test Pass Rate Assessment for 85% Target"
+    - "Invite Code System Implementation"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
   stuck_tasks: 
     - "Core-Smoke League Creation Flow"
     - "Navigation Duplicate Testid Issues"
