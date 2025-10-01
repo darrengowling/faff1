@@ -502,7 +502,7 @@ class AuctionEngine:
                 "amount": amount,
                 "bidder_id": bidder_id,
                 "current_bid": lot["current_bid"],
-                "leading_bidder_id": lot["leading_bidder_id"],
+                "leading_bidder_id": lot["top_bidder_id"],
                 "bid_id": bid_id
             }
                     
