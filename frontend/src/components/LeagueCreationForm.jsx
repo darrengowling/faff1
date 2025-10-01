@@ -366,7 +366,7 @@ const LeagueCreationForm = ({
                 }}
                 aria-describedby={errors.min ? "min-error" : undefined}
                 className={errors.min ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
-                data-testid={TESTIDS.createMinInput}
+                data-testid={TESTIDS.createMin}
               />
               {errors.min && (
                 <p id="min-error" className="text-sm text-red-600" data-testid="create-error-min">
