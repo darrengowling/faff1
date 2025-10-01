@@ -514,6 +514,9 @@ const CreateLeagueDialog = ({ open, onOpenChange, onLeagueCreated }) => {
             <span className="text-gray-900 font-medium">New League</span>
           </div>
           <DialogTitle>{t('leagueCreation.createNewLeague')}</DialogTitle>
+          <DialogDescription>
+            Choose a template to set default values and customize your league settings.
+          </DialogDescription>
         </DialogHeader>
         
         <LeagueCreationForm
