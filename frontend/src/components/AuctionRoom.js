@@ -366,6 +366,15 @@ const AuctionRoom = ({ user, token }) => {
         
         // Join auction room
         newSocket.emit('join_auction', { auction_id: auctionId });
+        
+        // Set timeout for auction state loading
+        setTimeout(() => {
+          if (!auctionState && connectionStatus === 'connected') {
+            console.error('Timeout waiting for auction state');
+            setConnectionStatus('error');
+            toast.error('Failed to load auction data. Please refresh the page.');
+          }
+        }, 15000); // 15 second timeout
       });
 
       newSocket.on('disconnect', (reason) => {
