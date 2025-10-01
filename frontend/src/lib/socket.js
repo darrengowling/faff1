@@ -52,7 +52,13 @@ export function createSocket(API_ORIGIN: string): Socket {
   });
 
   socket.on("connect", () => {
-    console.log(`✅ Socket.IO connected successfully on path: ${path}`);
+    const transport = socket.io.engine?.transport?.name || 'unknown';
+    console.log(`✅ Socket.IO connected successfully on path: ${path} using ${transport} transport`);
+  });
+
+  socket.on("upgrade", () => {
+    const transport = socket.io.engine?.transport?.name || 'unknown';
+    console.log(`⬆️ Socket.IO upgraded to ${transport} transport`);
   });
 
   return socket;
