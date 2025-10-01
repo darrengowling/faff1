@@ -524,7 +524,15 @@ class RaceSafeBiddingTest:
     async def place_bid_http(self, auction_id: str, user_cookies: dict, amount: int, op_id: str) -> dict:
         """Place bid via HTTP endpoint"""
         try:
+            # Get current lot first
+            lot_result = await self.get_current_lot(auction_id, user_cookies)
+            if not lot_result["success"]:
+                return {"success": False, "error": f"Failed to get current lot: {lot_result['error']}"}
+                
+            lot_id = lot_result["lot"]["id"]
+            
             bid_data = {
+                "lot_id": lot_id,
                 "amount": amount,
                 "op_id": op_id
             }
