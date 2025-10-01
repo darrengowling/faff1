@@ -54,6 +54,27 @@ export function createSocket(API_ORIGIN: string): Socket {
   socket.on("connect", () => {
     const transport = socket.io.engine?.transport?.name || 'unknown';
     console.log(`✅ Socket.IO connected successfully on path: ${path} using ${transport} transport`);
+    
+    // Auto-rejoin league room and sync state on connect
+    const leagueId = sessionStorage.getItem("leagueId");
+    if (leagueId) {
+      console.log(`🔄 Rejoining league room: ${leagueId}`);
+      socket.emit("join_league", { leagueId });
+      socket.emit("request_sync", { leagueId });
+    }
+  });
+
+  socket.on("reconnect", () => {
+    const transport = socket.io.engine?.transport?.name || 'unknown';
+    console.log(`🔄 Socket.IO reconnected using ${transport} transport`);
+    
+    // Auto-rejoin league room and sync state on reconnect
+    const leagueId = sessionStorage.getItem("leagueId");
+    if (leagueId) {
+      console.log(`🔄 Rejoining league room after reconnect: ${leagueId}`);
+      socket.emit("join_league", { leagueId });
+      socket.emit("request_sync", { leagueId });
+    }
   });
 
   socket.on("upgrade", () => {
