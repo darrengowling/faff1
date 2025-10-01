@@ -1,27 +1,19 @@
 #!/usr/bin/env python3
 """
-COMPREHENSIVE BIDDING MECHANISM TEST
-Tests the complete auction bidding functionality as requested in review.
-
-This test covers:
-1. Complete Auction Setup (league creation, multiple users, auction start)
-2. Place Actual Bids (POST /api/auction/{auction_id}/bid endpoint)
-3. Race Condition Testing (simultaneous bidding scenarios)
-4. Bid State Management (winning bid tracking, bid history)
-5. Budget Impact (budget deductions, constraint validation)
+Comprehensive Backend Test Suite for Server-Authoritative Auction Clock
+Tests the new authoritative clock implementation with tick events, anti-snipe, and lot progression
 """
 
 import asyncio
-import requests
+import aiohttp
 import json
-import os
-import sys
-from datetime import datetime
+import time
+import uuid
+from datetime import datetime, timezone, timedelta
 from typing import Dict, List, Optional
-import concurrent.futures
 
-# Backend URL from environment
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://livebid-app.preview.emergentagent.com')
+# Test configuration
+BACKEND_URL = "https://livebid-app.preview.emergentagent.com"
 API_BASE = f"{BACKEND_URL}/api"
 
 class BiddingTestSuite:
