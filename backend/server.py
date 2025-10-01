@@ -1961,10 +1961,17 @@ async def place_bid_http(
     bid_data: BidCreate,
     current_user: UserResponse = Depends(get_current_verified_user)
 ):
-    """Place bid via HTTP endpoint"""
+    """Place bid via HTTP endpoint with race-safety and replay-safety"""
     try:
         engine = get_auction_engine()
-        result = await engine.place_bid(auction_id, bid_data.lot_id, current_user.id, bid_data.amount)
+        
+        # Generate op_id if not provided
+        op_id = bid_data.op_id
+        if not op_id:
+            import uuid
+            op_id = str(uuid.uuid4())
+            
+        result = await engine.place_bid(auction_id, bid_data.lot_id, current_user.id, bid_data.amount, op_id)
         
         if result["success"]:
             return result
