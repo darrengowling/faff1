@@ -875,6 +875,22 @@ const LeagueManagement = ({ league, onBack }) => {
       }
     });
 
+    socket.on('sync_state', (state) => {
+      console.log('League sync state received:', state);
+      if (state.league_id === league.id) {
+        // Update league state from sync
+        if (state.members) setMembers(state.members);
+        if (state.league_status) setLeagueStatus(state.league_status);
+        if (state.invitations) setInvitations(state.invitations);
+        
+        toast.success('League state synchronized');
+      }
+    });
+
+    socket.on('joined', (data) => {
+      console.log('Successfully joined league room:', data);
+    });
+
     socket.on('disconnect', () => {
       console.log('Disconnected from league updates');
     });
