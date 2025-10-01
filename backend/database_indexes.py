@@ -86,7 +86,28 @@ class DatabaseIndexManager:
                     results["result_ingest"] = False
                     logger.error(f"❌ Failed to create result ingest indexes: {e}")
             
-            # 4. Additional performance indexes
+            # 4. auction_logs collection: unique (leagueId, opId) for race-safe bidding
+            auction_logs_indexes = [
+                IndexModel([("league_id", ASCENDING), ("op_id", ASCENDING)], 
+                          unique=True, name="unique_league_opid"),
+                IndexModel([("league_id", ASCENDING), ("timestamp", ASCENDING)], name="league_time_lookup"),
+                IndexModel([("user_id", ASCENDING)], name="user_lookup"),
+                IndexModel([("operation_type", ASCENDING)], name="operation_type_lookup")
+            ]
+            
+            try:
+                await db.auction_logs.create_indexes(auction_logs_indexes)
+                results["auction_logs"] = True
+                logger.info("✅ Auction logs indexes created successfully")
+            except OperationFailure as e:
+                if "already exists" in str(e):
+                    results["auction_logs"] = True
+                    logger.info("ℹ️  Auction logs indexes already exist")
+                else:
+                    results["auction_logs"] = False
+                    logger.error(f"❌ Failed to create auction logs indexes: {e}")
+
+            # 5. Additional performance indexes
             performance_results = await DatabaseIndexManager._ensure_performance_indexes()
             results.update(performance_results)
             
