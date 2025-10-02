@@ -504,9 +504,9 @@ const AuctionRoom = ({ user, token }) => {
       const response = await fetch(`${BACKEND_URL}/api/auction/${auctionId}/${endpoint}`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include'
       });
 
       if (!response.ok) {
