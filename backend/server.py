@@ -1764,6 +1764,35 @@ async def get_league_members(
         logger.error(f"Failed to get league members: {e}")
         raise HTTPException(status_code=500, detail="Failed to get league members")
 
+@api_router.delete("/leagues/{league_id}")
+async def delete_league(league_id: str, current_user: UserResponse = Depends(get_current_user)):
+    """Delete league and all associated data (commissioner only)"""
+    try:
+        # Check if user is league commissioner
+        league = await db.leagues.find_one({"_id": league_id})
+        if not league:
+            raise HTTPException(status_code=404, detail="League not found")
+        
+        if league["commissioner_id"] != current_user.id:
+            raise HTTPException(status_code=403, detail="Only league commissioner can delete leagues")
+        
+        # Delete all associated data
+        await db.leagues.delete_one({"_id": league_id})
+        await db.auctions.delete_many({"league_id": league_id})
+        await db.lots.delete_many({"league_id": league_id})
+        await db.bids.delete_many({"league_id": league_id})
+        await db.rosters.delete_many({"league_id": league_id})
+        await db.roster_clubs.delete_many({"league_id": league_id})
+        await db.auction_logs.delete_many({"league_id": league_id})
+        
+        return {"success": True, "message": "League deleted successfully"}
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to delete league {league_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to delete league")
+
 @api_router.get("/leagues/{league_id}/status")
 async def get_league_status(
     league_id: str,
