@@ -415,7 +415,7 @@ const AuctionRoom = ({ user, token }) => {
         newSocket.close();
       }
     };
-  }, [token, auctionId]);
+  }, [auctionId]);
 
   // Cleanup on component unmount
   useEffect(() => {
