@@ -55,6 +55,8 @@ sio = socketio.AsyncServer(
     cors_allowed_origins=[FRONTEND_ORIGIN],  # exact origin in preview
     ping_interval=25, 
     ping_timeout=60,
+    engineio_logger=True,
+    logger=True
 )
 
 # Socket.IO event handlers
