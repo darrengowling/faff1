@@ -269,6 +269,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Log CORS configuration for security auditing  
+logger.info(f"CORS configured for origins: {cors_origins} (TEST_MODE: {TEST_MODE})")
+
 # Email validation startup check
 def check_email_validation():
     """Startup check for email validation functionality"""
