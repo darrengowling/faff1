@@ -124,8 +124,7 @@ const AuctionRoom = ({ user, token }) => {
     // Create new abort controller for this effect
     abortControllerRef.current = new AbortController();
     
-    // Set authentication token
-    newSocket.auth = { token };
+    // Authentication will use cookies automatically
     
     // Store socket and joinAndSync function in state
     if (mountedRef.current) {
