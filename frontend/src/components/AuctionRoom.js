@@ -112,7 +112,7 @@ const AuctionRoom = ({ user, token }) => {
 
   // Initialize unified WebSocket connection with proper cleanup
   useEffect(() => {
-    if (!token || !auctionId) return;
+    if (!auctionId) return;
 
     console.log('Initializing unified Socket.IO connection for auction:', auctionId);
     
