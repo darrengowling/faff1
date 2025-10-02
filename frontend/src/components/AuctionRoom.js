@@ -531,7 +531,7 @@ const AuctionRoom = ({ user, token }) => {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/lots/${selectedLotForClose._id}/close`,
         { reason, forced },
-        { headers: { Authorization: `Bearer ${token}` }}
+        { withCredentials: true }
       );
 
       if (response.data.success) {
@@ -558,7 +558,7 @@ const AuctionRoom = ({ user, token }) => {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/lots/undo/${actionId}`,
         {},
-        { headers: { Authorization: `Bearer ${token}` }}
+        { withCredentials: true }
       );
 
       if (response.data.success) {
