@@ -1,0 +1,9 @@
+HTTP/2 200 
+content-length: 143
+content-type: application/json
+date: Thu, 02 Oct 2025 14:17:55 GMT
+server: uvicorn
+set-cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MTZlNjFkNy02YWEzLTRhZjYtYWZlMC1kNGFjMDEwNmNkZDUiLCJleHAiOjE3NTk1MDEwNzV9.eplB4TtiUlklqbgn5fPlwtfd3xMA2o7oAuomayBld-s; HttpOnly; Max-Age=7200; Path=/; SameSite=lax; Secure
+via: 1.1 google
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
