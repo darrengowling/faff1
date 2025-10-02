@@ -66,7 +66,7 @@ class CompetitionService:
                     anti_snipe_seconds=defaults.get("anti_snipe_seconds", 30),
                     bid_timer_seconds=defaults.get("bid_timer_seconds", 60),
                     league_size=LeagueSize(
-                        min=defaults.get("league_size", {}).get("min", 4),
+                        min=defaults.get("league_size", {}).get("min", 2),
                         max=defaults.get("league_size", {}).get("max", 8)
                     ),
                     scoring_rules=ScoringRulePoints(
