@@ -2,20 +2,20 @@
   "cookies": [
     {
       "name": "access_token",
-      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlOTJkMzM3ZC00MWUxLTQ4NjctYWJiOC0xNTRhYTNhNjM1N2EiLCJleHAiOjE3NTk0NTA5NjJ9.CHsVDOFGsP2g8j9gfql3fHQfT0FEKUpmhXoeDLmkSp0",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlOTJkMzM3ZC00MWUxLTQ4NjctYWJiOC0xNTRhYTNhNjM1N2EiLCJleHAiOjE3NTk0NTA5NzF9.zGxl9mrpVKVQEa0ni87uZMqdfMXz5qbZjhYLXmy8n1A",
       "domain": "livebid-app.preview.emergentagent.com",
       "path": "/",
-      "expires": 1759371762.749,
+      "expires": 1759371771.618,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Lax"
     },
     {
       "name": "ph_phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE_posthog",
-      "value": "%7B%22distinct_id%22%3A%220199a24c-c00b-728b-aab5-88a8534b533c%22%2C%22%24sesid%22%3A%5B1759364564297%2C%220199a24c-c008-7e21-b88f-355f4a440774%22%2C1759364562952%5D%7D",
+      "value": "%7B%22distinct_id%22%3A%220199a24c-e32e-79db-a548-db9f6636a1b8%22%2C%22%24sesid%22%3A%5B1759364573684%2C%220199a24c-e31c-707a-a417-3a4749875f49%22%2C1759364571932%5D%7D",
       "domain": ".emergentagent.com",
       "path": "/",
-      "expires": 1790900564,
+      "expires": 1790900573,
       "httpOnly": false,
       "secure": true,
       "sameSite": "Lax"
@@ -27,7 +27,7 @@
       "localStorage": [
         {
           "name": "ph_phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE_posthog",
-          "value": "{\"distinct_id\":\"0199a24c-c00b-728b-aab5-88a8534b533c\",\"$sesid\":[1759364564297,\"0199a24c-c008-7e21-b88f-355f4a440774\",1759364562952],\"$initialization_time\":\"2025-10-02T00:22:44.297Z\",\"$configured_session_timeout_ms\":1800000,\"$client_session_props\":{\"sessionId\":\"0199a24c-c008-7e21-b88f-355f4a440774\",\"props\":{\"r\":\"$direct\",\"u\":\"https://livebid-app.preview.emergentagent.com/app\"}},\"$device_id\":\"0199a24c-c00b-728b-aab5-88a8534b533c\",\"$user_state\":\"anonymous\",\"$session_recording_enabled_server_side\":true,\"$console_log_recording_enabled_server_side\":true,\"$session_recording_network_payload_capture\":{\"capturePerformance\":{\"network_timing\":true,\"web_vitals\":true,\"web_vitals_allowed_metrics\":null}},\"$session_recording_masking\":null,\"$session_recording_canvas_recording\":{},\"$replay_sample_rate\":null,\"$replay_minimum_duration\":null,\"$replay_script_config\":null,\"$autocapture_disabled_server_side\":false,\"$heatmaps_enabled_server_side\":true,\"$web_vitals_enabled_server_side\":true,\"$web_vitals_allowed_metrics\":null,\"$exception_capture_enabled_server_side\":false,\"$error_tracking_suppression_rules\":[],\"$dead_clicks_enabled_server_side\":false,\"$active_feature_flags\":[],\"$enabled_feature_flags\":{},\"$feature_flag_payloads\":{},\"$feature_flag_details\":{},\"$feature_flag_request_id\":\"4e32be68-7ab6-4993-8ef7-f64956311d77\"}"
+          "value": "{\"distinct_id\":\"0199a24c-e32e-79db-a548-db9f6636a1b8\",\"$sesid\":[1759364573684,\"0199a24c-e31c-707a-a417-3a4749875f49\",1759364571932],\"$initialization_time\":\"2025-10-02T00:22:53.683Z\",\"$configured_session_timeout_ms\":1800000,\"$client_session_props\":{\"sessionId\":\"0199a24c-e31c-707a-a417-3a4749875f49\",\"props\":{\"r\":\"$direct\",\"u\":\"https://livebid-app.preview.emergentagent.com/app\"}},\"$device_id\":\"0199a24c-e32e-79db-a548-db9f6636a1b8\",\"$user_state\":\"anonymous\",\"$session_recording_enabled_server_side\":true,\"$console_log_recording_enabled_server_side\":true,\"$session_recording_network_payload_capture\":{\"capturePerformance\":{\"network_timing\":true,\"web_vitals\":true,\"web_vitals_allowed_metrics\":null}},\"$session_recording_masking\":null,\"$session_recording_canvas_recording\":{},\"$replay_sample_rate\":null,\"$replay_minimum_duration\":null,\"$replay_script_config\":null,\"$autocapture_disabled_server_side\":false,\"$heatmaps_enabled_server_side\":true,\"$web_vitals_enabled_server_side\":true,\"$web_vitals_allowed_metrics\":null,\"$exception_capture_enabled_server_side\":false,\"$error_tracking_suppression_rules\":[],\"$dead_clicks_enabled_server_side\":false,\"$active_feature_flags\":[],\"$enabled_feature_flags\":{},\"$feature_flag_payloads\":{},\"$feature_flag_details\":{},\"$feature_flag_request_id\":\"aa5d37e6-1c72-4d9d-ab55-7f6cdb27d805\"}"
         }
       ]
     }
