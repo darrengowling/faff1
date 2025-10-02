@@ -906,10 +906,11 @@ async def advance_test_time(request: dict):
     Advance the current time by specified milliseconds for deterministic testing.
     Only enabled when TEST_MODE=true environment variable is set.
     """
-    if not is_test_mode():
+    # Double-check test mode to ensure this is never accessible in production
+    if not is_test_mode() or not TEST_MODE:
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Time control endpoints only available in TEST_MODE"
+            status_code=404,
+            detail="Endpoint not found"
         )
     
     if "ms" not in request:
