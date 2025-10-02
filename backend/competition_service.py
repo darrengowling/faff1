@@ -83,7 +83,7 @@ class CompetitionService:
                     club_slots_per_manager=3,
                     anti_snipe_seconds=30,
                     bid_timer_seconds=60,
-                    league_size=LeagueSize(min=4, max=8),
+                    league_size=LeagueSize(min=2, max=8),
                     scoring_rules=ScoringRulePoints(club_goal=1, club_win=3, club_draw=1)
                 )
                 
