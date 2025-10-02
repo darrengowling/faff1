@@ -19,10 +19,11 @@
             - generic [ref=e20]:
               - generic [ref=e21]:
                 - generic [ref=e22]: Email Address
-                - textbox "Email Address" [disabled] [ref=e23]: playwright-test@example.com
-              - button "Sending Magic Link" [disabled]:
+                - textbox "Email Address" [ref=e23]
+              - button "Send Magic Link" [disabled]:
                 - generic:
-                  - generic: Sending Magic Link
+                  - img
+                  - generic: Send Magic Link
             - paragraph [ref=e25]: Don't have an account? Contact your league commissioner for an invitation.
         - paragraph [ref=e27]: Having trouble? Contact support for assistance.
   - link "Emergent platform logo Made with Emergent" [ref=e28] [cursor=pointer]:

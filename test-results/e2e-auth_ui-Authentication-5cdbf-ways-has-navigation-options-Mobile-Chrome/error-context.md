@@ -20,15 +20,15 @@
               - generic [ref=e21]:
                 - generic [ref=e22]: Email Address
                 - textbox "Email Address" [ref=e23]
-              - button "Send Magic Link" [ref=e24] [cursor=pointer]:
-                - generic [ref=e25] [cursor=pointer]:
+              - button "Send Magic Link" [disabled]:
+                - generic:
                   - img
-                  - generic [ref=e26] [cursor=pointer]: Send Magic Link
-            - paragraph [ref=e28]: Don't have an account? Contact your league commissioner for an invitation.
-        - paragraph [ref=e30]: Having trouble? Contact support for assistance.
-  - link "Emergent platform logo Made with Emergent" [ref=e31] [cursor=pointer]:
+                  - generic: Send Magic Link
+            - paragraph [ref=e25]: Don't have an account? Contact your league commissioner for an invitation.
+        - paragraph [ref=e27]: Having trouble? Contact support for assistance.
+  - link "Emergent platform logo Made with Emergent" [ref=e28] [cursor=pointer]:
     - /url: https://app.emergent.sh/?utm_source=emergent-badge
-    - generic [ref=e32] [cursor=pointer]:
-      - img "Emergent platform logo" [ref=e33] [cursor=pointer]
-      - paragraph [ref=e34] [cursor=pointer]: Made with Emergent
+    - generic [ref=e29] [cursor=pointer]:
+      - img "Emergent platform logo" [ref=e30] [cursor=pointer]
+      - paragraph [ref=e31] [cursor=pointer]: Made with Emergent
 ```
