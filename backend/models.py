@@ -55,7 +55,7 @@ class LeagueSettings(BaseModel):
     club_slots_per_manager: int = Field(3, ge=1, le=10, description="Club slots per manager (1-10)")
     anti_snipe_seconds: int = Field(30, ge=0, description="Anti-snipe timer extension")
     bid_timer_seconds: int = Field(60, ge=30, description="Default bid timer duration")
-    league_size: LeagueSize = Field(default_factory=lambda: LeagueSize(min=4, max=8))
+    league_size: LeagueSize = Field(default_factory=lambda: LeagueSize(min=2, max=8))
     scoring_rules: ScoringRulePoints = Field(default_factory=ScoringRulePoints)
 
 class League(BaseModel):
