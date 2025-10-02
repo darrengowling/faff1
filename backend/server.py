@@ -155,9 +155,6 @@ if TEST_MODE:
     # Remove duplicates
     cors_origins = list(set(cors_origins))
 
-# Log CORS configuration for security auditing
-logger.info(f"CORS configured for origins: {cors_origins} (TEST_MODE: {TEST_MODE})")
-
 fastapi_app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
