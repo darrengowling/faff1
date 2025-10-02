@@ -1,7 +1,7 @@
 import { io, Socket } from "socket.io-client";
 
 export function createSocket(API_ORIGIN) {
-  const transports = (import.meta.env.VITE_SOCKET_TRANSPORTS ?? "polling,websocket").split(",");
+  const transports = (process.env.REACT_APP_SOCKET_TRANSPORTS ?? "polling,websocket").split(",");
   const socket = io(API_ORIGIN, {
     path: "/api/socket.io",
     transports,
