@@ -168,7 +168,7 @@ async def send_magic_link_email(email: str, token: str):
     print(f"   {magic_link}\n")
     return
 
-async def get_current_user(request: Request, credentials: HTTPAuthorizationCredentials = Depends(security)) -> UserResponse:
+async def get_current_user(request: Request, credentials: Optional[HTTPAuthorizationCredentials] = Depends(security)) -> UserResponse:
     """Get current authenticated user from Bearer token or cookie"""
     credentials_exception = HTTPException(
         status_code=status.HTTP_403_FORBIDDEN,
